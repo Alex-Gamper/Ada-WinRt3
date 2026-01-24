@@ -35,9 +35,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <AdaTarget>x86_64-w64-mingw32</AdaTarget>
-    <GnatRoot>C:\Software\Gnat</GnatRoot>
-    <GnatRootRTS>C:\Software\Gnat\lib\gcc\x86_64-w64-mingw32\15.2.0</GnatRootRTS>
-    <GnatMingwRoot>C:\Software\Gnat\x86_64-w64-mingw32</GnatMingwRoot>
+    <GnatRoot>C:\Software\Gnat13</GnatRoot>
+    <GnatRootRTS>C:\Software\Gnat13\lib\gcc\x86_64-w64-mingw32\13.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\Software\Gnat13\x86_64-w64-mingw32</GnatMingwRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <AdaTarget>x86_64-w64-mingw32</AdaTarget>

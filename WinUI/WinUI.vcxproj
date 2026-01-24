@@ -1,0 +1,1096 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|LLVM">
+      <Configuration>Debug</Configuration>
+      <Platform>LLVM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|LLVM">
+      <Configuration>Release</Configuration>
+      <Platform>LLVM</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <CustomProjectExtensionsPath>$(MSBuildBinPath)\..\..\VisualAda\BuildSystem\</CustomProjectExtensionsPath>
+    <ProjectName>WinUI</ProjectName>
+    <ProjectGuid>{4da49345-6f65-47a9-bd7a-0c4f3445fc4a}</ProjectGuid>
+    <Keyword>WinUI</Keyword>
+    <RootNamespace>WinUI</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <AdaTarget>x86_64-w64-mingw32</AdaTarget>
+    <GnatRoot>C:\Software\Gnat13</GnatRoot>
+    <GnatRootRTS>C:\Software\Gnat13\lib\gcc\x86_64-w64-mingw32\13.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\Software\Gnat13\x86_64-w64-mingw32</GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <AdaTarget>Unknown</AdaTarget>
+    <GnatRoot>Unknown</GnatRoot>
+    <GnatRootRTS>Unknown</GnatRootRTS>
+    <GnatMingwRoot>Unknown</GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM' or '$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64' or '$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM' or '$(Configuration)|$(Platform)'=='Debug|LLVM'" Label="Configuration">
+    <AdaTarget>arm-eabi</AdaTarget>
+    <GnatRoot>
+    </GnatRoot>
+    <GnatRootRTS>
+    </GnatRootRTS>
+    <GnatMingwRoot>
+    </GnatMingwRoot>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'==''">$(GnatRootRTS)</GnatRootRTSAda>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)</GnatRootRTSAda>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'==''">$(GnatRootRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatLibraryDir>$(GnatRoot)\lib</GnatLibraryDir>
+    <GnatWinRtLibraryDir>$(GnatRootRTSAda)\lib\WinRt</GnatWinRtLibraryDir>
+    <GprbuildOptions>-aP$(GnatRootRTSAda)\share\gpr</GprbuildOptions>
+  </PropertyGroup>
+  <Import Project="$(CustomProjectExtensionsPath)Ada_Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|LLVM'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|LLVM'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="WinUI.gpr" />
+  </ItemGroup>
+  <ItemGroup>
+    <AdaCompile Include="WinUI3.adb" />
+    <AdaCompile Include="WinUI3.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Foundation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.DirectX.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.Display.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.Display.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.Imaging.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Graphics.Imaging.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Security.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Security.Authentication.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Security.Authentication.OAuth.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Security.Authentication.OAuth.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Core.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Core.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Diagnostics.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Effects.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Effects.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Interactions.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Interactions.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Scenes.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.Scenes.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.SystemBackdrops.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Composition.SystemBackdrops.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Content.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Content.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Dispatching.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Dispatching.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Input.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Input.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Input.DragDrop.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Input.DragDrop.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Input.Interop.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.System.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.System.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Text.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Text.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Windowing.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Windowing.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.Peers.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.Peers.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.Provider.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.Provider.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Automation.Text.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.Primitives.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.CustomAttributes.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Data.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Data.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Documents.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Documents.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Hosting.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Hosting.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Input.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Input.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Interop.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Interop.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Markup.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Markup.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Animation.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Animation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Imaging.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Imaging.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Media3D.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Media.Media3D.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Navigation.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Navigation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Printing.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Printing.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Resources.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Resources.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Shapes.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.Shapes.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.XamlTypeInfo.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.UI.Xaml.XamlTypeInfo.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Web.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Web.WebView2.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Web.WebView2.Core.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Web.WebView2.Core.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.ContentSafety.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.ContentSafety.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Foundation.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Foundation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Imaging.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Imaging.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.MachineLearning.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.MachineLearning.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Text.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AI.Text.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Background.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Background.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Resources.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.Resources.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppLifecycle.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppLifecycle.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppNotifications.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppNotifications.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppNotifications.Builder.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.AppNotifications.Builder.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.BadgeNotifications.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.BadgeNotifications.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Foundation.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Globalization.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Management.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Management.Deployment.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Management.Deployment.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Media.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Media.Capture.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Media.Capture.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.PushNotifications.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.PushNotifications.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Security.AccessControl.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Security.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Storage.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Storage.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Storage.Pickers.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Storage.Pickers.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.System.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.System.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.System.Power.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Feeds.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Feeds.Providers.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Feeds.Providers.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Notifications.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Notifications.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Providers.adb" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Widgets.Providers.ads" />
+    <AdaCompile Include="WinUI3.Microsoft.Windows.Workloads.ads" />
+    <AdaCompile Include="WinUI3.Windows.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.Actions.adb" />
+    <AdaCompile Include="WinUI3.Windows.AI.Actions.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.Actions.Hosting.adb" />
+    <AdaCompile Include="WinUI3.Windows.AI.Actions.Hosting.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.Actions.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.Agents.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.Agents.Mcp.adb" />
+    <AdaCompile Include="WinUI3.Windows.AI.Agents.Mcp.ads" />
+    <AdaCompile Include="WinUI3.Windows.AI.MachineLearning.adb" />
+    <AdaCompile Include="WinUI3.Windows.AI.MachineLearning.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Activation.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Activation.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.AppExtensions.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.AppExtensions.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.AppointmentsProvider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.AppointmentsProvider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.DataProvider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Appointments.DataProvider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.AppService.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.AppService.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Background.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Background.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.Background.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.Background.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Calls.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Chat.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Chat.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.CommunicationBlocking.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.DataProvider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.DataProvider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Contacts.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ConversationalAgent.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ConversationalAgent.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.DragDrop.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.DragDrop.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Email.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Email.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Email.DataProvider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Email.DataProvider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ExtendedExecution.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ExtendedExecution.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ExtendedExecution.Foreground.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.ExtendedExecution.Foreground.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Holographic.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Holographic.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.LockScreen.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.LockScreen.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.PackageExtensions.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.PackageExtensions.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Payments.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Payments.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Payments.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Payments.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Preview.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.Management.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Resources.Management.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Search.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Search.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Search.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Search.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.SocialInfo.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.SocialInfo.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.SocialInfo.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.SocialInfo.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Store.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Store.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Store.LicenseManagement.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Store.LicenseManagement.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserActivities.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserActivities.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserActivities.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.SystemAccess.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataAccounts.SystemAccess.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataTasks.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataTasks.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.VoiceCommands.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.VoiceCommands.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Wallet.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Wallet.ads" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Wallet.System.adb" />
+    <AdaCompile Include="WinUI3.Windows.ApplicationModel.Wallet.System.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Html.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Json.adb" />
+    <AdaCompile Include="WinUI3.Windows.Data.Json.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Pdf.adb" />
+    <AdaCompile Include="WinUI3.Windows.Data.Pdf.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Text.adb" />
+    <AdaCompile Include="WinUI3.Windows.Data.Text.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Xml.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Xml.Dom.adb" />
+    <AdaCompile Include="WinUI3.Windows.Data.Xml.Dom.ads" />
+    <AdaCompile Include="WinUI3.Windows.Data.Xml.Xsl.adb" />
+    <AdaCompile Include="WinUI3.Windows.Data.Xml.Xsl.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Adc.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Adc.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Adc.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Background.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Background.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Advertisement.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Advertisement.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Background.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Background.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Rfcomm.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Bluetooth.Rfcomm.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Custom.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Custom.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Display.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Display.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Display.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Display.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Enumeration.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Enumeration.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Enumeration.Pnp.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Enumeration.Pnp.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.Geofencing.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.Geofencing.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Geolocation.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Gpio.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Gpio.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Gpio.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Gpio.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Haptics.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Haptics.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.HumanInterfaceDevice.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.HumanInterfaceDevice.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.I2c.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.I2c.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.I2c.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.I2c.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Input.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Input.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Lights.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Lights.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Lights.Effects.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Lights.Effects.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Midi.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Midi.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Perception.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Perception.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Perception.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Perception.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.PointOfService.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.PointOfService.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.PointOfService.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.PointOfService.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Portable.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Power.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Power.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Printers.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Printers.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Printers.Extensions.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Printers.Extensions.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Pwm.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Pwm.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Pwm.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Radios.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Radios.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Scanners.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Scanners.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sensors.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sensors.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sensors.Custom.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sensors.Custom.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.SerialCommunication.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.SerialCommunication.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.SmartCards.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.SmartCards.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sms.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Sms.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Spi.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Spi.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Spi.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Spi.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Usb.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.Usb.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFi.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFi.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFiDirect.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFiDirect.ads" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFiDirect.Services.adb" />
+    <AdaCompile Include="WinUI3.Windows.Devices.WiFiDirect.Services.ads" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.adb" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.ads" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Collections.adb" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Collections.ads" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Diagnostics.adb" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Metadata.ads" />
+    <AdaCompile Include="WinUI3.Windows.Foundation.Numerics.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.adb" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.Custom.adb" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.Custom.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.ForceFeedback.adb" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.Input.ForceFeedback.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.UI.adb" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.UI.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.XboxLive.ads" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.XboxLive.Storage.adb" />
+    <AdaCompile Include="WinUI3.Windows.Gaming.XboxLive.Storage.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.Collation.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.Collation.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.DateTimeFormatting.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.DateTimeFormatting.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.Fonts.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.Fonts.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.NumberFormatting.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.NumberFormatting.ads" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.PhoneNumberFormatting.adb" />
+    <AdaCompile Include="WinUI3.Windows.Globalization.PhoneNumberFormatting.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Capture.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Capture.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.DirectX.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.DirectX.Direct3D11.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Display.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Display.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Display.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Display.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Effects.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Holographic.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Holographic.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Imaging.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Imaging.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.OptionDetails.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.OptionDetails.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.PrintSupport.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.PrintSupport.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.PrintTicket.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.PrintTicket.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.ProtectedPrint.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.Workflow.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing.Workflow.ads" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing3D.adb" />
+    <AdaCompile Include="WinUI3.Windows.Graphics.Printing3D.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Deployment.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.Deployment.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Policies.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.Policies.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Setup.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.Setup.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Update.adb" />
+    <AdaCompile Include="WinUI3.Windows.Management.Update.ads" />
+    <AdaCompile Include="WinUI3.Windows.Management.Workplace.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.AppBroadcasting.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.AppBroadcasting.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.AppRecording.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.AppRecording.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Audio.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Audio.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.Frames.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Capture.Frames.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Casting.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Casting.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.ClosedCaptioning.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.ContentRestrictions.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.ContentRestrictions.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Control.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Control.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Devices.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Devices.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Devices.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Devices.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.DialProtocol.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.DialProtocol.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Editing.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Editing.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Effects.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Effects.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.FaceAnalysis.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.FaceAnalysis.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Import.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Import.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.MediaProperties.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.MediaProperties.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Miracast.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Miracast.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Ocr.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Ocr.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Playback.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Playback.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Playlists.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Playlists.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.PlayTo.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.PlayTo.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Protection.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Protection.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Protection.PlayReady.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Protection.PlayReady.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Render.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.SpeechRecognition.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.SpeechRecognition.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.SpeechSynthesis.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.SpeechSynthesis.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Streaming.Adaptive.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Streaming.Adaptive.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Streaming.ads" />
+    <AdaCompile Include="WinUI3.Windows.Media.Transcoding.adb" />
+    <AdaCompile Include="WinUI3.Windows.Media.Transcoding.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.BackgroundTransfer.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.BackgroundTransfer.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Connectivity.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Connectivity.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.NetworkOperators.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.NetworkOperators.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Proximity.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Proximity.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.PushNotifications.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.PushNotifications.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.ServiceDiscovery.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.ServiceDiscovery.Dnssd.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.ServiceDiscovery.Dnssd.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Sockets.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Sockets.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Vpn.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.Vpn.ads" />
+    <AdaCompile Include="WinUI3.Windows.Networking.XboxLive.adb" />
+    <AdaCompile Include="WinUI3.Windows.Networking.XboxLive.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.adb" />
+    <AdaCompile Include="WinUI3.Windows.Perception.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Automation.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Automation.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.People.adb" />
+    <AdaCompile Include="WinUI3.Windows.Perception.People.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Spatial.adb" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Spatial.ads" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Spatial.Surfaces.adb" />
+    <AdaCompile Include="WinUI3.Windows.Perception.Spatial.Surfaces.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Identity.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.OnlineId.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.OnlineId.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authentication.Web.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authorization.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authorization.AppCapabilityAccess.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Authorization.AppCapabilityAccess.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Credentials.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Credentials.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Credentials.UI.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Credentials.UI.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.Certificates.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.Certificates.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.DataProtection.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Cryptography.DataProtection.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.DataProtection.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.DataProtection.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.EnterpriseData.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.EnterpriseData.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.ExchangeActiveSyncProvisioning.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.ExchangeActiveSyncProvisioning.ads" />
+    <AdaCompile Include="WinUI3.Windows.Security.Isolation.adb" />
+    <AdaCompile Include="WinUI3.Windows.Security.Isolation.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Cortana.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Cortana.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.Guidance.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.Guidance.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.LocalSearch.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.LocalSearch.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.OfflineMaps.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Maps.OfflineMaps.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.Store.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.Store.ads" />
+    <AdaCompile Include="WinUI3.Windows.Services.TargetedContent.adb" />
+    <AdaCompile Include="WinUI3.Windows.Services.TargetedContent.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.AccessCache.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.AccessCache.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.BulkAccess.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.BulkAccess.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Compression.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Compression.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.FileProperties.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.FileProperties.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Pickers.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Pickers.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Pickers.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Pickers.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Search.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Search.ads" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Streams.adb" />
+    <AdaCompile Include="WinUI3.Windows.Storage.Streams.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.DevicePortal.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.DevicePortal.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.Telemetry.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.Telemetry.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.TraceReporting.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Diagnostics.TraceReporting.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Display.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Display.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Implementation.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Implementation.FileExplorer.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Implementation.FileExplorer.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Inventory.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Inventory.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Power.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Power.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Power.Thermal.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Power.Thermal.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Profile.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Profile.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Profile.SystemManufacturers.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Profile.SystemManufacturers.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteDesktop.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteDesktop.Input.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteDesktop.Input.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteDesktop.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteDesktop.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteSystems.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.RemoteSystems.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Threading.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Threading.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Threading.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Threading.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.Update.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.Update.ads" />
+    <AdaCompile Include="WinUI3.Windows.System.UserProfile.adb" />
+    <AdaCompile Include="WinUI3.Windows.System.UserProfile.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Accessibility.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Accessibility.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.ApplicationSettings.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.ApplicationSettings.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Desktop.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Desktop.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Diagnostics.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Effects.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Effects.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Interactions.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Interactions.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Scenes.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Composition.Scenes.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Core.AnimationMetrics.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Core.AnimationMetrics.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.Analysis.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.Analysis.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Inking.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Spatial.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Input.Spatial.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Notifications.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Notifications.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Notifications.Management.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Notifications.Management.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Popups.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Popups.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Shell.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Shell.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.StartScreen.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.StartScreen.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Text.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Text.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Text.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Text.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.UIAutomation.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.UIAutomation.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.UIAutomation.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.UIAutomation.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.ViewManagement.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.ViewManagement.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.ViewManagement.Core.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.ViewManagement.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.WebUI.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.WebUI.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.WindowManagement.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.WindowManagement.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.Peers.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.Peers.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.Provider.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.Provider.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Automation.Text.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.Maps.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.Maps.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.Primitives.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Controls.Primitives.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Core.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Core.Direct.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Core.Direct.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Data.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Data.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Documents.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Documents.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Hosting.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Hosting.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Input.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Input.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Interop.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Interop.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Markup.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Markup.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Animation.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Animation.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Imaging.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Imaging.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Media3D.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Media.Media3D.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Navigation.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Navigation.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Printing.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Printing.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Resources.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Resources.ads" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Shapes.adb" />
+    <AdaCompile Include="WinUI3.Windows.UI.Xaml.Shapes.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.AtomPub.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.AtomPub.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Diagnostics.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Diagnostics.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Filters.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Filters.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Headers.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.Http.Headers.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.Syndication.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.Syndication.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.UI.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.UI.ads" />
+    <AdaCompile Include="WinUI3.Windows.Web.UI.Interop.adb" />
+    <AdaCompile Include="WinUI3.Windows.Web.UI.Interop.ads" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.targets" />
+  </ImportGroup>
+</Project>

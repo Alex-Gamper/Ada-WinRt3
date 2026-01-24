@@ -3,6 +3,7 @@ with WinMainStartup;                            use WinMainStartup;
 with WinRt;                                     use WinRt;
 with WinRt.Windows.UI.Xaml;                     use WinRt.Windows.UI.Xaml; 
 with AppOverrides;                              use AppOverrides;
+with System;
 --------------------------------------------------------------------------------
 procedure WinRt3XamlTest is
 
@@ -19,13 +20,19 @@ procedure WinRt3XamlTest is
         m_Outer.m_Interface := m_Inner;
     end;
     
-    Application : ApplicationInitializationCallback := new ApplicationInitializationCallback_Delegate (Callback'access);
-
+    Handler     : aliased ApplicationInitializationCallback_Delegate (Callback'access);
+    Application : ApplicationInitializationCallback := Handler'Unchecked_access;
+    Temp        : WinRt.UInt32;
+    
+    function CoInitializeEx(pvReserved : System.Address; dwCoInit : Int32) return WinRt.HResult;
+    pragma Import (StdCall, CoInitializeEx, "CoInitializeEx");
+    
 begin
 
-    Hr := RoInitialize;
+    Hr := CoInitializeEx(System.Null_Address, 0);
     if Hr = 0 then
-        Start (Application);
+        Temp := Application.AddRef;
+        Start (Handler'Unchecked_access);
         RoUninitialize;
     end if;
 

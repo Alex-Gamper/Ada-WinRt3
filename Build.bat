@@ -8,3 +8,6 @@ copy WinRt.Windows.UI.Xaml.Controls.o WinRt.Windows.UI.Xaml.Controls.obj
 cd ..
 link /lib /machine:x64 /nodefaultlib /out:WinRt3.lib .\Build\*.obj
 cd ..\..\..
+
+
+rem mdmerge /n:1 /v /partial /i .\input /metadata_dir .\Reference /o .\tmp

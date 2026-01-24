@@ -23,7 +23,7 @@ begin
     if Hr = 0 then
     
         declare
-            Uri             : Windows.Foundation.Uri := Windows.Foundation.Constructor (+"http://www.google.com");
+            Uri             : Windows.Foundation.Uri := Windows.Foundation.Constructor(+"http://www.google.com");
             HttpClient      : Windows.Web.Http.HttpClient := Windows.Web.Http.Constructor;
             Result          : WString;
         begin

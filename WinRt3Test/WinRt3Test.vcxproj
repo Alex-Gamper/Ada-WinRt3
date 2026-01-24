@@ -53,13 +53,16 @@
     <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
   </PropertyGroup>
   <PropertyGroup Label="Globals" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <UseMicrosoftLinker>false</UseMicrosoftLinker>
+    <UseMicrosoftLinker>true</UseMicrosoftLinker>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <UseMicrosoftLinker>true</UseMicrosoftLinker>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <AdaTarget>x86_64-w64-mingw32</AdaTarget>
-    <GnatRoot>C:\Gnat\Software</GnatRoot>
-    <GnatRootRTS>C:\Software\Gnat\lib\gcc\x86_64-w64-mingw32\15.2.0</GnatRootRTS>
-    <GnatMingwRoot>C:\Gnat\Software\x86_64-w64-mingw32</GnatMingwRoot>
+    <GnatRoot>C:\Software\Gnat13</GnatRoot>
+    <GnatRootRTS>C:\Software\Gnat13\lib\gcc\x86_64-w64-mingw32\13.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\Software\Gnat13\x86_64-w64-mingw32</GnatMingwRoot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <AdaTarget>Unknown</AdaTarget>
@@ -221,7 +224,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
-    <AdditionalAdaLibraryFiles>windowsapp</AdditionalAdaLibraryFiles>
+    <AdditionalAdaLibraryFiles>WindowsApp</AdditionalAdaLibraryFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

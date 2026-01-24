@@ -191,4 +191,7 @@
   <ItemGroup>
     <ClInclude Include="WinRt3XamlTest.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="WinRt3XamlTest.manifest" />
+  </ItemGroup>
 </Project>
