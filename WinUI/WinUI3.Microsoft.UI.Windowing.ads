@@ -2232,12 +2232,6 @@ package WinUI3.Microsoft.UI.Windowing is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DisplayArea
 
-   function GetFromDisplayId
-   (
-      displayId : WinUI3.Microsoft.UI.DisplayId
-   )
-   return WinUI3.Microsoft.UI.Windowing.DisplayArea;
-
    function get_Primary
    return WinUI3.Microsoft.UI.Windowing.DisplayArea;
 
@@ -2265,6 +2259,12 @@ package WinUI3.Microsoft.UI.Windowing is
    (
       rect : WinUI3.Windows.Graphics.RectInt32;
       displayAreaFallback : WinUI3.Microsoft.UI.Windowing.DisplayAreaFallback
+   )
+   return WinUI3.Microsoft.UI.Windowing.DisplayArea;
+
+   function GetFromDisplayId
+   (
+      displayId : WinUI3.Microsoft.UI.DisplayId
    )
    return WinUI3.Microsoft.UI.Windowing.DisplayArea;
 

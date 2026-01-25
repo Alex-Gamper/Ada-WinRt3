@@ -451,6 +451,12 @@ package WinUI3.Microsoft.Windows.AppLifecycle is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppInstance
 
+   function Restart
+   (
+      arguments : WinUI3.WString
+   )
+   return WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason;
+
    function GetCurrent
    return WinUI3.Microsoft.Windows.AppLifecycle.AppInstance;
 
@@ -462,12 +468,6 @@ package WinUI3.Microsoft.Windows.AppLifecycle is
       key : WinUI3.WString
    )
    return WinUI3.Microsoft.Windows.AppLifecycle.AppInstance;
-
-   function Restart
-   (
-      arguments : WinUI3.WString
-   )
-   return WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AppInstance

@@ -1199,30 +1199,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FlyoutBase
 
-   function get_SystemBackdropProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SystemBackdropProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_TargetProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -1603,6 +1579,30 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
          end if;
       end if;
       tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function get_SystemBackdropProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IFlyoutBaseStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IFlyoutBaseStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SystemBackdropProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -15577,30 +15577,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
       end return;
    end;
 
-   function get_SystemBackdropProperty_Popup
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.Popup");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SystemBackdropProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_PlacementTargetProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -15638,6 +15614,30 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
          Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_DesiredPlacementProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SystemBackdropProperty_Popup
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.Popup");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPopupStatics3_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPopupStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SystemBackdropProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

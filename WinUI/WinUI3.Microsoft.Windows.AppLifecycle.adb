@@ -286,6 +286,32 @@ package body WinUI3.Microsoft.Windows.AppLifecycle is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppInstance
 
+   function Restart
+   (
+      arguments : WinUI3.WString
+   )
+   return WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppLifecycle.AppInstance");
+      m_Factory        : access WinUI3.Microsoft.Windows.AppLifecycle.IAppInstanceStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason;
+      HStr_arguments : constant WinUI3.HString := To_HString (arguments);
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAppInstanceStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.Restart (HStr_arguments, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      tmp := WindowsDeleteString (HStr_arguments);
+      return m_ComRetVal;
+   end;
+
    function GetCurrent
    return WinUI3.Microsoft.Windows.AppLifecycle.AppInstance is
       Hr               : WinUI3.HResult := S_OK;
@@ -358,32 +384,6 @@ package body WinUI3.Microsoft.Windows.AppLifecycle is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_key);
       end return;
-   end;
-
-   function Restart
-   (
-      arguments : WinUI3.WString
-   )
-   return WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppLifecycle.AppInstance");
-      m_Factory        : access WinUI3.Microsoft.Windows.AppLifecycle.IAppInstanceStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Windows.ApplicationModel.Core.AppRestartFailureReason;
-      HStr_arguments : constant WinUI3.HString := To_HString (arguments);
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAppInstanceStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.Restart (HStr_arguments, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      tmp := WindowsDeleteString (HStr_arguments);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

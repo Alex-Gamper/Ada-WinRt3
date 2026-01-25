@@ -406,6 +406,54 @@ package body WinUI3.Microsoft.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InteractionTracker
 
+   procedure SetBindingMode
+   (
+      boundTracker1 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
+      axisMode : WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes
+   ) is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Interactions.InteractionTracker");
+      m_Factory        : access WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.SetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, axisMode);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
+   function GetBindingMode
+   (
+      boundTracker1 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
+      boundTracker2 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class
+   )
+   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Interactions.InteractionTracker");
+      m_Factory        : access WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function Create
    (
       compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class
@@ -459,54 +507,6 @@ package body WinUI3.Microsoft.UI.Composition.Interactions is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   procedure SetBindingMode
-   (
-      boundTracker1 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
-      axisMode : WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes
-   ) is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Interactions.InteractionTracker");
-      m_Factory        : access WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.SetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, axisMode);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function GetBindingMode
-   (
-      boundTracker1 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
-      boundTracker2 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class
-   )
-   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Interactions.InteractionTracker");
-      m_Factory        : access WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IInteractionTrackerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetBindingMode (boundTracker1.m_IInteractionTracker.all, boundTracker2.m_IInteractionTracker.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

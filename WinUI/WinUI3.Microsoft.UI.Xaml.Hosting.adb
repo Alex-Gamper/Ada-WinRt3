@@ -685,30 +685,6 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for WindowsXamlManager
 
-   function InitializeForCurrentThread
-   return WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.WindowsXamlManager");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManager;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager do
-         Hr := RoGetActivationFactory (m_hString, IID_IWindowsXamlManagerStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.InitializeForCurrentThread (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IWindowsXamlManager := new WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManager;
-            Retval.m_IWindowsXamlManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function GetForCurrentThread
    return WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager is
       Hr               : WinUI3.HResult := S_OK;
@@ -722,6 +698,30 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
          Hr := RoGetActivationFactory (m_hString, IID_IWindowsXamlManagerStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetForCurrentThread (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IWindowsXamlManager := new WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManager;
+            Retval.m_IWindowsXamlManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function InitializeForCurrentThread
+   return WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.WindowsXamlManager");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManagerStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IWindowsXamlManager;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager do
+         Hr := RoGetActivationFactory (m_hString, IID_IWindowsXamlManagerStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.InitializeForCurrentThread (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

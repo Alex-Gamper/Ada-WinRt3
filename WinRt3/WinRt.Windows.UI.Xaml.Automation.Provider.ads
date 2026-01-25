@@ -75,6 +75,7 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
    type IIRawElementProviderSimple_Interface is interface and WinRt.IInspectable_Interface;
    type IIRawElementProviderSimple is access all IIRawElementProviderSimple_Interface'Class;
    type IIRawElementProviderSimple_Ptr is access all IIRawElementProviderSimple;
+   type IIRawElementProviderSimple_Array is array (Natural range <>) of IIRawElementProviderSimple;
 
    type IInvokeProvider_Interface is interface and WinRt.IInspectable_Interface;
    type IInvokeProvider is access all IInvokeProvider_Interface'Class;

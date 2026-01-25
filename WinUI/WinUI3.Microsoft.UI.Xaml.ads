@@ -13833,14 +13833,14 @@ package WinUI3.Microsoft.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Setter
 
-   function Constructor return Setter;
-
    function Constructor
    (
       targetProperty : WinUI3.Microsoft.UI.Xaml.DependencyProperty'Class;
       value : WinUI3.IInspectable
    )
    return Setter;
+
+   function Constructor return Setter;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Setter
@@ -14083,13 +14083,13 @@ package WinUI3.Microsoft.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Style
 
+   function Constructor return Style;
+
    function Constructor
    (
       targetType : WinUI3.Windows.UI.Xaml.Interop.TypeName
    )
    return Style;
-
-   function Constructor return Style;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for Style

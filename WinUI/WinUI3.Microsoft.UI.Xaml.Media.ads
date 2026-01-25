@@ -4669,9 +4669,6 @@ package WinUI3.Microsoft.UI.Xaml.Media is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AcrylicBrush
 
-   function get_TintLuminosityOpacityProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
    function get_TintColorProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -4682,6 +4679,9 @@ package WinUI3.Microsoft.UI.Xaml.Media is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_AlwaysUseFallbackProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_TintLuminosityOpacityProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -7741,13 +7741,13 @@ package WinUI3.Microsoft.UI.Xaml.Media is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SolidColorBrush
 
+   function Constructor return SolidColorBrush;
+
    function Constructor
    (
       color : WinUI3.Windows.UI.Color
    )
    return SolidColorBrush;
-
-   function Constructor return SolidColorBrush;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SolidColorBrush

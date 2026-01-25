@@ -853,22 +853,6 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ClientAuthentication
 
-   function Constructor return ClientAuthentication is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IClientAuthentication");
-      m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
-   begin
-      return RetVal : ClientAuthentication do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IClientAuthentication := new WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
-            Retval.m_IClientAuthentication.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       authorization : WinUI3.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
@@ -888,6 +872,22 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
             Retval.m_IClientAuthentication := new WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
             Retval.m_IClientAuthentication.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return ClientAuthentication is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IClientAuthentication");
+      m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
+   begin
+      return RetVal : ClientAuthentication do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IClientAuthentication := new WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
+            Retval.m_IClientAuthentication.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

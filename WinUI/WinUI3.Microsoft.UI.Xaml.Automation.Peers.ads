@@ -5792,8 +5792,6 @@ package WinUI3.Microsoft.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AutomationPeerAnnotation
 
-   function Constructor return AutomationPeerAnnotation;
-
    function Constructor
    (
       type_x : WinUI3.Microsoft.UI.Xaml.Automation.AnnotationType
@@ -5806,6 +5804,8 @@ package WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       peer : WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationPeer'Class
    )
    return AutomationPeerAnnotation;
+
+   function Constructor return AutomationPeerAnnotation;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationPeerAnnotation

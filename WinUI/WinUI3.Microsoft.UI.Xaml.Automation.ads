@@ -2729,6 +2729,21 @@ package WinUI3.Microsoft.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationProperties
 
+   function get_AutomationControlTypeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function GetAutomationControlType
+   (
+      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class
+   )
+   return WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType;
+
+   procedure SetAutomationControlType
+   (
+      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class;
+      value : WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType
+   );
+
    function get_AcceleratorKeyProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -3117,21 +3132,6 @@ package WinUI3.Microsoft.UI.Xaml.Automation is
    (
       element : WinUI3.Microsoft.UI.Xaml.DependencyObject'Class;
       value : WinUI3.Boolean
-   );
-
-   function get_AutomationControlTypeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function GetAutomationControlType
-   (
-      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class
-   )
-   return WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType;
-
-   procedure SetAutomationControlType
-   (
-      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class;
-      value : WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType
    );
 
    -----------------------------------------------------------------------------

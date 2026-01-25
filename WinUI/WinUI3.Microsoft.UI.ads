@@ -1207,6 +1207,12 @@ package WinUI3.Microsoft.UI is
    -----------------------------------------------------------------------------
    -- Static Interfaces for ColorHelper
 
+   function ToDisplayName
+   (
+      color : WinUI3.Windows.UI.Color
+   )
+   return WinUI3.WString;
+
    function FromArgb
    (
       a : WinUI3.Byte;
@@ -1215,12 +1221,6 @@ package WinUI3.Microsoft.UI is
       b : WinUI3.Byte
    )
    return WinUI3.Windows.UI.Color;
-
-   function ToDisplayName
-   (
-      color : WinUI3.Windows.UI.Color
-   )
-   return WinUI3.WString;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ColorHelper

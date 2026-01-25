@@ -769,10 +769,10 @@ package WinUI3.Microsoft.UI.Xaml.Hosting is
    -----------------------------------------------------------------------------
    -- Static Interfaces for WindowsXamlManager
 
-   function InitializeForCurrentThread
+   function GetForCurrentThread
    return WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager;
 
-   function GetForCurrentThread
+   function InitializeForCurrentThread
    return WinUI3.Microsoft.UI.Xaml.Hosting.WindowsXamlManager;
 
    -----------------------------------------------------------------------------

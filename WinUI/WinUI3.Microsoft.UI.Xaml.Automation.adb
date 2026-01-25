@@ -1373,6 +1373,76 @@ package body WinUI3.Microsoft.UI.Xaml.Automation is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AutomationProperties
 
+   function get_AutomationControlTypeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_AutomationControlTypeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetAutomationControlType
+   (
+      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class
+   )
+   return WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetAutomationControlType (element.m_IUIElement.all, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
+   procedure SetAutomationControlType
+   (
+      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class;
+      value : WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType
+   ) is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.SetAutomationControlType (element.m_IUIElement.all, value);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+   end;
+
    function get_AcceleratorKeyProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -3268,76 +3338,6 @@ package body WinUI3.Microsoft.UI.Xaml.Automation is
       Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics'Access , m_Factory'Address);
       if Hr = S_OK then
          Hr := m_Factory.SetIsDialog (element.m_IDependencyObject.all, value);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-   end;
-
-   function get_AutomationControlTypeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_AutomationControlTypeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function GetAutomationControlType
-   (
-      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class
-   )
-   return WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetAutomationControlType (element.m_IUIElement.all, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
-   procedure SetAutomationControlType
-   (
-      element : WinUI3.Microsoft.UI.Xaml.UIElement'Class;
-      value : WinUI3.Microsoft.UI.Xaml.Automation.Peers.AutomationControlType
-   ) is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.AutomationProperties");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Automation.IAutomationPropertiesStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAutomationPropertiesStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.SetAutomationControlType (element.m_IUIElement.all, value);
          temp := m_Factory.Release;
          if Hr /= S_OK then
             raise Program_Error;

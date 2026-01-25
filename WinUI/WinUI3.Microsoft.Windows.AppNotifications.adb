@@ -475,6 +475,27 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppNotificationManager
 
+   function IsSupported
+   return WinUI3.Boolean is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.AppNotificationManager");
+      m_Factory        : access WinUI3.Microsoft.Windows.AppNotifications.IAppNotificationManagerStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Boolean;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IAppNotificationManagerStatics2'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
+   end;
+
    function get_Default
    return WinUI3.Microsoft.Windows.AppNotifications.AppNotificationManager is
       Hr               : WinUI3.HResult := S_OK;
@@ -497,27 +518,6 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
-   end;
-
-   function IsSupported
-   return WinUI3.Boolean is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.AppNotificationManager");
-      m_Factory        : access WinUI3.Microsoft.Windows.AppNotifications.IAppNotificationManagerStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Boolean;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IAppNotificationManagerStatics2'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.IsSupported (m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

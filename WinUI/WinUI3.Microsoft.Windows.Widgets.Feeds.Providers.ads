@@ -116,6 +116,7 @@ package WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
    type IFeedProviderInfo_Interface is interface and WinUI3.IInspectable_Interface;
    type IFeedProviderInfo is access all IFeedProviderInfo_Interface'Class;
    type IFeedProviderInfo_Ptr is access all IFeedProviderInfo;
+   type IFeedProviderInfo_Array is array (Natural range <>) of IFeedProviderInfo;
 
    type IFeedProviderMessage_Interface is interface and WinUI3.IInspectable_Interface;
    type IFeedProviderMessage is access all IFeedProviderMessage_Interface'Class;

@@ -1770,19 +1770,6 @@ package WinUI3.Microsoft.UI.Composition.Interactions is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InteractionTracker
 
-   function Create
-   (
-      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class
-   )
-   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker;
-
-   function CreateWithOwner
-   (
-      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
-      owner : WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerOwner
-   )
-   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker;
-
    procedure SetBindingMode
    (
       boundTracker1 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class;
@@ -1796,6 +1783,19 @@ package WinUI3.Microsoft.UI.Composition.Interactions is
       boundTracker2 : WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker'Class
    )
    return WinUI3.Microsoft.UI.Composition.Interactions.InteractionBindingAxisModes;
+
+   function Create
+   (
+      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class
+   )
+   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker;
+
+   function CreateWithOwner
+   (
+      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
+      owner : WinUI3.Microsoft.UI.Composition.Interactions.IInteractionTrackerOwner
+   )
+   return WinUI3.Microsoft.UI.Composition.Interactions.InteractionTracker;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for InteractionTracker

@@ -1128,12 +1128,14 @@ package body WinUI3.Microsoft.UI.Content is
 
       function GetArraySize return Integer is
       begin
-         m_Interface := QInterface (this.m_.all);
-         Hr := m_Interface.FindAllForSystemCompositor (compositor.m_ICompositor.all, m_ComRetValSize'Access, m_ComRetVal'Access);
-         if Hr /= S_OK then
-            raise Program_Error;
+         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllForSystemCompositor (compositor.m_ICompositor.all, m_ComRetValSize'Access, m_ComRetVal'Access);
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            temp := m_Factory.Release;
          end if;
-         temp := m_Interface.Release;
          return Integer(m_ComRetValSize);
       end;
 
@@ -1222,12 +1224,14 @@ package body WinUI3.Microsoft.UI.Content is
 
       function GetArraySize return Integer is
       begin
-         m_Interface := QInterface (this.m_.all);
-         Hr := m_Interface.FindAllForCompositor (compositor.m_ICompositor.all, m_ComRetValSize'Access, m_ComRetVal'Access);
-         if Hr /= S_OK then
-            raise Program_Error;
+         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllForCompositor (compositor.m_ICompositor.all, m_ComRetValSize'Access, m_ComRetVal'Access);
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            temp := m_Factory.Release;
          end if;
-         temp := m_Interface.Release;
          return Integer(m_ComRetValSize);
       end;
 
@@ -1259,12 +1263,14 @@ package body WinUI3.Microsoft.UI.Content is
 
       function GetArraySize return Integer is
       begin
-         m_Interface := QInterface (this.m_.all);
-         Hr := m_Interface.FindAllForCurrentThread (m_ComRetValSize'Access, m_ComRetVal'Access);
-         if Hr /= S_OK then
-            raise Program_Error;
+         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.FindAllForCurrentThread (m_ComRetValSize'Access, m_ComRetVal'Access);
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            temp := m_Factory.Release;
          end if;
-         temp := m_Interface.Release;
          return Integer(m_ComRetValSize);
       end;
 
@@ -4944,34 +4950,6 @@ package body WinUI3.Microsoft.UI.Content is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DesktopChildSiteBridge
 
-   function Create
-   (
-      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
-      parentWindowId : WinUI3.Microsoft.UI.WindowId
-   )
-   return WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Content.DesktopChildSiteBridge");
-      m_Factory        : access WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridgeStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridge;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge do
-         Hr := RoGetActivationFactory (m_hString, IID_IDesktopChildSiteBridgeStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.Create (compositor.m_ICompositor.all, parentWindowId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDesktopChildSiteBridge := new WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridge;
-            Retval.m_IDesktopChildSiteBridge.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function CreateWithDispatcherQueue
    (
       queue : WinUI3.Microsoft.UI.Dispatching.DispatcherQueue'Class;
@@ -4989,6 +4967,34 @@ package body WinUI3.Microsoft.UI.Content is
          Hr := RoGetActivationFactory (m_hString, IID_IDesktopChildSiteBridgeStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.CreateWithDispatcherQueue (queue.m_IDispatcherQueue.all, parentWindowId, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDesktopChildSiteBridge := new WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridge;
+            Retval.m_IDesktopChildSiteBridge.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Create
+   (
+      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
+      parentWindowId : WinUI3.Microsoft.UI.WindowId
+   )
+   return WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Content.DesktopChildSiteBridge");
+      m_Factory        : access WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridgeStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Content.IDesktopChildSiteBridge;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge do
+         Hr := RoGetActivationFactory (m_hString, IID_IDesktopChildSiteBridgeStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.Create (compositor.m_ICompositor.all, parentWindowId, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

@@ -3170,22 +3170,6 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for AutomationPeerAnnotation
 
-   function Constructor return AutomationPeerAnnotation is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
-   begin
-      return RetVal : AutomationPeerAnnotation do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IAutomationPeerAnnotation := new WinUI3.Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
-            Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       type_x : WinUI3.Microsoft.UI.Xaml.Automation.AnnotationType
@@ -3230,6 +3214,22 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
             Retval.m_IAutomationPeerAnnotation := new WinUI3.Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
             Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return AutomationPeerAnnotation is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+   begin
+      return RetVal : AutomationPeerAnnotation do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IAutomationPeerAnnotation := new WinUI3.Microsoft.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
+            Retval.m_IAutomationPeerAnnotation.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

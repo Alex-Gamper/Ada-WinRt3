@@ -1014,13 +1014,13 @@ package WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BitmapImage
 
-   function Constructor return BitmapImage;
-
    function Constructor
    (
       uriSource : WinUI3.Windows.Foundation.Uri'Class
    )
    return BitmapImage;
+
+   function Constructor return BitmapImage;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for BitmapImage

@@ -55,6 +55,7 @@ package WinUI3.Windows.AI.Actions.Hosting is
    type IActionDefinition_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionDefinition is access all IActionDefinition_Interface'Class;
    type IActionDefinition_Ptr is access all IActionDefinition;
+   type IActionDefinition_Array is array (Natural range <>) of IActionDefinition;
 
    type IActionDefinition2_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionDefinition2 is access all IActionDefinition2_Interface'Class;
@@ -75,10 +76,12 @@ package WinUI3.Windows.AI.Actions.Hosting is
    type IActionEntityRegistrationInfo_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionEntityRegistrationInfo is access all IActionEntityRegistrationInfo_Interface'Class;
    type IActionEntityRegistrationInfo_Ptr is access all IActionEntityRegistrationInfo;
+   type IActionEntityRegistrationInfo_Array is array (Natural range <>) of IActionEntityRegistrationInfo;
 
    type IActionInstance_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionInstance is access all IActionInstance_Interface'Class;
    type IActionInstance_Ptr is access all IActionInstance;
+   type IActionInstance_Array is array (Natural range <>) of IActionInstance;
 
    type IActionInstanceDisplayInfo_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionInstanceDisplayInfo is access all IActionInstanceDisplayInfo_Interface'Class;
@@ -87,6 +90,7 @@ package WinUI3.Windows.AI.Actions.Hosting is
    type IActionOverload_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionOverload is access all IActionOverload_Interface'Class;
    type IActionOverload_Ptr is access all IActionOverload;
+   type IActionOverload_Array is array (Natural range <>) of IActionOverload;
 
    type IActionOverload2_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionOverload2 is access all IActionOverload2_Interface'Class;

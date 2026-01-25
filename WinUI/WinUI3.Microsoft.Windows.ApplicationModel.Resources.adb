@@ -482,6 +482,22 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ResourceLoader
 
+   function Constructor return ResourceLoader is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceLoader");
+      m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
+   begin
+      return RetVal : ResourceLoader do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IResourceLoader := new WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
+            Retval.m_IResourceLoader.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       fileName : WinUI3.WString
@@ -534,22 +550,6 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_fileName);
          tmp := WindowsDeleteString (HStr_resourceMap_p);
-      end return;
-   end;
-
-   function Constructor return ResourceLoader is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceLoader");
-      m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
-   begin
-      return RetVal : ResourceLoader do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IResourceLoader := new WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
-            Retval.m_IResourceLoader.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 
@@ -650,22 +650,6 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ResourceManager
 
-   function Constructor return ResourceManager is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceManager");
-      m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
-   begin
-      return RetVal : ResourceManager do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IResourceManager := new WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
-            Retval.m_IResourceManager.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       fileName : WinUI3.WString
@@ -689,6 +673,22 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
          end if;
          tmp := WindowsDeleteString (m_hString);
          tmp := WindowsDeleteString (HStr_fileName);
+      end return;
+   end;
+
+   function Constructor return ResourceManager is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceManager");
+      m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
+   begin
+      return RetVal : ResourceManager do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IResourceManager := new WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
+            Retval.m_IResourceManager.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
       end return;
    end;
 

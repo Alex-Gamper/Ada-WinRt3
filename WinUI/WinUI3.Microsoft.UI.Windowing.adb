@@ -1940,33 +1940,6 @@ package body WinUI3.Microsoft.UI.Windowing is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DisplayArea
 
-   function GetFromDisplayId
-   (
-      displayId : WinUI3.Microsoft.UI.DisplayId
-   )
-   return WinUI3.Microsoft.UI.Windowing.DisplayArea is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Windowing.DisplayArea");
-      m_Factory        : access WinUI3.Microsoft.UI.Windowing.IDisplayAreaStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Windowing.IDisplayArea;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Windowing.DisplayArea do
-         Hr := RoGetActivationFactory (m_hString, IID_IDisplayAreaStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.GetFromDisplayId (displayId, m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDisplayArea := new WinUI3.Microsoft.UI.Windowing.IDisplayArea;
-            Retval.m_IDisplayArea.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_Primary
    return WinUI3.Microsoft.UI.Windowing.DisplayArea is
       Hr               : WinUI3.HResult := S_OK;
@@ -2109,6 +2082,33 @@ package body WinUI3.Microsoft.UI.Windowing is
          Hr := RoGetActivationFactory (m_hString, IID_IDisplayAreaStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.GetFromRect (rect, displayAreaFallback, m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDisplayArea := new WinUI3.Microsoft.UI.Windowing.IDisplayArea;
+            Retval.m_IDisplayArea.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function GetFromDisplayId
+   (
+      displayId : WinUI3.Microsoft.UI.DisplayId
+   )
+   return WinUI3.Microsoft.UI.Windowing.DisplayArea is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Windowing.DisplayArea");
+      m_Factory        : access WinUI3.Microsoft.UI.Windowing.IDisplayAreaStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Windowing.IDisplayArea;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Windowing.DisplayArea do
+         Hr := RoGetActivationFactory (m_hString, IID_IDisplayAreaStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.GetFromDisplayId (displayId, m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

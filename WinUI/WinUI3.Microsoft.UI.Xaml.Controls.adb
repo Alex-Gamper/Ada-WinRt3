@@ -49437,294 +49437,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationView
 
-   function get_IsBackButtonVisibleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsBackButtonVisibleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_IsBackEnabledProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsBackEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_PaneTitleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PaneTitleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_PaneDisplayModeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PaneDisplayModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_PaneHeaderProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PaneHeaderProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_PaneCustomContentProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_PaneCustomContentProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ContentOverlayProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ContentOverlayProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_IsPaneVisibleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsPaneVisibleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_SelectionFollowsFocusProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_SelectionFollowsFocusProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_TemplateSettingsProperty_NavigationView
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TemplateSettingsProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ShoulderNavigationEnabledProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ShoulderNavigationEnabledProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_OverflowLabelModeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_OverflowLabelModeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_IsPaneOpenProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -50314,6 +50026,294 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_IsTitleBarAutoPaddingEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IsBackButtonVisibleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsBackButtonVisibleProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IsBackEnabledProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsBackEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PaneTitleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PaneTitleProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PaneDisplayModeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PaneDisplayModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PaneHeaderProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PaneHeaderProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_PaneCustomContentProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_PaneCustomContentProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ContentOverlayProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ContentOverlayProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IsPaneVisibleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsPaneVisibleProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_SelectionFollowsFocusProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_SelectionFollowsFocusProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_TemplateSettingsProperty_NavigationView
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TemplateSettingsProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ShoulderNavigationEnabledProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ShoulderNavigationEnabledProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_OverflowLabelModeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_OverflowLabelModeProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -52246,6 +52246,78 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationViewItem
 
+   function get_InfoBadgeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics3_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics3'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_InfoBadgeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IconProperty_NavigationViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IconProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_CompactPaneLengthProperty_NavigationViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CompactPaneLengthProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_SelectsOnInvokedProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -52379,78 +52451,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_MenuItemsSourceProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_InfoBadgeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics3_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics3'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_InfoBadgeProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_IconProperty_NavigationViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IconProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CompactPaneLengthProperty_NavigationViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.NavigationViewItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.INavigationViewItemStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_INavigationViewItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CompactPaneLengthProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -58927,6 +58927,30 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PipsPager
 
+   function get_WrapModeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.PipsPager");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IPipsPagerStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IPipsPagerStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_WrapModeProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_NumberOfPagesProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -59156,30 +59180,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_IPipsPagerStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_NormalPipStyleProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_WrapModeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.PipsPager");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IPipsPagerStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IPipsPagerStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_WrapModeProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -63276,6 +63276,54 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadioMenuFlyoutItem
 
+   function get_IsCheckedProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IRadioMenuFlyoutItemStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IRadioMenuFlyoutItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IsCheckedProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_GroupNameProperty_RadioMenuFlyoutItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IRadioMenuFlyoutItemStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IRadioMenuFlyoutItemStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_GroupNameProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function get_AreCheckStatesEnabledProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -63344,54 +63392,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
       end if;
       tmp := WindowsDeleteString (m_hString);
       return m_ComRetVal;
-   end;
-
-   function get_IsCheckedProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IRadioMenuFlyoutItemStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IRadioMenuFlyoutItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IsCheckedProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_GroupNameProperty_RadioMenuFlyoutItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.RadioMenuFlyoutItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.IRadioMenuFlyoutItemStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IRadioMenuFlyoutItemStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_GroupNameProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
    end;
 
    -----------------------------------------------------------------------------
@@ -83507,6 +83507,22 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SymbolIcon
 
+   function Constructor return SymbolIcon is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.ISymbolIcon");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.ISymbolIcon;
+   begin
+      return RetVal : SymbolIcon do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISymbolIcon := new WinUI3.Microsoft.UI.Xaml.Controls.ISymbolIcon;
+            Retval.m_ISymbolIcon.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       symbol : WinUI3.Microsoft.UI.Xaml.Controls.Symbol
@@ -83526,22 +83542,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
             Retval.m_ISymbolIcon := new WinUI3.Microsoft.UI.Xaml.Controls.ISymbolIcon;
             Retval.m_ISymbolIcon.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return SymbolIcon is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.ISymbolIcon");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.ISymbolIcon;
-   begin
-      return RetVal : SymbolIcon do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISymbolIcon := new WinUI3.Microsoft.UI.Xaml.Controls.ISymbolIcon;
-            Retval.m_ISymbolIcon.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -83769,6 +83769,30 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for TabView
+
+   function get_CanTearOutTabsProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TabView");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITabViewStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_ITabViewStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_CanTearOutTabsProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
 
    function get_TabWidthModeProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
@@ -84191,30 +84215,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_ITabViewStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_SelectedItemProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_CanTearOutTabsProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TabView");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITabViewStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_ITabViewStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_CanTearOutTabsProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -85934,30 +85934,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TabViewItemTemplateSettings
 
-   function get_IconElementProperty_TabViewItemTemplateSettings
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TabViewItemTemplateSettings");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITabViewItemTemplateSettingsStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_ITabViewItemTemplateSettingsStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_IconElementProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_TabGeometryProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -85971,6 +85947,30 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_ITabViewItemTemplateSettingsStatics2'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TabGeometryProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_IconElementProperty_TabViewItemTemplateSettings
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TabViewItemTemplateSettings");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITabViewItemTemplateSettingsStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_ITabViewItemTemplateSettingsStatics'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_IconElementProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -98085,54 +98085,6 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TreeViewItem
 
-   function get_HasUnrealizedChildrenProperty_TreeViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TreeViewItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITreeViewItemStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_HasUnrealizedChildrenProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function get_ItemsSourceProperty_TreeViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TreeViewItem");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITreeViewItemStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_ItemsSourceProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_GlyphOpacityProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -98290,6 +98242,54 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
          Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_TreeViewItemTemplateSettingsProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_HasUnrealizedChildrenProperty_TreeViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TreeViewItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITreeViewItemStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_HasUnrealizedChildrenProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_ItemsSourceProperty_TreeViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.TreeViewItem");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Controls.ITreeViewItemStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_ITreeViewItemStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_ItemsSourceProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;

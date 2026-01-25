@@ -15803,22 +15803,6 @@ package body WinUI3.Microsoft.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Setter
 
-   function Constructor return Setter is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ISetter");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ISetter;
-   begin
-      return RetVal : Setter do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISetter := new WinUI3.Microsoft.UI.Xaml.ISetter;
-            Retval.m_ISetter.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       targetProperty : WinUI3.Microsoft.UI.Xaml.DependencyProperty'Class;
@@ -15839,6 +15823,22 @@ package body WinUI3.Microsoft.UI.Xaml is
             Retval.m_ISetter := new WinUI3.Microsoft.UI.Xaml.ISetter;
             Retval.m_ISetter.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return Setter is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ISetter");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ISetter;
+   begin
+      return RetVal : Setter do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISetter := new WinUI3.Microsoft.UI.Xaml.ISetter;
+            Retval.m_ISetter.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
@@ -16616,6 +16616,22 @@ package body WinUI3.Microsoft.UI.Xaml is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for Style
 
+   function Constructor return Style is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStyle");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStyle;
+   begin
+      return RetVal : Style do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IStyle := new WinUI3.Microsoft.UI.Xaml.IStyle;
+            Retval.m_IStyle.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       targetType : WinUI3.Windows.UI.Xaml.Interop.TypeName
@@ -16635,22 +16651,6 @@ package body WinUI3.Microsoft.UI.Xaml is
             Retval.m_IStyle := new WinUI3.Microsoft.UI.Xaml.IStyle;
             Retval.m_IStyle.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return Style is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStyle");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStyle;
-   begin
-      return RetVal : Style do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IStyle := new WinUI3.Microsoft.UI.Xaml.IStyle;
-            Retval.m_IStyle.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

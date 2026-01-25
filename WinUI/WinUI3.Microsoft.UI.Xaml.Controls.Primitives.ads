@@ -9455,9 +9455,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    -----------------------------------------------------------------------------
    -- Static Interfaces for FlyoutBase
 
-   function get_SystemBackdropProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
    function get_TargetProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -9513,6 +9510,9 @@ package WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    (
       flyoutOwner : WinUI3.Microsoft.UI.Xaml.FrameworkElement'Class
    );
+
+   function get_SystemBackdropProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for FlyoutBase
@@ -13708,13 +13708,13 @@ package WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function get_ShouldConstrainToRootBoundsProperty_Popup
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
-   function get_SystemBackdropProperty_Popup
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
    function get_PlacementTargetProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_DesiredPlacementProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_SystemBackdropProperty_Popup
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

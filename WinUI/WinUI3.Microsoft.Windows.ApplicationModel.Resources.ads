@@ -642,6 +642,8 @@ package WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ResourceLoader
 
+   function Constructor return ResourceLoader;
+
    function Constructor
    (
       fileName : WinUI3.WString
@@ -654,8 +656,6 @@ package WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       resourceMap_p : WinUI3.WString
    )
    return ResourceLoader;
-
-   function Constructor return ResourceLoader;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for ResourceLoader
@@ -689,13 +689,13 @@ package WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ResourceManager
 
-   function Constructor return ResourceManager;
-
    function Constructor
    (
       fileName : WinUI3.WString
    )
    return ResourceManager;
+
+   function Constructor return ResourceManager;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for ResourceManager

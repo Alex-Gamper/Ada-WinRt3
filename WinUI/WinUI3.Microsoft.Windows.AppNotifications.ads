@@ -730,11 +730,11 @@ package WinUI3.Microsoft.Windows.AppNotifications is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AppNotificationManager
 
-   function get_Default
-   return WinUI3.Microsoft.Windows.AppNotifications.AppNotificationManager;
-
    function IsSupported
    return WinUI3.Boolean;
+
+   function get_Default
+   return WinUI3.Microsoft.Windows.AppNotifications.AppNotificationManager;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for AppNotificationManager

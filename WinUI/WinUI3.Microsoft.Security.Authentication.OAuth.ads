@@ -1172,13 +1172,13 @@ package WinUI3.Microsoft.Security.Authentication.OAuth is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for ClientAuthentication
 
-   function Constructor return ClientAuthentication;
-
    function Constructor
    (
       authorization : WinUI3.Windows.Web.Http.Headers.HttpCredentialsHeaderValue'Class
    )
    return ClientAuthentication;
+
+   function Constructor return ClientAuthentication;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for ClientAuthentication

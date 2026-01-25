@@ -58826,42 +58826,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationView
 
-   function get_IsBackButtonVisibleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_IsBackEnabledProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_PaneTitleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_PaneDisplayModeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_PaneHeaderProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_PaneCustomContentProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_ContentOverlayProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_IsPaneVisibleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_SelectionFollowsFocusProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_TemplateSettingsProperty_NavigationView
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_ShoulderNavigationEnabledProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_OverflowLabelModeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
    function get_IsPaneOpenProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -58935,6 +58899,42 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_IsTitleBarAutoPaddingEnabledProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_IsBackButtonVisibleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_IsBackEnabledProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_PaneTitleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_PaneDisplayModeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_PaneHeaderProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_PaneCustomContentProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_ContentOverlayProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_IsPaneVisibleProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_SelectionFollowsFocusProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_TemplateSettingsProperty_NavigationView
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_ShoulderNavigationEnabledProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_OverflowLabelModeProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -59583,6 +59583,15 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for NavigationViewItem
 
+   function get_InfoBadgeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_IconProperty_NavigationViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_CompactPaneLengthProperty_NavigationViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
    function get_SelectsOnInvokedProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -59599,15 +59608,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_MenuItemsSourceProperty_NavigationViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_InfoBadgeProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_IconProperty_NavigationViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_CompactPaneLengthProperty_NavigationViewItem
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -61477,6 +61477,9 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for PipsPager
 
+   function get_WrapModeProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
    function get_NumberOfPagesProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -61505,9 +61508,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_NormalPipStyleProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_WrapModeProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -62766,6 +62766,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for RadioMenuFlyoutItem
 
+   function get_IsCheckedProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_GroupNameProperty_RadioMenuFlyoutItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
    function get_AreCheckStatesEnabledProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -62780,12 +62786,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
       object : WinUI3.Microsoft.UI.Xaml.Controls.MenuFlyoutSubItem'Class
    )
    return WinUI3.Boolean;
-
-   function get_IsCheckedProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_GroupNameProperty_RadioMenuFlyoutItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for RadioMenuFlyoutItem
@@ -68702,13 +68702,13 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SymbolIcon
 
+   function Constructor return SymbolIcon;
+
    function Constructor
    (
       symbol : WinUI3.Microsoft.UI.Xaml.Controls.Symbol
    )
    return SymbolIcon;
-
-   function Constructor return SymbolIcon;
 
    -----------------------------------------------------------------------------
    -- Static Interfaces for SymbolIcon
@@ -68787,6 +68787,9 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TabView
 
+   function get_CanTearOutTabsProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
    function get_TabWidthModeProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -68839,9 +68842,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_SelectedItemProperty_TabView
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_CanTearOutTabsProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -69439,10 +69439,10 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TabViewItemTemplateSettings
 
-   function get_IconElementProperty_TabViewItemTemplateSettings
+   function get_TabGeometryProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
-   function get_TabGeometryProperty
+   function get_IconElementProperty_TabViewItemTemplateSettings
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------
@@ -73032,12 +73032,6 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    -----------------------------------------------------------------------------
    -- Static Interfaces for TreeViewItem
 
-   function get_HasUnrealizedChildrenProperty_TreeViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
-   function get_ItemsSourceProperty_TreeViewItem
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
-
    function get_GlyphOpacityProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
@@ -73057,6 +73051,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    function get_TreeViewItemTemplateSettingsProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_HasUnrealizedChildrenProperty_TreeViewItem
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
+
+   function get_ItemsSourceProperty_TreeViewItem
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty;
 
    -----------------------------------------------------------------------------

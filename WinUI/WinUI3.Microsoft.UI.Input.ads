@@ -4447,17 +4447,17 @@ package WinUI3.Microsoft.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputKeyboardSource
 
-   function GetKeyStateForCurrentThread
-   (
-      virtualKey : WinUI3.Windows.System.VirtualKey
-   )
-   return WinUI3.Windows.UI.Core.CoreVirtualKeyStates;
-
    function GetForIsland
    (
       island : WinUI3.Microsoft.UI.Content.ContentIsland'Class
    )
    return WinUI3.Microsoft.UI.Input.InputKeyboardSource;
+
+   function GetKeyStateForCurrentThread
+   (
+      virtualKey : WinUI3.Windows.System.VirtualKey
+   )
+   return WinUI3.Windows.UI.Core.CoreVirtualKeyStates;
 
    -----------------------------------------------------------------------------
    -- Implemented Interfaces for InputKeyboardSource

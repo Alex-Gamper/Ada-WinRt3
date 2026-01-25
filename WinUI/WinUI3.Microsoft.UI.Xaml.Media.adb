@@ -566,30 +566,6 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    -----------------------------------------------------------------------------
    -- Static Interfaces for AcrylicBrush
 
-   function get_TintLuminosityOpacityProperty
-   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.AcrylicBrush");
-      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-   begin
-      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
-         Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            Hr := m_Factory.get_TintLuminosityOpacityProperty (m_ComRetVal'Access);
-            temp := m_Factory.Release;
-            if Hr /= S_OK then
-               raise Program_Error;
-            end if;
-            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
-            Retval.m_IDependencyProperty.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function get_TintColorProperty
    return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
       Hr               : WinUI3.HResult := S_OK;
@@ -675,6 +651,30 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
          Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics'Access , m_Factory'Address);
          if Hr = S_OK then
             Hr := m_Factory.get_AlwaysUseFallbackProperty (m_ComRetVal'Access);
+            temp := m_Factory.Release;
+            if Hr /= S_OK then
+               raise Program_Error;
+            end if;
+            Retval.m_IDependencyProperty := new WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+            Retval.m_IDependencyProperty.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function get_TintLuminosityOpacityProperty
+   return WinUI3.Microsoft.UI.Xaml.DependencyProperty is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.AcrylicBrush");
+      m_Factory        : access WinUI3.Microsoft.UI.Xaml.Media.IAcrylicBrushStatics2_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IDependencyProperty;
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.DependencyProperty do
+         Hr := RoGetActivationFactory (m_hString, IID_IAcrylicBrushStatics2'Access , m_Factory'Address);
+         if Hr = S_OK then
+            Hr := m_Factory.get_TintLuminosityOpacityProperty (m_ComRetVal'Access);
             temp := m_Factory.Release;
             if Hr /= S_OK then
                raise Program_Error;
@@ -10762,6 +10762,22 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for SolidColorBrush
 
+   function Constructor return SolidColorBrush is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISolidColorBrush");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
+   begin
+      return RetVal : SolidColorBrush do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_ISolidColorBrush := new WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
+            Retval.m_ISolidColorBrush.all := m_ComRetVal;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
    function Constructor
    (
       color : WinUI3.Windows.UI.Color
@@ -10781,22 +10797,6 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
             Retval.m_ISolidColorBrush := new WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
             Retval.m_ISolidColorBrush.all := m_ComRetVal;
             temp := m_Factory.Release;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
-   function Constructor return SolidColorBrush is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISolidColorBrush");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
-   begin
-      return RetVal : SolidColorBrush do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_ISolidColorBrush := new WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
-            Retval.m_ISolidColorBrush.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

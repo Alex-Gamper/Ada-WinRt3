@@ -2815,30 +2815,6 @@ package body WinUI3.Microsoft.UI.Input is
    -----------------------------------------------------------------------------
    -- Static Interfaces for InputKeyboardSource
 
-   function GetKeyStateForCurrentThread
-   (
-      virtualKey : WinUI3.Windows.System.VirtualKey
-   )
-   return WinUI3.Windows.UI.Core.CoreVirtualKeyStates is
-      Hr               : WinUI3.HResult := S_OK;
-      tmp              : WinUI3.HResult := S_OK;
-      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.InputKeyboardSource");
-      m_Factory        : access WinUI3.Microsoft.UI.Input.IInputKeyboardSourceStatics_Interface'Class := null;
-      temp             : WinUI3.UInt32 := 0;
-      m_ComRetVal      : aliased WinUI3.Windows.UI.Core.CoreVirtualKeyStates;
-   begin
-      Hr := RoGetActivationFactory (m_hString, IID_IInputKeyboardSourceStatics'Access , m_Factory'Address);
-      if Hr = S_OK then
-         Hr := m_Factory.GetKeyStateForCurrentThread (virtualKey, m_ComRetVal'Access);
-         temp := m_Factory.Release;
-         if Hr /= S_OK then
-            raise Program_Error;
-         end if;
-      end if;
-      tmp := WindowsDeleteString (m_hString);
-      return m_ComRetVal;
-   end;
-
    function GetForIsland
    (
       island : WinUI3.Microsoft.UI.Content.ContentIsland'Class
@@ -2864,6 +2840,30 @@ package body WinUI3.Microsoft.UI.Input is
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;
+   end;
+
+   function GetKeyStateForCurrentThread
+   (
+      virtualKey : WinUI3.Windows.System.VirtualKey
+   )
+   return WinUI3.Windows.UI.Core.CoreVirtualKeyStates is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_hString        : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.InputKeyboardSource");
+      m_Factory        : access WinUI3.Microsoft.UI.Input.IInputKeyboardSourceStatics_Interface'Class := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Windows.UI.Core.CoreVirtualKeyStates;
+   begin
+      Hr := RoGetActivationFactory (m_hString, IID_IInputKeyboardSourceStatics'Access , m_Factory'Address);
+      if Hr = S_OK then
+         Hr := m_Factory.GetKeyStateForCurrentThread (virtualKey, m_ComRetVal'Access);
+         temp := m_Factory.Release;
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+      end if;
+      tmp := WindowsDeleteString (m_hString);
+      return m_ComRetVal;
    end;
 
    -----------------------------------------------------------------------------

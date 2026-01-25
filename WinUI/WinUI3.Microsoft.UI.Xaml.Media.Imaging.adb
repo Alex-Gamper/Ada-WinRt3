@@ -259,22 +259,6 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    -----------------------------------------------------------------------------
    -- RuntimeClass Constructors for BitmapImage
 
-   function Constructor return BitmapImage is
-      Hr           : WinUI3.HResult := S_OK;
-      tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IBitmapImage");
-      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
-   begin
-      return RetVal : BitmapImage do
-         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
-         if Hr = S_OK then
-            Retval.m_IBitmapImage := new WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
-            Retval.m_IBitmapImage.all := m_ComRetVal;
-         end if;
-         tmp := WindowsDeleteString (m_hString);
-      end return;
-   end;
-
    function Constructor
    (
       uriSource : WinUI3.Windows.Foundation.Uri'Class
@@ -294,6 +278,22 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
             Retval.m_IBitmapImage := new WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
             Retval.m_IBitmapImage.all := m_ComRetVal;
             temp := m_Factory.Release;
+         end if;
+         tmp := WindowsDeleteString (m_hString);
+      end return;
+   end;
+
+   function Constructor return BitmapImage is
+      Hr           : WinUI3.HResult := S_OK;
+      tmp          : WinUI3.HResult := S_OK;
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IBitmapImage");
+      m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
+   begin
+      return RetVal : BitmapImage do
+         Hr := RoActivateInstance (m_hString, m_ComRetVal'Address);
+         if Hr = S_OK then
+            Retval.m_IBitmapImage := new WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
+            Retval.m_IBitmapImage.all := m_ComRetVal;
          end if;
          tmp := WindowsDeleteString (m_hString);
       end return;

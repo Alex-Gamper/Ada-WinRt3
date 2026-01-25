@@ -284,6 +284,7 @@ package WinUI3.Microsoft.UI.Content is
          m_IContentIsland : access Microsoft.UI.Content.IContentIsland;
       end record;
    type ContentIsland_Ptr is access all ContentIsland;
+   type ContentIsland_Array is array (Natural range <>) of ContentIsland;
 
    type ContentIslandAutomationProviderRequestedEventArgs is new Ada.Finalization.Limited_Controlled with
       record
@@ -3798,16 +3799,16 @@ package WinUI3.Microsoft.UI.Content is
    -----------------------------------------------------------------------------
    -- Static Interfaces for DesktopChildSiteBridge
 
-   function Create
+   function CreateWithDispatcherQueue
    (
-      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
+      queue : WinUI3.Microsoft.UI.Dispatching.DispatcherQueue'Class;
       parentWindowId : WinUI3.Microsoft.UI.WindowId
    )
    return WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge;
 
-   function CreateWithDispatcherQueue
+   function Create
    (
-      queue : WinUI3.Microsoft.UI.Dispatching.DispatcherQueue'Class;
+      compositor : WinUI3.Microsoft.UI.Composition.Compositor'Class;
       parentWindowId : WinUI3.Microsoft.UI.WindowId
    )
    return WinUI3.Microsoft.UI.Content.DesktopChildSiteBridge;
