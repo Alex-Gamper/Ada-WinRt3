@@ -69267,11 +69267,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    )
    return WinUI3.IInspectable_Array;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewExternalTornOutTabsDroppedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+   function get_Tabs
+   (
+      this : in out TabViewExternalTornOutTabsDroppedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+
    function get_DropIndex
    (
       this : in out TabViewExternalTornOutTabsDroppedEventArgs
@@ -69293,11 +69294,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    )
    return WinUI3.IInspectable_Array;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewExternalTornOutTabsDroppingEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+   function get_Tabs
+   (
+      this : in out TabViewExternalTornOutTabsDroppingEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+
    function get_DropIndex
    (
       this : in out TabViewExternalTornOutTabsDroppingEventArgs
@@ -69595,11 +69597,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    )
    return WinUI3.IInspectable_Array;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewTabTearOutRequestedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+   function get_Tabs
+   (
+      this : in out TabViewTabTearOutRequestedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+
    function get_NewWindowId
    (
       this : in out TabViewTabTearOutRequestedEventArgs
@@ -69621,11 +69624,12 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    )
    return WinUI3.IInspectable_Array;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewTabTearOutWindowRequestedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+   function get_Tabs
+   (
+      this : in out TabViewTabTearOutWindowRequestedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array;
+
    function get_NewWindowId
    (
       this : in out TabViewTabTearOutWindowRequestedEventArgs

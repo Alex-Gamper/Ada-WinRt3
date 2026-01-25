@@ -85397,11 +85397,37 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
       end;
    end;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewExternalTornOutTabsDroppedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+   function get_Tabs
+   (
+      this : in out TabViewExternalTornOutTabsDroppedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+
+      function GetArraySize return Integer is
+      begin
+         Hr := this.m_ITabViewExternalTornOutTabsDroppedEventArgs.all.get_Tabs (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IUIElement is new To_Ada_Type (WinUI3.Microsoft.UI.Xaml.IUIElement, WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.UIElement_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IUIElement := new Microsoft.UI.Xaml.IUIElement;
+            Retval (i).m_IUIElement.all := To_Ada_IUIElement (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function get_DropIndex
    (
       this : in out TabViewExternalTornOutTabsDroppedEventArgs
@@ -85468,11 +85494,37 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
       end;
    end;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewExternalTornOutTabsDroppingEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+   function get_Tabs
+   (
+      this : in out TabViewExternalTornOutTabsDroppingEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+
+      function GetArraySize return Integer is
+      begin
+         Hr := this.m_ITabViewExternalTornOutTabsDroppingEventArgs.all.get_Tabs (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IUIElement is new To_Ada_Type (WinUI3.Microsoft.UI.Xaml.IUIElement, WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.UIElement_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IUIElement := new Microsoft.UI.Xaml.IUIElement;
+            Retval (i).m_IUIElement.all := To_Ada_IUIElement (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function get_DropIndex
    (
       this : in out TabViewExternalTornOutTabsDroppingEventArgs
@@ -86421,11 +86473,37 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
       end;
    end;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewTabTearOutRequestedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+   function get_Tabs
+   (
+      this : in out TabViewTabTearOutRequestedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+
+      function GetArraySize return Integer is
+      begin
+         Hr := this.m_ITabViewTabTearOutRequestedEventArgs.all.get_Tabs (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IUIElement is new To_Ada_Type (WinUI3.Microsoft.UI.Xaml.IUIElement, WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.UIElement_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IUIElement := new Microsoft.UI.Xaml.IUIElement;
+            Retval (i).m_IUIElement.all := To_Ada_IUIElement (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function get_NewWindowId
    (
       this : in out TabViewTabTearOutRequestedEventArgs
@@ -86492,11 +86570,37 @@ package body WinUI3.Microsoft.UI.Xaml.Controls is
       end;
    end;
 
-   -- function get_Tabs
-   -- (
-      -- this : in out TabViewTabTearOutWindowRequestedEventArgs
-   -- )
-   -- return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+   function get_Tabs
+   (
+      this : in out TabViewTabTearOutWindowRequestedEventArgs
+   )
+   return WinUI3.Microsoft.UI.Xaml.UIElement_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+
+      function GetArraySize return Integer is
+      begin
+         Hr := this.m_ITabViewTabTearOutWindowRequestedEventArgs.all.get_Tabs (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IUIElement is new To_Ada_Type (WinUI3.Microsoft.UI.Xaml.IUIElement, WinUI3.Microsoft.UI.Xaml.IUIElement_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Microsoft.UI.Xaml.UIElement_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IUIElement := new Microsoft.UI.Xaml.IUIElement;
+            Retval (i).m_IUIElement.all := To_Ada_IUIElement (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function get_NewWindowId
    (
       this : in out TabViewTabTearOutWindowRequestedEventArgs

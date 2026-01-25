@@ -5705,11 +5705,12 @@ package WinUI3.Windows.UI.Xaml.Automation.Peers is
    )
    return WinUI3.Boolean;
 
-   -- function GetSelection
-   -- (
-      -- this : in out SelectorAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+   function GetSelection
+   (
+      this : in out SelectorAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ComboBoxAutomationPeer
 
@@ -6504,11 +6505,12 @@ package WinUI3.Windows.UI.Xaml.Automation.Peers is
    )
    return WinUI3.Boolean;
 
-   -- function GetSelection
-   -- (
-      -- this : in out LoopingSelectorAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+   function GetSelection
+   (
+      this : in out LoopingSelectorAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+
    function FindItemByProperty
    (
       this : in out LoopingSelectorAutomationPeer;
@@ -7037,11 +7039,12 @@ package WinUI3.Windows.UI.Xaml.Automation.Peers is
    )
    return WinUI3.Boolean;
 
-   -- function GetSelection
-   -- (
-      -- this : in out PivotAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+   function GetSelection
+   (
+      this : in out PivotAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array;
+
    function get_HorizontallyScrollable
    (
       this : in out PivotAutomationPeer

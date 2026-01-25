@@ -4204,11 +4204,41 @@ package body WinUI3.Windows.UI.Xaml.Automation.Peers is
       return m_ComRetVal;
    end;
 
-   -- function GetSelection
-   -- (
-      -- this : in out SelectorAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+   function GetSelection
+   (
+      this : in out SelectorAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_Interface      : WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinUI3.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer_Interface, WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinUI3.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
+
+      function GetArraySize return Integer is
+      begin
+         m_Interface := QInterface (this.m_ISelectorAutomationPeer.all);
+         Hr := m_Interface.GetSelection (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         temp := m_Interface.Release;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IIRawElementProviderSimple is new To_Ada_Type (WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple, WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+            Retval (i).m_IIRawElementProviderSimple.all := To_Ada_IIRawElementProviderSimple (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    -----------------------------------------------------------------------------
    -- RuntimeClass Initialization/Finalization for ComboBoxAutomationPeer
 
@@ -6450,11 +6480,41 @@ package body WinUI3.Windows.UI.Xaml.Automation.Peers is
       return m_ComRetVal;
    end;
 
-   -- function GetSelection
-   -- (
-      -- this : in out LoopingSelectorAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+   function GetSelection
+   (
+      this : in out LoopingSelectorAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_Interface      : WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinUI3.Windows.UI.Xaml.Automation.Peers.ILoopingSelectorAutomationPeer_Interface, WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinUI3.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
+
+      function GetArraySize return Integer is
+      begin
+         m_Interface := QInterface (this.m_ILoopingSelectorAutomationPeer.all);
+         Hr := m_Interface.GetSelection (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         temp := m_Interface.Release;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IIRawElementProviderSimple is new To_Ada_Type (WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple, WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+            Retval (i).m_IIRawElementProviderSimple.all := To_Ada_IIRawElementProviderSimple (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function FindItemByProperty
    (
       this : in out LoopingSelectorAutomationPeer;
@@ -8047,11 +8107,41 @@ package body WinUI3.Windows.UI.Xaml.Automation.Peers is
       return m_ComRetVal;
    end;
 
-   -- function GetSelection
-   -- (
-      -- this : in out PivotAutomationPeer
-   -- )
-   -- return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+   function GetSelection
+   (
+      this : in out PivotAutomationPeer
+   )
+   return WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array is
+      Hr               : WinUI3.HResult := S_OK;
+      tmp              : WinUI3.HResult := S_OK;
+      m_Interface      : WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider := null;
+      temp             : WinUI3.UInt32 := 0;
+      m_ComRetVal      : aliased WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr;
+      m_ComRetValSize  : aliased WinUI3.UInt32 := 0;
+      function QInterface is new Generic_QueryInterface (WinUI3.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer_Interface, WinUI3.Windows.UI.Xaml.Automation.Provider.ISelectionProvider, WinUI3.Windows.UI.Xaml.Automation.Provider.IID_ISelectionProvider'Unchecked_Access);
+
+      function GetArraySize return Integer is
+      begin
+         m_Interface := QInterface (this.m_IPivotAutomationPeer.all);
+         Hr := m_Interface.GetSelection (m_ComRetValSize'Access, m_ComRetVal'Access);
+         if Hr /= S_OK then
+            raise Program_Error;
+         end if;
+         temp := m_Interface.Release;
+         return Integer(m_ComRetValSize);
+      end;
+
+      function To_Ada_IIRawElementProviderSimple is new To_Ada_Type (WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple, WinUI3.Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple_Ptr); 
+
+   begin
+      return RetVal : WinUI3.Windows.UI.Xaml.Automation.Provider.IRawElementProviderSimple_Array (1..GetArraySize) do
+         for i in RetVal'Range loop
+            Retval (i).m_IIRawElementProviderSimple := new Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
+            Retval (i).m_IIRawElementProviderSimple.all := To_Ada_IIRawElementProviderSimple (m_ComRetVal, i);
+         end loop;
+      end return;
+   end;
+
    function get_HorizontallyScrollable
    (
       this : in out PivotAutomationPeer
