@@ -1143,10 +1143,6 @@ package body WinUI3.Microsoft.UI.Content is
 
    begin
       return RetVal : WinUI3.Microsoft.UI.Content.ContentIsland_Array (1..GetArraySize) do
-         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics2'Access , m_Factory'Address);
-         if Hr = S_OK then
-            temp := m_Factory.Release;
-         end if;
          tmp := WindowsDeleteString (m_hString);
          for i in RetVal'Range loop
             Retval (i).m_IContentIsland := new Microsoft.UI.Content.IContentIsland;
@@ -1239,10 +1235,6 @@ package body WinUI3.Microsoft.UI.Content is
 
    begin
       return RetVal : WinUI3.Microsoft.UI.Content.ContentIsland_Array (1..GetArraySize) do
-         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            temp := m_Factory.Release;
-         end if;
          tmp := WindowsDeleteString (m_hString);
          for i in RetVal'Range loop
             Retval (i).m_IContentIsland := new Microsoft.UI.Content.IContentIsland;
@@ -1278,10 +1270,6 @@ package body WinUI3.Microsoft.UI.Content is
 
    begin
       return RetVal : WinUI3.Microsoft.UI.Content.ContentIsland_Array (1..GetArraySize) do
-         Hr := RoGetActivationFactory (m_hString, IID_IContentIslandStatics'Access , m_Factory'Address);
-         if Hr = S_OK then
-            temp := m_Factory.Release;
-         end if;
          tmp := WindowsDeleteString (m_hString);
          for i in RetVal'Range loop
             Retval (i).m_IContentIsland := new Microsoft.UI.Content.IContentIsland;
