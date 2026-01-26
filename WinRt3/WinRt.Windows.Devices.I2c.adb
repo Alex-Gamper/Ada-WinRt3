@@ -73,7 +73,7 @@ package body WinRt.Windows.Devices.I2c is
    return I2cConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.I2c.II2cConnectionSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.I2c.I2cConnectionSettings");
       m_Factory    : access II2cConnectionSettingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.I2c.II2cConnectionSettings;

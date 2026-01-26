@@ -66,7 +66,7 @@ package body WinRt.Windows.Media.Transcoding is
    function Constructor return MediaTranscoder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Transcoding.IMediaTranscoder");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Transcoding.MediaTranscoder");
       m_ComRetVal  : aliased WinRt.Windows.Media.Transcoding.IMediaTranscoder;
    begin
       return RetVal : MediaTranscoder do

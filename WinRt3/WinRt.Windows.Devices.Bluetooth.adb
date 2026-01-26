@@ -4909,7 +4909,7 @@ package body WinRt.Windows.Devices.Bluetooth is
    function Constructor return BluetoothSignalStrengthFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
    begin
       return RetVal : BluetoothSignalStrengthFilter do

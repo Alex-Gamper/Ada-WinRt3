@@ -273,7 +273,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.IResourceIndexer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
       m_Factory    : access IResourceIndexerFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;
@@ -297,7 +297,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Management is
    return ResourceIndexer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.IResourceIndexer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Management.ResourceIndexer");
       m_Factory    : access IResourceIndexerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.Management.IResourceIndexer;

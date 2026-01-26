@@ -6964,7 +6964,7 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
    function Constructor return CoreWebView2CustomSchemeRegistration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Web.WebView2.Core.ICoreWebView2CustomSchemeRegistration");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Web.WebView2.Core.CoreWebView2CustomSchemeRegistration");
       m_ComRetVal  : aliased WinUI3.Microsoft.Web.WebView2.Core.ICoreWebView2CustomSchemeRegistration;
    begin
       return RetVal : CoreWebView2CustomSchemeRegistration do
@@ -8881,7 +8881,7 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
    function Constructor return CoreWebView2EnvironmentOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Web.WebView2.Core.ICoreWebView2EnvironmentOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Web.WebView2.Core.CoreWebView2EnvironmentOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Web.WebView2.Core.ICoreWebView2EnvironmentOptions;
    begin
       return RetVal : CoreWebView2EnvironmentOptions do

@@ -127,7 +127,7 @@ package body WinUI3.Windows.Globalization.Collation is
    return CharacterGroupings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Collation.ICharacterGroupings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_Factory    : access ICharacterGroupingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.Collation.ICharacterGroupings;
@@ -149,7 +149,7 @@ package body WinUI3.Windows.Globalization.Collation is
    function Constructor return CharacterGroupings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Collation.ICharacterGroupings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.Collation.ICharacterGroupings;
    begin
       return RetVal : CharacterGroupings do

@@ -59,7 +59,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
    function Constructor return DeploymentInitializeOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IDeploymentInitializeOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.DeploymentInitializeOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IDeploymentInitializeOptions;
    begin
       return RetVal : DeploymentInitializeOptions do
@@ -259,7 +259,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
    return DeploymentResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IDeploymentResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.DeploymentResult");
       m_Factory    : access IDeploymentResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IDeploymentResult;
@@ -456,7 +456,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
    function Constructor return RuntimeCompatibilityOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IRuntimeCompatibilityOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.WindowsAppRuntime.RuntimeCompatibilityOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime.IRuntimeCompatibilityOptions;
    begin
       return RetVal : RuntimeCompatibilityOptions do

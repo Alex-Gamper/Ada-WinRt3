@@ -57,7 +57,7 @@ package body WinUI3.Windows.System.Display is
    function Constructor return DisplayRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Display.IDisplayRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Display.DisplayRequest");
       m_ComRetVal  : aliased WinUI3.Windows.System.Display.IDisplayRequest;
    begin
       return RetVal : DisplayRequest do

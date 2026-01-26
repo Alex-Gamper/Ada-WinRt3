@@ -58,7 +58,7 @@ package body WinRt.Windows.Management is
    function Constructor return MdmAlert is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.IMdmAlert");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.MdmAlert");
       m_ComRetVal  : aliased WinRt.Windows.Management.IMdmAlert;
    begin
       return RetVal : MdmAlert do

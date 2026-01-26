@@ -363,7 +363,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebAuthenticationAddAccountResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationAddAccountResponse");
       m_Factory    : access IWebAuthenticationAddAccountResponseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationAddAccountResponse;
@@ -1623,7 +1623,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebAuthenticationTransferTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationTransferTokenRequest");
       m_Factory    : access IWebAuthenticationTransferTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
@@ -1651,7 +1651,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebAuthenticationTransferTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebAuthenticationTransferTokenRequest");
       m_Factory    : access IWebAuthenticationTransferTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebAuthenticationTransferTokenRequest;
@@ -1820,7 +1820,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebProviderError is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebProviderError");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebProviderError");
       m_Factory    : access IWebProviderErrorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebProviderError;
@@ -1931,7 +1931,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenRequest");
       m_Factory    : access IWebTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenRequest");
       m_Factory    : access IWebTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
@@ -1990,7 +1990,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenRequest");
       m_Factory    : access IWebTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
@@ -2015,7 +2015,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenRequest");
       m_Factory    : access IWebTokenRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenRequest;
@@ -2355,7 +2355,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenResponse");
       m_Factory    : access IWebTokenResponseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse;
@@ -2382,7 +2382,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenResponse");
       m_Factory    : access IWebTokenResponseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse;
@@ -2410,7 +2410,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    return WebTokenResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenResponse");
       m_Factory    : access IWebTokenResponseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse;
@@ -2432,7 +2432,7 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
    function Constructor return WebTokenResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.IWebTokenResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Core.WebTokenResponse");
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Core.IWebTokenResponse;
    begin
       return RetVal : WebTokenResponse do

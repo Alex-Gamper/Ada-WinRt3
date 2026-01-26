@@ -3239,7 +3239,7 @@ package body WinUI3.Microsoft.UI.Composition is
    function Constructor return CompositionCapabilities is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.ICompositionCapabilities");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.CompositionCapabilities");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.ICompositionCapabilities;
    begin
       return RetVal : CompositionCapabilities do
@@ -4802,7 +4802,7 @@ package body WinUI3.Microsoft.UI.Composition is
    return CompositionEffectSourceParameter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.ICompositionEffectSourceParameter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.CompositionEffectSourceParameter");
       m_Factory    : access ICompositionEffectSourceParameterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.ICompositionEffectSourceParameter;
@@ -6591,7 +6591,7 @@ package body WinUI3.Microsoft.UI.Composition is
    return CompositionPath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.ICompositionPath");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.CompositionPath");
       m_Factory    : access ICompositionPathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.ICompositionPath;
@@ -10079,7 +10079,7 @@ package body WinUI3.Microsoft.UI.Composition is
    function Constructor return Compositor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.ICompositor");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Compositor");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.ICompositor;
    begin
       return RetVal : Compositor do

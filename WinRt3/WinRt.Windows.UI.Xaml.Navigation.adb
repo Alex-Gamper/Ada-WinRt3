@@ -65,7 +65,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    return FrameNavigationOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.IFrameNavigationOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.FrameNavigationOptions");
       m_Factory    : access IFrameNavigationOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Navigation.IFrameNavigationOptions;
@@ -637,7 +637,7 @@ package body WinRt.Windows.UI.Xaml.Navigation is
    return PageStackEntry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.IPageStackEntry");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Navigation.PageStackEntry");
       m_Factory    : access IPageStackEntryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Navigation.IPageStackEntry;

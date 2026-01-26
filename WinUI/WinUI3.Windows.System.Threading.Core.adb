@@ -62,7 +62,7 @@ package body WinUI3.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.Threading.Core.IPreallocatedWorkItem;
@@ -87,7 +87,7 @@ package body WinUI3.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.Threading.Core.IPreallocatedWorkItem;
@@ -113,7 +113,7 @@ package body WinUI3.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.Threading.Core.IPreallocatedWorkItem;

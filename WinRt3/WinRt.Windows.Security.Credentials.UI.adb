@@ -307,7 +307,7 @@ package body WinRt.Windows.Security.Credentials.UI is
    function Constructor return CredentialPickerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.ICredentialPickerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Credentials.UI.CredentialPickerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Security.Credentials.UI.ICredentialPickerOptions;
    begin
       return RetVal : CredentialPickerOptions do

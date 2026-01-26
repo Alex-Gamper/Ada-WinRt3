@@ -4058,7 +4058,7 @@ package body WinRt.Windows.Data.Xml.Dom is
    function Constructor return XmlDocument is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.IXmlDocument");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_ComRetVal  : aliased WinRt.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : XmlDocument do
@@ -8715,7 +8715,7 @@ package body WinRt.Windows.Data.Xml.Dom is
    function Constructor return XmlLoadSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.IXmlLoadSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Dom.XmlLoadSettings");
       m_ComRetVal  : aliased WinRt.Windows.Data.Xml.Dom.IXmlLoadSettings;
    begin
       return RetVal : XmlLoadSettings do

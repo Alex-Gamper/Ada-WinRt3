@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.UI.Dispatching is
    function Constructor return DispatcherExitDeferral is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Dispatching.IDispatcherExitDeferral");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Dispatching.DispatcherExitDeferral");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Dispatching.IDispatcherExitDeferral;
    begin
       return RetVal : DispatcherExitDeferral do

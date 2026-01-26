@@ -149,7 +149,7 @@ package body WinRt.Windows.System.Power.Thermal is
    return PowerThermalChannelDataConsumer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataConsumer");
       m_Factory    : access IPowerThermalChannelDataConsumerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
@@ -375,7 +375,7 @@ package body WinRt.Windows.System.Power.Thermal is
    return PowerThermalChannelDataProducer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataProducer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataProducer");
       m_Factory    : access IPowerThermalChannelDataProducerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;

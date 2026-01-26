@@ -2960,7 +2960,7 @@ package body WinUI3.Windows.ApplicationModel.Store is
    function Constructor return ProductPurchaseDisplayProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
    begin
       return RetVal : ProductPurchaseDisplayProperties do
@@ -2980,7 +2980,7 @@ package body WinUI3.Windows.ApplicationModel.Store is
    return ProductPurchaseDisplayProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
       m_Factory    : access IProductPurchaseDisplayPropertiesFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;

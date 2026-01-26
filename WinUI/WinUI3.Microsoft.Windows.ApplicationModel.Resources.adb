@@ -286,7 +286,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    return ResourceCandidate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceCandidate");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceCandidate");
       m_Factory    : access IResourceCandidateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceCandidate;
@@ -312,7 +312,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    return ResourceCandidate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceCandidate");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceCandidate");
       m_Factory    : access IResourceCandidateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceCandidate;
@@ -485,7 +485,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    function Constructor return ResourceLoader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceLoader");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceLoader");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : ResourceLoader do
@@ -505,7 +505,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    return ResourceLoader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceLoader");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory    : access IResourceLoaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
@@ -532,7 +532,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    return ResourceLoader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceLoader");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory    : access IResourceLoaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceLoader;
@@ -657,7 +657,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    return ResourceManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceManager");
       m_Factory    : access IResourceManagerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
@@ -679,7 +679,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
    function Constructor return ResourceManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.IResourceManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Resources.ResourceManager");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Resources.IResourceManager;
    begin
       return RetVal : ResourceManager do

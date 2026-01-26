@@ -59,7 +59,7 @@ package body WinUI3.Windows.ApplicationModel.Search is
    function Constructor return LocalContentSuggestionSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.ILocalContentSuggestionSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.LocalContentSuggestionSettings");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Search.ILocalContentSuggestionSettings;
    begin
       return RetVal : LocalContentSuggestionSettings do
@@ -1269,7 +1269,7 @@ package body WinUI3.Windows.ApplicationModel.Search is
    return SearchQueryLinguisticDetails is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.SearchQueryLinguisticDetails");
       m_Factory    : access ISearchQueryLinguisticDetailsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;

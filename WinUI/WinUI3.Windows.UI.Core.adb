@@ -1498,7 +1498,7 @@ package body WinUI3.Windows.UI.Core is
    return CoreCursor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.ICoreCursor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.CoreCursor");
       m_Factory    : access ICoreCursorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.ICoreCursor;
@@ -4145,7 +4145,7 @@ package body WinUI3.Windows.UI.Core is
    return CoreWindowDialog is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.ICoreWindowDialog");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
       m_Factory    : access ICoreWindowDialogFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.ICoreWindowDialog;
@@ -4167,7 +4167,7 @@ package body WinUI3.Windows.UI.Core is
    function Constructor return CoreWindowDialog is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.ICoreWindowDialog");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.CoreWindowDialog");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.ICoreWindowDialog;
    begin
       return RetVal : CoreWindowDialog do
@@ -4580,7 +4580,7 @@ package body WinUI3.Windows.UI.Core is
    return CoreWindowFlyout is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.ICoreWindowFlyout");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
       m_Factory    : access ICoreWindowFlyoutFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.ICoreWindowFlyout;
@@ -4605,7 +4605,7 @@ package body WinUI3.Windows.UI.Core is
    return CoreWindowFlyout is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.ICoreWindowFlyout");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.CoreWindowFlyout");
       m_Factory    : access ICoreWindowFlyoutFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.ICoreWindowFlyout;

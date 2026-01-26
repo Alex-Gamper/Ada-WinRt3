@@ -65,7 +65,7 @@ package body WinUI3.Windows.UI.Xaml.Markup is
    return MarkupExtension is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Markup.IMarkupExtension");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Markup.MarkupExtension");
       m_Factory    : access IMarkupExtensionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Markup.IMarkupExtension;

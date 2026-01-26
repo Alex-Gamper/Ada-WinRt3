@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.2.11408.102 d18.0
+VisualStudioVersion = 18.2.11408.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinRt3", "WinRt3\WinRt3.vcxproj", "{74A39971-74B1-4D57-AAF2-77607444B481}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinRt3Test2", "WinRt3Test2\WinRt3Test2.vcxproj", "{D766E8E7-0AB9-4917-BB7D-F3AE56558661}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinUI", "WinUI\WinUI.vcxproj", "{4DA49345-6F65-47A9-BD7A-0C4F3445FC4A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinUIXamlTest", "WinUIXamlTest\WinUIXamlTest.vcxproj", "{65850992-9132-43AB-BF69-FAE0249553A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,14 @@ Global
 		{4DA49345-6F65-47A9-BD7A-0C4F3445FC4A}.Release|x64.Build.0 = Release|x64
 		{4DA49345-6F65-47A9-BD7A-0C4F3445FC4A}.Release|x86.ActiveCfg = Release|Win32
 		{4DA49345-6F65-47A9-BD7A-0C4F3445FC4A}.Release|x86.Build.0 = Release|Win32
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Debug|x64.ActiveCfg = Debug|x64
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Debug|x64.Build.0 = Debug|x64
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Debug|x86.ActiveCfg = Debug|Win32
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Debug|x86.Build.0 = Debug|Win32
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Release|x64.ActiveCfg = Release|x64
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Release|x64.Build.0 = Release|x64
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Release|x86.ActiveCfg = Release|Win32
+		{65850992-9132-43AB-BF69-FAE0249553A5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

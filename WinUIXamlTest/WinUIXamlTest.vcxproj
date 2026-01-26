@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.Windows.SDK.BuildTools.10.0.26100.7463\build\Microsoft.Windows.SDK.BuildTools.props" Condition="Exists('..\packages\Microsoft.Windows.SDK.BuildTools.10.0.26100.7463\build\Microsoft.Windows.SDK.BuildTools.props')" />
+  <Import Project="..\packages\Microsoft.Windows.SDK.BuildTools.MSIX.1.7.20250829.1\build\Microsoft.Windows.SDK.BuildTools.MSIX.props" Condition="Exists('..\packages\Microsoft.Windows.SDK.BuildTools.MSIX.1.7.20250829.1\build\Microsoft.Windows.SDK.BuildTools.MSIX.props')" />
+  <!---->
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <!---->
+  <PropertyGroup Label="Globals">
+    <CustomProjectExtensionsPath>$(MSBuildBinPath)\..\..\VisualAda\BuildSystem\</CustomProjectExtensionsPath>
+    <ProjectName>WinUIXamlTest</ProjectName>
+    <ProjectGuid>{65850992-9132-43ab-bf69-fae0249553a5}</ProjectGuid>
+    <Keyword>WinUIXamlTest</Keyword>
+    <RootNamespace>WinUIXamlTest</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <WindowsPackageType>None</WindowsPackageType>
+    <AppxPackage>false</AppxPackage>
+  </PropertyGroup>
+  <!---->
+  <PropertyGroup Label="Globals" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <UseMicrosoftLinker>true</UseMicrosoftLinker>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <AdaTarget>x86_64-w64-mingw32</AdaTarget>
+    <GnatRoot>C:\Software\Gnat13</GnatRoot>
+    <GnatRootRTS>C:\Software\Gnat13\lib\gcc\x86_64-w64-mingw32\13.2.0</GnatRootRTS>
+    <GnatMingwRoot>C:\Software\Gnat13\x86_64-w64-mingw32</GnatMingwRoot>
+  </PropertyGroup>
+  <!---->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32' or '$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <AdaTarget>Unknown</AdaTarget>
+    <GnatRoot>Unknown</GnatRoot>
+    <GnatRootRTS>Unknown</GnatRootRTS>
+    <GnatMingwRoot>Unknown</GnatMingwRoot>
+  </PropertyGroup>
+  <!---->
+  <PropertyGroup>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'==''">$(GnatRootRTS)</GnatRootRTSAda>
+    <GnatRootRTSAda Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)</GnatRootRTSAda>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'==''">$(GnatRootRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatRootRTSAdaLib Condition="'$(AdaRTS)'!=''">$(GnatRootRTS)\rts-$(AdaRTS)\adalib</GnatRootRTSAdaLib>
+    <GnatLibraryDir>$(GnatRoot)\lib</GnatLibraryDir>
+    <GnatWinRtLibraryDir>$(GnatRootRTSAda)\lib\WinRt</GnatWinRtLibraryDir>
+    <GprbuildOptions>-aP$(GnatRootRTSAda)\share\gpr</GprbuildOptions>
+  </PropertyGroup>
+  <!---->
+  <Import Project="$(CustomProjectExtensionsPath)Ada_Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <!---->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <!---->
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.props" />
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <!---->
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <!---->
+  <PropertyGroup Label="UserMacros">
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <PackageCertificateThumbprint>40BF1741F7D2F5CD3D02F80B3A0B5E204D789292</PackageCertificateThumbprint>
+    <PackageCertificateKeyFile>WinUIXamlTest_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+  </PropertyGroup>
+  <!---->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+    <AdditionalAdaLibraryFiles>windowsapp</AdditionalAdaLibraryFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\Build\</IntDir>
+  </PropertyGroup>
+  <!---->
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(GnatMingwRoot)\lib;$(GnatRootRTSAda);$(GnatRootRTSAdaLib)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt.lib;oldnames.lib;ucrt.lib;vcruntime.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(GnatMingwRoot)\lib;$(GnatRootRTSAda);$(GnatRootRTSAdaLib)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vcruntime.lib;ucrt.lib;windowsapp.lib;msvcrt.lib;oldnames.lib;ucrt.lib;vcruntime.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <FullProgramDatabaseFile>true</FullProgramDatabaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <!---->
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(GnatMingwRoot)\lib;$(GnatRootRTSAda);$(GnatRootRTSAdaLib)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt.lib;oldnames.lib;ucrt.lib;vcruntime.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <!---->
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(GnatMingwRoot)\lib;$(GnatRootRTSAda);$(GnatRootRTSAdaLib)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>msvcrt.lib;oldnames.lib;ucrt.lib;vcruntime.lib;libgnat.a;libgnarl.a;libgcc.a;libgcc_eh.a;libmingwex.a;libmingw32.a;libmsvcrt.a;kernel32.lib;user32.lib;shell32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <!---->
+  <ItemGroup>
+    <AdaCompile Include="AppInitCallback.adb" />
+    <AdaCompile Include="AppInitCallback.ads" />
+    <AdaCompile Include="AppOverrides.adb" />
+    <AdaCompile Include="AppOverrides.ads" />
+    <AdaCompile Include="Generic_IInspectable.adb" />
+    <AdaCompile Include="Generic_IInspectable.ads" />
+    <AdaCompile Include="WinUIXamlTest.adb">
+      <SubType>Code</SubType>
+    </AdaCompile>
+    <AdaCompile Include="WinMainStartup.adb" />
+    <AdaCompile Include="WinMainStartup.ads" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="WinUIXamlTest.gpr" />
+    <None Include="WinUIXamlTest_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="WinUIXamlTest.idl">
+      <EnableWindowsRuntime Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableWindowsRuntime>
+      <AdditionalMetadataDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(WindowsSDK_MetadataFoundationPath);%(AdditionalMetadataDirectories)</AdditionalMetadataDirectories>
+      <MetadataFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)%(Filename).winmd</MetadataFileName>
+      <HeaderFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </HeaderFileName>
+      <PrependWithABINamepsace Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</PrependWithABINamepsace>
+    </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinUI\WinUI.vcxproj">
+      <Project>{4da49345-6f65-47a9-bd7a-0c4f3445fc4a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(CustomProjectExtensionsPath)Ada.targets" />
+    <Import Project="..\packages\Microsoft.Windows.SDK.BuildTools.MSIX.1.7.20250829.1\build\Microsoft.Windows.SDK.BuildTools.MSIX.targets" Condition="Exists('..\packages\Microsoft.Windows.SDK.BuildTools.MSIX.1.7.20250829.1\build\Microsoft.Windows.SDK.BuildTools.MSIX.targets')" />
+    <Import Project="..\packages\Microsoft.Windows.SDK.BuildTools.10.0.26100.7463\build\Microsoft.Windows.SDK.BuildTools.targets" Condition="Exists('..\packages\Microsoft.Windows.SDK.BuildTools.10.0.26100.7463\build\Microsoft.Windows.SDK.BuildTools.targets')" />
+  </ImportGroup>
+</Project>

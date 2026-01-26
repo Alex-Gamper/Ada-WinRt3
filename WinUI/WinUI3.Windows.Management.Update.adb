@@ -310,7 +310,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdate");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdate");
       m_Factory    : access IWindowsSoftwareUpdateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdate;
@@ -356,7 +356,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdate");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdate");
       m_Factory    : access IWindowsSoftwareUpdateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdate;
@@ -891,7 +891,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateActionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateActionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateActionInfo");
       m_Factory    : access IWindowsSoftwareUpdateActionInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateActionInfo;
@@ -1192,7 +1192,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateAppPackageInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateAppPackageInfo");
       m_Factory    : access IWindowsSoftwareUpdateAppPackageInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateAppPackageInfo;
@@ -1304,7 +1304,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateApprovalInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateApprovalInfo");
       m_Factory    : access IWindowsSoftwareUpdateApprovalInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateApprovalInfo;
@@ -1424,7 +1424,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateExecutionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo");
       m_Factory    : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
@@ -1449,7 +1449,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateExecutionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateExecutionInfo");
       m_Factory    : access IWindowsSoftwareUpdateExecutionInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateExecutionInfo;
@@ -1582,7 +1582,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateLocalizationInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateLocalizationInfo");
       m_Factory    : access IWindowsSoftwareUpdateLocalizationInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateLocalizationInfo;
@@ -1715,7 +1715,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateOptionalActionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalActionInfo");
       m_Factory    : access IWindowsSoftwareUpdateOptionalActionInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateOptionalActionInfo;
@@ -1826,7 +1826,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateOptionalInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo");
       m_Factory    : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
@@ -1852,7 +1852,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateOptionalInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateOptionalInfo");
       m_Factory    : access IWindowsSoftwareUpdateOptionalInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateOptionalInfo;
@@ -1962,7 +1962,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProvider");
       m_Factory    : access IWindowsSoftwareUpdateProviderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateProvider;
@@ -2308,7 +2308,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateProviderActionResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProviderActionResult");
       m_Factory    : access IWindowsSoftwareUpdateProviderActionResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateProviderActionResult;
@@ -2526,7 +2526,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateProviderStatus is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateProviderStatus");
       m_Factory    : access IWindowsSoftwareUpdateProviderStatusFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateProviderStatus;
@@ -2679,7 +2679,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
       m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateResult;
@@ -2705,7 +2705,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
       m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateResult;
@@ -2732,7 +2732,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateResult");
       m_Factory    : access IWindowsSoftwareUpdateResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateResult;
@@ -2852,7 +2852,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateScanResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateScanResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateScanResult");
       m_Factory    : access IWindowsSoftwareUpdateScanResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
@@ -2879,7 +2879,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateScanResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateScanResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateScanResult");
       m_Factory    : access IWindowsSoftwareUpdateScanResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateScanResult;
@@ -3003,7 +3003,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsSoftwareUpdateVersion is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsSoftwareUpdateVersion");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsSoftwareUpdateVersion");
       m_Factory    : access IWindowsSoftwareUpdateVersionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsSoftwareUpdateVersion;
@@ -4126,7 +4126,7 @@ package body WinUI3.Windows.Management.Update is
    function Constructor return WindowsUpdateApprovalData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateApprovalData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateApprovalData");
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateApprovalData;
    begin
       return RetVal : WindowsUpdateApprovalData do
@@ -4707,7 +4707,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsUpdateManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateManager");
       m_Factory    : access IWindowsUpdateManagerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateManager;
@@ -4734,7 +4734,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsUpdateManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateManager");
       m_Factory    : access IWindowsUpdateManagerFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateManager;
@@ -5263,7 +5263,7 @@ package body WinUI3.Windows.Management.Update is
    function Constructor return WindowsUpdateManagerScanOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateManagerScanOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateManagerScanOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateManagerScanOptions;
    begin
       return RetVal : WindowsUpdateManagerScanOptions do
@@ -5283,7 +5283,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsUpdateManagerScanOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateManagerScanOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateManagerScanOptions");
       m_Factory    : access IWindowsUpdateManagerScanOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateManagerScanOptions;
@@ -5496,7 +5496,7 @@ package body WinUI3.Windows.Management.Update is
    return WindowsUpdateRestartRequestOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateRestartRequestOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateRestartRequestOptions");
       m_Factory    : access IWindowsUpdateRestartRequestOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
@@ -5520,7 +5520,7 @@ package body WinUI3.Windows.Management.Update is
    function Constructor return WindowsUpdateRestartRequestOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.IWindowsUpdateRestartRequestOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.Update.WindowsUpdateRestartRequestOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Management.Update.IWindowsUpdateRestartRequestOptions;
    begin
       return RetVal : WindowsUpdateRestartRequestOptions do

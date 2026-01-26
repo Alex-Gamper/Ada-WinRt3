@@ -63,7 +63,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    function Constructor return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
    begin
       return RetVal : DataProtectionProvider do
@@ -83,7 +83,7 @@ package body WinRt.Windows.Security.Cryptography.DataProtection is
    return DataProtectionProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_Factory    : access IDataProtectionProviderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;

@@ -3618,7 +3618,7 @@ package body WinUI3.Windows.Devices.PointOfService.Provider is
    function Constructor return BarcodeSymbologyAttributesBuilder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.Provider.BarcodeSymbologyAttributesBuilder");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder;
    begin
       return RetVal : BarcodeSymbologyAttributesBuilder do

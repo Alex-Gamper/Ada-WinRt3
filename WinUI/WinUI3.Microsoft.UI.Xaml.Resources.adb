@@ -62,7 +62,7 @@ package body WinUI3.Microsoft.UI.Xaml.Resources is
    return CustomXamlResourceLoader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Resources.ICustomXamlResourceLoader");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Resources.CustomXamlResourceLoader");
       m_Factory    : access ICustomXamlResourceLoaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Resources.ICustomXamlResourceLoader;

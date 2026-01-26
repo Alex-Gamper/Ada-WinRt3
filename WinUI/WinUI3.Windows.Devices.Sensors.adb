@@ -5720,7 +5720,7 @@ package body WinUI3.Windows.Devices.Sensors is
    function Constructor return HumanPresenceSensorReadingUpdate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.HumanPresenceSensorReadingUpdate");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Sensors.IHumanPresenceSensorReadingUpdate;
    begin
       return RetVal : HumanPresenceSensorReadingUpdate do
@@ -10257,7 +10257,7 @@ package body WinUI3.Windows.Devices.Sensors is
    return PedometerDataThreshold is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.ISensorDataThreshold");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.PedometerDataThreshold");
       m_Factory    : access IPedometerDataThresholdFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Sensors.ISensorDataThreshold;
@@ -10678,7 +10678,7 @@ package body WinUI3.Windows.Devices.Sensors is
    return ProximitySensorDataThreshold is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.ISensorDataThreshold");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Sensors.ProximitySensorDataThreshold");
       m_Factory    : access IProximitySensorDataThresholdFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Sensors.ISensorDataThreshold;

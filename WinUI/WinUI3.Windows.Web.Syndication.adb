@@ -64,7 +64,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationAttribute is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationAttribute");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationAttribute;
    begin
       return RetVal : SyndicationAttribute do
@@ -86,7 +86,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationAttribute is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationAttribute");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationAttribute");
       m_Factory    : access ISyndicationAttributeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationAttribute;
@@ -249,7 +249,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationCategory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationCategory;
    begin
       return RetVal : SyndicationCategory do
@@ -269,7 +269,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationCategory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
       m_Factory    : access ISyndicationCategoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationCategory;
@@ -297,7 +297,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationCategory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationCategory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationCategory");
       m_Factory    : access ISyndicationCategoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationCategory;
@@ -760,7 +760,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationClient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationClient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationClient");
       m_Factory    : access ISyndicationClientFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationClient;
@@ -780,7 +780,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationClient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationClient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationClient");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationClient;
    begin
       return RetVal : SyndicationClient do
@@ -1075,7 +1075,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationContent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationContent;
    begin
       return RetVal : SyndicationContent do
@@ -1096,7 +1096,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationContent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
       m_Factory    : access ISyndicationContentFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationContent;
@@ -1122,7 +1122,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationContent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationContent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationContent");
       m_Factory    : access ISyndicationContentFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationContent;
@@ -1668,7 +1668,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationFeed is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationFeed");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationFeed");
       m_Factory    : access ISyndicationFeedFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationFeed;
@@ -1692,7 +1692,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationFeed is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationFeed");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationFeed");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationFeed;
    begin
       return RetVal : SyndicationFeed do
@@ -2529,7 +2529,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationGenerator");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationGenerator;
    begin
       return RetVal : SyndicationGenerator do
@@ -2549,7 +2549,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationGenerator");
       m_Factory    : access ISyndicationGeneratorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationGenerator;
@@ -3008,7 +3008,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationItem");
       m_Factory    : access ISyndicationItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationItem;
@@ -3030,7 +3030,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationItem");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationItem;
    begin
       return RetVal : SyndicationItem do
@@ -3862,7 +3862,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationLink is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationLink;
    begin
       return RetVal : SyndicationLink do
@@ -3882,7 +3882,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationLink is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
       m_Factory    : access ISyndicationLinkFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationLink;
@@ -3910,7 +3910,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationLink is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationLink");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationLink");
       m_Factory    : access ISyndicationLinkFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationLink;
@@ -4479,7 +4479,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationNode is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationNode");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
       m_Factory    : access ISyndicationNodeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationNode;
@@ -4505,7 +4505,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationNode is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationNode");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationNode");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationNode;
    begin
       return RetVal : SyndicationNode do
@@ -4795,7 +4795,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationPerson is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
       m_Factory    : access ISyndicationPersonFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationPerson;
@@ -4823,7 +4823,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationPerson is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
       m_Factory    : access ISyndicationPersonFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationPerson;
@@ -4847,7 +4847,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationPerson is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationPerson");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationPerson");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationPerson;
    begin
       return RetVal : SyndicationPerson do
@@ -5294,7 +5294,7 @@ package body WinUI3.Windows.Web.Syndication is
    function Constructor return SyndicationText is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationText;
    begin
       return RetVal : SyndicationText do
@@ -5314,7 +5314,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationText is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
       m_Factory    : access ISyndicationTextFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationText;
@@ -5341,7 +5341,7 @@ package body WinUI3.Windows.Web.Syndication is
    return SyndicationText is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.ISyndicationText");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Syndication.SyndicationText");
       m_Factory    : access ISyndicationTextFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Syndication.ISyndicationText;

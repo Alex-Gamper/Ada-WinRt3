@@ -81,7 +81,7 @@ package body WinUI3.Windows.Media.Miracast is
    function Constructor return MiracastReceiver is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Miracast.IMiracastReceiver");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Miracast.MiracastReceiver");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Miracast.IMiracastReceiver;
    begin
       return RetVal : MiracastReceiver do

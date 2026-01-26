@@ -219,7 +219,7 @@ package body WinRt.Windows.ApplicationModel.Search.Core is
    function Constructor return SearchSuggestionManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.Core.ISearchSuggestionManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.Core.SearchSuggestionManager");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
    begin
       return RetVal : SearchSuggestionManager do

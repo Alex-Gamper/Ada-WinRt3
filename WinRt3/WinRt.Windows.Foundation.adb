@@ -171,7 +171,7 @@ package body WinRt.Windows.Foundation is
    return Deferral is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IDeferral");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Deferral");
       m_Factory    : access IDeferralFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.IDeferral;
@@ -358,7 +358,7 @@ package body WinRt.Windows.Foundation is
    return MemoryBuffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IMemoryBuffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.MemoryBuffer");
       m_Factory    : access IMemoryBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.IMemoryBuffer;
@@ -1421,7 +1421,7 @@ package body WinRt.Windows.Foundation is
    return Uri is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
@@ -1448,7 +1448,7 @@ package body WinRt.Windows.Foundation is
    return Uri is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.IUriRuntimeClass;
@@ -1970,7 +1970,7 @@ package body WinRt.Windows.Foundation is
    return WwwFormUrlDecoder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.IWwwFormUrlDecoderRuntimeClass");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.WwwFormUrlDecoder");
       m_Factory    : access IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;

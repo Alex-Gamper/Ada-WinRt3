@@ -854,7 +854,7 @@ package body WinUI3.Windows.Media.Casting is
    function Constructor return CastingDevicePicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Casting.ICastingDevicePicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Casting.CastingDevicePicker");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Casting.ICastingDevicePicker;
    begin
       return RetVal : CastingDevicePicker do

@@ -197,7 +197,7 @@ package body WinUI3.Windows.ApplicationModel.AppService is
    function Constructor return AppServiceConnection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.AppService.IAppServiceConnection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : AppServiceConnection do

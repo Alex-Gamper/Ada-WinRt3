@@ -101,7 +101,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return AddDeleteThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IAddDeleteThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.AddDeleteThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IAddDeleteThemeTransition;
    begin
       return RetVal : AddDeleteThemeTransition do
@@ -246,7 +246,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return BackEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IBackEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.BackEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IBackEase;
    begin
       return RetVal : BackEase do
@@ -378,7 +378,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return BasicConnectedAnimationConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.BasicConnectedAnimationConfiguration");
       m_Factory    : access IBasicConnectedAnimationConfigurationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IBasicConnectedAnimationConfiguration;
@@ -424,7 +424,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return BeginStoryboard is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IBeginStoryboard");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.BeginStoryboard");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IBeginStoryboard;
    begin
       return RetVal : BeginStoryboard do
@@ -528,7 +528,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return BounceEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IBounceEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.BounceEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IBounceEase;
    begin
       return RetVal : BounceEase do
@@ -685,7 +685,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return CircleEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ICircleEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.CircleEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ICircleEase;
    begin
       return RetVal : CircleEase do
@@ -732,7 +732,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return Timeline is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ITimeline");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.Timeline");
       m_Factory    : access ITimelineFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ITimeline;
@@ -1195,7 +1195,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ColorAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IColorAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ColorAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IColorAnimation;
    begin
       return RetVal : ColorAnimation do
@@ -1523,7 +1523,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ColorAnimationUsingKeyFrames is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IColorAnimationUsingKeyFrames");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ColorAnimationUsingKeyFrames");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IColorAnimationUsingKeyFrames;
    begin
       return RetVal : ColorAnimationUsingKeyFrames do
@@ -1649,7 +1649,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return ColorKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IColorKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ColorKeyFrame");
       m_Factory    : access IColorKeyFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IColorKeyFrame;
@@ -1803,7 +1803,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ColorKeyFrameCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ColorKeyFrameCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : ColorKeyFrameCollection do
@@ -2140,7 +2140,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return NavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.INavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo");
       m_Factory    : access INavigationTransitionInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.INavigationTransitionInfo;
@@ -2231,7 +2231,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return CommonNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ICommonNavigationTransitionInfo;
    begin
       return RetVal : CommonNavigationTransitionInfo do
@@ -2756,7 +2756,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ContentThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IContentThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ContentThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IContentThemeTransition;
    begin
       return RetVal : ContentThemeTransition do
@@ -2913,7 +2913,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ContinuumNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ContinuumNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IContinuumNavigationTransitionInfo;
    begin
       return RetVal : ContinuumNavigationTransitionInfo do
@@ -3227,7 +3227,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return CubicEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ICubicEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.CubicEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ICubicEase;
    begin
       return RetVal : CubicEase do
@@ -3274,7 +3274,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return DirectConnectedAnimationConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DirectConnectedAnimationConfiguration");
       m_Factory    : access IDirectConnectedAnimationConfigurationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDirectConnectedAnimationConfiguration;
@@ -3320,7 +3320,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DiscreteColorKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDiscreteColorKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DiscreteColorKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDiscreteColorKeyFrame;
    begin
       return RetVal : DiscreteColorKeyFrame do
@@ -3367,7 +3367,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return DoubleKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDoubleKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DoubleKeyFrame");
       m_Factory    : access IDoubleKeyFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDoubleKeyFrame;
@@ -3528,7 +3528,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DiscreteDoubleKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDiscreteDoubleKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DiscreteDoubleKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDiscreteDoubleKeyFrame;
    begin
       return RetVal : DiscreteDoubleKeyFrame do
@@ -3575,7 +3575,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return ObjectKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IObjectKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ObjectKeyFrame");
       m_Factory    : access IObjectKeyFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IObjectKeyFrame;
@@ -3736,7 +3736,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DiscreteObjectKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDiscreteObjectKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DiscreteObjectKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDiscreteObjectKeyFrame;
    begin
       return RetVal : DiscreteObjectKeyFrame do
@@ -3783,7 +3783,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return PointKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPointKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointKeyFrame");
       m_Factory    : access IPointKeyFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPointKeyFrame;
@@ -3944,7 +3944,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DiscretePointKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDiscretePointKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DiscretePointKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDiscretePointKeyFrame;
    begin
       return RetVal : DiscretePointKeyFrame do
@@ -3986,7 +3986,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DoubleAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDoubleAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DoubleAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDoubleAnimation;
    begin
       return RetVal : DoubleAnimation do
@@ -4323,7 +4323,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DoubleAnimationUsingKeyFrames is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDoubleAnimationUsingKeyFrames");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DoubleAnimationUsingKeyFrames");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDoubleAnimationUsingKeyFrames;
    begin
       return RetVal : DoubleAnimationUsingKeyFrames do
@@ -4437,7 +4437,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DoubleKeyFrameCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DoubleKeyFrameCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : DoubleKeyFrameCollection do
@@ -4769,7 +4769,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DragItemThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDragItemThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DragItemThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDragItemThemeAnimation;
    begin
       return RetVal : DragItemThemeAnimation do
@@ -4875,7 +4875,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DragOverThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDragOverThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DragOverThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDragOverThemeAnimation;
    begin
       return RetVal : DragOverThemeAnimation do
@@ -5093,7 +5093,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DrillInNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDrillInNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDrillInNavigationTransitionInfo;
    begin
       return RetVal : DrillInNavigationTransitionInfo do
@@ -5135,7 +5135,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DrillInThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDrillInThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DrillInThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDrillInThemeAnimation;
    begin
       return RetVal : DrillInThemeAnimation do
@@ -5420,7 +5420,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DrillOutThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDrillOutThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DrillOutThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDrillOutThemeAnimation;
    begin
       return RetVal : DrillOutThemeAnimation do
@@ -5705,7 +5705,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return DropTargetItemThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IDropTargetItemThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.DropTargetItemThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IDropTargetItemThemeAnimation;
    begin
       return RetVal : DropTargetItemThemeAnimation do
@@ -5811,7 +5811,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EasingColorKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEasingColorKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EasingColorKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEasingColorKeyFrame;
    begin
       return RetVal : EasingColorKeyFrame do
@@ -5915,7 +5915,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EasingDoubleKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEasingDoubleKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EasingDoubleKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEasingDoubleKeyFrame;
    begin
       return RetVal : EasingDoubleKeyFrame do
@@ -6019,7 +6019,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EasingPointKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEasingPointKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EasingPointKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEasingPointKeyFrame;
    begin
       return RetVal : EasingPointKeyFrame do
@@ -6123,7 +6123,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EdgeUIThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEdgeUIThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EdgeUIThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEdgeUIThemeTransition;
    begin
       return RetVal : EdgeUIThemeTransition do
@@ -6224,7 +6224,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ElasticEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IElasticEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ElasticEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IElasticEase;
    begin
       return RetVal : ElasticEase do
@@ -6381,7 +6381,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EntranceNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEntranceNavigationTransitionInfo;
    begin
       return RetVal : EntranceNavigationTransitionInfo do
@@ -6496,7 +6496,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return EntranceThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IEntranceThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.EntranceThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IEntranceThemeTransition;
    begin
       return RetVal : EntranceThemeTransition do
@@ -6709,7 +6709,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ExponentialEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IExponentialEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ExponentialEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IExponentialEase;
    begin
       return RetVal : ExponentialEase do
@@ -6810,7 +6810,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return FadeInThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IFadeInThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.FadeInThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IFadeInThemeAnimation;
    begin
       return RetVal : FadeInThemeAnimation do
@@ -6916,7 +6916,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return FadeOutThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IFadeOutThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.FadeOutThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IFadeOutThemeAnimation;
    begin
       return RetVal : FadeOutThemeAnimation do
@@ -7027,7 +7027,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    return GravityConnectedAnimationConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.GravityConnectedAnimationConfiguration");
       m_Factory    : access IGravityConnectedAnimationConfigurationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IGravityConnectedAnimationConfiguration;
@@ -7105,7 +7105,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return KeySpline is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IKeySpline");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.KeySpline");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IKeySpline;
    begin
       return RetVal : KeySpline do
@@ -7261,7 +7261,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return LinearColorKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ILinearColorKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.LinearColorKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ILinearColorKeyFrame;
    begin
       return RetVal : LinearColorKeyFrame do
@@ -7303,7 +7303,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return LinearDoubleKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ILinearDoubleKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.LinearDoubleKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ILinearDoubleKeyFrame;
    begin
       return RetVal : LinearDoubleKeyFrame do
@@ -7345,7 +7345,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return LinearPointKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ILinearPointKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.LinearPointKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ILinearPointKeyFrame;
    begin
       return RetVal : LinearPointKeyFrame do
@@ -7387,7 +7387,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return NavigationThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.INavigationThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.NavigationThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.INavigationThemeTransition;
    begin
       return RetVal : NavigationThemeTransition do
@@ -7491,7 +7491,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ObjectAnimationUsingKeyFrames is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IObjectAnimationUsingKeyFrames");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ObjectAnimationUsingKeyFrames");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IObjectAnimationUsingKeyFrames;
    begin
       return RetVal : ObjectAnimationUsingKeyFrames do
@@ -7605,7 +7605,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ObjectKeyFrameCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ObjectKeyFrameCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : ObjectKeyFrameCollection do
@@ -7937,7 +7937,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PaneThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPaneThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PaneThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPaneThemeTransition;
    begin
       return RetVal : PaneThemeTransition do
@@ -8038,7 +8038,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PointAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPointAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPointAnimation;
    begin
       return RetVal : PointAnimation do
@@ -8375,7 +8375,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PointAnimationUsingKeyFrames is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPointAnimationUsingKeyFrames");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointAnimationUsingKeyFrames");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPointAnimationUsingKeyFrames;
    begin
       return RetVal : PointAnimationUsingKeyFrames do
@@ -8489,7 +8489,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PointKeyFrameCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointKeyFrameCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : PointKeyFrameCollection do
@@ -8821,7 +8821,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PointerDownThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPointerDownThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointerDownThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPointerDownThemeAnimation;
    begin
       return RetVal : PointerDownThemeAnimation do
@@ -8927,7 +8927,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PointerUpThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPointerUpThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PointerUpThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPointerUpThemeAnimation;
    begin
       return RetVal : PointerUpThemeAnimation do
@@ -9033,7 +9033,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PopInThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPopInThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PopInThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPopInThemeAnimation;
    begin
       return RetVal : PopInThemeAnimation do
@@ -9251,7 +9251,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PopOutThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPopOutThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PopOutThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPopOutThemeAnimation;
    begin
       return RetVal : PopOutThemeAnimation do
@@ -9357,7 +9357,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PopupThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPopupThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PopupThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPopupThemeTransition;
    begin
       return RetVal : PopupThemeTransition do
@@ -9514,7 +9514,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return PowerEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IPowerEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.PowerEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IPowerEase;
    begin
       return RetVal : PowerEase do
@@ -9615,7 +9615,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return QuadraticEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IQuadraticEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.QuadraticEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IQuadraticEase;
    begin
       return RetVal : QuadraticEase do
@@ -9657,7 +9657,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return QuarticEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IQuarticEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.QuarticEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IQuarticEase;
    begin
       return RetVal : QuarticEase do
@@ -9699,7 +9699,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return QuinticEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IQuinticEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.QuinticEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IQuinticEase;
    begin
       return RetVal : QuinticEase do
@@ -9741,7 +9741,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return ReorderThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IReorderThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ReorderThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IReorderThemeTransition;
    begin
       return RetVal : ReorderThemeTransition do
@@ -9951,7 +9951,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return RepositionThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IRepositionThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.RepositionThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IRepositionThemeAnimation;
    begin
       return RetVal : RepositionThemeAnimation do
@@ -10169,7 +10169,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return RepositionThemeTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IRepositionThemeTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.RepositionThemeTransition");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IRepositionThemeTransition;
    begin
       return RetVal : RepositionThemeTransition do
@@ -10270,7 +10270,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SineEase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISineEase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SineEase");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISineEase;
    begin
       return RetVal : SineEase do
@@ -10312,7 +10312,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SlideNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SlideNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISlideNavigationTransitionInfo;
    begin
       return RetVal : SlideNavigationTransitionInfo do
@@ -10413,7 +10413,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SplineColorKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISplineColorKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SplineColorKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISplineColorKeyFrame;
    begin
       return RetVal : SplineColorKeyFrame do
@@ -10517,7 +10517,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SplineDoubleKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISplineDoubleKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SplineDoubleKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISplineDoubleKeyFrame;
    begin
       return RetVal : SplineDoubleKeyFrame do
@@ -10621,7 +10621,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SplinePointKeyFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISplinePointKeyFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SplinePointKeyFrame");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISplinePointKeyFrame;
    begin
       return RetVal : SplinePointKeyFrame do
@@ -10725,7 +10725,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SplitCloseThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISplitCloseThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SplitCloseThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISplitCloseThemeAnimation;
    begin
       return RetVal : SplitCloseThemeAnimation do
@@ -11410,7 +11410,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SplitOpenThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISplitOpenThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SplitOpenThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISplitOpenThemeAnimation;
    begin
       return RetVal : SplitOpenThemeAnimation do
@@ -12095,7 +12095,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return Storyboard is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.IStoryboard");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.Storyboard");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.IStoryboard;
    begin
       return RetVal : Storyboard do
@@ -12466,7 +12466,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SuppressNavigationTransitionInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISuppressNavigationTransitionInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SuppressNavigationTransitionInfo");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISuppressNavigationTransitionInfo;
    begin
       return RetVal : SuppressNavigationTransitionInfo do
@@ -12508,7 +12508,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SwipeBackThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISwipeBackThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SwipeBackThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISwipeBackThemeAnimation;
    begin
       return RetVal : SwipeBackThemeAnimation do
@@ -12726,7 +12726,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return SwipeHintThemeAnimation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.ISwipeHintThemeAnimation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.SwipeHintThemeAnimation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Animation.ISwipeHintThemeAnimation;
    begin
       return RetVal : SwipeHintThemeAnimation do
@@ -12937,7 +12937,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return TimelineCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.TimelineCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : TimelineCollection do
@@ -13262,7 +13262,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Animation is
    function Constructor return TransitionCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Animation.TransitionCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : TransitionCollection do

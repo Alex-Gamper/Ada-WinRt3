@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Background is
    function Constructor return BackgroundTaskBuilder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Background.IBackgroundTaskBuilder");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Background.BackgroundTaskBuilder");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Background.IBackgroundTaskBuilder;
    begin
       return RetVal : BackgroundTaskBuilder do

@@ -1161,7 +1161,7 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
    return WidgetResourceResponse is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Providers.IWidgetResourceResponse");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Providers.WidgetResourceResponse");
       m_Factory    : access IWidgetResourceResponseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Widgets.Providers.IWidgetResourceResponse;
@@ -1287,7 +1287,7 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
    return WidgetUpdateRequestOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Providers.WidgetUpdateRequestOptions");
       m_Factory    : access IWidgetUpdateRequestOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Widgets.Providers.IWidgetUpdateRequestOptions;

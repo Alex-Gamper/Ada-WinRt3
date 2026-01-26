@@ -571,7 +571,7 @@ package body WinRt.Windows.Media.SpeechSynthesis is
    function Constructor return SpeechSynthesizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.ISpeechSynthesizer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_ComRetVal  : aliased WinRt.Windows.Media.SpeechSynthesis.ISpeechSynthesizer;
    begin
       return RetVal : SpeechSynthesizer do

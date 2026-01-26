@@ -58,7 +58,7 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
    function Constructor return GeolocationProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Provider.IGeolocationProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Provider.GeolocationProvider");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Provider.IGeolocationProvider;
    begin
       return RetVal : GeolocationProvider do

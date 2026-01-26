@@ -66,7 +66,7 @@ package body WinRt.Windows.Web.Http.Filters is
    function Constructor return HttpBaseProtocolFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Filters.IHttpBaseProtocolFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.Filters.HttpBaseProtocolFilter");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
    begin
       return RetVal : HttpBaseProtocolFilter do

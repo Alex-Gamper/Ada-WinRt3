@@ -59,7 +59,7 @@ package body WinUI3.Windows.Media.AppBroadcasting is
    function Constructor return AppBroadcastingMonitor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.AppBroadcasting.IAppBroadcastingMonitor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.AppBroadcasting.AppBroadcastingMonitor");
       m_ComRetVal  : aliased WinUI3.Windows.Media.AppBroadcasting.IAppBroadcastingMonitor;
    begin
       return RetVal : AppBroadcastingMonitor do

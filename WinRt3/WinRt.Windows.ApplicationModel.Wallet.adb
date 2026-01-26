@@ -79,7 +79,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletBarcode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletBarcode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletBarcode");
       m_Factory    : access IWalletBarcodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
@@ -105,7 +105,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletBarcode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletBarcode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletBarcode");
       m_Factory    : access IWalletBarcodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletBarcode;
@@ -256,7 +256,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletItem");
       m_Factory    : access IWalletItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletItem;
@@ -1199,7 +1199,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletItemCustomProperty is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletItemCustomProperty");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletItemCustomProperty");
       m_Factory    : access IWalletItemCustomPropertyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletItemCustomProperty;
@@ -2044,7 +2044,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function Constructor return WalletRelevantLocation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletRelevantLocation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletRelevantLocation");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletRelevantLocation;
    begin
       return RetVal : WalletRelevantLocation do
@@ -2155,7 +2155,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    function Constructor return WalletTransaction is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletTransaction");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletTransaction");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletTransaction;
    begin
       return RetVal : WalletTransaction do
@@ -2411,7 +2411,7 @@ package body WinRt.Windows.ApplicationModel.Wallet is
    return WalletVerb is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.IWalletVerb");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Wallet.WalletVerb");
       m_Factory    : access IWalletVerbFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Wallet.IWalletVerb;

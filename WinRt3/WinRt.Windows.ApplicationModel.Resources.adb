@@ -59,7 +59,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
    function Constructor return ResourceLoader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.IResourceLoader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;
    begin
       return RetVal : ResourceLoader do
@@ -79,7 +79,7 @@ package body WinRt.Windows.ApplicationModel.Resources is
    return ResourceLoader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.IResourceLoader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.ResourceLoader");
       m_Factory    : access IResourceLoaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.IResourceLoader;

@@ -1240,7 +1240,7 @@ package body WinUI3.Windows.Graphics.Printing.PrintTicket is
    return WorkflowPrintTicket is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket");
       m_Factory    : access IWorkflowPrintTicketFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;

@@ -223,7 +223,7 @@ package body WinUI3.Windows.Data.Text is
    return SelectableWordsSegmenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ISelectableWordsSegmenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.SelectableWordsSegmenter");
       m_Factory    : access ISelectableWordsSegmenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ISelectableWordsSegmenter;
@@ -361,7 +361,7 @@ package body WinUI3.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ISemanticTextQuery;
@@ -388,7 +388,7 @@ package body WinUI3.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ISemanticTextQuery;
@@ -491,7 +491,7 @@ package body WinUI3.Windows.Data.Text is
    return TextConversionGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ITextConversionGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.TextConversionGenerator");
       m_Factory    : access ITextConversionGeneratorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ITextConversionGenerator;
@@ -776,7 +776,7 @@ package body WinUI3.Windows.Data.Text is
    return TextPredictionGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ITextPredictionGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.TextPredictionGenerator");
       m_Factory    : access ITextPredictionGeneratorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ITextPredictionGenerator;
@@ -1180,7 +1180,7 @@ package body WinUI3.Windows.Data.Text is
    return TextReverseConversionGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.ITextReverseConversionGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.TextReverseConversionGenerator");
       m_Factory    : access ITextReverseConversionGeneratorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.ITextReverseConversionGenerator;
@@ -1918,7 +1918,7 @@ package body WinUI3.Windows.Data.Text is
    return WordsSegmenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.IWordsSegmenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Text.WordsSegmenter");
       m_Factory    : access IWordsSegmenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Text.IWordsSegmenter;

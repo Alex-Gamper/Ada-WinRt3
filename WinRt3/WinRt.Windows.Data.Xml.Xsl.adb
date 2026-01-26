@@ -62,7 +62,7 @@ package body WinRt.Windows.Data.Xml.Xsl is
    return XsltProcessor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.IXsltProcessor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Xml.Xsl.XsltProcessor");
       m_Factory    : access IXsltProcessorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Xml.Xsl.IXsltProcessor;

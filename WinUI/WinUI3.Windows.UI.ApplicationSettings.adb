@@ -574,7 +574,7 @@ package body WinUI3.Windows.UI.ApplicationSettings is
    return CredentialCommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.ICredentialCommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
       m_Factory    : access ICredentialCommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.ApplicationSettings.ICredentialCommand;
@@ -599,7 +599,7 @@ package body WinUI3.Windows.UI.ApplicationSettings is
    return CredentialCommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.ICredentialCommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.CredentialCommand");
       m_Factory    : access ICredentialCommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.ApplicationSettings.ICredentialCommand;
@@ -704,7 +704,7 @@ package body WinUI3.Windows.UI.ApplicationSettings is
    return SettingsCommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.SettingsCommand");
       m_Factory    : access ISettingsCommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
@@ -1093,7 +1093,7 @@ package body WinUI3.Windows.UI.ApplicationSettings is
    return WebAccountCommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.IWebAccountCommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountCommand");
       m_Factory    : access IWebAccountCommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.ApplicationSettings.IWebAccountCommand;
@@ -1254,7 +1254,7 @@ package body WinUI3.Windows.UI.ApplicationSettings is
    return WebAccountProviderCommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.IWebAccountProviderCommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.ApplicationSettings.WebAccountProviderCommand");
       m_Factory    : access IWebAccountProviderCommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.ApplicationSettings.IWebAccountProviderCommand;

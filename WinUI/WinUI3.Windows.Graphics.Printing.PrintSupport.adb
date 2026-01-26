@@ -1347,7 +1347,7 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
    function Constructor return PrintSupportPrintTicketElement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportPrintTicketElement");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
    begin
       return RetVal : PrintSupportPrintTicketElement do

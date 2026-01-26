@@ -74,7 +74,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    return UserActivity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory    : access IUserActivityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserActivities.IUserActivity;
@@ -564,7 +564,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    function Constructor return UserActivityAttribution is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivityAttribution");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
    begin
       return RetVal : UserActivityAttribution do
@@ -584,7 +584,7 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
    return UserActivityAttribution is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivityAttribution");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_Factory    : access IUserActivityAttributionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserActivities.IUserActivityAttribution;

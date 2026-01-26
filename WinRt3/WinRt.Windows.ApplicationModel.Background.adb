@@ -101,7 +101,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return ActivitySensorTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IActivitySensorTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ActivitySensorTrigger");
       m_Factory    : access IActivitySensorTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IActivitySensorTrigger;
@@ -313,7 +313,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return AppBroadcastTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IAppBroadcastTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppBroadcastTrigger");
       m_Factory    : access IAppBroadcastTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IAppBroadcastTrigger;
@@ -621,7 +621,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ApplicationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IApplicationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ApplicationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IApplicationTrigger;
    begin
       return RetVal : ApplicationTrigger do
@@ -833,7 +833,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return AppointmentStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IAppointmentStoreNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.AppointmentStoreNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IAppointmentStoreNotificationTrigger;
    begin
       return RetVal : AppointmentStoreNotificationTrigger do
@@ -1301,7 +1301,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return BackgroundTaskBuilder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTaskBuilder");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskBuilder");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTaskBuilder;
    begin
       return RetVal : BackgroundTaskBuilder do
@@ -2223,7 +2223,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return BackgroundTaskRegistrationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
       m_Factory    : access IBackgroundTaskRegistrationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
@@ -2250,7 +2250,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return BackgroundTaskRegistrationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BackgroundTaskRegistrationGroup");
       m_Factory    : access IBackgroundTaskRegistrationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTaskRegistrationGroup;
@@ -2483,7 +2483,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return BluetoothLEAdvertisementPublisherTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementPublisherTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementPublisherTrigger;
    begin
       return RetVal : BluetoothLEAdvertisementPublisherTrigger do
@@ -2788,7 +2788,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return BluetoothLEAdvertisementWatcherTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.BluetoothLEAdvertisementWatcherTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBluetoothLEAdvertisementWatcherTrigger;
    begin
       return RetVal : BluetoothLEAdvertisementWatcherTrigger do
@@ -3131,7 +3131,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return CachedFileUpdaterTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ICachedFileUpdaterTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CachedFileUpdaterTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ICachedFileUpdaterTrigger;
    begin
       return RetVal : CachedFileUpdaterTrigger do
@@ -3250,7 +3250,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ChatMessageNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IChatMessageNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IChatMessageNotificationTrigger;
    begin
       return RetVal : ChatMessageNotificationTrigger do
@@ -3292,7 +3292,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ChatMessageReceivedNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IChatMessageReceivedNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ChatMessageReceivedNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IChatMessageReceivedNotificationTrigger;
    begin
       return RetVal : ChatMessageReceivedNotificationTrigger do
@@ -3334,7 +3334,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return CommunicationBlockingAppSetAsActiveTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ICommunicationBlockingAppSetAsActiveTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CommunicationBlockingAppSetAsActiveTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ICommunicationBlockingAppSetAsActiveTrigger;
    begin
       return RetVal : CommunicationBlockingAppSetAsActiveTrigger do
@@ -3376,7 +3376,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ContactStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IContactStoreNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContactStoreNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IContactStoreNotificationTrigger;
    begin
       return RetVal : ContactStoreNotificationTrigger do
@@ -3418,7 +3418,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ContentPrefetchTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IContentPrefetchTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IContentPrefetchTrigger;
    begin
       return RetVal : ContentPrefetchTrigger do
@@ -3438,7 +3438,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return ContentPrefetchTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IContentPrefetchTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ContentPrefetchTrigger");
       m_Factory    : access IContentPrefetchTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IContentPrefetchTrigger;
@@ -3501,7 +3501,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ConversationalAgentTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ConversationalAgentTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ConversationalAgentTrigger do
@@ -3548,7 +3548,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return CustomSystemEventTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ICustomSystemEventTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.CustomSystemEventTrigger");
       m_Factory    : access ICustomSystemEventTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ICustomSystemEventTrigger;
@@ -3808,7 +3808,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return DeviceManufacturerNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceManufacturerNotificationTrigger");
       m_Factory    : access IDeviceManufacturerNotificationTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IDeviceManufacturerNotificationTrigger;
@@ -3893,7 +3893,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return DeviceServicingTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IDeviceServicingTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceServicingTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IDeviceServicingTrigger;
    begin
       return RetVal : DeviceServicingTrigger do
@@ -4072,7 +4072,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return DeviceUseTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IDeviceUseTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.DeviceUseTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IDeviceUseTrigger;
    begin
       return RetVal : DeviceUseTrigger do
@@ -4272,7 +4272,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return EmailStoreNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IEmailStoreNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.EmailStoreNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IEmailStoreNotificationTrigger;
    begin
       return RetVal : EmailStoreNotificationTrigger do
@@ -4318,7 +4318,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return GattCharacteristicNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
       m_Factory    : access IGattCharacteristicNotificationTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
@@ -4343,7 +4343,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return GattCharacteristicNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GattCharacteristicNotificationTrigger");
       m_Factory    : access IGattCharacteristicNotificationTriggerFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IGattCharacteristicNotificationTrigger;
@@ -4667,7 +4667,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return GeovisitTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IGeovisitTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.GeovisitTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IGeovisitTrigger;
    begin
       return RetVal : GeovisitTrigger do
@@ -4745,7 +4745,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return LocationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ILocationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.LocationTrigger");
       m_Factory    : access ILocationTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ILocationTrigger;
@@ -4813,7 +4813,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return MaintenanceTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IMaintenanceTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MaintenanceTrigger");
       m_Factory    : access IMaintenanceTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IMaintenanceTrigger;
@@ -4893,7 +4893,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MediaProcessingTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IMediaProcessingTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MediaProcessingTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IMediaProcessingTrigger;
    begin
       return RetVal : MediaProcessingTrigger do
@@ -5062,7 +5062,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MobileBroadbandDeviceServiceNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandDeviceServiceNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandDeviceServiceNotificationTrigger do
@@ -5104,7 +5104,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MobileBroadbandPcoDataChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPcoDataChangeTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandPcoDataChangeTrigger do
@@ -5146,7 +5146,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MobileBroadbandPinLockStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandPinLockStateChangeTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandPinLockStateChangeTrigger do
@@ -5188,7 +5188,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MobileBroadbandRadioStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRadioStateChangeTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandRadioStateChangeTrigger do
@@ -5230,7 +5230,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return MobileBroadbandRegistrationStateChangeTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.MobileBroadbandRegistrationStateChangeTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : MobileBroadbandRegistrationStateChangeTrigger do
@@ -5272,7 +5272,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return NetworkOperatorDataUsageTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorDataUsageTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : NetworkOperatorDataUsageTrigger do
@@ -5314,7 +5314,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return NetworkOperatorHotspotAuthenticationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.INetworkOperatorHotspotAuthenticationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorHotspotAuthenticationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.INetworkOperatorHotspotAuthenticationTrigger;
    begin
       return RetVal : NetworkOperatorHotspotAuthenticationTrigger do
@@ -5360,7 +5360,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return NetworkOperatorNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.NetworkOperatorNotificationTrigger");
       m_Factory    : access INetworkOperatorNotificationTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.INetworkOperatorNotificationTrigger;
@@ -5428,7 +5428,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return PaymentAppCanMakePaymentTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PaymentAppCanMakePaymentTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : PaymentAppCanMakePaymentTrigger do
@@ -5475,7 +5475,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return PhoneTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IPhoneTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PhoneTrigger");
       m_Factory    : access IPhoneTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IPhoneTrigger;
@@ -5559,7 +5559,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return PushNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
       m_Factory    : access IPushNotificationTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -5581,7 +5581,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return PushNotificationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.PushNotificationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : PushNotificationTrigger do
@@ -5623,7 +5623,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return RcsEndUserMessageAvailableTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IRcsEndUserMessageAvailableTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RcsEndUserMessageAvailableTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IRcsEndUserMessageAvailableTrigger;
    begin
       return RetVal : RcsEndUserMessageAvailableTrigger do
@@ -5665,7 +5665,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return RfcommConnectionTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IRfcommConnectionTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.RfcommConnectionTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IRfcommConnectionTrigger;
    begin
       return RetVal : RfcommConnectionTrigger do
@@ -5846,7 +5846,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return SecondaryAuthenticationFactorAuthenticationTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ISecondaryAuthenticationFactorAuthenticationTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SecondaryAuthenticationFactorAuthenticationTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ISecondaryAuthenticationFactorAuthenticationTrigger;
    begin
       return RetVal : SecondaryAuthenticationFactorAuthenticationTrigger do
@@ -5892,7 +5892,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return SensorDataThresholdTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ISensorDataThresholdTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SensorDataThresholdTrigger");
       m_Factory    : access ISensorDataThresholdTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ISensorDataThresholdTrigger;
@@ -5942,7 +5942,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return SmartCardTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ISmartCardTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmartCardTrigger");
       m_Factory    : access ISmartCardTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ISmartCardTrigger;
@@ -6009,7 +6009,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return SmsMessageReceivedTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SmsMessageReceivedTrigger");
       m_Factory    : access ISmsMessageReceivedTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -6055,7 +6055,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return SocketActivityTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SocketActivityTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : SocketActivityTrigger do
@@ -6122,7 +6122,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return StorageLibraryChangeTrackerTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.StorageLibraryChangeTrackerTrigger");
       m_Factory    : access IStorageLibraryChangeTrackerTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -6252,7 +6252,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return SystemCondition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ISystemCondition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemCondition");
       m_Factory    : access ISystemConditionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ISystemCondition;
@@ -6320,7 +6320,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return SystemTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ISystemTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.SystemTrigger");
       m_Factory    : access ISystemTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ISystemTrigger;
@@ -6400,7 +6400,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return TetheringEntitlementCheckTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TetheringEntitlementCheckTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : TetheringEntitlementCheckTrigger do
@@ -6447,7 +6447,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return TimeTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ITimeTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.TimeTrigger");
       m_Factory    : access ITimeTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.ITimeTrigger;
@@ -6527,7 +6527,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ToastNotificationActionTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ToastNotificationActionTrigger do
@@ -6547,7 +6547,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return ToastNotificationActionTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationActionTrigger");
       m_Factory    : access IToastNotificationActionTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -6599,7 +6599,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return ToastNotificationHistoryChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
       m_Factory    : access IToastNotificationHistoryChangedTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -6621,7 +6621,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return ToastNotificationHistoryChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.ToastNotificationHistoryChangedTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : ToastNotificationHistoryChangedTrigger do
@@ -6667,7 +6667,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    return UserNotificationChangedTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.UserNotificationChangedTrigger");
       m_Factory    : access IUserNotificationChangedTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
@@ -6713,7 +6713,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return WiFiOnDemandHotspotConnectTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.WiFiOnDemandHotspotConnectTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : WiFiOnDemandHotspotConnectTrigger do
@@ -6755,7 +6755,7 @@ package body WinRt.Windows.ApplicationModel.Background is
    function Constructor return WiFiOnDemandHotspotUpdateMetadataTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Background.WiFiOnDemandHotspotUpdateMetadataTrigger");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Background.IBackgroundTrigger;
    begin
       return RetVal : WiFiOnDemandHotspotUpdateMetadataTrigger do

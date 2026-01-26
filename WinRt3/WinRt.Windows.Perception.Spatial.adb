@@ -1219,7 +1219,7 @@ package body WinRt.Windows.Perception.Spatial is
    return SpatialEntity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.ISpatialEntity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Perception.Spatial.ISpatialEntity;
@@ -1244,7 +1244,7 @@ package body WinRt.Windows.Perception.Spatial is
    return SpatialEntity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.ISpatialEntity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Perception.Spatial.ISpatialEntity;

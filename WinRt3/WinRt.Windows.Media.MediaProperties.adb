@@ -65,7 +65,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return AudioEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IAudioEncodingProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.AudioEncodingProperties");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IAudioEncodingProperties;
    begin
       return RetVal : AudioEncodingProperties do
@@ -877,7 +877,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return ContainerEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IContainerEncodingProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ContainerEncodingProperties");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IContainerEncodingProperties;
    begin
       return RetVal : ContainerEncodingProperties do
@@ -1720,7 +1720,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return ImageEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IImageEncodingProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.ImageEncodingProperties");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IImageEncodingProperties;
    begin
       return RetVal : ImageEncodingProperties do
@@ -2093,7 +2093,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return MediaEncodingProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IMediaEncodingProfile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaEncodingProfile");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProfile;
    begin
       return RetVal : MediaEncodingProfile do
@@ -4104,7 +4104,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return MediaPropertySet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.MediaPropertySet");
       m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : MediaPropertySet do
@@ -4498,7 +4498,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return TimedMetadataEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IMediaEncodingProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.TimedMetadataEncodingProperties");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IMediaEncodingProperties;
    begin
       return RetVal : TimedMetadataEncodingProperties do
@@ -4788,7 +4788,7 @@ package body WinRt.Windows.Media.MediaProperties is
    function Constructor return VideoEncodingProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.IVideoEncodingProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.MediaProperties.VideoEncodingProperties");
       m_ComRetVal  : aliased WinRt.Windows.Media.MediaProperties.IVideoEncodingProperties;
    begin
       return RetVal : VideoEncodingProperties do

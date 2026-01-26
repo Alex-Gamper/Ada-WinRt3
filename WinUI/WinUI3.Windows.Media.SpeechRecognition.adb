@@ -543,7 +543,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionGrammarFileConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
       m_Factory    : access ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
@@ -568,7 +568,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionGrammarFileConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint");
       m_Factory    : access ISpeechRecognitionGrammarFileConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionGrammarFileConstraint;
@@ -872,7 +872,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionListConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
       m_Factory    : access ISpeechRecognitionListConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
@@ -897,7 +897,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionListConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionListConstraint");
       m_Factory    : access ISpeechRecognitionListConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionListConstraint;
@@ -1410,7 +1410,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionTopicConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
       m_Factory    : access ISpeechRecognitionTopicConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
@@ -1438,7 +1438,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognitionTopicConstraint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognitionTopicConstraint");
       m_Factory    : access ISpeechRecognitionTopicConstraintFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognitionTopicConstraint;
@@ -1840,7 +1840,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    function Constructor return SpeechRecognizer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognizer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognizer;
    begin
       return RetVal : SpeechRecognizer do
@@ -1860,7 +1860,7 @@ package body WinUI3.Windows.Media.SpeechRecognition is
    return SpeechRecognizer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.ISpeechRecognizer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechRecognition.SpeechRecognizer");
       m_Factory    : access ISpeechRecognizerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechRecognition.ISpeechRecognizer;

@@ -79,7 +79,7 @@ package body WinUI3.Windows.Networking.Sockets is
    return ControlChannelTrigger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IControlChannelTrigger");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
       m_Factory    : access IControlChannelTriggerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IControlChannelTrigger;
@@ -107,7 +107,7 @@ package body WinUI3.Windows.Networking.Sockets is
    return ControlChannelTrigger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IControlChannelTrigger");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.ControlChannelTrigger");
       m_Factory    : access IControlChannelTriggerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IControlChannelTrigger;
@@ -374,7 +374,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return DatagramSocket is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IDatagramSocket");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.DatagramSocket");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IDatagramSocket;
    begin
       return RetVal : DatagramSocket do
@@ -1631,7 +1631,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return MessageWebSocket is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IMessageWebSocket");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.MessageWebSocket");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IMessageWebSocket;
    begin
       return RetVal : MessageWebSocket do
@@ -3310,7 +3310,7 @@ package body WinUI3.Windows.Networking.Sockets is
    return SocketActivityContext is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.ISocketActivityContext");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.SocketActivityContext");
       m_Factory    : access ISocketActivityContextFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.ISocketActivityContext;
@@ -3644,7 +3644,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return StreamSocket is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IStreamSocket");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.StreamSocket");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IStreamSocket;
    begin
       return RetVal : StreamSocket do
@@ -4980,7 +4980,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return StreamSocketListener is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IStreamSocketListener");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.StreamSocketListener");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IStreamSocketListener;
    begin
       return RetVal : StreamSocketListener do
@@ -5734,7 +5734,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return StreamWebSocket is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.IStreamWebSocket");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.StreamWebSocket");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.Sockets.IStreamWebSocket;
    begin
       return RetVal : StreamWebSocket do
@@ -6635,7 +6635,7 @@ package body WinUI3.Windows.Networking.Sockets is
    function Constructor return WebSocketKeepAlive is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Background.IBackgroundTask");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.Sockets.WebSocketKeepAlive");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Background.IBackgroundTask;
       m_Wrapped    : WinUI3.Windows.ApplicationModel.Background.IBackgroundTask_Ptr := new WinUI3.Windows.ApplicationModel.Background.IBackgroundTask;
    begin

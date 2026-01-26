@@ -59,7 +59,7 @@ package body WinUI3.Windows.UI.Xaml.Printing is
    function Constructor return AddPagesEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.IAddPagesEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.AddPagesEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Printing.IAddPagesEventArgs;
    begin
       return RetVal : AddPagesEventArgs do
@@ -137,7 +137,7 @@ package body WinUI3.Windows.UI.Xaml.Printing is
    function Constructor return GetPreviewPageEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.GetPreviewPageEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Printing.IGetPreviewPageEventArgs;
    begin
       return RetVal : GetPreviewPageEventArgs do
@@ -212,7 +212,7 @@ package body WinUI3.Windows.UI.Xaml.Printing is
    function Constructor return PaginateEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.IPaginateEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.PaginateEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Printing.IPaginateEventArgs;
    begin
       return RetVal : PaginateEventArgs do
@@ -312,7 +312,7 @@ package body WinUI3.Windows.UI.Xaml.Printing is
    return PrintDocument is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.IPrintDocument");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Printing.PrintDocument");
       m_Factory    : access IPrintDocumentFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Printing.IPrintDocument;

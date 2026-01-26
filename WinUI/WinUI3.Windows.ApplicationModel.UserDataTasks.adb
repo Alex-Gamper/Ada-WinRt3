@@ -81,7 +81,7 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTask is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTask");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTask");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserDataTasks.IUserDataTask;
    begin
       return RetVal : UserDataTask do
@@ -1855,7 +1855,7 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskQueryOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskQueryOptions");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserDataTasks.IUserDataTaskQueryOptions;
    begin
       return RetVal : UserDataTaskQueryOptions do
@@ -2050,7 +2050,7 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskRecurrenceProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskRecurrenceProperties");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRecurrenceProperties;
    begin
       return RetVal : UserDataTaskRecurrenceProperties do
@@ -2366,7 +2366,7 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
    function Constructor return UserDataTaskRegenerationProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataTasks.UserDataTaskRegenerationProperties");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserDataTasks.IUserDataTaskRegenerationProperties;
    begin
       return RetVal : UserDataTaskRegenerationProperties do

@@ -3010,7 +3010,7 @@ package body WinRt.Windows.Devices.Enumeration is
    function Constructor return DevicePicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.IDevicePicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Enumeration.DevicePicker");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Enumeration.IDevicePicker;
    begin
       return RetVal : DevicePicker do

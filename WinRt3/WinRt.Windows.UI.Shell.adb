@@ -356,7 +356,7 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return SecurityAppManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.ISecurityAppManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.SecurityAppManager");
       m_ComRetVal  : aliased WinRt.Windows.UI.Shell.ISecurityAppManager;
    begin
       return RetVal : SecurityAppManager do
@@ -1232,7 +1232,7 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return WindowTab is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.IWindowTab");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTab");
       m_ComRetVal  : aliased WinRt.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WindowTab do
@@ -1836,7 +1836,7 @@ package body WinRt.Windows.UI.Shell is
    function Constructor return WindowTabGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.IWindowTabGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Shell.WindowTabGroup");
       m_ComRetVal  : aliased WinRt.Windows.UI.Shell.IWindowTabGroup;
    begin
       return RetVal : WindowTabGroup do

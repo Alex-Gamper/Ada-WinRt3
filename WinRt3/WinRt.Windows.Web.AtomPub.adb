@@ -75,7 +75,7 @@ package body WinRt.Windows.Web.AtomPub is
    function Constructor return AtomPubClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
       m_ComRetVal  : aliased WinRt.Windows.Web.AtomPub.IAtomPubClient;
    begin
       return RetVal : AtomPubClient do
@@ -95,7 +95,7 @@ package body WinRt.Windows.Web.AtomPub is
    return AtomPubClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
       m_Factory    : access IAtomPubClientFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.AtomPub.IAtomPubClient;

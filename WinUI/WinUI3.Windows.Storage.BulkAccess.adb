@@ -2058,7 +2058,7 @@ package body WinUI3.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2084,7 +2084,7 @@ package body WinUI3.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2111,7 +2111,7 @@ package body WinUI3.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2139,7 +2139,7 @@ package body WinUI3.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.BulkAccess.IFileInformationFactory;

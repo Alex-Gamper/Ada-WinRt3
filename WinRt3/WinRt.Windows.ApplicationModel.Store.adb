@@ -2960,7 +2960,7 @@ package body WinRt.Windows.ApplicationModel.Store is
    function Constructor return ProductPurchaseDisplayProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;
    begin
       return RetVal : ProductPurchaseDisplayProperties do
@@ -2980,7 +2980,7 @@ package body WinRt.Windows.ApplicationModel.Store is
    return ProductPurchaseDisplayProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Store.ProductPurchaseDisplayProperties");
       m_Factory    : access IProductPurchaseDisplayPropertiesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Store.IProductPurchaseDisplayProperties;

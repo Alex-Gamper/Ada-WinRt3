@@ -66,7 +66,7 @@ package body WinRt.Windows.Media.Playlists is
    function Constructor return Playlist is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playlists.IPlaylist");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Playlists.Playlist");
       m_ComRetVal  : aliased WinRt.Windows.Media.Playlists.IPlaylist;
    begin
       return RetVal : Playlist do

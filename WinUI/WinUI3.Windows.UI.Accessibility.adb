@@ -115,7 +115,7 @@ package body WinUI3.Windows.UI.Accessibility is
    function Constructor return ScreenReaderService is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Accessibility.IScreenReaderService");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Accessibility.ScreenReaderService");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Accessibility.IScreenReaderService;
    begin
       return RetVal : ScreenReaderService do

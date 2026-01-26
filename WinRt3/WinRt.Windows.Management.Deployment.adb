@@ -72,7 +72,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return AddPackageOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IAddPackageOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AddPackageOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IAddPackageOptions;
    begin
       return RetVal : AddPackageOptions do
@@ -807,7 +807,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return AutoUpdateSettingsOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IAutoUpdateSettingsOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.AutoUpdateSettingsOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IAutoUpdateSettingsOptions;
    begin
       return RetVal : AutoUpdateSettingsOptions do
@@ -1250,7 +1250,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return CreateSharedPackageContainerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.ICreateSharedPackageContainerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.CreateSharedPackageContainerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.ICreateSharedPackageContainerOptions;
    begin
       return RetVal : CreateSharedPackageContainerOptions do
@@ -1453,7 +1453,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return DeleteSharedPackageContainerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IDeleteSharedPackageContainerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.DeleteSharedPackageContainerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IDeleteSharedPackageContainerOptions;
    begin
       return RetVal : DeleteSharedPackageContainerOptions do
@@ -1714,7 +1714,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return FindSharedPackageContainerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IFindSharedPackageContainerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.FindSharedPackageContainerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IFindSharedPackageContainerOptions;
    begin
       return RetVal : FindSharedPackageContainerOptions do
@@ -1830,7 +1830,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return PackageAllUserProvisioningOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IPackageAllUserProvisioningOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.PackageAllUserProvisioningOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IPackageAllUserProvisioningOptions;
    begin
       return RetVal : PackageAllUserProvisioningOptions do
@@ -1952,7 +1952,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return PackageManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IPackageManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.PackageManager");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IPackageManager;
    begin
       return RetVal : PackageManager do
@@ -6124,7 +6124,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return RegisterPackageOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IRegisterPackageOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.RegisterPackageOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IRegisterPackageOptions;
    begin
       return RetVal : RegisterPackageOptions do
@@ -6556,7 +6556,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return RemovePackageOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IRemovePackageOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.RemovePackageOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IRemovePackageOptions;
    begin
       return RetVal : RemovePackageOptions do
@@ -7080,7 +7080,7 @@ package body WinRt.Windows.Management.Deployment is
    return SharedPackageContainerMember is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.ISharedPackageContainerMember");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.SharedPackageContainerMember");
       m_Factory    : access ISharedPackageContainerMemberFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.ISharedPackageContainerMember;
@@ -7148,7 +7148,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return StagePackageOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IStagePackageOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.StagePackageOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IStagePackageOptions;
    begin
       return RetVal : StagePackageOptions do
@@ -7588,7 +7588,7 @@ package body WinRt.Windows.Management.Deployment is
    function Constructor return UpdateSharedPackageContainerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.IUpdateSharedPackageContainerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Deployment.UpdateSharedPackageContainerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Management.Deployment.IUpdateSharedPackageContainerOptions;
    begin
       return RetVal : UpdateSharedPackageContainerOptions do

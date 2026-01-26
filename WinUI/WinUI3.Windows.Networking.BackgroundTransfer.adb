@@ -77,7 +77,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundDownloader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundDownloader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
    begin
       return RetVal : BackgroundDownloader do
@@ -97,7 +97,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    return BackgroundDownloader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundDownloader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundDownloader");
       m_Factory    : access IBackgroundDownloaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundDownloader;
@@ -1021,7 +1021,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundTransferCompletionGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferCompletionGroup");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundTransferCompletionGroup;
    begin
       return RetVal : BackgroundTransferCompletionGroup do
@@ -1178,7 +1178,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    return BackgroundTransferContentPart is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
       m_Factory    : access IBackgroundTransferContentPartFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
@@ -1205,7 +1205,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    return BackgroundTransferContentPart is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
       m_Factory    : access IBackgroundTransferContentPartFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
@@ -1229,7 +1229,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundTransferContentPart is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart;
    begin
       return RetVal : BackgroundTransferContentPart do
@@ -1544,7 +1544,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    return BackgroundUploader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundUploader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
       m_Factory    : access IBackgroundUploaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
@@ -1564,7 +1564,7 @@ package body WinUI3.Windows.Networking.BackgroundTransfer is
    function Constructor return BackgroundUploader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.IBackgroundUploader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.BackgroundTransfer.BackgroundUploader");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.BackgroundTransfer.IBackgroundUploader;
    begin
       return RetVal : BackgroundUploader do

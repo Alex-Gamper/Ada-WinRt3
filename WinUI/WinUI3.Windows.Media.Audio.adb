@@ -4207,7 +4207,7 @@ package body WinUI3.Windows.Media.Audio is
    return AudioGraphSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IAudioGraphSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.AudioGraphSettings");
       m_Factory    : access IAudioGraphSettingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IAudioGraphSettings;
@@ -4531,7 +4531,7 @@ package body WinUI3.Windows.Media.Audio is
    function Constructor return AudioNodeEmitter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IAudioNodeEmitter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IAudioNodeEmitter;
    begin
       return RetVal : AudioNodeEmitter do
@@ -4553,7 +4553,7 @@ package body WinUI3.Windows.Media.Audio is
    return AudioNodeEmitter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IAudioNodeEmitter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.AudioNodeEmitter");
       m_Factory    : access IAudioNodeEmitterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IAudioNodeEmitter;
@@ -5290,7 +5290,7 @@ package body WinUI3.Windows.Media.Audio is
    function Constructor return AudioNodeListener is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IAudioNodeListener");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.AudioNodeListener");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IAudioNodeListener;
    begin
       return RetVal : AudioNodeListener do
@@ -6958,7 +6958,7 @@ package body WinUI3.Windows.Media.Audio is
    return EchoEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IEchoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.EchoEffectDefinition");
       m_Factory    : access IEchoEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IEchoEffectDefinition;
@@ -7268,7 +7268,7 @@ package body WinUI3.Windows.Media.Audio is
    return EqualizerEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IEqualizerEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.EqualizerEffectDefinition");
       m_Factory    : access IEqualizerEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IEqualizerEffectDefinition;
@@ -7423,7 +7423,7 @@ package body WinUI3.Windows.Media.Audio is
    return LimiterEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.ILimiterEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.LimiterEffectDefinition");
       m_Factory    : access ILimiterEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.ILimiterEffectDefinition;
@@ -8185,7 +8185,7 @@ package body WinUI3.Windows.Media.Audio is
    return ReverbEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.IReverbEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Audio.ReverbEffectDefinition");
       m_Factory    : access IReverbEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Audio.IReverbEffectDefinition;

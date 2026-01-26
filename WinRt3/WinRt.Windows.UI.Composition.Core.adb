@@ -58,7 +58,7 @@ package body WinRt.Windows.UI.Composition.Core is
    function Constructor return CompositorController is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Core.ICompositorController");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Core.CompositorController");
       m_ComRetVal  : aliased WinRt.Windows.UI.Composition.Core.ICompositorController;
    begin
       return RetVal : CompositorController do

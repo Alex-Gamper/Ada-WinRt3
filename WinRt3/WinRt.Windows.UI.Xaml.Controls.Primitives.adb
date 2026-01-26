@@ -68,7 +68,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return ButtonBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IButtonBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory    : access IButtonBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IButtonBase;
@@ -405,7 +405,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return ToggleButton is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IToggleButton");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ToggleButton");
       m_Factory    : access IToggleButtonFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IToggleButton;
@@ -1065,7 +1065,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return SelectorItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ISelectorItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.SelectorItem");
       m_Factory    : access ISelectorItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.ISelectorItem;
@@ -1175,7 +1175,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return FlyoutBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IFlyoutBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory    : access IFlyoutBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutBase;
@@ -2347,7 +2347,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return PickerFlyoutBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory    : access IPickerFlyoutBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IPickerFlyoutBase;
@@ -2795,7 +2795,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return CalendarPanel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ICalendarPanel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CalendarPanel");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.ICalendarPanel;
    begin
       return RetVal : CalendarPanel do
@@ -3144,7 +3144,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return CarouselPanel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ICarouselPanel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CarouselPanel");
       m_Factory    : access ICarouselPanelFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.ICarouselPanel;
@@ -3784,7 +3784,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return RangeBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IRangeBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory    : access IRangeBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IRangeBase;
@@ -4211,7 +4211,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return ColorPickerSlider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorPickerSlider");
       m_Factory    : access IColorPickerSliderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IColorPickerSlider;
@@ -4321,7 +4321,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return ColorSpectrum is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IColorSpectrum");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory    : access IColorSpectrumFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IColorSpectrum;
@@ -5080,7 +5080,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return CommandBarFlyoutCommandBar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar");
       m_Factory    : access ICommandBarFlyoutCommandBarFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar;
@@ -5764,7 +5764,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return DragCompletedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragCompletedEventArgs");
       m_Factory    : access IDragCompletedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs;
@@ -5884,7 +5884,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return DragDeltaEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragDeltaEventArgs");
       m_Factory    : access IDragDeltaEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs;
@@ -5987,7 +5987,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return DragStartedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.DragStartedEventArgs");
       m_Factory    : access IDragStartedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IDragStartedEventArgs;
@@ -6143,7 +6143,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return FlyoutShowOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.FlyoutShowOptions");
       m_Factory    : access IFlyoutShowOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IFlyoutShowOptions;
@@ -6379,7 +6379,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return GridViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory    : access IGridViewItemPresenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IGridViewItemPresenter;
@@ -7860,7 +7860,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return JumpListItemBackgroundConverter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter;
    begin
       return RetVal : JumpListItemBackgroundConverter do
@@ -8077,7 +8077,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return JumpListItemForegroundConverter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter;
    begin
       return RetVal : JumpListItemForegroundConverter do
@@ -8400,7 +8400,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return ListViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory    : access IListViewItemPresenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IListViewItemPresenter;
@@ -12977,7 +12977,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return NavigationViewItemPresenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
       m_Factory    : access INavigationViewItemPresenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter;
@@ -13726,7 +13726,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    return PivotHeaderItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderItem");
       m_Factory    : access IPivotHeaderItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotHeaderItem;
@@ -13772,7 +13772,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return PivotHeaderPanel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IPivotHeaderPanel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotHeaderPanel");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotHeaderPanel;
    begin
       return RetVal : PivotHeaderPanel do
@@ -13814,7 +13814,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return PivotPanel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IPivotPanel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.PivotPanel");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IPivotPanel;
    begin
       return RetVal : PivotPanel do
@@ -14030,7 +14030,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return Popup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IPopup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Popup");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IPopup;
    begin
       return RetVal : Popup do
@@ -15114,7 +15114,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return RepeatButton is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IRepeatButton");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.RepeatButton");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IRepeatButton;
    begin
       return RetVal : RepeatButton do
@@ -15271,7 +15271,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return ScrollBar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IScrollBar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollBar");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollBar;
    begin
       return RetVal : ScrollBar do
@@ -15517,7 +15517,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return ScrollEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ScrollEventArgs");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IScrollEventArgs;
    begin
       return RetVal : ScrollEventArgs do
@@ -15874,7 +15874,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return Thumb is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.IThumb");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.Thumb");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.IThumb;
    begin
       return RetVal : Thumb do
@@ -16073,7 +16073,7 @@ package body WinRt.Windows.UI.Xaml.Controls.Primitives is
    function Constructor return TickBar is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.ITickBar");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Controls.Primitives.TickBar");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Controls.Primitives.ITickBar;
    begin
       return RetVal : TickBar do

@@ -102,7 +102,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
    function Constructor return ExtendedExecutionSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionSession");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
    begin
       return RetVal : ExtendedExecutionSession do

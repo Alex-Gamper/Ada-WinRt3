@@ -66,7 +66,7 @@ package body WinRt.Windows.Networking is
    return EndpointPair is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.IEndpointPair");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.EndpointPair");
       m_Factory    : access IEndpointPairFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.IEndpointPair;
@@ -264,7 +264,7 @@ package body WinRt.Windows.Networking is
    return HostName is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.IHostName");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.HostName");
       m_Factory    : access IHostNameFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.IHostName;

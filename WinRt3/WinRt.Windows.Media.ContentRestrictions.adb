@@ -158,7 +158,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    return RatedContentDescription is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentDescription");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentDescription");
       m_Factory    : access IRatedContentDescriptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
@@ -385,7 +385,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    return RatedContentRestrictions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentRestrictions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentRestrictions");
       m_Factory    : access IRatedContentRestrictionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
@@ -405,7 +405,7 @@ package body WinRt.Windows.Media.ContentRestrictions is
    function Constructor return RatedContentRestrictions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.IRatedContentRestrictions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.ContentRestrictions.RatedContentRestrictions");
       m_ComRetVal  : aliased WinRt.Windows.Media.ContentRestrictions.IRatedContentRestrictions;
    begin
       return RetVal : RatedContentRestrictions do

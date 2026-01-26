@@ -64,7 +64,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return AddPackageOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IAddPackageOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.AddPackageOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IAddPackageOptions;
    begin
       return RetVal : AddPackageOptions do
@@ -694,7 +694,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return EnsureReadyOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IEnsureReadyOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.EnsureReadyOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IEnsureReadyOptions;
    begin
       return RetVal : EnsureReadyOptions do
@@ -3310,7 +3310,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return PackageSet is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IPackageSet");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.PackageSet");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IPackageSet;
    begin
       return RetVal : PackageSet do
@@ -3444,7 +3444,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return PackageSetItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IPackageSetItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.PackageSetItem");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IPackageSetItem;
    begin
       return RetVal : PackageSetItem do
@@ -3659,7 +3659,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return PackageSetItemRuntimeDisposition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IPackageSetItemRuntimeDisposition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.PackageSetItemRuntimeDisposition");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IPackageSetItemRuntimeDisposition;
    begin
       return RetVal : PackageSetItemRuntimeDisposition do
@@ -3778,7 +3778,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return PackageSetRuntimeDisposition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IPackageSetRuntimeDisposition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.PackageSetRuntimeDisposition");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IPackageSetRuntimeDisposition;
    begin
       return RetVal : PackageSetRuntimeDisposition do
@@ -4141,7 +4141,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return ProvisionPackageOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IProvisionPackageOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.ProvisionPackageOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IProvisionPackageOptions;
    begin
       return RetVal : ProvisionPackageOptions do
@@ -4257,7 +4257,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return RegisterPackageOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IRegisterPackageOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.RegisterPackageOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IRegisterPackageOptions;
    begin
       return RetVal : RegisterPackageOptions do
@@ -4722,7 +4722,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return RemovePackageOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IRemovePackageOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.RemovePackageOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IRemovePackageOptions;
    begin
       return RetVal : RemovePackageOptions do
@@ -4892,7 +4892,7 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
    function Constructor return StagePackageOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.IStagePackageOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Management.Deployment.StagePackageOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Management.Deployment.IStagePackageOptions;
    begin
       return RetVal : StagePackageOptions do

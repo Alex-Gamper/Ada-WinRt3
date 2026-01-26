@@ -109,7 +109,7 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
    return CustomQueryParametersUpdateOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Feeds.Providers.ICustomQueryParametersUpdateOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Feeds.Providers.CustomQueryParametersUpdateOptions");
       m_Factory    : access ICustomQueryParametersUpdateOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Widgets.Feeds.Providers.ICustomQueryParametersUpdateOptions;
@@ -1197,7 +1197,7 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
    return FeedResourceResponse is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Feeds.Providers.IFeedResourceResponse");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Feeds.Providers.FeedResourceResponse");
       m_Factory    : access IFeedResourceResponseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Widgets.Feeds.Providers.IFeedResourceResponse;

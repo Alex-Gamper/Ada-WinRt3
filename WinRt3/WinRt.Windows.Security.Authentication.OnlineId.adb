@@ -64,7 +64,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    function Constructor return OnlineIdAuthenticator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator");
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdAuthenticator;
    begin
       return RetVal : OnlineIdAuthenticator do
@@ -324,7 +324,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    return OnlineIdServiceTicketRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest");
       m_Factory    : access IOnlineIdServiceTicketRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;
@@ -352,7 +352,7 @@ package body WinRt.Windows.Security.Authentication.OnlineId is
    return OnlineIdServiceTicketRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.OnlineId.OnlineIdServiceTicketRequest");
       m_Factory    : access IOnlineIdServiceTicketRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.OnlineId.IOnlineIdServiceTicketRequest;

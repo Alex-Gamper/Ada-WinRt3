@@ -62,7 +62,7 @@ package body WinRt.Windows.Management.Setup is
    function Constructor return AgentProvisioningProgressReport is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IAgentProvisioningProgressReport");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.AgentProvisioningProgressReport");
       m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IAgentProvisioningProgressReport;
    begin
       return RetVal : AgentProvisioningProgressReport do
@@ -520,7 +520,7 @@ package body WinRt.Windows.Management.Setup is
    return DeploymentWorkload is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IDeploymentWorkload");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.DeploymentWorkload");
       m_Factory    : access IDeploymentWorkloadFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IDeploymentWorkload;
@@ -911,7 +911,7 @@ package body WinRt.Windows.Management.Setup is
    return DeploymentWorkloadBatch is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.IDeploymentWorkloadBatch");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Management.Setup.DeploymentWorkloadBatch");
       m_Factory    : access IDeploymentWorkloadBatchFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Management.Setup.IDeploymentWorkloadBatch;

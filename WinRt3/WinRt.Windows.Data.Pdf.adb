@@ -810,7 +810,7 @@ package body WinRt.Windows.Data.Pdf is
    function Constructor return PdfPageRenderOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Pdf.IPdfPageRenderOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Pdf.PdfPageRenderOptions");
       m_ComRetVal  : aliased WinRt.Windows.Data.Pdf.IPdfPageRenderOptions;
    begin
       return RetVal : PdfPageRenderOptions do

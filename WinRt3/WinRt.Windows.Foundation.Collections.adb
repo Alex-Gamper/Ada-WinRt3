@@ -80,7 +80,7 @@ package body WinRt.Windows.Foundation.Collections is
    function Constructor return PropertySet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.PropertySet");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : PropertySet do
@@ -321,7 +321,7 @@ package body WinRt.Windows.Foundation.Collections is
    function Constructor return StringMap is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.StringMap");
       m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : StringMap do
@@ -574,7 +574,7 @@ package body WinRt.Windows.Foundation.Collections is
    function Constructor return ValueSet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.ValueSet");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
       return RetVal : ValueSet do

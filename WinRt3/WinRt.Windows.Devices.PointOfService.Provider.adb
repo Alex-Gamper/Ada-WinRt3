@@ -3618,7 +3618,7 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
    function Constructor return BarcodeSymbologyAttributesBuilder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.PointOfService.Provider.BarcodeSymbologyAttributesBuilder");
       m_ComRetVal  : aliased WinRt.Windows.Devices.PointOfService.Provider.IBarcodeSymbologyAttributesBuilder;
    begin
       return RetVal : BarcodeSymbologyAttributesBuilder do

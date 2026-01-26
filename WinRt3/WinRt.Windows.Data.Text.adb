@@ -223,7 +223,7 @@ package body WinRt.Windows.Data.Text is
    return SelectableWordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISelectableWordsSegmenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SelectableWordsSegmenter");
       m_Factory    : access ISelectableWordsSegmenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISelectableWordsSegmenter;
@@ -361,7 +361,7 @@ package body WinRt.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISemanticTextQuery;
@@ -388,7 +388,7 @@ package body WinRt.Windows.Data.Text is
    return SemanticTextQuery is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ISemanticTextQuery");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.SemanticTextQuery");
       m_Factory    : access ISemanticTextQueryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ISemanticTextQuery;
@@ -491,7 +491,7 @@ package body WinRt.Windows.Data.Text is
    return TextConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextConversionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextConversionGenerator");
       m_Factory    : access ITextConversionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextConversionGenerator;
@@ -776,7 +776,7 @@ package body WinRt.Windows.Data.Text is
    return TextPredictionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextPredictionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextPredictionGenerator");
       m_Factory    : access ITextPredictionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextPredictionGenerator;
@@ -1180,7 +1180,7 @@ package body WinRt.Windows.Data.Text is
    return TextReverseConversionGenerator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.ITextReverseConversionGenerator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.TextReverseConversionGenerator");
       m_Factory    : access ITextReverseConversionGeneratorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.ITextReverseConversionGenerator;
@@ -1918,7 +1918,7 @@ package body WinRt.Windows.Data.Text is
    return WordsSegmenter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.IWordsSegmenter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Data.Text.WordsSegmenter");
       m_Factory    : access IWordsSegmenterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Data.Text.IWordsSegmenter;

@@ -650,7 +650,7 @@ package body WinUI3.Windows.ApplicationModel.Resources.Core is
    function Constructor return ResourceContext is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Resources.Core.IResourceContext");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : ResourceContext do

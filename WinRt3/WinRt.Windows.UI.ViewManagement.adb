@@ -66,7 +66,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return AccessibilitySettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IAccessibilitySettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.AccessibilitySettings");
       m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IAccessibilitySettings;
    begin
       return RetVal : AccessibilitySettings do
@@ -2699,7 +2699,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return ApplicationViewTransferContext is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IApplicationViewTransferContext");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.ApplicationViewTransferContext");
       m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IApplicationViewTransferContext;
    begin
       return RetVal : ApplicationViewTransferContext do
@@ -3556,7 +3556,7 @@ package body WinRt.Windows.UI.ViewManagement is
    function Constructor return UISettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.IUISettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.ViewManagement.UISettings");
       m_ComRetVal  : aliased WinRt.Windows.UI.ViewManagement.IUISettings;
    begin
       return RetVal : UISettings do

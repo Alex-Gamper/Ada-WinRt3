@@ -59,7 +59,7 @@ package body WinUI3.Windows.Devices.Input is
    function Constructor return KeyboardCapabilities is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.IKeyboardCapabilities");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.KeyboardCapabilities");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Input.IKeyboardCapabilities;
    begin
       return RetVal : KeyboardCapabilities do
@@ -118,7 +118,7 @@ package body WinUI3.Windows.Devices.Input is
    function Constructor return MouseCapabilities is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.IMouseCapabilities");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.MouseCapabilities");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Input.IMouseCapabilities;
    begin
       return RetVal : MouseCapabilities do
@@ -1142,7 +1142,7 @@ package body WinUI3.Windows.Devices.Input is
    function Constructor return TouchCapabilities is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.ITouchCapabilities");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Input.TouchCapabilities");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Input.ITouchCapabilities;
    begin
       return RetVal : TouchCapabilities do

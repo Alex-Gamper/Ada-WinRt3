@@ -1104,7 +1104,7 @@ package body WinUI3.Windows.ApplicationModel is
    return FindRelatedPackagesOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.IFindRelatedPackagesOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.FindRelatedPackagesOptions");
       m_Factory    : access IFindRelatedPackagesOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.IFindRelatedPackagesOptions;

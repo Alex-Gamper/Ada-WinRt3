@@ -102,7 +102,7 @@ package body WinUI3.Windows.ApplicationModel.ExtendedExecution.Foreground is
    function Constructor return ExtendedExecutionForegroundSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
    begin
       return RetVal : ExtendedExecutionForegroundSession do

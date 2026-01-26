@@ -98,7 +98,7 @@ package body WinRt.Windows.Web.Http is
    return HttpBufferContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
       m_Factory    : access IHttpBufferContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -124,7 +124,7 @@ package body WinRt.Windows.Web.Http is
    return HttpBufferContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpBufferContent");
       m_Factory    : access IHttpBufferContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -573,7 +573,7 @@ package body WinRt.Windows.Web.Http is
    return HttpClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
       m_Factory    : access IHttpClientFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpClient;
@@ -593,7 +593,7 @@ package body WinRt.Windows.Web.Http is
    function Constructor return HttpClient is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpClient");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpClient");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpClient;
    begin
       return RetVal : HttpClient do
@@ -2130,7 +2130,7 @@ package body WinRt.Windows.Web.Http is
    return HttpCookie is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpCookie");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpCookie");
       m_Factory    : access IHttpCookieFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpCookie;
@@ -2642,7 +2642,7 @@ package body WinRt.Windows.Web.Http is
    return HttpFormUrlEncodedContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpFormUrlEncodedContent");
       m_Factory    : access IHttpFormUrlEncodedContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -3562,7 +3562,7 @@ package body WinRt.Windows.Web.Http is
    return HttpMethod is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpMethod");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMethod");
       m_Factory    : access IHttpMethodFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpMethod;
@@ -3829,7 +3829,7 @@ package body WinRt.Windows.Web.Http is
    return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_Factory    : access IHttpMultipartContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -3856,7 +3856,7 @@ package body WinRt.Windows.Web.Http is
    return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_Factory    : access IHttpMultipartContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -3880,7 +3880,7 @@ package body WinRt.Windows.Web.Http is
    function Constructor return HttpMultipartContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartContent");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpMultipartContent do
@@ -4363,7 +4363,7 @@ package body WinRt.Windows.Web.Http is
    function Constructor return HttpMultipartFormDataContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
    begin
       return RetVal : HttpMultipartFormDataContent do
@@ -4383,7 +4383,7 @@ package body WinRt.Windows.Web.Http is
    return HttpMultipartFormDataContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpMultipartFormDataContent");
       m_Factory    : access IHttpMultipartFormDataContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -4924,7 +4924,7 @@ package body WinRt.Windows.Web.Http is
    return HttpRequestMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpRequestMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
       m_Factory    : access IHttpRequestMessageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpRequestMessage;
@@ -4944,7 +4944,7 @@ package body WinRt.Windows.Web.Http is
    function Constructor return HttpRequestMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpRequestMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpRequestMessage");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpRequestMessage;
    begin
       return RetVal : HttpRequestMessage do
@@ -5374,7 +5374,7 @@ package body WinRt.Windows.Web.Http is
    function Constructor return HttpResponseMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpResponseMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
    begin
       return RetVal : HttpResponseMessage do
@@ -5394,7 +5394,7 @@ package body WinRt.Windows.Web.Http is
    return HttpResponseMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpResponseMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpResponseMessage");
       m_Factory    : access IHttpResponseMessageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpResponseMessage;
@@ -5743,7 +5743,7 @@ package body WinRt.Windows.Web.Http is
    return HttpStreamContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStreamContent");
       m_Factory    : access IHttpStreamContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -6192,7 +6192,7 @@ package body WinRt.Windows.Web.Http is
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -6219,7 +6219,7 @@ package body WinRt.Windows.Web.Http is
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;
@@ -6247,7 +6247,7 @@ package body WinRt.Windows.Web.Http is
    return HttpStringContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.IHttpContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Web.Http.HttpStringContent");
       m_Factory    : access IHttpStringContentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Web.Http.IHttpContent;

@@ -60,7 +60,7 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
    function Constructor return SocialFeedChildItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedChildItem");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.SocialInfo.ISocialFeedChildItem;
    begin
       return RetVal : SocialFeedChildItem do
@@ -416,7 +416,7 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
    function Constructor return SocialFeedItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.ISocialFeedItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedItem");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.SocialInfo.ISocialFeedItem;
    begin
       return RetVal : SocialFeedItem do
@@ -808,7 +808,7 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
    function Constructor return SocialFeedSharedItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialFeedSharedItem");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.SocialInfo.ISocialFeedSharedItem;
    begin
       return RetVal : SocialFeedSharedItem do
@@ -1007,7 +1007,7 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
    function Constructor return SocialItemThumbnail is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.SocialInfo.SocialItemThumbnail");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.SocialInfo.ISocialItemThumbnail;
    begin
       return RetVal : SocialItemThumbnail do

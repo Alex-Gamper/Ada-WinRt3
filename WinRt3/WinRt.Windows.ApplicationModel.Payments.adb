@@ -68,7 +68,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor return PaymentAddress is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentAddress");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentAddress");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentAddress;
    begin
       return RetVal : PaymentAddress do
@@ -539,7 +539,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentCanMakePaymentResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCanMakePaymentResult");
       m_Factory    : access IPaymentCanMakePaymentResultFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentCanMakePaymentResult;
@@ -607,7 +607,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentCurrencyAmount is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentCurrencyAmount");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
       m_Factory    : access IPaymentCurrencyAmountFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
@@ -637,7 +637,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentCurrencyAmount is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentCurrencyAmount");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentCurrencyAmount");
       m_Factory    : access IPaymentCurrencyAmountFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentCurrencyAmount;
@@ -804,7 +804,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetails");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_Factory    : access IPaymentDetailsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
@@ -829,7 +829,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetails");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_Factory    : access IPaymentDetailsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
@@ -849,7 +849,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor return PaymentDetails is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetails");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetails");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetails;
    begin
       return RetVal : PaymentDetails do
@@ -1036,7 +1036,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetailsModifier");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
@@ -1062,7 +1062,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetailsModifier");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
@@ -1089,7 +1089,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentDetailsModifier is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentDetailsModifier");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentDetailsModifier");
       m_Factory    : access IPaymentDetailsModifierFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentDetailsModifier;
@@ -1222,7 +1222,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentItem");
       m_Factory    : access IPaymentItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentItem;
@@ -1374,7 +1374,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor return PaymentMediator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentMediator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMediator");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentMediator;
    begin
       return RetVal : PaymentMediator do
@@ -1685,7 +1685,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor return PaymentMerchantInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentMerchantInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
    begin
       return RetVal : PaymentMerchantInfo do
@@ -1705,7 +1705,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentMerchantInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentMerchantInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMerchantInfo");
       m_Factory    : access IPaymentMerchantInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentMerchantInfo;
@@ -1795,7 +1795,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentMethodData is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentMethodData");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
       m_Factory    : access IPaymentMethodDataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentMethodData;
@@ -1820,7 +1820,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentMethodData is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentMethodData");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentMethodData");
       m_Factory    : access IPaymentMethodDataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentMethodData;
@@ -1908,7 +1908,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    function Constructor return PaymentOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentOptions;
    begin
       return RetVal : PaymentOptions do
@@ -2115,7 +2115,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
@@ -2141,7 +2141,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
@@ -2168,7 +2168,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
@@ -2196,7 +2196,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequest");
       m_Factory    : access IPaymentRequestFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequest;
@@ -2463,7 +2463,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequestChangedResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequestChangedResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
       m_Factory    : access IPaymentRequestChangedResultFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
@@ -2488,7 +2488,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentRequestChangedResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentRequestChangedResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentRequestChangedResult");
       m_Factory    : access IPaymentRequestChangedResultFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentRequestChangedResult;
@@ -2889,7 +2889,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentShippingOption");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption;
@@ -2917,7 +2917,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentShippingOption");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption;
@@ -2946,7 +2946,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentShippingOption is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentShippingOption");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentShippingOption");
       m_Factory    : access IPaymentShippingOptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentShippingOption;
@@ -3141,7 +3141,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentToken is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentToken");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
       m_Factory    : access IPaymentTokenFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentToken;
@@ -3168,7 +3168,7 @@ package body WinRt.Windows.ApplicationModel.Payments is
    return PaymentToken is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.IPaymentToken");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Payments.PaymentToken");
       m_Factory    : access IPaymentTokenFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Payments.IPaymentToken;

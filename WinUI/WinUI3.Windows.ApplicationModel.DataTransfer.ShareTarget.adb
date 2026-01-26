@@ -58,7 +58,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget is
    function Constructor return QuickLink is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink;
    begin
       return RetVal : QuickLink do

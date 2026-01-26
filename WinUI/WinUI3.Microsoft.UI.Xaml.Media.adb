@@ -85,7 +85,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return Brush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Brush");
       m_Factory    : access IBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IBrush;
@@ -357,7 +357,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return XamlCompositionBrushBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IXamlCompositionBrushBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.XamlCompositionBrushBase");
       m_Factory    : access IXamlCompositionBrushBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IXamlCompositionBrushBase;
@@ -546,7 +546,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return AcrylicBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IAcrylicBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.AcrylicBrush");
       m_Factory    : access IAcrylicBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IAcrylicBrush;
@@ -912,7 +912,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return ArcSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IArcSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ArcSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IArcSegment;
    begin
       return RetVal : ArcSegment do
@@ -1237,7 +1237,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return BezierSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IBezierSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.BezierSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IBezierSegment;
    begin
       return RetVal : BezierSegment do
@@ -1455,7 +1455,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return CacheMode is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ICacheMode");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.CacheMode");
       m_Factory    : access ICacheModeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ICacheMode;
@@ -1501,7 +1501,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return BitmapCache is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IBitmapCache");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.BitmapCache");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IBitmapCache;
    begin
       return RetVal : BitmapCache do
@@ -1536,7 +1536,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return BrushCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.BrushCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : BrushCollection do
@@ -1873,7 +1873,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return GeneralTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IGeneralTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GeneralTransform");
       m_Factory    : access IGeneralTransformFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IGeneralTransform;
@@ -2089,7 +2089,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return CompositeTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ICompositeTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.CompositeTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ICompositeTransform;
    begin
       return RetVal : CompositeTransform do
@@ -2828,7 +2828,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return SystemBackdrop is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISystemBackdrop");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.SystemBackdrop");
       m_Factory    : access ISystemBackdropFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISystemBackdrop;
@@ -2960,7 +2960,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return DesktopAcrylicBackdrop is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IDesktopAcrylicBackdrop");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.DesktopAcrylicBackdrop");
       m_Factory    : access IDesktopAcrylicBackdropFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IDesktopAcrylicBackdrop;
@@ -2999,7 +2999,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return DoubleCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.DoubleCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : DoubleCollection do
@@ -3472,7 +3472,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return EllipseGeometry is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IEllipseGeometry");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.EllipseGeometry");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IEllipseGeometry;
    begin
       return RetVal : EllipseGeometry do
@@ -3691,7 +3691,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return FontFamily is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IFontFamily");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.FontFamily");
       m_Factory    : access IFontFamilyFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IFontFamily;
@@ -3779,7 +3779,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return GeometryCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GeometryCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : GeometryCollection do
@@ -4111,7 +4111,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return GeometryGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IGeometryGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GeometryGroup");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IGeometryGroup;
    begin
       return RetVal : GeometryGroup do
@@ -4276,7 +4276,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return GradientBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IGradientBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GradientBrush");
       m_Factory    : access IGradientBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IGradientBrush;
@@ -4552,7 +4552,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return GradientStop is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IGradientStop");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GradientStop");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IGradientStop;
    begin
       return RetVal : GradientStop do
@@ -4702,7 +4702,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return GradientStopCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.GradientStopCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : GradientStopCollection do
@@ -5039,7 +5039,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return TileBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ITileBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.TileBrush");
       m_Factory    : access ITileBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ITileBrush;
@@ -5256,7 +5256,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return ImageBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IImageBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ImageBrush");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IImageBrush;
    begin
       return RetVal : ImageBrush do
@@ -5452,7 +5452,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return LineGeometry is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ILineGeometry");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.LineGeometry");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ILineGeometry;
    begin
       return RetVal : LineGeometry do
@@ -5609,7 +5609,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return LineSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ILineSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.LineSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ILineSegment;
    begin
       return RetVal : LineSegment do
@@ -5715,7 +5715,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return LinearGradientBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ILinearGradientBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.LinearGradientBrush");
       m_Factory    : access ILinearGradientBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ILinearGradientBrush;
@@ -5735,7 +5735,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return LinearGradientBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ILinearGradientBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.LinearGradientBrush");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ILinearGradientBrush;
    begin
       return RetVal : LinearGradientBrush do
@@ -6175,7 +6175,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return Projection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IProjection");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Projection");
       m_Factory    : access IProjectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IProjection;
@@ -6221,7 +6221,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return Matrix3DProjection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IMatrix3DProjection");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Matrix3DProjection");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IMatrix3DProjection;
    begin
       return RetVal : Matrix3DProjection do
@@ -6447,7 +6447,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return MatrixTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IMatrixTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.MatrixTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IMatrixTransform;
    begin
       return RetVal : MatrixTransform do
@@ -6611,7 +6611,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return MicaBackdrop is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IMicaBackdrop");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.MicaBackdrop");
       m_Factory    : access IMicaBackdropFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IMicaBackdrop;
@@ -6716,7 +6716,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PathFigure is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPathFigure");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PathFigure");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPathFigure;
    begin
       return RetVal : PathFigure do
@@ -6981,7 +6981,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PathFigureCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PathFigureCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : PathFigureCollection do
@@ -7313,7 +7313,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PathGeometry is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPathGeometry");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PathGeometry");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPathGeometry;
    begin
       return RetVal : PathGeometry do
@@ -7466,7 +7466,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PathSegmentCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PathSegmentCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : PathSegmentCollection do
@@ -7798,7 +7798,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PlaneProjection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPlaneProjection");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PlaneProjection");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPlaneProjection;
    begin
       return RetVal : PlaneProjection do
@@ -8549,7 +8549,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PointCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PointCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : PointCollection do
@@ -8872,7 +8872,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PolyBezierSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPolyBezierSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PolyBezierSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPolyBezierSegment;
    begin
       return RetVal : PolyBezierSegment do
@@ -8976,7 +8976,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PolyLineSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPolyLineSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PolyLineSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPolyLineSegment;
    begin
       return RetVal : PolyLineSegment do
@@ -9080,7 +9080,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return PolyQuadraticBezierSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IPolyQuadraticBezierSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.PolyQuadraticBezierSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IPolyQuadraticBezierSegment;
    begin
       return RetVal : PolyQuadraticBezierSegment do
@@ -9184,7 +9184,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return QuadraticBezierSegment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IQuadraticBezierSegment");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.QuadraticBezierSegment");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IQuadraticBezierSegment;
    begin
       return RetVal : QuadraticBezierSegment do
@@ -9346,7 +9346,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return RadialGradientBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IRadialGradientBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.RadialGradientBrush");
       m_Factory    : access IRadialGradientBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IRadialGradientBrush;
@@ -9807,7 +9807,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return RectangleGeometry is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IRectangleGeometry");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.RectangleGeometry");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IRectangleGeometry;
    begin
       return RetVal : RectangleGeometry do
@@ -9988,7 +9988,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return RotateTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IRotateTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.RotateTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IRotateTransform;
    begin
       return RetVal : RotateTransform do
@@ -10201,7 +10201,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return ScaleTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IScaleTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ScaleTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IScaleTransform;
    begin
       return RetVal : ScaleTransform do
@@ -10496,7 +10496,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return SkewTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISkewTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.SkewTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISkewTransform;
    begin
       return RetVal : SkewTransform do
@@ -10765,7 +10765,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return SolidColorBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISolidColorBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.SolidColorBrush");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
    begin
       return RetVal : SolidColorBrush do
@@ -10785,7 +10785,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return SolidColorBrush is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ISolidColorBrush");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.SolidColorBrush");
       m_Factory    : access ISolidColorBrushFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ISolidColorBrush;
@@ -10895,7 +10895,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return ThemeShadow is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IThemeShadow");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ThemeShadow");
       m_Factory    : access IThemeShadowFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IThemeShadow;
@@ -10954,7 +10954,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return TransformCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.TransformCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : TransformCollection do
@@ -11286,7 +11286,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return TransformGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ITransformGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.TransformGroup");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ITransformGroup;
    begin
       return RetVal : TransformGroup do
@@ -11407,7 +11407,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    function Constructor return TranslateTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.ITranslateTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.TranslateTransform");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.ITranslateTransform;
    begin
       return RetVal : TranslateTransform do
@@ -11845,7 +11845,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media is
    return XamlLight is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.IXamlLight");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.XamlLight");
       m_Factory    : access IXamlLightFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.IXamlLight;

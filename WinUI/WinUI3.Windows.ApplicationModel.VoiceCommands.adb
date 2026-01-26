@@ -232,7 +232,7 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
    function Constructor return VoiceCommandContentTile is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandContentTile");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.VoiceCommands.IVoiceCommandContentTile;
    begin
       return RetVal : VoiceCommandContentTile do
@@ -1547,7 +1547,7 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
    function Constructor return VoiceCommandUserMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.VoiceCommands.VoiceCommandUserMessage");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.VoiceCommands.IVoiceCommandUserMessage;
    begin
       return RetVal : VoiceCommandUserMessage do

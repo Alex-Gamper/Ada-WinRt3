@@ -561,7 +561,7 @@ package body WinRt.Windows.Storage.Provider is
    return StorageProviderFileTypeInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderFileTypeInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderFileTypeInfo");
       m_Factory    : access IStorageProviderFileTypeInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderFileTypeInfo;
@@ -651,7 +651,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderGetContentInfoForPathResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderGetContentInfoForPathResult");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderGetContentInfoForPathResult;
    begin
       return RetVal : StorageProviderGetContentInfoForPathResult do
@@ -799,7 +799,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderGetPathForContentUriResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderGetPathForContentUriResult");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderGetPathForContentUriResult;
    begin
       return RetVal : StorageProviderGetPathForContentUriResult do
@@ -966,7 +966,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderItemProperty is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderItemProperty");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderItemProperty");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderItemProperty;
    begin
       return RetVal : StorageProviderItemProperty do
@@ -1114,7 +1114,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderItemPropertyDefinition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderItemPropertyDefinition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderItemPropertyDefinition");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderItemPropertyDefinition;
    begin
       return RetVal : StorageProviderItemPropertyDefinition do
@@ -1225,7 +1225,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderKnownFolderEntry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderKnownFolderEntry");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderEntry");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderEntry;
    begin
       return RetVal : StorageProviderKnownFolderEntry do
@@ -1331,7 +1331,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderKnownFolderSyncInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderKnownFolderSyncInfo");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderKnownFolderSyncInfo;
    begin
       return RetVal : StorageProviderKnownFolderSyncInfo do
@@ -1540,7 +1540,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderMoreInfoUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderMoreInfoUI");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderMoreInfoUI");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderMoreInfoUI;
    begin
       return RetVal : StorageProviderMoreInfoUI do
@@ -1655,7 +1655,7 @@ package body WinRt.Windows.Storage.Provider is
    return StorageProviderQueryResultSet is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQueryResultSet");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderQueryResultSet");
       m_Factory    : access IStorageProviderQueryResultSetFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQueryResultSet;
@@ -1797,7 +1797,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderQuotaUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQuotaUI");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderQuotaUI");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQuotaUI;
    begin
       return RetVal : StorageProviderQuotaUI do
@@ -2149,7 +2149,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSearchResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderSearchResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSearchResult");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderSearchResult;
    begin
       return RetVal : StorageProviderSearchResult do
@@ -2491,7 +2491,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderStatusUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderStatusUI");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderStatusUI");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderStatusUI;
    begin
       return RetVal : StorageProviderStatusUI do
@@ -2806,7 +2806,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSuggestionResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderQueryResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSuggestionResult");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderQueryResult;
    begin
       return RetVal : StorageProviderSuggestionResult do
@@ -3128,7 +3128,7 @@ package body WinRt.Windows.Storage.Provider is
    function Constructor return StorageProviderSyncRootInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.IStorageProviderSyncRootInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Provider.StorageProviderSyncRootInfo");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Provider.IStorageProviderSyncRootInfo;
    begin
       return RetVal : StorageProviderSyncRootInfo do

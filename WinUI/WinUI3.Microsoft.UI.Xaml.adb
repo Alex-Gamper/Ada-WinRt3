@@ -99,7 +99,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DependencyObject is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IDependencyObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DependencyObject");
       m_Factory    : access IDependencyObjectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IDependencyObject;
@@ -310,7 +310,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return StateTriggerBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStateTriggerBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.StateTriggerBase");
       m_Factory    : access IStateTriggerBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStateTriggerBase;
@@ -380,7 +380,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return AdaptiveTrigger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IAdaptiveTrigger");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.AdaptiveTrigger");
       m_Factory    : access IAdaptiveTriggerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IAdaptiveTrigger;
@@ -546,7 +546,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return Application is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IApplication");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Application");
       m_Factory    : access IApplicationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IApplication;
@@ -1080,7 +1080,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return BringIntoViewOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IBringIntoViewOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.BringIntoViewOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IBringIntoViewOptions;
    begin
       return RetVal : BringIntoViewOptions do
@@ -1322,7 +1322,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return RoutedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IRoutedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.RoutedEventArgs");
       m_Factory    : access IRoutedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IRoutedEventArgs;
@@ -1642,7 +1642,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return BrushTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IBrushTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.BrushTransition");
       m_Factory    : access IBrushTransitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IBrushTransition;
@@ -1725,7 +1725,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return ResourceDictionary is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IResourceDictionary");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ResourceDictionary");
       m_Factory    : access IResourceDictionaryFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IResourceDictionary;
@@ -2005,7 +2005,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return ColorPaletteResources is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IColorPaletteResources");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ColorPaletteResources");
       m_Factory    : access IColorPaletteResourcesFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IColorPaletteResources;
@@ -8894,7 +8894,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return FrameworkElement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IFrameworkElement");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.FrameworkElement");
       m_Factory    : access IFrameworkElementFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IFrameworkElement;
@@ -10937,7 +10937,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return FrameworkTemplate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IFrameworkTemplate");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.FrameworkTemplate");
       m_Factory    : access IFrameworkTemplateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IFrameworkTemplate;
@@ -11151,7 +11151,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DataTemplate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IDataTemplate");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DataTemplate");
       m_Factory    : access IDataTemplateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IDataTemplate;
@@ -11339,7 +11339,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DataTemplateKey is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IDataTemplateKey");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DataTemplateKey");
       m_Factory    : access IDataTemplateKeyFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IDataTemplateKey;
@@ -11365,7 +11365,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DataTemplateKey is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IDataTemplateKey");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DataTemplateKey");
       m_Factory    : access IDataTemplateKeyFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IDataTemplateKey;
@@ -11786,7 +11786,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DependencyObjectCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DependencyObjectCollection");
       m_Factory    : access IDependencyObjectCollectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.GenericObject;
@@ -12412,7 +12412,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return DispatcherTimer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IDispatcherTimer");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.DispatcherTimer");
       m_Factory    : access IDispatcherTimerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IDispatcherTimer;
@@ -13703,7 +13703,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return ElementFactoryGetArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IElementFactoryGetArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ElementFactoryGetArgs");
       m_Factory    : access IElementFactoryGetArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IElementFactoryGetArgs;
@@ -13821,7 +13821,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return ElementFactoryRecycleArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IElementFactoryRecycleArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ElementFactoryRecycleArgs");
       m_Factory    : access IElementFactoryRecycleArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IElementFactoryRecycleArgs;
@@ -14152,7 +14152,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return EventTrigger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IEventTrigger");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.EventTrigger");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IEventTrigger;
    begin
       return RetVal : EventTrigger do
@@ -14311,7 +14311,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return FrameworkView is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IFrameworkView");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.FrameworkView");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IFrameworkView;
    begin
       return RetVal : FrameworkView do
@@ -14448,7 +14448,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return FrameworkViewSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IFrameworkViewSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.FrameworkViewSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IFrameworkViewSource;
    begin
       return RetVal : FrameworkViewSource do
@@ -14925,7 +14925,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return PropertyMetadata is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IPropertyMetadata");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.PropertyMetadata");
       m_Factory    : access IPropertyMetadataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IPropertyMetadata;
@@ -14952,7 +14952,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return PropertyMetadata is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IPropertyMetadata");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.PropertyMetadata");
       m_Factory    : access IPropertyMetadataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IPropertyMetadata;
@@ -15149,7 +15149,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return PropertyPath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IPropertyPath");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.PropertyPath");
       m_Factory    : access IPropertyPathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IPropertyPath;
@@ -15685,7 +15685,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return ScalarTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IScalarTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ScalarTransition");
       m_Factory    : access IScalarTransitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IScalarTransition;
@@ -15811,7 +15811,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return Setter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ISetter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Setter");
       m_Factory    : access ISetterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ISetter;
@@ -15831,7 +15831,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return Setter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ISetter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Setter");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ISetter;
    begin
       return RetVal : Setter do
@@ -15975,7 +15975,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return SetterBaseCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ISetterBaseCollection");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.SetterBaseCollection");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ISetterBaseCollection;
    begin
       return RetVal : SetterBaseCollection do
@@ -16518,7 +16518,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return StateTrigger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStateTrigger");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.StateTrigger");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStateTrigger;
    begin
       return RetVal : StateTrigger do
@@ -16619,7 +16619,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return Style is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStyle");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Style");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStyle;
    begin
       return RetVal : Style do
@@ -16639,7 +16639,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return Style is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IStyle");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Style");
       m_Factory    : access IStyleFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IStyle;
@@ -16823,7 +16823,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return TargetPropertyPath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ITargetPropertyPath");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.TargetPropertyPath");
       m_Factory    : access ITargetPropertyPathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ITargetPropertyPath;
@@ -16843,7 +16843,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return TargetPropertyPath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.ITargetPropertyPath");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.TargetPropertyPath");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.ITargetPropertyPath;
    begin
       return RetVal : TargetPropertyPath do
@@ -17022,7 +17022,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return TriggerActionCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.TriggerActionCollection");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : TriggerActionCollection do
@@ -17658,7 +17658,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return UIElementWeakCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.UIElementWeakCollection");
       m_Factory    : access IUIElementWeakCollectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.GenericObject;
@@ -18107,7 +18107,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return Vector3Transition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVector3Transition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Vector3Transition");
       m_Factory    : access IVector3TransitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVector3Transition;
@@ -18217,7 +18217,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return VisualState is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVisualState");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.VisualState");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVisualState;
    begin
       return RetVal : VisualState do
@@ -18354,7 +18354,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return VisualStateChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVisualStateChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.VisualStateChangedEventArgs");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVisualStateChangedEventArgs;
    begin
       return RetVal : VisualStateChangedEventArgs do
@@ -18517,7 +18517,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    function Constructor return VisualStateGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVisualStateGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.VisualStateGroup");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVisualStateGroup;
    begin
       return RetVal : VisualStateGroup do
@@ -18710,7 +18710,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return VisualStateManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVisualStateManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.VisualStateManager");
       m_Factory    : access IVisualStateManagerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVisualStateManager;
@@ -18962,7 +18962,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return VisualTransition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IVisualTransition");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.VisualTransition");
       m_Factory    : access IVisualTransitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IVisualTransition;
@@ -19189,7 +19189,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return Window is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IWindow");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Window");
       m_Factory    : access IWindowFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IWindow;
@@ -19998,7 +19998,7 @@ package body WinUI3.Microsoft.UI.Xaml is
    return XamlIsland is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.IXamlIsland");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.XamlIsland");
       m_Factory    : access IXamlIslandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.IXamlIsland;

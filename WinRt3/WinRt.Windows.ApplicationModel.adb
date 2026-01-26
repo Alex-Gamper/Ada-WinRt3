@@ -1104,7 +1104,7 @@ package body WinRt.Windows.ApplicationModel is
    return FindRelatedPackagesOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.IFindRelatedPackagesOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.FindRelatedPackagesOptions");
       m_Factory    : access IFindRelatedPackagesOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.IFindRelatedPackagesOptions;

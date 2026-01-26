@@ -221,7 +221,7 @@ package body WinUI3.Windows.Media.Protection is
    function Constructor return HdcpSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.IHdcpSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.HdcpSession");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.IHdcpSession;
    begin
       return RetVal : HdcpSession do
@@ -416,7 +416,7 @@ package body WinUI3.Windows.Media.Protection is
    function Constructor return MediaProtectionManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.IMediaProtectionManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.MediaProtectionManager");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.IMediaProtectionManager;
    begin
       return RetVal : MediaProtectionManager do
@@ -578,7 +578,7 @@ package body WinUI3.Windows.Media.Protection is
    return MediaProtectionPMPServer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.IMediaProtectionPMPServer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.MediaProtectionPMPServer");
       m_Factory    : access IMediaProtectionPMPServerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.IMediaProtectionPMPServer;
@@ -679,7 +679,7 @@ package body WinUI3.Windows.Media.Protection is
    function Constructor return ProtectionCapabilities is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.IProtectionCapabilities");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.ProtectionCapabilities");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.IProtectionCapabilities;
    begin
       return RetVal : ProtectionCapabilities do

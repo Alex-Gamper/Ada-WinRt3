@@ -58,7 +58,7 @@ package body WinRt.Windows.UI.Composition.Effects is
    function Constructor return SceneLightingEffect is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Effects.ISceneLightingEffect");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Effects.SceneLightingEffect");
       m_ComRetVal  : aliased WinRt.Windows.UI.Composition.Effects.ISceneLightingEffect;
    begin
       return RetVal : SceneLightingEffect do

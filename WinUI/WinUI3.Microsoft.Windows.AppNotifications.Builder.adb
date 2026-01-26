@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    function Constructor return AppNotificationBuilder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationBuilder");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationBuilder");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationBuilder;
    begin
       return RetVal : AppNotificationBuilder do
@@ -777,7 +777,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    function Constructor return AppNotificationButton is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationButton");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationButton");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationButton;
    begin
       return RetVal : AppNotificationButton do
@@ -797,7 +797,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    return AppNotificationButton is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationButton");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationButton");
       m_Factory    : access IAppNotificationButtonFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationButton;
@@ -1390,7 +1390,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    return AppNotificationComboBox is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationComboBox");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationComboBox");
       m_Factory    : access IAppNotificationComboBoxFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationComboBox;
@@ -1619,7 +1619,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    function Constructor return AppNotificationProgressBar is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationProgressBar");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationProgressBar");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationProgressBar;
    begin
       return RetVal : AppNotificationProgressBar do
@@ -1974,7 +1974,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
    function Constructor return AppNotificationTextProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.IAppNotificationTextProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.Builder.AppNotificationTextProperties");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.Builder.IAppNotificationTextProperties;
    begin
       return RetVal : AppNotificationTextProperties do

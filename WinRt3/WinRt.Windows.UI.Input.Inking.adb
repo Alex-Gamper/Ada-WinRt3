@@ -67,7 +67,7 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor return InkDrawingAttributes is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkDrawingAttributes");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkDrawingAttributes");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkDrawingAttributes;
    begin
       return RetVal : InkDrawingAttributes do
@@ -754,7 +754,7 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor return InkManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkManager");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkManager;
    begin
       return RetVal : InkManager do
@@ -1573,7 +1573,7 @@ package body WinRt.Windows.UI.Input.Inking is
    return InkPoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkPoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
       m_Factory    : access IInkPointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkPoint;
@@ -1601,7 +1601,7 @@ package body WinRt.Windows.UI.Input.Inking is
    return InkPoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkPoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPoint");
       m_Factory    : access IInkPointFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkPoint;
@@ -2130,7 +2130,7 @@ package body WinRt.Windows.UI.Input.Inking is
    return InkPresenterProtractor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkPresenterProtractor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterProtractor");
       m_Factory    : access IInkPresenterProtractorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkPresenterProtractor;
@@ -2585,7 +2585,7 @@ package body WinRt.Windows.UI.Input.Inking is
    return InkPresenterRuler is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkPresenterRuler");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkPresenterRuler");
       m_Factory    : access IInkPresenterRulerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkPresenterRuler;
@@ -3079,7 +3079,7 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor return InkRecognizerContainer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkRecognizerContainer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkRecognizerContainer");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkRecognizerContainer;
    begin
       return RetVal : InkRecognizerContainer do
@@ -3577,7 +3577,7 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor return InkStrokeBuilder is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkStrokeBuilder");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeBuilder");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkStrokeBuilder;
    begin
       return RetVal : InkStrokeBuilder do
@@ -3766,7 +3766,7 @@ package body WinRt.Windows.UI.Input.Inking is
    function Constructor return InkStrokeContainer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.IInkStrokeContainer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.InkStrokeContainer");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.IInkStrokeContainer;
    begin
       return RetVal : InkStrokeContainer do

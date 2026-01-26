@@ -162,7 +162,7 @@ package body WinUI3.Windows.System.Diagnostics.Telemetry is
    function Constructor return PlatformTelemetryRegistrationSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings");
       m_ComRetVal  : aliased WinUI3.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
    begin
       return RetVal : PlatformTelemetryRegistrationSettings do

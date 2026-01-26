@@ -80,7 +80,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnAppId is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnAppId");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnAppId");
       m_Factory    : access IVpnAppIdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnAppId;
@@ -1504,7 +1504,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomCheckBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomCheckBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomCheckBox");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomCheckBox;
    begin
       return RetVal : VpnCustomCheckBox do
@@ -1720,7 +1720,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomComboBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomComboBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomComboBox");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomComboBox;
    begin
       return RetVal : VpnCustomComboBox do
@@ -1939,7 +1939,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomEditBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomEditBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomEditBox");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomEditBox;
    begin
       return RetVal : VpnCustomEditBox do
@@ -2195,7 +2195,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomErrorBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomErrorBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomErrorBox");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomErrorBox;
    begin
       return RetVal : VpnCustomErrorBox do
@@ -2362,7 +2362,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptBooleanInput is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptBooleanInput");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptBooleanInput");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptBooleanInput;
    begin
       return RetVal : VpnCustomPromptBooleanInput do
@@ -2578,7 +2578,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptOptionSelector is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptOptionSelector");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptOptionSelector");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptOptionSelector;
    begin
       return RetVal : VpnCustomPromptOptionSelector do
@@ -2782,7 +2782,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptText is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptText");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptText");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptText;
    begin
       return RetVal : VpnCustomPromptText do
@@ -2986,7 +2986,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomPromptTextInput is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomPromptTextInput");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomPromptTextInput");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomPromptTextInput;
    begin
       return RetVal : VpnCustomPromptTextInput do
@@ -3242,7 +3242,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnCustomTextBox is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnCustomTextBox");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnCustomTextBox");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnCustomTextBox;
    begin
       return RetVal : VpnCustomTextBox do
@@ -3446,7 +3446,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnDomainNameAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnDomainNameAssignment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnDomainNameAssignment");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnDomainNameAssignment;
    begin
       return RetVal : VpnDomainNameAssignment do
@@ -3550,7 +3550,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnDomainNameInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnDomainNameInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnDomainNameInfo");
       m_Factory    : access IVpnDomainNameInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnDomainNameInfo;
@@ -3944,7 +3944,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnInterfaceId is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnInterfaceId");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnInterfaceId");
       m_Factory    : access IVpnInterfaceIdFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnInterfaceId;
@@ -4007,7 +4007,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnManagementAgent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnManagementAgent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnManagementAgent");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnManagementAgent;
    begin
       return RetVal : VpnManagementAgent do
@@ -4629,7 +4629,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnNamespaceAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNamespaceAssignment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNamespaceAssignment");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNamespaceAssignment;
    begin
       return RetVal : VpnNamespaceAssignment do
@@ -4747,7 +4747,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnNamespaceInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNamespaceInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNamespaceInfo");
       m_Factory    : access IVpnNamespaceInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNamespaceInfo;
@@ -4902,7 +4902,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnNativeProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnNativeProfile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnNativeProfile");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnNativeProfile;
    begin
       return RetVal : VpnNativeProfile do
@@ -5417,7 +5417,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnPacketBuffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnPacketBuffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnPacketBuffer");
       m_Factory    : access IVpnPacketBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnPacketBuffer;
@@ -5876,7 +5876,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnPlugInProfile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnPlugInProfile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnPlugInProfile");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnPlugInProfile;
    begin
       return RetVal : VpnPlugInProfile do
@@ -6299,7 +6299,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnRoute is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnRoute");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnRoute");
       m_Factory    : access IVpnRouteFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnRoute;
@@ -6412,7 +6412,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnRouteAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnRouteAssignment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnRouteAssignment");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnRouteAssignment;
    begin
       return RetVal : VpnRouteAssignment do
@@ -6673,7 +6673,7 @@ package body WinRt.Windows.Networking.Vpn is
    return VpnTrafficFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnTrafficFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnTrafficFilter");
       m_Factory    : access IVpnTrafficFilterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnTrafficFilter;
@@ -6918,7 +6918,7 @@ package body WinRt.Windows.Networking.Vpn is
    function Constructor return VpnTrafficFilterAssignment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.IVpnTrafficFilterAssignment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Vpn.VpnTrafficFilterAssignment");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Vpn.IVpnTrafficFilterAssignment;
    begin
       return RetVal : VpnTrafficFilterAssignment do

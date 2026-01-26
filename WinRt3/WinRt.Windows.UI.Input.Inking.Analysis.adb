@@ -1937,7 +1937,7 @@ package body WinRt.Windows.UI.Input.Inking.Analysis is
    function Constructor return InkAnalyzer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Analysis.IInkAnalyzer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Analysis.InkAnalyzer");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.Analysis.IInkAnalyzer;
    begin
       return RetVal : InkAnalyzer do

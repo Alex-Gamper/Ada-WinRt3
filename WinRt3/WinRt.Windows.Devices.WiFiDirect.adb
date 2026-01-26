@@ -231,7 +231,7 @@ package body WinRt.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectAdvertisementPublisher is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectAdvertisementPublisher");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisher");
       m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.IWiFiDirectAdvertisementPublisher;
    begin
       return RetVal : WiFiDirectAdvertisementPublisher do
@@ -428,7 +428,7 @@ package body WinRt.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectConnectionListener is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectConnectionListener");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectConnectionListener");
       m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.IWiFiDirectConnectionListener;
    begin
       return RetVal : WiFiDirectConnectionListener do
@@ -503,7 +503,7 @@ package body WinRt.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectConnectionParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectConnectionParameters");
       m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters;
    begin
       return RetVal : WiFiDirectConnectionParameters do
@@ -1105,7 +1105,7 @@ package body WinRt.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectInformationElement is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectInformationElement");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectInformationElement");
       m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.IWiFiDirectInformationElement;
    begin
       return RetVal : WiFiDirectInformationElement do

@@ -75,7 +75,7 @@ package body WinUI3.Windows.Web.AtomPub is
    function Constructor return AtomPubClient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
       m_ComRetVal  : aliased WinUI3.Windows.Web.AtomPub.IAtomPubClient;
    begin
       return RetVal : AtomPubClient do
@@ -95,7 +95,7 @@ package body WinUI3.Windows.Web.AtomPub is
    return AtomPubClient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.AtomPub.IAtomPubClient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.AtomPub.AtomPubClient");
       m_Factory    : access IAtomPubClientFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.AtomPub.IAtomPubClient;

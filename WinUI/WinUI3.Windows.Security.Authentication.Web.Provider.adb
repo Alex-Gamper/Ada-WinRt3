@@ -84,7 +84,7 @@ package body WinUI3.Windows.Security.Authentication.Web.Provider is
    return WebAccountClientView is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebAccountClientView");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebAccountClientView");
       m_Factory    : access IWebAccountClientViewFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Authentication.Web.Provider.IWebAccountClientView;
@@ -110,7 +110,7 @@ package body WinUI3.Windows.Security.Authentication.Web.Provider is
    return WebAccountClientView is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebAccountClientView");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebAccountClientView");
       m_Factory    : access IWebAccountClientViewFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Authentication.Web.Provider.IWebAccountClientView;
@@ -2995,7 +2995,7 @@ package body WinUI3.Windows.Security.Authentication.Web.Provider is
    return WebProviderTokenResponse is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebProviderTokenResponse");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebProviderTokenResponse");
       m_Factory    : access IWebProviderTokenResponseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Authentication.Web.Provider.IWebProviderTokenResponse;

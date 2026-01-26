@@ -59,7 +59,7 @@ package body WinRt.Windows.UI.Text is
    function Constructor return ContentLinkInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Text.IContentLinkInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Text.ContentLinkInfo");
       m_ComRetVal  : aliased WinRt.Windows.UI.Text.IContentLinkInfo;
    begin
       return RetVal : ContentLinkInfo do

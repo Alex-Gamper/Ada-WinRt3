@@ -173,7 +173,7 @@ package body WinRt.Windows.Globalization.Fonts is
    return LanguageFontGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Fonts.ILanguageFontGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Fonts.LanguageFontGroup");
       m_Factory    : access ILanguageFontGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Globalization.Fonts.ILanguageFontGroup;

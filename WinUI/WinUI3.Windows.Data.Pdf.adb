@@ -810,7 +810,7 @@ package body WinUI3.Windows.Data.Pdf is
    function Constructor return PdfPageRenderOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Pdf.IPdfPageRenderOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Pdf.PdfPageRenderOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Data.Pdf.IPdfPageRenderOptions;
    begin
       return RetVal : PdfPageRenderOptions do

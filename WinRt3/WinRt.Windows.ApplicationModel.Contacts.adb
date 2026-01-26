@@ -420,7 +420,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return Contact is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContact");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.Contact");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContact;
    begin
       return RetVal : Contact do
@@ -1747,7 +1747,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactAddress is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactAddress");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactAddress");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactAddress;
    begin
       return RetVal : ContactAddress do
@@ -2043,7 +2043,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactAnnotation");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactAnnotation;
    begin
       return RetVal : ContactAnnotation do
@@ -3458,7 +3458,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactCardOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactCardOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactCardOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactCardOptions;
    begin
       return RetVal : ContactCardOptions do
@@ -3935,7 +3935,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactConnectedServiceAccount is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactConnectedServiceAccount");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactConnectedServiceAccount");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactConnectedServiceAccount;
    begin
       return RetVal : ContactConnectedServiceAccount do
@@ -4051,7 +4051,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactDate is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactDate");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactDate");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactDate;
    begin
       return RetVal : ContactDate do
@@ -4267,7 +4267,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactEmail is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactEmail");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactEmail");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactEmail;
    begin
       return RetVal : ContactEmail do
@@ -4420,7 +4420,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactField");
       m_Factory    : access IContactFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactField;
@@ -4448,7 +4448,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactField");
       m_Factory    : access IContactFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactField;
@@ -4477,7 +4477,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactField");
       m_Factory    : access IContactFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactField;
@@ -4601,7 +4601,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactFieldFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactFieldFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactFieldFactory");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactFieldFactory;
    begin
       return RetVal : ContactFieldFactory do
@@ -5164,7 +5164,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactInstantMessageField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactInstantMessageField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactInstantMessageField");
       m_Factory    : access IContactInstantMessageFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField;
@@ -5191,7 +5191,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactInstantMessageField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactInstantMessageField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactInstantMessageField");
       m_Factory    : access IContactInstantMessageFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField;
@@ -5221,7 +5221,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactInstantMessageField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactInstantMessageField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactInstantMessageField");
       m_Factory    : access IContactInstantMessageFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactInstantMessageField;
@@ -5443,7 +5443,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactJobInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactJobInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactJobInfo");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactJobInfo;
    begin
       return RetVal : ContactJobInfo do
@@ -8152,7 +8152,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactLocationField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactLocationField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactLocationField");
       m_Factory    : access IContactLocationFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactLocationField;
@@ -8179,7 +8179,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactLocationField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactLocationField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactLocationField");
       m_Factory    : access IContactLocationFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactLocationField;
@@ -8211,7 +8211,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactLocationField is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactLocationField");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactLocationField");
       m_Factory    : access IContactLocationFieldFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactLocationField;
@@ -10106,7 +10106,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactPhone is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactPhone");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactPhone");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactPhone;
    begin
       return RetVal : ContactPhone do
@@ -10254,7 +10254,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactPicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactPicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactPicker");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactPicker;
    begin
       return RetVal : ContactPicker do
@@ -10800,7 +10800,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactQueryOptions");
       m_Factory    : access IContactQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
@@ -10827,7 +10827,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    return ContactQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactQueryOptions");
       m_Factory    : access IContactQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
@@ -10849,7 +10849,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactQueryOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactQueryOptions;
    begin
       return RetVal : ContactQueryOptions do
@@ -11281,7 +11281,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactSignificantOther is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactSignificantOther");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactSignificantOther");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactSignificantOther;
    begin
       return RetVal : ContactSignificantOther do
@@ -12205,7 +12205,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return ContactWebsite is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IContactWebsite");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.ContactWebsite");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IContactWebsite;
    begin
       return RetVal : ContactWebsite do
@@ -12364,7 +12364,7 @@ package body WinRt.Windows.ApplicationModel.Contacts is
    function Constructor return FullContactCardOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.IFullContactCardOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Contacts.FullContactCardOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Contacts.IFullContactCardOptions;
    begin
       return RetVal : FullContactCardOptions do

@@ -3639,7 +3639,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    function Constructor return MobileBroadbandAccountWatcher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher;
    begin
       return RetVal : MobileBroadbandAccountWatcher do
@@ -3896,7 +3896,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    return MobileBroadbandAntennaSar is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandAntennaSar");
       m_Factory    : access IMobileBroadbandAntennaSarFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.IMobileBroadbandAntennaSar;
@@ -7555,7 +7555,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    return MobileBroadbandModemIsolation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.MobileBroadbandModemIsolation");
       m_Factory    : access IMobileBroadbandModemIsolationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.IMobileBroadbandModemIsolation;
@@ -10704,7 +10704,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    function Constructor return NetworkOperatorTetheringAccessPointConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringAccessPointConfiguration");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.INetworkOperatorTetheringAccessPointConfiguration;
    begin
       return RetVal : NetworkOperatorTetheringAccessPointConfiguration do
@@ -11853,7 +11853,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    function Constructor return NetworkOperatorTetheringSessionAccessPointConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.NetworkOperatorTetheringSessionAccessPointConfiguration");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.INetworkOperatorTetheringSessionAccessPointConfiguration;
    begin
       return RetVal : NetworkOperatorTetheringSessionAccessPointConfiguration do
@@ -12342,7 +12342,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    function Constructor return ProvisioningAgent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.IProvisioningAgent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.ProvisioningAgent");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.IProvisioningAgent;
    begin
       return RetVal : ProvisioningAgent do
@@ -12587,7 +12587,7 @@ package body WinUI3.Windows.Networking.NetworkOperators is
    return UssdMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.IUssdMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.NetworkOperators.UssdMessage");
       m_Factory    : access IUssdMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.NetworkOperators.IUssdMessage;

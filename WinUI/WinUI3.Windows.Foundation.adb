@@ -171,7 +171,7 @@ package body WinUI3.Windows.Foundation is
    return Deferral is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.IDeferral");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.Deferral");
       m_Factory    : access IDeferralFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.IDeferral;
@@ -358,7 +358,7 @@ package body WinUI3.Windows.Foundation is
    return MemoryBuffer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.IMemoryBuffer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.MemoryBuffer");
       m_Factory    : access IMemoryBufferFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.IMemoryBuffer;
@@ -1421,7 +1421,7 @@ package body WinUI3.Windows.Foundation is
    return Uri is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.IUriRuntimeClass;
@@ -1448,7 +1448,7 @@ package body WinUI3.Windows.Foundation is
    return Uri is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.IUriRuntimeClass");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.Uri");
       m_Factory    : access IUriRuntimeClassFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.IUriRuntimeClass;
@@ -1970,7 +1970,7 @@ package body WinUI3.Windows.Foundation is
    return WwwFormUrlDecoder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.IWwwFormUrlDecoderRuntimeClass");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.WwwFormUrlDecoder");
       m_Factory    : access IWwwFormUrlDecoderRuntimeClassFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.IWwwFormUrlDecoderRuntimeClass;

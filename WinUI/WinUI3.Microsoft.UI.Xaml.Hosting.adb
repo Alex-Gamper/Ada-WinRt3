@@ -67,7 +67,7 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    return DesktopWindowXamlSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.DesktopWindowXamlSource");
       m_Factory    : access IDesktopWindowXamlSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IDesktopWindowXamlSource;
@@ -868,7 +868,7 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -893,7 +893,7 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -919,7 +919,7 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -1020,7 +1020,7 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
       m_Factory    : access IXamlSourceFocusNavigationResultFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;

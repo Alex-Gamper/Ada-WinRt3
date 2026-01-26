@@ -58,7 +58,7 @@ package body WinUI3.Windows.UI.Composition.Effects is
    function Constructor return SceneLightingEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Composition.Effects.ISceneLightingEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Composition.Effects.SceneLightingEffect");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Composition.Effects.ISceneLightingEffect;
    begin
       return RetVal : SceneLightingEffect do

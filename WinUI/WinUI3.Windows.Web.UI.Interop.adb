@@ -1705,7 +1705,7 @@ package body WinUI3.Windows.Web.UI.Interop is
    function Constructor return WebViewControlProcess is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.IWebViewControlProcess");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
       m_ComRetVal  : aliased WinUI3.Windows.Web.UI.Interop.IWebViewControlProcess;
    begin
       return RetVal : WebViewControlProcess do
@@ -1725,7 +1725,7 @@ package body WinUI3.Windows.Web.UI.Interop is
    return WebViewControlProcess is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.IWebViewControlProcess");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcess");
       m_Factory    : access IWebViewControlProcessFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.UI.Interop.IWebViewControlProcess;
@@ -1958,7 +1958,7 @@ package body WinUI3.Windows.Web.UI.Interop is
    function Constructor return WebViewControlProcessOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.IWebViewControlProcessOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.UI.Interop.WebViewControlProcessOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Web.UI.Interop.IWebViewControlProcessOptions;
    begin
       return RetVal : WebViewControlProcessOptions do

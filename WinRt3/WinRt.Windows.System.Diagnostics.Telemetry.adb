@@ -162,7 +162,7 @@ package body WinRt.Windows.System.Diagnostics.Telemetry is
    function Constructor return PlatformTelemetryRegistrationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Diagnostics.Telemetry.PlatformTelemetryRegistrationSettings");
       m_ComRetVal  : aliased WinRt.Windows.System.Diagnostics.Telemetry.IPlatformTelemetryRegistrationSettings;
    begin
       return RetVal : PlatformTelemetryRegistrationSettings do

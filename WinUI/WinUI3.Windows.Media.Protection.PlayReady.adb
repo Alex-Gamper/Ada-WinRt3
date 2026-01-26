@@ -82,7 +82,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return NDClient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDClient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDClient");
       m_Factory    : access INDClientFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDClient;
@@ -486,7 +486,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return NDCustomData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDCustomData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDCustomData");
       m_Factory    : access INDCustomDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDCustomData;
@@ -586,7 +586,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return NDDownloadEngineNotifier is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDDownloadEngineNotifier");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDDownloadEngineNotifier;
    begin
       return RetVal : NDDownloadEngineNotifier do
@@ -724,7 +724,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return NDLicenseFetchDescriptor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDLicenseFetchDescriptor");
       m_Factory    : access INDLicenseFetchDescriptorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDLicenseFetchDescriptor;
@@ -846,7 +846,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return NDStorageFileHelper is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDStorageFileHelper");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStorageFileHelper");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDStorageFileHelper;
    begin
       return RetVal : NDStorageFileHelper do
@@ -909,7 +909,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return NDStreamParserNotifier is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDStreamParserNotifier");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDStreamParserNotifier");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDStreamParserNotifier;
    begin
       return RetVal : NDStreamParserNotifier do
@@ -1026,7 +1026,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return NDTCPMessenger is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.INDMessenger");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.NDTCPMessenger");
       m_Factory    : access INDTCPMessengerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.INDMessenger;
@@ -1356,7 +1356,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyContentHeader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyContentHeader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
@@ -1389,7 +1389,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyContentHeader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyContentHeader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
@@ -1417,7 +1417,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyContentHeader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyContentHeader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
@@ -1449,7 +1449,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyContentHeader is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyContentHeader");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyContentHeader");
       m_Factory    : access IPlayReadyContentHeaderFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyContentHeader;
@@ -1896,7 +1896,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyDomainIterable is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainIterable");
       m_Factory    : access IPlayReadyDomainIterableFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.GenericObject;
@@ -2072,7 +2072,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyDomainJoinServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainJoinServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyDomainJoinServiceRequest;
    begin
       return RetVal : PlayReadyDomainJoinServiceRequest do
@@ -2483,7 +2483,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyDomainLeaveServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyDomainLeaveServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyDomainLeaveServiceRequest;
    begin
       return RetVal : PlayReadyDomainLeaveServiceRequest do
@@ -2857,7 +2857,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyITADataGenerator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyITADataGenerator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyITADataGenerator");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyITADataGenerator;
    begin
       return RetVal : PlayReadyITADataGenerator do
@@ -2929,7 +2929,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyIndividualizationServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyIndividualizationServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyIndividualizationServiceRequest;
    begin
       return RetVal : PlayReadyIndividualizationServiceRequest do
@@ -3469,7 +3469,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyLicenseAcquisitionServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseAcquisitionServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyLicenseAcquisitionServiceRequest;
    begin
       return RetVal : PlayReadyLicenseAcquisitionServiceRequest do
@@ -3891,7 +3891,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyLicenseIterable is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
       m_Factory    : access IPlayReadyLicenseIterableFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.GenericObject;
@@ -3911,7 +3911,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyLicenseIterable is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseIterable");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : PlayReadyLicenseIterable do
@@ -4142,7 +4142,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadyLicenseSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyLicenseSession");
       m_Factory    : access IPlayReadyLicenseSessionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyLicenseSession;
@@ -4246,7 +4246,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyMeteringReportServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyMeteringReportServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyMeteringReportServiceRequest;
    begin
       return RetVal : PlayReadyMeteringReportServiceRequest do
@@ -4598,7 +4598,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    function Constructor return PlayReadyRevocationServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadyRevocationServiceRequest");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadyRevocationServiceRequest;
    begin
       return RetVal : PlayReadyRevocationServiceRequest do
@@ -4905,7 +4905,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadySecureStopIterable is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopIterable");
       m_Factory    : access IPlayReadySecureStopIterableFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.GenericObject;
@@ -5086,7 +5086,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadySecureStopServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
       m_Factory    : access IPlayReadySecureStopServiceRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;
@@ -5112,7 +5112,7 @@ package body WinUI3.Windows.Media.Protection.PlayReady is
    return PlayReadySecureStopServiceRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Protection.PlayReady.PlayReadySecureStopServiceRequest");
       m_Factory    : access IPlayReadySecureStopServiceRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Protection.PlayReady.IPlayReadySecureStopServiceRequest;

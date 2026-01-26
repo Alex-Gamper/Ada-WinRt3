@@ -4909,7 +4909,7 @@ package body WinUI3.Windows.Devices.Bluetooth is
    function Constructor return BluetoothSignalStrengthFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.BluetoothSignalStrengthFilter");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.IBluetoothSignalStrengthFilter;
    begin
       return RetVal : BluetoothSignalStrengthFilter do

@@ -72,7 +72,7 @@ package body WinRt.Windows.Services.Maps is
    return EnhancedWaypoint is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IEnhancedWaypoint");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.EnhancedWaypoint");
       m_Factory    : access IEnhancedWaypointFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IEnhancedWaypoint;
@@ -1309,7 +1309,7 @@ package body WinRt.Windows.Services.Maps is
    function Constructor return MapRouteDrivingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IMapRouteDrivingOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.MapRouteDrivingOptions");
       m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IMapRouteDrivingOptions;
    begin
       return RetVal : MapRouteDrivingOptions do
@@ -3468,7 +3468,7 @@ package body WinRt.Windows.Services.Maps is
    function Constructor return PlaceInfoCreateOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.IPlaceInfoCreateOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Maps.PlaceInfoCreateOptions");
       m_ComRetVal  : aliased WinRt.Windows.Services.Maps.IPlaceInfoCreateOptions;
    begin
       return RetVal : PlaceInfoCreateOptions do

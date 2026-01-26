@@ -363,7 +363,7 @@ package body WinUI3.Windows.Media.Playback is
    return MediaBreak is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaBreak");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaBreak");
       m_Factory    : access IMediaBreakFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaBreak;
@@ -388,7 +388,7 @@ package body WinUI3.Windows.Media.Playback is
    return MediaBreak is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaBreak");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaBreak");
       m_Factory    : access IMediaBreakFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaBreak;
@@ -3086,7 +3086,7 @@ package body WinUI3.Windows.Media.Playback is
    return MediaPlaybackItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaPlaybackItem;
@@ -3111,7 +3111,7 @@ package body WinUI3.Windows.Media.Playback is
    return MediaPlaybackItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaPlaybackItem;
@@ -3137,7 +3137,7 @@ package body WinUI3.Windows.Media.Playback is
    return MediaPlaybackItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaPlaybackItem");
       m_Factory    : access IMediaPlaybackItemFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaPlaybackItem;
@@ -3808,7 +3808,7 @@ package body WinUI3.Windows.Media.Playback is
    function Constructor return MediaPlaybackList is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaPlaybackList");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaPlaybackList");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaPlaybackList;
    begin
       return RetVal : MediaPlaybackList do
@@ -6051,7 +6051,7 @@ package body WinUI3.Windows.Media.Playback is
    function Constructor return MediaPlayer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IMediaPlayer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.MediaPlayer");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IMediaPlayer;
    begin
       return RetVal : MediaPlayer do
@@ -8122,7 +8122,7 @@ package body WinUI3.Windows.Media.Playback is
    return PlaybackMediaMarker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IPlaybackMediaMarker");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.PlaybackMediaMarker");
       m_Factory    : access IPlaybackMediaMarkerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IPlaybackMediaMarker;
@@ -8148,7 +8148,7 @@ package body WinUI3.Windows.Media.Playback is
    return PlaybackMediaMarker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.IPlaybackMediaMarker");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playback.PlaybackMediaMarker");
       m_Factory    : access IPlaybackMediaMarkerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playback.IPlaybackMediaMarker;

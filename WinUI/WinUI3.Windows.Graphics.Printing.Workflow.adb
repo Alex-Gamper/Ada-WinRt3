@@ -1659,7 +1659,7 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
    return PrintWorkflowObjectModelSourceFileContent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.Workflow.PrintWorkflowObjectModelSourceFileContent");
       m_Factory    : access IPrintWorkflowObjectModelSourceFileContentFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelSourceFileContent;
@@ -4012,7 +4012,7 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
    function Constructor return PrintWorkflowXpsObjectModelProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.Workflow.PrintWorkflowXpsObjectModelProvider");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.Workflow.IPrintWorkflowObjectModelProvider;
    begin
       return RetVal : PrintWorkflowXpsObjectModelProvider do

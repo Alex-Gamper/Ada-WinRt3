@@ -62,7 +62,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -89,7 +89,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -119,7 +119,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -154,7 +154,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -180,7 +180,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -211,7 +211,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;
@@ -245,7 +245,7 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
    return DateTimeFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.IDateTimeFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.DateTimeFormatting.DateTimeFormatter");
       m_Factory    : access IDateTimeFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.DateTimeFormatting.IDateTimeFormatter;

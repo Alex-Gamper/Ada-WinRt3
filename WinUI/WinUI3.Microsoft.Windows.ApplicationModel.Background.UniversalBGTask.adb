@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Background.UniversalBGTas
    function Constructor return Task_x is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.ITask");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.Task_x");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.ITask;
    begin
       return RetVal : Task_x do

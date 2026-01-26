@@ -276,7 +276,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    function Constructor return CoreDragOperation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
    begin
       return RetVal : CoreDragOperation do

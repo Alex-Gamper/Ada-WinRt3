@@ -127,7 +127,7 @@ package body WinRt.Windows.Globalization.Collation is
    return CharacterGroupings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.ICharacterGroupings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_Factory    : access ICharacterGroupingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Globalization.Collation.ICharacterGroupings;
@@ -149,7 +149,7 @@ package body WinRt.Windows.Globalization.Collation is
    function Constructor return CharacterGroupings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.ICharacterGroupings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Globalization.Collation.CharacterGroupings");
       m_ComRetVal  : aliased WinRt.Windows.Globalization.Collation.ICharacterGroupings;
    begin
       return RetVal : CharacterGroupings do

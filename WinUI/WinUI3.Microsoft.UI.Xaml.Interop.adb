@@ -83,7 +83,7 @@ package body WinUI3.Microsoft.UI.Xaml.Interop is
    return NotifyCollectionChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Interop.NotifyCollectionChangedEventArgs");
       m_Factory    : access INotifyCollectionChangedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;

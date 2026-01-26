@@ -73,7 +73,7 @@ package body WinUI3.Windows.Storage.Compression is
    return Compressor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.ICompressor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.Compressor");
       m_Factory    : access ICompressorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.Compression.ICompressor;
@@ -99,7 +99,7 @@ package body WinUI3.Windows.Storage.Compression is
    return Compressor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.ICompressor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.Compressor");
       m_Factory    : access ICompressorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.Compression.ICompressor;
@@ -382,7 +382,7 @@ package body WinUI3.Windows.Storage.Compression is
    return Decompressor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.IDecompressor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.Compression.Decompressor");
       m_Factory    : access IDecompressorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Storage.Compression.IDecompressor;

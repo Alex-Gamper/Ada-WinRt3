@@ -1421,7 +1421,7 @@ package body WinUI3.Windows.Networking.XboxLive is
    function Constructor return XboxLiveQualityOfServiceMeasurement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_ComRetVal  : aliased WinUI3.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement;
    begin
       return RetVal : XboxLiveQualityOfServiceMeasurement do

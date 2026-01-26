@@ -63,7 +63,7 @@ package body WinUI3.Windows.UI.Core.AnimationMetrics is
    return AnimationDescription is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.AnimationMetrics.IAnimationDescription");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Core.AnimationMetrics.AnimationDescription");
       m_Factory    : access IAnimationDescriptionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Core.AnimationMetrics.IAnimationDescription;

@@ -312,7 +312,7 @@ package body WinUI3.Windows.Media.Effects is
    return AudioEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IAudioEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
       m_Factory    : access IAudioEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IAudioEffectDefinition;
@@ -339,7 +339,7 @@ package body WinUI3.Windows.Media.Effects is
    return AudioEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IAudioEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.AudioEffectDefinition");
       m_Factory    : access IAudioEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IAudioEffectDefinition;
@@ -922,7 +922,7 @@ package body WinUI3.Windows.Media.Effects is
    return VideoCompositorDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoCompositorDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
       m_Factory    : access IVideoCompositorDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoCompositorDefinition;
@@ -949,7 +949,7 @@ package body WinUI3.Windows.Media.Effects is
    return VideoCompositorDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoCompositorDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.VideoCompositorDefinition");
       m_Factory    : access IVideoCompositorDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoCompositorDefinition;
@@ -1038,7 +1038,7 @@ package body WinUI3.Windows.Media.Effects is
    return VideoEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
       m_Factory    : access IVideoEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
@@ -1065,7 +1065,7 @@ package body WinUI3.Windows.Media.Effects is
    return VideoEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.VideoEffectDefinition");
       m_Factory    : access IVideoEffectDefinitionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
@@ -1150,7 +1150,7 @@ package body WinUI3.Windows.Media.Effects is
    function Constructor return VideoTransformEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.VideoTransformEffectDefinition");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
    begin
       return RetVal : VideoTransformEffectDefinition do

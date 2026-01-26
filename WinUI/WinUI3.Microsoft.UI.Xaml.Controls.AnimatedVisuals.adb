@@ -59,7 +59,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedAcceptVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedAcceptVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -167,7 +167,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedBackVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedBackVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -275,7 +275,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedChevronDownSmallVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronDownSmallVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -383,7 +383,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedChevronRightDownSmallVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronRightDownSmallVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -491,7 +491,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedChevronUpDownSmallVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedChevronUpDownSmallVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -599,7 +599,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedFindVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedFindVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -707,7 +707,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedGlobalNavigationButtonVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedGlobalNavigationButtonVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin
@@ -815,7 +815,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
    function Constructor return AnimatedSettingsVisualSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.IAnimatedVisualSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.AnimatedVisuals.AnimatedSettingsVisualSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource_Ptr := new WinUI3.Microsoft.UI.Xaml.Controls.IAnimatedVisualSource;
    begin

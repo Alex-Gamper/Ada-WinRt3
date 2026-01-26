@@ -980,7 +980,7 @@ package body WinRt.Windows.AI.MachineLearning is
    return LearningModelBinding is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelBinding");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelBinding");
       m_Factory    : access ILearningModelBindingFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelBinding;
@@ -1175,7 +1175,7 @@ package body WinRt.Windows.AI.MachineLearning is
    return LearningModelDevice is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelDevice");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelDevice");
       m_Factory    : access ILearningModelDeviceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelDevice;
@@ -1386,7 +1386,7 @@ package body WinRt.Windows.AI.MachineLearning is
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelSession;
@@ -1411,7 +1411,7 @@ package body WinRt.Windows.AI.MachineLearning is
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelSession;
@@ -1437,7 +1437,7 @@ package body WinRt.Windows.AI.MachineLearning is
    return LearningModelSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSession");
       m_Factory    : access ILearningModelSessionFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelSession;
@@ -1746,7 +1746,7 @@ package body WinRt.Windows.AI.MachineLearning is
    function Constructor return LearningModelSessionOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.ILearningModelSessionOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.AI.MachineLearning.LearningModelSessionOptions");
       m_ComRetVal  : aliased WinRt.Windows.AI.MachineLearning.ILearningModelSessionOptions;
    begin
       return RetVal : LearningModelSessionOptions do

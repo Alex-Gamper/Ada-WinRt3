@@ -142,7 +142,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionControlGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionControlGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionControlGroup");
       m_Factory    : access IPerceptionControlGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionControlGroup;
@@ -214,7 +214,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionCorrelation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionCorrelation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionCorrelation");
       m_Factory    : access IPerceptionCorrelationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelation;
@@ -320,7 +320,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionCorrelationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionCorrelationGroup");
       m_Factory    : access IPerceptionCorrelationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionCorrelationGroup;
@@ -392,7 +392,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionFaceAuthenticationGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionFaceAuthenticationGroup");
       m_Factory    : access IPerceptionFaceAuthenticationGroupFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFaceAuthenticationGroup;
@@ -550,7 +550,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    function Constructor return PerceptionFrameProviderInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionFrameProviderInfo");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionFrameProviderInfo;
    begin
       return RetVal : PerceptionFrameProviderInfo do
@@ -1147,7 +1147,7 @@ package body WinRt.Windows.Devices.Perception.Provider is
    return PerceptionVideoFrameAllocator is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Perception.Provider.PerceptionVideoFrameAllocator");
       m_Factory    : access IPerceptionVideoFrameAllocatorFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Perception.Provider.IPerceptionVideoFrameAllocator;

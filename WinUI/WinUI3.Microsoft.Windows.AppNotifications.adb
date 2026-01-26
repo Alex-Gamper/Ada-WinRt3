@@ -69,7 +69,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
    return AppNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.IAppNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.AppNotification");
       m_Factory    : access IAppNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.IAppNotification;
@@ -1105,7 +1105,7 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
    return AppNotificationProgressData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.IAppNotificationProgressData");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.AppNotifications.AppNotificationProgressData");
       m_Factory    : access IAppNotificationProgressDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.AppNotifications.IAppNotificationProgressData;

@@ -1962,7 +1962,7 @@ package body WinRt.Windows.Graphics.Holographic is
    return HolographicQuadLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.IHolographicQuadLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicQuadLayer");
       m_Factory    : access IHolographicQuadLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;
@@ -1987,7 +1987,7 @@ package body WinRt.Windows.Graphics.Holographic is
    return HolographicQuadLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.IHolographicQuadLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Holographic.HolographicQuadLayer");
       m_Factory    : access IHolographicQuadLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Holographic.IHolographicQuadLayer;

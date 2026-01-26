@@ -3904,7 +3904,7 @@ package body WinUI3.Windows.Services.Store is
    function Constructor return StorePackageInstallOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.IStorePackageInstallOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.StorePackageInstallOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Store.IStorePackageInstallOptions;
    begin
       return RetVal : StorePackageInstallOptions do
@@ -4969,7 +4969,7 @@ package body WinUI3.Windows.Services.Store is
    function Constructor return StoreProductOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.IStoreProductOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.StoreProductOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Store.IStoreProductOptions;
    begin
       return RetVal : StoreProductOptions do
@@ -5294,7 +5294,7 @@ package body WinUI3.Windows.Services.Store is
    function Constructor return StorePurchaseProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.IStorePurchaseProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Store.IStorePurchaseProperties;
    begin
       return RetVal : StorePurchaseProperties do
@@ -5314,7 +5314,7 @@ package body WinUI3.Windows.Services.Store is
    return StorePurchaseProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.IStorePurchaseProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Store.StorePurchaseProperties");
       m_Factory    : access IStorePurchasePropertiesFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Services.Store.IStorePurchaseProperties;

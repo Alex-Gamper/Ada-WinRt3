@@ -493,7 +493,7 @@ package body WinUI3.Windows.Services.Cortana is
    function Constructor return CortanaActionableInsightsOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Cortana.ICortanaActionableInsightsOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsightsOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
    begin
       return RetVal : CortanaActionableInsightsOptions do

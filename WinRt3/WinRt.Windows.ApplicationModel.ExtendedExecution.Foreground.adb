@@ -102,7 +102,7 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
    function Constructor return ExtendedExecutionForegroundSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.Foreground.ExtendedExecutionForegroundSession");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground.IExtendedExecutionForegroundSession;
    begin
       return RetVal : ExtendedExecutionForegroundSession do

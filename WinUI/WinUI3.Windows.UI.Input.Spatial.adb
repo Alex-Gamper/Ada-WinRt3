@@ -75,7 +75,7 @@ package body WinUI3.Windows.UI.Input.Spatial is
    return SpatialGestureRecognizer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Input.Spatial.ISpatialGestureRecognizer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Input.Spatial.SpatialGestureRecognizer");
       m_Factory    : access ISpatialGestureRecognizerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Input.Spatial.ISpatialGestureRecognizer;

@@ -63,7 +63,7 @@ package body WinUI3.Windows.ApplicationModel.Calls.Provider is
    function Constructor return PhoneCallOrigin is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Calls.Provider.PhoneCallOrigin");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Calls.Provider.IPhoneCallOrigin;
    begin
       return RetVal : PhoneCallOrigin do

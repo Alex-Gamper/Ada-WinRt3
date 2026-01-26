@@ -62,7 +62,7 @@ package body WinUI3.Windows.Security.ExchangeActiveSyncProvisioning is
    function Constructor return EasClientDeviceInformation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.EasClientDeviceInformation");
       m_ComRetVal  : aliased WinUI3.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientDeviceInformation;
    begin
       return RetVal : EasClientDeviceInformation do
@@ -269,7 +269,7 @@ package body WinUI3.Windows.Security.ExchangeActiveSyncProvisioning is
    function Constructor return EasClientSecurityPolicy is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.ExchangeActiveSyncProvisioning.EasClientSecurityPolicy");
       m_ComRetVal  : aliased WinUI3.Windows.Security.ExchangeActiveSyncProvisioning.IEasClientSecurityPolicy;
    begin
       return RetVal : EasClientSecurityPolicy do

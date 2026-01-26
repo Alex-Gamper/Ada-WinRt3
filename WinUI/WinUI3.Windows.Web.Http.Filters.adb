@@ -66,7 +66,7 @@ package body WinUI3.Windows.Web.Http.Filters is
    function Constructor return HttpBaseProtocolFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Filters.IHttpBaseProtocolFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Filters.HttpBaseProtocolFilter");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Filters.IHttpBaseProtocolFilter;
    begin
       return RetVal : HttpBaseProtocolFilter do

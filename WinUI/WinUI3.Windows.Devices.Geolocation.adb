@@ -196,7 +196,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return GeoboundingBox is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeoboundingBox;
@@ -222,7 +222,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return GeoboundingBox is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeoboundingBox;
@@ -249,7 +249,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return GeoboundingBox is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeoboundingBox");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.GeoboundingBox");
       m_Factory    : access IGeoboundingBoxFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeoboundingBox;
@@ -535,7 +535,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geocircle is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeocircle;
@@ -561,7 +561,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geocircle is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeocircle;
@@ -588,7 +588,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geocircle is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeocircle");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geocircle");
       m_Factory    : access IGeocircleFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeocircle;
@@ -1147,7 +1147,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    function Constructor return Geolocator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeolocator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geolocator");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeolocator;
    begin
       return RetVal : Geolocator do
@@ -1841,7 +1841,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopath;
@@ -1866,7 +1866,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopath;
@@ -1892,7 +1892,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopath is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopath");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopath");
       m_Factory    : access IGeopathFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopath;
@@ -2025,7 +2025,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopoint;
@@ -2050,7 +2050,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopoint;
@@ -2076,7 +2076,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    return Geopoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeopoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Geopoint");
       m_Factory    : access IGeopointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeopoint;
@@ -2366,7 +2366,7 @@ package body WinUI3.Windows.Devices.Geolocation is
    function Constructor return GeovisitMonitor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.IGeovisitMonitor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.GeovisitMonitor");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.IGeovisitMonitor;
    begin
       return RetVal : GeovisitMonitor do

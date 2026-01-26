@@ -2443,7 +2443,7 @@ package body WinRt.Windows.Devices.Display.Core is
    return DisplayPrimaryDescription is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.IDisplayPrimaryDescription");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayPrimaryDescription");
       m_Factory    : access IDisplayPrimaryDescriptionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
@@ -3812,7 +3812,7 @@ package body WinRt.Windows.Devices.Display.Core is
    return DisplayWireFormat is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.IDisplayWireFormat");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Display.Core.DisplayWireFormat");
       m_Factory    : access IDisplayWireFormatFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Display.Core.IDisplayWireFormat;

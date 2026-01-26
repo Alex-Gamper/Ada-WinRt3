@@ -571,7 +571,7 @@ package body WinUI3.Windows.Media.SpeechSynthesis is
    function Constructor return SpeechSynthesizer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechSynthesis.ISpeechSynthesizer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SpeechSynthesis.SpeechSynthesizer");
       m_ComRetVal  : aliased WinUI3.Windows.Media.SpeechSynthesis.ISpeechSynthesizer;
    begin
       return RetVal : SpeechSynthesizer do

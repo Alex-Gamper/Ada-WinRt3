@@ -95,7 +95,7 @@ package body WinRt.Windows.UI.Xaml is
    return DependencyObject is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IDependencyObject");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DependencyObject");
       m_Factory    : access IDependencyObjectFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IDependencyObject;
@@ -294,7 +294,7 @@ package body WinRt.Windows.UI.Xaml is
    return StateTriggerBase is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IStateTriggerBase");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.StateTriggerBase");
       m_Factory    : access IStateTriggerBaseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IStateTriggerBase;
@@ -364,7 +364,7 @@ package body WinRt.Windows.UI.Xaml is
    return AdaptiveTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IAdaptiveTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.AdaptiveTrigger");
       m_Factory    : access IAdaptiveTriggerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IAdaptiveTrigger;
@@ -530,7 +530,7 @@ package body WinRt.Windows.UI.Xaml is
    return Application is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IApplication");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Application");
       m_Factory    : access IApplicationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IApplication;
@@ -1358,7 +1358,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return BringIntoViewOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IBringIntoViewOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.BringIntoViewOptions");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IBringIntoViewOptions;
    begin
       return RetVal : BringIntoViewOptions do
@@ -1632,7 +1632,7 @@ package body WinRt.Windows.UI.Xaml is
    return RoutedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IRoutedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.RoutedEventArgs");
       m_Factory    : access IRoutedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IRoutedEventArgs;
@@ -1952,7 +1952,7 @@ package body WinRt.Windows.UI.Xaml is
    return BrushTransition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IBrushTransition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.BrushTransition");
       m_Factory    : access IBrushTransitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IBrushTransition;
@@ -2035,7 +2035,7 @@ package body WinRt.Windows.UI.Xaml is
    return ResourceDictionary is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IResourceDictionary");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ResourceDictionary");
       m_Factory    : access IResourceDictionaryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IResourceDictionary;
@@ -2315,7 +2315,7 @@ package body WinRt.Windows.UI.Xaml is
    return ColorPaletteResources is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IColorPaletteResources");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ColorPaletteResources");
       m_Factory    : access IColorPaletteResourcesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IColorPaletteResources;
@@ -9183,7 +9183,7 @@ package body WinRt.Windows.UI.Xaml is
    return FrameworkElement is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IFrameworkElement");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.FrameworkElement");
       m_Factory    : access IFrameworkElementFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IFrameworkElement;
@@ -11334,7 +11334,7 @@ package body WinRt.Windows.UI.Xaml is
    return FrameworkTemplate is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IFrameworkTemplate");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.FrameworkTemplate");
       m_Factory    : access IFrameworkTemplateFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IFrameworkTemplate;
@@ -11548,7 +11548,7 @@ package body WinRt.Windows.UI.Xaml is
    return DataTemplate is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IDataTemplate");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DataTemplate");
       m_Factory    : access IDataTemplateFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IDataTemplate;
@@ -11736,7 +11736,7 @@ package body WinRt.Windows.UI.Xaml is
    return DataTemplateKey is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IDataTemplateKey");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DataTemplateKey");
       m_Factory    : access IDataTemplateKeyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IDataTemplateKey;
@@ -11762,7 +11762,7 @@ package body WinRt.Windows.UI.Xaml is
    return DataTemplateKey is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IDataTemplateKey");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DataTemplateKey");
       m_Factory    : access IDataTemplateKeyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IDataTemplateKey;
@@ -12110,7 +12110,7 @@ package body WinRt.Windows.UI.Xaml is
    return DependencyObjectCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DependencyObjectCollection");
       m_Factory    : access IDependencyObjectCollectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.GenericObject;
@@ -12736,7 +12736,7 @@ package body WinRt.Windows.UI.Xaml is
    return DispatcherTimer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IDispatcherTimer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.DispatcherTimer");
       m_Factory    : access IDispatcherTimerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IDispatcherTimer;
@@ -14063,7 +14063,7 @@ package body WinRt.Windows.UI.Xaml is
    return ElementFactoryGetArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IElementFactoryGetArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ElementFactoryGetArgs");
       m_Factory    : access IElementFactoryGetArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IElementFactoryGetArgs;
@@ -14181,7 +14181,7 @@ package body WinRt.Windows.UI.Xaml is
    return ElementFactoryRecycleArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IElementFactoryRecycleArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ElementFactoryRecycleArgs");
       m_Factory    : access IElementFactoryRecycleArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IElementFactoryRecycleArgs;
@@ -14512,7 +14512,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return EventTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IEventTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.EventTrigger");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IEventTrigger;
    begin
       return RetVal : EventTrigger do
@@ -14671,7 +14671,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return FrameworkView is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IFrameworkView");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.FrameworkView");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IFrameworkView;
    begin
       return RetVal : FrameworkView do
@@ -14808,7 +14808,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return FrameworkViewSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IFrameworkViewSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.FrameworkViewSource");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IFrameworkViewSource;
    begin
       return RetVal : FrameworkViewSource do
@@ -15222,7 +15222,7 @@ package body WinRt.Windows.UI.Xaml is
    return PropertyMetadata is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IPropertyMetadata");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.PropertyMetadata");
       m_Factory    : access IPropertyMetadataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IPropertyMetadata;
@@ -15249,7 +15249,7 @@ package body WinRt.Windows.UI.Xaml is
    return PropertyMetadata is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IPropertyMetadata");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.PropertyMetadata");
       m_Factory    : access IPropertyMetadataFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IPropertyMetadata;
@@ -15446,7 +15446,7 @@ package body WinRt.Windows.UI.Xaml is
    return PropertyPath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IPropertyPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.PropertyPath");
       m_Factory    : access IPropertyPathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IPropertyPath;
@@ -15927,7 +15927,7 @@ package body WinRt.Windows.UI.Xaml is
    return ScalarTransition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IScalarTransition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ScalarTransition");
       m_Factory    : access IScalarTransitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IScalarTransition;
@@ -16048,7 +16048,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return Setter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ISetter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Setter");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.ISetter;
    begin
       return RetVal : Setter do
@@ -16069,7 +16069,7 @@ package body WinRt.Windows.UI.Xaml is
    return Setter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ISetter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Setter");
       m_Factory    : access ISetterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.ISetter;
@@ -16225,7 +16225,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return SetterBaseCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ISetterBaseCollection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.SetterBaseCollection");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.ISetterBaseCollection;
    begin
       return RetVal : SetterBaseCollection do
@@ -16768,7 +16768,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return StateTrigger is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IStateTrigger");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.StateTrigger");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IStateTrigger;
    begin
       return RetVal : StateTrigger do
@@ -16873,7 +16873,7 @@ package body WinRt.Windows.UI.Xaml is
    return Style is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IStyle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Style");
       m_Factory    : access IStyleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IStyle;
@@ -16893,7 +16893,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return Style is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IStyle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Style");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IStyle;
    begin
       return RetVal : Style do
@@ -17073,7 +17073,7 @@ package body WinRt.Windows.UI.Xaml is
    return TargetPropertyPath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ITargetPropertyPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.TargetPropertyPath");
       m_Factory    : access ITargetPropertyPathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.ITargetPropertyPath;
@@ -17093,7 +17093,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return TargetPropertyPath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.ITargetPropertyPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.TargetPropertyPath");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.ITargetPropertyPath;
    begin
       return RetVal : TargetPropertyPath do
@@ -17272,7 +17272,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return TriggerActionCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("GenericObject");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.TriggerActionCollection");
       m_ComRetVal  : aliased WinRt.GenericObject;
    begin
       return RetVal : TriggerActionCollection do
@@ -17915,7 +17915,7 @@ package body WinRt.Windows.UI.Xaml is
    return UIElementWeakCollection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IUIElementWeakCollection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.UIElementWeakCollection");
       m_Factory    : access IUIElementWeakCollectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IUIElementWeakCollection;
@@ -18364,7 +18364,7 @@ package body WinRt.Windows.UI.Xaml is
    return Vector3Transition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVector3Transition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Vector3Transition");
       m_Factory    : access IVector3TransitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVector3Transition;
@@ -18474,7 +18474,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return VisualState is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVisualState");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.VisualState");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVisualState;
    begin
       return RetVal : VisualState do
@@ -18619,7 +18619,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return VisualStateChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVisualStateChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.VisualStateChangedEventArgs");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVisualStateChangedEventArgs;
    begin
       return RetVal : VisualStateChangedEventArgs do
@@ -18782,7 +18782,7 @@ package body WinRt.Windows.UI.Xaml is
    function Constructor return VisualStateGroup is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVisualStateGroup");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.VisualStateGroup");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVisualStateGroup;
    begin
       return RetVal : VisualStateGroup do
@@ -18975,7 +18975,7 @@ package body WinRt.Windows.UI.Xaml is
    return VisualStateManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVisualStateManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.VisualStateManager");
       m_Factory    : access IVisualStateManagerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVisualStateManager;
@@ -19227,7 +19227,7 @@ package body WinRt.Windows.UI.Xaml is
    return VisualTransition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.IVisualTransition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.VisualTransition");
       m_Factory    : access IVisualTransitionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.IVisualTransition;

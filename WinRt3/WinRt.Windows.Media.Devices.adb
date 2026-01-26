@@ -68,7 +68,7 @@ package body WinRt.Windows.Media.Devices is
    function Constructor return AdvancedPhotoCaptureSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IAdvancedPhotoCaptureSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.AdvancedPhotoCaptureSettings");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IAdvancedPhotoCaptureSettings;
    begin
       return RetVal : AdvancedPhotoCaptureSettings do
@@ -682,7 +682,7 @@ package body WinRt.Windows.Media.Devices is
    return AudioDeviceModulesManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IAudioDeviceModulesManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.AudioDeviceModulesManager");
       m_Factory    : access IAudioDeviceModulesManagerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IAudioDeviceModulesManager;
@@ -1568,7 +1568,7 @@ package body WinRt.Windows.Media.Devices is
    function Constructor return DigitalWindowBounds is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IDigitalWindowBounds");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.DigitalWindowBounds");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IDigitalWindowBounds;
    begin
       return RetVal : DigitalWindowBounds do
@@ -3288,7 +3288,7 @@ package body WinRt.Windows.Media.Devices is
    function Constructor return FocusSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IFocusSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.FocusSettings");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IFocusSettings;
    begin
       return RetVal : FocusSettings do
@@ -5478,7 +5478,7 @@ package body WinRt.Windows.Media.Devices is
    function Constructor return RegionOfInterest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IRegionOfInterest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.RegionOfInterest");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IRegionOfInterest;
    begin
       return RetVal : RegionOfInterest do
@@ -7962,7 +7962,7 @@ package body WinRt.Windows.Media.Devices is
    function Constructor return ZoomSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.IZoomSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.ZoomSettings");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.IZoomSettings;
    begin
       return RetVal : ZoomSettings do

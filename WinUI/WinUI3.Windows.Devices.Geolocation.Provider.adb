@@ -58,7 +58,7 @@ package body WinUI3.Windows.Devices.Geolocation.Provider is
    function Constructor return GeolocationProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Provider.IGeolocationProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Geolocation.Provider.GeolocationProvider");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Geolocation.Provider.IGeolocationProvider;
    begin
       return RetVal : GeolocationProvider do

@@ -73,7 +73,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return BitmapSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IBitmapSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.BitmapSource");
       m_Factory    : access IBitmapSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapSource;
@@ -266,7 +266,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return BitmapImage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IBitmapImage");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
       m_Factory    : access IBitmapImageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
@@ -286,7 +286,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    function Constructor return BitmapImage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IBitmapImage");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.BitmapImage");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IBitmapImage;
    begin
       return RetVal : BitmapImage do
@@ -950,7 +950,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    function Constructor return RenderTargetBitmap is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IRenderTargetBitmap");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.RenderTargetBitmap");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IRenderTargetBitmap;
    begin
       return RetVal : RenderTargetBitmap do
@@ -1228,7 +1228,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    function Constructor return SoftwareBitmapSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.ISoftwareBitmapSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.SoftwareBitmapSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.ISoftwareBitmapSource;
    begin
       return RetVal : SoftwareBitmapSource do
@@ -1338,7 +1338,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return SurfaceImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.ISurfaceImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.SurfaceImageSource");
       m_Factory    : access ISurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.ISurfaceImageSource;
@@ -1366,7 +1366,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return SurfaceImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.ISurfaceImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.SurfaceImageSource");
       m_Factory    : access ISurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.ISurfaceImageSource;
@@ -1417,7 +1417,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return SvgImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.ISvgImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.SvgImageSource");
       m_Factory    : access ISvgImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.ISvgImageSource;
@@ -1443,7 +1443,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return SvgImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.ISvgImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.SvgImageSource");
       m_Factory    : access ISvgImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.ISvgImageSource;
@@ -1861,7 +1861,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return VirtualSurfaceImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource");
       m_Factory    : access IVirtualSurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
@@ -1887,7 +1887,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return VirtualSurfaceImageSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.VirtualSurfaceImageSource");
       m_Factory    : access IVirtualSurfaceImageSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IVirtualSurfaceImageSource;
@@ -1938,7 +1938,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return WriteableBitmap is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IWriteableBitmap");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.WriteableBitmap");
       m_Factory    : access IWriteableBitmapFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IWriteableBitmap;
@@ -2020,7 +2020,7 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
    return XamlRenderingBackgroundTask is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Media.Imaging.XamlRenderingBackgroundTask");
       m_Factory    : access IXamlRenderingBackgroundTaskFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Media.Imaging.IXamlRenderingBackgroundTask;

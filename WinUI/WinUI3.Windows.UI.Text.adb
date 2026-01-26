@@ -59,7 +59,7 @@ package body WinUI3.Windows.UI.Text is
    function Constructor return ContentLinkInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Text.IContentLinkInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Text.ContentLinkInfo");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Text.IContentLinkInfo;
    begin
       return RetVal : ContentLinkInfo do

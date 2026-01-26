@@ -485,7 +485,7 @@ package body WinRt.Windows.UI.Input is
    function Constructor return GestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.IGestureRecognizer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.GestureRecognizer");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.IGestureRecognizer;
    begin
       return RetVal : GestureRecognizer do
@@ -2821,7 +2821,7 @@ package body WinRt.Windows.UI.Input is
    function Constructor return PhysicalGestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.IPhysicalGestureRecognizer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.PhysicalGestureRecognizer");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.IPhysicalGestureRecognizer;
    begin
       return RetVal : PhysicalGestureRecognizer do

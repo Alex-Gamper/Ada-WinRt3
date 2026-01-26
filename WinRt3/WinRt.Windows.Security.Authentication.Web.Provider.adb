@@ -84,7 +84,7 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
    return WebAccountClientView is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebAccountClientView");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebAccountClientView");
       m_Factory    : access IWebAccountClientViewFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Provider.IWebAccountClientView;
@@ -110,7 +110,7 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
    return WebAccountClientView is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebAccountClientView");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebAccountClientView");
       m_Factory    : access IWebAccountClientViewFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Provider.IWebAccountClientView;
@@ -2995,7 +2995,7 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
    return WebProviderTokenResponse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.IWebProviderTokenResponse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Authentication.Web.Provider.WebProviderTokenResponse");
       m_Factory    : access IWebProviderTokenResponseFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Authentication.Web.Provider.IWebProviderTokenResponse;

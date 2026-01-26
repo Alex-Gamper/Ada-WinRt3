@@ -57,7 +57,7 @@ package body WinRt.Windows.System.Display is
    function Constructor return DisplayRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Display.IDisplayRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Display.DisplayRequest");
       m_ComRetVal  : aliased WinRt.Windows.System.Display.IDisplayRequest;
    begin
       return RetVal : DisplayRequest do

@@ -173,7 +173,7 @@ package body WinUI3.Windows.Globalization.Fonts is
    return LanguageFontGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Fonts.ILanguageFontGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.Fonts.LanguageFontGroup");
       m_Factory    : access ILanguageFontGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.Fonts.ILanguageFontGroup;

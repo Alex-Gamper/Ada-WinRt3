@@ -75,7 +75,7 @@ package body WinRt.Windows.UI.Input.Spatial is
    return SpatialGestureRecognizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.ISpatialGestureRecognizer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Spatial.SpatialGestureRecognizer");
       m_Factory    : access ISpatialGestureRecognizerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Spatial.ISpatialGestureRecognizer;

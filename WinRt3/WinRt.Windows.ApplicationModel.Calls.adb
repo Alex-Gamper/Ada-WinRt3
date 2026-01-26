@@ -112,7 +112,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    return AcceptedVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions");
       m_Factory    : access IAcceptedVoipPhoneCallOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
@@ -132,7 +132,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return AcceptedVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AcceptedVoipPhoneCallOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IAcceptedVoipPhoneCallOptions;
    begin
       return RetVal : AcceptedVoipPhoneCallOptions do
@@ -374,7 +374,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return AppInitiatedVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
    begin
       return RetVal : AppInitiatedVoipPhoneCallOptions do
@@ -394,7 +394,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    return AppInitiatedVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.AppInitiatedVoipPhoneCallOptions");
       m_Factory    : access IAppInitiatedVoipPhoneCallOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IAppInitiatedVoipPhoneCallOptions;
@@ -788,7 +788,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    return IncomingVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions");
       m_Factory    : access IIncomingVoipPhoneCallOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
@@ -808,7 +808,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return IncomingVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IncomingVoipPhoneCallOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IIncomingVoipPhoneCallOptions;
    begin
       return RetVal : IncomingVoipPhoneCallOptions do
@@ -1542,7 +1542,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    return OutgoingVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions");
       m_Factory    : access IOutgoingVoipPhoneCallOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
@@ -1562,7 +1562,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return OutgoingVoipPhoneCallOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.OutgoingVoipPhoneCallOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IOutgoingVoipPhoneCallOptions;
    begin
       return RetVal : OutgoingVoipPhoneCallOptions do
@@ -2964,7 +2964,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return PhoneCallHistoryEntry is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntry");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntry;
    begin
       return RetVal : PhoneCallHistoryEntry do
@@ -3574,7 +3574,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return PhoneCallHistoryEntryAddress is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
    begin
       return RetVal : PhoneCallHistoryEntryAddress do
@@ -3595,7 +3595,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    return PhoneCallHistoryEntryAddress is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryAddress");
       m_Factory    : access IPhoneCallHistoryEntryAddressFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryAddress;
@@ -3786,7 +3786,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return PhoneCallHistoryEntryQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneCallHistoryEntryQueryOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneCallHistoryEntryQueryOptions;
    begin
       return RetVal : PhoneCallHistoryEntryQueryOptions do
@@ -5433,7 +5433,7 @@ package body WinRt.Windows.ApplicationModel.Calls is
    function Constructor return PhoneDialOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.IPhoneDialOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Calls.PhoneDialOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Calls.IPhoneDialOptions;
    begin
       return RetVal : PhoneDialOptions do

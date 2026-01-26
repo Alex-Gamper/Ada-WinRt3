@@ -66,7 +66,7 @@ package body WinUI3.Windows.UI.Popups is
    return MessageDialog is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IMessageDialog");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.MessageDialog");
       m_Factory    : access IMessageDialogFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IMessageDialog;
@@ -93,7 +93,7 @@ package body WinUI3.Windows.UI.Popups is
    return MessageDialog is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IMessageDialog");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.MessageDialog");
       m_Factory    : access IMessageDialogFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IMessageDialog;
@@ -396,7 +396,7 @@ package body WinUI3.Windows.UI.Popups is
    function Constructor return PopupMenu is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IPopupMenu");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.PopupMenu");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IPopupMenu;
    begin
       return RetVal : PopupMenu do
@@ -655,7 +655,7 @@ package body WinUI3.Windows.UI.Popups is
    return UICommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
@@ -682,7 +682,7 @@ package body WinUI3.Windows.UI.Popups is
    return UICommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
@@ -710,7 +710,7 @@ package body WinUI3.Windows.UI.Popups is
    return UICommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_Factory    : access IUICommandFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
@@ -732,7 +732,7 @@ package body WinUI3.Windows.UI.Popups is
    function Constructor return UICommand is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.UICommand");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
    begin
       return RetVal : UICommand do
@@ -890,7 +890,7 @@ package body WinUI3.Windows.UI.Popups is
    function Constructor return UICommandSeparator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.IUICommand");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Popups.UICommandSeparator");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Popups.IUICommand;
    begin
       return RetVal : UICommandSeparator do

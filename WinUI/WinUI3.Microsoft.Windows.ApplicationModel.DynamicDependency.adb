@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
    function Constructor return AddPackageDependencyOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.IAddPackageDependencyOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.AddPackageDependencyOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency.IAddPackageDependencyOptions;
    begin
       return RetVal : AddPackageDependencyOptions do
@@ -164,7 +164,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
    function Constructor return CreatePackageDependencyOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.ICreatePackageDependencyOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.CreatePackageDependencyOptions");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency.ICreatePackageDependencyOptions;
    begin
       return RetVal : CreatePackageDependencyOptions do
@@ -636,7 +636,7 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
    return PackageDependencyContext is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.IPackageDependencyContext");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.ApplicationModel.DynamicDependency.PackageDependencyContext");
       m_Factory    : access IPackageDependencyContextFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency.IPackageDependencyContext;

@@ -167,7 +167,7 @@ package body WinRt.Windows.Devices.Spi is
    return SpiConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.ISpiConnectionSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.SpiConnectionSettings");
       m_Factory    : access ISpiConnectionSettingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Spi.ISpiConnectionSettings;

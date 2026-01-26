@@ -588,7 +588,7 @@ package body WinRt.Windows.Devices.WiFiDirect.Services is
    return WiFiDirectServiceAdvertiser is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.WiFiDirect.Services.WiFiDirectServiceAdvertiser");
       m_Factory    : access IWiFiDirectServiceAdvertiserFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.WiFiDirect.Services.IWiFiDirectServiceAdvertiser;

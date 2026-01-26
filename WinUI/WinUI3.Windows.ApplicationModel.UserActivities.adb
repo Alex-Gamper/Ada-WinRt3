@@ -74,7 +74,7 @@ package body WinUI3.Windows.ApplicationModel.UserActivities is
    return UserActivity is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivity");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivity");
       m_Factory    : access IUserActivityFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserActivities.IUserActivity;
@@ -564,7 +564,7 @@ package body WinUI3.Windows.ApplicationModel.UserActivities is
    function Constructor return UserActivityAttribution is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivityAttribution");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserActivities.IUserActivityAttribution;
    begin
       return RetVal : UserActivityAttribution do
@@ -584,7 +584,7 @@ package body WinUI3.Windows.ApplicationModel.UserActivities is
    return UserActivityAttribution is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.IUserActivityAttribution");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserActivities.UserActivityAttribution");
       m_Factory    : access IUserActivityAttributionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserActivities.IUserActivityAttribution;

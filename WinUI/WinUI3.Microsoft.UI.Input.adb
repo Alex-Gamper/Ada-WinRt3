@@ -853,7 +853,7 @@ package body WinUI3.Microsoft.UI.Input is
    function Constructor return GestureRecognizer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.IGestureRecognizer");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.GestureRecognizer");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Input.IGestureRecognizer;
    begin
       return RetVal : GestureRecognizer do

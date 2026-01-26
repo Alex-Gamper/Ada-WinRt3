@@ -64,7 +64,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    return Shape is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IShape");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Shape");
       m_Factory    : access IShapeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IShape;
@@ -782,7 +782,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function Constructor return Ellipse is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IEllipse");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Ellipse");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IEllipse;
    begin
       return RetVal : Ellipse do
@@ -824,7 +824,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function Constructor return Line is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.ILine");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Line");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.ILine;
    begin
       return RetVal : Line do
@@ -1098,7 +1098,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    return Path is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Path");
       m_Factory    : access IPathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IPath;
@@ -1206,7 +1206,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function Constructor return Polygon is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IPolygon");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polygon");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IPolygon;
    begin
       return RetVal : Polygon do
@@ -1366,7 +1366,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function Constructor return Polyline is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IPolyline");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Polyline");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IPolyline;
    begin
       return RetVal : Polyline do
@@ -1526,7 +1526,7 @@ package body WinRt.Windows.UI.Xaml.Shapes is
    function Constructor return Rectangle is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.IRectangle");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Shapes.Rectangle");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Shapes.IRectangle;
    begin
       return RetVal : Rectangle do

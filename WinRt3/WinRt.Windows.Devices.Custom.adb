@@ -372,7 +372,7 @@ package body WinRt.Windows.Devices.Custom is
    return IOControlCode is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Custom.IIOControlCode");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Custom.IOControlCode");
       m_Factory    : access IIOControlCodeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Custom.IIOControlCode;

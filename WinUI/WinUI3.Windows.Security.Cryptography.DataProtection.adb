@@ -63,7 +63,7 @@ package body WinUI3.Windows.Security.Cryptography.DataProtection is
    function Constructor return DataProtectionProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
    begin
       return RetVal : DataProtectionProvider do
@@ -83,7 +83,7 @@ package body WinUI3.Windows.Security.Cryptography.DataProtection is
    return DataProtectionProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Cryptography.DataProtection.IDataProtectionProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Cryptography.DataProtection.DataProtectionProvider");
       m_Factory    : access IDataProtectionProviderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;

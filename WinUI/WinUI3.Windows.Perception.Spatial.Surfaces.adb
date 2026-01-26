@@ -511,7 +511,7 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
    function Constructor return SpatialSurfaceMeshOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceMeshOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceMeshOptions;
    begin
       return RetVal : SpatialSurfaceMeshOptions do
@@ -747,7 +747,7 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
    function Constructor return SpatialSurfaceObserver is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserver");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.Surfaces.SpatialSurfaceObserver");
       m_ComRetVal  : aliased WinUI3.Windows.Perception.Spatial.Surfaces.ISpatialSurfaceObserver;
    begin
       return RetVal : SpatialSurfaceObserver do

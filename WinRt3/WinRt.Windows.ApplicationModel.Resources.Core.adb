@@ -650,7 +650,7 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
    function Constructor return ResourceContext is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.IResourceContext");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Resources.Core.ResourceContext");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Resources.Core.IResourceContext;
    begin
       return RetVal : ResourceContext do

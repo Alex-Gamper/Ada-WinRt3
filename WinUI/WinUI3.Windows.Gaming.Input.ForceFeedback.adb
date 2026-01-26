@@ -69,7 +69,7 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
    return ConditionForceEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConditionForceEffect");
       m_Factory    : access IConditionForceEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
@@ -238,7 +238,7 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
    function Constructor return ConstantForceEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.ConstantForceEffect");
       m_ComRetVal  : aliased WinUI3.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : ConstantForceEffect do
@@ -873,7 +873,7 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
    return PeriodicForceEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.PeriodicForceEffect");
       m_Factory    : access IPeriodicForceEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
@@ -1070,7 +1070,7 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
    function Constructor return RampForceEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Gaming.Input.ForceFeedback.RampForceEffect");
       m_ComRetVal  : aliased WinUI3.Windows.Gaming.Input.ForceFeedback.IForceFeedbackEffect;
    begin
       return RetVal : RampForceEffect do

@@ -66,7 +66,7 @@ package body WinUI3.Windows.Media.Transcoding is
    function Constructor return MediaTranscoder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Transcoding.IMediaTranscoder");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Transcoding.MediaTranscoder");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Transcoding.IMediaTranscoder;
    begin
       return RetVal : MediaTranscoder do

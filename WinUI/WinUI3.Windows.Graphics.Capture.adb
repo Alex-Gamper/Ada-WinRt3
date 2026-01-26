@@ -677,7 +677,7 @@ package body WinUI3.Windows.Graphics.Capture is
    function Constructor return GraphicsCapturePicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Capture.IGraphicsCapturePicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Capture.GraphicsCapturePicker");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Capture.IGraphicsCapturePicker;
    begin
       return RetVal : GraphicsCapturePicker do

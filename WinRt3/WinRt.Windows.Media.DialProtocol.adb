@@ -669,7 +669,7 @@ package body WinRt.Windows.Media.DialProtocol is
    function Constructor return DialDevicePicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.IDialDevicePicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.DialProtocol.DialDevicePicker");
       m_ComRetVal  : aliased WinRt.Windows.Media.DialProtocol.IDialDevicePicker;
    begin
       return RetVal : DialDevicePicker do

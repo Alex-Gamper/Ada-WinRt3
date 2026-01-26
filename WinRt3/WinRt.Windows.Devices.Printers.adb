@@ -1614,7 +1614,7 @@ package body WinRt.Windows.Devices.Printers is
    return IppIntegerRange is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppIntegerRange");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppIntegerRange");
       m_Factory    : access IIppIntegerRangeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppIntegerRange;
@@ -2428,7 +2428,7 @@ package body WinRt.Windows.Devices.Printers is
    return IppResolution is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppResolution");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppResolution");
       m_Factory    : access IIppResolutionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppResolution;
@@ -2590,7 +2590,7 @@ package body WinRt.Windows.Devices.Printers is
    return IppTextWithLanguage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IIppTextWithLanguage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IppTextWithLanguage");
       m_Factory    : access IIppTextWithLanguageFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IIppTextWithLanguage;
@@ -2680,7 +2680,7 @@ package body WinRt.Windows.Devices.Printers is
    function Constructor return PageConfigurationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IPageConfigurationSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.PageConfigurationSettings");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IPageConfigurationSettings;
    begin
       return RetVal : PageConfigurationSettings do
@@ -3390,7 +3390,7 @@ package body WinRt.Windows.Devices.Printers is
    function Constructor return VirtualPrinterInstallationParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IVirtualPrinterInstallationParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterInstallationParameters");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterInstallationParameters;
    begin
       return RetVal : VirtualPrinterInstallationParameters do
@@ -4250,7 +4250,7 @@ package body WinRt.Windows.Devices.Printers is
    return VirtualPrinterSupportedFormat is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.IVirtualPrinterSupportedFormat");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Printers.VirtualPrinterSupportedFormat");
       m_Factory    : access IVirtualPrinterSupportedFormatFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Printers.IVirtualPrinterSupportedFormat;

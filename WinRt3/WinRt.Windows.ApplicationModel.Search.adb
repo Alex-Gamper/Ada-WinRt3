@@ -59,7 +59,7 @@ package body WinRt.Windows.ApplicationModel.Search is
    function Constructor return LocalContentSuggestionSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.ILocalContentSuggestionSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.LocalContentSuggestionSettings");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Search.ILocalContentSuggestionSettings;
    begin
       return RetVal : LocalContentSuggestionSettings do
@@ -1269,7 +1269,7 @@ package body WinRt.Windows.ApplicationModel.Search is
    return SearchQueryLinguisticDetails is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Search.SearchQueryLinguisticDetails");
       m_Factory    : access ISearchQueryLinguisticDetailsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Search.ISearchQueryLinguisticDetails;

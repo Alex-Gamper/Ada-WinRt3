@@ -58,7 +58,7 @@ package body WinUI3.Windows.Management is
    function Constructor return MdmAlert is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.IMdmAlert");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Management.MdmAlert");
       m_ComRetVal  : aliased WinUI3.Windows.Management.IMdmAlert;
    begin
       return RetVal : MdmAlert do

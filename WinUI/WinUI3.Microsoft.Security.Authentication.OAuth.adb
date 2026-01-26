@@ -196,7 +196,7 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    return AuthRequestParams is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IAuthRequestParams");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.AuthRequestParams");
       m_Factory    : access IAuthRequestParamsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IAuthRequestParams;
@@ -226,7 +226,7 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    return AuthRequestParams is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IAuthRequestParams");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.AuthRequestParams");
       m_Factory    : access IAuthRequestParamsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IAuthRequestParams;
@@ -860,7 +860,7 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    return ClientAuthentication is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IClientAuthentication");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.ClientAuthentication");
       m_Factory    : access IClientAuthenticationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
@@ -880,7 +880,7 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    function Constructor return ClientAuthentication is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.IClientAuthentication");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.ClientAuthentication");
       m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.IClientAuthentication;
    begin
       return RetVal : ClientAuthentication do
@@ -1439,7 +1439,7 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
    return TokenRequestParams is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.ITokenRequestParams");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Security.Authentication.OAuth.TokenRequestParams");
       m_Factory    : access ITokenRequestParamsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Security.Authentication.OAuth.ITokenRequestParams;

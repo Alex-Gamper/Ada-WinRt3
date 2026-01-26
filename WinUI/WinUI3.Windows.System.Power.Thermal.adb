@@ -149,7 +149,7 @@ package body WinUI3.Windows.System.Power.Thermal is
    return PowerThermalChannelDataConsumer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataConsumer");
       m_Factory    : access IPowerThermalChannelDataConsumerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.Power.Thermal.IPowerThermalChannelDataConsumer;
@@ -375,7 +375,7 @@ package body WinUI3.Windows.System.Power.Thermal is
    return PowerThermalChannelDataProducer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Power.Thermal.IPowerThermalChannelDataProducer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.Power.Thermal.PowerThermalChannelDataProducer");
       m_Factory    : access IPowerThermalChannelDataProducerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.Power.Thermal.IPowerThermalChannelDataProducer;

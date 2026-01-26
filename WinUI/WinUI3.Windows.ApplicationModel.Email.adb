@@ -110,7 +110,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailAttachment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailAttachment");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_Factory    : access IEmailAttachmentFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailAttachment;
@@ -134,7 +134,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailAttachment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailAttachment");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailAttachment;
    begin
       return RetVal : EmailAttachment do
@@ -155,7 +155,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailAttachment is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailAttachment");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailAttachment");
       m_Factory    : access IEmailAttachmentFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailAttachment;
@@ -1976,7 +1976,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailIrmInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailIrmInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailIrmInfo;
    begin
       return RetVal : EmailIrmInfo do
@@ -1997,7 +1997,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailIrmInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailIrmInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmInfo");
       m_Factory    : access IEmailIrmInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailIrmInfo;
@@ -2436,7 +2436,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailIrmTemplate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailIrmTemplate");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
       m_Factory    : access IEmailIrmTemplateFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailIrmTemplate;
@@ -2462,7 +2462,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailIrmTemplate is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailIrmTemplate");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailIrmTemplate");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailIrmTemplate;
    begin
       return RetVal : EmailIrmTemplate do
@@ -5310,7 +5310,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailMailboxAutoReplySettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailMailboxAutoReplySettings");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailMailboxAutoReplySettings;
    begin
       return RetVal : EmailMailboxAutoReplySettings do
@@ -7328,7 +7328,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailMeetingInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailMeetingInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailMeetingInfo");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailMeetingInfo;
    begin
       return RetVal : EmailMeetingInfo do
@@ -7832,7 +7832,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailMessage");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailMessage;
    begin
       return RetVal : EmailMessage do
@@ -9282,7 +9282,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailQueryOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailQueryOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailQueryOptions;
    begin
       return RetVal : EmailQueryOptions do
@@ -9302,7 +9302,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailQueryOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailQueryOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_Factory    : access IEmailQueryOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailQueryOptions;
@@ -9329,7 +9329,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailQueryOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailQueryOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailQueryOptions");
       m_Factory    : access IEmailQueryOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailQueryOptions;
@@ -9637,7 +9637,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailRecipient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailRecipient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailRecipient;
    begin
       return RetVal : EmailRecipient do
@@ -9657,7 +9657,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailRecipient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailRecipient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_Factory    : access IEmailRecipientFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailRecipient;
@@ -9684,7 +9684,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    return EmailRecipient is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailRecipient");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipient");
       m_Factory    : access IEmailRecipientFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailRecipient;
@@ -9808,7 +9808,7 @@ package body WinUI3.Windows.ApplicationModel.Email is
    function Constructor return EmailRecipientResolutionResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.IEmailRecipientResolutionResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Email.EmailRecipientResolutionResult");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Email.IEmailRecipientResolutionResult;
    begin
       return RetVal : EmailRecipientResolutionResult do

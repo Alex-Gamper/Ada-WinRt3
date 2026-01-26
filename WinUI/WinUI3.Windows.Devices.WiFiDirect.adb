@@ -231,7 +231,7 @@ package body WinUI3.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectAdvertisementPublisher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectAdvertisementPublisher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectAdvertisementPublisher");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.WiFiDirect.IWiFiDirectAdvertisementPublisher;
    begin
       return RetVal : WiFiDirectAdvertisementPublisher do
@@ -428,7 +428,7 @@ package body WinUI3.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectConnectionListener is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectConnectionListener");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectConnectionListener");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.WiFiDirect.IWiFiDirectConnectionListener;
    begin
       return RetVal : WiFiDirectConnectionListener do
@@ -503,7 +503,7 @@ package body WinUI3.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectConnectionParameters is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectConnectionParameters");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.WiFiDirect.IWiFiDirectConnectionParameters;
    begin
       return RetVal : WiFiDirectConnectionParameters do
@@ -1105,7 +1105,7 @@ package body WinUI3.Windows.Devices.WiFiDirect is
    function Constructor return WiFiDirectInformationElement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.IWiFiDirectInformationElement");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.WiFiDirect.WiFiDirectInformationElement");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.WiFiDirect.IWiFiDirectInformationElement;
    begin
       return RetVal : WiFiDirectInformationElement do

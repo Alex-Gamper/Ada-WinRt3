@@ -497,7 +497,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardAppletIdGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAppletIdGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
    begin
       return RetVal : SmartCardAppletIdGroup do
@@ -520,7 +520,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    return SmartCardAppletIdGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAppletIdGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAppletIdGroup");
       m_Factory    : access ISmartCardAppletIdGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardAppletIdGroup;
@@ -1151,7 +1151,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    return SmartCardAutomaticResponseApdu is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardAutomaticResponseApdu");
       m_Factory    : access ISmartCardAutomaticResponseApduFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardAutomaticResponseApdu;
@@ -2899,7 +2899,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult do
@@ -2978,7 +2978,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult do
@@ -3057,7 +3057,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult;
    begin
       return RetVal : SmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult do
@@ -3136,7 +3136,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramMaterialCharacteristics is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialCharacteristics");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialCharacteristics do
@@ -3326,7 +3326,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramMaterialPackageCharacteristics is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramMaterialPackageCharacteristics");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramMaterialPackageCharacteristics;
    begin
       return RetVal : SmartCardCryptogramMaterialPackageCharacteristics do
@@ -3499,7 +3499,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramPlacementStep is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramPlacementStep");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramPlacementStep;
    begin
       return RetVal : SmartCardCryptogramPlacementStep do
@@ -3842,7 +3842,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardCryptogramStorageKeyCharacteristics is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardCryptogramStorageKeyCharacteristics");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardCryptogramStorageKeyCharacteristics;
    begin
       return RetVal : SmartCardCryptogramStorageKeyCharacteristics do
@@ -5073,7 +5073,7 @@ package body WinUI3.Windows.Devices.SmartCards is
    function Constructor return SmartCardPinPolicy is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.ISmartCardPinPolicy");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.SmartCards.SmartCardPinPolicy");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.SmartCards.ISmartCardPinPolicy;
    begin
       return RetVal : SmartCardPinPolicy do

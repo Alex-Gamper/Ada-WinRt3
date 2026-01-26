@@ -565,7 +565,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
    function Constructor return ClipboardContentOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IClipboardContentOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ClipboardContentOptions");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.IClipboardContentOptions;
    begin
       return RetVal : ClipboardContentOptions do
@@ -874,7 +874,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
    function Constructor return DataPackage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IDataPackage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DataPackage");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.IDataPackage;
    begin
       return RetVal : DataPackage do
@@ -4202,7 +4202,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
    return ShareProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IShareProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareProvider");
       m_Factory    : access IShareProviderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.IShareProvider;
@@ -4577,7 +4577,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
    function Constructor return ShareUIOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.IShareUIOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ShareUIOptions");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.IShareUIOptions;
    begin
       return RetVal : ShareUIOptions do
@@ -5256,7 +5256,7 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
    return TransferTargetDiscoveryOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.DataTransfer.TransferTargetDiscoveryOptions");
       m_Factory    : access ITransferTargetDiscoveryOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.DataTransfer.ITransferTargetDiscoveryOptions;

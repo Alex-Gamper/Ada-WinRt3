@@ -1347,7 +1347,7 @@ package body WinRt.Windows.Graphics.Printing.PrintSupport is
    function Constructor return PrintSupportPrintTicketElement is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintSupport.PrintSupportPrintTicketElement");
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.PrintSupport.IPrintSupportPrintTicketElement;
    begin
       return RetVal : PrintSupportPrintTicketElement do

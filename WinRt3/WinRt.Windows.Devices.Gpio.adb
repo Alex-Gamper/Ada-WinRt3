@@ -70,7 +70,7 @@ package body WinRt.Windows.Devices.Gpio is
    return GpioChangeCounter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeCounter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeCounter");
       m_Factory    : access IGpioChangeCounterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeCounter;
@@ -249,7 +249,7 @@ package body WinRt.Windows.Devices.Gpio is
    return GpioChangeReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeReader");
       m_Factory    : access IGpioChangeReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeReader;
@@ -274,7 +274,7 @@ package body WinRt.Windows.Devices.Gpio is
    return GpioChangeReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.IGpioChangeReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.GpioChangeReader");
       m_Factory    : access IGpioChangeReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.IGpioChangeReader;

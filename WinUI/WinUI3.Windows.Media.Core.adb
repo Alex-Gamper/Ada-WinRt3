@@ -89,7 +89,7 @@ package body WinUI3.Windows.Media.Core is
    return AudioStreamDescriptor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IAudioStreamDescriptor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.AudioStreamDescriptor");
       m_Factory    : access IAudioStreamDescriptorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IAudioStreamDescriptor;
@@ -806,7 +806,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return ChapterCue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IChapterCue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ChapterCue");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IChapterCue;
    begin
       return RetVal : ChapterCue do
@@ -1124,7 +1124,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return CodecQuery is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ICodecQuery");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.CodecQuery");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ICodecQuery;
    begin
       return RetVal : CodecQuery do
@@ -2488,7 +2488,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return DataCue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IDataCue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.DataCue");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IDataCue;
    begin
       return RetVal : DataCue do
@@ -2894,7 +2894,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return FaceDetectionEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.FaceDetectionEffectDefinition");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
       m_Wrapped    : WinUI3.Windows.Media.Effects.IVideoEffectDefinition_Ptr := new WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
    begin
@@ -3459,7 +3459,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return ImageCue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IImageCue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ImageCue");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IImageCue;
    begin
       return RetVal : ImageCue do
@@ -3987,7 +3987,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return MediaBinder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMediaBinder");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.MediaBinder");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMediaBinder;
    begin
       return RetVal : MediaBinder do
@@ -5090,7 +5090,7 @@ package body WinUI3.Windows.Media.Core is
    return MediaSourceAppServiceConnection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMediaSourceAppServiceConnection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.MediaSourceAppServiceConnection");
       m_Factory    : access IMediaSourceAppServiceConnectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMediaSourceAppServiceConnection;
@@ -6032,7 +6032,7 @@ package body WinUI3.Windows.Media.Core is
    return MediaStreamSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMediaStreamSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
       m_Factory    : access IMediaStreamSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMediaStreamSource;
@@ -6057,7 +6057,7 @@ package body WinUI3.Windows.Media.Core is
    return MediaStreamSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMediaStreamSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.MediaStreamSource");
       m_Factory    : access IMediaStreamSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMediaStreamSource;
@@ -7829,7 +7829,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return MseStreamSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMseStreamSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.MseStreamSource");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMseStreamSource;
    begin
       return RetVal : MseStreamSource do
@@ -8315,7 +8315,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return SceneAnalysisEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.SceneAnalysisEffectDefinition");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
       m_Wrapped    : WinUI3.Windows.Media.Effects.IVideoEffectDefinition_Ptr := new WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
    begin
@@ -8775,7 +8775,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return SpeechCue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ISpeechCue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.SpeechCue");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ISpeechCue;
    begin
       return RetVal : SpeechCue do
@@ -9053,7 +9053,7 @@ package body WinUI3.Windows.Media.Core is
    return TimedMetadataStreamDescriptor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IMediaStreamDescriptor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedMetadataStreamDescriptor");
       m_Factory    : access ITimedMetadataStreamDescriptorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IMediaStreamDescriptor;
@@ -9289,7 +9289,7 @@ package body WinUI3.Windows.Media.Core is
    return TimedMetadataTrack is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedMetadataTrack");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedMetadataTrack");
       m_Factory    : access ITimedMetadataTrackFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedMetadataTrack;
@@ -9926,7 +9926,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return TimedTextCue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedTextCue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedTextCue");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedTextCue;
    begin
       return RetVal : TimedTextCue do
@@ -10183,7 +10183,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return TimedTextLine is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedTextLine");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedTextLine");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedTextLine;
    begin
       return RetVal : TimedTextLine do
@@ -10282,7 +10282,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return TimedTextRegion is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedTextRegion");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedTextRegion");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedTextRegion;
    begin
       return RetVal : TimedTextRegion do
@@ -11223,7 +11223,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return TimedTextStyle is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedTextStyle");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedTextStyle");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedTextStyle;
    begin
       return RetVal : TimedTextStyle do
@@ -11947,7 +11947,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return TimedTextSubformat is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.ITimedTextSubformat");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.TimedTextSubformat");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.ITimedTextSubformat;
    begin
       return RetVal : TimedTextSubformat do
@@ -12218,7 +12218,7 @@ package body WinUI3.Windows.Media.Core is
    function Constructor return VideoStabilizationEffectDefinition is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Effects.IVideoEffectDefinition");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.VideoStabilizationEffectDefinition");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
       m_Wrapped    : WinUI3.Windows.Media.Effects.IVideoEffectDefinition_Ptr := new WinUI3.Windows.Media.Effects.IVideoEffectDefinition;
    begin
@@ -12342,7 +12342,7 @@ package body WinUI3.Windows.Media.Core is
    return VideoStreamDescriptor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.IVideoStreamDescriptor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Core.VideoStreamDescriptor");
       m_Factory    : access IVideoStreamDescriptorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.Core.IVideoStreamDescriptor;

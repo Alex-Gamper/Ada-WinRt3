@@ -63,7 +63,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
@@ -92,7 +92,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
@@ -122,7 +122,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;
@@ -154,7 +154,7 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
    return Geofence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.IGeofence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Geolocation.Geofencing.Geofence");
       m_Factory    : access IGeofenceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Geolocation.Geofencing.IGeofence;

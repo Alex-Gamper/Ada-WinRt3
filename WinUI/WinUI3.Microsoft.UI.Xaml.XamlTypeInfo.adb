@@ -61,7 +61,7 @@ package body WinUI3.Microsoft.UI.Xaml.XamlTypeInfo is
    function Constructor return XamlControlsXamlMetaDataProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Markup.IXamlMetadataProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.XamlTypeInfo.XamlControlsXamlMetaDataProvider");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Markup.IXamlMetadataProvider;
       m_Wrapped    : WinUI3.Microsoft.UI.Xaml.Markup.IXamlMetadataProvider_Ptr := new WinUI3.Microsoft.UI.Xaml.Markup.IXamlMetadataProvider;
    begin

@@ -614,7 +614,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3D3MFPackage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3D3MFPackage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3D3MFPackage");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3D3MFPackage;
    begin
       return RetVal : Printing3D3MFPackage do
@@ -1064,7 +1064,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DBaseMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DBaseMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DBaseMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DBaseMaterial;
    begin
       return RetVal : Printing3DBaseMaterial do
@@ -1233,7 +1233,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    return Printing3DBaseMaterialGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DBaseMaterialGroup");
       m_Factory    : access IPrinting3DBaseMaterialGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DBaseMaterialGroup;
@@ -1316,7 +1316,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DColorMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DColorMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DColorMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DColorMaterial;
    begin
       return RetVal : Printing3DColorMaterial do
@@ -1434,7 +1434,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    return Printing3DColorMaterialGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DColorMaterialGroup");
       m_Factory    : access IPrinting3DColorMaterialGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DColorMaterialGroup;
@@ -1517,7 +1517,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DComponent is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DComponent");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DComponent");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DComponent;
    begin
       return RetVal : Printing3DComponent do
@@ -1755,7 +1755,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DComponentWithMatrix is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DComponentWithMatrix");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DComponentWithMatrix;
    begin
       return RetVal : Printing3DComponentWithMatrix do
@@ -1864,7 +1864,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DCompositeMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DCompositeMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterial;
    begin
       return RetVal : Printing3DCompositeMaterial do
@@ -1930,7 +1930,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    return Printing3DCompositeMaterialGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DCompositeMaterialGroup");
       m_Factory    : access IPrinting3DCompositeMaterialGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DCompositeMaterialGroup;
@@ -2076,7 +2076,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DFaceReductionOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DFaceReductionOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DFaceReductionOptions;
    begin
       return RetVal : Printing3DFaceReductionOptions do
@@ -2214,7 +2214,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DMaterial;
    begin
       return RetVal : Printing3DMaterial do
@@ -2356,7 +2356,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMesh is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMesh");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMesh");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DMesh;
    begin
       return RetVal : Printing3DMesh do
@@ -2899,7 +2899,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DModel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DModel");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DModel");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DModel;
    begin
       return RetVal : Printing3DModel do
@@ -3648,7 +3648,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DModelTexture is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DModelTexture");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DModelTexture");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DModelTexture;
    begin
       return RetVal : Printing3DModelTexture do
@@ -3789,7 +3789,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DMultiplePropertyMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterial;
    begin
       return RetVal : Printing3DMultiplePropertyMaterial do
@@ -3855,7 +3855,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    return Printing3DMultiplePropertyMaterialGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterialGroup");
       m_Factory    : access IPrinting3DMultiplePropertyMaterialGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DMultiplePropertyMaterialGroup;
@@ -3958,7 +3958,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DTexture2CoordMaterial is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTexture2CoordMaterial");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterial;
    begin
       return RetVal : Printing3DTexture2CoordMaterial do
@@ -4103,7 +4103,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    return Printing3DTexture2CoordMaterialGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTexture2CoordMaterialGroup");
       m_Factory    : access IPrinting3DTexture2CoordMaterialGroupFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DTexture2CoordMaterialGroup;
@@ -4229,7 +4229,7 @@ package body WinUI3.Windows.Graphics.Printing3D is
    function Constructor return Printing3DTextureResource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.IPrinting3DTextureResource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing3D.Printing3DTextureResource");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing3D.IPrinting3DTextureResource;
    begin
       return RetVal : Printing3DTextureResource do

@@ -3142,7 +3142,7 @@ package body WinUI3.Windows.Graphics.Imaging is
    function Constructor return BitmapPropertySet is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("GenericObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.BitmapPropertySet");
       m_ComRetVal  : aliased WinUI3.GenericObject;
    begin
       return RetVal : BitmapPropertySet do
@@ -3349,7 +3349,7 @@ package body WinUI3.Windows.Graphics.Imaging is
    function Constructor return BitmapTransform is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.IBitmapTransform");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.BitmapTransform");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Imaging.IBitmapTransform;
    begin
       return RetVal : BitmapTransform do
@@ -3588,7 +3588,7 @@ package body WinUI3.Windows.Graphics.Imaging is
    return BitmapTypedValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.IBitmapTypedValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.BitmapTypedValue");
       m_Factory    : access IBitmapTypedValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Imaging.IBitmapTypedValue;
@@ -4181,7 +4181,7 @@ package body WinUI3.Windows.Graphics.Imaging is
    return SoftwareBitmap is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.ISoftwareBitmap");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory    : access ISoftwareBitmapFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Imaging.ISoftwareBitmap;
@@ -4208,7 +4208,7 @@ package body WinUI3.Windows.Graphics.Imaging is
    return SoftwareBitmap is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.ISoftwareBitmap");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Imaging.SoftwareBitmap");
       m_Factory    : access ISoftwareBitmapFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Imaging.ISoftwareBitmap;

@@ -956,7 +956,7 @@ package body WinRt.Windows.Storage is
    function Constructor return ApplicationDataCompositeValue is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.ApplicationDataCompositeValue");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Collections.IPropertySet;
       m_Wrapped    : WinRt.Windows.Foundation.Collections.IPropertySet_Ptr := new WinRt.Windows.Foundation.Collections.IPropertySet;
    begin
@@ -10820,7 +10820,7 @@ package body WinRt.Windows.Storage is
    function Constructor return StorageLibraryChangeTrackerOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.IStorageLibraryChangeTrackerOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.StorageLibraryChangeTrackerOptions");
       m_ComRetVal  : aliased WinRt.Windows.Storage.IStorageLibraryChangeTrackerOptions;
    begin
       return RetVal : StorageLibraryChangeTrackerOptions do

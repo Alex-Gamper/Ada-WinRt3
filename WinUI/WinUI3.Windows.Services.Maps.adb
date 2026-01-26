@@ -72,7 +72,7 @@ package body WinUI3.Windows.Services.Maps is
    return EnhancedWaypoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.IEnhancedWaypoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.EnhancedWaypoint");
       m_Factory    : access IEnhancedWaypointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Services.Maps.IEnhancedWaypoint;
@@ -1309,7 +1309,7 @@ package body WinUI3.Windows.Services.Maps is
    function Constructor return MapRouteDrivingOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.IMapRouteDrivingOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.MapRouteDrivingOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Maps.IMapRouteDrivingOptions;
    begin
       return RetVal : MapRouteDrivingOptions do
@@ -3468,7 +3468,7 @@ package body WinUI3.Windows.Services.Maps is
    function Constructor return PlaceInfoCreateOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.IPlaceInfoCreateOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Services.Maps.PlaceInfoCreateOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Services.Maps.IPlaceInfoCreateOptions;
    begin
       return RetVal : PlaceInfoCreateOptions do

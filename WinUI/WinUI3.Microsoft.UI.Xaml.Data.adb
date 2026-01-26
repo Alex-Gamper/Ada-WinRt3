@@ -63,7 +63,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return BindingBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IBindingBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.BindingBase");
       m_Factory    : access IBindingBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IBindingBase;
@@ -114,7 +114,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return Binding is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IBinding");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.Binding");
       m_Factory    : access IBindingFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IBinding;
@@ -680,7 +680,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    function Constructor return CollectionViewSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.ICollectionViewSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.CollectionViewSource");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.ICollectionViewSource;
    begin
       return RetVal : CollectionViewSource do
@@ -942,7 +942,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return CurrentChangingEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.ICurrentChangingEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.CurrentChangingEventArgs");
       m_Factory    : access ICurrentChangingEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.ICurrentChangingEventArgs;
@@ -968,7 +968,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return CurrentChangingEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.ICurrentChangingEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.CurrentChangingEventArgs");
       m_Factory    : access ICurrentChangingEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.ICurrentChangingEventArgs;
@@ -1083,7 +1083,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return DataErrorsChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IDataErrorsChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.DataErrorsChangedEventArgs");
       m_Factory    : access IDataErrorsChangedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IDataErrorsChangedEventArgs;
@@ -1175,7 +1175,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return ItemIndexRange is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IItemIndexRange");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.ItemIndexRange");
       m_Factory    : access IItemIndexRangeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IItemIndexRange;
@@ -1278,7 +1278,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return PropertyChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IPropertyChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.PropertyChangedEventArgs");
       m_Factory    : access IPropertyChangedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IPropertyChangedEventArgs;
@@ -1367,7 +1367,7 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
    return RelativeSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.IRelativeSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Data.RelativeSource");
       m_Factory    : access IRelativeSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Data.IRelativeSource;

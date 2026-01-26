@@ -102,7 +102,7 @@ package body WinUI3.Windows.ApplicationModel.ExtendedExecution is
    function Constructor return ExtendedExecutionSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.ExtendedExecution.ExtendedExecutionSession");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.ExtendedExecution.IExtendedExecutionSession;
    begin
       return RetVal : ExtendedExecutionSession do

@@ -1219,7 +1219,7 @@ package body WinUI3.Windows.Perception.Spatial is
    return SpatialEntity is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.ISpatialEntity");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Perception.Spatial.ISpatialEntity;
@@ -1244,7 +1244,7 @@ package body WinUI3.Windows.Perception.Spatial is
    return SpatialEntity is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.ISpatialEntity");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Perception.Spatial.SpatialEntity");
       m_Factory    : access ISpatialEntityFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Perception.Spatial.ISpatialEntity;

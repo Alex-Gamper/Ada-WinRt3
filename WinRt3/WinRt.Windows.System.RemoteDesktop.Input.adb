@@ -64,7 +64,7 @@ package body WinRt.Windows.System.RemoteDesktop.Input is
    return RemoteTextConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
@@ -90,7 +90,7 @@ package body WinRt.Windows.System.RemoteDesktop.Input is
    return RemoteTextConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;

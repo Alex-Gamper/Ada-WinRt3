@@ -61,7 +61,7 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
    function Constructor return DesktopAcrylicController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.IDesktopAcrylicController");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.DesktopAcrylicController");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.SystemBackdrops.IDesktopAcrylicController;
    begin
       return RetVal : DesktopAcrylicController do
@@ -623,7 +623,7 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
    function Constructor return MicaController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.IMicaController");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.MicaController");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.SystemBackdrops.IMicaController;
    begin
       return RetVal : MicaController do
@@ -1185,7 +1185,7 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
    function Constructor return SystemBackdropConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.ISystemBackdropConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.SystemBackdrops.SystemBackdropConfiguration");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.SystemBackdrops.ISystemBackdropConfiguration;
    begin
       return RetVal : SystemBackdropConfiguration do

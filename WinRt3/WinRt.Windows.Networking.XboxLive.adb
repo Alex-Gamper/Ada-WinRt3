@@ -1421,7 +1421,7 @@ package body WinRt.Windows.Networking.XboxLive is
    function Constructor return XboxLiveQualityOfServiceMeasurement is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.XboxLive.XboxLiveQualityOfServiceMeasurement");
       m_ComRetVal  : aliased WinRt.Windows.Networking.XboxLive.IXboxLiveQualityOfServiceMeasurement;
    begin
       return RetVal : XboxLiveQualityOfServiceMeasurement do

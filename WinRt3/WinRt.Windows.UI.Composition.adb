@@ -4803,7 +4803,7 @@ package body WinRt.Windows.UI.Composition is
    return CompositionEffectSourceParameter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositionEffectSourceParameter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionEffectSourceParameter");
       m_Factory    : access ICompositionEffectSourceParameterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositionEffectSourceParameter;
@@ -6592,7 +6592,7 @@ package body WinRt.Windows.UI.Composition is
    return CompositionPath is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositionPath");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.CompositionPath");
       m_Factory    : access ICompositionPathFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositionPath;
@@ -10263,7 +10263,7 @@ package body WinRt.Windows.UI.Composition is
    function Constructor return Compositor is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.ICompositor");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Composition.Compositor");
       m_ComRetVal  : aliased WinRt.Windows.UI.Composition.ICompositor;
    begin
       return RetVal : Compositor do

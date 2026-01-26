@@ -751,7 +751,7 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbControlRequestType is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbControlRequestType");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbControlRequestType");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbControlRequestType;
    begin
       return RetVal : UsbControlRequestType do
@@ -1541,7 +1541,7 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbDeviceClass is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbDeviceClass");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbDeviceClass");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbDeviceClass;
    begin
       return RetVal : UsbDeviceClass do
@@ -3266,7 +3266,7 @@ package body WinRt.Windows.Devices.Usb is
    function Constructor return UsbSetupPacket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbSetupPacket");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbSetupPacket;
    begin
       return RetVal : UsbSetupPacket do
@@ -3286,7 +3286,7 @@ package body WinRt.Windows.Devices.Usb is
    return UsbSetupPacket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.IUsbSetupPacket");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Usb.UsbSetupPacket");
       m_Factory    : access IUsbSetupPacketFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Usb.IUsbSetupPacket;

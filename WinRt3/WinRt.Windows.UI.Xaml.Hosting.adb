@@ -110,7 +110,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return DesignerAppManager is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IDesignerAppManager");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesignerAppManager");
       m_Factory    : access IDesignerAppManagerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IDesignerAppManager;
@@ -507,7 +507,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return DesktopWindowXamlSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.DesktopWindowXamlSource");
       m_Factory    : access IDesktopWindowXamlSourceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IDesktopWindowXamlSource;
@@ -1139,7 +1139,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -1164,7 +1164,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -1190,7 +1190,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationRequest is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationRequest");
       m_Factory    : access IXamlSourceFocusNavigationRequestFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationRequest;
@@ -1291,7 +1291,7 @@ package body WinRt.Windows.UI.Xaml.Hosting is
    return XamlSourceFocusNavigationResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Hosting.XamlSourceFocusNavigationResult");
       m_Factory    : access IXamlSourceFocusNavigationResultFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Hosting.IXamlSourceFocusNavigationResult;

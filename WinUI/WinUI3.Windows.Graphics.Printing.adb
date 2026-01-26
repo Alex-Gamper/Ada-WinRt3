@@ -235,7 +235,7 @@ package body WinUI3.Windows.Graphics.Printing is
    function Constructor return PrintPageInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.IPrintPageInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintPageInfo");
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.IPrintPageInfo;
    begin
       return RetVal : PrintPageInfo do
@@ -442,7 +442,7 @@ package body WinUI3.Windows.Graphics.Printing is
    return PrintPageRange is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.IPrintPageRange");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.IPrintPageRange;
@@ -466,7 +466,7 @@ package body WinUI3.Windows.Graphics.Printing is
    return PrintPageRange is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.IPrintPageRange");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Graphics.Printing.IPrintPageRange;

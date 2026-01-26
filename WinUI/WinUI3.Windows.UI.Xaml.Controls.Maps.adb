@@ -76,7 +76,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileDataSource");
       m_Factory    : access IMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileDataSource;
@@ -127,7 +127,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return CustomMapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.CustomMapTileDataSource");
       m_Factory    : access ICustomMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.ICustomMapTileDataSource;
@@ -211,7 +211,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return HttpMapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
       m_Factory    : access IHttpMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
@@ -237,7 +237,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return HttpMapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.HttpMapTileDataSource");
       m_Factory    : access IHttpMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IHttpMapTileDataSource;
@@ -412,7 +412,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return LocalMapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
       m_Factory    : access ILocalMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
@@ -438,7 +438,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return LocalMapTileDataSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.LocalMapTileDataSource");
       m_Factory    : access ILocalMapTileDataSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.ILocalMapTileDataSource;
@@ -556,7 +556,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapActualCameraChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangedEventArgs;
    begin
       return RetVal : MapActualCameraChangedEventArgs do
@@ -639,7 +639,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapActualCameraChangingEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapActualCameraChangingEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapActualCameraChangingEventArgs;
    begin
       return RetVal : MapActualCameraChangingEventArgs do
@@ -727,7 +727,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapElement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElement");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement");
       m_Factory    : access IMapElementFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElement;
@@ -1222,7 +1222,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapBillboard is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapBillboard");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapBillboard");
       m_Factory    : access IMapBillboardFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapBillboard;
@@ -1498,7 +1498,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapCamera is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCamera");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCamera;
@@ -1523,7 +1523,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapCamera is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCamera");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCamera;
@@ -1549,7 +1549,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapCamera is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCamera");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCamera;
@@ -1577,7 +1577,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapCamera is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCamera");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCamera");
       m_Factory    : access IMapCameraFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCamera;
@@ -1786,7 +1786,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapContextRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapContextRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapContextRequestedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapContextRequestedEventArgs;
    begin
       return RetVal : MapContextRequestedEventArgs do
@@ -1885,7 +1885,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControl is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControl");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControl");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControl;
    begin
       return RetVal : MapControl do
@@ -6397,7 +6397,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlBusinessLandmarkClickEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkClickEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkClickEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkClickEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkClickEventArgs do
@@ -6456,7 +6456,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlBusinessLandmarkPointerEnteredEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerEnteredEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerEnteredEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerEnteredEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkPointerEnteredEventArgs do
@@ -6515,7 +6515,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlBusinessLandmarkPointerExitedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerExitedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkPointerExitedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkPointerExitedEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkPointerExitedEventArgs do
@@ -6574,7 +6574,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlBusinessLandmarkRightTappedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkRightTappedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlBusinessLandmarkRightTappedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlBusinessLandmarkRightTappedEventArgs;
    begin
       return RetVal : MapControlBusinessLandmarkRightTappedEventArgs do
@@ -6637,7 +6637,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapControlDataHelper is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlDataHelper");
       m_Factory    : access IMapControlDataHelperFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlDataHelper;
@@ -7009,7 +7009,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlTransitFeatureClickEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureClickEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureClickEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureClickEventArgs;
    begin
       return RetVal : MapControlTransitFeatureClickEventArgs do
@@ -7111,7 +7111,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlTransitFeaturePointerEnteredEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerEnteredEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerEnteredEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerEnteredEventArgs;
    begin
       return RetVal : MapControlTransitFeaturePointerEnteredEventArgs do
@@ -7213,7 +7213,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlTransitFeaturePointerExitedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerExitedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeaturePointerExitedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeaturePointerExitedEventArgs;
    begin
       return RetVal : MapControlTransitFeaturePointerExitedEventArgs do
@@ -7315,7 +7315,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapControlTransitFeatureRightTappedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureRightTappedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapControlTransitFeatureRightTappedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapControlTransitFeatureRightTappedEventArgs;
    begin
       return RetVal : MapControlTransitFeatureRightTappedEventArgs do
@@ -7422,7 +7422,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapCustomExperience is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCustomExperience");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperience");
       m_Factory    : access IMapCustomExperienceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCustomExperience;
@@ -7468,7 +7468,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapCustomExperienceChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapCustomExperienceChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapCustomExperienceChangedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapCustomExperienceChangedEventArgs;
    begin
       return RetVal : MapCustomExperienceChangedEventArgs do
@@ -7510,7 +7510,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElement3D is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElement3D");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElement3D");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElement3D;
    begin
       return RetVal : MapElement3D do
@@ -7873,7 +7873,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementClickEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementClickEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementClickEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementClickEventArgs;
    begin
       return RetVal : MapElementClickEventArgs do
@@ -7972,7 +7972,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementPointerEnteredEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementPointerEnteredEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerEnteredEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementPointerEnteredEventArgs;
    begin
       return RetVal : MapElementPointerEnteredEventArgs do
@@ -8071,7 +8071,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementPointerExitedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementPointerExitedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementPointerExitedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementPointerExitedEventArgs;
    begin
       return RetVal : MapElementPointerExitedEventArgs do
@@ -8175,7 +8175,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapLayer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapLayer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapLayer");
       m_Factory    : access IMapLayerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapLayer;
@@ -8392,7 +8392,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementsLayer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementsLayer");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayer");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementsLayer;
    begin
       return RetVal : MapElementsLayer do
@@ -8628,7 +8628,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementsLayerClickEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementsLayerClickEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerClickEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementsLayerClickEventArgs;
    begin
       return RetVal : MapElementsLayerClickEventArgs do
@@ -8727,7 +8727,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementsLayerContextRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementsLayerContextRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerContextRequestedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementsLayerContextRequestedEventArgs;
    begin
       return RetVal : MapElementsLayerContextRequestedEventArgs do
@@ -8826,7 +8826,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementsLayerPointerEnteredEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerEnteredEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerEnteredEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerEnteredEventArgs;
    begin
       return RetVal : MapElementsLayerPointerEnteredEventArgs do
@@ -8925,7 +8925,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapElementsLayerPointerExitedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerExitedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapElementsLayerPointerExitedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapElementsLayerPointerExitedEventArgs;
    begin
       return RetVal : MapElementsLayerPointerExitedEventArgs do
@@ -9024,7 +9024,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapIcon is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapIcon");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapIcon");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapIcon;
    begin
       return RetVal : MapIcon do
@@ -9341,7 +9341,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapInputEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapInputEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapInputEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapInputEventArgs;
    begin
       return RetVal : MapInputEventArgs do
@@ -9420,7 +9420,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapItemsControl is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapItemsControl");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapItemsControl");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapItemsControl;
    begin
       return RetVal : MapItemsControl do
@@ -9629,7 +9629,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapModel3D is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapModel3D");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapModel3D");
       m_Factory    : access IMapModel3DFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapModel3D;
@@ -9825,7 +9825,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapPolygon is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapPolygon");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolygon");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapPolygon;
    begin
       return RetVal : MapPolygon do
@@ -10126,7 +10126,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapPolyline is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapPolyline");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapPolyline");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapPolyline;
    begin
       return RetVal : MapPolyline do
@@ -10350,7 +10350,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapRightTappedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapRightTappedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRightTappedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapRightTappedEventArgs;
    begin
       return RetVal : MapRightTappedEventArgs do
@@ -10435,7 +10435,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapRouteView is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapRouteView");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapRouteView");
       m_Factory    : access IMapRouteViewFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapRouteView;
@@ -12770,7 +12770,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTargetCameraChangedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTargetCameraChangedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTargetCameraChangedEventArgs;
    begin
       return RetVal : MapTargetCameraChangedEventArgs do
@@ -12853,7 +12853,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileBitmapRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequest");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequest;
    begin
       return RetVal : MapTileBitmapRequest do
@@ -12947,7 +12947,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileBitmapRequestDeferral is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestDeferral");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestDeferral;
    begin
       return RetVal : MapTileBitmapRequestDeferral do
@@ -13003,7 +13003,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileBitmapRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileBitmapRequestedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileBitmapRequestedEventArgs;
    begin
       return RetVal : MapTileBitmapRequestedEventArgs do
@@ -13142,7 +13142,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileSource;
@@ -13168,7 +13168,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileSource;
@@ -13195,7 +13195,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileSource;
@@ -13223,7 +13223,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileSource;
@@ -13252,7 +13252,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return MapTileSource is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileSource");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileSource");
       m_Factory    : access IMapTileSourceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileSource;
@@ -14214,7 +14214,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileUriRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequest");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequest;
    begin
       return RetVal : MapTileUriRequest do
@@ -14311,7 +14311,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileUriRequestDeferral is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestDeferral");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestDeferral;
    begin
       return RetVal : MapTileUriRequestDeferral do
@@ -14367,7 +14367,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    function Constructor return MapTileUriRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.MapTileUriRequestedEventArgs");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IMapTileUriRequestedEventArgs;
    begin
       return RetVal : MapTileUriRequestedEventArgs do
@@ -14505,7 +14505,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return StreetsideExperience is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IStreetsideExperience");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
       m_Factory    : access IStreetsideExperienceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;
@@ -14532,7 +14532,7 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
    return StreetsideExperience is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.IStreetsideExperience");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Controls.Maps.StreetsideExperience");
       m_Factory    : access IStreetsideExperienceFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Controls.Maps.IStreetsideExperience;

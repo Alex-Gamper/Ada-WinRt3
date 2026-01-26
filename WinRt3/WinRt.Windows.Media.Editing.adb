@@ -1033,7 +1033,7 @@ package body WinRt.Windows.Media.Editing is
    function Constructor return MediaComposition is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaComposition");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaComposition");
       m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaComposition;
    begin
       return RetVal : MediaComposition do
@@ -1735,7 +1735,7 @@ package body WinRt.Windows.Media.Editing is
    return MediaOverlay is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlay");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlay");
       m_Factory    : access IMediaOverlayFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlay;
@@ -1761,7 +1761,7 @@ package body WinRt.Windows.Media.Editing is
    return MediaOverlay is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlay");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlay");
       m_Factory    : access IMediaOverlayFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlay;
@@ -1975,7 +1975,7 @@ package body WinRt.Windows.Media.Editing is
    function Constructor return MediaOverlayLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlayLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
       m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlayLayer;
    begin
       return RetVal : MediaOverlayLayer do
@@ -1995,7 +1995,7 @@ package body WinRt.Windows.Media.Editing is
    return MediaOverlayLayer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.IMediaOverlayLayer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Editing.MediaOverlayLayer");
       m_Factory    : access IMediaOverlayLayerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.Editing.IMediaOverlayLayer;

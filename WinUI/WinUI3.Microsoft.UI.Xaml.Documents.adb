@@ -1399,7 +1399,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    return Block is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IBlock");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Block");
       m_Factory    : access IBlockFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IBlock;
@@ -2039,7 +2039,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    return Inline is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IInline");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Inline");
       m_Factory    : access IInlineFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IInline;
@@ -2090,7 +2090,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    return Span is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.ISpan");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Span");
       m_Factory    : access ISpanFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.ISpan;
@@ -2171,7 +2171,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Bold is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IBold");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Bold");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IBold;
    begin
       return RetVal : Bold do
@@ -2213,7 +2213,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Glyphs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IGlyphs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Glyphs");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IGlyphs;
    begin
       return RetVal : Glyphs do
@@ -2834,7 +2834,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Hyperlink is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IHyperlink");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Hyperlink");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IHyperlink;
    begin
       return RetVal : Hyperlink do
@@ -4109,7 +4109,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return InlineUIContainer is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IInlineUIContainer");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.InlineUIContainer");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IInlineUIContainer;
    begin
       return RetVal : InlineUIContainer do
@@ -4186,7 +4186,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Italic is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IItalic");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Italic");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IItalic;
    begin
       return RetVal : Italic do
@@ -4228,7 +4228,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return LineBreak is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.ILineBreak");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.LineBreak");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.ILineBreak;
    begin
       return RetVal : LineBreak do
@@ -4270,7 +4270,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Paragraph is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IParagraph");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Paragraph");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IParagraph;
    begin
       return RetVal : Paragraph do
@@ -4391,7 +4391,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Run is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IRun");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Run");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IRun;
    begin
       return RetVal : Run do
@@ -4534,7 +4534,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    return TextHighlighter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.ITextHighlighter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.TextHighlighter");
       m_Factory    : access ITextHighlighterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.ITextHighlighter;
@@ -7920,7 +7920,7 @@ package body WinUI3.Microsoft.UI.Xaml.Documents is
    function Constructor return Underline is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.IUnderline");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Documents.Underline");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Documents.IUnderline;
    begin
       return RetVal : Underline do

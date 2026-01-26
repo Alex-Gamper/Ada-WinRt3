@@ -69,7 +69,7 @@ package body WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    function Constructor return DeviceAccountConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
    begin
       return RetVal : DeviceAccountConfiguration do

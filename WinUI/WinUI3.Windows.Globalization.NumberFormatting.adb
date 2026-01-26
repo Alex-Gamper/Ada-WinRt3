@@ -62,7 +62,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return CurrencyFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.ICurrencyFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.CurrencyFormatter");
       m_Factory    : access ICurrencyFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
@@ -90,7 +90,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return CurrencyFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.ICurrencyFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.CurrencyFormatter");
       m_Factory    : access ICurrencyFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.ICurrencyFormatter;
@@ -893,7 +893,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return DecimalFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.DecimalFormatter");
       m_Factory    : access IDecimalFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
@@ -915,7 +915,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return DecimalFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.DecimalFormatter");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : DecimalFormatter do
@@ -1597,7 +1597,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return IncrementNumberRounder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberRounder");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.IncrementNumberRounder");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberRounder;
    begin
       return RetVal : IncrementNumberRounder do
@@ -1831,7 +1831,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return NumeralSystemTranslator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumeralSystemTranslator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
       m_Factory    : access INumeralSystemTranslatorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
@@ -1851,7 +1851,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return NumeralSystemTranslator is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumeralSystemTranslator");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.NumeralSystemTranslator");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumeralSystemTranslator;
    begin
       return RetVal : NumeralSystemTranslator do
@@ -1998,7 +1998,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return PercentFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
       m_Factory    : access IPercentFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
@@ -2020,7 +2020,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return PercentFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.PercentFormatter");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : PercentFormatter do
@@ -2707,7 +2707,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    return PermilleFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
       m_Factory    : access IPermilleFormatterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
@@ -2729,7 +2729,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return PermilleFormatter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberFormatter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.PermilleFormatter");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberFormatter;
    begin
       return RetVal : PermilleFormatter do
@@ -3411,7 +3411,7 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
    function Constructor return SignificantDigitsNumberRounder is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.INumberRounder");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Globalization.NumberFormatting.SignificantDigitsNumberRounder");
       m_ComRetVal  : aliased WinUI3.Windows.Globalization.NumberFormatting.INumberRounder;
    begin
       return RetVal : SignificantDigitsNumberRounder do

@@ -48,7 +48,7 @@
     <ProjectGuid>{4da49345-6f65-47a9-bd7a-0c4f3445fc4a}</ProjectGuid>
     <Keyword>WinUI</Keyword>
     <RootNamespace>WinUI</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">

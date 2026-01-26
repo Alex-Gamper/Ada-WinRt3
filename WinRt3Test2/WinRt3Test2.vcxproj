@@ -53,7 +53,7 @@
     <VisualAdaVersion>1.2.0.0</VisualAdaVersion>
   </PropertyGroup>
   <PropertyGroup Label="Globals" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <UseMicrosoftLinker>true</UseMicrosoftLinker>
+    <UseMicrosoftLinker>false</UseMicrosoftLinker>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' or '$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <AdaTarget>x86_64-w64-mingw32</AdaTarget>

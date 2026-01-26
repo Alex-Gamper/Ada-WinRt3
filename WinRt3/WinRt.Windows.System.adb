@@ -2110,7 +2110,7 @@ package body WinRt.Windows.System is
    function Constructor return AppUriHandlerHost is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IAppUriHandlerHost");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerHost");
       m_ComRetVal  : aliased WinRt.Windows.System.IAppUriHandlerHost;
    begin
       return RetVal : AppUriHandlerHost do
@@ -2130,7 +2130,7 @@ package body WinRt.Windows.System is
    return AppUriHandlerHost is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IAppUriHandlerHost");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.AppUriHandlerHost");
       m_Factory    : access IAppUriHandlerHostFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.IAppUriHandlerHost;
@@ -3249,7 +3249,7 @@ package body WinRt.Windows.System is
    function Constructor return FolderLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IFolderLauncherOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.FolderLauncherOptions");
       m_ComRetVal  : aliased WinRt.Windows.System.IFolderLauncherOptions;
    begin
       return RetVal : FolderLauncherOptions do
@@ -5681,7 +5681,7 @@ package body WinRt.Windows.System is
    function Constructor return LauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.ILauncherOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.LauncherOptions");
       m_ComRetVal  : aliased WinRt.Windows.System.ILauncherOptions;
    begin
       return RetVal : LauncherOptions do
@@ -6746,7 +6746,7 @@ package body WinRt.Windows.System is
    function Constructor return ProcessLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IProcessLauncherOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.ProcessLauncherOptions");
       m_ComRetVal  : aliased WinRt.Windows.System.IProcessLauncherOptions;
    begin
       return RetVal : ProcessLauncherOptions do
@@ -7278,7 +7278,7 @@ package body WinRt.Windows.System is
    function Constructor return RemoteLauncherOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IRemoteLauncherOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteLauncherOptions");
       m_ComRetVal  : aliased WinRt.Windows.System.IRemoteLauncherOptions;
    begin
       return RetVal : RemoteLauncherOptions do
@@ -8644,7 +8644,7 @@ package body WinRt.Windows.System is
    function Constructor return UserPicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.IUserPicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.UserPicker");
       m_ComRetVal  : aliased WinRt.Windows.System.IUserPicker;
    begin
       return RetVal : UserPicker do

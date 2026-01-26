@@ -62,7 +62,7 @@ package body WinUI3.Windows.Data.Xml.Xsl is
    return XsltProcessor is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Xsl.IXsltProcessor");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Xsl.XsltProcessor");
       m_Factory    : access IXsltProcessorFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Data.Xml.Xsl.IXsltProcessor;

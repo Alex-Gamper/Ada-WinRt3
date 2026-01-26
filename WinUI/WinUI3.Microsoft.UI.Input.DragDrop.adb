@@ -295,7 +295,7 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
    function Constructor return DragOperation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.DragDrop.IDragOperation");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Input.DragDrop.DragOperation");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Input.DragDrop.IDragOperation;
    begin
       return RetVal : DragOperation do

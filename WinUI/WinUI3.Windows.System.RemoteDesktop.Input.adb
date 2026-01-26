@@ -64,7 +64,7 @@ package body WinUI3.Windows.System.RemoteDesktop.Input is
    return RemoteTextConnection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
@@ -90,7 +90,7 @@ package body WinUI3.Windows.System.RemoteDesktop.Input is
    return RemoteTextConnection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteDesktop.Input.IRemoteTextConnection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteDesktop.Input.RemoteTextConnection");
       m_Factory    : access IRemoteTextConnectionFactory2_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteDesktop.Input.IRemoteTextConnection;

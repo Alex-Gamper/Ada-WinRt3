@@ -68,7 +68,7 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
    return CameraCaptureUI is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.ICameraCaptureUI");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.CameraCaptureUI");
       m_Factory    : access ICameraCaptureUIFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Media.Capture.ICameraCaptureUI;
@@ -221,7 +221,7 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
    function Constructor return CameraCaptureUIPhotoCaptureSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.CameraCaptureUIPhotoCaptureSettings");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Media.Capture.ICameraCaptureUIPhotoCaptureSettings;
    begin
       return RetVal : CameraCaptureUIPhotoCaptureSettings do
@@ -423,7 +423,7 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
    function Constructor return CameraCaptureUIVideoCaptureSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Media.Capture.CameraCaptureUIVideoCaptureSettings");
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Media.Capture.ICameraCaptureUIVideoCaptureSettings;
    begin
       return RetVal : CameraCaptureUIVideoCaptureSettings do

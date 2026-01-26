@@ -66,7 +66,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    function Constructor return DnssdRegistrationResult is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdRegistrationResult");
       m_ComRetVal  : aliased WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdRegistrationResult;
    begin
       return RetVal : DnssdRegistrationResult do
@@ -192,7 +192,7 @@ package body WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    return DnssdServiceInstance is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.ServiceDiscovery.Dnssd.DnssdServiceInstance");
       m_Factory    : access IDnssdServiceInstanceFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.ServiceDiscovery.Dnssd.IDnssdServiceInstance;

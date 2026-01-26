@@ -1169,7 +1169,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemAuthorizationKindFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemAuthorizationKindFilter");
       m_Factory    : access IRemoteSystemAuthorizationKindFilterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemAuthorizationKindFilter;
@@ -1306,7 +1306,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemConnectionRequest is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemConnectionRequest");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemConnectionRequest");
       m_Factory    : access IRemoteSystemConnectionRequestFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemConnectionRequest;
@@ -1513,7 +1513,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemDiscoveryTypeFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemDiscoveryTypeFilter");
       m_Factory    : access IRemoteSystemDiscoveryTypeFilterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemDiscoveryTypeFilter;
@@ -1603,7 +1603,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemKindFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemKindFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemKindFilter");
       m_Factory    : access IRemoteSystemKindFilterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemKindFilter;
@@ -2202,7 +2202,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemSessionController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionController");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionController");
       m_Factory    : access IRemoteSystemSessionControllerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionController;
@@ -2229,7 +2229,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemSessionController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionController");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionController");
       m_Factory    : access IRemoteSystemSessionControllerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionController;
@@ -2732,7 +2732,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    function Constructor return RemoteSystemSessionInvitationListener is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionInvitationListener");
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionInvitationListener;
    begin
       return RetVal : RemoteSystemSessionInvitationListener do
@@ -3035,7 +3035,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemSessionMessageChannel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionMessageChannel");
       m_Factory    : access IRemoteSystemSessionMessageChannelFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
@@ -3063,7 +3063,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemSessionMessageChannel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionMessageChannel");
       m_Factory    : access IRemoteSystemSessionMessageChannelFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionMessageChannel;
@@ -3358,7 +3358,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    function Constructor return RemoteSystemSessionOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemSessionOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemSessionOptions");
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemSessionOptions;
    begin
       return RetVal : RemoteSystemSessionOptions do
@@ -4065,7 +4065,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemStatusTypeFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemStatusTypeFilter");
       m_Factory    : access IRemoteSystemStatusTypeFilterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemStatusTypeFilter;
@@ -4471,7 +4471,7 @@ package body WinUI3.Windows.System.RemoteSystems is
    return RemoteSystemWebAccountFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.System.RemoteSystems.RemoteSystemWebAccountFilter");
       m_Factory    : access IRemoteSystemWebAccountFilterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.System.RemoteSystems.IRemoteSystemWebAccountFilter;

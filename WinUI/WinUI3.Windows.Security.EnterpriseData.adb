@@ -1901,7 +1901,7 @@ package body WinUI3.Windows.Security.EnterpriseData is
    return FileUnprotectOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.IFileUnprotectOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.FileUnprotectOptions");
       m_Factory    : access IFileUnprotectOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.EnterpriseData.IFileUnprotectOptions;
@@ -2352,7 +2352,7 @@ package body WinUI3.Windows.Security.EnterpriseData is
    return ProtectionPolicyAuditInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo");
       m_Factory    : access IProtectionPolicyAuditInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;
@@ -2383,7 +2383,7 @@ package body WinUI3.Windows.Security.EnterpriseData is
    return ProtectionPolicyAuditInfo is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.EnterpriseData.ProtectionPolicyAuditInfo");
       m_Factory    : access IProtectionPolicyAuditInfoFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.EnterpriseData.IProtectionPolicyAuditInfo;

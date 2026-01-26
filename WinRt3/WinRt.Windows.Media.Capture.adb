@@ -5826,7 +5826,7 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return AppCaptureMetadataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IAppCaptureMetadataWriter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.AppCaptureMetadataWriter");
       m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IAppCaptureMetadataWriter;
    begin
       return RetVal : AppCaptureMetadataWriter do
@@ -7671,7 +7671,7 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return CameraCaptureUI is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.ICameraCaptureUI");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.CameraCaptureUI");
       m_ComRetVal  : aliased WinRt.Windows.Media.Capture.ICameraCaptureUI;
    begin
       return RetVal : CameraCaptureUI do
@@ -10284,7 +10284,7 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return MediaCapture is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IMediaCapture");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCapture");
       m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IMediaCapture;
    begin
       return RetVal : MediaCapture do
@@ -13338,7 +13338,7 @@ package body WinRt.Windows.Media.Capture is
    function Constructor return MediaCaptureInitializationSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.IMediaCaptureInitializationSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Capture.MediaCaptureInitializationSettings");
       m_ComRetVal  : aliased WinRt.Windows.Media.Capture.IMediaCaptureInitializationSettings;
    begin
       return RetVal : MediaCaptureInitializationSettings do

@@ -3010,7 +3010,7 @@ package body WinUI3.Windows.Devices.Enumeration is
    function Constructor return DevicePicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Enumeration.IDevicePicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Enumeration.DevicePicker");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Enumeration.IDevicePicker;
    begin
       return RetVal : DevicePicker do

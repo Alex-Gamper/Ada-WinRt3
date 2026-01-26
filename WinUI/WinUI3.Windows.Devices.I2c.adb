@@ -73,7 +73,7 @@ package body WinUI3.Windows.Devices.I2c is
    return I2cConnectionSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.I2c.II2cConnectionSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.I2c.I2cConnectionSettings");
       m_Factory    : access II2cConnectionSettingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.I2c.II2cConnectionSettings;

@@ -67,7 +67,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeer");
       m_Factory    : access IAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeer;
@@ -2307,7 +2307,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return FrameworkElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FrameworkElementAutomationPeer");
       m_Factory    : access IFrameworkElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFrameworkElementAutomationPeer;
@@ -2436,7 +2436,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AppBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarAutomationPeer");
       m_Factory    : access IAppBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarAutomationPeer;
@@ -2769,7 +2769,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ButtonBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonBaseAutomationPeer");
       m_Factory    : access IButtonBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IButtonBaseAutomationPeer;
@@ -2821,7 +2821,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ButtonAutomationPeer");
       m_Factory    : access IButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IButtonAutomationPeer;
@@ -2891,7 +2891,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AppBarButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarButtonAutomationPeer");
       m_Factory    : access IAppBarButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarButtonAutomationPeer;
@@ -3000,7 +3000,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleButtonAutomationPeer");
       m_Factory    : access IToggleButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleButtonAutomationPeer;
@@ -3091,7 +3091,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AppBarToggleButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AppBarToggleButtonAutomationPeer");
       m_Factory    : access IAppBarToggleButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAppBarToggleButtonAutomationPeer;
@@ -3141,7 +3141,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AutoSuggestBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutoSuggestBoxAutomationPeer");
       m_Factory    : access IAutoSuggestBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutoSuggestBoxAutomationPeer;
@@ -3205,7 +3205,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    function Constructor return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
    begin
       return RetVal : AutomationPeerAnnotation do
@@ -3225,7 +3225,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
@@ -3250,7 +3250,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return AutomationPeerAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.AutomationPeerAnnotation");
       m_Factory    : access IAutomationPeerAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IAutomationPeerAnnotation;
@@ -3420,7 +3420,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return CalendarDatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CalendarDatePickerAutomationPeer");
       m_Factory    : access ICalendarDatePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICalendarDatePickerAutomationPeer;
@@ -3556,7 +3556,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return CaptureElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CaptureElementAutomationPeer");
       m_Factory    : access ICaptureElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICaptureElementAutomationPeer;
@@ -3608,7 +3608,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return CheckBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.CheckBoxAutomationPeer");
       m_Factory    : access ICheckBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ICheckBoxAutomationPeer;
@@ -3660,7 +3660,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RangeBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RangeBaseAutomationPeer");
       m_Factory    : access IRangeBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRangeBaseAutomationPeer;
@@ -3857,7 +3857,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SliderAutomationPeer");
       m_Factory    : access ISliderAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISliderAutomationPeer;
@@ -3909,7 +3909,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ColorPickerSliderAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorPickerSliderAutomationPeer");
       m_Factory    : access IColorPickerSliderAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IColorPickerSliderAutomationPeer;
@@ -3961,7 +3961,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ColorSpectrumAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ColorSpectrumAutomationPeer");
       m_Factory    : access IColorSpectrumAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IColorSpectrumAutomationPeer;
@@ -4013,7 +4013,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ItemsControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemsControlAutomationPeer");
       m_Factory    : access IItemsControlAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemsControlAutomationPeer;
@@ -4142,7 +4142,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SelectorAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorAutomationPeer");
       m_Factory    : access ISelectorAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorAutomationPeer;
@@ -4271,7 +4271,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ComboBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxAutomationPeer");
       m_Factory    : access IComboBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxAutomationPeer;
@@ -4631,7 +4631,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ComboBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemAutomationPeer");
       m_Factory    : access IComboBoxItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemAutomationPeer;
@@ -4684,7 +4684,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ItemAutomationPeer");
       m_Factory    : access IItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IItemAutomationPeer;
@@ -4792,7 +4792,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SelectorItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SelectorItemAutomationPeer");
       m_Factory    : access ISelectorItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISelectorItemAutomationPeer;
@@ -4944,7 +4944,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ComboBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ComboBoxItemDataAutomationPeer");
       m_Factory    : access IComboBoxItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IComboBoxItemDataAutomationPeer;
@@ -5014,7 +5014,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return DatePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.DatePickerAutomationPeer");
       m_Factory    : access IDatePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IDatePickerAutomationPeer;
@@ -5089,7 +5089,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return FlipViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewAutomationPeer");
       m_Factory    : access IFlipViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewAutomationPeer;
@@ -5141,7 +5141,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return FlipViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemAutomationPeer");
       m_Factory    : access IFlipViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemAutomationPeer;
@@ -5194,7 +5194,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return FlipViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlipViewItemDataAutomationPeer");
       m_Factory    : access IFlipViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlipViewItemDataAutomationPeer;
@@ -5264,7 +5264,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return FlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.FlyoutPresenterAutomationPeer");
       m_Factory    : access IFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IFlyoutPresenterAutomationPeer;
@@ -5316,7 +5316,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewBaseAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseAutomationPeer");
       m_Factory    : access IListViewBaseAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseAutomationPeer;
@@ -5424,7 +5424,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return GridViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewAutomationPeer");
       m_Factory    : access IGridViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewAutomationPeer;
@@ -5476,7 +5476,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewBaseHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewBaseHeaderItemAutomationPeer");
       m_Factory    : access IListViewBaseHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewBaseHeaderItemAutomationPeer;
@@ -5528,7 +5528,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return GridViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewHeaderItemAutomationPeer");
       m_Factory    : access IGridViewHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewHeaderItemAutomationPeer;
@@ -5580,7 +5580,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return GridViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemAutomationPeer");
       m_Factory    : access IGridViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemAutomationPeer;
@@ -5633,7 +5633,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return GridViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GridViewItemDataAutomationPeer");
       m_Factory    : access IGridViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGridViewItemDataAutomationPeer;
@@ -5703,7 +5703,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return GroupItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.GroupItemAutomationPeer");
       m_Factory    : access IGroupItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IGroupItemAutomationPeer;
@@ -5755,7 +5755,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return HubAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubAutomationPeer");
       m_Factory    : access IHubAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHubAutomationPeer;
@@ -5807,7 +5807,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return HubSectionAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HubSectionAutomationPeer");
       m_Factory    : access IHubSectionAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHubSectionAutomationPeer;
@@ -5877,7 +5877,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return HyperlinkButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.HyperlinkButtonAutomationPeer");
       m_Factory    : access IHyperlinkButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IHyperlinkButtonAutomationPeer;
@@ -5947,7 +5947,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ImageAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ImageAutomationPeer");
       m_Factory    : access IImageAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IImageAutomationPeer;
@@ -6022,7 +6022,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxAutomationPeer");
       m_Factory    : access IListBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxAutomationPeer;
@@ -6074,7 +6074,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListBoxItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemAutomationPeer");
       m_Factory    : access IListBoxItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemAutomationPeer;
@@ -6127,7 +6127,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListBoxItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListBoxItemDataAutomationPeer");
       m_Factory    : access IListBoxItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListBoxItemDataAutomationPeer;
@@ -6220,7 +6220,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewAutomationPeer");
       m_Factory    : access IListViewAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewAutomationPeer;
@@ -6272,7 +6272,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewHeaderItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewHeaderItemAutomationPeer");
       m_Factory    : access IListViewHeaderItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewHeaderItemAutomationPeer;
@@ -6324,7 +6324,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemAutomationPeer");
       m_Factory    : access IListViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemAutomationPeer;
@@ -6377,7 +6377,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ListViewItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ListViewItemDataAutomationPeer");
       m_Factory    : access IListViewItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IListViewItemDataAutomationPeer;
@@ -7411,7 +7411,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MediaElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaElementAutomationPeer");
       m_Factory    : access IMediaElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaElementAutomationPeer;
@@ -7463,7 +7463,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MediaPlayerElementAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaPlayerElementAutomationPeer");
       m_Factory    : access IMediaPlayerElementAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaPlayerElementAutomationPeer;
@@ -7515,7 +7515,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MediaTransportControlsAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MediaTransportControlsAutomationPeer");
       m_Factory    : access IMediaTransportControlsAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMediaTransportControlsAutomationPeer;
@@ -7567,7 +7567,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MenuBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarAutomationPeer");
       m_Factory    : access IMenuBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarAutomationPeer;
@@ -7619,7 +7619,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MenuBarItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuBarItemAutomationPeer");
       m_Factory    : access IMenuBarItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuBarItemAutomationPeer;
@@ -7746,7 +7746,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutItemAutomationPeer");
       m_Factory    : access IMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutItemAutomationPeer;
@@ -7816,7 +7816,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return MenuFlyoutPresenterAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.MenuFlyoutPresenterAutomationPeer");
       m_Factory    : access IMenuFlyoutPresenterAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IMenuFlyoutPresenterAutomationPeer;
@@ -7868,7 +7868,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return NavigationViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.NavigationViewItemAutomationPeer");
       m_Factory    : access INavigationViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.INavigationViewItemAutomationPeer;
@@ -7920,7 +7920,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return PasswordBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PasswordBoxAutomationPeer");
       m_Factory    : access IPasswordBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPasswordBoxAutomationPeer;
@@ -7972,7 +7972,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return PersonPictureAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PersonPictureAutomationPeer");
       m_Factory    : access IPersonPictureAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPersonPictureAutomationPeer;
@@ -8045,7 +8045,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return PivotAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotAutomationPeer");
       m_Factory    : access IPivotAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotAutomationPeer;
@@ -8338,7 +8338,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return PivotItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemAutomationPeer");
       m_Factory    : access IPivotItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemAutomationPeer;
@@ -8389,7 +8389,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return PivotItemDataAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.PivotItemDataAutomationPeer");
       m_Factory    : access IPivotItemDataAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IPivotItemDataAutomationPeer;
@@ -8576,7 +8576,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ProgressBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressBarAutomationPeer");
       m_Factory    : access IProgressBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IProgressBarAutomationPeer;
@@ -8628,7 +8628,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ProgressRingAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ProgressRingAutomationPeer");
       m_Factory    : access IProgressRingAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IProgressRingAutomationPeer;
@@ -8680,7 +8680,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RadioButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RadioButtonAutomationPeer");
       m_Factory    : access IRadioButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRadioButtonAutomationPeer;
@@ -8831,7 +8831,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RatingControlAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RatingControlAutomationPeer");
       m_Factory    : access IRatingControlAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRatingControlAutomationPeer;
@@ -8883,7 +8883,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RepeatButtonAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RepeatButtonAutomationPeer");
       m_Factory    : access IRepeatButtonAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRepeatButtonAutomationPeer;
@@ -8953,7 +8953,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RichEditBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichEditBoxAutomationPeer");
       m_Factory    : access IRichEditBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichEditBoxAutomationPeer;
@@ -9005,7 +9005,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RichTextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockAutomationPeer");
       m_Factory    : access IRichTextBlockAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockAutomationPeer;
@@ -9057,7 +9057,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return RichTextBlockOverflowAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.RichTextBlockOverflowAutomationPeer");
       m_Factory    : access IRichTextBlockOverflowAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IRichTextBlockOverflowAutomationPeer;
@@ -9109,7 +9109,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ScrollBarAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollBarAutomationPeer");
       m_Factory    : access IScrollBarAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IScrollBarAutomationPeer;
@@ -9161,7 +9161,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ScrollViewerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ScrollViewerAutomationPeer");
       m_Factory    : access IScrollViewerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IScrollViewerAutomationPeer;
@@ -9379,7 +9379,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SearchBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SearchBoxAutomationPeer");
       m_Factory    : access ISearchBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISearchBoxAutomationPeer;
@@ -9431,7 +9431,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SemanticZoomAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SemanticZoomAutomationPeer");
       m_Factory    : access ISemanticZoomAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISemanticZoomAutomationPeer;
@@ -9522,7 +9522,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return SettingsFlyoutAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.SettingsFlyoutAutomationPeer");
       m_Factory    : access ISettingsFlyoutAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ISettingsFlyoutAutomationPeer;
@@ -9574,7 +9574,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return TextBlockAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBlockAutomationPeer");
       m_Factory    : access ITextBlockAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITextBlockAutomationPeer;
@@ -9626,7 +9626,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return TextBoxAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TextBoxAutomationPeer");
       m_Factory    : access ITextBoxAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITextBoxAutomationPeer;
@@ -9678,7 +9678,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ThumbAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ThumbAutomationPeer");
       m_Factory    : access IThumbAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IThumbAutomationPeer;
@@ -9730,7 +9730,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return TimePickerAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TimePickerAutomationPeer");
       m_Factory    : access ITimePickerAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITimePickerAutomationPeer;
@@ -9805,7 +9805,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ToggleMenuFlyoutItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleMenuFlyoutItemAutomationPeer");
       m_Factory    : access IToggleMenuFlyoutItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleMenuFlyoutItemAutomationPeer;
@@ -9896,7 +9896,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return ToggleSwitchAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ToggleSwitchAutomationPeer");
       m_Factory    : access IToggleSwitchAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.IToggleSwitchAutomationPeer;
@@ -9987,7 +9987,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return TreeViewItemAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewItemAutomationPeer");
       m_Factory    : access ITreeViewItemAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewItemAutomationPeer;
@@ -10096,7 +10096,7 @@ package body WinRt.Windows.UI.Xaml.Automation.Peers is
    return TreeViewListAutomationPeer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.Peers.TreeViewListAutomationPeer");
       m_Factory    : access ITreeViewListAutomationPeerFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.Peers.ITreeViewListAutomationPeer;

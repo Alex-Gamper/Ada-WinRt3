@@ -235,7 +235,7 @@ package body WinRt.Windows.Graphics.Printing is
    function Constructor return PrintPageInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.IPrintPageInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageInfo");
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.IPrintPageInfo;
    begin
       return RetVal : PrintPageInfo do
@@ -442,7 +442,7 @@ package body WinRt.Windows.Graphics.Printing is
    return PrintPageRange is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.IPrintPageRange");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.IPrintPageRange;
@@ -466,7 +466,7 @@ package body WinRt.Windows.Graphics.Printing is
    return PrintPageRange is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.IPrintPageRange");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintPageRange");
       m_Factory    : access IPrintPageRangeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.IPrintPageRange;

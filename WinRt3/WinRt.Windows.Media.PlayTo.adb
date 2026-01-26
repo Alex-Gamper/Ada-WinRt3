@@ -624,7 +624,7 @@ package body WinRt.Windows.Media.PlayTo is
    function Constructor return PlayToReceiver is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.PlayTo.IPlayToReceiver");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.PlayTo.PlayToReceiver");
       m_ComRetVal  : aliased WinRt.Windows.Media.PlayTo.IPlayToReceiver;
    begin
       return RetVal : PlayToReceiver do

@@ -83,7 +83,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    return Certificate is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICertificate");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.Certificate");
       m_Factory    : access ICertificateFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificate;
@@ -1149,7 +1149,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return CertificateExtension is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICertificateExtension");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateExtension");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificateExtension;
    begin
       return RetVal : CertificateExtension do
@@ -1319,7 +1319,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return CertificateKeyUsages is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICertificateKeyUsages");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateKeyUsages");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificateKeyUsages;
    begin
       return RetVal : CertificateKeyUsages do
@@ -1617,7 +1617,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return CertificateQuery is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICertificateQuery");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateQuery");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificateQuery;
    begin
       return RetVal : CertificateQuery do
@@ -1952,7 +1952,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return CertificateRequestProperties is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICertificateRequestProperties");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CertificateRequestProperties");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICertificateRequestProperties;
    begin
       return RetVal : CertificateRequestProperties do
@@ -3061,7 +3061,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return ChainBuildingParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.IChainBuildingParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainBuildingParameters");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.IChainBuildingParameters;
    begin
       return RetVal : ChainBuildingParameters do
@@ -3303,7 +3303,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return ChainValidationParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.IChainValidationParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ChainValidationParameters");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.IChainValidationParameters;
    begin
       return RetVal : ChainValidationParameters do
@@ -3416,7 +3416,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    return CmsAttachedSignature is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICmsAttachedSignature");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsAttachedSignature");
       m_Factory    : access ICmsAttachedSignatureFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICmsAttachedSignature;
@@ -3624,7 +3624,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    return CmsDetachedSignature is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICmsDetachedSignature");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsDetachedSignature");
       m_Factory    : access ICmsDetachedSignatureFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICmsDetachedSignature;
@@ -3849,7 +3849,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return CmsSignerInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ICmsSignerInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.CmsSignerInfo");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ICmsSignerInfo;
    begin
       return RetVal : CmsSignerInfo do
@@ -4599,7 +4599,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return PfxImportParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.IPfxImportParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.PfxImportParameters");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.IPfxImportParameters;
    begin
       return RetVal : PfxImportParameters do
@@ -4963,7 +4963,7 @@ package body WinRt.Windows.Security.Cryptography.Certificates is
    function Constructor return SubjectAlternativeNameInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Security.Cryptography.Certificates.SubjectAlternativeNameInfo");
       m_ComRetVal  : aliased WinRt.Windows.Security.Cryptography.Certificates.ISubjectAlternativeNameInfo;
    begin
       return RetVal : SubjectAlternativeNameInfo do

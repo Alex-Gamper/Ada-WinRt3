@@ -62,7 +62,7 @@ package body WinRt.Windows.Devices.Spi.Provider is
    return ProviderSpiConnectionSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Spi.Provider.ProviderSpiConnectionSettings");
       m_Factory    : access IProviderSpiConnectionSettingsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;

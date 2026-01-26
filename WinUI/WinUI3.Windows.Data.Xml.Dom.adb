@@ -4058,7 +4058,7 @@ package body WinUI3.Windows.Data.Xml.Dom is
    function Constructor return XmlDocument is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Dom.IXmlDocument");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Dom.XmlDocument");
       m_ComRetVal  : aliased WinUI3.Windows.Data.Xml.Dom.IXmlDocument;
    begin
       return RetVal : XmlDocument do
@@ -8715,7 +8715,7 @@ package body WinUI3.Windows.Data.Xml.Dom is
    function Constructor return XmlLoadSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Dom.IXmlLoadSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Xml.Dom.XmlLoadSettings");
       m_ComRetVal  : aliased WinUI3.Windows.Data.Xml.Dom.IXmlLoadSettings;
    begin
       return RetVal : XmlLoadSettings do

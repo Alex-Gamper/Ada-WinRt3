@@ -62,7 +62,7 @@ package body WinUI3.Windows.Data.Json is
    function Constructor return JsonArray is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Json.IJsonArray");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Json.JsonArray");
       m_ComRetVal  : aliased WinUI3.Windows.Data.Json.IJsonArray;
    begin
       return RetVal : JsonArray do
@@ -756,7 +756,7 @@ package body WinUI3.Windows.Data.Json is
    function Constructor return JsonObject is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Json.IJsonObject");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Data.Json.JsonObject");
       m_ComRetVal  : aliased WinUI3.Windows.Data.Json.IJsonObject;
    begin
       return RetVal : JsonObject do

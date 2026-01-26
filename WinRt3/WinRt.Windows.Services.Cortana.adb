@@ -493,7 +493,7 @@ package body WinRt.Windows.Services.Cortana is
    function Constructor return CortanaActionableInsightsOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Cortana.ICortanaActionableInsightsOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Services.Cortana.CortanaActionableInsightsOptions");
       m_ComRetVal  : aliased WinRt.Windows.Services.Cortana.ICortanaActionableInsightsOptions;
    begin
       return RetVal : CortanaActionableInsightsOptions do

@@ -83,7 +83,7 @@ package body WinRt.Windows.UI.Xaml.Interop is
    return NotifyCollectionChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Interop.NotifyCollectionChangedEventArgs");
       m_Factory    : access INotifyCollectionChangedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;

@@ -1122,7 +1122,7 @@ package body WinUI3.Windows.Devices.PointOfService is
    return BarcodeScannerReport is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.IBarcodeScannerReport");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.BarcodeScannerReport");
       m_Factory    : access IBarcodeScannerReportFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.PointOfService.IBarcodeScannerReport;
@@ -17632,7 +17632,7 @@ package body WinUI3.Windows.Devices.PointOfService is
    function Constructor return PosPrinterPrintOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.IPosPrinterPrintOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.PosPrinterPrintOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.PointOfService.IPosPrinterPrintOptions;
    begin
       return RetVal : PosPrinterPrintOptions do
@@ -20616,7 +20616,7 @@ package body WinUI3.Windows.Devices.PointOfService is
    return UnifiedPosErrorData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.IUnifiedPosErrorData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.PointOfService.UnifiedPosErrorData");
       m_Factory    : access IUnifiedPosErrorDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.PointOfService.IUnifiedPosErrorData;

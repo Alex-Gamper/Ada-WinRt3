@@ -183,7 +183,7 @@ package body WinUI3.Windows.Media is
    return AudioFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.IAudioFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.AudioFrame");
       m_Factory    : access IAudioFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.IAudioFrame;
@@ -1388,7 +1388,7 @@ package body WinUI3.Windows.Media is
    function Constructor return MediaExtensionManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.IMediaExtensionManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.MediaExtensionManager");
       m_ComRetVal  : aliased WinUI3.Windows.Media.IMediaExtensionManager;
    begin
       return RetVal : MediaExtensionManager do
@@ -1767,7 +1767,7 @@ package body WinUI3.Windows.Media is
    function Constructor return MediaTimelineController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.IMediaTimelineController");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.MediaTimelineController");
       m_ComRetVal  : aliased WinUI3.Windows.Media.IMediaTimelineController;
    begin
       return RetVal : MediaTimelineController do
@@ -3806,7 +3806,7 @@ package body WinUI3.Windows.Media is
    function Constructor return SystemMediaTransportControlsTimelineProperties is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.ISystemMediaTransportControlsTimelineProperties");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.SystemMediaTransportControlsTimelineProperties");
       m_ComRetVal  : aliased WinUI3.Windows.Media.ISystemMediaTransportControlsTimelineProperties;
    begin
       return RetVal : SystemMediaTransportControlsTimelineProperties do
@@ -4165,7 +4165,7 @@ package body WinUI3.Windows.Media is
    return VideoFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.IVideoFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.VideoFrame");
       m_Factory    : access IVideoFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.IVideoFrame;
@@ -4192,7 +4192,7 @@ package body WinUI3.Windows.Media is
    return VideoFrame is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.IVideoFrame");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.VideoFrame");
       m_Factory    : access IVideoFrameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Media.IVideoFrame;

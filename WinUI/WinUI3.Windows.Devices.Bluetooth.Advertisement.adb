@@ -59,7 +59,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisement");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement;
    begin
       return RetVal : BluetoothLEAdvertisement do
@@ -275,7 +275,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisementBytePattern is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementBytePattern");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern;
    begin
       return RetVal : BluetoothLEAdvertisementBytePattern do
@@ -297,7 +297,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    return BluetoothLEAdvertisementBytePattern is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementBytePattern");
       m_Factory    : access IBluetoothLEAdvertisementBytePatternFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementBytePattern;
@@ -444,7 +444,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    return BluetoothLEAdvertisementDataSection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementDataSection");
       m_Factory    : access IBluetoothLEAdvertisementDataSectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
@@ -464,7 +464,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisementDataSection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementDataSection");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementDataSection;
    begin
       return RetVal : BluetoothLEAdvertisementDataSection do
@@ -1038,7 +1038,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisementFilter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementFilter");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementFilter;
    begin
       return RetVal : BluetoothLEAdvertisementFilter do
@@ -1135,7 +1135,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisementPublisher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisher");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher;
    begin
       return RetVal : BluetoothLEAdvertisementPublisher do
@@ -1155,7 +1155,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    return BluetoothLEAdvertisementPublisher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementPublisher");
       m_Factory    : access IBluetoothLEAdvertisementPublisherFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementPublisher;
@@ -2038,7 +2038,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    return BluetoothLEAdvertisementWatcher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher");
       m_Factory    : access IBluetoothLEAdvertisementWatcherFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
@@ -2058,7 +2058,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEAdvertisementWatcher is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEAdvertisementWatcher");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisementWatcher;
    begin
       return RetVal : BluetoothLEAdvertisementWatcher do
@@ -2624,7 +2624,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    function Constructor return BluetoothLEManufacturerData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;
    begin
       return RetVal : BluetoothLEManufacturerData do
@@ -2645,7 +2645,7 @@ package body WinUI3.Windows.Devices.Bluetooth.Advertisement is
    return BluetoothLEManufacturerData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Bluetooth.Advertisement.BluetoothLEManufacturerData");
       m_Factory    : access IBluetoothLEManufacturerDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Bluetooth.Advertisement.IBluetoothLEManufacturerData;

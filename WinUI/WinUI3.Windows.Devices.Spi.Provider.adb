@@ -62,7 +62,7 @@ package body WinUI3.Windows.Devices.Spi.Provider is
    return ProviderSpiConnectionSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Spi.Provider.ProviderSpiConnectionSettings");
       m_Factory    : access IProviderSpiConnectionSettingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Spi.Provider.IProviderSpiConnectionSettings;

@@ -167,7 +167,7 @@ package body WinUI3.Windows.Devices.Spi is
    return SpiConnectionSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Spi.ISpiConnectionSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Spi.SpiConnectionSettings");
       m_Factory    : access ISpiConnectionSettingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Spi.ISpiConnectionSettings;

@@ -189,7 +189,7 @@ package body WinRt.Windows.Networking.Connectivity is
    function Constructor return CellularApnContext is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ICellularApnContext");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.CellularApnContext");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Connectivity.ICellularApnContext;
    begin
       return RetVal : CellularApnContext do
@@ -1355,7 +1355,7 @@ package body WinRt.Windows.Networking.Connectivity is
    function Constructor return ConnectionProfileFilter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.IConnectionProfileFilter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.ConnectionProfileFilter");
       m_ComRetVal  : aliased WinRt.Windows.Networking.Connectivity.IConnectionProfileFilter;
    begin
       return RetVal : ConnectionProfileFilter do
@@ -3448,7 +3448,7 @@ package body WinRt.Windows.Networking.Connectivity is
    return RoutePolicy is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.IRoutePolicy");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Networking.Connectivity.RoutePolicy");
       m_Factory    : access IRoutePolicyFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Networking.Connectivity.IRoutePolicy;

@@ -223,7 +223,7 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
    function Constructor return CoreAutomationRemoteOperation is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.CoreAutomationRemoteOperation");
       m_ComRetVal  : aliased WinUI3.Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperation;
    begin
       return RetVal : CoreAutomationRemoteOperation do
@@ -450,7 +450,7 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
    return RemoteAutomationClientSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.RemoteAutomationClientSession");
       m_Factory    : access IRemoteAutomationClientSessionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;
@@ -477,7 +477,7 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
    return RemoteAutomationClientSession is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.UIAutomation.Core.RemoteAutomationClientSession");
       m_Factory    : access IRemoteAutomationClientSessionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.UIAutomation.Core.IRemoteAutomationClientSession;

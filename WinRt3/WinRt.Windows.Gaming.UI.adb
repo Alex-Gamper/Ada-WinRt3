@@ -420,7 +420,7 @@ package body WinRt.Windows.Gaming.UI is
    function Constructor return GameChatOverlayMessageSource is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.UI.IGameChatOverlayMessageSource");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Gaming.UI.GameChatOverlayMessageSource");
       m_ComRetVal  : aliased WinRt.Windows.Gaming.UI.IGameChatOverlayMessageSource;
    begin
       return RetVal : GameChatOverlayMessageSource do

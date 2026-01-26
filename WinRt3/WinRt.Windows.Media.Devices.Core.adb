@@ -70,7 +70,7 @@ package body WinRt.Windows.Media.Devices.Core is
    return CameraIntrinsics is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.ICameraIntrinsics");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.CameraIntrinsics");
       m_Factory    : access ICameraIntrinsicsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.Core.ICameraIntrinsics;
@@ -662,7 +662,7 @@ package body WinRt.Windows.Media.Devices.Core is
    function Constructor return FrameController is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.IFrameController");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Devices.Core.FrameController");
       m_ComRetVal  : aliased WinRt.Windows.Media.Devices.Core.IFrameController;
    begin
       return RetVal : FrameController do

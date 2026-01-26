@@ -1058,7 +1058,7 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsAppMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsAppMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsAppMessage");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsAppMessage;
    begin
       return RetVal : SmsAppMessage do
@@ -1583,7 +1583,7 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsBinaryMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsBinaryMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsBinaryMessage");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsBinaryMessage;
    begin
       return RetVal : SmsBinaryMessage do
@@ -3155,7 +3155,7 @@ package body WinRt.Windows.Devices.Sms is
    return SmsFilterRule is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsFilterRule");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsFilterRule");
       m_Factory    : access ISmsFilterRuleFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsFilterRule;
@@ -3474,7 +3474,7 @@ package body WinRt.Windows.Devices.Sms is
    return SmsFilterRules is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsFilterRules");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsFilterRules");
       m_Factory    : access ISmsFilterRulesFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsFilterRules;
@@ -4480,7 +4480,7 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsTextMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsTextMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage;
    begin
       return RetVal : SmsTextMessage do
@@ -4855,7 +4855,7 @@ package body WinRt.Windows.Devices.Sms is
    function Constructor return SmsTextMessage2 is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.ISmsTextMessage2");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Sms.SmsTextMessage2");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Sms.ISmsTextMessage2;
    begin
       return RetVal : SmsTextMessage2 do

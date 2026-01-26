@@ -73,7 +73,7 @@ package body WinUI3.Microsoft.Windows.Storage.Pickers is
    return FileOpenPicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.IFileOpenPicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.FileOpenPicker");
       m_Factory    : access IFileOpenPickerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Storage.Pickers.IFileOpenPicker;
@@ -373,7 +373,7 @@ package body WinUI3.Microsoft.Windows.Storage.Pickers is
    return FileSavePicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.IFileSavePicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.FileSavePicker");
       m_Factory    : access IFileSavePickerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Storage.Pickers.IFileSavePicker;
@@ -686,7 +686,7 @@ package body WinUI3.Microsoft.Windows.Storage.Pickers is
    return FolderPicker is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.IFolderPicker");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Storage.Pickers.FolderPicker");
       m_Factory    : access IFolderPickerFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Storage.Pickers.IFolderPicker;

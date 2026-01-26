@@ -379,7 +379,7 @@ package body WinRt.Windows.System.RemoteDesktop.Provider is
    return RemoteDesktopInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.RemoteDesktop.Provider.RemoteDesktopInfo");
       m_Factory    : access IRemoteDesktopInfoFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.RemoteDesktop.Provider.IRemoteDesktopInfo;

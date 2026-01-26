@@ -5680,7 +5680,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattLocalCharacteristicParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalCharacteristicParameters");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalCharacteristicParameters;
    begin
       return RetVal : GattLocalCharacteristicParameters do
@@ -6124,7 +6124,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattLocalDescriptorParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattLocalDescriptorParameters");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattLocalDescriptorParameters;
    begin
       return RetVal : GattLocalDescriptorParameters do
@@ -7977,7 +7977,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattReliableWriteTransaction is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattReliableWriteTransaction");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattReliableWriteTransaction;
    begin
       return RetVal : GattReliableWriteTransaction do
@@ -8513,7 +8513,7 @@ package body WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile is
    function Constructor return GattServiceProviderAdvertisingParameters is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Bluetooth.GenericAttributeProfile.GattServiceProviderAdvertisingParameters");
       m_ComRetVal  : aliased WinRt.Windows.Devices.Bluetooth.GenericAttributeProfile.IGattServiceProviderAdvertisingParameters;
    begin
       return RetVal : GattServiceProviderAdvertisingParameters do

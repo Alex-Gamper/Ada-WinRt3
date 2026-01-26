@@ -85,7 +85,7 @@ package body WinRt.Windows.Storage.Streams is
    return Buffer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IBuffer");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.Buffer");
       m_Factory    : access IBufferFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IBuffer;
@@ -241,7 +241,7 @@ package body WinRt.Windows.Storage.Streams is
    return DataReader is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataReader");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataReader");
       m_Factory    : access IDataReaderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataReader;
@@ -963,7 +963,7 @@ package body WinRt.Windows.Storage.Streams is
    return DataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataWriter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
       m_Factory    : access IDataWriterFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataWriter;
@@ -983,7 +983,7 @@ package body WinRt.Windows.Storage.Streams is
    function Constructor return DataWriter is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IDataWriter");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.DataWriter");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IDataWriter;
    begin
       return RetVal : DataWriter do
@@ -2983,7 +2983,7 @@ package body WinRt.Windows.Storage.Streams is
    function Constructor return InMemoryRandomAccessStream is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.IRandomAccessStream");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Streams.InMemoryRandomAccessStream");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Streams.IRandomAccessStream;
    begin
       return RetVal : InMemoryRandomAccessStream do

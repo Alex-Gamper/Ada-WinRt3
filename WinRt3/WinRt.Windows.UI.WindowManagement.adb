@@ -1947,7 +1947,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return CompactOverlayPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.CompactOverlayPresentationConfiguration");
       m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.ICompactOverlayPresentationConfiguration;
    begin
       return RetVal : CompactOverlayPresentationConfiguration do
@@ -1989,7 +1989,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return DefaultPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.IDefaultPresentationConfiguration");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.DefaultPresentationConfiguration");
       m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.IDefaultPresentationConfiguration;
    begin
       return RetVal : DefaultPresentationConfiguration do
@@ -2178,7 +2178,7 @@ package body WinRt.Windows.UI.WindowManagement is
    function Constructor return FullScreenPresentationConfiguration is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.IFullScreenPresentationConfiguration");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.WindowManagement.FullScreenPresentationConfiguration");
       m_ComRetVal  : aliased WinRt.Windows.UI.WindowManagement.IFullScreenPresentationConfiguration;
    begin
       return RetVal : FullScreenPresentationConfiguration do

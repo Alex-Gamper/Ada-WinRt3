@@ -898,7 +898,7 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return IndexableContent is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IIndexableContent");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IndexableContent");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IIndexableContent;
    begin
       return RetVal : IndexableContent do
@@ -1071,7 +1071,7 @@ package body WinRt.Windows.Storage.Search is
    return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
       m_Factory    : access IQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
@@ -1095,7 +1095,7 @@ package body WinRt.Windows.Storage.Search is
    return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
       m_Factory    : access IQueryOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
@@ -1115,7 +1115,7 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return QueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.QueryOptions");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IQueryOptions;
    begin
       return RetVal : QueryOptions do
@@ -3254,7 +3254,7 @@ package body WinRt.Windows.Storage.Search is
    function Constructor return ValueAndLanguage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.IValueAndLanguage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.Search.ValueAndLanguage");
       m_ComRetVal  : aliased WinRt.Windows.Storage.Search.IValueAndLanguage;
    begin
       return RetVal : ValueAndLanguage do

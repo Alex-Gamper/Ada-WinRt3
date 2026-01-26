@@ -66,7 +66,7 @@ package body WinUI3.Windows.Media.Playlists is
    function Constructor return Playlist is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playlists.IPlaylist");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.Playlists.Playlist");
       m_ComRetVal  : aliased WinUI3.Windows.Media.Playlists.IPlaylist;
    begin
       return RetVal : Playlist do

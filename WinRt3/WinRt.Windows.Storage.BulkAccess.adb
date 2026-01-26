@@ -2058,7 +2058,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2084,7 +2084,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2111,7 +2111,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;
@@ -2139,7 +2139,7 @@ package body WinRt.Windows.Storage.BulkAccess is
    return FileInformationFactory is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.IFileInformationFactory");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Storage.BulkAccess.FileInformationFactory");
       m_Factory    : access IFileInformationFactoryFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Storage.BulkAccess.IFileInformationFactory;

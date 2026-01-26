@@ -65,7 +65,7 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    return CoreIncrementalInkStroke is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreIncrementalInkStroke");
       m_Factory    : access ICoreIncrementalInkStrokeFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.Core.ICoreIncrementalInkStroke;
@@ -550,7 +550,7 @@ package body WinRt.Windows.UI.Input.Inking.Core is
    function Constructor return CoreInkPresenterHost is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.ICoreInkPresenterHost");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Input.Inking.Core.CoreInkPresenterHost");
       m_ComRetVal  : aliased WinRt.Windows.UI.Input.Inking.Core.ICoreInkPresenterHost;
    begin
       return RetVal : CoreInkPresenterHost do

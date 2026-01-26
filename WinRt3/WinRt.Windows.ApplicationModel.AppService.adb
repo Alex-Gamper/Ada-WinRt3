@@ -197,7 +197,7 @@ package body WinRt.Windows.ApplicationModel.AppService is
    function Constructor return AppServiceConnection is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.IAppServiceConnection");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.AppService.AppServiceConnection");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.AppService.IAppServiceConnection;
    begin
       return RetVal : AppServiceConnection do

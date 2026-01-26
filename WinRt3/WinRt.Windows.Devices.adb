@@ -70,7 +70,7 @@ package body WinRt.Windows.Devices is
    return LowLevelDevicesAggregateProvider is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.ILowLevelDevicesAggregateProvider");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.LowLevelDevicesAggregateProvider");
       m_Factory    : access ILowLevelDevicesAggregateProviderFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.ILowLevelDevicesAggregateProvider;

@@ -1179,7 +1179,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatConversationThreadingInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatConversationThreadingInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatConversationThreadingInfo");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatConversationThreadingInfo;
    begin
       return RetVal : ChatConversationThreadingInfo do
@@ -1384,7 +1384,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatMessage is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatMessage");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatMessage");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessage;
    begin
       return RetVal : ChatMessage do
@@ -2403,7 +2403,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    return ChatMessageAttachment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatMessageAttachment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatMessageAttachment");
       m_Factory    : access IChatMessageAttachmentFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatMessageAttachment;
@@ -5663,7 +5663,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatQueryOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatQueryOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatQueryOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatQueryOptions;
    begin
       return RetVal : ChatQueryOptions do
@@ -5742,7 +5742,7 @@ package body WinRt.Windows.ApplicationModel.Chat is
    function Constructor return ChatRecipientDeliveryInfo is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Chat.ChatRecipientDeliveryInfo");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Chat.IChatRecipientDeliveryInfo;
    begin
       return RetVal : ChatRecipientDeliveryInfo do

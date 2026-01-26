@@ -62,7 +62,7 @@ package body WinRt.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
@@ -87,7 +87,7 @@ package body WinRt.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;
@@ -113,7 +113,7 @@ package body WinRt.Windows.System.Threading.Core is
    return PreallocatedWorkItem is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.IPreallocatedWorkItem");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.System.Threading.Core.PreallocatedWorkItem");
       m_Factory    : access IPreallocatedWorkItemFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.System.Threading.Core.IPreallocatedWorkItem;

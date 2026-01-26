@@ -62,7 +62,7 @@ package body WinUI3.Windows.UI.Xaml.Media.Media3D is
    return Transform3D is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.ITransform3D");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.Transform3D");
       m_Factory    : access ITransform3DFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Media.Media3D.ITransform3D;
@@ -108,7 +108,7 @@ package body WinUI3.Windows.UI.Xaml.Media.Media3D is
    function Constructor return CompositeTransform3D is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.CompositeTransform3D");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Media.Media3D.ICompositeTransform3D;
    begin
       return RetVal : CompositeTransform3D do
@@ -1008,7 +1008,7 @@ package body WinUI3.Windows.UI.Xaml.Media.Media3D is
    function Constructor return PerspectiveTransform3D is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Xaml.Media.Media3D.PerspectiveTransform3D");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Xaml.Media.Media3D.IPerspectiveTransform3D;
    begin
       return RetVal : PerspectiveTransform3D do

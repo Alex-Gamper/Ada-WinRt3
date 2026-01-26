@@ -115,7 +115,7 @@ package body WinRt.Windows.UI.Accessibility is
    function Constructor return ScreenReaderService is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Accessibility.IScreenReaderService");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Accessibility.ScreenReaderService");
       m_ComRetVal  : aliased WinRt.Windows.UI.Accessibility.IScreenReaderService;
    begin
       return RetVal : ScreenReaderService do

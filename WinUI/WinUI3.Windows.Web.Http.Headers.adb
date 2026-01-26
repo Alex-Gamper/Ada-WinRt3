@@ -606,7 +606,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpChallengeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpChallengeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpChallengeHeaderValue");
       m_Factory    : access IHttpChallengeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
@@ -633,7 +633,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpChallengeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpChallengeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpChallengeHeaderValue");
       m_Factory    : access IHttpChallengeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpChallengeHeaderValue;
@@ -1204,7 +1204,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpConnectionOptionHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpConnectionOptionHeaderValue");
       m_Factory    : access IHttpConnectionOptionHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpConnectionOptionHeaderValue;
@@ -1733,7 +1733,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentCodingHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingHeaderValue");
       m_Factory    : access IHttpContentCodingHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentCodingHeaderValue;
@@ -2262,7 +2262,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentCodingWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue");
       m_Factory    : access IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
@@ -2289,7 +2289,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentCodingWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentCodingWithQualityHeaderValue");
       m_Factory    : access IHttpContentCodingWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentCodingWithQualityHeaderValue;
@@ -2838,7 +2838,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentDispositionHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentDispositionHeaderValue");
       m_Factory    : access IHttpContentDispositionHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentDispositionHeaderValue;
@@ -3172,7 +3172,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    function Constructor return HttpContentHeaderCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentHeaderCollection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentHeaderCollection");
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentHeaderCollection;
    begin
       return RetVal : HttpContentHeaderCollection do
@@ -3769,7 +3769,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
@@ -3794,7 +3794,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
@@ -3820,7 +3820,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpContentRangeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpContentRangeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpContentRangeHeaderValue");
       m_Factory    : access IHttpContentRangeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpContentRangeHeaderValue;
@@ -4050,7 +4050,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpCookiePairHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpCookiePairHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpCookiePairHeaderValue");
       m_Factory    : access IHttpCookiePairHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
@@ -4077,7 +4077,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpCookiePairHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpCookiePairHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpCookiePairHeaderValue");
       m_Factory    : access IHttpCookiePairHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpCookiePairHeaderValue;
@@ -4645,7 +4645,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpCredentialsHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpCredentialsHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpCredentialsHeaderValue");
       m_Factory    : access IHttpCredentialsHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
@@ -4672,7 +4672,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpCredentialsHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpCredentialsHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpCredentialsHeaderValue");
       m_Factory    : access IHttpCredentialsHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpCredentialsHeaderValue;
@@ -5015,7 +5015,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpExpectationHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpExpectationHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpExpectationHeaderValue");
       m_Factory    : access IHttpExpectationHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
@@ -5042,7 +5042,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpExpectationHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpExpectationHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpExpectationHeaderValue");
       m_Factory    : access IHttpExpectationHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpExpectationHeaderValue;
@@ -6004,7 +6004,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpLanguageRangeWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue");
       m_Factory    : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
@@ -6031,7 +6031,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpLanguageRangeWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpLanguageRangeWithQualityHeaderValue");
       m_Factory    : access IHttpLanguageRangeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpLanguageRangeWithQualityHeaderValue;
@@ -6580,7 +6580,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpMediaTypeHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeHeaderValue");
       m_Factory    : access IHttpMediaTypeHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpMediaTypeHeaderValue;
@@ -6809,7 +6809,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpMediaTypeWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue");
       m_Factory    : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
@@ -6836,7 +6836,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpMediaTypeWithQualityHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpMediaTypeWithQualityHeaderValue");
       m_Factory    : access IHttpMediaTypeWithQualityHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpMediaTypeWithQualityHeaderValue;
@@ -7848,7 +7848,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpNameValueHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpNameValueHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpNameValueHeaderValue");
       m_Factory    : access IHttpNameValueHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
@@ -7875,7 +7875,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpNameValueHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpNameValueHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpNameValueHeaderValue");
       m_Factory    : access IHttpNameValueHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpNameValueHeaderValue;
@@ -8069,7 +8069,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpProductHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpProductHeaderValue");
       m_Factory    : access IHttpProductHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpProductHeaderValue;
@@ -8096,7 +8096,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpProductHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpProductHeaderValue");
       m_Factory    : access IHttpProductHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpProductHeaderValue;
@@ -8273,7 +8273,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpProductInfoHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductInfoHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpProductInfoHeaderValue");
       m_Factory    : access IHttpProductInfoHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
@@ -8300,7 +8300,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpProductInfoHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpProductInfoHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpProductInfoHeaderValue");
       m_Factory    : access IHttpProductInfoHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpProductInfoHeaderValue;
@@ -10122,7 +10122,7 @@ package body WinUI3.Windows.Web.Http.Headers is
    return HttpTransferCodingHeaderValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Web.Http.Headers.HttpTransferCodingHeaderValue");
       m_Factory    : access IHttpTransferCodingHeaderValueFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Web.Http.Headers.IHttpTransferCodingHeaderValue;

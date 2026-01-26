@@ -1576,7 +1576,7 @@ package body WinUI3.Windows.Security.Isolation is
    function Constructor return IsolatedWindowsEnvironmentOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOptions;
    begin
       return RetVal : IsolatedWindowsEnvironmentOptions do
@@ -2131,7 +2131,7 @@ package body WinUI3.Windows.Security.Isolation is
    function Constructor return IsolatedWindowsEnvironmentOwnerRegistrationData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentOwnerRegistrationData");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Isolation.IIsolatedWindowsEnvironmentOwnerRegistrationData;
    begin
       return RetVal : IsolatedWindowsEnvironmentOwnerRegistrationData do
@@ -2495,7 +2495,7 @@ package body WinUI3.Windows.Security.Isolation is
    function Constructor return IsolatedWindowsEnvironmentShareFileRequestOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFileRequestOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFileRequestOptions;
    begin
       return RetVal : IsolatedWindowsEnvironmentShareFileRequestOptions do
@@ -2646,7 +2646,7 @@ package body WinUI3.Windows.Security.Isolation is
    function Constructor return IsolatedWindowsEnvironmentShareFolderRequestOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentShareFolderRequestOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Isolation.IIsolatedWindowsEnvironmentShareFolderRequestOptions;
    begin
       return RetVal : IsolatedWindowsEnvironmentShareFolderRequestOptions do
@@ -2854,7 +2854,7 @@ package body WinUI3.Windows.Security.Isolation is
    function Constructor return IsolatedWindowsEnvironmentTelemetryParameters is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Isolation.IsolatedWindowsEnvironmentTelemetryParameters");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Isolation.IIsolatedWindowsEnvironmentTelemetryParameters;
    begin
       return RetVal : IsolatedWindowsEnvironmentTelemetryParameters do

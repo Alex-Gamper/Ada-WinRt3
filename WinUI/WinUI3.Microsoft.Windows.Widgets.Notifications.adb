@@ -66,7 +66,7 @@ package body WinUI3.Microsoft.Windows.Widgets.Notifications is
    return FeedAnnouncement is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Notifications.IFeedAnnouncement");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.Windows.Widgets.Notifications.FeedAnnouncement");
       m_Factory    : access IFeedAnnouncementFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.Windows.Widgets.Notifications.IFeedAnnouncement;

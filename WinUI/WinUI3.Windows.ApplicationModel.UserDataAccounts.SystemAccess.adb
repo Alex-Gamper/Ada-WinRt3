@@ -69,7 +69,7 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
    function Constructor return DeviceAccountConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.UserDataAccounts.SystemAccess.DeviceAccountConfiguration");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.UserDataAccounts.SystemAccess.IDeviceAccountConfiguration;
    begin
       return RetVal : DeviceAccountConfiguration do

@@ -66,7 +66,7 @@ package body WinUI3.Windows.Networking is
    return EndpointPair is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.IEndpointPair");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.EndpointPair");
       m_Factory    : access IEndpointPairFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.IEndpointPair;
@@ -264,7 +264,7 @@ package body WinUI3.Windows.Networking is
    return HostName is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.IHostName");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Networking.HostName");
       m_Factory    : access IHostNameFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Networking.IHostName;

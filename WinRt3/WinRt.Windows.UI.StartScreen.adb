@@ -564,7 +564,7 @@ package body WinRt.Windows.UI.StartScreen is
    function Constructor return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.ISecondaryTile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_ComRetVal  : aliased WinRt.Windows.UI.StartScreen.ISecondaryTile;
    begin
       return RetVal : SecondaryTile do
@@ -588,7 +588,7 @@ package body WinRt.Windows.UI.StartScreen is
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.ISecondaryTile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.StartScreen.ISecondaryTile;
@@ -623,7 +623,7 @@ package body WinRt.Windows.UI.StartScreen is
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.ISecondaryTile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.StartScreen.ISecondaryTile;
@@ -661,7 +661,7 @@ package body WinRt.Windows.UI.StartScreen is
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.ISecondaryTile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.StartScreen.ISecondaryTile;
@@ -693,7 +693,7 @@ package body WinRt.Windows.UI.StartScreen is
    return SecondaryTile is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.ISecondaryTile");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.StartScreen.SecondaryTile");
       m_Factory    : access ISecondaryTileFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.StartScreen.ISecondaryTile;

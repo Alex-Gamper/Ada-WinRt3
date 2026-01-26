@@ -624,7 +624,7 @@ package body WinUI3.Windows.Media.PlayTo is
    function Constructor return PlayToReceiver is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.PlayTo.IPlayToReceiver");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Media.PlayTo.PlayToReceiver");
       m_ComRetVal  : aliased WinUI3.Windows.Media.PlayTo.IPlayToReceiver;
    begin
       return RetVal : PlayToReceiver do

@@ -61,7 +61,7 @@ package body WinRt.Windows.Devices.Gpio.Provider is
    return GpioPinProviderValueChangedEventArgs is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Devices.Gpio.Provider.GpioPinProviderValueChangedEventArgs");
       m_Factory    : access IGpioPinProviderValueChangedEventArgsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;

@@ -209,7 +209,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
    return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
       m_Factory    : access IAutomationAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
@@ -234,7 +234,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
    return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
       m_Factory    : access IAutomationAnnotationFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
@@ -254,7 +254,7 @@ package body WinRt.Windows.UI.Xaml.Automation is
    function Constructor return AutomationAnnotation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.IAutomationAnnotation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.UI.Xaml.Automation.AutomationAnnotation");
       m_ComRetVal  : aliased WinRt.Windows.UI.Xaml.Automation.IAutomationAnnotation;
    begin
       return RetVal : AutomationAnnotation do

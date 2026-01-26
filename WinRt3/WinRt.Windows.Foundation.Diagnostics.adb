@@ -405,7 +405,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return FileLoggingSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.IFileLoggingSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.FileLoggingSession");
       m_Factory    : access IFileLoggingSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.IFileLoggingSession;
@@ -684,7 +684,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingActivity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
@@ -712,7 +712,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingActivity is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingActivity");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingActivity");
       m_Factory    : access ILoggingActivityFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingActivity;
@@ -1180,7 +1180,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
@@ -1208,7 +1208,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory2_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
@@ -1234,7 +1234,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannel is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannel");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannel");
       m_Factory    : access ILoggingChannelFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannel;
@@ -1754,7 +1754,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannelOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
       m_Factory    : access ILoggingChannelOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
@@ -1774,7 +1774,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingChannelOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingChannelOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingChannelOptions");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingChannelOptions;
    begin
       return RetVal : LoggingChannelOptions do
@@ -1848,7 +1848,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingFields is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingFields");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingFields");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingFields;
    begin
       return RetVal : LoggingFields do
@@ -4119,7 +4119,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
    begin
       return RetVal : LoggingOptions do
@@ -4139,7 +4139,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingOptions");
       m_Factory    : access ILoggingOptionsFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingOptions;
@@ -4381,7 +4381,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    return LoggingSession is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.ILoggingSession");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.LoggingSession");
       m_Factory    : access ILoggingSessionFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.ILoggingSession;
@@ -4583,7 +4583,7 @@ package body WinRt.Windows.Foundation.Diagnostics is
    function Constructor return RuntimeBrokerErrorSettings is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.IErrorReportingSettings");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Foundation.Diagnostics.RuntimeBrokerErrorSettings");
       m_ComRetVal  : aliased WinRt.Windows.Foundation.Diagnostics.IErrorReportingSettings;
    begin
       return RetVal : RuntimeBrokerErrorSettings do

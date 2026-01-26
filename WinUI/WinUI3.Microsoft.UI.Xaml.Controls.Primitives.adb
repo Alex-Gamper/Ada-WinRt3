@@ -72,7 +72,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ButtonBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IButtonBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ButtonBase");
       m_Factory    : access IButtonBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IButtonBase;
@@ -409,7 +409,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ToggleButton is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IToggleButton");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ToggleButton");
       m_Factory    : access IToggleButtonFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IToggleButton;
@@ -1069,7 +1069,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return SelectorItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ISelectorItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.SelectorItem");
       m_Factory    : access ISelectorItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ISelectorItem;
@@ -1179,7 +1179,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return FlyoutBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IFlyoutBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.FlyoutBase");
       m_Factory    : access IFlyoutBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IFlyoutBase;
@@ -2314,7 +2314,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return PickerFlyoutBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IPickerFlyoutBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.PickerFlyoutBase");
       m_Factory    : access IPickerFlyoutBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPickerFlyoutBase;
@@ -2846,7 +2846,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return CalendarPanel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ICalendarPanel");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.CalendarPanel");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ICalendarPanel;
    begin
       return RetVal : CalendarPanel do
@@ -3195,7 +3195,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return CarouselPanel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ICarouselPanel");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.CarouselPanel");
       m_Factory    : access ICarouselPanelFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ICarouselPanel;
@@ -3835,7 +3835,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return RangeBase is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IRangeBase");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.RangeBase");
       m_Factory    : access IRangeBaseFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IRangeBase;
@@ -4262,7 +4262,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ColorPickerSlider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IColorPickerSlider");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ColorPickerSlider");
       m_Factory    : access IColorPickerSliderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IColorPickerSlider;
@@ -4372,7 +4372,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ColorSpectrum is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IColorSpectrum");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ColorSpectrum");
       m_Factory    : access IColorSpectrumFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IColorSpectrum;
@@ -5019,7 +5019,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ColumnMajorUniformToLargestGridLayout is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IColumnMajorUniformToLargestGridLayout");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ColumnMajorUniformToLargestGridLayout");
       m_Factory    : access IColumnMajorUniformToLargestGridLayoutFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IColumnMajorUniformToLargestGridLayout;
@@ -5445,7 +5445,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return CommandBarFlyoutCommandBar is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.CommandBarFlyoutCommandBar");
       m_Factory    : access ICommandBarFlyoutCommandBarFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ICommandBarFlyoutCommandBar;
@@ -6247,7 +6247,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return CornerRadiusFilterConverter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ICornerRadiusFilterConverter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.CornerRadiusFilterConverter");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ICornerRadiusFilterConverter;
    begin
       return RetVal : CornerRadiusFilterConverter do
@@ -6458,7 +6458,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return CornerRadiusToThicknessConverter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ICornerRadiusToThicknessConverter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.CornerRadiusToThicknessConverter");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ICornerRadiusToThicknessConverter;
    begin
       return RetVal : CornerRadiusToThicknessConverter do
@@ -6677,7 +6677,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return DragCompletedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.DragCompletedEventArgs");
       m_Factory    : access IDragCompletedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IDragCompletedEventArgs;
@@ -6797,7 +6797,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return DragDeltaEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.DragDeltaEventArgs");
       m_Factory    : access IDragDeltaEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IDragDeltaEventArgs;
@@ -6900,7 +6900,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return DragStartedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IDragStartedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.DragStartedEventArgs");
       m_Factory    : access IDragStartedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IDragStartedEventArgs;
@@ -7056,7 +7056,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return FlyoutShowOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IFlyoutShowOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.FlyoutShowOptions");
       m_Factory    : access IFlyoutShowOptionsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IFlyoutShowOptions;
@@ -7292,7 +7292,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return GridViewItemPresenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IGridViewItemPresenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.GridViewItemPresenter");
       m_Factory    : access IGridViewItemPresenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IGridViewItemPresenter;
@@ -8654,7 +8654,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return InfoBarPanel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IInfoBarPanel");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.InfoBarPanel");
       m_Factory    : access IInfoBarPanelFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IInfoBarPanel;
@@ -9079,7 +9079,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return JumpListItemBackgroundConverter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.JumpListItemBackgroundConverter");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IJumpListItemBackgroundConverter;
    begin
       return RetVal : JumpListItemBackgroundConverter do
@@ -9296,7 +9296,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return JumpListItemForegroundConverter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.JumpListItemForegroundConverter");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IJumpListItemForegroundConverter;
    begin
       return RetVal : JumpListItemForegroundConverter do
@@ -9619,7 +9619,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ListViewItemPresenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IListViewItemPresenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ListViewItemPresenter");
       m_Factory    : access IListViewItemPresenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IListViewItemPresenter;
@@ -13900,7 +13900,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return MonochromaticOverlayPresenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IMonochromaticOverlayPresenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.MonochromaticOverlayPresenter");
       m_Factory    : access IMonochromaticOverlayPresenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IMonochromaticOverlayPresenter;
@@ -14069,7 +14069,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return NavigationViewItemPresenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenter");
       m_Factory    : access INavigationViewItemPresenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.INavigationViewItemPresenter;
@@ -14293,7 +14293,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return NavigationViewItemPresenterTemplateSettings is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.INavigationViewItemPresenterTemplateSettings");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.NavigationViewItemPresenterTemplateSettings");
       m_Factory    : access INavigationViewItemPresenterTemplateSettingsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.INavigationViewItemPresenterTemplateSettings;
@@ -15065,7 +15065,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return PivotHeaderItem is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IPivotHeaderItem");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.PivotHeaderItem");
       m_Factory    : access IPivotHeaderItemFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPivotHeaderItem;
@@ -15111,7 +15111,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return PivotHeaderPanel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IPivotHeaderPanel");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.PivotHeaderPanel");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPivotHeaderPanel;
    begin
       return RetVal : PivotHeaderPanel do
@@ -15153,7 +15153,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return PivotPanel is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IPivotPanel");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.PivotPanel");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPivotPanel;
    begin
       return RetVal : PivotPanel do
@@ -15369,7 +15369,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return Popup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IPopup");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.Popup");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IPopup;
    begin
       return RetVal : Popup do
@@ -16284,7 +16284,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return RepeatButton is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IRepeatButton");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.RepeatButton");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IRepeatButton;
    begin
       return RetVal : RepeatButton do
@@ -16520,7 +16520,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return RepeatedScrollSnapPoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IRepeatedScrollSnapPoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.RepeatedScrollSnapPoint");
       m_Factory    : access IRepeatedScrollSnapPointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IRepeatedScrollSnapPoint;
@@ -16669,7 +16669,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return RepeatedZoomSnapPoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IRepeatedZoomSnapPoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.RepeatedZoomSnapPoint");
       m_Factory    : access IRepeatedZoomSnapPointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IRepeatedZoomSnapPoint;
@@ -16783,7 +16783,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return ScrollBar is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollBar");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollBar");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollBar;
    begin
       return RetVal : ScrollBar do
@@ -17034,7 +17034,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollControllerAddScrollVelocityRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerAddScrollVelocityRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollControllerAddScrollVelocityRequestedEventArgs");
       m_Factory    : access IScrollControllerAddScrollVelocityRequestedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerAddScrollVelocityRequestedEventArgs;
@@ -17153,7 +17153,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollControllerPanRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerPanRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollControllerPanRequestedEventArgs");
       m_Factory    : access IScrollControllerPanRequestedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerPanRequestedEventArgs;
@@ -17256,7 +17256,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollControllerScrollByRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerScrollByRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollControllerScrollByRequestedEventArgs");
       m_Factory    : access IScrollControllerScrollByRequestedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerScrollByRequestedEventArgs;
@@ -17376,7 +17376,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollControllerScrollToRequestedEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerScrollToRequestedEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollControllerScrollToRequestedEventArgs");
       m_Factory    : access IScrollControllerScrollToRequestedEventArgsFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollControllerScrollToRequestedEventArgs;
@@ -17491,7 +17491,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return ScrollEventArgs is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollEventArgs");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollEventArgs");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollEventArgs;
    begin
       return RetVal : ScrollEventArgs do
@@ -17588,7 +17588,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollPresenter is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollPresenter");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollPresenter");
       m_Factory    : access IScrollPresenterFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollPresenter;
@@ -19496,7 +19496,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ScrollSnapPoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IScrollSnapPoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ScrollSnapPoint");
       m_Factory    : access IScrollSnapPointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IScrollSnapPoint;
@@ -19689,7 +19689,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return TabViewListView is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ITabViewListView");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.TabViewListView");
       m_Factory    : access ITabViewListViewFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ITabViewListView;
@@ -19735,7 +19735,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return Thumb is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IThumb");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.Thumb");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IThumb;
    begin
       return RetVal : Thumb do
@@ -19934,7 +19934,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    function Constructor return TickBar is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ITickBar");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.TickBar");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.ITickBar;
    begin
       return RetVal : TickBar do
@@ -20260,7 +20260,7 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.Primitives is
    return ZoomSnapPoint is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.IZoomSnapPoint");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Xaml.Controls.Primitives.ZoomSnapPoint");
       m_Factory    : access IZoomSnapPointFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Xaml.Controls.Primitives.IZoomSnapPoint;

@@ -483,7 +483,7 @@ package body WinUI3.Windows.Security.Credentials is
    return KeyCredentialCacheConfiguration is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IKeyCredentialCacheConfiguration");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.KeyCredentialCacheConfiguration");
       m_Factory    : access IKeyCredentialCacheConfigurationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IKeyCredentialCacheConfiguration;
@@ -1181,7 +1181,7 @@ package body WinUI3.Windows.Security.Credentials is
    function Constructor return PasswordCredential is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IPasswordCredential");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IPasswordCredential;
    begin
       return RetVal : PasswordCredential do
@@ -1203,7 +1203,7 @@ package body WinUI3.Windows.Security.Credentials is
    return PasswordCredential is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IPasswordCredential");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.PasswordCredential");
       m_Factory    : access ICredentialFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IPasswordCredential;
@@ -1398,7 +1398,7 @@ package body WinUI3.Windows.Security.Credentials is
    function Constructor return PasswordCredentialPropertyStore is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.PasswordCredentialPropertyStore");
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.Collections.IPropertySet;
       m_Wrapped    : WinUI3.Windows.Foundation.Collections.IPropertySet_Ptr := new WinUI3.Windows.Foundation.Collections.IPropertySet;
    begin
@@ -1647,7 +1647,7 @@ package body WinUI3.Windows.Security.Credentials is
    function Constructor return PasswordVault is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IPasswordVault");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.PasswordVault");
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IPasswordVault;
    begin
       return RetVal : PasswordVault do
@@ -1817,7 +1817,7 @@ package body WinUI3.Windows.Security.Credentials is
    return WebAccount is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IWebAccount");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.WebAccount");
       m_Factory    : access IWebAccountFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IWebAccount;
@@ -2139,7 +2139,7 @@ package body WinUI3.Windows.Security.Credentials is
    return WebAccountProvider is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.IWebAccountProvider");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Security.Credentials.WebAccountProvider");
       m_Factory    : access IWebAccountProviderFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Security.Credentials.IWebAccountProvider;

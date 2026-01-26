@@ -68,7 +68,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    return LampArrayBitmapEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArrayBitmapEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBitmapEffect");
       m_Factory    : access ILampArrayBitmapEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArrayBitmapEffect;
@@ -361,7 +361,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    return LampArrayBlinkEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArrayBlinkEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayBlinkEffect");
       m_Factory    : access ILampArrayBlinkEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArrayBlinkEffect;
@@ -709,7 +709,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    return LampArrayColorRampEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArrayColorRampEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayColorRampEffect");
       m_Factory    : access ILampArrayColorRampEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArrayColorRampEffect;
@@ -929,7 +929,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    return LampArrayCustomEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArrayCustomEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayCustomEffect");
       m_Factory    : access ILampArrayCustomEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArrayCustomEffect;
@@ -1113,7 +1113,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    function Constructor return LampArrayEffectPlaylist is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArrayEffectPlaylist");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArrayEffectPlaylist;
    begin
       return RetVal : LampArrayEffectPlaylist do
@@ -1512,7 +1512,7 @@ package body WinUI3.Windows.Devices.Lights.Effects is
    return LampArraySolidEffect is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.ILampArraySolidEffect");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Lights.Effects.LampArraySolidEffect");
       m_Factory    : access ILampArraySolidEffectFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Lights.Effects.ILampArraySolidEffect;

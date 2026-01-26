@@ -677,7 +677,7 @@ package body WinRt.Windows.Graphics.Capture is
    function Constructor return GraphicsCapturePicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.IGraphicsCapturePicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Capture.GraphicsCapturePicker");
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Capture.IGraphicsCapturePicker;
    begin
       return RetVal : GraphicsCapturePicker do

@@ -70,7 +70,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiActiveSensingMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiActiveSensingMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiActiveSensingMessage do
@@ -168,7 +168,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiChannelPressureMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiChannelPressureMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiChannelPressureMessage");
       m_Factory    : access IMidiChannelPressureMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiChannelPressureMessage;
@@ -311,7 +311,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiContinueMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiContinueMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiContinueMessage do
@@ -410,7 +410,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiControlChangeMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiControlChangeMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiControlChangeMessage");
       m_Factory    : access IMidiControlChangeMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiControlChangeMessage;
@@ -812,7 +812,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiNoteOffMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiNoteOffMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiNoteOffMessage");
       m_Factory    : access IMidiNoteOffMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiNoteOffMessage;
@@ -978,7 +978,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiNoteOnMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiNoteOnMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiNoteOnMessage");
       m_Factory    : access IMidiNoteOnMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiNoteOnMessage;
@@ -1333,7 +1333,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiPitchBendChangeMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiPitchBendChangeMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiPitchBendChangeMessage");
       m_Factory    : access IMidiPitchBendChangeMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiPitchBendChangeMessage;
@@ -1482,7 +1482,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiPolyphonicKeyPressureMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiPolyphonicKeyPressureMessage");
       m_Factory    : access IMidiPolyphonicKeyPressureMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiPolyphonicKeyPressureMessage;
@@ -1647,7 +1647,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiProgramChangeMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiProgramChangeMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiProgramChangeMessage");
       m_Factory    : access IMidiProgramChangeMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiProgramChangeMessage;
@@ -1794,7 +1794,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiSongPositionPointerMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiSongPositionPointerMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiSongPositionPointerMessage");
       m_Factory    : access IMidiSongPositionPointerMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiSongPositionPointerMessage;
@@ -1924,7 +1924,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiSongSelectMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiSongSelectMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiSongSelectMessage");
       m_Factory    : access IMidiSongSelectMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiSongSelectMessage;
@@ -2050,7 +2050,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiStartMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiStartMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiStartMessage do
@@ -2143,7 +2143,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiStopMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiStopMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiStopMessage do
@@ -2565,7 +2565,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiSystemExclusiveMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiSystemExclusiveMessage");
       m_Factory    : access IMidiSystemExclusiveMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
@@ -2662,7 +2662,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiSystemResetMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiSystemResetMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiSystemResetMessage do
@@ -2760,7 +2760,7 @@ package body WinUI3.Windows.Devices.Midi is
    return MidiTimeCodeMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiTimeCodeMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiTimeCodeMessage");
       m_Factory    : access IMidiTimeCodeMessageFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiTimeCodeMessage;
@@ -2903,7 +2903,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiTimingClockMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiTimingClockMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiTimingClockMessage do
@@ -2996,7 +2996,7 @@ package body WinUI3.Windows.Devices.Midi is
    function Constructor return MidiTuneRequestMessage is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.IMidiMessage");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Midi.MidiTuneRequestMessage");
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Midi.IMidiMessage;
    begin
       return RetVal : MidiTuneRequestMessage do

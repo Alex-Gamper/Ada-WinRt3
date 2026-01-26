@@ -83,7 +83,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return Appointment is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointment");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.Appointment");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointment;
    begin
       return RetVal : Appointment do
@@ -3326,7 +3326,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentInvitee is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentInvitee");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentInvitee");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentInvitee;
    begin
       return RetVal : AppointmentInvitee do
@@ -5328,7 +5328,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentOrganizer is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentParticipant");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentOrganizer");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentParticipant;
    begin
       return RetVal : AppointmentOrganizer do
@@ -6074,7 +6074,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return AppointmentRecurrence is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IAppointmentRecurrence");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.AppointmentRecurrence");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IAppointmentRecurrence;
    begin
       return RetVal : AppointmentRecurrence do
@@ -8335,7 +8335,7 @@ package body WinRt.Windows.ApplicationModel.Appointments is
    function Constructor return FindAppointmentsOptions is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.IFindAppointmentsOptions");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.Appointments.FindAppointmentsOptions");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.Appointments.IFindAppointmentsOptions;
    begin
       return RetVal : FindAppointmentsOptions do

@@ -58,7 +58,7 @@ package body WinUI3.Microsoft.UI.Composition.Core is
    function Constructor return CompositorController is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Core.ICompositorController");
+      m_hString    : constant WinUI3.HString := To_HString ("Microsoft.UI.Composition.Core.CompositorController");
       m_ComRetVal  : aliased WinUI3.Microsoft.UI.Composition.Core.ICompositorController;
    begin
       return RetVal : CompositorController do

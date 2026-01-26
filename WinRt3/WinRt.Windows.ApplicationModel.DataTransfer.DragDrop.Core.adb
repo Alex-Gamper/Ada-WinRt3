@@ -276,7 +276,7 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
    function Constructor return CoreDragOperation is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.ApplicationModel.DataTransfer.DragDrop.Core.CoreDragOperation");
       m_ComRetVal  : aliased WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core.ICoreDragOperation;
    begin
       return RetVal : CoreDragOperation do

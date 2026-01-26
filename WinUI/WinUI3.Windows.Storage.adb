@@ -956,7 +956,7 @@ package body WinUI3.Windows.Storage is
    function Constructor return ApplicationDataCompositeValue is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Foundation.Collections.IPropertySet");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.ApplicationDataCompositeValue");
       m_ComRetVal  : aliased WinUI3.Windows.Foundation.Collections.IPropertySet;
       m_Wrapped    : WinUI3.Windows.Foundation.Collections.IPropertySet_Ptr := new WinUI3.Windows.Foundation.Collections.IPropertySet;
    begin
@@ -10820,7 +10820,7 @@ package body WinUI3.Windows.Storage is
    function Constructor return StorageLibraryChangeTrackerOptions is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.IStorageLibraryChangeTrackerOptions");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Storage.StorageLibraryChangeTrackerOptions");
       m_ComRetVal  : aliased WinUI3.Windows.Storage.IStorageLibraryChangeTrackerOptions;
    begin
       return RetVal : StorageLibraryChangeTrackerOptions do

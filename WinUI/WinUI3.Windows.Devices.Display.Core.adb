@@ -2443,7 +2443,7 @@ package body WinUI3.Windows.Devices.Display.Core is
    return DisplayPrimaryDescription is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Display.Core.IDisplayPrimaryDescription");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Display.Core.DisplayPrimaryDescription");
       m_Factory    : access IDisplayPrimaryDescriptionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Display.Core.IDisplayPrimaryDescription;
@@ -3812,7 +3812,7 @@ package body WinUI3.Windows.Devices.Display.Core is
    return DisplayWireFormat is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Display.Core.IDisplayWireFormat");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.Devices.Display.Core.DisplayWireFormat");
       m_Factory    : access IDisplayWireFormatFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.Devices.Display.Core.IDisplayWireFormat;

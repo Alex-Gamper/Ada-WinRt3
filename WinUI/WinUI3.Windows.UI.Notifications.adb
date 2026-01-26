@@ -74,7 +74,7 @@ package body WinUI3.Windows.UI.Notifications is
    function Constructor return AdaptiveNotificationText is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IAdaptiveNotificationText");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.AdaptiveNotificationText");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IAdaptiveNotificationText;
    begin
       return RetVal : AdaptiveNotificationText do
@@ -239,7 +239,7 @@ package body WinUI3.Windows.UI.Notifications is
    return BadgeNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IBadgeNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.BadgeNotification");
       m_Factory    : access IBadgeNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IBadgeNotification;
@@ -1332,7 +1332,7 @@ package body WinUI3.Windows.UI.Notifications is
    function Constructor return Notification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.INotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.Notification");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.INotification;
    begin
       return RetVal : Notification do
@@ -1586,7 +1586,7 @@ package body WinUI3.Windows.UI.Notifications is
    return NotificationData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.INotificationData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.NotificationData");
       m_Factory    : access INotificationDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.INotificationData;
@@ -1610,7 +1610,7 @@ package body WinUI3.Windows.UI.Notifications is
    return NotificationData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.INotificationData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.NotificationData");
       m_Factory    : access INotificationDataFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.INotificationData;
@@ -1630,7 +1630,7 @@ package body WinUI3.Windows.UI.Notifications is
    function Constructor return NotificationData is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.INotificationData");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.NotificationData");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.INotificationData;
    begin
       return RetVal : NotificationData do
@@ -1832,7 +1832,7 @@ package body WinUI3.Windows.UI.Notifications is
    return ScheduledTileNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IScheduledTileNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ScheduledTileNotification");
       m_Factory    : access IScheduledTileNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IScheduledTileNotification;
@@ -2029,7 +2029,7 @@ package body WinUI3.Windows.UI.Notifications is
    return ScheduledToastNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IScheduledToastNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ScheduledToastNotification");
       m_Factory    : access IScheduledToastNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IScheduledToastNotification;
@@ -2056,7 +2056,7 @@ package body WinUI3.Windows.UI.Notifications is
    return ScheduledToastNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IScheduledToastNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ScheduledToastNotification");
       m_Factory    : access IScheduledToastNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IScheduledToastNotification;
@@ -2613,7 +2613,7 @@ package body WinUI3.Windows.UI.Notifications is
    return TileFlyoutNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ITileFlyoutNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.TileFlyoutNotification");
       m_Factory    : access ITileFlyoutNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.ITileFlyoutNotification;
@@ -2949,7 +2949,7 @@ package body WinUI3.Windows.UI.Notifications is
    return TileNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ITileNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.TileNotification");
       m_Factory    : access ITileNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.ITileNotification;
@@ -3683,7 +3683,7 @@ package body WinUI3.Windows.UI.Notifications is
    return ToastCollection is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IToastCollection");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ToastCollection");
       m_Factory    : access IToastCollectionFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IToastCollection;
@@ -4273,7 +4273,7 @@ package body WinUI3.Windows.UI.Notifications is
    return ToastNotification is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.IToastNotification");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Notifications.ToastNotification");
       m_Factory    : access IToastNotificationFactory_Interface'Class := null;
       temp         : WinUI3.UInt32 := 0;
       m_ComRetVal  : aliased WinUI3.Windows.UI.Notifications.IToastNotification;

@@ -356,7 +356,7 @@ package body WinUI3.Windows.UI.Shell is
    function Constructor return SecurityAppManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.ISecurityAppManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.SecurityAppManager");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Shell.ISecurityAppManager;
    begin
       return RetVal : SecurityAppManager do
@@ -1232,7 +1232,7 @@ package body WinUI3.Windows.UI.Shell is
    function Constructor return WindowTab is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.IWindowTab");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.WindowTab");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Shell.IWindowTab;
    begin
       return RetVal : WindowTab do
@@ -1836,7 +1836,7 @@ package body WinUI3.Windows.UI.Shell is
    function Constructor return WindowTabGroup is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.IWindowTabGroup");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.UI.Shell.WindowTabGroup");
       m_ComRetVal  : aliased WinUI3.Windows.UI.Shell.IWindowTabGroup;
    begin
       return RetVal : WindowTabGroup do

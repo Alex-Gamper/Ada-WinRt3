@@ -1240,7 +1240,7 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
    return WorkflowPrintTicket is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Graphics.Printing.PrintTicket.WorkflowPrintTicket");
       m_Factory    : access IWorkflowPrintTicketFactory_Interface'Class := null;
       temp         : WinRt.UInt32 := 0;
       m_ComRetVal  : aliased WinRt.Windows.Graphics.Printing.PrintTicket.IWorkflowPrintTicket;

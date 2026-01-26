@@ -854,7 +854,7 @@ package body WinRt.Windows.Media.Casting is
    function Constructor return CastingDevicePicker is
       Hr           : WinRt.HResult := S_OK;
       tmp          : WinRt.HResult := S_OK;
-      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Casting.ICastingDevicePicker");
+      m_hString    : constant WinRt.HString := To_HString ("Windows.Media.Casting.CastingDevicePicker");
       m_ComRetVal  : aliased WinRt.Windows.Media.Casting.ICastingDevicePicker;
    begin
       return RetVal : CastingDevicePicker do

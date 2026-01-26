@@ -219,7 +219,7 @@ package body WinUI3.Windows.ApplicationModel.Search.Core is
    function Constructor return SearchSuggestionManager is
       Hr           : WinUI3.HResult := S_OK;
       tmp          : WinUI3.HResult := S_OK;
-      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.Core.ISearchSuggestionManager");
+      m_hString    : constant WinUI3.HString := To_HString ("Windows.ApplicationModel.Search.Core.SearchSuggestionManager");
       m_ComRetVal  : aliased WinUI3.Windows.ApplicationModel.Search.Core.ISearchSuggestionManager;
    begin
       return RetVal : SearchSuggestionManager do
