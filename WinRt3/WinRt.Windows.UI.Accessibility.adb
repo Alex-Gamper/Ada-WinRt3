@@ -47,7 +47,9 @@ package body WinRt.Windows.UI.Accessibility is
       if this.m_IScreenReaderPositionChangedEventArgs /= null then
          if this.m_IScreenReaderPositionChangedEventArgs.all /= null then
             temp := this.m_IScreenReaderPositionChangedEventArgs.all.Release;
-            Free (this.m_IScreenReaderPositionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IScreenReaderPositionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -104,7 +106,9 @@ package body WinRt.Windows.UI.Accessibility is
       if this.m_IScreenReaderService /= null then
          if this.m_IScreenReaderService.all /= null then
             temp := this.m_IScreenReaderService.all.Release;
-            Free (this.m_IScreenReaderService);
+            if temp < 1 then
+               Free (this.m_IScreenReaderService);
+            end if;
          end if;
       end if;
    end;

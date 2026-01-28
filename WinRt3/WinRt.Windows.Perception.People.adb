@@ -54,7 +54,9 @@ package body WinRt.Windows.Perception.People is
       if this.m_IEyesPose /= null then
          if this.m_IEyesPose.all /= null then
             temp := this.m_IEyesPose.all.Release;
-            Free (this.m_IEyesPose);
+            if temp < 1 then
+               Free (this.m_IEyesPose);
+            end if;
          end if;
       end if;
    end;
@@ -222,7 +224,9 @@ package body WinRt.Windows.Perception.People is
       if this.m_IHandMeshObserver /= null then
          if this.m_IHandMeshObserver.all /= null then
             temp := this.m_IHandMeshObserver.all.Release;
-            Free (this.m_IHandMeshObserver);
+            if temp < 1 then
+               Free (this.m_IHandMeshObserver);
+            end if;
          end if;
       end if;
    end;
@@ -390,7 +394,9 @@ package body WinRt.Windows.Perception.People is
       if this.m_IHandMeshVertexState /= null then
          if this.m_IHandMeshVertexState.all /= null then
             temp := this.m_IHandMeshVertexState.all.Release;
-            Free (this.m_IHandMeshVertexState);
+            if temp < 1 then
+               Free (this.m_IHandMeshVertexState);
+            end if;
          end if;
       end if;
    end;
@@ -469,7 +475,9 @@ package body WinRt.Windows.Perception.People is
       if this.m_IHandPose /= null then
          if this.m_IHandPose.all /= null then
             temp := this.m_IHandPose.all.Release;
-            Free (this.m_IHandPose);
+            if temp < 1 then
+               Free (this.m_IHandPose);
+            end if;
          end if;
       end if;
    end;
@@ -573,7 +581,9 @@ package body WinRt.Windows.Perception.People is
       if this.m_IHeadPose /= null then
          if this.m_IHeadPose.all /= null then
             temp := this.m_IHeadPose.all.Release;
-            Free (this.m_IHeadPose);
+            if temp < 1 then
+               Free (this.m_IHeadPose);
+            end if;
          end if;
       end if;
    end;

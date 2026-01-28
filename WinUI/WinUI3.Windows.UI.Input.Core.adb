@@ -49,7 +49,9 @@ package body WinUI3.Windows.UI.Input.Core is
       if this.m_IRadialControllerIndependentInputSource /= null then
          if this.m_IRadialControllerIndependentInputSource.all /= null then
             temp := this.m_IRadialControllerIndependentInputSource.all.Release;
-            Free (this.m_IRadialControllerIndependentInputSource);
+            if temp < 1 then
+               Free (this.m_IRadialControllerIndependentInputSource);
+            end if;
          end if;
       end if;
    end;

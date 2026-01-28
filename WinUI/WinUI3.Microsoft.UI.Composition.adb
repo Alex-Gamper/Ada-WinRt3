@@ -68,7 +68,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionObject /= null then
          if this.m_ICompositionObject.all /= null then
             temp := this.m_ICompositionObject.all.Release;
-            Free (this.m_ICompositionObject);
+            if temp < 1 then
+               Free (this.m_ICompositionObject);
+            end if;
          end if;
       end if;
    end;
@@ -459,7 +461,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionLight /= null then
          if this.m_ICompositionLight.all /= null then
             temp := this.m_ICompositionLight.all.Release;
-            Free (this.m_ICompositionLight);
+            if temp < 1 then
+               Free (this.m_ICompositionLight);
+            end if;
          end if;
       end if;
    end;
@@ -569,7 +573,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IAmbientLight /= null then
          if this.m_IAmbientLight.all /= null then
             temp := this.m_IAmbientLight.all.Release;
-            Free (this.m_IAmbientLight);
+            if temp < 1 then
+               Free (this.m_IAmbientLight);
+            end if;
          end if;
       end if;
    end;
@@ -664,7 +670,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IAnimationController /= null then
          if this.m_IAnimationController.all /= null then
             temp := this.m_IAnimationController.all.Release;
-            Free (this.m_IAnimationController);
+            if temp < 1 then
+               Free (this.m_IAnimationController);
+            end if;
          end if;
       end if;
    end;
@@ -856,7 +864,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IAnimationPropertyInfo /= null then
          if this.m_IAnimationPropertyInfo.all /= null then
             temp := this.m_IAnimationPropertyInfo.all.Release;
-            Free (this.m_IAnimationPropertyInfo);
+            if temp < 1 then
+               Free (this.m_IAnimationPropertyInfo);
+            end if;
          end if;
       end if;
    end;
@@ -959,7 +969,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionEasingFunction /= null then
          if this.m_ICompositionEasingFunction.all /= null then
             temp := this.m_ICompositionEasingFunction.all.Release;
-            Free (this.m_ICompositionEasingFunction);
+            if temp < 1 then
+               Free (this.m_ICompositionEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -1302,7 +1314,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBackEasingFunction /= null then
          if this.m_IBackEasingFunction.all /= null then
             temp := this.m_IBackEasingFunction.all.Release;
-            Free (this.m_IBackEasingFunction);
+            if temp < 1 then
+               Free (this.m_IBackEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -1359,7 +1373,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionAnimation /= null then
          if this.m_ICompositionAnimation.all /= null then
             temp := this.m_ICompositionAnimation.all.Release;
-            Free (this.m_ICompositionAnimation);
+            if temp < 1 then
+               Free (this.m_ICompositionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -1691,7 +1707,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IKeyFrameAnimation /= null then
          if this.m_IKeyFrameAnimation.all /= null then
             temp := this.m_IKeyFrameAnimation.all.Release;
-            Free (this.m_IKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2011,7 +2029,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBooleanKeyFrameAnimation /= null then
          if this.m_IBooleanKeyFrameAnimation.all /= null then
             temp := this.m_IBooleanKeyFrameAnimation.all.Release;
-            Free (this.m_IBooleanKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IBooleanKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2050,7 +2070,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBounceEasingFunction /= null then
          if this.m_IBounceEasingFunction.all /= null then
             temp := this.m_IBounceEasingFunction.all.Release;
-            Free (this.m_IBounceEasingFunction);
+            if temp < 1 then
+               Free (this.m_IBounceEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -2124,7 +2146,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_INaturalMotionAnimation /= null then
          if this.m_INaturalMotionAnimation.all /= null then
             temp := this.m_INaturalMotionAnimation.all.Release;
-            Free (this.m_INaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_INaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2246,7 +2270,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IScalarNaturalMotionAnimation /= null then
          if this.m_IScalarNaturalMotionAnimation.all /= null then
             temp := this.m_IScalarNaturalMotionAnimation.all.Release;
-            Free (this.m_IScalarNaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IScalarNaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2374,7 +2400,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBounceScalarNaturalMotionAnimation /= null then
          if this.m_IBounceScalarNaturalMotionAnimation.all /= null then
             temp := this.m_IBounceScalarNaturalMotionAnimation.all.Release;
-            Free (this.m_IBounceScalarNaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IBounceScalarNaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2461,7 +2489,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVector2NaturalMotionAnimation /= null then
          if this.m_IVector2NaturalMotionAnimation.all /= null then
             temp := this.m_IVector2NaturalMotionAnimation.all.Release;
-            Free (this.m_IVector2NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IVector2NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2589,7 +2619,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBounceVector2NaturalMotionAnimation /= null then
          if this.m_IBounceVector2NaturalMotionAnimation.all /= null then
             temp := this.m_IBounceVector2NaturalMotionAnimation.all.Release;
-            Free (this.m_IBounceVector2NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IBounceVector2NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2676,7 +2708,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVector3NaturalMotionAnimation /= null then
          if this.m_IVector3NaturalMotionAnimation.all /= null then
             temp := this.m_IVector3NaturalMotionAnimation.all.Release;
-            Free (this.m_IVector3NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IVector3NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2804,7 +2838,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IBounceVector3NaturalMotionAnimation /= null then
          if this.m_IBounceVector3NaturalMotionAnimation.all /= null then
             temp := this.m_IBounceVector3NaturalMotionAnimation.all.Release;
-            Free (this.m_IBounceVector3NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_IBounceVector3NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2891,7 +2927,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICircleEasingFunction /= null then
          if this.m_ICircleEasingFunction.all /= null then
             temp := this.m_ICircleEasingFunction.all.Release;
-            Free (this.m_ICircleEasingFunction);
+            if temp < 1 then
+               Free (this.m_ICircleEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -2931,7 +2969,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IColorKeyFrameAnimation /= null then
          if this.m_IColorKeyFrameAnimation.all /= null then
             temp := this.m_IColorKeyFrameAnimation.all.Release;
-            Free (this.m_IColorKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IColorKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -3019,7 +3059,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionAnimationGroup /= null then
          if this.m_ICompositionAnimationGroup.all /= null then
             temp := this.m_ICompositionAnimationGroup.all.Release;
-            Free (this.m_ICompositionAnimationGroup);
+            if temp < 1 then
+               Free (this.m_ICompositionAnimationGroup);
+            end if;
          end if;
       end if;
    end;
@@ -3156,7 +3198,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionBrush /= null then
          if this.m_ICompositionBrush.all /= null then
             temp := this.m_ICompositionBrush.all.Release;
-            Free (this.m_ICompositionBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionBrush);
+            end if;
          end if;
       end if;
    end;
@@ -3182,7 +3226,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionBackdropBrush /= null then
          if this.m_ICompositionBackdropBrush.all /= null then
             temp := this.m_ICompositionBackdropBrush.all.Release;
-            Free (this.m_ICompositionBackdropBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionBackdropBrush);
+            end if;
          end if;
       end if;
    end;
@@ -3205,7 +3251,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionBatchCompletedEventArgs /= null then
          if this.m_ICompositionBatchCompletedEventArgs.all /= null then
             temp := this.m_ICompositionBatchCompletedEventArgs.all.Release;
-            Free (this.m_ICompositionBatchCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICompositionBatchCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3228,7 +3276,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionCapabilities /= null then
          if this.m_ICompositionCapabilities.all /= null then
             temp := this.m_ICompositionCapabilities.all.Release;
-            Free (this.m_ICompositionCapabilities);
+            if temp < 1 then
+               Free (this.m_ICompositionCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -3337,7 +3387,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionClip /= null then
          if this.m_ICompositionClip.all /= null then
             temp := this.m_ICompositionClip.all.Release;
-            Free (this.m_ICompositionClip);
+            if temp < 1 then
+               Free (this.m_ICompositionClip);
+            end if;
          end if;
       end if;
    end;
@@ -3643,7 +3695,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionColorBrush /= null then
          if this.m_ICompositionColorBrush.all /= null then
             temp := this.m_ICompositionColorBrush.all.Release;
-            Free (this.m_ICompositionColorBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionColorBrush);
+            end if;
          end if;
       end if;
    end;
@@ -3698,7 +3752,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionColorGradientStop /= null then
          if this.m_ICompositionColorGradientStop.all /= null then
             temp := this.m_ICompositionColorGradientStop.all.Release;
-            Free (this.m_ICompositionColorGradientStop);
+            if temp < 1 then
+               Free (this.m_ICompositionColorGradientStop);
+            end if;
          end if;
       end if;
    end;
@@ -3785,7 +3841,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionColorGradientStopCollection /= null then
          if this.m_ICompositionColorGradientStopCollection.all /= null then
             temp := this.m_ICompositionColorGradientStopCollection.all.Release;
-            Free (this.m_ICompositionColorGradientStopCollection);
+            if temp < 1 then
+               Free (this.m_ICompositionColorGradientStopCollection);
+            end if;
          end if;
       end if;
    end;
@@ -4098,7 +4156,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionCommitBatch /= null then
          if this.m_ICompositionCommitBatch.all /= null then
             temp := this.m_ICompositionCommitBatch.all.Release;
-            Free (this.m_ICompositionCommitBatch);
+            if temp < 1 then
+               Free (this.m_ICompositionCommitBatch);
+            end if;
          end if;
       end if;
    end;
@@ -4188,7 +4248,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionShape /= null then
          if this.m_ICompositionShape.all /= null then
             temp := this.m_ICompositionShape.all.Release;
-            Free (this.m_ICompositionShape);
+            if temp < 1 then
+               Free (this.m_ICompositionShape);
+            end if;
          end if;
       end if;
    end;
@@ -4406,7 +4468,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionContainerShape /= null then
          if this.m_ICompositionContainerShape.all /= null then
             temp := this.m_ICompositionContainerShape.all.Release;
-            Free (this.m_ICompositionContainerShape);
+            if temp < 1 then
+               Free (this.m_ICompositionContainerShape);
+            end if;
          end if;
       end if;
    end;
@@ -4449,7 +4513,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionDrawingSurface /= null then
          if this.m_ICompositionDrawingSurface.all /= null then
             temp := this.m_ICompositionDrawingSurface.all.Release;
-            Free (this.m_ICompositionDrawingSurface);
+            if temp < 1 then
+               Free (this.m_ICompositionDrawingSurface);
+            end if;
          end if;
       end if;
    end;
@@ -4646,7 +4712,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionEffectBrush /= null then
          if this.m_ICompositionEffectBrush.all /= null then
             temp := this.m_ICompositionEffectBrush.all.Release;
-            Free (this.m_ICompositionEffectBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionEffectBrush);
+            end if;
          end if;
       end if;
    end;
@@ -4710,7 +4778,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionEffectFactory /= null then
          if this.m_ICompositionEffectFactory.all /= null then
             temp := this.m_ICompositionEffectFactory.all.Release;
-            Free (this.m_ICompositionEffectFactory);
+            if temp < 1 then
+               Free (this.m_ICompositionEffectFactory);
+            end if;
          end if;
       end if;
    end;
@@ -4787,7 +4857,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionEffectSourceParameter /= null then
          if this.m_ICompositionEffectSourceParameter.all /= null then
             temp := this.m_ICompositionEffectSourceParameter.all.Release;
-            Free (this.m_ICompositionEffectSourceParameter);
+            if temp < 1 then
+               Free (this.m_ICompositionEffectSourceParameter);
+            end if;
          end if;
       end if;
    end;
@@ -4859,7 +4931,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionGeometry /= null then
          if this.m_ICompositionGeometry.all /= null then
             temp := this.m_ICompositionGeometry.all.Release;
-            Free (this.m_ICompositionGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -4981,7 +5055,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionEllipseGeometry /= null then
          if this.m_ICompositionEllipseGeometry.all /= null then
             temp := this.m_ICompositionEllipseGeometry.all.Release;
-            Free (this.m_ICompositionEllipseGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionEllipseGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -5068,7 +5144,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionGeometricClip /= null then
          if this.m_ICompositionGeometricClip.all /= null then
             temp := this.m_ICompositionGeometricClip.all.Release;
-            Free (this.m_ICompositionGeometricClip);
+            if temp < 1 then
+               Free (this.m_ICompositionGeometricClip);
+            end if;
          end if;
       end if;
    end;
@@ -5161,7 +5239,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionGradientBrush /= null then
          if this.m_ICompositionGradientBrush.all /= null then
             temp := this.m_ICompositionGradientBrush.all.Release;
-            Free (this.m_ICompositionGradientBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionGradientBrush);
+            end if;
          end if;
       end if;
    end;
@@ -5535,7 +5615,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionGraphicsDevice /= null then
          if this.m_ICompositionGraphicsDevice.all /= null then
             temp := this.m_ICompositionGraphicsDevice.all.Release;
-            Free (this.m_ICompositionGraphicsDevice);
+            if temp < 1 then
+               Free (this.m_ICompositionGraphicsDevice);
+            end if;
          end if;
       end if;
    end;
@@ -5785,7 +5867,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionLineGeometry /= null then
          if this.m_ICompositionLineGeometry.all /= null then
             temp := this.m_ICompositionLineGeometry.all.Release;
-            Free (this.m_ICompositionLineGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionLineGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -5872,7 +5956,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionLinearGradientBrush /= null then
          if this.m_ICompositionLinearGradientBrush.all /= null then
             temp := this.m_ICompositionLinearGradientBrush.all.Release;
-            Free (this.m_ICompositionLinearGradientBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionLinearGradientBrush);
+            end if;
          end if;
       end if;
    end;
@@ -5959,7 +6045,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionMaskBrush /= null then
          if this.m_ICompositionMaskBrush.all /= null then
             temp := this.m_ICompositionMaskBrush.all.Release;
-            Free (this.m_ICompositionMaskBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionMaskBrush);
+            end if;
          end if;
       end if;
    end;
@@ -6052,7 +6140,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionMipmapSurface /= null then
          if this.m_ICompositionMipmapSurface.all /= null then
             temp := this.m_ICompositionMipmapSurface.all.Release;
-            Free (this.m_ICompositionMipmapSurface);
+            if temp < 1 then
+               Free (this.m_ICompositionMipmapSurface);
+            end if;
          end if;
       end if;
    end;
@@ -6164,7 +6254,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionNineGridBrush /= null then
          if this.m_ICompositionNineGridBrush.all /= null then
             temp := this.m_ICompositionNineGridBrush.all.Release;
-            Free (this.m_ICompositionNineGridBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionNineGridBrush);
+            end if;
          end if;
       end if;
    end;
@@ -6576,7 +6668,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionPath /= null then
          if this.m_ICompositionPath.all /= null then
             temp := this.m_ICompositionPath.all.Release;
-            Free (this.m_ICompositionPath);
+            if temp < 1 then
+               Free (this.m_ICompositionPath);
+            end if;
          end if;
       end if;
    end;
@@ -6626,7 +6720,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionPathGeometry /= null then
          if this.m_ICompositionPathGeometry.all /= null then
             temp := this.m_ICompositionPathGeometry.all.Release;
-            Free (this.m_ICompositionPathGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionPathGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -6684,7 +6780,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionProjectedShadow /= null then
          if this.m_ICompositionProjectedShadow.all /= null then
             temp := this.m_ICompositionProjectedShadow.all.Release;
-            Free (this.m_ICompositionProjectedShadow);
+            if temp < 1 then
+               Free (this.m_ICompositionProjectedShadow);
+            end if;
          end if;
       end if;
    end;
@@ -6878,7 +6976,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionProjectedShadowCaster /= null then
          if this.m_ICompositionProjectedShadowCaster.all /= null then
             temp := this.m_ICompositionProjectedShadowCaster.all.Release;
-            Free (this.m_ICompositionProjectedShadowCaster);
+            if temp < 1 then
+               Free (this.m_ICompositionProjectedShadowCaster);
+            end if;
          end if;
       end if;
    end;
@@ -6971,7 +7071,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionProjectedShadowCasterCollection /= null then
          if this.m_ICompositionProjectedShadowCasterCollection.all /= null then
             temp := this.m_ICompositionProjectedShadowCasterCollection.all.Release;
-            Free (this.m_ICompositionProjectedShadowCasterCollection);
+            if temp < 1 then
+               Free (this.m_ICompositionProjectedShadowCasterCollection);
+            end if;
          end if;
       end if;
    end;
@@ -7152,7 +7254,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionProjectedShadowReceiver /= null then
          if this.m_ICompositionProjectedShadowReceiver.all /= null then
             temp := this.m_ICompositionProjectedShadowReceiver.all.Release;
-            Free (this.m_ICompositionProjectedShadowReceiver);
+            if temp < 1 then
+               Free (this.m_ICompositionProjectedShadowReceiver);
+            end if;
          end if;
       end if;
    end;
@@ -7210,7 +7314,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionProjectedShadowReceiverUnorderedCollection /= null then
          if this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all /= null then
             temp := this.m_ICompositionProjectedShadowReceiverUnorderedCollection.all.Release;
-            Free (this.m_ICompositionProjectedShadowReceiverUnorderedCollection);
+            if temp < 1 then
+               Free (this.m_ICompositionProjectedShadowReceiverUnorderedCollection);
+            end if;
          end if;
       end if;
    end;
@@ -7320,7 +7426,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionPropertySet /= null then
          if this.m_ICompositionPropertySet.all /= null then
             temp := this.m_ICompositionPropertySet.all.Release;
-            Free (this.m_ICompositionPropertySet);
+            if temp < 1 then
+               Free (this.m_ICompositionPropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -7702,7 +7810,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionRadialGradientBrush /= null then
          if this.m_ICompositionRadialGradientBrush.all /= null then
             temp := this.m_ICompositionRadialGradientBrush.all.Release;
-            Free (this.m_ICompositionRadialGradientBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionRadialGradientBrush);
+            end if;
          end if;
       end if;
    end;
@@ -7821,7 +7931,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionRectangleGeometry /= null then
          if this.m_ICompositionRectangleGeometry.all /= null then
             temp := this.m_ICompositionRectangleGeometry.all.Release;
-            Free (this.m_ICompositionRectangleGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionRectangleGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -7908,7 +8020,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionRoundedRectangleGeometry /= null then
          if this.m_ICompositionRoundedRectangleGeometry.all /= null then
             temp := this.m_ICompositionRoundedRectangleGeometry.all.Release;
-            Free (this.m_ICompositionRoundedRectangleGeometry);
+            if temp < 1 then
+               Free (this.m_ICompositionRoundedRectangleGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -8027,7 +8141,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionScopedBatch /= null then
          if this.m_ICompositionScopedBatch.all /= null then
             temp := this.m_ICompositionScopedBatch.all.Release;
-            Free (this.m_ICompositionScopedBatch);
+            if temp < 1 then
+               Free (this.m_ICompositionScopedBatch);
+            end if;
          end if;
       end if;
    end;
@@ -8159,7 +8275,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionShadow /= null then
          if this.m_ICompositionShadow.all /= null then
             temp := this.m_ICompositionShadow.all.Release;
-            Free (this.m_ICompositionShadow);
+            if temp < 1 then
+               Free (this.m_ICompositionShadow);
+            end if;
          end if;
       end if;
    end;
@@ -8491,7 +8609,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionSpriteShape /= null then
          if this.m_ICompositionSpriteShape.all /= null then
             temp := this.m_ICompositionSpriteShape.all.Release;
-            Free (this.m_ICompositionSpriteShape);
+            if temp < 1 then
+               Free (this.m_ICompositionSpriteShape);
+            end if;
          end if;
       end if;
    end;
@@ -9192,7 +9312,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionSurfaceBrush /= null then
          if this.m_ICompositionSurfaceBrush.all /= null then
             temp := this.m_ICompositionSurfaceBrush.all.Release;
-            Free (this.m_ICompositionSurfaceBrush);
+            if temp < 1 then
+               Free (this.m_ICompositionSurfaceBrush);
+            end if;
          end if;
       end if;
    end;
@@ -9695,7 +9817,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionTransform /= null then
          if this.m_ICompositionTransform.all /= null then
             temp := this.m_ICompositionTransform.all.Release;
-            Free (this.m_ICompositionTransform);
+            if temp < 1 then
+               Free (this.m_ICompositionTransform);
+            end if;
          end if;
       end if;
    end;
@@ -9721,7 +9845,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionViewBox /= null then
          if this.m_ICompositionViewBox.all /= null then
             temp := this.m_ICompositionViewBox.all.Release;
-            Free (this.m_ICompositionViewBox);
+            if temp < 1 then
+               Free (this.m_ICompositionViewBox);
+            end if;
          end if;
       end if;
    end;
@@ -9904,7 +10030,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionVirtualDrawingSurface /= null then
          if this.m_ICompositionVirtualDrawingSurface.all /= null then
             temp := this.m_ICompositionVirtualDrawingSurface.all.Release;
-            Free (this.m_ICompositionVirtualDrawingSurface);
+            if temp < 1 then
+               Free (this.m_ICompositionVirtualDrawingSurface);
+            end if;
          end if;
       end if;
    end;
@@ -9946,7 +10074,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositionVisualSurface /= null then
          if this.m_ICompositionVisualSurface.all /= null then
             temp := this.m_ICompositionVisualSurface.all.Release;
-            Free (this.m_ICompositionVisualSurface);
+            if temp < 1 then
+               Free (this.m_ICompositionVisualSurface);
+            end if;
          end if;
       end if;
    end;
@@ -10068,7 +10198,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICompositor /= null then
          if this.m_ICompositor.all /= null then
             temp := this.m_ICompositor.all.Release;
-            Free (this.m_ICompositor);
+            if temp < 1 then
+               Free (this.m_ICompositor);
+            end if;
          end if;
       end if;
    end;
@@ -11999,7 +12131,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVisual /= null then
          if this.m_IVisual.all /= null then
             temp := this.m_IVisual.all.Release;
-            Free (this.m_IVisual);
+            if temp < 1 then
+               Free (this.m_IVisual);
+            end if;
          end if;
       end if;
    end;
@@ -12763,7 +12897,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IContainerVisual /= null then
          if this.m_IContainerVisual.all /= null then
             temp := this.m_IContainerVisual.all.Release;
-            Free (this.m_IContainerVisual);
+            if temp < 1 then
+               Free (this.m_IContainerVisual);
+            end if;
          end if;
       end if;
    end;
@@ -12809,7 +12945,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ICubicBezierEasingFunction /= null then
          if this.m_ICubicBezierEasingFunction.all /= null then
             temp := this.m_ICubicBezierEasingFunction.all.Release;
-            Free (this.m_ICubicBezierEasingFunction);
+            if temp < 1 then
+               Free (this.m_ICubicBezierEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -12866,7 +13004,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IDistantLight /= null then
          if this.m_IDistantLight.all /= null then
             temp := this.m_IDistantLight.all.Release;
-            Free (this.m_IDistantLight);
+            if temp < 1 then
+               Free (this.m_IDistantLight);
+            end if;
          end if;
       end if;
    end;
@@ -13028,7 +13168,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IDropShadow /= null then
          if this.m_IDropShadow.all /= null then
             temp := this.m_IDropShadow.all.Release;
-            Free (this.m_IDropShadow);
+            if temp < 1 then
+               Free (this.m_IDropShadow);
+            end if;
          end if;
       end if;
    end;
@@ -13254,7 +13396,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IElasticEasingFunction /= null then
          if this.m_IElasticEasingFunction.all /= null then
             temp := this.m_IElasticEasingFunction.all.Release;
-            Free (this.m_IElasticEasingFunction);
+            if temp < 1 then
+               Free (this.m_IElasticEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -13328,7 +13472,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IExponentialEasingFunction /= null then
          if this.m_IExponentialEasingFunction.all /= null then
             temp := this.m_IExponentialEasingFunction.all.Release;
-            Free (this.m_IExponentialEasingFunction);
+            if temp < 1 then
+               Free (this.m_IExponentialEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -13385,7 +13531,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IExpressionAnimation /= null then
          if this.m_IExpressionAnimation.all /= null then
             temp := this.m_IExpressionAnimation.all.Release;
-            Free (this.m_IExpressionAnimation);
+            if temp < 1 then
+               Free (this.m_IExpressionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -13445,7 +13593,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IImplicitAnimationCollection /= null then
          if this.m_IImplicitAnimationCollection.all /= null then
             temp := this.m_IImplicitAnimationCollection.all.Release;
-            Free (this.m_IImplicitAnimationCollection);
+            if temp < 1 then
+               Free (this.m_IImplicitAnimationCollection);
+            end if;
          end if;
       end if;
    end;
@@ -13813,7 +13963,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IInsetClip /= null then
          if this.m_IInsetClip.all /= null then
             temp := this.m_IInsetClip.all.Release;
-            Free (this.m_IInsetClip);
+            if temp < 1 then
+               Free (this.m_IInsetClip);
+            end if;
          end if;
       end if;
    end;
@@ -13964,7 +14116,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ILayerVisual /= null then
          if this.m_ILayerVisual.all /= null then
             temp := this.m_ILayerVisual.all.Release;
-            Free (this.m_ILayerVisual);
+            if temp < 1 then
+               Free (this.m_ILayerVisual);
+            end if;
          end if;
       end if;
    end;
@@ -14065,7 +14219,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ILinearEasingFunction /= null then
          if this.m_ILinearEasingFunction.all /= null then
             temp := this.m_ILinearEasingFunction.all.Release;
-            Free (this.m_ILinearEasingFunction);
+            if temp < 1 then
+               Free (this.m_ILinearEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -14088,7 +14244,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IPathKeyFrameAnimation /= null then
          if this.m_IPathKeyFrameAnimation.all /= null then
             temp := this.m_IPathKeyFrameAnimation.all.Release;
-            Free (this.m_IPathKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IPathKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -14144,7 +14302,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IPointLight /= null then
          if this.m_IPointLight.all /= null then
             temp := this.m_IPointLight.all.Release;
-            Free (this.m_IPointLight);
+            if temp < 1 then
+               Free (this.m_IPointLight);
+            end if;
          end if;
       end if;
    end;
@@ -14482,7 +14642,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IPowerEasingFunction /= null then
          if this.m_IPowerEasingFunction.all /= null then
             temp := this.m_IPowerEasingFunction.all.Release;
-            Free (this.m_IPowerEasingFunction);
+            if temp < 1 then
+               Free (this.m_IPowerEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -14539,7 +14701,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IQuaternionKeyFrameAnimation /= null then
          if this.m_IQuaternionKeyFrameAnimation.all /= null then
             temp := this.m_IQuaternionKeyFrameAnimation.all.Release;
-            Free (this.m_IQuaternionKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IQuaternionKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -14595,7 +14759,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IRectangleClip /= null then
          if this.m_IRectangleClip.all /= null then
             temp := this.m_IRectangleClip.all.Release;
-            Free (this.m_IRectangleClip);
+            if temp < 1 then
+               Free (this.m_IRectangleClip);
+            end if;
          end if;
       end if;
    end;
@@ -14874,7 +15040,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IRedirectVisual /= null then
          if this.m_IRedirectVisual.all /= null then
             temp := this.m_IRedirectVisual.all.Release;
-            Free (this.m_IRedirectVisual);
+            if temp < 1 then
+               Free (this.m_IRedirectVisual);
+            end if;
          end if;
       end if;
    end;
@@ -14932,7 +15100,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IRenderingDeviceReplacedEventArgs /= null then
          if this.m_IRenderingDeviceReplacedEventArgs.all /= null then
             temp := this.m_IRenderingDeviceReplacedEventArgs.all.Release;
-            Free (this.m_IRenderingDeviceReplacedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRenderingDeviceReplacedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14975,7 +15145,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IScalarKeyFrameAnimation /= null then
          if this.m_IScalarKeyFrameAnimation.all /= null then
             temp := this.m_IScalarKeyFrameAnimation.all.Release;
-            Free (this.m_IScalarKeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IScalarKeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -15031,7 +15203,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IShapeVisual /= null then
          if this.m_IShapeVisual.all /= null then
             temp := this.m_IShapeVisual.all.Release;
-            Free (this.m_IShapeVisual);
+            if temp < 1 then
+               Free (this.m_IShapeVisual);
+            end if;
          end if;
       end if;
    end;
@@ -15109,7 +15283,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISineEasingFunction /= null then
          if this.m_ISineEasingFunction.all /= null then
             temp := this.m_ISineEasingFunction.all.Release;
-            Free (this.m_ISineEasingFunction);
+            if temp < 1 then
+               Free (this.m_ISineEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -15149,7 +15325,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISpotLight /= null then
          if this.m_ISpotLight.all /= null then
             temp := this.m_ISpotLight.all.Release;
-            Free (this.m_ISpotLight);
+            if temp < 1 then
+               Free (this.m_ISpotLight);
+            end if;
          end if;
       end if;
    end;
@@ -15719,7 +15897,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISpringScalarNaturalMotionAnimation /= null then
          if this.m_ISpringScalarNaturalMotionAnimation.all /= null then
             temp := this.m_ISpringScalarNaturalMotionAnimation.all.Release;
-            Free (this.m_ISpringScalarNaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_ISpringScalarNaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -15806,7 +15986,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISpringVector2NaturalMotionAnimation /= null then
          if this.m_ISpringVector2NaturalMotionAnimation.all /= null then
             temp := this.m_ISpringVector2NaturalMotionAnimation.all.Release;
-            Free (this.m_ISpringVector2NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_ISpringVector2NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -15893,7 +16075,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISpringVector3NaturalMotionAnimation /= null then
          if this.m_ISpringVector3NaturalMotionAnimation.all /= null then
             temp := this.m_ISpringVector3NaturalMotionAnimation.all.Release;
-            Free (this.m_ISpringVector3NaturalMotionAnimation);
+            if temp < 1 then
+               Free (this.m_ISpringVector3NaturalMotionAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -15980,7 +16164,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_ISpriteVisual /= null then
          if this.m_ISpriteVisual.all /= null then
             temp := this.m_ISpriteVisual.all.Release;
-            Free (this.m_ISpriteVisual);
+            if temp < 1 then
+               Free (this.m_ISpriteVisual);
+            end if;
          end if;
       end if;
    end;
@@ -16081,7 +16267,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IStepEasingFunction /= null then
          if this.m_IStepEasingFunction.all /= null then
             temp := this.m_IStepEasingFunction.all.Release;
-            Free (this.m_IStepEasingFunction);
+            if temp < 1 then
+               Free (this.m_IStepEasingFunction);
+            end if;
          end if;
       end if;
    end;
@@ -16264,7 +16452,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVector2KeyFrameAnimation /= null then
          if this.m_IVector2KeyFrameAnimation.all /= null then
             temp := this.m_IVector2KeyFrameAnimation.all.Release;
-            Free (this.m_IVector2KeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IVector2KeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -16320,7 +16510,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVector3KeyFrameAnimation /= null then
          if this.m_IVector3KeyFrameAnimation.all /= null then
             temp := this.m_IVector3KeyFrameAnimation.all.Release;
-            Free (this.m_IVector3KeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IVector3KeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -16376,7 +16568,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVector4KeyFrameAnimation /= null then
          if this.m_IVector4KeyFrameAnimation.all /= null then
             temp := this.m_IVector4KeyFrameAnimation.all.Release;
-            Free (this.m_IVector4KeyFrameAnimation);
+            if temp < 1 then
+               Free (this.m_IVector4KeyFrameAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -16432,7 +16626,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVisualCollection /= null then
          if this.m_IVisualCollection.all /= null then
             temp := this.m_IVisualCollection.all.Release;
-            Free (this.m_IVisualCollection);
+            if temp < 1 then
+               Free (this.m_IVisualCollection);
+            end if;
          end if;
       end if;
    end;
@@ -16589,7 +16785,9 @@ package body WinUI3.Microsoft.UI.Composition is
       if this.m_IVisualUnorderedCollection /= null then
          if this.m_IVisualUnorderedCollection.all /= null then
             temp := this.m_IVisualUnorderedCollection.all.Release;
-            Free (this.m_IVisualUnorderedCollection);
+            if temp < 1 then
+               Free (this.m_IVisualUnorderedCollection);
+            end if;
          end if;
       end if;
    end;

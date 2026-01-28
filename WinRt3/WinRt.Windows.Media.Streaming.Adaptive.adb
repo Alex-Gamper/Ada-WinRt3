@@ -54,7 +54,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSource /= null then
          if this.m_IAdaptiveMediaSource.all /= null then
             temp := this.m_IAdaptiveMediaSource.all.Release;
-            Free (this.m_IAdaptiveMediaSource);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSource);
+            end if;
          end if;
       end if;
    end;
@@ -1025,7 +1027,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceAdvancedSettings /= null then
          if this.m_IAdaptiveMediaSourceAdvancedSettings.all /= null then
             temp := this.m_IAdaptiveMediaSourceAdvancedSettings.all.Release;
-            Free (this.m_IAdaptiveMediaSourceAdvancedSettings);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceAdvancedSettings);
+            end if;
          end if;
       end if;
    end;
@@ -1150,7 +1154,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceCorrelatedTimes /= null then
          if this.m_IAdaptiveMediaSourceCorrelatedTimes.all /= null then
             temp := this.m_IAdaptiveMediaSourceCorrelatedTimes.all.Release;
-            Free (this.m_IAdaptiveMediaSourceCorrelatedTimes);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceCorrelatedTimes);
+            end if;
          end if;
       end if;
    end;
@@ -1233,7 +1239,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceCreationResult /= null then
          if this.m_IAdaptiveMediaSourceCreationResult.all /= null then
             temp := this.m_IAdaptiveMediaSourceCreationResult.all.Release;
-            Free (this.m_IAdaptiveMediaSourceCreationResult);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceCreationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1334,7 +1342,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs /= null then
          if this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDiagnosticAvailableEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1603,7 +1613,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDiagnostics /= null then
          if this.m_IAdaptiveMediaSourceDiagnostics.all /= null then
             temp := this.m_IAdaptiveMediaSourceDiagnostics.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDiagnostics);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDiagnostics);
+            end if;
          end if;
       end if;
    end;
@@ -1659,7 +1671,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs /= null then
          if this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadBitrateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1737,7 +1751,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs /= null then
          if this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1974,7 +1990,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadFailedEventArgs /= null then
          if this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadFailedEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2232,7 +2250,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadRequestedDeferral /= null then
          if this.m_IAdaptiveMediaSourceDownloadRequestedDeferral.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadRequestedDeferral.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadRequestedDeferral);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadRequestedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -2269,7 +2289,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs /= null then
          if this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2502,7 +2524,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadResult /= null then
          if this.m_IAdaptiveMediaSourceDownloadResult.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadResult.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadResult);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadResult);
+            end if;
          end if;
       end if;
    end;
@@ -2779,7 +2803,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourceDownloadStatistics /= null then
          if this.m_IAdaptiveMediaSourceDownloadStatistics.all /= null then
             temp := this.m_IAdaptiveMediaSourceDownloadStatistics.all.Release;
-            Free (this.m_IAdaptiveMediaSourceDownloadStatistics);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourceDownloadStatistics);
+            end if;
          end if;
       end if;
    end;
@@ -2879,7 +2905,9 @@ package body WinRt.Windows.Media.Streaming.Adaptive is
       if this.m_IAdaptiveMediaSourcePlaybackBitrateChangedEventArgs /= null then
          if this.m_IAdaptiveMediaSourcePlaybackBitrateChangedEventArgs.all /= null then
             temp := this.m_IAdaptiveMediaSourcePlaybackBitrateChangedEventArgs.all.Release;
-            Free (this.m_IAdaptiveMediaSourcePlaybackBitrateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAdaptiveMediaSourcePlaybackBitrateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

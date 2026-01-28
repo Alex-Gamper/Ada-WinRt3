@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneCallBlockedTriggerDetails /= null then
          if this.m_IPhoneCallBlockedTriggerDetails.all /= null then
             temp := this.m_IPhoneCallBlockedTriggerDetails.all.Release;
-            Free (this.m_IPhoneCallBlockedTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneCallBlockedTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -124,7 +126,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneCallOriginDataRequestTriggerDetails /= null then
          if this.m_IPhoneCallOriginDataRequestTriggerDetails.all /= null then
             temp := this.m_IPhoneCallOriginDataRequestTriggerDetails.all.Release;
-            Free (this.m_IPhoneCallOriginDataRequestTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneCallOriginDataRequestTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -184,7 +188,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneIncomingCallDismissedTriggerDetails /= null then
          if this.m_IPhoneIncomingCallDismissedTriggerDetails.all /= null then
             temp := this.m_IPhoneIncomingCallDismissedTriggerDetails.all.Release;
-            Free (this.m_IPhoneIncomingCallDismissedTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneIncomingCallDismissedTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -318,7 +324,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneIncomingCallNotificationTriggerDetails /= null then
          if this.m_IPhoneIncomingCallNotificationTriggerDetails.all /= null then
             temp := this.m_IPhoneIncomingCallNotificationTriggerDetails.all.Release;
-            Free (this.m_IPhoneIncomingCallNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneIncomingCallNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -378,7 +386,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneLineChangedTriggerDetails /= null then
          if this.m_IPhoneLineChangedTriggerDetails.all /= null then
             temp := this.m_IPhoneLineChangedTriggerDetails.all.Release;
-            Free (this.m_IPhoneLineChangedTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneLineChangedTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -453,7 +463,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Background is
       if this.m_IPhoneNewVoicemailMessageTriggerDetails /= null then
          if this.m_IPhoneNewVoicemailMessageTriggerDetails.all /= null then
             temp := this.m_IPhoneNewVoicemailMessageTriggerDetails.all.Release;
-            Free (this.m_IPhoneNewVoicemailMessageTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneNewVoicemailMessageTriggerDetails);
+            end if;
          end if;
       end if;
    end;

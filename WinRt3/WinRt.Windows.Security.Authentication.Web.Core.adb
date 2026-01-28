@@ -65,7 +65,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IFindAllAccountsResult /= null then
          if this.m_IFindAllAccountsResult.all /= null then
             temp := this.m_IFindAllAccountsResult.all.Release;
-            Free (this.m_IFindAllAccountsResult);
+            if temp < 1 then
+               Free (this.m_IFindAllAccountsResult);
+            end if;
          end if;
       end if;
    end;
@@ -142,7 +144,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebAccountEventArgs /= null then
          if this.m_IWebAccountEventArgs.all /= null then
             temp := this.m_IWebAccountEventArgs.all.Release;
-            Free (this.m_IWebAccountEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebAccountEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -185,7 +189,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebAccountMonitor /= null then
          if this.m_IWebAccountMonitor.all /= null then
             temp := this.m_IWebAccountMonitor.all.Release;
-            Free (this.m_IWebAccountMonitor);
+            if temp < 1 then
+               Free (this.m_IWebAccountMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -348,7 +354,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebAuthenticationAddAccountResponse /= null then
          if this.m_IWebAuthenticationAddAccountResponse.all /= null then
             temp := this.m_IWebAuthenticationAddAccountResponse.all.Release;
-            Free (this.m_IWebAuthenticationAddAccountResponse);
+            if temp < 1 then
+               Free (this.m_IWebAuthenticationAddAccountResponse);
+            end if;
          end if;
       end if;
    end;
@@ -438,7 +446,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebAuthenticationAddAccountResult /= null then
          if this.m_IWebAuthenticationAddAccountResult.all /= null then
             temp := this.m_IWebAuthenticationAddAccountResult.all.Release;
-            Free (this.m_IWebAuthenticationAddAccountResult);
+            if temp < 1 then
+               Free (this.m_IWebAuthenticationAddAccountResult);
+            end if;
          end if;
       end if;
    end;
@@ -1607,7 +1617,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebAuthenticationTransferTokenRequest /= null then
          if this.m_IWebAuthenticationTransferTokenRequest.all /= null then
             temp := this.m_IWebAuthenticationTransferTokenRequest.all.Release;
-            Free (this.m_IWebAuthenticationTransferTokenRequest);
+            if temp < 1 then
+               Free (this.m_IWebAuthenticationTransferTokenRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1804,7 +1816,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebProviderError /= null then
          if this.m_IWebProviderError.all /= null then
             temp := this.m_IWebProviderError.all.Release;
-            Free (this.m_IWebProviderError);
+            if temp < 1 then
+               Free (this.m_IWebProviderError);
+            end if;
          end if;
       end if;
    end;
@@ -1914,7 +1928,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebTokenRequest /= null then
          if this.m_IWebTokenRequest.all /= null then
             temp := this.m_IWebTokenRequest.all.Release;
-            Free (this.m_IWebTokenRequest);
+            if temp < 1 then
+               Free (this.m_IWebTokenRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2218,7 +2234,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebTokenRequestResult /= null then
          if this.m_IWebTokenRequestResult.all /= null then
             temp := this.m_IWebTokenRequestResult.all.Release;
-            Free (this.m_IWebTokenRequestResult);
+            if temp < 1 then
+               Free (this.m_IWebTokenRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -2340,7 +2358,9 @@ package body WinRt.Windows.Security.Authentication.Web.Core is
       if this.m_IWebTokenResponse /= null then
          if this.m_IWebTokenResponse.all /= null then
             temp := this.m_IWebTokenResponse.all.Release;
-            Free (this.m_IWebTokenResponse);
+            if temp < 1 then
+               Free (this.m_IWebTokenResponse);
+            end if;
          end if;
       end if;
    end;

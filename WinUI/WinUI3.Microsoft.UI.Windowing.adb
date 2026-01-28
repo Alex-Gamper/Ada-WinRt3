@@ -51,7 +51,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IAppWindow /= null then
          if this.m_IAppWindow.all /= null then
             temp := this.m_IAppWindow.all.Release;
-            Free (this.m_IAppWindow);
+            if temp < 1 then
+               Free (this.m_IAppWindow);
+            end if;
          end if;
       end if;
    end;
@@ -921,7 +923,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IAppWindowChangedEventArgs /= null then
          if this.m_IAppWindowChangedEventArgs.all /= null then
             temp := this.m_IAppWindowChangedEventArgs.all.Release;
-            Free (this.m_IAppWindowChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppWindowChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1096,7 +1100,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IAppWindowClosingEventArgs /= null then
          if this.m_IAppWindowClosingEventArgs.all /= null then
             temp := this.m_IAppWindowClosingEventArgs.all.Release;
-            Free (this.m_IAppWindowClosingEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppWindowClosingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1151,7 +1157,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IAppWindowPresenter /= null then
          if this.m_IAppWindowPresenter.all /= null then
             temp := this.m_IAppWindowPresenter.all.Release;
-            Free (this.m_IAppWindowPresenter);
+            if temp < 1 then
+               Free (this.m_IAppWindowPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -1194,7 +1202,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IAppWindowTitleBar /= null then
          if this.m_IAppWindowTitleBar.all /= null then
             temp := this.m_IAppWindowTitleBar.all.Release;
-            Free (this.m_IAppWindowTitleBar);
+            if temp < 1 then
+               Free (this.m_IAppWindowTitleBar);
+            end if;
          end if;
       end if;
    end;
@@ -1850,7 +1860,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_ICompactOverlayPresenter /= null then
          if this.m_ICompactOverlayPresenter.all /= null then
             temp := this.m_ICompactOverlayPresenter.all.Release;
-            Free (this.m_ICompactOverlayPresenter);
+            if temp < 1 then
+               Free (this.m_ICompactOverlayPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -1932,7 +1944,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IDisplayArea /= null then
          if this.m_IDisplayArea.all /= null then
             temp := this.m_IDisplayArea.all.Release;
-            Free (this.m_IDisplayArea);
+            if temp < 1 then
+               Free (this.m_IDisplayArea);
+            end if;
          end if;
       end if;
    end;
@@ -2206,7 +2220,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IDisplayAreaWatcher /= null then
          if this.m_IDisplayAreaWatcher.all /= null then
             temp := this.m_IDisplayAreaWatcher.all.Release;
-            Free (this.m_IDisplayAreaWatcher);
+            if temp < 1 then
+               Free (this.m_IDisplayAreaWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -2439,7 +2455,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IFullScreenPresenter /= null then
          if this.m_IFullScreenPresenter.all /= null then
             temp := this.m_IFullScreenPresenter.all.Release;
-            Free (this.m_IFullScreenPresenter);
+            if temp < 1 then
+               Free (this.m_IFullScreenPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -2489,7 +2507,9 @@ package body WinUI3.Microsoft.UI.Windowing is
       if this.m_IOverlappedPresenter /= null then
          if this.m_IOverlappedPresenter.all /= null then
             temp := this.m_IOverlappedPresenter.all.Release;
-            Free (this.m_IOverlappedPresenter);
+            if temp < 1 then
+               Free (this.m_IOverlappedPresenter);
+            end if;
          end if;
       end if;
    end;

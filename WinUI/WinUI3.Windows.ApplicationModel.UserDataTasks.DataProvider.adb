@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskDataProviderConnection /= null then
          if this.m_IUserDataTaskDataProviderConnection.all /= null then
             temp := this.m_IUserDataTaskDataProviderConnection.all.Release;
-            Free (this.m_IUserDataTaskDataProviderConnection);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskDataProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -249,7 +251,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskDataProviderTriggerDetails /= null then
          if this.m_IUserDataTaskDataProviderTriggerDetails.all /= null then
             temp := this.m_IUserDataTaskDataProviderTriggerDetails.all.Release;
-            Free (this.m_IUserDataTaskDataProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskDataProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -292,7 +296,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListCompleteTaskRequest /= null then
          if this.m_IUserDataTaskListCompleteTaskRequest.all /= null then
             temp := this.m_IUserDataTaskListCompleteTaskRequest.all.Release;
-            Free (this.m_IUserDataTaskListCompleteTaskRequest);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListCompleteTaskRequest);
+            end if;
          end if;
       end if;
    end;
@@ -442,7 +448,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListCompleteTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all /= null then
             temp := this.m_IUserDataTaskListCompleteTaskRequestEventArgs.all.Release;
-            Free (this.m_IUserDataTaskListCompleteTaskRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListCompleteTaskRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -505,7 +513,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListCreateOrUpdateTaskRequest /= null then
          if this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all /= null then
             temp := this.m_IUserDataTaskListCreateOrUpdateTaskRequest.all.Release;
-            Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequest);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequest);
+            end if;
          end if;
       end if;
    end;
@@ -653,7 +663,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all /= null then
             temp := this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs.all.Release;
-            Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListCreateOrUpdateTaskRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -716,7 +728,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListDeleteTaskRequest /= null then
          if this.m_IUserDataTaskListDeleteTaskRequest.all /= null then
             temp := this.m_IUserDataTaskListDeleteTaskRequest.all.Release;
-            Free (this.m_IUserDataTaskListDeleteTaskRequest);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListDeleteTaskRequest);
+            end if;
          end if;
       end if;
    end;
@@ -863,7 +877,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListDeleteTaskRequestEventArgs /= null then
          if this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all /= null then
             temp := this.m_IUserDataTaskListDeleteTaskRequestEventArgs.all.Release;
-            Free (this.m_IUserDataTaskListDeleteTaskRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListDeleteTaskRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -926,7 +942,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListSkipOccurrenceRequest /= null then
          if this.m_IUserDataTaskListSkipOccurrenceRequest.all /= null then
             temp := this.m_IUserDataTaskListSkipOccurrenceRequest.all.Release;
-            Free (this.m_IUserDataTaskListSkipOccurrenceRequest);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListSkipOccurrenceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1073,7 +1091,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs /= null then
          if this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all /= null then
             temp := this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs.all.Release;
-            Free (this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListSkipOccurrenceRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1136,7 +1156,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListSyncManagerSyncRequest /= null then
          if this.m_IUserDataTaskListSyncManagerSyncRequest.all /= null then
             temp := this.m_IUserDataTaskListSyncManagerSyncRequest.all.Release;
-            Free (this.m_IUserDataTaskListSyncManagerSyncRequest);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListSyncManagerSyncRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1263,7 +1285,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks.DataProvider is
       if this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs /= null then
          if this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all /= null then
             temp := this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs.all.Release;
-            Free (this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListSyncManagerSyncRequestEventArgs);
+            end if;
          end if;
       end if;
    end;

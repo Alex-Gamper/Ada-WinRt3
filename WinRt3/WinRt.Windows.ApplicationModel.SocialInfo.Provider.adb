@@ -57,7 +57,9 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       if this.m_ISocialDashboardItemUpdater /= null then
          if this.m_ISocialDashboardItemUpdater.all /= null then
             temp := this.m_ISocialDashboardItemUpdater.all.Release;
-            Free (this.m_ISocialDashboardItemUpdater);
+            if temp < 1 then
+               Free (this.m_ISocialDashboardItemUpdater);
+            end if;
          end if;
       end if;
    end;
@@ -264,7 +266,9 @@ package body WinRt.Windows.ApplicationModel.SocialInfo.Provider is
       if this.m_ISocialFeedUpdater /= null then
          if this.m_ISocialFeedUpdater.all /= null then
             temp := this.m_ISocialFeedUpdater.all.Release;
-            Free (this.m_ISocialFeedUpdater);
+            if temp < 1 then
+               Free (this.m_ISocialFeedUpdater);
+            end if;
          end if;
       end if;
    end;

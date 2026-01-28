@@ -63,7 +63,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IControlChannelTrigger /= null then
          if this.m_IControlChannelTrigger.all /= null then
             temp := this.m_IControlChannelTrigger.all.Release;
-            Free (this.m_IControlChannelTrigger);
+            if temp < 1 then
+               Free (this.m_IControlChannelTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -363,7 +365,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IDatagramSocket /= null then
          if this.m_IDatagramSocket.all /= null then
             temp := this.m_IDatagramSocket.all.Release;
-            Free (this.m_IDatagramSocket);
+            if temp < 1 then
+               Free (this.m_IDatagramSocket);
+            end if;
          end if;
       end if;
    end;
@@ -1190,7 +1194,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IDatagramSocketControl /= null then
          if this.m_IDatagramSocketControl.all /= null then
             temp := this.m_IDatagramSocketControl.all.Release;
-            Free (this.m_IDatagramSocketControl);
+            if temp < 1 then
+               Free (this.m_IDatagramSocketControl);
+            end if;
          end if;
       end if;
    end;
@@ -1397,7 +1403,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IDatagramSocketInformation /= null then
          if this.m_IDatagramSocketInformation.all /= null then
             temp := this.m_IDatagramSocketInformation.all.Release;
-            Free (this.m_IDatagramSocketInformation);
+            if temp < 1 then
+               Free (this.m_IDatagramSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -1500,7 +1508,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IDatagramSocketMessageReceivedEventArgs /= null then
          if this.m_IDatagramSocketMessageReceivedEventArgs.all /= null then
             temp := this.m_IDatagramSocketMessageReceivedEventArgs.all.Release;
-            Free (this.m_IDatagramSocketMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDatagramSocketMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1620,7 +1630,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IMessageWebSocket /= null then
          if this.m_IMessageWebSocket.all /= null then
             temp := this.m_IMessageWebSocket.all.Release;
-            Free (this.m_IMessageWebSocket);
+            if temp < 1 then
+               Free (this.m_IMessageWebSocket);
+            end if;
          end if;
       end if;
    end;
@@ -2085,7 +2097,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IMessageWebSocketControl /= null then
          if this.m_IMessageWebSocketControl.all /= null then
             temp := this.m_IMessageWebSocketControl.all.Release;
-            Free (this.m_IMessageWebSocketControl);
+            if temp < 1 then
+               Free (this.m_IMessageWebSocketControl);
+            end if;
          end if;
       end if;
    end;
@@ -2487,7 +2501,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IWebSocketInformation /= null then
          if this.m_IWebSocketInformation.all /= null then
             temp := this.m_IWebSocketInformation.all.Release;
-            Free (this.m_IWebSocketInformation);
+            if temp < 1 then
+               Free (this.m_IWebSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2654,7 +2670,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IMessageWebSocketMessageReceivedEventArgs /= null then
          if this.m_IMessageWebSocketMessageReceivedEventArgs.all /= null then
             temp := this.m_IMessageWebSocketMessageReceivedEventArgs.all.Release;
-            Free (this.m_IMessageWebSocketMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMessageWebSocketMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2752,7 +2770,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IServerMessageWebSocket /= null then
          if this.m_IServerMessageWebSocket.all /= null then
             temp := this.m_IServerMessageWebSocket.all.Release;
-            Free (this.m_IServerMessageWebSocket);
+            if temp < 1 then
+               Free (this.m_IServerMessageWebSocket);
+            end if;
          end if;
       end if;
    end;
@@ -2934,7 +2954,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IServerMessageWebSocketControl /= null then
          if this.m_IServerMessageWebSocketControl.all /= null then
             temp := this.m_IServerMessageWebSocketControl.all.Release;
-            Free (this.m_IServerMessageWebSocketControl);
+            if temp < 1 then
+               Free (this.m_IServerMessageWebSocketControl);
+            end if;
          end if;
       end if;
    end;
@@ -2989,7 +3011,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IServerMessageWebSocketInformation /= null then
          if this.m_IServerMessageWebSocketInformation.all /= null then
             temp := this.m_IServerMessageWebSocketInformation.all.Release;
-            Free (this.m_IServerMessageWebSocketInformation);
+            if temp < 1 then
+               Free (this.m_IServerMessageWebSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -3069,7 +3093,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IServerStreamWebSocket /= null then
          if this.m_IServerStreamWebSocket.all /= null then
             temp := this.m_IServerStreamWebSocket.all.Release;
-            Free (this.m_IServerStreamWebSocket);
+            if temp < 1 then
+               Free (this.m_IServerStreamWebSocket);
+            end if;
          end if;
       end if;
    end;
@@ -3215,7 +3241,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IServerStreamWebSocketInformation /= null then
          if this.m_IServerStreamWebSocketInformation.all /= null then
             temp := this.m_IServerStreamWebSocketInformation.all.Release;
-            Free (this.m_IServerStreamWebSocketInformation);
+            if temp < 1 then
+               Free (this.m_IServerStreamWebSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -3295,7 +3323,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_ISocketActivityContext /= null then
          if this.m_ISocketActivityContext.all /= null then
             temp := this.m_ISocketActivityContext.all.Release;
-            Free (this.m_ISocketActivityContext);
+            if temp < 1 then
+               Free (this.m_ISocketActivityContext);
+            end if;
          end if;
       end if;
    end;
@@ -3362,7 +3392,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_ISocketActivityInformation /= null then
          if this.m_ISocketActivityInformation.all /= null then
             temp := this.m_ISocketActivityInformation.all.Release;
-            Free (this.m_ISocketActivityInformation);
+            if temp < 1 then
+               Free (this.m_ISocketActivityInformation);
+            end if;
          end if;
       end if;
    end;
@@ -3543,7 +3575,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_ISocketActivityTriggerDetails /= null then
          if this.m_ISocketActivityTriggerDetails.all /= null then
             temp := this.m_ISocketActivityTriggerDetails.all.Release;
-            Free (this.m_ISocketActivityTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ISocketActivityTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3633,7 +3667,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocket /= null then
          if this.m_IStreamSocket.all /= null then
             temp := this.m_IStreamSocket.all.Release;
-            Free (this.m_IStreamSocket);
+            if temp < 1 then
+               Free (this.m_IStreamSocket);
+            end if;
          end if;
       end if;
    end;
@@ -4344,7 +4380,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketControl /= null then
          if this.m_IStreamSocketControl.all /= null then
             temp := this.m_IStreamSocketControl.all.Release;
-            Free (this.m_IStreamSocketControl);
+            if temp < 1 then
+               Free (this.m_IStreamSocketControl);
+            end if;
          end if;
       end if;
    end;
@@ -4671,7 +4709,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketInformation /= null then
          if this.m_IStreamSocketInformation.all /= null then
             temp := this.m_IStreamSocketInformation.all.Release;
-            Free (this.m_IStreamSocketInformation);
+            if temp < 1 then
+               Free (this.m_IStreamSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -4969,7 +5009,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketListener /= null then
          if this.m_IStreamSocketListener.all /= null then
             temp := this.m_IStreamSocketListener.all.Release;
-            Free (this.m_IStreamSocketListener);
+            if temp < 1 then
+               Free (this.m_IStreamSocketListener);
+            end if;
          end if;
       end if;
    end;
@@ -5422,7 +5464,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketListenerConnectionReceivedEventArgs /= null then
          if this.m_IStreamSocketListenerConnectionReceivedEventArgs.all /= null then
             temp := this.m_IStreamSocketListenerConnectionReceivedEventArgs.all.Release;
-            Free (this.m_IStreamSocketListenerConnectionReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IStreamSocketListenerConnectionReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5465,7 +5509,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketListenerControl /= null then
          if this.m_IStreamSocketListenerControl.all /= null then
             temp := this.m_IStreamSocketListenerControl.all.Release;
-            Free (this.m_IStreamSocketListenerControl);
+            if temp < 1 then
+               Free (this.m_IStreamSocketListenerControl);
+            end if;
          end if;
       end if;
    end;
@@ -5680,7 +5726,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamSocketListenerInformation /= null then
          if this.m_IStreamSocketListenerInformation.all /= null then
             temp := this.m_IStreamSocketListenerInformation.all.Release;
-            Free (this.m_IStreamSocketListenerInformation);
+            if temp < 1 then
+               Free (this.m_IStreamSocketListenerInformation);
+            end if;
          end if;
       end if;
    end;
@@ -5723,7 +5771,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamWebSocket /= null then
          if this.m_IStreamWebSocket.all /= null then
             temp := this.m_IStreamWebSocket.all.Release;
-            Free (this.m_IStreamWebSocket);
+            if temp < 1 then
+               Free (this.m_IStreamWebSocket);
+            end if;
          end if;
       end if;
    end;
@@ -6036,7 +6086,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IStreamWebSocketControl /= null then
          if this.m_IStreamWebSocketControl.all /= null then
             temp := this.m_IStreamWebSocketControl.all.Release;
-            Free (this.m_IStreamWebSocketControl);
+            if temp < 1 then
+               Free (this.m_IStreamWebSocketControl);
+            end if;
          end if;
       end if;
    end;
@@ -6366,7 +6418,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IWebSocketInformation /= null then
          if this.m_IWebSocketInformation.all /= null then
             temp := this.m_IWebSocketInformation.all.Release;
-            Free (this.m_IWebSocketInformation);
+            if temp < 1 then
+               Free (this.m_IWebSocketInformation);
+            end if;
          end if;
       end if;
    end;
@@ -6533,7 +6587,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IWebSocketClosedEventArgs /= null then
          if this.m_IWebSocketClosedEventArgs.all /= null then
             temp := this.m_IWebSocketClosedEventArgs.all.Release;
-            Free (this.m_IWebSocketClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebSocketClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6624,7 +6680,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IBackgroundTask /= null then
          if this.m_IBackgroundTask.all /= null then
             temp := this.m_IBackgroundTask.all.Release;
-            Free (this.m_IBackgroundTask);
+            if temp < 1 then
+               Free (this.m_IBackgroundTask);
+            end if;
          end if;
       end if;
    end;
@@ -6682,7 +6740,9 @@ package body WinRt.Windows.Networking.Sockets is
       if this.m_IWebSocketServerCustomValidationRequestedEventArgs /= null then
          if this.m_IWebSocketServerCustomValidationRequestedEventArgs.all /= null then
             temp := this.m_IWebSocketServerCustomValidationRequestedEventArgs.all.Release;
-            Free (this.m_IWebSocketServerCustomValidationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebSocketServerCustomValidationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

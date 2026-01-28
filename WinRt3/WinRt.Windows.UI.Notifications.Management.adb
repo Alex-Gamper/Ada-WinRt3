@@ -54,7 +54,9 @@ package body WinRt.Windows.UI.Notifications.Management is
       if this.m_IUserNotificationListener /= null then
          if this.m_IUserNotificationListener.all /= null then
             temp := this.m_IUserNotificationListener.all.Release;
-            Free (this.m_IUserNotificationListener);
+            if temp < 1 then
+               Free (this.m_IUserNotificationListener);
+            end if;
          end if;
       end if;
    end;

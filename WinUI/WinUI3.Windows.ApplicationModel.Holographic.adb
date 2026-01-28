@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Holographic is
       if this.m_IHolographicKeyboard /= null then
          if this.m_IHolographicKeyboard.all /= null then
             temp := this.m_IHolographicKeyboard.all.Release;
-            Free (this.m_IHolographicKeyboard);
+            if temp < 1 then
+               Free (this.m_IHolographicKeyboard);
+            end if;
          end if;
       end if;
    end;

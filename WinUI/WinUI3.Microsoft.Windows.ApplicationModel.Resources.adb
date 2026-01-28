@@ -270,7 +270,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceCandidate /= null then
          if this.m_IResourceCandidate.all /= null then
             temp := this.m_IResourceCandidate.all.Release;
-            Free (this.m_IResourceCandidate);
+            if temp < 1 then
+               Free (this.m_IResourceCandidate);
+            end if;
          end if;
       end if;
    end;
@@ -431,7 +433,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceContext /= null then
          if this.m_IResourceContext.all /= null then
             temp := this.m_IResourceContext.all.Release;
-            Free (this.m_IResourceContext);
+            if temp < 1 then
+               Free (this.m_IResourceContext);
+            end if;
          end if;
       end if;
    end;
@@ -474,7 +478,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceLoader /= null then
          if this.m_IResourceLoader.all /= null then
             temp := this.m_IResourceLoader.all.Release;
-            Free (this.m_IResourceLoader);
+            if temp < 1 then
+               Free (this.m_IResourceLoader);
+            end if;
          end if;
       end if;
    end;
@@ -642,7 +648,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceManager /= null then
          if this.m_IResourceManager.all /= null then
             temp := this.m_IResourceManager.all.Release;
-            Free (this.m_IResourceManager);
+            if temp < 1 then
+               Free (this.m_IResourceManager);
+            end if;
          end if;
       end if;
    end;
@@ -783,7 +791,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceMap /= null then
          if this.m_IResourceMap.all /= null then
             temp := this.m_IResourceMap.all.Release;
-            Free (this.m_IResourceMap);
+            if temp < 1 then
+               Free (this.m_IResourceMap);
+            end if;
          end if;
       end if;
    end;
@@ -1006,7 +1016,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Resources is
       if this.m_IResourceNotFoundEventArgs /= null then
          if this.m_IResourceNotFoundEventArgs.all /= null then
             temp := this.m_IResourceNotFoundEventArgs.all.Release;
-            Free (this.m_IResourceNotFoundEventArgs);
+            if temp < 1 then
+               Free (this.m_IResourceNotFoundEventArgs);
+            end if;
          end if;
       end if;
    end;

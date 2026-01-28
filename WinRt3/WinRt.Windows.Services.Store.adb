@@ -96,7 +96,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreAcquireLicenseResult /= null then
          if this.m_IStoreAcquireLicenseResult.all /= null then
             temp := this.m_IStoreAcquireLicenseResult.all.Release;
-            Free (this.m_IStoreAcquireLicenseResult);
+            if temp < 1 then
+               Free (this.m_IStoreAcquireLicenseResult);
+            end if;
          end if;
       end if;
    end;
@@ -156,7 +158,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreAppLicense /= null then
          if this.m_IStoreAppLicense.all /= null then
             temp := this.m_IStoreAppLicense.all.Release;
-            Free (this.m_IStoreAppLicense);
+            if temp < 1 then
+               Free (this.m_IStoreAppLicense);
+            end if;
          end if;
       end if;
    end;
@@ -365,7 +369,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreAvailability /= null then
          if this.m_IStoreAvailability.all /= null then
             temp := this.m_IStoreAvailability.all.Release;
-            Free (this.m_IStoreAvailability);
+            if temp < 1 then
+               Free (this.m_IStoreAvailability);
+            end if;
          end if;
       end if;
    end;
@@ -598,7 +604,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreCanAcquireLicenseResult /= null then
          if this.m_IStoreCanAcquireLicenseResult.all /= null then
             temp := this.m_IStoreCanAcquireLicenseResult.all.Release;
-            Free (this.m_IStoreCanAcquireLicenseResult);
+            if temp < 1 then
+               Free (this.m_IStoreCanAcquireLicenseResult);
+            end if;
          end if;
       end if;
    end;
@@ -675,7 +683,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreCollectionData /= null then
          if this.m_IStoreCollectionData.all /= null then
             temp := this.m_IStoreCollectionData.all.Release;
-            Free (this.m_IStoreCollectionData);
+            if temp < 1 then
+               Free (this.m_IStoreCollectionData);
+            end if;
          end if;
       end if;
    end;
@@ -843,7 +853,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreConsumableResult /= null then
          if this.m_IStoreConsumableResult.all /= null then
             temp := this.m_IStoreConsumableResult.all.Release;
-            Free (this.m_IStoreConsumableResult);
+            if temp < 1 then
+               Free (this.m_IStoreConsumableResult);
+            end if;
          end if;
       end if;
    end;
@@ -934,7 +946,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreContext /= null then
          if this.m_IStoreContext.all /= null then
             temp := this.m_IStoreContext.all.Release;
-            Free (this.m_IStoreContext);
+            if temp < 1 then
+               Free (this.m_IStoreContext);
+            end if;
          end if;
       end if;
    end;
@@ -3659,7 +3673,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreImage /= null then
          if this.m_IStoreImage.all /= null then
             temp := this.m_IStoreImage.all.Release;
-            Free (this.m_IStoreImage);
+            if temp < 1 then
+               Free (this.m_IStoreImage);
+            end if;
          end if;
       end if;
    end;
@@ -3776,7 +3792,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreLicense /= null then
          if this.m_IStoreLicense.all /= null then
             temp := this.m_IStoreLicense.all.Release;
-            Free (this.m_IStoreLicense);
+            if temp < 1 then
+               Free (this.m_IStoreLicense);
+            end if;
          end if;
       end if;
    end;
@@ -3893,7 +3911,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePackageInstallOptions /= null then
          if this.m_IStorePackageInstallOptions.all /= null then
             temp := this.m_IStorePackageInstallOptions.all.Release;
-            Free (this.m_IStorePackageInstallOptions);
+            if temp < 1 then
+               Free (this.m_IStorePackageInstallOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3967,7 +3987,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePackageLicense /= null then
          if this.m_IStorePackageLicense.all /= null then
             temp := this.m_IStorePackageLicense.all.Release;
-            Free (this.m_IStorePackageLicense);
+            if temp < 1 then
+               Free (this.m_IStorePackageLicense);
+            end if;
          end if;
       end if;
    end;
@@ -4092,7 +4114,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePackageUpdate /= null then
          if this.m_IStorePackageUpdate.all /= null then
             temp := this.m_IStorePackageUpdate.all.Release;
-            Free (this.m_IStorePackageUpdate);
+            if temp < 1 then
+               Free (this.m_IStorePackageUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -4152,7 +4176,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePackageUpdateResult /= null then
          if this.m_IStorePackageUpdateResult.all /= null then
             temp := this.m_IStorePackageUpdateResult.all.Release;
-            Free (this.m_IStorePackageUpdateResult);
+            if temp < 1 then
+               Free (this.m_IStorePackageUpdateResult);
+            end if;
          end if;
       end if;
    end;
@@ -4236,7 +4262,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePrice /= null then
          if this.m_IStorePrice.all /= null then
             temp := this.m_IStorePrice.all.Release;
-            Free (this.m_IStorePrice);
+            if temp < 1 then
+               Free (this.m_IStorePrice);
+            end if;
          end if;
       end if;
    end;
@@ -4445,7 +4473,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreProduct /= null then
          if this.m_IStoreProduct.all /= null then
             temp := this.m_IStoreProduct.all.Release;
-            Free (this.m_IStoreProduct);
+            if temp < 1 then
+               Free (this.m_IStoreProduct);
+            end if;
          end if;
       end if;
    end;
@@ -4958,7 +4988,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreProductOptions /= null then
          if this.m_IStoreProductOptions.all /= null then
             temp := this.m_IStoreProductOptions.all.Release;
-            Free (this.m_IStoreProductOptions);
+            if temp < 1 then
+               Free (this.m_IStoreProductOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5020,7 +5052,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreProductPagedQueryResult /= null then
          if this.m_IStoreProductPagedQueryResult.all /= null then
             temp := this.m_IStoreProductPagedQueryResult.all.Release;
-            Free (this.m_IStoreProductPagedQueryResult);
+            if temp < 1 then
+               Free (this.m_IStoreProductPagedQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -5163,7 +5197,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreProductQueryResult /= null then
          if this.m_IStoreProductQueryResult.all /= null then
             temp := this.m_IStoreProductQueryResult.all.Release;
-            Free (this.m_IStoreProductQueryResult);
+            if temp < 1 then
+               Free (this.m_IStoreProductQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -5223,7 +5259,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreProductResult /= null then
          if this.m_IStoreProductResult.all /= null then
             temp := this.m_IStoreProductResult.all.Release;
-            Free (this.m_IStoreProductResult);
+            if temp < 1 then
+               Free (this.m_IStoreProductResult);
+            end if;
          end if;
       end if;
    end;
@@ -5283,7 +5321,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePurchaseProperties /= null then
          if this.m_IStorePurchaseProperties.all /= null then
             temp := this.m_IStorePurchaseProperties.all.Release;
-            Free (this.m_IStorePurchaseProperties);
+            if temp < 1 then
+               Free (this.m_IStorePurchaseProperties);
+            end if;
          end if;
       end if;
    end;
@@ -5425,7 +5465,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStorePurchaseResult /= null then
          if this.m_IStorePurchaseResult.all /= null then
             temp := this.m_IStorePurchaseResult.all.Release;
-            Free (this.m_IStorePurchaseResult);
+            if temp < 1 then
+               Free (this.m_IStorePurchaseResult);
+            end if;
          end if;
       end if;
    end;
@@ -5482,7 +5524,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreQueueItem /= null then
          if this.m_IStoreQueueItem.all /= null then
             temp := this.m_IStoreQueueItem.all.Release;
-            Free (this.m_IStoreQueueItem);
+            if temp < 1 then
+               Free (this.m_IStoreQueueItem);
+            end if;
          end if;
       end if;
    end;
@@ -5786,7 +5830,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreQueueItemCompletedEventArgs /= null then
          if this.m_IStoreQueueItemCompletedEventArgs.all /= null then
             temp := this.m_IStoreQueueItemCompletedEventArgs.all.Release;
-            Free (this.m_IStoreQueueItemCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IStoreQueueItemCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5829,7 +5875,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreQueueItemStatus /= null then
          if this.m_IStoreQueueItemStatus.all /= null then
             temp := this.m_IStoreQueueItemStatus.all.Release;
-            Free (this.m_IStoreQueueItemStatus);
+            if temp < 1 then
+               Free (this.m_IStoreQueueItemStatus);
+            end if;
          end if;
       end if;
    end;
@@ -5920,7 +5968,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreRateAndReviewResult /= null then
          if this.m_IStoreRateAndReviewResult.all /= null then
             temp := this.m_IStoreRateAndReviewResult.all.Release;
-            Free (this.m_IStoreRateAndReviewResult);
+            if temp < 1 then
+               Free (this.m_IStoreRateAndReviewResult);
+            end if;
          end if;
       end if;
    end;
@@ -6097,7 +6147,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreSendRequestResult /= null then
          if this.m_IStoreSendRequestResult.all /= null then
             temp := this.m_IStoreSendRequestResult.all.Release;
-            Free (this.m_IStoreSendRequestResult);
+            if temp < 1 then
+               Free (this.m_IStoreSendRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -6178,7 +6230,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreSku /= null then
          if this.m_IStoreSku.all /= null then
             temp := this.m_IStoreSku.all.Release;
-            Free (this.m_IStoreSku);
+            if temp < 1 then
+               Free (this.m_IStoreSku);
+            end if;
          end if;
       end if;
    end;
@@ -6708,7 +6762,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreSubscriptionInfo /= null then
          if this.m_IStoreSubscriptionInfo.all /= null then
             temp := this.m_IStoreSubscriptionInfo.all.Release;
-            Free (this.m_IStoreSubscriptionInfo);
+            if temp < 1 then
+               Free (this.m_IStoreSubscriptionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -6816,7 +6872,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreUninstallStorePackageResult /= null then
          if this.m_IStoreUninstallStorePackageResult.all /= null then
             temp := this.m_IStoreUninstallStorePackageResult.all.Release;
-            Free (this.m_IStoreUninstallStorePackageResult);
+            if temp < 1 then
+               Free (this.m_IStoreUninstallStorePackageResult);
+            end if;
          end if;
       end if;
    end;
@@ -6873,7 +6931,9 @@ package body WinRt.Windows.Services.Store is
       if this.m_IStoreVideo /= null then
          if this.m_IStoreVideo.all /= null then
             temp := this.m_IStoreVideo.all.Release;
-            Free (this.m_IStoreVideo);
+            if temp < 1 then
+               Free (this.m_IStoreVideo);
+            end if;
          end if;
       end if;
    end;

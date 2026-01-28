@@ -55,7 +55,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingManager /= null then
          if this.m_IAppRecordingManager.all /= null then
             temp := this.m_IAppRecordingManager.all.Release;
-            Free (this.m_IAppRecordingManager);
+            if temp < 1 then
+               Free (this.m_IAppRecordingManager);
+            end if;
          end if;
       end if;
    end;
@@ -353,7 +355,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingResult /= null then
          if this.m_IAppRecordingResult.all /= null then
             temp := this.m_IAppRecordingResult.all.Release;
-            Free (this.m_IAppRecordingResult);
+            if temp < 1 then
+               Free (this.m_IAppRecordingResult);
+            end if;
          end if;
       end if;
    end;
@@ -444,7 +448,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingSaveScreenshotResult /= null then
          if this.m_IAppRecordingSaveScreenshotResult.all /= null then
             temp := this.m_IAppRecordingSaveScreenshotResult.all.Release;
-            Free (this.m_IAppRecordingSaveScreenshotResult);
+            if temp < 1 then
+               Free (this.m_IAppRecordingSaveScreenshotResult);
+            end if;
          end if;
       end if;
    end;
@@ -521,7 +527,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingSavedScreenshotInfo /= null then
          if this.m_IAppRecordingSavedScreenshotInfo.all /= null then
             temp := this.m_IAppRecordingSavedScreenshotInfo.all.Release;
-            Free (this.m_IAppRecordingSavedScreenshotInfo);
+            if temp < 1 then
+               Free (this.m_IAppRecordingSavedScreenshotInfo);
+            end if;
          end if;
       end if;
    end;
@@ -584,7 +592,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingStatus /= null then
          if this.m_IAppRecordingStatus.all /= null then
             temp := this.m_IAppRecordingStatus.all.Release;
-            Free (this.m_IAppRecordingStatus);
+            if temp < 1 then
+               Free (this.m_IAppRecordingStatus);
+            end if;
          end if;
       end if;
    end;
@@ -678,7 +688,9 @@ package body WinUI3.Windows.Media.AppRecording is
       if this.m_IAppRecordingStatusDetails /= null then
          if this.m_IAppRecordingStatusDetails.all /= null then
             temp := this.m_IAppRecordingStatusDetails.all.Release;
-            Free (this.m_IAppRecordingStatusDetails);
+            if temp < 1 then
+               Free (this.m_IAppRecordingStatusDetails);
+            end if;
          end if;
       end if;
    end;

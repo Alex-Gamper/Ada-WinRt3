@@ -55,7 +55,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IAccessKeyDisplayDismissedEventArgs /= null then
          if this.m_IAccessKeyDisplayDismissedEventArgs.all /= null then
             temp := this.m_IAccessKeyDisplayDismissedEventArgs.all.Release;
-            Free (this.m_IAccessKeyDisplayDismissedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccessKeyDisplayDismissedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -97,7 +99,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IAccessKeyDisplayRequestedEventArgs /= null then
          if this.m_IAccessKeyDisplayRequestedEventArgs.all /= null then
             temp := this.m_IAccessKeyDisplayRequestedEventArgs.all.Release;
-            Free (this.m_IAccessKeyDisplayRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccessKeyDisplayRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -159,7 +163,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IAccessKeyInvokedEventArgs /= null then
          if this.m_IAccessKeyInvokedEventArgs.all /= null then
             temp := this.m_IAccessKeyInvokedEventArgs.all.Release;
-            Free (this.m_IAccessKeyInvokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccessKeyInvokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -233,7 +239,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IAccessKeyManager /= null then
          if this.m_IAccessKeyManager.all /= null then
             temp := this.m_IAccessKeyManager.all.Release;
-            Free (this.m_IAccessKeyManager);
+            if temp < 1 then
+               Free (this.m_IAccessKeyManager);
+            end if;
          end if;
       end if;
    end;
@@ -406,7 +414,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_ICanExecuteRequestedEventArgs /= null then
          if this.m_ICanExecuteRequestedEventArgs.all /= null then
             temp := this.m_ICanExecuteRequestedEventArgs.all.Release;
-            Free (this.m_ICanExecuteRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICanExecuteRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -478,7 +488,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_ICharacterReceivedRoutedEventArgs /= null then
          if this.m_ICharacterReceivedRoutedEventArgs.all /= null then
             temp := this.m_ICharacterReceivedRoutedEventArgs.all.Release;
-            Free (this.m_ICharacterReceivedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICharacterReceivedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -567,7 +579,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IContextRequestedEventArgs /= null then
          if this.m_IContextRequestedEventArgs.all /= null then
             temp := this.m_IContextRequestedEventArgs.all.Release;
-            Free (this.m_IContextRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContextRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -676,7 +690,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IDoubleTappedRoutedEventArgs /= null then
          if this.m_IDoubleTappedRoutedEventArgs.all /= null then
             temp := this.m_IDoubleTappedRoutedEventArgs.all.Release;
-            Free (this.m_IDoubleTappedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDoubleTappedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -785,7 +801,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IExecuteRequestedEventArgs /= null then
          if this.m_IExecuteRequestedEventArgs.all /= null then
             temp := this.m_IExecuteRequestedEventArgs.all.Release;
-            Free (this.m_IExecuteRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IExecuteRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -825,7 +843,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IFindNextElementOptions /= null then
          if this.m_IFindNextElementOptions.all /= null then
             temp := this.m_IFindNextElementOptions.all.Release;
-            Free (this.m_IFindNextElementOptions);
+            if temp < 1 then
+               Free (this.m_IFindNextElementOptions);
+            end if;
          end if;
       end if;
    end;
@@ -998,7 +1018,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IFocusManager /= null then
          if this.m_IFocusManager.all /= null then
             temp := this.m_IFocusManager.all.Release;
-            Free (this.m_IFocusManager);
+            if temp < 1 then
+               Free (this.m_IFocusManager);
+            end if;
          end if;
       end if;
    end;
@@ -1683,7 +1705,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IFocusManagerGotFocusEventArgs /= null then
          if this.m_IFocusManagerGotFocusEventArgs.all /= null then
             temp := this.m_IFocusManagerGotFocusEventArgs.all.Release;
-            Free (this.m_IFocusManagerGotFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_IFocusManagerGotFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1743,7 +1767,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IFocusManagerLostFocusEventArgs /= null then
          if this.m_IFocusManagerLostFocusEventArgs.all /= null then
             temp := this.m_IFocusManagerLostFocusEventArgs.all.Release;
-            Free (this.m_IFocusManagerLostFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_IFocusManagerLostFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1803,7 +1829,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IFocusMovementResult /= null then
          if this.m_IFocusMovementResult.all /= null then
             temp := this.m_IFocusMovementResult.all.Release;
-            Free (this.m_IFocusMovementResult);
+            if temp < 1 then
+               Free (this.m_IFocusMovementResult);
+            end if;
          end if;
       end if;
    end;
@@ -1843,7 +1871,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IGettingFocusEventArgs /= null then
          if this.m_IGettingFocusEventArgs.all /= null then
             temp := this.m_IGettingFocusEventArgs.all.Release;
-            Free (this.m_IGettingFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_IGettingFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2104,7 +2134,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IHoldingRoutedEventArgs /= null then
          if this.m_IHoldingRoutedEventArgs.all /= null then
             temp := this.m_IHoldingRoutedEventArgs.all.Release;
-            Free (this.m_IHoldingRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHoldingRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2230,7 +2262,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IInertiaExpansionBehavior /= null then
          if this.m_IInertiaExpansionBehavior.all /= null then
             temp := this.m_IInertiaExpansionBehavior.all.Release;
-            Free (this.m_IInertiaExpansionBehavior);
+            if temp < 1 then
+               Free (this.m_IInertiaExpansionBehavior);
+            end if;
          end if;
       end if;
    end;
@@ -2317,7 +2351,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IInertiaRotationBehavior /= null then
          if this.m_IInertiaRotationBehavior.all /= null then
             temp := this.m_IInertiaRotationBehavior.all.Release;
-            Free (this.m_IInertiaRotationBehavior);
+            if temp < 1 then
+               Free (this.m_IInertiaRotationBehavior);
+            end if;
          end if;
       end if;
    end;
@@ -2404,7 +2440,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IInertiaTranslationBehavior /= null then
          if this.m_IInertiaTranslationBehavior.all /= null then
             temp := this.m_IInertiaTranslationBehavior.all.Release;
-            Free (this.m_IInertiaTranslationBehavior);
+            if temp < 1 then
+               Free (this.m_IInertiaTranslationBehavior);
+            end if;
          end if;
       end if;
    end;
@@ -2491,7 +2529,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IInputScope /= null then
          if this.m_IInputScope.all /= null then
             temp := this.m_IInputScope.all.Release;
-            Free (this.m_IInputScope);
+            if temp < 1 then
+               Free (this.m_IInputScope);
+            end if;
          end if;
       end if;
    end;
@@ -2553,7 +2593,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IInputScopeName /= null then
          if this.m_IInputScopeName.all /= null then
             temp := this.m_IInputScopeName.all.Release;
-            Free (this.m_IInputScopeName);
+            if temp < 1 then
+               Free (this.m_IInputScopeName);
+            end if;
          end if;
       end if;
    end;
@@ -2667,7 +2709,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IKeyRoutedEventArgs /= null then
          if this.m_IKeyRoutedEventArgs.all /= null then
             temp := this.m_IKeyRoutedEventArgs.all.Release;
-            Free (this.m_IKeyRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IKeyRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2793,7 +2837,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IKeyboardAccelerator /= null then
          if this.m_IKeyboardAccelerator.all /= null then
             temp := this.m_IKeyboardAccelerator.all.Release;
-            Free (this.m_IKeyboardAccelerator);
+            if temp < 1 then
+               Free (this.m_IKeyboardAccelerator);
+            end if;
          end if;
       end if;
    end;
@@ -3107,7 +3153,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IKeyboardAcceleratorInvokedEventArgs /= null then
          if this.m_IKeyboardAcceleratorInvokedEventArgs.all /= null then
             temp := this.m_IKeyboardAcceleratorInvokedEventArgs.all.Release;
-            Free (this.m_IKeyboardAcceleratorInvokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IKeyboardAcceleratorInvokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3202,7 +3250,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_ILosingFocusEventArgs /= null then
          if this.m_ILosingFocusEventArgs.all /= null then
             temp := this.m_ILosingFocusEventArgs.all.Release;
-            Free (this.m_ILosingFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_ILosingFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3463,7 +3513,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationCompletedRoutedEventArgs /= null then
          if this.m_IManipulationCompletedRoutedEventArgs.all /= null then
             temp := this.m_IManipulationCompletedRoutedEventArgs.all.Release;
-            Free (this.m_IManipulationCompletedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationCompletedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3658,7 +3710,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationDeltaRoutedEventArgs /= null then
          if this.m_IManipulationDeltaRoutedEventArgs.all /= null then
             temp := this.m_IManipulationDeltaRoutedEventArgs.all.Release;
-            Free (this.m_IManipulationDeltaRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationDeltaRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3884,7 +3938,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationInertiaStartingRoutedEventArgs /= null then
          if this.m_IManipulationInertiaStartingRoutedEventArgs.all /= null then
             temp := this.m_IManipulationInertiaStartingRoutedEventArgs.all.Release;
-            Free (this.m_IManipulationInertiaStartingRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationInertiaStartingRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4151,7 +4207,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationPivot /= null then
          if this.m_IManipulationPivot.all /= null then
             temp := this.m_IManipulationPivot.all.Release;
-            Free (this.m_IManipulationPivot);
+            if temp < 1 then
+               Free (this.m_IManipulationPivot);
+            end if;
          end if;
       end if;
    end;
@@ -4298,7 +4356,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationStartedRoutedEventArgs /= null then
          if this.m_IManipulationStartedRoutedEventArgs.all /= null then
             temp := this.m_IManipulationStartedRoutedEventArgs.all.Release;
-            Free (this.m_IManipulationStartedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationStartedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4482,7 +4542,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IManipulationStartingRoutedEventArgs /= null then
          if this.m_IManipulationStartingRoutedEventArgs.all /= null then
             temp := this.m_IManipulationStartingRoutedEventArgs.all.Release;
-            Free (this.m_IManipulationStartingRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationStartingRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4658,7 +4720,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_INoFocusCandidateFoundEventArgs /= null then
          if this.m_INoFocusCandidateFoundEventArgs.all /= null then
             temp := this.m_INoFocusCandidateFoundEventArgs.all.Release;
-            Free (this.m_INoFocusCandidateFoundEventArgs);
+            if temp < 1 then
+               Free (this.m_INoFocusCandidateFoundEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4747,7 +4811,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IPointer /= null then
          if this.m_IPointer.all /= null then
             temp := this.m_IPointer.all.Release;
-            Free (this.m_IPointer);
+            if temp < 1 then
+               Free (this.m_IPointer);
+            end if;
          end if;
       end if;
    end;
@@ -4854,7 +4920,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IPointerRoutedEventArgs /= null then
          if this.m_IPointerRoutedEventArgs.all /= null then
             temp := this.m_IPointerRoutedEventArgs.all.Release;
-            Free (this.m_IPointerRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPointerRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5002,7 +5070,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IProcessKeyboardAcceleratorEventArgs /= null then
          if this.m_IProcessKeyboardAcceleratorEventArgs.all /= null then
             temp := this.m_IProcessKeyboardAcceleratorEventArgs.all.Release;
-            Free (this.m_IProcessKeyboardAcceleratorEventArgs);
+            if temp < 1 then
+               Free (this.m_IProcessKeyboardAcceleratorEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5107,7 +5177,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IRightTappedRoutedEventArgs /= null then
          if this.m_IRightTappedRoutedEventArgs.all /= null then
             temp := this.m_IRightTappedRoutedEventArgs.all.Release;
-            Free (this.m_IRightTappedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRightTappedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5216,7 +5288,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IXamlUICommand /= null then
          if this.m_IXamlUICommand.all /= null then
             temp := this.m_IXamlUICommand.all.Release;
-            Free (this.m_IXamlUICommand);
+            if temp < 1 then
+               Free (this.m_IXamlUICommand);
+            end if;
          end if;
       end if;
    end;
@@ -5774,7 +5848,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_IStandardUICommand /= null then
          if this.m_IStandardUICommand.all /= null then
             temp := this.m_IStandardUICommand.all.Release;
-            Free (this.m_IStandardUICommand);
+            if temp < 1 then
+               Free (this.m_IStandardUICommand);
+            end if;
          end if;
       end if;
    end;
@@ -5926,7 +6002,9 @@ package body WinUI3.Microsoft.UI.Xaml.Input is
       if this.m_ITappedRoutedEventArgs /= null then
          if this.m_ITappedRoutedEventArgs.all /= null then
             temp := this.m_ITappedRoutedEventArgs.all.Release;
-            Free (this.m_ITappedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITappedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;

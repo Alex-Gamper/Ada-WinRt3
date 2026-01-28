@@ -47,7 +47,9 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       if this.m_IAnimationDescription /= null then
          if this.m_IAnimationDescription.all /= null then
             temp := this.m_IAnimationDescription.all.Release;
-            Free (this.m_IAnimationDescription);
+            if temp < 1 then
+               Free (this.m_IAnimationDescription);
+            end if;
          end if;
       end if;
    end;
@@ -186,7 +188,9 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       if this.m_IOpacityAnimation /= null then
          if this.m_IOpacityAnimation.all /= null then
             temp := this.m_IOpacityAnimation.all.Release;
-            Free (this.m_IOpacityAnimation);
+            if temp < 1 then
+               Free (this.m_IOpacityAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -351,7 +355,9 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       if this.m_IPropertyAnimation /= null then
          if this.m_IPropertyAnimation.all /= null then
             temp := this.m_IPropertyAnimation.all.Release;
-            Free (this.m_IPropertyAnimation);
+            if temp < 1 then
+               Free (this.m_IPropertyAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -459,7 +465,9 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       if this.m_IScaleAnimation /= null then
          if this.m_IScaleAnimation.all /= null then
             temp := this.m_IScaleAnimation.all.Release;
-            Free (this.m_IScaleAnimation);
+            if temp < 1 then
+               Free (this.m_IScaleAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -678,7 +686,9 @@ package body WinRt.Windows.UI.Core.AnimationMetrics is
       if this.m_IPropertyAnimation /= null then
          if this.m_IPropertyAnimation.all /= null then
             temp := this.m_IPropertyAnimation.all.Release;
-            Free (this.m_IPropertyAnimation);
+            if temp < 1 then
+               Free (this.m_IPropertyAnimation);
+            end if;
          end if;
       end if;
    end;

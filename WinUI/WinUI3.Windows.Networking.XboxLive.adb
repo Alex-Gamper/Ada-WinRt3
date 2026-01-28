@@ -52,7 +52,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveDeviceAddress /= null then
          if this.m_IXboxLiveDeviceAddress.all /= null then
             temp := this.m_IXboxLiveDeviceAddress.all.Release;
-            Free (this.m_IXboxLiveDeviceAddress);
+            if temp < 1 then
+               Free (this.m_IXboxLiveDeviceAddress);
+            end if;
          end if;
       end if;
    end;
@@ -363,7 +365,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveEndpointPair /= null then
          if this.m_IXboxLiveEndpointPair.all /= null then
             temp := this.m_IXboxLiveEndpointPair.all.Release;
-            Free (this.m_IXboxLiveEndpointPair);
+            if temp < 1 then
+               Free (this.m_IXboxLiveEndpointPair);
+            end if;
          end if;
       end if;
    end;
@@ -697,7 +701,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveEndpointPairCreationResult /= null then
          if this.m_IXboxLiveEndpointPairCreationResult.all /= null then
             temp := this.m_IXboxLiveEndpointPairCreationResult.all.Release;
-            Free (this.m_IXboxLiveEndpointPairCreationResult);
+            if temp < 1 then
+               Free (this.m_IXboxLiveEndpointPairCreationResult);
+            end if;
          end if;
       end if;
    end;
@@ -794,7 +800,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveEndpointPairStateChangedEventArgs /= null then
          if this.m_IXboxLiveEndpointPairStateChangedEventArgs.all /= null then
             temp := this.m_IXboxLiveEndpointPairStateChangedEventArgs.all.Release;
-            Free (this.m_IXboxLiveEndpointPairStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IXboxLiveEndpointPairStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -851,7 +859,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveEndpointPairTemplate /= null then
          if this.m_IXboxLiveEndpointPairTemplate.all /= null then
             temp := this.m_IXboxLiveEndpointPairTemplate.all.Release;
-            Free (this.m_IXboxLiveEndpointPairTemplate);
+            if temp < 1 then
+               Free (this.m_IXboxLiveEndpointPairTemplate);
+            end if;
          end if;
       end if;
    end;
@@ -1367,7 +1377,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveInboundEndpointPairCreatedEventArgs /= null then
          if this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all /= null then
             temp := this.m_IXboxLiveInboundEndpointPairCreatedEventArgs.all.Release;
-            Free (this.m_IXboxLiveInboundEndpointPairCreatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IXboxLiveInboundEndpointPairCreatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1410,7 +1422,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveQualityOfServiceMeasurement /= null then
          if this.m_IXboxLiveQualityOfServiceMeasurement.all /= null then
             temp := this.m_IXboxLiveQualityOfServiceMeasurement.all.Release;
-            Free (this.m_IXboxLiveQualityOfServiceMeasurement);
+            if temp < 1 then
+               Free (this.m_IXboxLiveQualityOfServiceMeasurement);
+            end if;
          end if;
       end if;
    end;
@@ -2004,7 +2018,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveQualityOfServiceMetricResult /= null then
          if this.m_IXboxLiveQualityOfServiceMetricResult.all /= null then
             temp := this.m_IXboxLiveQualityOfServiceMetricResult.all.Release;
-            Free (this.m_IXboxLiveQualityOfServiceMetricResult);
+            if temp < 1 then
+               Free (this.m_IXboxLiveQualityOfServiceMetricResult);
+            end if;
          end if;
       end if;
    end;
@@ -2098,7 +2114,9 @@ package body WinUI3.Windows.Networking.XboxLive is
       if this.m_IXboxLiveQualityOfServicePrivatePayloadResult /= null then
          if this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all /= null then
             temp := this.m_IXboxLiveQualityOfServicePrivatePayloadResult.all.Release;
-            Free (this.m_IXboxLiveQualityOfServicePrivatePayloadResult);
+            if temp < 1 then
+               Free (this.m_IXboxLiveQualityOfServicePrivatePayloadResult);
+            end if;
          end if;
       end if;
    end;

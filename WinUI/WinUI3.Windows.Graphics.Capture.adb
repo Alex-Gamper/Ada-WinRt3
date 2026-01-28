@@ -60,7 +60,9 @@ package body WinUI3.Windows.Graphics.Capture is
       if this.m_IDirect3D11CaptureFrame /= null then
          if this.m_IDirect3D11CaptureFrame.all /= null then
             temp := this.m_IDirect3D11CaptureFrame.all.Release;
-            Free (this.m_IDirect3D11CaptureFrame);
+            if temp < 1 then
+               Free (this.m_IDirect3D11CaptureFrame);
+            end if;
          end if;
       end if;
    end;
@@ -197,7 +199,9 @@ package body WinUI3.Windows.Graphics.Capture is
       if this.m_IDirect3D11CaptureFramePool /= null then
          if this.m_IDirect3D11CaptureFramePool.all /= null then
             temp := this.m_IDirect3D11CaptureFramePool.all.Release;
-            Free (this.m_IDirect3D11CaptureFramePool);
+            if temp < 1 then
+               Free (this.m_IDirect3D11CaptureFramePool);
+            end if;
          end if;
       end if;
    end;
@@ -489,7 +493,9 @@ package body WinUI3.Windows.Graphics.Capture is
       if this.m_IGraphicsCaptureItem /= null then
          if this.m_IGraphicsCaptureItem.all /= null then
             temp := this.m_IGraphicsCaptureItem.all.Release;
-            Free (this.m_IGraphicsCaptureItem);
+            if temp < 1 then
+               Free (this.m_IGraphicsCaptureItem);
+            end if;
          end if;
       end if;
    end;
@@ -666,7 +672,9 @@ package body WinUI3.Windows.Graphics.Capture is
       if this.m_IGraphicsCapturePicker /= null then
          if this.m_IGraphicsCapturePicker.all /= null then
             temp := this.m_IGraphicsCapturePicker.all.Release;
-            Free (this.m_IGraphicsCapturePicker);
+            if temp < 1 then
+               Free (this.m_IGraphicsCapturePicker);
+            end if;
          end if;
       end if;
    end;
@@ -774,7 +782,9 @@ package body WinUI3.Windows.Graphics.Capture is
       if this.m_IGraphicsCaptureSession /= null then
          if this.m_IGraphicsCaptureSession.all /= null then
             temp := this.m_IGraphicsCaptureSession.all.Release;
-            Free (this.m_IGraphicsCaptureSession);
+            if temp < 1 then
+               Free (this.m_IGraphicsCaptureSession);
+            end if;
          end if;
       end if;
    end;

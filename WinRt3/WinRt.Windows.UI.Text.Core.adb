@@ -48,7 +48,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextCompositionCompletedEventArgs /= null then
          if this.m_ICoreTextCompositionCompletedEventArgs.all /= null then
             temp := this.m_ICoreTextCompositionCompletedEventArgs.all.Release;
-            Free (this.m_ICoreTextCompositionCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextCompositionCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -128,7 +130,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextCompositionSegment /= null then
          if this.m_ICoreTextCompositionSegment.all /= null then
             temp := this.m_ICoreTextCompositionSegment.all.Release;
-            Free (this.m_ICoreTextCompositionSegment);
+            if temp < 1 then
+               Free (this.m_ICoreTextCompositionSegment);
+            end if;
          end if;
       end if;
    end;
@@ -188,7 +192,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextCompositionStartedEventArgs /= null then
          if this.m_ICoreTextCompositionStartedEventArgs.all /= null then
             temp := this.m_ICoreTextCompositionStartedEventArgs.all.Release;
-            Free (this.m_ICoreTextCompositionStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextCompositionStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -248,7 +254,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextEditContext /= null then
          if this.m_ICoreTextEditContext.all /= null then
             temp := this.m_ICoreTextEditContext.all.Release;
-            Free (this.m_ICoreTextEditContext);
+            if temp < 1 then
+               Free (this.m_ICoreTextEditContext);
+            end if;
          end if;
       end if;
    end;
@@ -816,7 +824,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextFormatUpdatingEventArgs /= null then
          if this.m_ICoreTextFormatUpdatingEventArgs.all /= null then
             temp := this.m_ICoreTextFormatUpdatingEventArgs.all.Release;
-            Free (this.m_ICoreTextFormatUpdatingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextFormatUpdatingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1013,7 +1023,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextLayoutBounds /= null then
          if this.m_ICoreTextLayoutBounds.all /= null then
             temp := this.m_ICoreTextLayoutBounds.all.Release;
-            Free (this.m_ICoreTextLayoutBounds);
+            if temp < 1 then
+               Free (this.m_ICoreTextLayoutBounds);
+            end if;
          end if;
       end if;
    end;
@@ -1100,7 +1112,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextLayoutRequest /= null then
          if this.m_ICoreTextLayoutRequest.all /= null then
             temp := this.m_ICoreTextLayoutRequest.all.Release;
-            Free (this.m_ICoreTextLayoutRequest);
+            if temp < 1 then
+               Free (this.m_ICoreTextLayoutRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1221,7 +1235,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextLayoutRequestedEventArgs /= null then
          if this.m_ICoreTextLayoutRequestedEventArgs.all /= null then
             temp := this.m_ICoreTextLayoutRequestedEventArgs.all.Release;
-            Free (this.m_ICoreTextLayoutRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextLayoutRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1264,7 +1280,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextSelectionRequest /= null then
          if this.m_ICoreTextSelectionRequest.all /= null then
             temp := this.m_ICoreTextSelectionRequest.all.Release;
-            Free (this.m_ICoreTextSelectionRequest);
+            if temp < 1 then
+               Free (this.m_ICoreTextSelectionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1356,7 +1374,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextSelectionRequestedEventArgs /= null then
          if this.m_ICoreTextSelectionRequestedEventArgs.all /= null then
             temp := this.m_ICoreTextSelectionRequestedEventArgs.all.Release;
-            Free (this.m_ICoreTextSelectionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextSelectionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1399,7 +1419,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextSelectionUpdatingEventArgs /= null then
          if this.m_ICoreTextSelectionUpdatingEventArgs.all /= null then
             temp := this.m_ICoreTextSelectionUpdatingEventArgs.all.Release;
-            Free (this.m_ICoreTextSelectionUpdatingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextSelectionUpdatingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1535,7 +1557,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextServicesManager /= null then
          if this.m_ICoreTextServicesManager.all /= null then
             temp := this.m_ICoreTextServicesManager.all.Release;
-            Free (this.m_ICoreTextServicesManager);
+            if temp < 1 then
+               Free (this.m_ICoreTextServicesManager);
+            end if;
          end if;
       end if;
    end;
@@ -1658,7 +1682,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextTextRequest /= null then
          if this.m_ICoreTextTextRequest.all /= null then
             temp := this.m_ICoreTextTextRequest.all.Release;
-            Free (this.m_ICoreTextTextRequest);
+            if temp < 1 then
+               Free (this.m_ICoreTextTextRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1772,7 +1798,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextTextRequestedEventArgs /= null then
          if this.m_ICoreTextTextRequestedEventArgs.all /= null then
             temp := this.m_ICoreTextTextRequestedEventArgs.all.Release;
-            Free (this.m_ICoreTextTextRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextTextRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1815,7 +1843,9 @@ package body WinRt.Windows.UI.Text.Core is
       if this.m_ICoreTextTextUpdatingEventArgs /= null then
          if this.m_ICoreTextTextUpdatingEventArgs.all /= null then
             temp := this.m_ICoreTextTextUpdatingEventArgs.all.Release;
-            Free (this.m_ICoreTextTextUpdatingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreTextTextUpdatingEventArgs);
+            end if;
          end if;
       end if;
    end;

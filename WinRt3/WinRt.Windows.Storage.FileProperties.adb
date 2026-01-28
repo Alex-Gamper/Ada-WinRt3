@@ -77,7 +77,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IBasicProperties /= null then
          if this.m_IBasicProperties.all /= null then
             temp := this.m_IBasicProperties.all.Release;
-            Free (this.m_IBasicProperties);
+            if temp < 1 then
+               Free (this.m_IBasicProperties);
+            end if;
          end if;
       end if;
    end;
@@ -312,7 +314,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IDocumentProperties /= null then
          if this.m_IDocumentProperties.all /= null then
             temp := this.m_IDocumentProperties.all.Release;
-            Free (this.m_IDocumentProperties);
+            if temp < 1 then
+               Free (this.m_IDocumentProperties);
+            end if;
          end if;
       end if;
    end;
@@ -789,7 +793,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IImageProperties /= null then
          if this.m_IImageProperties.all /= null then
             temp := this.m_IImageProperties.all.Release;
-            Free (this.m_IImageProperties);
+            if temp < 1 then
+               Free (this.m_IImageProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1279,7 +1285,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IMusicProperties /= null then
          if this.m_IMusicProperties.all /= null then
             temp := this.m_IMusicProperties.all.Release;
-            Free (this.m_IMusicProperties);
+            if temp < 1 then
+               Free (this.m_IMusicProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1915,7 +1923,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IStorageItemContentProperties /= null then
          if this.m_IStorageItemContentProperties.all /= null then
             temp := this.m_IStorageItemContentProperties.all.Release;
-            Free (this.m_IStorageItemContentProperties);
+            if temp < 1 then
+               Free (this.m_IStorageItemContentProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2364,7 +2374,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IRandomAccessStreamWithContentType /= null then
          if this.m_IRandomAccessStreamWithContentType.all /= null then
             temp := this.m_IRandomAccessStreamWithContentType.all.Release;
-            Free (this.m_IRandomAccessStreamWithContentType);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStreamWithContentType);
+            end if;
          end if;
       end if;
    end;
@@ -2905,7 +2917,9 @@ package body WinRt.Windows.Storage.FileProperties is
       if this.m_IVideoProperties /= null then
          if this.m_IVideoProperties.all /= null then
             temp := this.m_IVideoProperties.all.Release;
-            Free (this.m_IVideoProperties);
+            if temp < 1 then
+               Free (this.m_IVideoProperties);
+            end if;
          end if;
       end if;
    end;

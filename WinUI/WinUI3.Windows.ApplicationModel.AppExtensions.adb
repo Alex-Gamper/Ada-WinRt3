@@ -61,7 +61,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtension /= null then
          if this.m_IAppExtension.all /= null then
             temp := this.m_IAppExtension.all.Release;
-            Free (this.m_IAppExtension);
+            if temp < 1 then
+               Free (this.m_IAppExtension);
+            end if;
          end if;
       end if;
    end;
@@ -406,7 +408,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionCatalog /= null then
          if this.m_IAppExtensionCatalog.all /= null then
             temp := this.m_IAppExtensionCatalog.all.Release;
-            Free (this.m_IAppExtensionCatalog);
+            if temp < 1 then
+               Free (this.m_IAppExtensionCatalog);
+            end if;
          end if;
       end if;
    end;
@@ -779,7 +783,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionPackageInstalledEventArgs /= null then
          if this.m_IAppExtensionPackageInstalledEventArgs.all /= null then
             temp := this.m_IAppExtensionPackageInstalledEventArgs.all.Release;
-            Free (this.m_IAppExtensionPackageInstalledEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppExtensionPackageInstalledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -862,7 +868,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionPackageStatusChangedEventArgs /= null then
          if this.m_IAppExtensionPackageStatusChangedEventArgs.all /= null then
             temp := this.m_IAppExtensionPackageStatusChangedEventArgs.all.Release;
-            Free (this.m_IAppExtensionPackageStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppExtensionPackageStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -925,7 +933,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionPackageUninstallingEventArgs /= null then
          if this.m_IAppExtensionPackageUninstallingEventArgs.all /= null then
             temp := this.m_IAppExtensionPackageUninstallingEventArgs.all.Release;
-            Free (this.m_IAppExtensionPackageUninstallingEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppExtensionPackageUninstallingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -988,7 +998,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionPackageUpdatedEventArgs /= null then
          if this.m_IAppExtensionPackageUpdatedEventArgs.all /= null then
             temp := this.m_IAppExtensionPackageUpdatedEventArgs.all.Release;
-            Free (this.m_IAppExtensionPackageUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppExtensionPackageUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1071,7 +1083,9 @@ package body WinUI3.Windows.ApplicationModel.AppExtensions is
       if this.m_IAppExtensionPackageUpdatingEventArgs /= null then
          if this.m_IAppExtensionPackageUpdatingEventArgs.all /= null then
             temp := this.m_IAppExtensionPackageUpdatingEventArgs.all.Release;
-            Free (this.m_IAppExtensionPackageUpdatingEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppExtensionPackageUpdatingEventArgs);
+            end if;
          end if;
       end if;
    end;

@@ -63,7 +63,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowBackgroundSession /= null then
          if this.m_IPrintWorkflowBackgroundSession.all /= null then
             temp := this.m_IPrintWorkflowBackgroundSession.all.Release;
-            Free (this.m_IPrintWorkflowBackgroundSession);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowBackgroundSession);
+            end if;
          end if;
       end if;
    end;
@@ -183,7 +185,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs /= null then
          if this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowBackgroundSetupRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -326,7 +330,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowConfiguration /= null then
          if this.m_IPrintWorkflowConfiguration.all /= null then
             temp := this.m_IPrintWorkflowConfiguration.all.Release;
-            Free (this.m_IPrintWorkflowConfiguration);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -428,7 +434,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowForegroundSession /= null then
          if this.m_IPrintWorkflowForegroundSession.all /= null then
             temp := this.m_IPrintWorkflowForegroundSession.all.Release;
-            Free (this.m_IPrintWorkflowForegroundSession);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowForegroundSession);
+            end if;
          end if;
       end if;
    end;
@@ -548,7 +556,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowForegroundSetupRequestedEventArgs /= null then
          if this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowForegroundSetupRequestedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowForegroundSetupRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowForegroundSetupRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -677,7 +687,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobActivatedEventArgs /= null then
          if this.m_IPrintWorkflowJobActivatedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowJobActivatedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowJobActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -810,7 +822,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobBackgroundSession /= null then
          if this.m_IPrintWorkflowJobBackgroundSession.all /= null then
             temp := this.m_IPrintWorkflowJobBackgroundSession.all.Release;
-            Free (this.m_IPrintWorkflowJobBackgroundSession);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobBackgroundSession);
+            end if;
          end if;
       end if;
    end;
@@ -1012,7 +1026,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobIssueDetectedEventArgs /= null then
          if this.m_IPrintWorkflowJobIssueDetectedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowJobIssueDetectedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowJobIssueDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobIssueDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1181,7 +1197,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobNotificationEventArgs /= null then
          if this.m_IPrintWorkflowJobNotificationEventArgs.all /= null then
             temp := this.m_IPrintWorkflowJobNotificationEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowJobNotificationEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobNotificationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1264,7 +1282,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobStartingEventArgs /= null then
          if this.m_IPrintWorkflowJobStartingEventArgs.all /= null then
             temp := this.m_IPrintWorkflowJobStartingEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowJobStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1440,7 +1460,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobTriggerDetails /= null then
          if this.m_IPrintWorkflowJobTriggerDetails.all /= null then
             temp := this.m_IPrintWorkflowJobTriggerDetails.all.Release;
-            Free (this.m_IPrintWorkflowJobTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1483,7 +1505,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowJobUISession /= null then
          if this.m_IPrintWorkflowJobUISession.all /= null then
             temp := this.m_IPrintWorkflowJobUISession.all.Release;
-            Free (this.m_IPrintWorkflowJobUISession);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowJobUISession);
+            end if;
          end if;
       end if;
    end;
@@ -1644,7 +1668,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowObjectModelSourceFileContent /= null then
          if this.m_IPrintWorkflowObjectModelSourceFileContent.all /= null then
             temp := this.m_IPrintWorkflowObjectModelSourceFileContent.all.Release;
-            Free (this.m_IPrintWorkflowObjectModelSourceFileContent);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowObjectModelSourceFileContent);
+            end if;
          end if;
       end if;
    end;
@@ -1694,7 +1720,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowObjectModelTargetPackage /= null then
          if this.m_IPrintWorkflowObjectModelTargetPackage.all /= null then
             temp := this.m_IPrintWorkflowObjectModelTargetPackage.all.Release;
-            Free (this.m_IPrintWorkflowObjectModelTargetPackage);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowObjectModelTargetPackage);
+            end if;
          end if;
       end if;
    end;
@@ -1717,7 +1745,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPdlConverter /= null then
          if this.m_IPrintWorkflowPdlConverter.all /= null then
             temp := this.m_IPrintWorkflowPdlConverter.all.Release;
-            Free (this.m_IPrintWorkflowPdlConverter);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPdlConverter);
+            end if;
          end if;
       end if;
    end;
@@ -1885,7 +1915,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPdlDataAvailableEventArgs /= null then
          if this.m_IPrintWorkflowPdlDataAvailableEventArgs.all /= null then
             temp := this.m_IPrintWorkflowPdlDataAvailableEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowPdlDataAvailableEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPdlDataAvailableEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1988,7 +2020,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPdlModificationRequestedEventArgs /= null then
          if this.m_IPrintWorkflowPdlModificationRequestedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowPdlModificationRequestedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowPdlModificationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPdlModificationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2283,7 +2317,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPdlSourceContent /= null then
          if this.m_IPrintWorkflowPdlSourceContent.all /= null then
             temp := this.m_IPrintWorkflowPdlSourceContent.all.Release;
-            Free (this.m_IPrintWorkflowPdlSourceContent);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPdlSourceContent);
+            end if;
          end if;
       end if;
    end;
@@ -2409,7 +2445,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPdlTargetStream /= null then
          if this.m_IPrintWorkflowPdlTargetStream.all /= null then
             temp := this.m_IPrintWorkflowPdlTargetStream.all.Release;
-            Free (this.m_IPrintWorkflowPdlTargetStream);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPdlTargetStream);
+            end if;
          end if;
       end if;
    end;
@@ -2464,7 +2502,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPrinterJob /= null then
          if this.m_IPrintWorkflowPrinterJob.all /= null then
             temp := this.m_IPrintWorkflowPrinterJob.all.Release;
-            Free (this.m_IPrintWorkflowPrinterJob);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPrinterJob);
+            end if;
          end if;
       end if;
    end;
@@ -2664,7 +2704,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs /= null then
          if this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowPrinterJobStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2747,7 +2789,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowSourceContent /= null then
          if this.m_IPrintWorkflowSourceContent.all /= null then
             temp := this.m_IPrintWorkflowSourceContent.all.Release;
-            Free (this.m_IPrintWorkflowSourceContent);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowSourceContent);
+            end if;
          end if;
       end if;
    end;
@@ -2876,7 +2920,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowSpoolStreamContent /= null then
          if this.m_IPrintWorkflowSpoolStreamContent.all /= null then
             temp := this.m_IPrintWorkflowSpoolStreamContent.all.Release;
-            Free (this.m_IPrintWorkflowSpoolStreamContent);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowSpoolStreamContent);
+            end if;
          end if;
       end if;
    end;
@@ -2916,7 +2962,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowStreamTarget /= null then
          if this.m_IPrintWorkflowStreamTarget.all /= null then
             temp := this.m_IPrintWorkflowStreamTarget.all.Release;
-            Free (this.m_IPrintWorkflowStreamTarget);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowStreamTarget);
+            end if;
          end if;
       end if;
    end;
@@ -2956,7 +3004,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowSubmittedEventArgs /= null then
          if this.m_IPrintWorkflowSubmittedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowSubmittedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowSubmittedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowSubmittedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3040,7 +3090,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowSubmittedOperation /= null then
          if this.m_IPrintWorkflowSubmittedOperation.all /= null then
             temp := this.m_IPrintWorkflowSubmittedOperation.all.Release;
-            Free (this.m_IPrintWorkflowSubmittedOperation);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowSubmittedOperation);
+            end if;
          end if;
       end if;
    end;
@@ -3118,7 +3170,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowTarget /= null then
          if this.m_IPrintWorkflowTarget.all /= null then
             temp := this.m_IPrintWorkflowTarget.all.Release;
-            Free (this.m_IPrintWorkflowTarget);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowTarget);
+            end if;
          end if;
       end if;
    end;
@@ -3181,7 +3235,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowTriggerDetails /= null then
          if this.m_IPrintWorkflowTriggerDetails.all /= null then
             temp := this.m_IPrintWorkflowTriggerDetails.all.Release;
-            Free (this.m_IPrintWorkflowTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3224,7 +3280,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowUIActivatedEventArgs /= null then
          if this.m_IPrintWorkflowUIActivatedEventArgs.all /= null then
             temp := this.m_IPrintWorkflowUIActivatedEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowUIActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowUIActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3357,7 +3415,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowUILauncher /= null then
          if this.m_IPrintWorkflowUILauncher.all /= null then
             temp := this.m_IPrintWorkflowUILauncher.all.Release;
-            Free (this.m_IPrintWorkflowUILauncher);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowUILauncher);
+            end if;
          end if;
       end if;
    end;
@@ -3460,7 +3520,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs /= null then
          if this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all /= null then
             temp := this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowVirtualPrinterDataAvailableEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3665,7 +3727,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowVirtualPrinterSession /= null then
          if this.m_IPrintWorkflowVirtualPrinterSession.all /= null then
             temp := this.m_IPrintWorkflowVirtualPrinterSession.all.Release;
-            Free (this.m_IPrintWorkflowVirtualPrinterSession);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowVirtualPrinterSession);
+            end if;
          end if;
       end if;
    end;
@@ -3772,7 +3836,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowVirtualPrinterTriggerDetails /= null then
          if this.m_IPrintWorkflowVirtualPrinterTriggerDetails.all /= null then
             temp := this.m_IPrintWorkflowVirtualPrinterTriggerDetails.all.Release;
-            Free (this.m_IPrintWorkflowVirtualPrinterTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowVirtualPrinterTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3815,7 +3881,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowVirtualPrinterUIEventArgs /= null then
          if this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all /= null then
             temp := this.m_IPrintWorkflowVirtualPrinterUIEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowVirtualPrinterUIEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowVirtualPrinterUIEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3938,7 +4006,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowXpsDataAvailableEventArgs /= null then
          if this.m_IPrintWorkflowXpsDataAvailableEventArgs.all /= null then
             temp := this.m_IPrintWorkflowXpsDataAvailableEventArgs.all.Release;
-            Free (this.m_IPrintWorkflowXpsDataAvailableEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowXpsDataAvailableEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4001,7 +4071,9 @@ package body WinUI3.Windows.Graphics.Printing.Workflow is
       if this.m_IPrintWorkflowObjectModelProvider /= null then
          if this.m_IPrintWorkflowObjectModelProvider.all /= null then
             temp := this.m_IPrintWorkflowObjectModelProvider.all.Release;
-            Free (this.m_IPrintWorkflowObjectModelProvider);
+            if temp < 1 then
+               Free (this.m_IPrintWorkflowObjectModelProvider);
+            end if;
          end if;
       end if;
    end;

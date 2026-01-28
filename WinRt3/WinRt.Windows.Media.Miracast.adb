@@ -70,7 +70,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiver /= null then
          if this.m_IMiracastReceiver.all /= null then
             temp := this.m_IMiracastReceiver.all.Release;
-            Free (this.m_IMiracastReceiver);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiver);
+            end if;
          end if;
       end if;
    end;
@@ -542,7 +544,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverApplySettingsResult /= null then
          if this.m_IMiracastReceiverApplySettingsResult.all /= null then
             temp := this.m_IMiracastReceiverApplySettingsResult.all.Release;
-            Free (this.m_IMiracastReceiverApplySettingsResult);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverApplySettingsResult);
+            end if;
          end if;
       end if;
    end;
@@ -599,7 +603,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverConnection /= null then
          if this.m_IMiracastReceiverConnection.all /= null then
             temp := this.m_IMiracastReceiverConnection.all.Release;
-            Free (this.m_IMiracastReceiverConnection);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverConnection);
+            end if;
          end if;
       end if;
    end;
@@ -865,7 +871,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverConnectionCreatedEventArgs /= null then
          if this.m_IMiracastReceiverConnectionCreatedEventArgs.all /= null then
             temp := this.m_IMiracastReceiverConnectionCreatedEventArgs.all.Release;
-            Free (this.m_IMiracastReceiverConnectionCreatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverConnectionCreatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -948,7 +956,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverCursorImageChannel /= null then
          if this.m_IMiracastReceiverCursorImageChannel.all /= null then
             temp := this.m_IMiracastReceiverCursorImageChannel.all.Release;
-            Free (this.m_IMiracastReceiverCursorImageChannel);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverCursorImageChannel);
+            end if;
          end if;
       end if;
    end;
@@ -1105,7 +1115,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverCursorImageChannelSettings /= null then
          if this.m_IMiracastReceiverCursorImageChannelSettings.all /= null then
             temp := this.m_IMiracastReceiverCursorImageChannelSettings.all.Release;
-            Free (this.m_IMiracastReceiverCursorImageChannelSettings);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverCursorImageChannelSettings);
+            end if;
          end if;
       end if;
    end;
@@ -1192,7 +1204,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverDisconnectedEventArgs /= null then
          if this.m_IMiracastReceiverDisconnectedEventArgs.all /= null then
             temp := this.m_IMiracastReceiverDisconnectedEventArgs.all.Release;
-            Free (this.m_IMiracastReceiverDisconnectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverDisconnectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1235,7 +1249,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverGameControllerDevice /= null then
          if this.m_IMiracastReceiverGameControllerDevice.all /= null then
             temp := this.m_IMiracastReceiverGameControllerDevice.all.Release;
-            Free (this.m_IMiracastReceiverGameControllerDevice);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverGameControllerDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1389,7 +1405,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverInputDevices /= null then
          if this.m_IMiracastReceiverInputDevices.all /= null then
             temp := this.m_IMiracastReceiverInputDevices.all.Release;
-            Free (this.m_IMiracastReceiverInputDevices);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverInputDevices);
+            end if;
          end if;
       end if;
    end;
@@ -1452,7 +1470,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverKeyboardDevice /= null then
          if this.m_IMiracastReceiverKeyboardDevice.all /= null then
             temp := this.m_IMiracastReceiverKeyboardDevice.all.Release;
-            Free (this.m_IMiracastReceiverKeyboardDevice);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverKeyboardDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1574,7 +1594,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverMediaSourceCreatedEventArgs /= null then
          if this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all /= null then
             temp := this.m_IMiracastReceiverMediaSourceCreatedEventArgs.all.Release;
-            Free (this.m_IMiracastReceiverMediaSourceCreatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverMediaSourceCreatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1677,7 +1699,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverSession /= null then
          if this.m_IMiracastReceiverSession.all /= null then
             temp := this.m_IMiracastReceiverSession.all.Release;
-            Free (this.m_IMiracastReceiverSession);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverSession);
+            end if;
          end if;
       end if;
    end;
@@ -1967,7 +1991,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverSessionStartResult /= null then
          if this.m_IMiracastReceiverSessionStartResult.all /= null then
             temp := this.m_IMiracastReceiverSessionStartResult.all.Release;
-            Free (this.m_IMiracastReceiverSessionStartResult);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverSessionStartResult);
+            end if;
          end if;
       end if;
    end;
@@ -2024,7 +2050,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverSettings /= null then
          if this.m_IMiracastReceiverSettings.all /= null then
             temp := this.m_IMiracastReceiverSettings.all.Release;
-            Free (this.m_IMiracastReceiverSettings);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2222,7 +2250,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverStatus /= null then
          if this.m_IMiracastReceiverStatus.all /= null then
             temp := this.m_IMiracastReceiverStatus.all.Release;
-            Free (this.m_IMiracastReceiverStatus);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverStatus);
+            end if;
          end if;
       end if;
    end;
@@ -2333,7 +2363,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverStreamControl /= null then
          if this.m_IMiracastReceiverStreamControl.all /= null then
             temp := this.m_IMiracastReceiverStreamControl.all.Release;
-            Free (this.m_IMiracastReceiverStreamControl);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverStreamControl);
+            end if;
          end if;
       end if;
    end;
@@ -2532,7 +2564,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastReceiverVideoStreamSettings /= null then
          if this.m_IMiracastReceiverVideoStreamSettings.all /= null then
             temp := this.m_IMiracastReceiverVideoStreamSettings.all.Release;
-            Free (this.m_IMiracastReceiverVideoStreamSettings);
+            if temp < 1 then
+               Free (this.m_IMiracastReceiverVideoStreamSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2619,7 +2653,9 @@ package body WinRt.Windows.Media.Miracast is
       if this.m_IMiracastTransmitter /= null then
          if this.m_IMiracastTransmitter.all /= null then
             temp := this.m_IMiracastTransmitter.all.Release;
-            Free (this.m_IMiracastTransmitter);
+            if temp < 1 then
+               Free (this.m_IMiracastTransmitter);
+            end if;
          end if;
       end if;
    end;

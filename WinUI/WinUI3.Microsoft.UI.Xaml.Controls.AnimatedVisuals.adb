@@ -48,7 +48,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -156,7 +158,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -264,7 +268,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -372,7 +378,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -480,7 +488,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -588,7 +598,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -696,7 +708,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;
@@ -804,7 +818,9 @@ package body WinUI3.Microsoft.UI.Xaml.Controls.AnimatedVisuals is
       if this.m_IAnimatedVisualSource /= null then
          if this.m_IAnimatedVisualSource.all /= null then
             temp := this.m_IAnimatedVisualSource.all.Release;
-            Free (this.m_IAnimatedVisualSource);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualSource);
+            end if;
          end if;
       end if;
    end;

@@ -68,7 +68,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialAnchor /= null then
          if this.m_ISpatialAnchor.all /= null then
             temp := this.m_ISpatialAnchor.all.Release;
-            Free (this.m_ISpatialAnchor);
+            if temp < 1 then
+               Free (this.m_ISpatialAnchor);
+            end if;
          end if;
       end if;
    end;
@@ -272,7 +274,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialAnchorExportSufficiency /= null then
          if this.m_ISpatialAnchorExportSufficiency.all /= null then
             temp := this.m_ISpatialAnchorExportSufficiency.all.Release;
-            Free (this.m_ISpatialAnchorExportSufficiency);
+            if temp < 1 then
+               Free (this.m_ISpatialAnchorExportSufficiency);
+            end if;
          end if;
       end if;
    end;
@@ -346,7 +350,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialAnchorExporter /= null then
          if this.m_ISpatialAnchorExporter.all /= null then
             temp := this.m_ISpatialAnchorExporter.all.Release;
-            Free (this.m_ISpatialAnchorExporter);
+            if temp < 1 then
+               Free (this.m_ISpatialAnchorExporter);
+            end if;
          end if;
       end if;
    end;
@@ -673,7 +679,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs /= null then
          if this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all /= null then
             temp := this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs.all.Release;
-            Free (this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialAnchorRawCoordinateSystemAdjustedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -713,7 +721,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialAnchorStore /= null then
          if this.m_ISpatialAnchorStore.all /= null then
             temp := this.m_ISpatialAnchorStore.all.Release;
-            Free (this.m_ISpatialAnchorStore);
+            if temp < 1 then
+               Free (this.m_ISpatialAnchorStore);
+            end if;
          end if;
       end if;
    end;
@@ -1022,7 +1032,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialBoundingVolume /= null then
          if this.m_ISpatialBoundingVolume.all /= null then
             temp := this.m_ISpatialBoundingVolume.all.Release;
-            Free (this.m_ISpatialBoundingVolume);
+            if temp < 1 then
+               Free (this.m_ISpatialBoundingVolume);
+            end if;
          end if;
       end if;
    end;
@@ -1160,7 +1172,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialCoordinateSystem /= null then
          if this.m_ISpatialCoordinateSystem.all /= null then
             temp := this.m_ISpatialCoordinateSystem.all.Release;
-            Free (this.m_ISpatialCoordinateSystem);
+            if temp < 1 then
+               Free (this.m_ISpatialCoordinateSystem);
+            end if;
          end if;
       end if;
    end;
@@ -1204,7 +1218,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntity /= null then
          if this.m_ISpatialEntity.all /= null then
             temp := this.m_ISpatialEntity.all.Release;
-            Free (this.m_ISpatialEntity);
+            if temp < 1 then
+               Free (this.m_ISpatialEntity);
+            end if;
          end if;
       end if;
    end;
@@ -1339,7 +1355,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntityAddedEventArgs /= null then
          if this.m_ISpatialEntityAddedEventArgs.all /= null then
             temp := this.m_ISpatialEntityAddedEventArgs.all.Release;
-            Free (this.m_ISpatialEntityAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialEntityAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1382,7 +1400,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntityRemovedEventArgs /= null then
          if this.m_ISpatialEntityRemovedEventArgs.all /= null then
             temp := this.m_ISpatialEntityRemovedEventArgs.all.Release;
-            Free (this.m_ISpatialEntityRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialEntityRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1425,7 +1445,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntityStore /= null then
          if this.m_ISpatialEntityStore.all /= null then
             temp := this.m_ISpatialEntityStore.all.Release;
-            Free (this.m_ISpatialEntityStore);
+            if temp < 1 then
+               Free (this.m_ISpatialEntityStore);
+            end if;
          end if;
       end if;
    end;
@@ -1605,7 +1627,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntityUpdatedEventArgs /= null then
          if this.m_ISpatialEntityUpdatedEventArgs.all /= null then
             temp := this.m_ISpatialEntityUpdatedEventArgs.all.Release;
-            Free (this.m_ISpatialEntityUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialEntityUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1648,7 +1672,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialEntityWatcher /= null then
          if this.m_ISpatialEntityWatcher.all /= null then
             temp := this.m_ISpatialEntityWatcher.all.Release;
-            Free (this.m_ISpatialEntityWatcher);
+            if temp < 1 then
+               Free (this.m_ISpatialEntityWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -1848,7 +1874,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialLocation /= null then
          if this.m_ISpatialLocation.all /= null then
             temp := this.m_ISpatialLocation.all.Release;
-            Free (this.m_ISpatialLocation);
+            if temp < 1 then
+               Free (this.m_ISpatialLocation);
+            end if;
          end if;
       end if;
    end;
@@ -2015,7 +2043,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialLocator /= null then
          if this.m_ISpatialLocator.all /= null then
             temp := this.m_ISpatialLocator.all.Release;
-            Free (this.m_ISpatialLocator);
+            if temp < 1 then
+               Free (this.m_ISpatialLocator);
+            end if;
          end if;
       end if;
    end;
@@ -2342,7 +2372,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialLocatorAttachedFrameOfReference /= null then
          if this.m_ISpatialLocatorAttachedFrameOfReference.all /= null then
             temp := this.m_ISpatialLocatorAttachedFrameOfReference.all.Release;
-            Free (this.m_ISpatialLocatorAttachedFrameOfReference);
+            if temp < 1 then
+               Free (this.m_ISpatialLocatorAttachedFrameOfReference);
+            end if;
          end if;
       end if;
    end;
@@ -2486,7 +2518,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs /= null then
          if this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all /= null then
             temp := this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs.all.Release;
-            Free (this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialLocatorPositionalTrackingDeactivatingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2541,7 +2575,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialStageFrameOfReference /= null then
          if this.m_ISpatialStageFrameOfReference.all /= null then
             temp := this.m_ISpatialStageFrameOfReference.all.Release;
-            Free (this.m_ISpatialStageFrameOfReference);
+            if temp < 1 then
+               Free (this.m_ISpatialStageFrameOfReference);
+            end if;
          end if;
       end if;
    end;
@@ -2808,7 +2844,9 @@ package body WinRt.Windows.Perception.Spatial is
       if this.m_ISpatialStationaryFrameOfReference /= null then
          if this.m_ISpatialStationaryFrameOfReference.all /= null then
             temp := this.m_ISpatialStationaryFrameOfReference.all.Release;
-            Free (this.m_ISpatialStationaryFrameOfReference);
+            if temp < 1 then
+               Free (this.m_ISpatialStationaryFrameOfReference);
+            end if;
          end if;
       end if;
    end;

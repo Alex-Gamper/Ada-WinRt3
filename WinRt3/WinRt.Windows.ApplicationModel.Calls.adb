@@ -97,7 +97,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IAcceptedVoipPhoneCallOptions /= null then
          if this.m_IAcceptedVoipPhoneCallOptions.all /= null then
             temp := this.m_IAcceptedVoipPhoneCallOptions.all.Release;
-            Free (this.m_IAcceptedVoipPhoneCallOptions);
+            if temp < 1 then
+               Free (this.m_IAcceptedVoipPhoneCallOptions);
+            end if;
          end if;
       end if;
    end;
@@ -363,7 +365,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IAppInitiatedVoipPhoneCallOptions /= null then
          if this.m_IAppInitiatedVoipPhoneCallOptions.all /= null then
             temp := this.m_IAppInitiatedVoipPhoneCallOptions.all.Release;
-            Free (this.m_IAppInitiatedVoipPhoneCallOptions);
+            if temp < 1 then
+               Free (this.m_IAppInitiatedVoipPhoneCallOptions);
+            end if;
          end if;
       end if;
    end;
@@ -629,7 +633,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ICallAnswerEventArgs /= null then
          if this.m_ICallAnswerEventArgs.all /= null then
             temp := this.m_ICallAnswerEventArgs.all.Release;
-            Free (this.m_ICallAnswerEventArgs);
+            if temp < 1 then
+               Free (this.m_ICallAnswerEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -693,7 +699,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ICallRejectEventArgs /= null then
          if this.m_ICallRejectEventArgs.all /= null then
             temp := this.m_ICallRejectEventArgs.all.Release;
-            Free (this.m_ICallRejectEventArgs);
+            if temp < 1 then
+               Free (this.m_ICallRejectEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -733,7 +741,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ICallStateChangeEventArgs /= null then
          if this.m_ICallStateChangeEventArgs.all /= null then
             temp := this.m_ICallStateChangeEventArgs.all.Release;
-            Free (this.m_ICallStateChangeEventArgs);
+            if temp < 1 then
+               Free (this.m_ICallStateChangeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -773,7 +783,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IIncomingVoipPhoneCallOptions /= null then
          if this.m_IIncomingVoipPhoneCallOptions.all /= null then
             temp := this.m_IIncomingVoipPhoneCallOptions.all.Release;
-            Free (this.m_IIncomingVoipPhoneCallOptions);
+            if temp < 1 then
+               Free (this.m_IIncomingVoipPhoneCallOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1250,7 +1262,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ILockScreenCallEndCallDeferral /= null then
          if this.m_ILockScreenCallEndCallDeferral.all /= null then
             temp := this.m_ILockScreenCallEndCallDeferral.all.Release;
-            Free (this.m_ILockScreenCallEndCallDeferral);
+            if temp < 1 then
+               Free (this.m_ILockScreenCallEndCallDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -1287,7 +1301,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ILockScreenCallEndRequestedEventArgs /= null then
          if this.m_ILockScreenCallEndRequestedEventArgs.all /= null then
             temp := this.m_ILockScreenCallEndRequestedEventArgs.all.Release;
-            Free (this.m_ILockScreenCallEndRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILockScreenCallEndRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1347,7 +1363,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_ILockScreenCallUI /= null then
          if this.m_ILockScreenCallUI.all /= null then
             temp := this.m_ILockScreenCallUI.all.Release;
-            Free (this.m_ILockScreenCallUI);
+            if temp < 1 then
+               Free (this.m_ILockScreenCallUI);
+            end if;
          end if;
       end if;
    end;
@@ -1487,7 +1505,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IMuteChangeEventArgs /= null then
          if this.m_IMuteChangeEventArgs.all /= null then
             temp := this.m_IMuteChangeEventArgs.all.Release;
-            Free (this.m_IMuteChangeEventArgs);
+            if temp < 1 then
+               Free (this.m_IMuteChangeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1527,7 +1547,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IOutgoingVoipPhoneCallOptions /= null then
          if this.m_IOutgoingVoipPhoneCallOptions.all /= null then
             temp := this.m_IOutgoingVoipPhoneCallOptions.all.Release;
-            Free (this.m_IOutgoingVoipPhoneCallOptions);
+            if temp < 1 then
+               Free (this.m_IOutgoingVoipPhoneCallOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1756,7 +1778,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCall /= null then
          if this.m_IPhoneCall.all /= null then
             temp := this.m_IPhoneCall.all.Release;
-            Free (this.m_IPhoneCall);
+            if temp < 1 then
+               Free (this.m_IPhoneCall);
+            end if;
          end if;
       end if;
    end;
@@ -2953,7 +2977,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryEntry /= null then
          if this.m_IPhoneCallHistoryEntry.all /= null then
             temp := this.m_IPhoneCallHistoryEntry.all.Release;
-            Free (this.m_IPhoneCallHistoryEntry);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryEntry);
+            end if;
          end if;
       end if;
    end;
@@ -3563,7 +3589,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryEntryAddress /= null then
          if this.m_IPhoneCallHistoryEntryAddress.all /= null then
             temp := this.m_IPhoneCallHistoryEntryAddress.all.Release;
-            Free (this.m_IPhoneCallHistoryEntryAddress);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryEntryAddress);
+            end if;
          end if;
       end if;
    end;
@@ -3775,7 +3803,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryEntryQueryOptions /= null then
          if this.m_IPhoneCallHistoryEntryQueryOptions.all /= null then
             temp := this.m_IPhoneCallHistoryEntryQueryOptions.all.Release;
-            Free (this.m_IPhoneCallHistoryEntryQueryOptions);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryEntryQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3869,7 +3899,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryEntryReader /= null then
          if this.m_IPhoneCallHistoryEntryReader.all /= null then
             temp := this.m_IPhoneCallHistoryEntryReader.all.Release;
-            Free (this.m_IPhoneCallHistoryEntryReader);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryEntryReader);
+            end if;
          end if;
       end if;
    end;
@@ -4061,7 +4093,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryManagerForUser /= null then
          if this.m_IPhoneCallHistoryManagerForUser.all /= null then
             temp := this.m_IPhoneCallHistoryManagerForUser.all.Release;
-            Free (this.m_IPhoneCallHistoryManagerForUser);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -4171,7 +4205,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallHistoryStore /= null then
          if this.m_IPhoneCallHistoryStore.all /= null then
             temp := this.m_IPhoneCallHistoryStore.all.Release;
-            Free (this.m_IPhoneCallHistoryStore);
+            if temp < 1 then
+               Free (this.m_IPhoneCallHistoryStore);
+            end if;
          end if;
       end if;
    end;
@@ -4731,7 +4767,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallInfo /= null then
          if this.m_IPhoneCallInfo.all /= null then
             temp := this.m_IPhoneCallInfo.all.Release;
-            Free (this.m_IPhoneCallInfo);
+            if temp < 1 then
+               Free (this.m_IPhoneCallInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5069,7 +5107,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallStore /= null then
          if this.m_IPhoneCallStore.all /= null then
             temp := this.m_IPhoneCallStore.all.Release;
-            Free (this.m_IPhoneCallStore);
+            if temp < 1 then
+               Free (this.m_IPhoneCallStore);
+            end if;
          end if;
       end if;
    end;
@@ -5241,7 +5281,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallVideoCapabilities /= null then
          if this.m_IPhoneCallVideoCapabilities.all /= null then
             temp := this.m_IPhoneCallVideoCapabilities.all.Release;
-            Free (this.m_IPhoneCallVideoCapabilities);
+            if temp < 1 then
+               Free (this.m_IPhoneCallVideoCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -5362,7 +5404,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneCallsResult /= null then
          if this.m_IPhoneCallsResult.all /= null then
             temp := this.m_IPhoneCallsResult.all.Release;
-            Free (this.m_IPhoneCallsResult);
+            if temp < 1 then
+               Free (this.m_IPhoneCallsResult);
+            end if;
          end if;
       end if;
    end;
@@ -5422,7 +5466,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneDialOptions /= null then
          if this.m_IPhoneDialOptions.all /= null then
             temp := this.m_IPhoneDialOptions.all.Release;
-            Free (this.m_IPhoneDialOptions);
+            if temp < 1 then
+               Free (this.m_IPhoneDialOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5672,7 +5718,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLine /= null then
          if this.m_IPhoneLine.all /= null then
             temp := this.m_IPhoneLine.all.Release;
-            Free (this.m_IPhoneLine);
+            if temp < 1 then
+               Free (this.m_IPhoneLine);
+            end if;
          end if;
       end if;
    end;
@@ -6370,7 +6418,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineCellularDetails /= null then
          if this.m_IPhoneLineCellularDetails.all /= null then
             temp := this.m_IPhoneLineCellularDetails.all.Release;
-            Free (this.m_IPhoneLineCellularDetails);
+            if temp < 1 then
+               Free (this.m_IPhoneLineCellularDetails);
+            end if;
          end if;
       end if;
    end;
@@ -6482,7 +6532,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineConfiguration /= null then
          if this.m_IPhoneLineConfiguration.all /= null then
             temp := this.m_IPhoneLineConfiguration.all.Release;
-            Free (this.m_IPhoneLineConfiguration);
+            if temp < 1 then
+               Free (this.m_IPhoneLineConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -6542,7 +6594,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineDialResult /= null then
          if this.m_IPhoneLineDialResult.all /= null then
             temp := this.m_IPhoneLineDialResult.all.Release;
-            Free (this.m_IPhoneLineDialResult);
+            if temp < 1 then
+               Free (this.m_IPhoneLineDialResult);
+            end if;
          end if;
       end if;
    end;
@@ -6602,7 +6656,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineTransportDevice /= null then
          if this.m_IPhoneLineTransportDevice.all /= null then
             temp := this.m_IPhoneLineTransportDevice.all.Release;
-            Free (this.m_IPhoneLineTransportDevice);
+            if temp < 1 then
+               Free (this.m_IPhoneLineTransportDevice);
+            end if;
          end if;
       end if;
    end;
@@ -7087,7 +7143,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineWatcher /= null then
          if this.m_IPhoneLineWatcher.all /= null then
             temp := this.m_IPhoneLineWatcher.all.Release;
-            Free (this.m_IPhoneLineWatcher);
+            if temp < 1 then
+               Free (this.m_IPhoneLineWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -7320,7 +7378,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneLineWatcherEventArgs /= null then
          if this.m_IPhoneLineWatcherEventArgs.all /= null then
             temp := this.m_IPhoneLineWatcherEventArgs.all.Release;
-            Free (this.m_IPhoneLineWatcherEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhoneLineWatcherEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7360,7 +7420,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IPhoneVoicemail /= null then
          if this.m_IPhoneVoicemail.all /= null then
             temp := this.m_IPhoneVoicemail.all.Release;
-            Free (this.m_IPhoneVoicemail);
+            if temp < 1 then
+               Free (this.m_IPhoneVoicemail);
+            end if;
          end if;
       end if;
    end;
@@ -7479,7 +7541,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IVoipCallCoordinator /= null then
          if this.m_IVoipCallCoordinator.all /= null then
             temp := this.m_IVoipCallCoordinator.all.Release;
-            Free (this.m_IVoipCallCoordinator);
+            if temp < 1 then
+               Free (this.m_IVoipCallCoordinator);
+            end if;
          end if;
       end if;
    end;
@@ -8161,7 +8225,9 @@ package body WinRt.Windows.ApplicationModel.Calls is
       if this.m_IVoipPhoneCall /= null then
          if this.m_IVoipPhoneCall.all /= null then
             temp := this.m_IVoipPhoneCall.all.Release;
-            Free (this.m_IVoipPhoneCall);
+            if temp < 1 then
+               Free (this.m_IVoipPhoneCall);
+            end if;
          end if;
       end if;
    end;

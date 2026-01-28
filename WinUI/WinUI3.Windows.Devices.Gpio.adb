@@ -55,7 +55,9 @@ package body WinUI3.Windows.Devices.Gpio is
       if this.m_IGpioChangeCounter /= null then
          if this.m_IGpioChangeCounter.all /= null then
             temp := this.m_IGpioChangeCounter.all.Release;
-            Free (this.m_IGpioChangeCounter);
+            if temp < 1 then
+               Free (this.m_IGpioChangeCounter);
+            end if;
          end if;
       end if;
    end;
@@ -234,7 +236,9 @@ package body WinUI3.Windows.Devices.Gpio is
       if this.m_IGpioChangeReader /= null then
          if this.m_IGpioChangeReader.all /= null then
             temp := this.m_IGpioChangeReader.all.Release;
-            Free (this.m_IGpioChangeReader);
+            if temp < 1 then
+               Free (this.m_IGpioChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -583,7 +587,9 @@ package body WinUI3.Windows.Devices.Gpio is
       if this.m_IGpioController /= null then
          if this.m_IGpioController.all /= null then
             temp := this.m_IGpioController.all.Release;
-            Free (this.m_IGpioController);
+            if temp < 1 then
+               Free (this.m_IGpioController);
+            end if;
          end if;
       end if;
    end;
@@ -854,7 +860,9 @@ package body WinUI3.Windows.Devices.Gpio is
       if this.m_IGpioPin /= null then
          if this.m_IGpioPin.all /= null then
             temp := this.m_IGpioPin.all.Release;
-            Free (this.m_IGpioPin);
+            if temp < 1 then
+               Free (this.m_IGpioPin);
+            end if;
          end if;
       end if;
    end;
@@ -1076,7 +1084,9 @@ package body WinUI3.Windows.Devices.Gpio is
       if this.m_IGpioPinValueChangedEventArgs /= null then
          if this.m_IGpioPinValueChangedEventArgs.all /= null then
             temp := this.m_IGpioPinValueChangedEventArgs.all.Release;
-            Free (this.m_IGpioPinValueChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGpioPinValueChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

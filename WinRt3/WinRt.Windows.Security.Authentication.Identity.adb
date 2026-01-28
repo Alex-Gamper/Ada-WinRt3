@@ -51,7 +51,9 @@ package body WinRt.Windows.Security.Authentication.Identity is
       if this.m_IEnterpriseKeyCredentialRegistrationInfo /= null then
          if this.m_IEnterpriseKeyCredentialRegistrationInfo.all /= null then
             temp := this.m_IEnterpriseKeyCredentialRegistrationInfo.all.Release;
-            Free (this.m_IEnterpriseKeyCredentialRegistrationInfo);
+            if temp < 1 then
+               Free (this.m_IEnterpriseKeyCredentialRegistrationInfo);
+            end if;
          end if;
       end if;
    end;
@@ -174,7 +176,9 @@ package body WinRt.Windows.Security.Authentication.Identity is
       if this.m_IEnterpriseKeyCredentialRegistrationManager /= null then
          if this.m_IEnterpriseKeyCredentialRegistrationManager.all /= null then
             temp := this.m_IEnterpriseKeyCredentialRegistrationManager.all.Release;
-            Free (this.m_IEnterpriseKeyCredentialRegistrationManager);
+            if temp < 1 then
+               Free (this.m_IEnterpriseKeyCredentialRegistrationManager);
+            end if;
          end if;
       end if;
    end;

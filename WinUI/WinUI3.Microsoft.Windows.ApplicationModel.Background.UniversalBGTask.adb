@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Background.UniversalBGTas
       if this.m_ITask /= null then
          if this.m_ITask.all /= null then
             temp := this.m_ITask.all.Release;
-            Free (this.m_ITask);
+            if temp < 1 then
+               Free (this.m_ITask);
+            end if;
          end if;
       end if;
    end;

@@ -58,7 +58,9 @@ package body WinUI3.Windows.Storage.Compression is
       if this.m_ICompressor /= null then
          if this.m_ICompressor.all /= null then
             temp := this.m_ICompressor.all.Release;
-            Free (this.m_ICompressor);
+            if temp < 1 then
+               Free (this.m_ICompressor);
+            end if;
          end if;
       end if;
    end;
@@ -367,7 +369,9 @@ package body WinUI3.Windows.Storage.Compression is
       if this.m_IDecompressor /= null then
          if this.m_IDecompressor.all /= null then
             temp := this.m_IDecompressor.all.Release;
-            Free (this.m_IDecompressor);
+            if temp < 1 then
+               Free (this.m_IDecompressor);
+            end if;
          end if;
       end if;
    end;

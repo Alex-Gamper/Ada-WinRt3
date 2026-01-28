@@ -53,7 +53,9 @@ package body WinRt.Windows.Media.Ocr is
       if this.m_IOcrEngine /= null then
          if this.m_IOcrEngine.all /= null then
             temp := this.m_IOcrEngine.all.Release;
-            Free (this.m_IOcrEngine);
+            if temp < 1 then
+               Free (this.m_IOcrEngine);
+            end if;
          end if;
       end if;
    end;
@@ -283,7 +285,9 @@ package body WinRt.Windows.Media.Ocr is
       if this.m_IOcrLine /= null then
          if this.m_IOcrLine.all /= null then
             temp := this.m_IOcrLine.all.Release;
-            Free (this.m_IOcrLine);
+            if temp < 1 then
+               Free (this.m_IOcrLine);
+            end if;
          end if;
       end if;
    end;
@@ -346,7 +350,9 @@ package body WinRt.Windows.Media.Ocr is
       if this.m_IOcrResult /= null then
          if this.m_IOcrResult.all /= null then
             temp := this.m_IOcrResult.all.Release;
-            Free (this.m_IOcrResult);
+            if temp < 1 then
+               Free (this.m_IOcrResult);
+            end if;
          end if;
       end if;
    end;
@@ -429,7 +435,9 @@ package body WinRt.Windows.Media.Ocr is
       if this.m_IOcrWord /= null then
          if this.m_IOcrWord.all /= null then
             temp := this.m_IOcrWord.all.Release;
-            Free (this.m_IOcrWord);
+            if temp < 1 then
+               Free (this.m_IOcrWord);
+            end if;
          end if;
       end if;
    end;

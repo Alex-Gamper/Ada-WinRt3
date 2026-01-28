@@ -62,7 +62,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
             temp := this.m_IAsyncAction.all.Release;
-            Free (this.m_IAsyncAction);
+            if temp < 1 then
+               Free (this.m_IAsyncAction);
+            end if;
          end if;
       end if;
    end;
@@ -230,7 +232,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
             temp := this.m_IAsyncAction.all.Release;
-            Free (this.m_IAsyncAction);
+            if temp < 1 then
+               Free (this.m_IAsyncAction);
+            end if;
          end if;
       end if;
    end;
@@ -879,7 +883,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
             temp := this.m_IAsyncAction.all.Release;
-            Free (this.m_IAsyncAction);
+            if temp < 1 then
+               Free (this.m_IAsyncAction);
+            end if;
          end if;
       end if;
    end;
@@ -1047,7 +1053,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsAppMessage /= null then
          if this.m_ISmsAppMessage.all /= null then
             temp := this.m_ISmsAppMessage.all.Release;
-            Free (this.m_ISmsAppMessage);
+            if temp < 1 then
+               Free (this.m_ISmsAppMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1572,7 +1580,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsBinaryMessage /= null then
          if this.m_ISmsBinaryMessage.all /= null then
             temp := this.m_ISmsBinaryMessage.all.Release;
-            Free (this.m_ISmsBinaryMessage);
+            if temp < 1 then
+               Free (this.m_ISmsBinaryMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1730,7 +1740,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsBroadcastMessage /= null then
          if this.m_ISmsBroadcastMessage.all /= null then
             temp := this.m_ISmsBroadcastMessage.all.Release;
-            Free (this.m_ISmsBroadcastMessage);
+            if temp < 1 then
+               Free (this.m_ISmsBroadcastMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2040,7 +2052,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsDevice /= null then
          if this.m_ISmsDevice.all /= null then
             temp := this.m_ISmsDevice.all.Release;
-            Free (this.m_ISmsDevice);
+            if temp < 1 then
+               Free (this.m_ISmsDevice);
+            end if;
          end if;
       end if;
    end;
@@ -2490,7 +2504,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsDevice2 /= null then
          if this.m_ISmsDevice2.all /= null then
             temp := this.m_ISmsDevice2.all.Release;
-            Free (this.m_ISmsDevice2);
+            if temp < 1 then
+               Free (this.m_ISmsDevice2);
+            end if;
          end if;
       end if;
    end;
@@ -2871,7 +2887,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsDeviceMessageStore /= null then
          if this.m_ISmsDeviceMessageStore.all /= null then
             temp := this.m_ISmsDeviceMessageStore.all.Release;
-            Free (this.m_ISmsDeviceMessageStore);
+            if temp < 1 then
+               Free (this.m_ISmsDeviceMessageStore);
+            end if;
          end if;
       end if;
    end;
@@ -3140,7 +3158,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsFilterRule /= null then
          if this.m_ISmsFilterRule.all /= null then
             temp := this.m_ISmsFilterRule.all.Release;
-            Free (this.m_ISmsFilterRule);
+            if temp < 1 then
+               Free (this.m_ISmsFilterRule);
+            end if;
          end if;
       end if;
    end;
@@ -3459,7 +3479,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsFilterRules /= null then
          if this.m_ISmsFilterRules.all /= null then
             temp := this.m_ISmsFilterRules.all.Release;
-            Free (this.m_ISmsFilterRules);
+            if temp < 1 then
+               Free (this.m_ISmsFilterRules);
+            end if;
          end if;
       end if;
    end;
@@ -3546,7 +3568,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsMessageReceivedEventArgs /= null then
          if this.m_ISmsMessageReceivedEventArgs.all /= null then
             temp := this.m_ISmsMessageReceivedEventArgs.all.Release;
-            Free (this.m_ISmsMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISmsMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3625,7 +3649,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsMessageReceivedTriggerDetails /= null then
          if this.m_ISmsMessageReceivedTriggerDetails.all /= null then
             temp := this.m_ISmsMessageReceivedTriggerDetails.all.Release;
-            Free (this.m_ISmsMessageReceivedTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ISmsMessageReceivedTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3813,7 +3839,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsMessageRegistration /= null then
          if this.m_ISmsMessageRegistration.all /= null then
             temp := this.m_ISmsMessageRegistration.all.Release;
-            Free (this.m_ISmsMessageRegistration);
+            if temp < 1 then
+               Free (this.m_ISmsMessageRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -3957,7 +3985,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsReceivedEventDetails /= null then
          if this.m_ISmsReceivedEventDetails.all /= null then
             temp := this.m_ISmsReceivedEventDetails.all.Release;
-            Free (this.m_ISmsReceivedEventDetails);
+            if temp < 1 then
+               Free (this.m_ISmsReceivedEventDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4062,7 +4092,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsSendMessageResult /= null then
          if this.m_ISmsSendMessageResult.all /= null then
             temp := this.m_ISmsSendMessageResult.all.Release;
-            Free (this.m_ISmsSendMessageResult);
+            if temp < 1 then
+               Free (this.m_ISmsSendMessageResult);
+            end if;
          end if;
       end if;
    end;
@@ -4207,7 +4239,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsStatusMessage /= null then
          if this.m_ISmsStatusMessage.all /= null then
             temp := this.m_ISmsStatusMessage.all.Release;
-            Free (this.m_ISmsStatusMessage);
+            if temp < 1 then
+               Free (this.m_ISmsStatusMessage);
+            end if;
          end if;
       end if;
    end;
@@ -4469,7 +4503,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsTextMessage /= null then
          if this.m_ISmsTextMessage.all /= null then
             temp := this.m_ISmsTextMessage.all.Release;
-            Free (this.m_ISmsTextMessage);
+            if temp < 1 then
+               Free (this.m_ISmsTextMessage);
+            end if;
          end if;
       end if;
    end;
@@ -4844,7 +4880,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsTextMessage2 /= null then
          if this.m_ISmsTextMessage2.all /= null then
             temp := this.m_ISmsTextMessage2.all.Release;
-            Free (this.m_ISmsTextMessage2);
+            if temp < 1 then
+               Free (this.m_ISmsTextMessage2);
+            end if;
          end if;
       end if;
    end;
@@ -5275,7 +5313,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsVoicemailMessage /= null then
          if this.m_ISmsVoicemailMessage.all /= null then
             temp := this.m_ISmsVoicemailMessage.all.Release;
-            Free (this.m_ISmsVoicemailMessage);
+            if temp < 1 then
+               Free (this.m_ISmsVoicemailMessage);
+            end if;
          end if;
       end if;
    end;
@@ -5486,7 +5526,9 @@ package body WinUI3.Windows.Devices.Sms is
       if this.m_ISmsWapMessage /= null then
          if this.m_ISmsWapMessage.all /= null then
             temp := this.m_ISmsWapMessage.all.Release;
-            Free (this.m_ISmsWapMessage);
+            if temp < 1 then
+               Free (this.m_ISmsWapMessage);
+            end if;
          end if;
       end if;
    end;

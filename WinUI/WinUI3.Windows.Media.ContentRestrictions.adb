@@ -58,7 +58,9 @@ package body WinUI3.Windows.Media.ContentRestrictions is
       if this.m_IContentRestrictionsBrowsePolicy /= null then
          if this.m_IContentRestrictionsBrowsePolicy.all /= null then
             temp := this.m_IContentRestrictionsBrowsePolicy.all.Release;
-            Free (this.m_IContentRestrictionsBrowsePolicy);
+            if temp < 1 then
+               Free (this.m_IContentRestrictionsBrowsePolicy);
+            end if;
          end if;
       end if;
    end;
@@ -141,7 +143,9 @@ package body WinUI3.Windows.Media.ContentRestrictions is
       if this.m_IRatedContentDescription /= null then
          if this.m_IRatedContentDescription.all /= null then
             temp := this.m_IRatedContentDescription.all.Release;
-            Free (this.m_IRatedContentDescription);
+            if temp < 1 then
+               Free (this.m_IRatedContentDescription);
+            end if;
          end if;
       end if;
    end;
@@ -370,7 +374,9 @@ package body WinUI3.Windows.Media.ContentRestrictions is
       if this.m_IRatedContentRestrictions /= null then
          if this.m_IRatedContentRestrictions.all /= null then
             temp := this.m_IRatedContentRestrictions.all.Release;
-            Free (this.m_IRatedContentRestrictions);
+            if temp < 1 then
+               Free (this.m_IRatedContentRestrictions);
+            end if;
          end if;
       end if;
    end;

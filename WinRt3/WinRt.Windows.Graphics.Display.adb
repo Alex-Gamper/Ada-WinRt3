@@ -55,7 +55,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IAdvancedColorInfo /= null then
          if this.m_IAdvancedColorInfo.all /= null then
             temp := this.m_IAdvancedColorInfo.all.Release;
-            Free (this.m_IAdvancedColorInfo);
+            if temp < 1 then
+               Free (this.m_IAdvancedColorInfo);
+            end if;
          end if;
       end if;
    end;
@@ -267,7 +269,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IBrightnessOverride /= null then
          if this.m_IBrightnessOverride.all /= null then
             temp := this.m_IBrightnessOverride.all.Release;
-            Free (this.m_IBrightnessOverride);
+            if temp < 1 then
+               Free (this.m_IBrightnessOverride);
+            end if;
          end if;
       end if;
    end;
@@ -639,7 +643,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IBrightnessOverrideSettings /= null then
          if this.m_IBrightnessOverrideSettings.all /= null then
             temp := this.m_IBrightnessOverrideSettings.all.Release;
-            Free (this.m_IBrightnessOverrideSettings);
+            if temp < 1 then
+               Free (this.m_IBrightnessOverrideSettings);
+            end if;
          end if;
       end if;
    end;
@@ -780,7 +786,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IColorOverrideSettings /= null then
          if this.m_IColorOverrideSettings.all /= null then
             temp := this.m_IColorOverrideSettings.all.Release;
-            Free (this.m_IColorOverrideSettings);
+            if temp < 1 then
+               Free (this.m_IColorOverrideSettings);
+            end if;
          end if;
       end if;
    end;
@@ -850,7 +858,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IDisplayEnhancementOverride /= null then
          if this.m_IDisplayEnhancementOverride.all /= null then
             temp := this.m_IDisplayEnhancementOverride.all.Release;
-            Free (this.m_IDisplayEnhancementOverride);
+            if temp < 1 then
+               Free (this.m_IDisplayEnhancementOverride);
+            end if;
          end if;
       end if;
    end;
@@ -1151,7 +1161,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IDisplayEnhancementOverrideCapabilities /= null then
          if this.m_IDisplayEnhancementOverrideCapabilities.all /= null then
             temp := this.m_IDisplayEnhancementOverrideCapabilities.all.Release;
-            Free (this.m_IDisplayEnhancementOverrideCapabilities);
+            if temp < 1 then
+               Free (this.m_IDisplayEnhancementOverrideCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -1228,7 +1240,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs /= null then
          if this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs.all /= null then
             temp := this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs.all.Release;
-            Free (this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDisplayEnhancementOverrideCapabilitiesChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1271,7 +1285,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IDisplayInformation /= null then
          if this.m_IDisplayInformation.all /= null then
             temp := this.m_IDisplayInformation.all.Release;
-            Free (this.m_IDisplayInformation);
+            if temp < 1 then
+               Free (this.m_IDisplayInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2334,7 +2350,9 @@ package body WinRt.Windows.Graphics.Display is
       if this.m_IDisplayServices /= null then
          if this.m_IDisplayServices.all /= null then
             temp := this.m_IDisplayServices.all.Release;
-            Free (this.m_IDisplayServices);
+            if temp < 1 then
+               Free (this.m_IDisplayServices);
+            end if;
          end if;
       end if;
    end;

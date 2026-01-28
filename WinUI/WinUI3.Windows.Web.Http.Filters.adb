@@ -55,7 +55,9 @@ package body WinUI3.Windows.Web.Http.Filters is
       if this.m_IHttpBaseProtocolFilter /= null then
          if this.m_IHttpBaseProtocolFilter.all /= null then
             temp := this.m_IHttpBaseProtocolFilter.all.Release;
-            Free (this.m_IHttpBaseProtocolFilter);
+            if temp < 1 then
+               Free (this.m_IHttpBaseProtocolFilter);
+            end if;
          end if;
       end if;
    end;
@@ -701,7 +703,9 @@ package body WinUI3.Windows.Web.Http.Filters is
       if this.m_IHttpCacheControl /= null then
          if this.m_IHttpCacheControl.all /= null then
             temp := this.m_IHttpCacheControl.all.Release;
-            Free (this.m_IHttpCacheControl);
+            if temp < 1 then
+               Free (this.m_IHttpCacheControl);
+            end if;
          end if;
       end if;
    end;
@@ -788,7 +792,9 @@ package body WinUI3.Windows.Web.Http.Filters is
       if this.m_IHttpServerCustomValidationRequestedEventArgs /= null then
          if this.m_IHttpServerCustomValidationRequestedEventArgs.all /= null then
             temp := this.m_IHttpServerCustomValidationRequestedEventArgs.all.Release;
-            Free (this.m_IHttpServerCustomValidationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHttpServerCustomValidationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

@@ -70,7 +70,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveBlobGetResult /= null then
          if this.m_IGameSaveBlobGetResult.all /= null then
             temp := this.m_IGameSaveBlobGetResult.all.Release;
-            Free (this.m_IGameSaveBlobGetResult);
+            if temp < 1 then
+               Free (this.m_IGameSaveBlobGetResult);
+            end if;
          end if;
       end if;
    end;
@@ -127,7 +129,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveBlobInfo /= null then
          if this.m_IGameSaveBlobInfo.all /= null then
             temp := this.m_IGameSaveBlobInfo.all.Release;
-            Free (this.m_IGameSaveBlobInfo);
+            if temp < 1 then
+               Free (this.m_IGameSaveBlobInfo);
+            end if;
          end if;
       end if;
    end;
@@ -187,7 +191,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveBlobInfoGetResult /= null then
          if this.m_IGameSaveBlobInfoGetResult.all /= null then
             temp := this.m_IGameSaveBlobInfoGetResult.all.Release;
-            Free (this.m_IGameSaveBlobInfoGetResult);
+            if temp < 1 then
+               Free (this.m_IGameSaveBlobInfoGetResult);
+            end if;
          end if;
       end if;
    end;
@@ -247,7 +253,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveBlobInfoQuery /= null then
          if this.m_IGameSaveBlobInfoQuery.all /= null then
             temp := this.m_IGameSaveBlobInfoQuery.all.Release;
-            Free (this.m_IGameSaveBlobInfoQuery);
+            if temp < 1 then
+               Free (this.m_IGameSaveBlobInfoQuery);
+            end if;
          end if;
       end if;
    end;
@@ -467,7 +475,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveContainer /= null then
          if this.m_IGameSaveContainer.all /= null then
             temp := this.m_IGameSaveContainer.all.Release;
-            Free (this.m_IGameSaveContainer);
+            if temp < 1 then
+               Free (this.m_IGameSaveContainer);
+            end if;
          end if;
       end if;
    end;
@@ -829,7 +839,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveContainerInfo /= null then
          if this.m_IGameSaveContainerInfo.all /= null then
             temp := this.m_IGameSaveContainerInfo.all.Release;
-            Free (this.m_IGameSaveContainerInfo);
+            if temp < 1 then
+               Free (this.m_IGameSaveContainerInfo);
+            end if;
          end if;
       end if;
    end;
@@ -943,7 +955,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveContainerInfoGetResult /= null then
          if this.m_IGameSaveContainerInfoGetResult.all /= null then
             temp := this.m_IGameSaveContainerInfoGetResult.all.Release;
-            Free (this.m_IGameSaveContainerInfoGetResult);
+            if temp < 1 then
+               Free (this.m_IGameSaveContainerInfoGetResult);
+            end if;
          end if;
       end if;
    end;
@@ -1003,7 +1017,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveContainerInfoQuery /= null then
          if this.m_IGameSaveContainerInfoQuery.all /= null then
             temp := this.m_IGameSaveContainerInfoQuery.all.Release;
-            Free (this.m_IGameSaveContainerInfoQuery);
+            if temp < 1 then
+               Free (this.m_IGameSaveContainerInfoQuery);
+            end if;
          end if;
       end if;
    end;
@@ -1223,7 +1239,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveOperationResult /= null then
          if this.m_IGameSaveOperationResult.all /= null then
             temp := this.m_IGameSaveOperationResult.all.Release;
-            Free (this.m_IGameSaveOperationResult);
+            if temp < 1 then
+               Free (this.m_IGameSaveOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1263,7 +1281,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveProvider /= null then
          if this.m_IGameSaveProvider.all /= null then
             temp := this.m_IGameSaveProvider.all.Release;
-            Free (this.m_IGameSaveProvider);
+            if temp < 1 then
+               Free (this.m_IGameSaveProvider);
+            end if;
          end if;
       end if;
    end;
@@ -1679,7 +1699,9 @@ package body WinRt.Windows.Gaming.XboxLive.Storage is
       if this.m_IGameSaveProviderGetResult /= null then
          if this.m_IGameSaveProviderGetResult.all /= null then
             temp := this.m_IGameSaveProviderGetResult.all.Release;
-            Free (this.m_IGameSaveProviderGetResult);
+            if temp < 1 then
+               Free (this.m_IGameSaveProviderGetResult);
+            end if;
          end if;
       end if;
    end;

@@ -103,7 +103,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAccelerometer /= null then
          if this.m_IAccelerometer.all /= null then
             temp := this.m_IAccelerometer.all.Release;
-            Free (this.m_IAccelerometer);
+            if temp < 1 then
+               Free (this.m_IAccelerometer);
+            end if;
          end if;
       end if;
    end;
@@ -587,7 +589,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAccelerometerDataThreshold /= null then
          if this.m_IAccelerometerDataThreshold.all /= null then
             temp := this.m_IAccelerometerDataThreshold.all.Release;
-            Free (this.m_IAccelerometerDataThreshold);
+            if temp < 1 then
+               Free (this.m_IAccelerometerDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -706,7 +710,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAccelerometerReading /= null then
          if this.m_IAccelerometerReading.all /= null then
             temp := this.m_IAccelerometerReading.all.Release;
-            Free (this.m_IAccelerometerReading);
+            if temp < 1 then
+               Free (this.m_IAccelerometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -845,7 +851,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAccelerometerReadingChangedEventArgs /= null then
          if this.m_IAccelerometerReadingChangedEventArgs.all /= null then
             temp := this.m_IAccelerometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IAccelerometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccelerometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -888,7 +896,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAccelerometerShakenEventArgs /= null then
          if this.m_IAccelerometerShakenEventArgs.all /= null then
             temp := this.m_IAccelerometerShakenEventArgs.all.Release;
-            Free (this.m_IAccelerometerShakenEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccelerometerShakenEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -928,7 +938,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IActivitySensor /= null then
          if this.m_IActivitySensor.all /= null then
             temp := this.m_IActivitySensor.all.Release;
-            Free (this.m_IActivitySensor);
+            if temp < 1 then
+               Free (this.m_IActivitySensor);
+            end if;
          end if;
       end if;
    end;
@@ -1457,7 +1469,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IActivitySensorReading /= null then
          if this.m_IActivitySensorReading.all /= null then
             temp := this.m_IActivitySensorReading.all.Release;
-            Free (this.m_IActivitySensorReading);
+            if temp < 1 then
+               Free (this.m_IActivitySensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -1531,7 +1545,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IActivitySensorReadingChangeReport /= null then
          if this.m_IActivitySensorReadingChangeReport.all /= null then
             temp := this.m_IActivitySensorReadingChangeReport.all.Release;
-            Free (this.m_IActivitySensorReadingChangeReport);
+            if temp < 1 then
+               Free (this.m_IActivitySensorReadingChangeReport);
+            end if;
          end if;
       end if;
    end;
@@ -1574,7 +1590,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IActivitySensorReadingChangedEventArgs /= null then
          if this.m_IActivitySensorReadingChangedEventArgs.all /= null then
             temp := this.m_IActivitySensorReadingChangedEventArgs.all.Release;
-            Free (this.m_IActivitySensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IActivitySensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1617,7 +1635,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IActivitySensorTriggerDetails /= null then
          if this.m_IActivitySensorTriggerDetails.all /= null then
             temp := this.m_IActivitySensorTriggerDetails.all.Release;
-            Free (this.m_IActivitySensorTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IActivitySensorTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1660,7 +1680,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAdaptiveDimmingOptions /= null then
          if this.m_IAdaptiveDimmingOptions.all /= null then
             temp := this.m_IAdaptiveDimmingOptions.all.Release;
-            Free (this.m_IAdaptiveDimmingOptions);
+            if temp < 1 then
+               Free (this.m_IAdaptiveDimmingOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1715,7 +1737,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAltimeter /= null then
          if this.m_IAltimeter.all /= null then
             temp := this.m_IAltimeter.all.Release;
-            Free (this.m_IAltimeter);
+            if temp < 1 then
+               Free (this.m_IAltimeter);
+            end if;
          end if;
       end if;
    end;
@@ -1948,7 +1972,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAltimeterReading /= null then
          if this.m_IAltimeterReading.all /= null then
             temp := this.m_IAltimeterReading.all.Release;
-            Free (this.m_IAltimeterReading);
+            if temp < 1 then
+               Free (this.m_IAltimeterReading);
+            end if;
          end if;
       end if;
    end;
@@ -2053,7 +2079,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IAltimeterReadingChangedEventArgs /= null then
          if this.m_IAltimeterReadingChangedEventArgs.all /= null then
             temp := this.m_IAltimeterReadingChangedEventArgs.all.Release;
-            Free (this.m_IAltimeterReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAltimeterReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2096,7 +2124,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IBarometer /= null then
          if this.m_IBarometer.all /= null then
             temp := this.m_IBarometer.all.Release;
-            Free (this.m_IBarometer);
+            if temp < 1 then
+               Free (this.m_IBarometer);
+            end if;
          end if;
       end if;
    end;
@@ -2452,7 +2482,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IBarometerDataThreshold /= null then
          if this.m_IBarometerDataThreshold.all /= null then
             temp := this.m_IBarometerDataThreshold.all.Release;
-            Free (this.m_IBarometerDataThreshold);
+            if temp < 1 then
+               Free (this.m_IBarometerDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -2507,7 +2539,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IBarometerReading /= null then
          if this.m_IBarometerReading.all /= null then
             temp := this.m_IBarometerReading.all.Release;
-            Free (this.m_IBarometerReading);
+            if temp < 1 then
+               Free (this.m_IBarometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -2612,7 +2646,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IBarometerReadingChangedEventArgs /= null then
          if this.m_IBarometerReadingChangedEventArgs.all /= null then
             temp := this.m_IBarometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IBarometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2655,7 +2691,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ICompass /= null then
          if this.m_ICompass.all /= null then
             temp := this.m_ICompass.all.Release;
-            Free (this.m_ICompass);
+            if temp < 1 then
+               Free (this.m_ICompass);
+            end if;
          end if;
       end if;
    end;
@@ -3055,7 +3093,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ICompassDataThreshold /= null then
          if this.m_ICompassDataThreshold.all /= null then
             temp := this.m_ICompassDataThreshold.all.Release;
-            Free (this.m_ICompassDataThreshold);
+            if temp < 1 then
+               Free (this.m_ICompassDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -3110,7 +3150,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ICompassReading /= null then
          if this.m_ICompassReading.all /= null then
             temp := this.m_ICompassReading.all.Release;
-            Free (this.m_ICompassReading);
+            if temp < 1 then
+               Free (this.m_ICompassReading);
+            end if;
          end if;
       end if;
    end;
@@ -3256,7 +3298,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ICompassReadingChangedEventArgs /= null then
          if this.m_ICompassReadingChangedEventArgs.all /= null then
             temp := this.m_ICompassReadingChangedEventArgs.all.Release;
-            Free (this.m_ICompassReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICompassReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3299,7 +3343,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IDetectedPerson /= null then
          if this.m_IDetectedPerson.all /= null then
             temp := this.m_IDetectedPerson.all.Release;
-            Free (this.m_IDetectedPerson);
+            if temp < 1 then
+               Free (this.m_IDetectedPerson);
+            end if;
          end if;
       end if;
    end;
@@ -3419,7 +3465,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IGyrometer /= null then
          if this.m_IGyrometer.all /= null then
             temp := this.m_IGyrometer.all.Release;
-            Free (this.m_IGyrometer);
+            if temp < 1 then
+               Free (this.m_IGyrometer);
+            end if;
          end if;
       end if;
    end;
@@ -3819,7 +3867,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IGyrometerDataThreshold /= null then
          if this.m_IGyrometerDataThreshold.all /= null then
             temp := this.m_IGyrometerDataThreshold.all.Release;
-            Free (this.m_IGyrometerDataThreshold);
+            if temp < 1 then
+               Free (this.m_IGyrometerDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -3938,7 +3988,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IGyrometerReading /= null then
          if this.m_IGyrometerReading.all /= null then
             temp := this.m_IGyrometerReading.all.Release;
-            Free (this.m_IGyrometerReading);
+            if temp < 1 then
+               Free (this.m_IGyrometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -4077,7 +4129,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IGyrometerReadingChangedEventArgs /= null then
          if this.m_IGyrometerReadingChangedEventArgs.all /= null then
             temp := this.m_IGyrometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IGyrometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGyrometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4120,7 +4174,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHeadOrientation /= null then
          if this.m_IHeadOrientation.all /= null then
             temp := this.m_IHeadOrientation.all.Release;
-            Free (this.m_IHeadOrientation);
+            if temp < 1 then
+               Free (this.m_IHeadOrientation);
+            end if;
          end if;
       end if;
    end;
@@ -4203,7 +4259,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHeadPosition /= null then
          if this.m_IHeadPosition.all /= null then
             temp := this.m_IHeadPosition.all.Release;
-            Free (this.m_IHeadPosition);
+            if temp < 1 then
+               Free (this.m_IHeadPosition);
+            end if;
          end if;
       end if;
    end;
@@ -4266,7 +4324,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHingeAngleReading /= null then
          if this.m_IHingeAngleReading.all /= null then
             temp := this.m_IHingeAngleReading.all.Release;
-            Free (this.m_IHingeAngleReading);
+            if temp < 1 then
+               Free (this.m_IHingeAngleReading);
+            end if;
          end if;
       end if;
    end;
@@ -4343,7 +4403,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHingeAngleSensor /= null then
          if this.m_IHingeAngleSensor.all /= null then
             temp := this.m_IHingeAngleSensor.all.Release;
-            Free (this.m_IHingeAngleSensor);
+            if temp < 1 then
+               Free (this.m_IHingeAngleSensor);
+            end if;
          end if;
       end if;
    end;
@@ -4784,7 +4846,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHingeAngleSensorReadingChangedEventArgs /= null then
          if this.m_IHingeAngleSensorReadingChangedEventArgs.all /= null then
             temp := this.m_IHingeAngleSensorReadingChangedEventArgs.all.Release;
-            Free (this.m_IHingeAngleSensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHingeAngleSensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4827,7 +4891,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceFeatures /= null then
          if this.m_IHumanPresenceFeatures.all /= null then
             temp := this.m_IHumanPresenceFeatures.all.Release;
-            Free (this.m_IHumanPresenceFeatures);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceFeatures);
+            end if;
          end if;
       end if;
    end;
@@ -4983,7 +5049,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceSensor /= null then
          if this.m_IHumanPresenceSensor.all /= null then
             temp := this.m_IHumanPresenceSensor.all.Release;
-            Free (this.m_IHumanPresenceSensor);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceSensor);
+            end if;
          end if;
       end if;
    end;
@@ -5503,7 +5571,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceSensorReading /= null then
          if this.m_IHumanPresenceSensorReading.all /= null then
             temp := this.m_IHumanPresenceSensorReading.all.Release;
-            Free (this.m_IHumanPresenceSensorReading);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceSensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -5666,7 +5736,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceSensorReadingChangedEventArgs /= null then
          if this.m_IHumanPresenceSensorReadingChangedEventArgs.all /= null then
             temp := this.m_IHumanPresenceSensorReadingChangedEventArgs.all.Release;
-            Free (this.m_IHumanPresenceSensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceSensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5709,7 +5781,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceSensorReadingUpdate /= null then
          if this.m_IHumanPresenceSensorReadingUpdate.all /= null then
             temp := this.m_IHumanPresenceSensorReadingUpdate.all.Release;
-            Free (this.m_IHumanPresenceSensorReadingUpdate);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceSensorReadingUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -5934,7 +6008,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IHumanPresenceSettings /= null then
          if this.m_IHumanPresenceSettings.all /= null then
             temp := this.m_IHumanPresenceSettings.all.Release;
-            Free (this.m_IHumanPresenceSettings);
+            if temp < 1 then
+               Free (this.m_IHumanPresenceSettings);
+            end if;
          end if;
       end if;
    end;
@@ -6705,7 +6781,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IInclinometer /= null then
          if this.m_IInclinometer.all /= null then
             temp := this.m_IInclinometer.all.Release;
-            Free (this.m_IInclinometer);
+            if temp < 1 then
+               Free (this.m_IInclinometer);
+            end if;
          end if;
       end if;
    end;
@@ -7180,7 +7258,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IInclinometerDataThreshold /= null then
          if this.m_IInclinometerDataThreshold.all /= null then
             temp := this.m_IInclinometerDataThreshold.all.Release;
-            Free (this.m_IInclinometerDataThreshold);
+            if temp < 1 then
+               Free (this.m_IInclinometerDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -7299,7 +7379,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IInclinometerReading /= null then
          if this.m_IInclinometerReading.all /= null then
             temp := this.m_IInclinometerReading.all.Release;
-            Free (this.m_IInclinometerReading);
+            if temp < 1 then
+               Free (this.m_IInclinometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -7459,7 +7541,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IInclinometerReadingChangedEventArgs /= null then
          if this.m_IInclinometerReadingChangedEventArgs.all /= null then
             temp := this.m_IInclinometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IInclinometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInclinometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7502,7 +7586,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ILightSensor /= null then
          if this.m_ILightSensor.all /= null then
             temp := this.m_ILightSensor.all.Release;
-            Free (this.m_ILightSensor);
+            if temp < 1 then
+               Free (this.m_ILightSensor);
+            end if;
          end if;
       end if;
    end;
@@ -7883,7 +7969,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ILightSensorDataThreshold /= null then
          if this.m_ILightSensorDataThreshold.all /= null then
             temp := this.m_ILightSensorDataThreshold.all.Release;
-            Free (this.m_ILightSensorDataThreshold);
+            if temp < 1 then
+               Free (this.m_ILightSensorDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -8010,7 +8098,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ILightSensorReading /= null then
          if this.m_ILightSensorReading.all /= null then
             temp := this.m_ILightSensorReading.all.Release;
-            Free (this.m_ILightSensorReading);
+            if temp < 1 then
+               Free (this.m_ILightSensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -8136,7 +8226,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ILightSensorReadingChangedEventArgs /= null then
          if this.m_ILightSensorReadingChangedEventArgs.all /= null then
             temp := this.m_ILightSensorReadingChangedEventArgs.all.Release;
-            Free (this.m_ILightSensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILightSensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8179,7 +8271,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ILockOnLeaveOptions /= null then
          if this.m_ILockOnLeaveOptions.all /= null then
             temp := this.m_ILockOnLeaveOptions.all.Release;
-            Free (this.m_ILockOnLeaveOptions);
+            if temp < 1 then
+               Free (this.m_ILockOnLeaveOptions);
+            end if;
          end if;
       end if;
    end;
@@ -8234,7 +8328,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IMagnetometer /= null then
          if this.m_IMagnetometer.all /= null then
             temp := this.m_IMagnetometer.all.Release;
-            Free (this.m_IMagnetometer);
+            if temp < 1 then
+               Free (this.m_IMagnetometer);
+            end if;
          end if;
       end if;
    end;
@@ -8634,7 +8730,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IMagnetometerDataThreshold /= null then
          if this.m_IMagnetometerDataThreshold.all /= null then
             temp := this.m_IMagnetometerDataThreshold.all.Release;
-            Free (this.m_IMagnetometerDataThreshold);
+            if temp < 1 then
+               Free (this.m_IMagnetometerDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -8753,7 +8851,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IMagnetometerReading /= null then
          if this.m_IMagnetometerReading.all /= null then
             temp := this.m_IMagnetometerReading.all.Release;
-            Free (this.m_IMagnetometerReading);
+            if temp < 1 then
+               Free (this.m_IMagnetometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -8909,7 +9009,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IMagnetometerReadingChangedEventArgs /= null then
          if this.m_IMagnetometerReadingChangedEventArgs.all /= null then
             temp := this.m_IMagnetometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IMagnetometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagnetometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8952,7 +9054,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IOnlookerDetectionOptions /= null then
          if this.m_IOnlookerDetectionOptions.all /= null then
             temp := this.m_IOnlookerDetectionOptions.all.Release;
-            Free (this.m_IOnlookerDetectionOptions);
+            if temp < 1 then
+               Free (this.m_IOnlookerDetectionOptions);
+            end if;
          end if;
       end if;
    end;
@@ -9039,7 +9143,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IOrientationSensor /= null then
          if this.m_IOrientationSensor.all /= null then
             temp := this.m_IOrientationSensor.all.Release;
-            Free (this.m_IOrientationSensor);
+            if temp < 1 then
+               Free (this.m_IOrientationSensor);
+            end if;
          end if;
       end if;
    end;
@@ -9546,7 +9652,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IOrientationSensorReading /= null then
          if this.m_IOrientationSensorReading.all /= null then
             temp := this.m_IOrientationSensorReading.all.Release;
-            Free (this.m_IOrientationSensorReading);
+            if temp < 1 then
+               Free (this.m_IOrientationSensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -9695,7 +9803,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IOrientationSensorReadingChangedEventArgs /= null then
          if this.m_IOrientationSensorReadingChangedEventArgs.all /= null then
             temp := this.m_IOrientationSensorReadingChangedEventArgs.all.Release;
-            Free (this.m_IOrientationSensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IOrientationSensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9738,7 +9848,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IPedometer /= null then
          if this.m_IPedometer.all /= null then
             temp := this.m_IPedometer.all.Release;
-            Free (this.m_IPedometer);
+            if temp < 1 then
+               Free (this.m_IPedometer);
+            end if;
          end if;
       end if;
    end;
@@ -10241,7 +10353,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISensorDataThreshold /= null then
          if this.m_ISensorDataThreshold.all /= null then
             temp := this.m_ISensorDataThreshold.all.Release;
-            Free (this.m_ISensorDataThreshold);
+            if temp < 1 then
+               Free (this.m_ISensorDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -10292,7 +10406,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IPedometerReading /= null then
          if this.m_IPedometerReading.all /= null then
             temp := this.m_IPedometerReading.all.Release;
-            Free (this.m_IPedometerReading);
+            if temp < 1 then
+               Free (this.m_IPedometerReading);
+            end if;
          end if;
       end if;
    end;
@@ -10383,7 +10499,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IPedometerReadingChangedEventArgs /= null then
          if this.m_IPedometerReadingChangedEventArgs.all /= null then
             temp := this.m_IPedometerReadingChangedEventArgs.all.Release;
-            Free (this.m_IPedometerReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPedometerReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10426,7 +10544,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IProximitySensor /= null then
          if this.m_IProximitySensor.all /= null then
             temp := this.m_IProximitySensor.all.Release;
-            Free (this.m_IProximitySensor);
+            if temp < 1 then
+               Free (this.m_IProximitySensor);
+            end if;
          end if;
       end if;
    end;
@@ -10663,7 +10783,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISensorDataThreshold /= null then
          if this.m_ISensorDataThreshold.all /= null then
             temp := this.m_ISensorDataThreshold.all.Release;
-            Free (this.m_ISensorDataThreshold);
+            if temp < 1 then
+               Free (this.m_ISensorDataThreshold);
+            end if;
          end if;
       end if;
    end;
@@ -10713,7 +10835,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IClosable /= null then
          if this.m_IClosable.all /= null then
             temp := this.m_IClosable.all.Release;
-            Free (this.m_IClosable);
+            if temp < 1 then
+               Free (this.m_IClosable);
+            end if;
          end if;
       end if;
    end;
@@ -10750,7 +10874,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IProximitySensorReading /= null then
          if this.m_IProximitySensorReading.all /= null then
             temp := this.m_IProximitySensorReading.all.Release;
-            Free (this.m_IProximitySensorReading);
+            if temp < 1 then
+               Free (this.m_IProximitySensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -10827,7 +10953,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IProximitySensorReadingChangedEventArgs /= null then
          if this.m_IProximitySensorReadingChangedEventArgs.all /= null then
             temp := this.m_IProximitySensorReadingChangedEventArgs.all.Release;
-            Free (this.m_IProximitySensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IProximitySensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10870,7 +10998,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISensorDataThresholdTriggerDetails /= null then
          if this.m_ISensorDataThresholdTriggerDetails.all /= null then
             temp := this.m_ISensorDataThresholdTriggerDetails.all.Release;
-            Free (this.m_ISensorDataThresholdTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ISensorDataThresholdTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -10930,7 +11060,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISensorQuaternion /= null then
          if this.m_ISensorQuaternion.all /= null then
             temp := this.m_ISensorQuaternion.all.Release;
-            Free (this.m_ISensorQuaternion);
+            if temp < 1 then
+               Free (this.m_ISensorQuaternion);
+            end if;
          end if;
       end if;
    end;
@@ -11021,7 +11153,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISensorRotationMatrix /= null then
          if this.m_ISensorRotationMatrix.all /= null then
             temp := this.m_ISensorRotationMatrix.all.Release;
-            Free (this.m_ISensorRotationMatrix);
+            if temp < 1 then
+               Free (this.m_ISensorRotationMatrix);
+            end if;
          end if;
       end if;
    end;
@@ -11197,7 +11331,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISimpleOrientationSensor /= null then
          if this.m_ISimpleOrientationSensor.all /= null then
             temp := this.m_ISimpleOrientationSensor.all.Release;
-            Free (this.m_ISimpleOrientationSensor);
+            if temp < 1 then
+               Free (this.m_ISimpleOrientationSensor);
+            end if;
          end if;
       end if;
    end;
@@ -11460,7 +11596,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_ISimpleOrientationSensorOrientationChangedEventArgs /= null then
          if this.m_ISimpleOrientationSensorOrientationChangedEventArgs.all /= null then
             temp := this.m_ISimpleOrientationSensorOrientationChangedEventArgs.all.Release;
-            Free (this.m_ISimpleOrientationSensorOrientationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISimpleOrientationSensorOrientationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11517,7 +11655,9 @@ package body WinRt.Windows.Devices.Sensors is
       if this.m_IWakeOnApproachOptions /= null then
          if this.m_IWakeOnApproachOptions.all /= null then
             temp := this.m_IWakeOnApproachOptions.all.Release;
-            Free (this.m_IWakeOnApproachOptions);
+            if temp < 1 then
+               Free (this.m_IWakeOnApproachOptions);
+            end if;
          end if;
       end if;
    end;

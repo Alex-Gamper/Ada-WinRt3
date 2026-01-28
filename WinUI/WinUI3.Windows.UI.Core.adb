@@ -58,7 +58,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IAcceleratorKeyEventArgs /= null then
          if this.m_IAcceleratorKeyEventArgs.all /= null then
             temp := this.m_IAcceleratorKeyEventArgs.all.Release;
-            Free (this.m_IAcceleratorKeyEventArgs);
+            if temp < 1 then
+               Free (this.m_IAcceleratorKeyEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -196,7 +198,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IAutomationProviderRequestedEventArgs /= null then
          if this.m_IAutomationProviderRequestedEventArgs.all /= null then
             temp := this.m_IAutomationProviderRequestedEventArgs.all.Release;
-            Free (this.m_IAutomationProviderRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAutomationProviderRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -291,7 +295,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IBackRequestedEventArgs /= null then
          if this.m_IBackRequestedEventArgs.all /= null then
             temp := this.m_IBackRequestedEventArgs.all.Release;
-            Free (this.m_IBackRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBackRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -346,7 +352,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICharacterReceivedEventArgs /= null then
          if this.m_ICharacterReceivedEventArgs.all /= null then
             temp := this.m_ICharacterReceivedEventArgs.all.Release;
-            Free (this.m_ICharacterReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICharacterReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -443,7 +451,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IClosestInteractiveBoundsRequestedEventArgs /= null then
          if this.m_IClosestInteractiveBoundsRequestedEventArgs.all /= null then
             temp := this.m_IClosestInteractiveBoundsRequestedEventArgs.all.Release;
-            Free (this.m_IClosestInteractiveBoundsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClosestInteractiveBoundsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -532,7 +542,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreAcceleratorKeys /= null then
          if this.m_ICoreAcceleratorKeys.all /= null then
             temp := this.m_ICoreAcceleratorKeys.all.Release;
-            Free (this.m_ICoreAcceleratorKeys);
+            if temp < 1 then
+               Free (this.m_ICoreAcceleratorKeys);
+            end if;
          end if;
       end if;
    end;
@@ -588,7 +600,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreInputSourceBase /= null then
          if this.m_ICoreInputSourceBase.all /= null then
             temp := this.m_ICoreInputSourceBase.all.Release;
-            Free (this.m_ICoreInputSourceBase);
+            if temp < 1 then
+               Free (this.m_ICoreInputSourceBase);
+            end if;
          end if;
       end if;
    end;
@@ -1482,7 +1496,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreCursor /= null then
          if this.m_ICoreCursor.all /= null then
             temp := this.m_ICoreCursor.all.Release;
-            Free (this.m_ICoreCursor);
+            if temp < 1 then
+               Free (this.m_ICoreCursor);
+            end if;
          end if;
       end if;
    end;
@@ -1567,7 +1583,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreDispatcher /= null then
          if this.m_ICoreDispatcher.all /= null then
             temp := this.m_ICoreDispatcher.all.Release;
-            Free (this.m_ICoreDispatcher);
+            if temp < 1 then
+               Free (this.m_ICoreDispatcher);
+            end if;
          end if;
       end if;
    end;
@@ -1988,7 +2006,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreInputSourceBase /= null then
          if this.m_ICoreInputSourceBase.all /= null then
             temp := this.m_ICoreInputSourceBase.all.Release;
-            Free (this.m_ICoreInputSourceBase);
+            if temp < 1 then
+               Free (this.m_ICoreInputSourceBase);
+            end if;
          end if;
       end if;
    end;
@@ -2651,7 +2671,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreIndependentInputSourceController /= null then
          if this.m_ICoreIndependentInputSourceController.all /= null then
             temp := this.m_ICoreIndependentInputSourceController.all.Release;
-            Free (this.m_ICoreIndependentInputSourceController);
+            if temp < 1 then
+               Free (this.m_ICoreIndependentInputSourceController);
+            end if;
          end if;
       end if;
    end;
@@ -2865,7 +2887,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindow /= null then
          if this.m_ICoreWindow.all /= null then
             temp := this.m_ICoreWindow.all.Release;
-            Free (this.m_ICoreWindow);
+            if temp < 1 then
+               Free (this.m_ICoreWindow);
+            end if;
          end if;
       end if;
    end;
@@ -4130,7 +4154,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindowDialog /= null then
          if this.m_ICoreWindowDialog.all /= null then
             temp := this.m_ICoreWindowDialog.all.Release;
-            Free (this.m_ICoreWindowDialog);
+            if temp < 1 then
+               Free (this.m_ICoreWindowDialog);
+            end if;
          end if;
       end if;
    end;
@@ -4510,7 +4536,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindowEventArgs /= null then
          if this.m_ICoreWindowEventArgs.all /= null then
             temp := this.m_ICoreWindowEventArgs.all.Release;
-            Free (this.m_ICoreWindowEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWindowEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4565,7 +4593,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindowFlyout /= null then
          if this.m_ICoreWindowFlyout.all /= null then
             temp := this.m_ICoreWindowFlyout.all.Release;
-            Free (this.m_ICoreWindowFlyout);
+            if temp < 1 then
+               Free (this.m_ICoreWindowFlyout);
+            end if;
          end if;
       end if;
    end;
@@ -4922,7 +4952,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindowPopupShowingEventArgs /= null then
          if this.m_ICoreWindowPopupShowingEventArgs.all /= null then
             temp := this.m_ICoreWindowPopupShowingEventArgs.all.Release;
-            Free (this.m_ICoreWindowPopupShowingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWindowPopupShowingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4960,7 +4992,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ICoreWindowResizeManager /= null then
          if this.m_ICoreWindowResizeManager.all /= null then
             temp := this.m_ICoreWindowResizeManager.all.Release;
-            Free (this.m_ICoreWindowResizeManager);
+            if temp < 1 then
+               Free (this.m_ICoreWindowResizeManager);
+            end if;
          end if;
       end if;
    end;
@@ -5093,7 +5127,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IIdleDispatchedHandlerArgs /= null then
          if this.m_IIdleDispatchedHandlerArgs.all /= null then
             temp := this.m_IIdleDispatchedHandlerArgs.all.Release;
-            Free (this.m_IIdleDispatchedHandlerArgs);
+            if temp < 1 then
+               Free (this.m_IIdleDispatchedHandlerArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5133,7 +5169,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IInputEnabledEventArgs /= null then
          if this.m_IInputEnabledEventArgs.all /= null then
             temp := this.m_IInputEnabledEventArgs.all.Release;
-            Free (this.m_IInputEnabledEventArgs);
+            if temp < 1 then
+               Free (this.m_IInputEnabledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5213,7 +5251,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IKeyEventArgs /= null then
          if this.m_IKeyEventArgs.all /= null then
             temp := this.m_IKeyEventArgs.all.Release;
-            Free (this.m_IKeyEventArgs);
+            if temp < 1 then
+               Free (this.m_IKeyEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5334,7 +5374,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IPointerEventArgs /= null then
          if this.m_IPointerEventArgs.all /= null then
             temp := this.m_IPointerEventArgs.all.Release;
-            Free (this.m_IPointerEventArgs);
+            if temp < 1 then
+               Free (this.m_IPointerEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5451,7 +5493,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ISystemNavigationManager /= null then
          if this.m_ISystemNavigationManager.all /= null then
             temp := this.m_ISystemNavigationManager.all.Release;
-            Free (this.m_ISystemNavigationManager);
+            if temp < 1 then
+               Free (this.m_ISystemNavigationManager);
+            end if;
          end if;
       end if;
    end;
@@ -5574,7 +5618,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_ITouchHitTestingEventArgs /= null then
          if this.m_ITouchHitTestingEventArgs.all /= null then
             temp := this.m_ITouchHitTestingEventArgs.all.Release;
-            Free (this.m_ITouchHitTestingEventArgs);
+            if temp < 1 then
+               Free (this.m_ITouchHitTestingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5740,7 +5786,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IVisibilityChangedEventArgs /= null then
          if this.m_IVisibilityChangedEventArgs.all /= null then
             temp := this.m_IVisibilityChangedEventArgs.all.Release;
-            Free (this.m_IVisibilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVisibilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5820,7 +5868,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IWindowActivatedEventArgs /= null then
          if this.m_IWindowActivatedEventArgs.all /= null then
             temp := this.m_IWindowActivatedEventArgs.all.Release;
-            Free (this.m_IWindowActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5900,7 +5950,9 @@ package body WinUI3.Windows.UI.Core is
       if this.m_IWindowSizeChangedEventArgs /= null then
          if this.m_IWindowSizeChangedEventArgs.all /= null then
             temp := this.m_IWindowSizeChangedEventArgs.all.Release;
-            Free (this.m_IWindowSizeChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowSizeChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

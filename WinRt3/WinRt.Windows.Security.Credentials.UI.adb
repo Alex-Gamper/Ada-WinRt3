@@ -296,7 +296,9 @@ package body WinRt.Windows.Security.Credentials.UI is
       if this.m_ICredentialPickerOptions /= null then
          if this.m_ICredentialPickerOptions.all /= null then
             temp := this.m_ICredentialPickerOptions.all.Release;
-            Free (this.m_ICredentialPickerOptions);
+            if temp < 1 then
+               Free (this.m_ICredentialPickerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -678,7 +680,9 @@ package body WinRt.Windows.Security.Credentials.UI is
       if this.m_ICredentialPickerResults /= null then
          if this.m_ICredentialPickerResults.all /= null then
             temp := this.m_ICredentialPickerResults.all.Release;
-            Free (this.m_ICredentialPickerResults);
+            if temp < 1 then
+               Free (this.m_ICredentialPickerResults);
+            end if;
          end if;
       end if;
    end;

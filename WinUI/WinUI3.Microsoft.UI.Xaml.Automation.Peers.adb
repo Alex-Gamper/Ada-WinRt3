@@ -51,7 +51,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAutomationPeer /= null then
          if this.m_IAutomationPeer.all /= null then
             temp := this.m_IAutomationPeer.all.Release;
-            Free (this.m_IAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2206,7 +2208,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IFrameworkElementAutomationPeer /= null then
          if this.m_IFrameworkElementAutomationPeer.all /= null then
             temp := this.m_IFrameworkElementAutomationPeer.all.Release;
-            Free (this.m_IFrameworkElementAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IFrameworkElementAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2335,7 +2339,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAnimatedVisualPlayerAutomationPeer /= null then
          if this.m_IAnimatedVisualPlayerAutomationPeer.all /= null then
             temp := this.m_IAnimatedVisualPlayerAutomationPeer.all.Release;
-            Free (this.m_IAnimatedVisualPlayerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAnimatedVisualPlayerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2387,7 +2393,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAppBarAutomationPeer /= null then
          if this.m_IAppBarAutomationPeer.all /= null then
             temp := this.m_IAppBarAutomationPeer.all.Release;
-            Free (this.m_IAppBarAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAppBarAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2720,7 +2728,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IButtonBaseAutomationPeer /= null then
          if this.m_IButtonBaseAutomationPeer.all /= null then
             temp := this.m_IButtonBaseAutomationPeer.all.Release;
-            Free (this.m_IButtonBaseAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IButtonBaseAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2772,7 +2782,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IButtonAutomationPeer /= null then
          if this.m_IButtonAutomationPeer.all /= null then
             temp := this.m_IButtonAutomationPeer.all.Release;
-            Free (this.m_IButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2842,7 +2854,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAppBarButtonAutomationPeer /= null then
          if this.m_IAppBarButtonAutomationPeer.all /= null then
             temp := this.m_IAppBarButtonAutomationPeer.all.Release;
-            Free (this.m_IAppBarButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAppBarButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -2951,7 +2965,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IToggleButtonAutomationPeer /= null then
          if this.m_IToggleButtonAutomationPeer.all /= null then
             temp := this.m_IToggleButtonAutomationPeer.all.Release;
-            Free (this.m_IToggleButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IToggleButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3042,7 +3058,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAppBarToggleButtonAutomationPeer /= null then
          if this.m_IAppBarToggleButtonAutomationPeer.all /= null then
             temp := this.m_IAppBarToggleButtonAutomationPeer.all.Release;
-            Free (this.m_IAppBarToggleButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAppBarToggleButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3094,7 +3112,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAutoSuggestBoxAutomationPeer /= null then
          if this.m_IAutoSuggestBoxAutomationPeer.all /= null then
             temp := this.m_IAutoSuggestBoxAutomationPeer.all.Release;
-            Free (this.m_IAutoSuggestBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IAutoSuggestBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3162,7 +3182,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IAutomationPeerAnnotation /= null then
          if this.m_IAutomationPeerAnnotation.all /= null then
             temp := this.m_IAutomationPeerAnnotation.all.Release;
-            Free (this.m_IAutomationPeerAnnotation);
+            if temp < 1 then
+               Free (this.m_IAutomationPeerAnnotation);
+            end if;
          end if;
       end if;
    end;
@@ -3371,7 +3393,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IBreadcrumbBarItemAutomationPeer /= null then
          if this.m_IBreadcrumbBarItemAutomationPeer.all /= null then
             temp := this.m_IBreadcrumbBarItemAutomationPeer.all.Release;
-            Free (this.m_IBreadcrumbBarItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IBreadcrumbBarItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3441,7 +3465,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ICalendarDatePickerAutomationPeer /= null then
          if this.m_ICalendarDatePickerAutomationPeer.all /= null then
             temp := this.m_ICalendarDatePickerAutomationPeer.all.Release;
-            Free (this.m_ICalendarDatePickerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ICalendarDatePickerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3577,7 +3603,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ICheckBoxAutomationPeer /= null then
          if this.m_ICheckBoxAutomationPeer.all /= null then
             temp := this.m_ICheckBoxAutomationPeer.all.Release;
-            Free (this.m_ICheckBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ICheckBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3629,7 +3657,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRangeBaseAutomationPeer /= null then
          if this.m_IRangeBaseAutomationPeer.all /= null then
             temp := this.m_IRangeBaseAutomationPeer.all.Release;
-            Free (this.m_IRangeBaseAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRangeBaseAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3826,7 +3856,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISliderAutomationPeer /= null then
          if this.m_ISliderAutomationPeer.all /= null then
             temp := this.m_ISliderAutomationPeer.all.Release;
-            Free (this.m_ISliderAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISliderAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3878,7 +3910,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IColorPickerSliderAutomationPeer /= null then
          if this.m_IColorPickerSliderAutomationPeer.all /= null then
             temp := this.m_IColorPickerSliderAutomationPeer.all.Release;
-            Free (this.m_IColorPickerSliderAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IColorPickerSliderAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3930,7 +3964,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IColorSpectrumAutomationPeer /= null then
          if this.m_IColorSpectrumAutomationPeer.all /= null then
             temp := this.m_IColorSpectrumAutomationPeer.all.Release;
-            Free (this.m_IColorSpectrumAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IColorSpectrumAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -3982,7 +4018,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IItemsControlAutomationPeer /= null then
          if this.m_IItemsControlAutomationPeer.all /= null then
             temp := this.m_IItemsControlAutomationPeer.all.Release;
-            Free (this.m_IItemsControlAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IItemsControlAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4107,7 +4145,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISelectorAutomationPeer /= null then
          if this.m_ISelectorAutomationPeer.all /= null then
             temp := this.m_ISelectorAutomationPeer.all.Release;
-            Free (this.m_ISelectorAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISelectorAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4236,7 +4276,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IComboBoxAutomationPeer /= null then
          if this.m_IComboBoxAutomationPeer.all /= null then
             temp := this.m_IComboBoxAutomationPeer.all.Release;
-            Free (this.m_IComboBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IComboBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4596,7 +4638,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IComboBoxItemAutomationPeer /= null then
          if this.m_IComboBoxItemAutomationPeer.all /= null then
             temp := this.m_IComboBoxItemAutomationPeer.all.Release;
-            Free (this.m_IComboBoxItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IComboBoxItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4648,7 +4692,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IItemAutomationPeer /= null then
          if this.m_IItemAutomationPeer.all /= null then
             temp := this.m_IItemAutomationPeer.all.Release;
-            Free (this.m_IItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4756,7 +4802,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISelectorItemAutomationPeer /= null then
          if this.m_ISelectorItemAutomationPeer.all /= null then
             temp := this.m_ISelectorItemAutomationPeer.all.Release;
-            Free (this.m_ISelectorItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISelectorItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4908,7 +4956,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IComboBoxItemDataAutomationPeer /= null then
          if this.m_IComboBoxItemDataAutomationPeer.all /= null then
             temp := this.m_IComboBoxItemDataAutomationPeer.all.Release;
-            Free (this.m_IComboBoxItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IComboBoxItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -4979,7 +5029,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IDatePickerAutomationPeer /= null then
          if this.m_IDatePickerAutomationPeer.all /= null then
             temp := this.m_IDatePickerAutomationPeer.all.Release;
-            Free (this.m_IDatePickerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IDatePickerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5031,7 +5083,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IDatePickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IDatePickerFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_IDatePickerFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_IDatePickerFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IDatePickerFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5054,7 +5108,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IDropDownButtonAutomationPeer /= null then
          if this.m_IDropDownButtonAutomationPeer.all /= null then
             temp := this.m_IDropDownButtonAutomationPeer.all.Release;
-            Free (this.m_IDropDownButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IDropDownButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5163,7 +5219,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IExpanderAutomationPeer /= null then
          if this.m_IExpanderAutomationPeer.all /= null then
             temp := this.m_IExpanderAutomationPeer.all.Release;
-            Free (this.m_IExpanderAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IExpanderAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5272,7 +5330,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IFlipViewAutomationPeer /= null then
          if this.m_IFlipViewAutomationPeer.all /= null then
             temp := this.m_IFlipViewAutomationPeer.all.Release;
-            Free (this.m_IFlipViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IFlipViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5324,7 +5384,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IFlipViewItemAutomationPeer /= null then
          if this.m_IFlipViewItemAutomationPeer.all /= null then
             temp := this.m_IFlipViewItemAutomationPeer.all.Release;
-            Free (this.m_IFlipViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IFlipViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5376,7 +5438,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IFlipViewItemDataAutomationPeer /= null then
          if this.m_IFlipViewItemDataAutomationPeer.all /= null then
             temp := this.m_IFlipViewItemDataAutomationPeer.all.Release;
-            Free (this.m_IFlipViewItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IFlipViewItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5447,7 +5511,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IFlyoutPresenterAutomationPeer /= null then
          if this.m_IFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_IFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_IFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5499,7 +5565,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewBaseAutomationPeer /= null then
          if this.m_IListViewBaseAutomationPeer.all /= null then
             temp := this.m_IListViewBaseAutomationPeer.all.Release;
-            Free (this.m_IListViewBaseAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewBaseAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5607,7 +5675,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IGridViewAutomationPeer /= null then
          if this.m_IGridViewAutomationPeer.all /= null then
             temp := this.m_IGridViewAutomationPeer.all.Release;
-            Free (this.m_IGridViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IGridViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5659,7 +5729,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewBaseHeaderItemAutomationPeer /= null then
          if this.m_IListViewBaseHeaderItemAutomationPeer.all /= null then
             temp := this.m_IListViewBaseHeaderItemAutomationPeer.all.Release;
-            Free (this.m_IListViewBaseHeaderItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewBaseHeaderItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5711,7 +5783,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IGridViewHeaderItemAutomationPeer /= null then
          if this.m_IGridViewHeaderItemAutomationPeer.all /= null then
             temp := this.m_IGridViewHeaderItemAutomationPeer.all.Release;
-            Free (this.m_IGridViewHeaderItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IGridViewHeaderItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5763,7 +5837,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IGridViewItemAutomationPeer /= null then
          if this.m_IGridViewItemAutomationPeer.all /= null then
             temp := this.m_IGridViewItemAutomationPeer.all.Release;
-            Free (this.m_IGridViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IGridViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5815,7 +5891,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IGridViewItemDataAutomationPeer /= null then
          if this.m_IGridViewItemDataAutomationPeer.all /= null then
             temp := this.m_IGridViewItemDataAutomationPeer.all.Release;
-            Free (this.m_IGridViewItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IGridViewItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5886,7 +5964,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IGroupItemAutomationPeer /= null then
          if this.m_IGroupItemAutomationPeer.all /= null then
             temp := this.m_IGroupItemAutomationPeer.all.Release;
-            Free (this.m_IGroupItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IGroupItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5938,7 +6018,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IHubAutomationPeer /= null then
          if this.m_IHubAutomationPeer.all /= null then
             temp := this.m_IHubAutomationPeer.all.Release;
-            Free (this.m_IHubAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IHubAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -5990,7 +6072,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IHubSectionAutomationPeer /= null then
          if this.m_IHubSectionAutomationPeer.all /= null then
             temp := this.m_IHubSectionAutomationPeer.all.Release;
-            Free (this.m_IHubSectionAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IHubSectionAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6060,7 +6144,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IHyperlinkButtonAutomationPeer /= null then
          if this.m_IHyperlinkButtonAutomationPeer.all /= null then
             temp := this.m_IHyperlinkButtonAutomationPeer.all.Release;
-            Free (this.m_IHyperlinkButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IHyperlinkButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6130,7 +6216,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IImageAutomationPeer /= null then
          if this.m_IImageAutomationPeer.all /= null then
             temp := this.m_IImageAutomationPeer.all.Release;
-            Free (this.m_IImageAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IImageAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6182,7 +6270,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IInfoBarAutomationPeer /= null then
          if this.m_IInfoBarAutomationPeer.all /= null then
             temp := this.m_IInfoBarAutomationPeer.all.Release;
-            Free (this.m_IInfoBarAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IInfoBarAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6234,7 +6324,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IItemContainerAutomationPeer /= null then
          if this.m_IItemContainerAutomationPeer.all /= null then
             temp := this.m_IItemContainerAutomationPeer.all.Release;
-            Free (this.m_IItemContainerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IItemContainerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6403,7 +6495,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IItemsViewAutomationPeer /= null then
          if this.m_IItemsViewAutomationPeer.all /= null then
             temp := this.m_IItemsViewAutomationPeer.all.Release;
-            Free (this.m_IItemsViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IItemsViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6532,7 +6626,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListBoxAutomationPeer /= null then
          if this.m_IListBoxAutomationPeer.all /= null then
             temp := this.m_IListBoxAutomationPeer.all.Release;
-            Free (this.m_IListBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6584,7 +6680,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListBoxItemAutomationPeer /= null then
          if this.m_IListBoxItemAutomationPeer.all /= null then
             temp := this.m_IListBoxItemAutomationPeer.all.Release;
-            Free (this.m_IListBoxItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListBoxItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6636,7 +6734,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListBoxItemDataAutomationPeer /= null then
          if this.m_IListBoxItemDataAutomationPeer.all /= null then
             temp := this.m_IListBoxItemDataAutomationPeer.all.Release;
-            Free (this.m_IListBoxItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListBoxItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6707,7 +6807,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListPickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IListPickerFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_IListPickerFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_IListPickerFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListPickerFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6730,7 +6832,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewAutomationPeer /= null then
          if this.m_IListViewAutomationPeer.all /= null then
             temp := this.m_IListViewAutomationPeer.all.Release;
-            Free (this.m_IListViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6782,7 +6886,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewHeaderItemAutomationPeer /= null then
          if this.m_IListViewHeaderItemAutomationPeer.all /= null then
             temp := this.m_IListViewHeaderItemAutomationPeer.all.Release;
-            Free (this.m_IListViewHeaderItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewHeaderItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6834,7 +6940,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewItemAutomationPeer /= null then
          if this.m_IListViewItemAutomationPeer.all /= null then
             temp := this.m_IListViewItemAutomationPeer.all.Release;
-            Free (this.m_IListViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6886,7 +6994,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IListViewItemDataAutomationPeer /= null then
          if this.m_IListViewItemDataAutomationPeer.all /= null then
             temp := this.m_IListViewItemDataAutomationPeer.all.Release;
-            Free (this.m_IListViewItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IListViewItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -6957,7 +7067,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ILoopingSelectorAutomationPeer /= null then
          if this.m_ILoopingSelectorAutomationPeer.all /= null then
             temp := this.m_ILoopingSelectorAutomationPeer.all.Release;
-            Free (this.m_ILoopingSelectorAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ILoopingSelectorAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7250,7 +7362,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ILoopingSelectorItemAutomationPeer /= null then
          if this.m_ILoopingSelectorItemAutomationPeer.all /= null then
             temp := this.m_ILoopingSelectorItemAutomationPeer.all.Release;
-            Free (this.m_ILoopingSelectorItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ILoopingSelectorItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7390,7 +7504,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ILoopingSelectorItemDataAutomationPeer /= null then
          if this.m_ILoopingSelectorItemDataAutomationPeer.all /= null then
             temp := this.m_ILoopingSelectorItemDataAutomationPeer.all.Release;
-            Free (this.m_ILoopingSelectorItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ILoopingSelectorItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7431,7 +7547,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMediaPlayerElementAutomationPeer /= null then
          if this.m_IMediaPlayerElementAutomationPeer.all /= null then
             temp := this.m_IMediaPlayerElementAutomationPeer.all.Release;
-            Free (this.m_IMediaPlayerElementAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMediaPlayerElementAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7483,7 +7601,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMediaTransportControlsAutomationPeer /= null then
          if this.m_IMediaTransportControlsAutomationPeer.all /= null then
             temp := this.m_IMediaTransportControlsAutomationPeer.all.Release;
-            Free (this.m_IMediaTransportControlsAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMediaTransportControlsAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7535,7 +7655,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMenuBarAutomationPeer /= null then
          if this.m_IMenuBarAutomationPeer.all /= null then
             temp := this.m_IMenuBarAutomationPeer.all.Release;
-            Free (this.m_IMenuBarAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMenuBarAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7587,7 +7709,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMenuBarItemAutomationPeer /= null then
          if this.m_IMenuBarItemAutomationPeer.all /= null then
             temp := this.m_IMenuBarItemAutomationPeer.all.Release;
-            Free (this.m_IMenuBarItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMenuBarItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7714,7 +7838,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMenuFlyoutItemAutomationPeer /= null then
          if this.m_IMenuFlyoutItemAutomationPeer.all /= null then
             temp := this.m_IMenuFlyoutItemAutomationPeer.all.Release;
-            Free (this.m_IMenuFlyoutItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMenuFlyoutItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7784,7 +7910,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IMenuFlyoutPresenterAutomationPeer /= null then
          if this.m_IMenuFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_IMenuFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_IMenuFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IMenuFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7836,7 +7964,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_INavigationViewAutomationPeer /= null then
          if this.m_INavigationViewAutomationPeer.all /= null then
             temp := this.m_INavigationViewAutomationPeer.all.Release;
-            Free (this.m_INavigationViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_INavigationViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7888,7 +8018,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_INavigationViewItemAutomationPeer /= null then
          if this.m_INavigationViewItemAutomationPeer.all /= null then
             temp := this.m_INavigationViewItemAutomationPeer.all.Release;
-            Free (this.m_INavigationViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_INavigationViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -7997,7 +8129,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_INumberBoxAutomationPeer /= null then
          if this.m_INumberBoxAutomationPeer.all /= null then
             temp := this.m_INumberBoxAutomationPeer.all.Release;
-            Free (this.m_INumberBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_INumberBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8049,7 +8183,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPasswordBoxAutomationPeer /= null then
          if this.m_IPasswordBoxAutomationPeer.all /= null then
             temp := this.m_IPasswordBoxAutomationPeer.all.Release;
-            Free (this.m_IPasswordBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPasswordBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8101,7 +8237,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPersonPictureAutomationPeer /= null then
          if this.m_IPersonPictureAutomationPeer.all /= null then
             temp := this.m_IPersonPictureAutomationPeer.all.Release;
-            Free (this.m_IPersonPictureAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPersonPictureAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8153,7 +8291,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPickerFlyoutPresenterAutomationPeer /= null then
          if this.m_IPickerFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_IPickerFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_IPickerFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPickerFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8176,7 +8316,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPipsPagerAutomationPeer /= null then
          if this.m_IPipsPagerAutomationPeer.all /= null then
             temp := this.m_IPipsPagerAutomationPeer.all.Release;
-            Free (this.m_IPipsPagerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPipsPagerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8228,7 +8370,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPivotAutomationPeer /= null then
          if this.m_IPivotAutomationPeer.all /= null then
             temp := this.m_IPivotAutomationPeer.all.Release;
-            Free (this.m_IPivotAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPivotAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8521,7 +8665,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPivotItemAutomationPeer /= null then
          if this.m_IPivotItemAutomationPeer.all /= null then
             temp := this.m_IPivotItemAutomationPeer.all.Release;
-            Free (this.m_IPivotItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPivotItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8571,7 +8717,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IPivotItemDataAutomationPeer /= null then
          if this.m_IPivotItemDataAutomationPeer.all /= null then
             temp := this.m_IPivotItemDataAutomationPeer.all.Release;
-            Free (this.m_IPivotItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IPivotItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8757,7 +8905,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IProgressBarAutomationPeer /= null then
          if this.m_IProgressBarAutomationPeer.all /= null then
             temp := this.m_IProgressBarAutomationPeer.all.Release;
-            Free (this.m_IProgressBarAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IProgressBarAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -8809,7 +8959,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IProgressRingAutomationPeer /= null then
          if this.m_IProgressRingAutomationPeer.all /= null then
             temp := this.m_IProgressRingAutomationPeer.all.Release;
-            Free (this.m_IProgressRingAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IProgressRingAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9006,7 +9158,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRadioButtonAutomationPeer /= null then
          if this.m_IRadioButtonAutomationPeer.all /= null then
             temp := this.m_IRadioButtonAutomationPeer.all.Release;
-            Free (this.m_IRadioButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRadioButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9157,7 +9311,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRadioButtonsAutomationPeer /= null then
          if this.m_IRadioButtonsAutomationPeer.all /= null then
             temp := this.m_IRadioButtonsAutomationPeer.all.Release;
-            Free (this.m_IRadioButtonsAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRadioButtonsAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9209,7 +9365,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRatingControlAutomationPeer /= null then
          if this.m_IRatingControlAutomationPeer.all /= null then
             temp := this.m_IRatingControlAutomationPeer.all.Release;
-            Free (this.m_IRatingControlAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRatingControlAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9261,7 +9419,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRepeatButtonAutomationPeer /= null then
          if this.m_IRepeatButtonAutomationPeer.all /= null then
             temp := this.m_IRepeatButtonAutomationPeer.all.Release;
-            Free (this.m_IRepeatButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRepeatButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9331,7 +9491,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRepeaterAutomationPeer /= null then
          if this.m_IRepeaterAutomationPeer.all /= null then
             temp := this.m_IRepeaterAutomationPeer.all.Release;
-            Free (this.m_IRepeaterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRepeaterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9383,7 +9545,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRichEditBoxAutomationPeer /= null then
          if this.m_IRichEditBoxAutomationPeer.all /= null then
             temp := this.m_IRichEditBoxAutomationPeer.all.Release;
-            Free (this.m_IRichEditBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRichEditBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9435,7 +9599,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRichTextBlockAutomationPeer /= null then
          if this.m_IRichTextBlockAutomationPeer.all /= null then
             temp := this.m_IRichTextBlockAutomationPeer.all.Release;
-            Free (this.m_IRichTextBlockAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRichTextBlockAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9487,7 +9653,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IRichTextBlockOverflowAutomationPeer /= null then
          if this.m_IRichTextBlockOverflowAutomationPeer.all /= null then
             temp := this.m_IRichTextBlockOverflowAutomationPeer.all.Release;
-            Free (this.m_IRichTextBlockOverflowAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IRichTextBlockOverflowAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9539,7 +9707,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IScrollBarAutomationPeer /= null then
          if this.m_IScrollBarAutomationPeer.all /= null then
             temp := this.m_IScrollBarAutomationPeer.all.Release;
-            Free (this.m_IScrollBarAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IScrollBarAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9591,7 +9761,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IScrollPresenterAutomationPeer /= null then
          if this.m_IScrollPresenterAutomationPeer.all /= null then
             temp := this.m_IScrollPresenterAutomationPeer.all.Release;
-            Free (this.m_IScrollPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IScrollPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9643,7 +9815,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IScrollViewerAutomationPeer /= null then
          if this.m_IScrollViewerAutomationPeer.all /= null then
             temp := this.m_IScrollViewerAutomationPeer.all.Release;
-            Free (this.m_IScrollViewerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IScrollViewerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9861,7 +10035,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISelectorBarItemAutomationPeer /= null then
          if this.m_ISelectorBarItemAutomationPeer.all /= null then
             temp := this.m_ISelectorBarItemAutomationPeer.all.Release;
-            Free (this.m_ISelectorBarItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISelectorBarItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -9913,7 +10089,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISemanticZoomAutomationPeer /= null then
          if this.m_ISemanticZoomAutomationPeer.all /= null then
             temp := this.m_ISemanticZoomAutomationPeer.all.Release;
-            Free (this.m_ISemanticZoomAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISemanticZoomAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10004,7 +10182,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ISplitButtonAutomationPeer /= null then
          if this.m_ISplitButtonAutomationPeer.all /= null then
             temp := this.m_ISplitButtonAutomationPeer.all.Release;
-            Free (this.m_ISplitButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ISplitButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10131,7 +10311,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITabViewAutomationPeer /= null then
          if this.m_ITabViewAutomationPeer.all /= null then
             temp := this.m_ITabViewAutomationPeer.all.Release;
-            Free (this.m_ITabViewAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITabViewAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10183,7 +10365,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITabViewItemAutomationPeer /= null then
          if this.m_ITabViewItemAutomationPeer.all /= null then
             temp := this.m_ITabViewItemAutomationPeer.all.Release;
-            Free (this.m_ITabViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITabViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10235,7 +10419,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITeachingTipAutomationPeer /= null then
          if this.m_ITeachingTipAutomationPeer.all /= null then
             temp := this.m_ITeachingTipAutomationPeer.all.Release;
-            Free (this.m_ITeachingTipAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITeachingTipAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10287,7 +10473,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITextBlockAutomationPeer /= null then
          if this.m_ITextBlockAutomationPeer.all /= null then
             temp := this.m_ITextBlockAutomationPeer.all.Release;
-            Free (this.m_ITextBlockAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITextBlockAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10339,7 +10527,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITextBoxAutomationPeer /= null then
          if this.m_ITextBoxAutomationPeer.all /= null then
             temp := this.m_ITextBoxAutomationPeer.all.Release;
-            Free (this.m_ITextBoxAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITextBoxAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10391,7 +10581,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IThumbAutomationPeer /= null then
          if this.m_IThumbAutomationPeer.all /= null then
             temp := this.m_IThumbAutomationPeer.all.Release;
-            Free (this.m_IThumbAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IThumbAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10443,7 +10635,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITimePickerAutomationPeer /= null then
          if this.m_ITimePickerAutomationPeer.all /= null then
             temp := this.m_ITimePickerAutomationPeer.all.Release;
-            Free (this.m_ITimePickerAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITimePickerAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10495,7 +10689,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITimePickerFlyoutPresenterAutomationPeer /= null then
          if this.m_ITimePickerFlyoutPresenterAutomationPeer.all /= null then
             temp := this.m_ITimePickerFlyoutPresenterAutomationPeer.all.Release;
-            Free (this.m_ITimePickerFlyoutPresenterAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITimePickerFlyoutPresenterAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10518,7 +10714,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IToggleMenuFlyoutItemAutomationPeer /= null then
          if this.m_IToggleMenuFlyoutItemAutomationPeer.all /= null then
             temp := this.m_IToggleMenuFlyoutItemAutomationPeer.all.Release;
-            Free (this.m_IToggleMenuFlyoutItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IToggleMenuFlyoutItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10609,7 +10807,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IToggleSplitButtonAutomationPeer /= null then
          if this.m_IToggleSplitButtonAutomationPeer.all /= null then
             temp := this.m_IToggleSplitButtonAutomationPeer.all.Release;
-            Free (this.m_IToggleSplitButtonAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IToggleSplitButtonAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10757,7 +10957,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IToggleSwitchAutomationPeer /= null then
          if this.m_IToggleSwitchAutomationPeer.all /= null then
             temp := this.m_IToggleSwitchAutomationPeer.all.Release;
-            Free (this.m_IToggleSwitchAutomationPeer);
+            if temp < 1 then
+               Free (this.m_IToggleSwitchAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10848,7 +11050,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITreeViewItemAutomationPeer /= null then
          if this.m_ITreeViewItemAutomationPeer.all /= null then
             temp := this.m_ITreeViewItemAutomationPeer.all.Release;
-            Free (this.m_ITreeViewItemAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITreeViewItemAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -10957,7 +11161,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITreeViewItemDataAutomationPeer /= null then
          if this.m_ITreeViewItemDataAutomationPeer.all /= null then
             temp := this.m_ITreeViewItemDataAutomationPeer.all.Release;
-            Free (this.m_ITreeViewItemDataAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITreeViewItemDataAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -11067,7 +11273,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_ITreeViewListAutomationPeer /= null then
          if this.m_ITreeViewListAutomationPeer.all /= null then
             temp := this.m_ITreeViewListAutomationPeer.all.Release;
-            Free (this.m_ITreeViewListAutomationPeer);
+            if temp < 1 then
+               Free (this.m_ITreeViewListAutomationPeer);
+            end if;
          end if;
       end if;
    end;
@@ -11119,7 +11327,9 @@ package body WinUI3.Microsoft.UI.Xaml.Automation.Peers is
       if this.m_IWebView2AutomationPeer /= null then
          if this.m_IWebView2AutomationPeer.all /= null then
             temp := this.m_IWebView2AutomationPeer.all.Release;
-            Free (this.m_IWebView2AutomationPeer);
+            if temp < 1 then
+               Free (this.m_IWebView2AutomationPeer);
+            end if;
          end if;
       end if;
    end;

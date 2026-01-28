@@ -47,7 +47,9 @@ package body WinUI3.Windows.Globalization.PhoneNumberFormatting is
       if this.m_IPhoneNumberFormatter /= null then
          if this.m_IPhoneNumberFormatter.all /= null then
             temp := this.m_IPhoneNumberFormatter.all.Release;
-            Free (this.m_IPhoneNumberFormatter);
+            if temp < 1 then
+               Free (this.m_IPhoneNumberFormatter);
+            end if;
          end if;
       end if;
    end;
@@ -313,7 +315,9 @@ package body WinUI3.Windows.Globalization.PhoneNumberFormatting is
       if this.m_IPhoneNumberInfo /= null then
          if this.m_IPhoneNumberInfo.all /= null then
             temp := this.m_IPhoneNumberInfo.all.Release;
-            Free (this.m_IPhoneNumberInfo);
+            if temp < 1 then
+               Free (this.m_IPhoneNumberInfo);
+            end if;
          end if;
       end if;
    end;

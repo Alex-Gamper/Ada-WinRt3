@@ -61,7 +61,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IAddPackageOptions /= null then
          if this.m_IAddPackageOptions.all /= null then
             temp := this.m_IAddPackageOptions.all.Release;
-            Free (this.m_IAddPackageOptions);
+            if temp < 1 then
+               Free (this.m_IAddPackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -669,7 +671,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IAppInstallerManager /= null then
          if this.m_IAppInstallerManager.all /= null then
             temp := this.m_IAppInstallerManager.all.Release;
-            Free (this.m_IAppInstallerManager);
+            if temp < 1 then
+               Free (this.m_IAppInstallerManager);
+            end if;
          end if;
       end if;
    end;
@@ -796,7 +800,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IAutoUpdateSettingsOptions /= null then
          if this.m_IAutoUpdateSettingsOptions.all /= null then
             temp := this.m_IAutoUpdateSettingsOptions.all.Release;
-            Free (this.m_IAutoUpdateSettingsOptions);
+            if temp < 1 then
+               Free (this.m_IAutoUpdateSettingsOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1239,7 +1245,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_ICreateSharedPackageContainerOptions /= null then
          if this.m_ICreateSharedPackageContainerOptions.all /= null then
             temp := this.m_ICreateSharedPackageContainerOptions.all.Release;
-            Free (this.m_ICreateSharedPackageContainerOptions);
+            if temp < 1 then
+               Free (this.m_ICreateSharedPackageContainerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1365,7 +1373,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_ICreateSharedPackageContainerResult /= null then
          if this.m_ICreateSharedPackageContainerResult.all /= null then
             temp := this.m_ICreateSharedPackageContainerResult.all.Release;
-            Free (this.m_ICreateSharedPackageContainerResult);
+            if temp < 1 then
+               Free (this.m_ICreateSharedPackageContainerResult);
+            end if;
          end if;
       end if;
    end;
@@ -1442,7 +1452,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IDeleteSharedPackageContainerOptions /= null then
          if this.m_IDeleteSharedPackageContainerOptions.all /= null then
             temp := this.m_IDeleteSharedPackageContainerOptions.all.Release;
-            Free (this.m_IDeleteSharedPackageContainerOptions);
+            if temp < 1 then
+               Free (this.m_IDeleteSharedPackageContainerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1548,7 +1560,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IDeleteSharedPackageContainerResult /= null then
          if this.m_IDeleteSharedPackageContainerResult.all /= null then
             temp := this.m_IDeleteSharedPackageContainerResult.all.Release;
-            Free (this.m_IDeleteSharedPackageContainerResult);
+            if temp < 1 then
+               Free (this.m_IDeleteSharedPackageContainerResult);
+            end if;
          end if;
       end if;
    end;
@@ -1605,7 +1619,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IDeploymentResult /= null then
          if this.m_IDeploymentResult.all /= null then
             temp := this.m_IDeploymentResult.all.Release;
-            Free (this.m_IDeploymentResult);
+            if temp < 1 then
+               Free (this.m_IDeploymentResult);
+            end if;
          end if;
       end if;
    end;
@@ -1703,7 +1719,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IFindSharedPackageContainerOptions /= null then
          if this.m_IFindSharedPackageContainerOptions.all /= null then
             temp := this.m_IFindSharedPackageContainerOptions.all.Release;
-            Free (this.m_IFindSharedPackageContainerOptions);
+            if temp < 1 then
+               Free (this.m_IFindSharedPackageContainerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1819,7 +1837,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IPackageAllUserProvisioningOptions /= null then
          if this.m_IPackageAllUserProvisioningOptions.all /= null then
             temp := this.m_IPackageAllUserProvisioningOptions.all.Release;
-            Free (this.m_IPackageAllUserProvisioningOptions);
+            if temp < 1 then
+               Free (this.m_IPackageAllUserProvisioningOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1941,7 +1961,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IPackageManager /= null then
          if this.m_IPackageManager.all /= null then
             temp := this.m_IPackageManager.all.Release;
-            Free (this.m_IPackageManager);
+            if temp < 1 then
+               Free (this.m_IPackageManager);
+            end if;
          end if;
       end if;
    end;
@@ -5385,7 +5407,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IPackageManagerDebugSettings /= null then
          if this.m_IPackageManagerDebugSettings.all /= null then
             temp := this.m_IPackageManagerDebugSettings.all.Release;
-            Free (this.m_IPackageManagerDebugSettings);
+            if temp < 1 then
+               Free (this.m_IPackageManagerDebugSettings);
+            end if;
          end if;
       end if;
    end;
@@ -5503,7 +5527,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IPackageUserInformation /= null then
          if this.m_IPackageUserInformation.all /= null then
             temp := this.m_IPackageUserInformation.all.Release;
-            Free (this.m_IPackageUserInformation);
+            if temp < 1 then
+               Free (this.m_IPackageUserInformation);
+            end if;
          end if;
       end if;
    end;
@@ -5563,7 +5589,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IPackageVolume /= null then
          if this.m_IPackageVolume.all /= null then
             temp := this.m_IPackageVolume.all.Release;
-            Free (this.m_IPackageVolume);
+            if temp < 1 then
+               Free (this.m_IPackageVolume);
+            end if;
          end if;
       end if;
    end;
@@ -6113,7 +6141,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IRegisterPackageOptions /= null then
          if this.m_IRegisterPackageOptions.all /= null then
             temp := this.m_IRegisterPackageOptions.all.Release;
-            Free (this.m_IRegisterPackageOptions);
+            if temp < 1 then
+               Free (this.m_IRegisterPackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6545,7 +6575,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IRemovePackageOptions /= null then
          if this.m_IRemovePackageOptions.all /= null then
             temp := this.m_IRemovePackageOptions.all.Release;
-            Free (this.m_IRemovePackageOptions);
+            if temp < 1 then
+               Free (this.m_IRemovePackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6723,7 +6755,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_ISharedPackageContainer /= null then
          if this.m_ISharedPackageContainer.all /= null then
             temp := this.m_ISharedPackageContainer.all.Release;
-            Free (this.m_ISharedPackageContainer);
+            if temp < 1 then
+               Free (this.m_ISharedPackageContainer);
+            end if;
          end if;
       end if;
    end;
@@ -6850,7 +6884,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_ISharedPackageContainerManager /= null then
          if this.m_ISharedPackageContainerManager.all /= null then
             temp := this.m_ISharedPackageContainerManager.all.Release;
-            Free (this.m_ISharedPackageContainerManager);
+            if temp < 1 then
+               Free (this.m_ISharedPackageContainerManager);
+            end if;
          end if;
       end if;
    end;
@@ -7065,7 +7101,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_ISharedPackageContainerMember /= null then
          if this.m_ISharedPackageContainerMember.all /= null then
             temp := this.m_ISharedPackageContainerMember.all.Release;
-            Free (this.m_ISharedPackageContainerMember);
+            if temp < 1 then
+               Free (this.m_ISharedPackageContainerMember);
+            end if;
          end if;
       end if;
    end;
@@ -7137,7 +7175,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IStagePackageOptions /= null then
          if this.m_IStagePackageOptions.all /= null then
             temp := this.m_IStagePackageOptions.all.Release;
-            Free (this.m_IStagePackageOptions);
+            if temp < 1 then
+               Free (this.m_IStagePackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -7577,7 +7617,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IUpdateSharedPackageContainerOptions /= null then
          if this.m_IUpdateSharedPackageContainerOptions.all /= null then
             temp := this.m_IUpdateSharedPackageContainerOptions.all.Release;
-            Free (this.m_IUpdateSharedPackageContainerOptions);
+            if temp < 1 then
+               Free (this.m_IUpdateSharedPackageContainerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -7683,7 +7725,9 @@ package body WinUI3.Windows.Management.Deployment is
       if this.m_IUpdateSharedPackageContainerResult /= null then
          if this.m_IUpdateSharedPackageContainerResult.all /= null then
             temp := this.m_IUpdateSharedPackageContainerResult.all.Release;
-            Free (this.m_IUpdateSharedPackageContainerResult);
+            if temp < 1 then
+               Free (this.m_IUpdateSharedPackageContainerResult);
+            end if;
          end if;
       end if;
    end;

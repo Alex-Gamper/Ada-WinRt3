@@ -49,7 +49,9 @@ package body WinUI3.Microsoft.UI.Xaml.Navigation is
       if this.m_IFrameNavigationOptions /= null then
          if this.m_IFrameNavigationOptions.all /= null then
             temp := this.m_IFrameNavigationOptions.all.Release;
-            Free (this.m_IFrameNavigationOptions);
+            if temp < 1 then
+               Free (this.m_IFrameNavigationOptions);
+            end if;
          end if;
       end if;
    end;
@@ -183,7 +185,9 @@ package body WinUI3.Microsoft.UI.Xaml.Navigation is
       if this.m_INavigatingCancelEventArgs /= null then
          if this.m_INavigatingCancelEventArgs.all /= null then
             temp := this.m_INavigatingCancelEventArgs.all.Release;
-            Free (this.m_INavigatingCancelEventArgs);
+            if temp < 1 then
+               Free (this.m_INavigatingCancelEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -325,7 +329,9 @@ package body WinUI3.Microsoft.UI.Xaml.Navigation is
       if this.m_INavigationEventArgs /= null then
          if this.m_INavigationEventArgs.all /= null then
             temp := this.m_INavigationEventArgs.all.Release;
-            Free (this.m_INavigationEventArgs);
+            if temp < 1 then
+               Free (this.m_INavigationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -471,7 +477,9 @@ package body WinUI3.Microsoft.UI.Xaml.Navigation is
       if this.m_INavigationFailedEventArgs /= null then
          if this.m_INavigationFailedEventArgs.all /= null then
             temp := this.m_INavigationFailedEventArgs.all.Release;
-            Free (this.m_INavigationFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_INavigationFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -592,7 +600,9 @@ package body WinUI3.Microsoft.UI.Xaml.Navigation is
       if this.m_IPageStackEntry /= null then
          if this.m_IPageStackEntry.all /= null then
             temp := this.m_IPageStackEntry.all.Release;
-            Free (this.m_IPageStackEntry);
+            if temp < 1 then
+               Free (this.m_IPageStackEntry);
+            end if;
          end if;
       end if;
    end;

@@ -47,7 +47,9 @@ package body WinUI3.Windows.Globalization.DateTimeFormatting is
       if this.m_IDateTimeFormatter /= null then
          if this.m_IDateTimeFormatter.all /= null then
             temp := this.m_IDateTimeFormatter.all.Release;
-            Free (this.m_IDateTimeFormatter);
+            if temp < 1 then
+               Free (this.m_IDateTimeFormatter);
+            end if;
          end if;
       end if;
    end;

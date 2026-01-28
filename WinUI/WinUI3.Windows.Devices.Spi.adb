@@ -58,7 +58,9 @@ package body WinUI3.Windows.Devices.Spi is
       if this.m_ISpiBusInfo /= null then
          if this.m_ISpiBusInfo.all /= null then
             temp := this.m_ISpiBusInfo.all.Release;
-            Free (this.m_ISpiBusInfo);
+            if temp < 1 then
+               Free (this.m_ISpiBusInfo);
+            end if;
          end if;
       end if;
    end;
@@ -152,7 +154,9 @@ package body WinUI3.Windows.Devices.Spi is
       if this.m_ISpiConnectionSettings /= null then
          if this.m_ISpiConnectionSettings.all /= null then
             temp := this.m_ISpiConnectionSettings.all.Release;
-            Free (this.m_ISpiConnectionSettings);
+            if temp < 1 then
+               Free (this.m_ISpiConnectionSettings);
+            end if;
          end if;
       end if;
    end;
@@ -362,7 +366,9 @@ package body WinUI3.Windows.Devices.Spi is
       if this.m_ISpiController /= null then
          if this.m_ISpiController.all /= null then
             temp := this.m_ISpiController.all.Release;
-            Free (this.m_ISpiController);
+            if temp < 1 then
+               Free (this.m_ISpiController);
+            end if;
          end if;
       end if;
    end;
@@ -549,7 +555,9 @@ package body WinUI3.Windows.Devices.Spi is
       if this.m_ISpiDevice /= null then
          if this.m_ISpiDevice.all /= null then
             temp := this.m_ISpiDevice.all.Release;
-            Free (this.m_ISpiDevice);
+            if temp < 1 then
+               Free (this.m_ISpiDevice);
+            end if;
          end if;
       end if;
    end;

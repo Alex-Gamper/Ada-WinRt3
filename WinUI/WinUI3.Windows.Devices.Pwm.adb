@@ -55,7 +55,9 @@ package body WinUI3.Windows.Devices.Pwm is
       if this.m_IPwmController /= null then
          if this.m_IPwmController.all /= null then
             temp := this.m_IPwmController.all.Release;
-            Free (this.m_IPwmController);
+            if temp < 1 then
+               Free (this.m_IPwmController);
+            end if;
          end if;
       end if;
    end;
@@ -456,7 +458,9 @@ package body WinUI3.Windows.Devices.Pwm is
       if this.m_IPwmPin /= null then
          if this.m_IPwmPin.all /= null then
             temp := this.m_IPwmPin.all.Release;
-            Free (this.m_IPwmPin);
+            if temp < 1 then
+               Free (this.m_IPwmPin);
+            end if;
          end if;
       end if;
    end;

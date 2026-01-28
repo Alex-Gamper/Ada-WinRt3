@@ -55,7 +55,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IAccessibilitySettings /= null then
          if this.m_IAccessibilitySettings.all /= null then
             temp := this.m_IAccessibilitySettings.all.Release;
-            Free (this.m_IAccessibilitySettings);
+            if temp < 1 then
+               Free (this.m_IAccessibilitySettings);
+            end if;
          end if;
       end if;
    end;
@@ -167,7 +169,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IActivationViewSwitcher /= null then
          if this.m_IActivationViewSwitcher.all /= null then
             temp := this.m_IActivationViewSwitcher.all.Release;
-            Free (this.m_IActivationViewSwitcher);
+            if temp < 1 then
+               Free (this.m_IActivationViewSwitcher);
+            end if;
          end if;
       end if;
    end;
@@ -295,7 +299,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IApplicationView /= null then
          if this.m_IApplicationView.all /= null then
             temp := this.m_IApplicationView.all.Release;
-            Free (this.m_IApplicationView);
+            if temp < 1 then
+               Free (this.m_IApplicationView);
+            end if;
          end if;
       end if;
    end;
@@ -1492,7 +1498,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IApplicationViewConsolidatedEventArgs /= null then
          if this.m_IApplicationViewConsolidatedEventArgs.all /= null then
             temp := this.m_IApplicationViewConsolidatedEventArgs.all.Release;
-            Free (this.m_IApplicationViewConsolidatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IApplicationViewConsolidatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1553,7 +1561,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IApplicationViewScaling /= null then
          if this.m_IApplicationViewScaling.all /= null then
             temp := this.m_IApplicationViewScaling.all.Release;
-            Free (this.m_IApplicationViewScaling);
+            if temp < 1 then
+               Free (this.m_IApplicationViewScaling);
+            end if;
          end if;
       end if;
    end;
@@ -2245,7 +2255,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IApplicationViewTitleBar /= null then
          if this.m_IApplicationViewTitleBar.all /= null then
             temp := this.m_IApplicationViewTitleBar.all.Release;
-            Free (this.m_IApplicationViewTitleBar);
+            if temp < 1 then
+               Free (this.m_IApplicationViewTitleBar);
+            end if;
          end if;
       end if;
    end;
@@ -2688,7 +2700,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IApplicationViewTransferContext /= null then
          if this.m_IApplicationViewTransferContext.all /= null then
             temp := this.m_IApplicationViewTransferContext.all.Release;
-            Free (this.m_IApplicationViewTransferContext);
+            if temp < 1 then
+               Free (this.m_IApplicationViewTransferContext);
+            end if;
          end if;
       end if;
    end;
@@ -2789,7 +2803,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IInputPane /= null then
          if this.m_IInputPane.all /= null then
             temp := this.m_IInputPane.all.Release;
-            Free (this.m_IInputPane);
+            if temp < 1 then
+               Free (this.m_IInputPane);
+            end if;
          end if;
       end if;
    end;
@@ -3031,7 +3047,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IInputPaneVisibilityEventArgs /= null then
          if this.m_IInputPaneVisibilityEventArgs.all /= null then
             temp := this.m_IInputPaneVisibilityEventArgs.all.Release;
-            Free (this.m_IInputPaneVisibilityEventArgs);
+            if temp < 1 then
+               Free (this.m_IInputPaneVisibilityEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3545,7 +3563,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IUISettings /= null then
          if this.m_IUISettings.all /= null then
             temp := this.m_IUISettings.all.Release;
-            Free (this.m_IUISettings);
+            if temp < 1 then
+               Free (this.m_IUISettings);
+            end if;
          end if;
       end if;
    end;
@@ -4140,7 +4160,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IUISettingsAnimationsEnabledChangedEventArgs /= null then
          if this.m_IUISettingsAnimationsEnabledChangedEventArgs.all /= null then
             temp := this.m_IUISettingsAnimationsEnabledChangedEventArgs.all.Release;
-            Free (this.m_IUISettingsAnimationsEnabledChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUISettingsAnimationsEnabledChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4163,7 +4185,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IUISettingsAutoHideScrollBarsChangedEventArgs /= null then
          if this.m_IUISettingsAutoHideScrollBarsChangedEventArgs.all /= null then
             temp := this.m_IUISettingsAutoHideScrollBarsChangedEventArgs.all.Release;
-            Free (this.m_IUISettingsAutoHideScrollBarsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUISettingsAutoHideScrollBarsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4186,7 +4210,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IUISettingsMessageDurationChangedEventArgs /= null then
          if this.m_IUISettingsMessageDurationChangedEventArgs.all /= null then
             temp := this.m_IUISettingsMessageDurationChangedEventArgs.all.Release;
-            Free (this.m_IUISettingsMessageDurationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUISettingsMessageDurationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4209,7 +4235,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IUIViewSettings /= null then
          if this.m_IUIViewSettings.all /= null then
             temp := this.m_IUIViewSettings.all.Release;
-            Free (this.m_IUIViewSettings);
+            if temp < 1 then
+               Free (this.m_IUIViewSettings);
+            end if;
          end if;
       end if;
    end;
@@ -4340,7 +4368,9 @@ package body WinUI3.Windows.UI.ViewManagement is
       if this.m_IViewModePreferences /= null then
          if this.m_IViewModePreferences.all /= null then
             temp := this.m_IViewModePreferences.all.Release;
-            Free (this.m_IViewModePreferences);
+            if temp < 1 then
+               Free (this.m_IViewModePreferences);
+            end if;
          end if;
       end if;
    end;

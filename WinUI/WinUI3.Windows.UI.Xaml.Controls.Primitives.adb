@@ -52,7 +52,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IButtonBase /= null then
          if this.m_IButtonBase.all /= null then
             temp := this.m_IButtonBase.all.Release;
-            Free (this.m_IButtonBase);
+            if temp < 1 then
+               Free (this.m_IButtonBase);
+            end if;
          end if;
       end if;
    end;
@@ -389,7 +391,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IToggleButton /= null then
          if this.m_IToggleButton.all /= null then
             temp := this.m_IToggleButton.all.Release;
-            Free (this.m_IToggleButton);
+            if temp < 1 then
+               Free (this.m_IToggleButton);
+            end if;
          end if;
       end if;
    end;
@@ -675,7 +679,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ISelector /= null then
          if this.m_ISelector.all /= null then
             temp := this.m_ISelector.all.Release;
-            Free (this.m_ISelector);
+            if temp < 1 then
+               Free (this.m_ISelector);
+            end if;
          end if;
       end if;
    end;
@@ -1049,7 +1055,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ISelectorItem /= null then
          if this.m_ISelectorItem.all /= null then
             temp := this.m_ISelectorItem.all.Release;
-            Free (this.m_ISelectorItem);
+            if temp < 1 then
+               Free (this.m_ISelectorItem);
+            end if;
          end if;
       end if;
    end;
@@ -1159,7 +1167,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IFlyoutBase /= null then
          if this.m_IFlyoutBase.all /= null then
             temp := this.m_IFlyoutBase.all.Release;
-            Free (this.m_IFlyoutBase);
+            if temp < 1 then
+               Free (this.m_IFlyoutBase);
+            end if;
          end if;
       end if;
    end;
@@ -2331,7 +2341,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IPickerFlyoutBase /= null then
          if this.m_IPickerFlyoutBase.all /= null then
             temp := this.m_IPickerFlyoutBase.all.Release;
-            Free (this.m_IPickerFlyoutBase);
+            if temp < 1 then
+               Free (this.m_IPickerFlyoutBase);
+            end if;
          end if;
       end if;
    end;
@@ -2499,7 +2511,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IAppBarButtonTemplateSettings /= null then
          if this.m_IAppBarButtonTemplateSettings.all /= null then
             temp := this.m_IAppBarButtonTemplateSettings.all.Release;
-            Free (this.m_IAppBarButtonTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IAppBarButtonTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2539,7 +2553,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IAppBarTemplateSettings /= null then
          if this.m_IAppBarTemplateSettings.all /= null then
             temp := this.m_IAppBarTemplateSettings.all.Release;
-            Free (this.m_IAppBarTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IAppBarTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2744,7 +2760,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IAppBarToggleButtonTemplateSettings /= null then
          if this.m_IAppBarToggleButtonTemplateSettings.all /= null then
             temp := this.m_IAppBarToggleButtonTemplateSettings.all.Release;
-            Free (this.m_IAppBarToggleButtonTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IAppBarToggleButtonTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2784,7 +2802,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICalendarPanel /= null then
          if this.m_ICalendarPanel.all /= null then
             temp := this.m_ICalendarPanel.all.Release;
-            Free (this.m_ICalendarPanel);
+            if temp < 1 then
+               Free (this.m_ICalendarPanel);
+            end if;
          end if;
       end if;
    end;
@@ -2826,7 +2846,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICalendarViewTemplateSettings /= null then
          if this.m_ICalendarViewTemplateSettings.all /= null then
             temp := this.m_ICalendarViewTemplateSettings.all.Release;
-            Free (this.m_ICalendarViewTemplateSettings);
+            if temp < 1 then
+               Free (this.m_ICalendarViewTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -3128,7 +3150,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICarouselPanel /= null then
          if this.m_ICarouselPanel.all /= null then
             temp := this.m_ICarouselPanel.all.Release;
-            Free (this.m_ICarouselPanel);
+            if temp < 1 then
+               Free (this.m_ICarouselPanel);
+            end if;
          end if;
       end if;
    end;
@@ -3768,7 +3792,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IRangeBase /= null then
          if this.m_IRangeBase.all /= null then
             temp := this.m_IRangeBase.all.Release;
-            Free (this.m_IRangeBase);
+            if temp < 1 then
+               Free (this.m_IRangeBase);
+            end if;
          end if;
       end if;
    end;
@@ -4195,7 +4221,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IColorPickerSlider /= null then
          if this.m_IColorPickerSlider.all /= null then
             temp := this.m_IColorPickerSlider.all.Release;
-            Free (this.m_IColorPickerSlider);
+            if temp < 1 then
+               Free (this.m_IColorPickerSlider);
+            end if;
          end if;
       end if;
    end;
@@ -4305,7 +4333,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IColorSpectrum /= null then
          if this.m_IColorSpectrum.all /= null then
             temp := this.m_IColorSpectrum.all.Release;
-            Free (this.m_IColorSpectrum);
+            if temp < 1 then
+               Free (this.m_IColorSpectrum);
+            end if;
          end if;
       end if;
    end;
@@ -4952,7 +4982,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IComboBoxTemplateSettings /= null then
          if this.m_IComboBoxTemplateSettings.all /= null then
             temp := this.m_IComboBoxTemplateSettings.all.Release;
-            Free (this.m_IComboBoxTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IComboBoxTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -5064,7 +5096,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICommandBarFlyoutCommandBar /= null then
          if this.m_ICommandBarFlyoutCommandBar.all /= null then
             temp := this.m_ICommandBarFlyoutCommandBar.all.Release;
-            Free (this.m_ICommandBarFlyoutCommandBar);
+            if temp < 1 then
+               Free (this.m_ICommandBarFlyoutCommandBar);
+            end if;
          end if;
       end if;
    end;
@@ -5135,7 +5169,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICommandBarFlyoutCommandBarTemplateSettings /= null then
          if this.m_ICommandBarFlyoutCommandBarTemplateSettings.all /= null then
             temp := this.m_ICommandBarFlyoutCommandBarTemplateSettings.all.Release;
-            Free (this.m_ICommandBarFlyoutCommandBarTemplateSettings);
+            if temp < 1 then
+               Free (this.m_ICommandBarFlyoutCommandBarTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -5498,7 +5534,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ICommandBarTemplateSettings /= null then
          if this.m_ICommandBarTemplateSettings.all /= null then
             temp := this.m_ICommandBarTemplateSettings.all.Release;
-            Free (this.m_ICommandBarTemplateSettings);
+            if temp < 1 then
+               Free (this.m_ICommandBarTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -5745,7 +5783,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IDragCompletedEventArgs /= null then
          if this.m_IDragCompletedEventArgs.all /= null then
             temp := this.m_IDragCompletedEventArgs.all.Release;
-            Free (this.m_IDragCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDragCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5866,7 +5906,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IDragDeltaEventArgs /= null then
          if this.m_IDragDeltaEventArgs.all /= null then
             temp := this.m_IDragDeltaEventArgs.all.Release;
-            Free (this.m_IDragDeltaEventArgs);
+            if temp < 1 then
+               Free (this.m_IDragDeltaEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5969,7 +6011,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IDragStartedEventArgs /= null then
          if this.m_IDragStartedEventArgs.all /= null then
             temp := this.m_IDragStartedEventArgs.all.Release;
-            Free (this.m_IDragStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDragStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6072,7 +6116,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IFlyoutBaseClosingEventArgs /= null then
          if this.m_IFlyoutBaseClosingEventArgs.all /= null then
             temp := this.m_IFlyoutBaseClosingEventArgs.all.Release;
-            Free (this.m_IFlyoutBaseClosingEventArgs);
+            if temp < 1 then
+               Free (this.m_IFlyoutBaseClosingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6127,7 +6173,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IFlyoutShowOptions /= null then
          if this.m_IFlyoutShowOptions.all /= null then
             temp := this.m_IFlyoutShowOptions.all.Release;
-            Free (this.m_IFlyoutShowOptions);
+            if temp < 1 then
+               Free (this.m_IFlyoutShowOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6312,7 +6360,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IGeneratorPositionHelper /= null then
          if this.m_IGeneratorPositionHelper.all /= null then
             temp := this.m_IGeneratorPositionHelper.all.Release;
-            Free (this.m_IGeneratorPositionHelper);
+            if temp < 1 then
+               Free (this.m_IGeneratorPositionHelper);
+            end if;
          end if;
       end if;
    end;
@@ -6363,7 +6413,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IGridViewItemPresenter /= null then
          if this.m_IGridViewItemPresenter.all /= null then
             temp := this.m_IGridViewItemPresenter.all.Release;
-            Free (this.m_IGridViewItemPresenter);
+            if temp < 1 then
+               Free (this.m_IGridViewItemPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -7685,7 +7737,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IGridViewItemTemplateSettings /= null then
          if this.m_IGridViewItemTemplateSettings.all /= null then
             temp := this.m_IGridViewItemTemplateSettings.all.Release;
-            Free (this.m_IGridViewItemTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IGridViewItemTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -7725,7 +7779,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IItemsChangedEventArgs /= null then
          if this.m_IItemsChangedEventArgs.all /= null then
             temp := this.m_IItemsChangedEventArgs.all.Release;
-            Free (this.m_IItemsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IItemsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7849,7 +7905,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IJumpListItemBackgroundConverter /= null then
          if this.m_IJumpListItemBackgroundConverter.all /= null then
             temp := this.m_IJumpListItemBackgroundConverter.all.Release;
-            Free (this.m_IJumpListItemBackgroundConverter);
+            if temp < 1 then
+               Free (this.m_IJumpListItemBackgroundConverter);
+            end if;
          end if;
       end if;
    end;
@@ -8066,7 +8124,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IJumpListItemForegroundConverter /= null then
          if this.m_IJumpListItemForegroundConverter.all /= null then
             temp := this.m_IJumpListItemForegroundConverter.all.Release;
-            Free (this.m_IJumpListItemForegroundConverter);
+            if temp < 1 then
+               Free (this.m_IJumpListItemForegroundConverter);
+            end if;
          end if;
       end if;
    end;
@@ -8283,7 +8343,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ILayoutInformation /= null then
          if this.m_ILayoutInformation.all /= null then
             temp := this.m_ILayoutInformation.all.Release;
-            Free (this.m_ILayoutInformation);
+            if temp < 1 then
+               Free (this.m_ILayoutInformation);
+            end if;
          end if;
       end if;
    end;
@@ -8384,7 +8446,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IListViewItemPresenter /= null then
          if this.m_IListViewItemPresenter.all /= null then
             temp := this.m_IListViewItemPresenter.all.Release;
-            Free (this.m_IListViewItemPresenter);
+            if temp < 1 then
+               Free (this.m_IListViewItemPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -12164,7 +12228,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IListViewItemTemplateSettings /= null then
          if this.m_IListViewItemTemplateSettings.all /= null then
             temp := this.m_IListViewItemTemplateSettings.all.Release;
-            Free (this.m_IListViewItemTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IListViewItemTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -12204,7 +12270,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ILoopingSelector /= null then
          if this.m_ILoopingSelector.all /= null then
             temp := this.m_ILoopingSelector.all.Release;
-            Free (this.m_ILoopingSelector);
+            if temp < 1 then
+               Free (this.m_ILoopingSelector);
+            end if;
          end if;
       end if;
    end;
@@ -12661,7 +12729,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ILoopingSelectorItem /= null then
          if this.m_ILoopingSelectorItem.all /= null then
             temp := this.m_ILoopingSelectorItem.all.Release;
-            Free (this.m_ILoopingSelectorItem);
+            if temp < 1 then
+               Free (this.m_ILoopingSelectorItem);
+            end if;
          end if;
       end if;
    end;
@@ -12684,7 +12754,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ILoopingSelectorPanel /= null then
          if this.m_ILoopingSelectorPanel.all /= null then
             temp := this.m_ILoopingSelectorPanel.all.Release;
-            Free (this.m_ILoopingSelectorPanel);
+            if temp < 1 then
+               Free (this.m_ILoopingSelectorPanel);
+            end if;
          end if;
       end if;
    end;
@@ -12881,7 +12953,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IMenuFlyoutItemTemplateSettings /= null then
          if this.m_IMenuFlyoutItemTemplateSettings.all /= null then
             temp := this.m_IMenuFlyoutItemTemplateSettings.all.Release;
-            Free (this.m_IMenuFlyoutItemTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IMenuFlyoutItemTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -12921,7 +12995,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IMenuFlyoutPresenterTemplateSettings /= null then
          if this.m_IMenuFlyoutPresenterTemplateSettings.all /= null then
             temp := this.m_IMenuFlyoutPresenterTemplateSettings.all.Release;
-            Free (this.m_IMenuFlyoutPresenterTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IMenuFlyoutPresenterTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -12961,7 +13037,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_INavigationViewItemPresenter /= null then
          if this.m_INavigationViewItemPresenter.all /= null then
             temp := this.m_INavigationViewItemPresenter.all.Release;
-            Free (this.m_INavigationViewItemPresenter);
+            if temp < 1 then
+               Free (this.m_INavigationViewItemPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -13074,7 +13152,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IOrientedVirtualizingPanel /= null then
          if this.m_IOrientedVirtualizingPanel.all /= null then
             temp := this.m_IOrientedVirtualizingPanel.all.Release;
-            Free (this.m_IOrientedVirtualizingPanel);
+            if temp < 1 then
+               Free (this.m_IOrientedVirtualizingPanel);
+            end if;
          end if;
       end if;
    end;
@@ -13710,7 +13790,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IPivotHeaderItem /= null then
          if this.m_IPivotHeaderItem.all /= null then
             temp := this.m_IPivotHeaderItem.all.Release;
-            Free (this.m_IPivotHeaderItem);
+            if temp < 1 then
+               Free (this.m_IPivotHeaderItem);
+            end if;
          end if;
       end if;
    end;
@@ -13761,7 +13843,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IPivotHeaderPanel /= null then
          if this.m_IPivotHeaderPanel.all /= null then
             temp := this.m_IPivotHeaderPanel.all.Release;
-            Free (this.m_IPivotHeaderPanel);
+            if temp < 1 then
+               Free (this.m_IPivotHeaderPanel);
+            end if;
          end if;
       end if;
    end;
@@ -13803,7 +13887,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IPivotPanel /= null then
          if this.m_IPivotPanel.all /= null then
             temp := this.m_IPivotPanel.all.Release;
-            Free (this.m_IPivotPanel);
+            if temp < 1 then
+               Free (this.m_IPivotPanel);
+            end if;
          end if;
       end if;
    end;
@@ -14019,7 +14105,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IPopup /= null then
          if this.m_IPopup.all /= null then
             temp := this.m_IPopup.all.Release;
-            Free (this.m_IPopup);
+            if temp < 1 then
+               Free (this.m_IPopup);
+            end if;
          end if;
       end if;
    end;
@@ -14814,7 +14902,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IProgressBarTemplateSettings /= null then
          if this.m_IProgressBarTemplateSettings.all /= null then
             temp := this.m_IProgressBarTemplateSettings.all.Release;
-            Free (this.m_IProgressBarTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IProgressBarTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -14956,7 +15046,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IProgressRingTemplateSettings /= null then
          if this.m_IProgressRingTemplateSettings.all /= null then
             temp := this.m_IProgressRingTemplateSettings.all.Release;
-            Free (this.m_IProgressRingTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IProgressRingTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -15030,7 +15122,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IRangeBaseValueChangedEventArgs /= null then
          if this.m_IRangeBaseValueChangedEventArgs.all /= null then
             temp := this.m_IRangeBaseValueChangedEventArgs.all.Release;
-            Free (this.m_IRangeBaseValueChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRangeBaseValueChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15103,7 +15197,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IRepeatButton /= null then
          if this.m_IRepeatButton.all /= null then
             temp := this.m_IRepeatButton.all.Release;
-            Free (this.m_IRepeatButton);
+            if temp < 1 then
+               Free (this.m_IRepeatButton);
+            end if;
          end if;
       end if;
    end;
@@ -15260,7 +15356,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IScrollBar /= null then
          if this.m_IScrollBar.all /= null then
             temp := this.m_IScrollBar.all.Release;
-            Free (this.m_IScrollBar);
+            if temp < 1 then
+               Free (this.m_IScrollBar);
+            end if;
          end if;
       end if;
    end;
@@ -15506,7 +15604,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IScrollEventArgs /= null then
          if this.m_IScrollEventArgs.all /= null then
             temp := this.m_IScrollEventArgs.all.Release;
-            Free (this.m_IScrollEventArgs);
+            if temp < 1 then
+               Free (this.m_IScrollEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15598,7 +15698,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ISettingsFlyoutTemplateSettings /= null then
          if this.m_ISettingsFlyoutTemplateSettings.all /= null then
             temp := this.m_ISettingsFlyoutTemplateSettings.all.Release;
-            Free (this.m_ISettingsFlyoutTemplateSettings);
+            if temp < 1 then
+               Free (this.m_ISettingsFlyoutTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -15738,7 +15840,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ISplitViewTemplateSettings /= null then
          if this.m_ISplitViewTemplateSettings.all /= null then
             temp := this.m_ISplitViewTemplateSettings.all.Release;
-            Free (this.m_ISplitViewTemplateSettings);
+            if temp < 1 then
+               Free (this.m_ISplitViewTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -15863,7 +15967,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IThumb /= null then
          if this.m_IThumb.all /= null then
             temp := this.m_IThumb.all.Release;
-            Free (this.m_IThumb);
+            if temp < 1 then
+               Free (this.m_IThumb);
+            end if;
          end if;
       end if;
    end;
@@ -16062,7 +16168,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_ITickBar /= null then
          if this.m_ITickBar.all /= null then
             temp := this.m_ITickBar.all.Release;
-            Free (this.m_ITickBar);
+            if temp < 1 then
+               Free (this.m_ITickBar);
+            end if;
          end if;
       end if;
    end;
@@ -16166,7 +16274,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IToggleSwitchTemplateSettings /= null then
          if this.m_IToggleSwitchTemplateSettings.all /= null then
             temp := this.m_IToggleSwitchTemplateSettings.all.Release;
-            Free (this.m_IToggleSwitchTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IToggleSwitchTemplateSettings);
+            end if;
          end if;
       end if;
    end;
@@ -16325,7 +16435,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Primitives is
       if this.m_IToolTipTemplateSettings /= null then
          if this.m_IToolTipTemplateSettings.all /= null then
             temp := this.m_IToolTipTemplateSettings.all.Release;
-            Free (this.m_IToolTipTemplateSettings);
+            if temp < 1 then
+               Free (this.m_IToolTipTemplateSettings);
+            end if;
          end if;
       end if;
    end;

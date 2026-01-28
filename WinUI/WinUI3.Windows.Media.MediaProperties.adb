@@ -54,7 +54,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IAudioEncodingProperties /= null then
          if this.m_IAudioEncodingProperties.all /= null then
             temp := this.m_IAudioEncodingProperties.all.Release;
-            Free (this.m_IAudioEncodingProperties);
+            if temp < 1 then
+               Free (this.m_IAudioEncodingProperties);
+            end if;
          end if;
       end if;
    end;
@@ -866,7 +868,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IContainerEncodingProperties /= null then
          if this.m_IContainerEncodingProperties.all /= null then
             temp := this.m_IContainerEncodingProperties.all.Release;
-            Free (this.m_IContainerEncodingProperties);
+            if temp < 1 then
+               Free (this.m_IContainerEncodingProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1709,7 +1713,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IImageEncodingProperties /= null then
          if this.m_IImageEncodingProperties.all /= null then
             temp := this.m_IImageEncodingProperties.all.Release;
-            Free (this.m_IImageEncodingProperties);
+            if temp < 1 then
+               Free (this.m_IImageEncodingProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2082,7 +2088,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IMediaEncodingProfile /= null then
          if this.m_IMediaEncodingProfile.all /= null then
             temp := this.m_IMediaEncodingProfile.all.Release;
-            Free (this.m_IMediaEncodingProfile);
+            if temp < 1 then
+               Free (this.m_IMediaEncodingProfile);
+            end if;
          end if;
       end if;
    end;
@@ -4289,7 +4297,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IMediaRatio /= null then
          if this.m_IMediaRatio.all /= null then
             temp := this.m_IMediaRatio.all.Release;
-            Free (this.m_IMediaRatio);
+            if temp < 1 then
+               Free (this.m_IMediaRatio);
+            end if;
          end if;
       end if;
    end;
@@ -4487,7 +4497,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IMediaEncodingProperties /= null then
          if this.m_IMediaEncodingProperties.all /= null then
             temp := this.m_IMediaEncodingProperties.all.Release;
-            Free (this.m_IMediaEncodingProperties);
+            if temp < 1 then
+               Free (this.m_IMediaEncodingProperties);
+            end if;
          end if;
       end if;
    end;
@@ -4777,7 +4789,9 @@ package body WinUI3.Windows.Media.MediaProperties is
       if this.m_IVideoEncodingProperties /= null then
          if this.m_IVideoEncodingProperties.all /= null then
             temp := this.m_IVideoEncodingProperties.all.Release;
-            Free (this.m_IVideoEncodingProperties);
+            if temp < 1 then
+               Free (this.m_IVideoEncodingProperties);
+            end if;
          end if;
       end if;
    end;

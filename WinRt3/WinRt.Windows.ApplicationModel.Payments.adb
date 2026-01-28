@@ -57,7 +57,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentAddress /= null then
          if this.m_IPaymentAddress.all /= null then
             temp := this.m_IPaymentAddress.all.Release;
-            Free (this.m_IPaymentAddress);
+            if temp < 1 then
+               Free (this.m_IPaymentAddress);
+            end if;
          end if;
       end if;
    end;
@@ -524,7 +526,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentCanMakePaymentResult /= null then
          if this.m_IPaymentCanMakePaymentResult.all /= null then
             temp := this.m_IPaymentCanMakePaymentResult.all.Release;
-            Free (this.m_IPaymentCanMakePaymentResult);
+            if temp < 1 then
+               Free (this.m_IPaymentCanMakePaymentResult);
+            end if;
          end if;
       end if;
    end;
@@ -591,7 +595,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentCurrencyAmount /= null then
          if this.m_IPaymentCurrencyAmount.all /= null then
             temp := this.m_IPaymentCurrencyAmount.all.Release;
-            Free (this.m_IPaymentCurrencyAmount);
+            if temp < 1 then
+               Free (this.m_IPaymentCurrencyAmount);
+            end if;
          end if;
       end if;
    end;
@@ -789,7 +795,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentDetails /= null then
          if this.m_IPaymentDetails.all /= null then
             temp := this.m_IPaymentDetails.all.Release;
-            Free (this.m_IPaymentDetails);
+            if temp < 1 then
+               Free (this.m_IPaymentDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1020,7 +1028,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentDetailsModifier /= null then
          if this.m_IPaymentDetailsModifier.all /= null then
             temp := this.m_IPaymentDetailsModifier.all.Release;
-            Free (this.m_IPaymentDetailsModifier);
+            if temp < 1 then
+               Free (this.m_IPaymentDetailsModifier);
+            end if;
          end if;
       end if;
    end;
@@ -1206,7 +1216,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentItem /= null then
          if this.m_IPaymentItem.all /= null then
             temp := this.m_IPaymentItem.all.Release;
-            Free (this.m_IPaymentItem);
+            if temp < 1 then
+               Free (this.m_IPaymentItem);
+            end if;
          end if;
       end if;
    end;
@@ -1363,7 +1375,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentMediator /= null then
          if this.m_IPaymentMediator.all /= null then
             temp := this.m_IPaymentMediator.all.Release;
-            Free (this.m_IPaymentMediator);
+            if temp < 1 then
+               Free (this.m_IPaymentMediator);
+            end if;
          end if;
       end if;
    end;
@@ -1674,7 +1688,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentMerchantInfo /= null then
          if this.m_IPaymentMerchantInfo.all /= null then
             temp := this.m_IPaymentMerchantInfo.all.Release;
-            Free (this.m_IPaymentMerchantInfo);
+            if temp < 1 then
+               Free (this.m_IPaymentMerchantInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1780,7 +1796,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentMethodData /= null then
          if this.m_IPaymentMethodData.all /= null then
             temp := this.m_IPaymentMethodData.all.Release;
-            Free (this.m_IPaymentMethodData);
+            if temp < 1 then
+               Free (this.m_IPaymentMethodData);
+            end if;
          end if;
       end if;
    end;
@@ -1897,7 +1915,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentOptions /= null then
          if this.m_IPaymentOptions.all /= null then
             temp := this.m_IPaymentOptions.all.Release;
-            Free (this.m_IPaymentOptions);
+            if temp < 1 then
+               Free (this.m_IPaymentOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2099,7 +2119,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentRequest /= null then
          if this.m_IPaymentRequest.all /= null then
             temp := this.m_IPaymentRequest.all.Release;
-            Free (this.m_IPaymentRequest);
+            if temp < 1 then
+               Free (this.m_IPaymentRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2337,7 +2359,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentRequestChangedArgs /= null then
          if this.m_IPaymentRequestChangedArgs.all /= null then
             temp := this.m_IPaymentRequestChangedArgs.all.Release;
-            Free (this.m_IPaymentRequestChangedArgs);
+            if temp < 1 then
+               Free (this.m_IPaymentRequestChangedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2448,7 +2472,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentRequestChangedResult /= null then
          if this.m_IPaymentRequestChangedResult.all /= null then
             temp := this.m_IPaymentRequestChangedResult.all.Release;
-            Free (this.m_IPaymentRequestChangedResult);
+            if temp < 1 then
+               Free (this.m_IPaymentRequestChangedResult);
+            end if;
          end if;
       end if;
    end;
@@ -2627,7 +2653,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentRequestSubmitResult /= null then
          if this.m_IPaymentRequestSubmitResult.all /= null then
             temp := this.m_IPaymentRequestSubmitResult.all.Release;
-            Free (this.m_IPaymentRequestSubmitResult);
+            if temp < 1 then
+               Free (this.m_IPaymentRequestSubmitResult);
+            end if;
          end if;
       end if;
    end;
@@ -2687,7 +2715,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentResponse /= null then
          if this.m_IPaymentResponse.all /= null then
             temp := this.m_IPaymentResponse.all.Release;
-            Free (this.m_IPaymentResponse);
+            if temp < 1 then
+               Free (this.m_IPaymentResponse);
+            end if;
          end if;
       end if;
    end;
@@ -2873,7 +2903,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentShippingOption /= null then
          if this.m_IPaymentShippingOption.all /= null then
             temp := this.m_IPaymentShippingOption.all.Release;
-            Free (this.m_IPaymentShippingOption);
+            if temp < 1 then
+               Free (this.m_IPaymentShippingOption);
+            end if;
          end if;
       end if;
    end;
@@ -3126,7 +3158,9 @@ package body WinRt.Windows.ApplicationModel.Payments is
       if this.m_IPaymentToken /= null then
          if this.m_IPaymentToken.all /= null then
             temp := this.m_IPaymentToken.all.Release;
-            Free (this.m_IPaymentToken);
+            if temp < 1 then
+               Free (this.m_IPaymentToken);
+            end if;
          end if;
       end if;
    end;

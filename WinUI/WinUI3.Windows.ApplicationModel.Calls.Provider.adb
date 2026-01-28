@@ -52,7 +52,9 @@ package body WinUI3.Windows.ApplicationModel.Calls.Provider is
       if this.m_IPhoneCallOrigin /= null then
          if this.m_IPhoneCallOrigin.all /= null then
             temp := this.m_IPhoneCallOrigin.all.Release;
-            Free (this.m_IPhoneCallOrigin);
+            if temp < 1 then
+               Free (this.m_IPhoneCallOrigin);
+            end if;
          end if;
       end if;
    end;

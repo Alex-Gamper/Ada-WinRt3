@@ -55,7 +55,9 @@ package body WinUI3.Windows.Devices.Adc is
       if this.m_IAdcChannel /= null then
          if this.m_IAdcChannel.all /= null then
             temp := this.m_IAdcChannel.all.Release;
-            Free (this.m_IAdcChannel);
+            if temp < 1 then
+               Free (this.m_IAdcChannel);
+            end if;
          end if;
       end if;
    end;
@@ -150,7 +152,9 @@ package body WinUI3.Windows.Devices.Adc is
       if this.m_IAdcController /= null then
          if this.m_IAdcController.all /= null then
             temp := this.m_IAdcController.all.Release;
-            Free (this.m_IAdcController);
+            if temp < 1 then
+               Free (this.m_IAdcController);
+            end if;
          end if;
       end if;
    end;

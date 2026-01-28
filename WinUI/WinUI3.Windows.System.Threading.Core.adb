@@ -47,7 +47,9 @@ package body WinUI3.Windows.System.Threading.Core is
       if this.m_IPreallocatedWorkItem /= null then
          if this.m_IPreallocatedWorkItem.all /= null then
             temp := this.m_IPreallocatedWorkItem.all.Release;
-            Free (this.m_IPreallocatedWorkItem);
+            if temp < 1 then
+               Free (this.m_IPreallocatedWorkItem);
+            end if;
          end if;
       end if;
    end;
@@ -206,7 +208,9 @@ package body WinUI3.Windows.System.Threading.Core is
       if this.m_ISignalNotifier /= null then
          if this.m_ISignalNotifier.all /= null then
             temp := this.m_ISignalNotifier.all.Release;
-            Free (this.m_ISignalNotifier);
+            if temp < 1 then
+               Free (this.m_ISignalNotifier);
+            end if;
          end if;
       end if;
    end;

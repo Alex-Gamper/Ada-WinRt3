@@ -47,7 +47,9 @@ package body WinRt.Windows.Data.Xml.Xsl is
       if this.m_IXsltProcessor /= null then
          if this.m_IXsltProcessor.all /= null then
             temp := this.m_IXsltProcessor.all.Release;
-            Free (this.m_IXsltProcessor);
+            if temp < 1 then
+               Free (this.m_IXsltProcessor);
+            end if;
          end if;
       end if;
    end;

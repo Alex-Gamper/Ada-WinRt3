@@ -93,7 +93,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailAttachment /= null then
          if this.m_IEmailAttachment.all /= null then
             temp := this.m_IEmailAttachment.all.Release;
-            Free (this.m_IEmailAttachment);
+            if temp < 1 then
+               Free (this.m_IEmailAttachment);
+            end if;
          end if;
       end if;
    end;
@@ -561,7 +563,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailConversation /= null then
          if this.m_IEmailConversation.all /= null then
             temp := this.m_IEmailConversation.all.Release;
-            Free (this.m_IEmailConversation);
+            if temp < 1 then
+               Free (this.m_IEmailConversation);
+            end if;
          end if;
       end if;
    end;
@@ -950,7 +954,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailConversationBatch /= null then
          if this.m_IEmailConversationBatch.all /= null then
             temp := this.m_IEmailConversationBatch.all.Release;
-            Free (this.m_IEmailConversationBatch);
+            if temp < 1 then
+               Free (this.m_IEmailConversationBatch);
+            end if;
          end if;
       end if;
    end;
@@ -1010,7 +1016,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailConversationReader /= null then
          if this.m_IEmailConversationReader.all /= null then
             temp := this.m_IEmailConversationReader.all.Release;
-            Free (this.m_IEmailConversationReader);
+            if temp < 1 then
+               Free (this.m_IEmailConversationReader);
+            end if;
          end if;
       end if;
    end;
@@ -1099,7 +1107,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailFolder /= null then
          if this.m_IEmailFolder.all /= null then
             temp := this.m_IEmailFolder.all.Release;
-            Free (this.m_IEmailFolder);
+            if temp < 1 then
+               Free (this.m_IEmailFolder);
+            end if;
          end if;
       end if;
    end;
@@ -1965,7 +1975,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailIrmInfo /= null then
          if this.m_IEmailIrmInfo.all /= null then
             temp := this.m_IEmailIrmInfo.all.Release;
-            Free (this.m_IEmailIrmInfo);
+            if temp < 1 then
+               Free (this.m_IEmailIrmInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2419,7 +2431,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailIrmTemplate /= null then
          if this.m_IEmailIrmTemplate.all /= null then
             temp := this.m_IEmailIrmTemplate.all.Release;
-            Free (this.m_IEmailIrmTemplate);
+            if temp < 1 then
+               Free (this.m_IEmailIrmTemplate);
+            end if;
          end if;
       end if;
    end;
@@ -2604,7 +2618,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailItemCounts /= null then
          if this.m_IEmailItemCounts.all /= null then
             temp := this.m_IEmailItemCounts.all.Release;
-            Free (this.m_IEmailItemCounts);
+            if temp < 1 then
+               Free (this.m_IEmailItemCounts);
+            end if;
          end if;
       end if;
    end;
@@ -2695,7 +2711,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailbox /= null then
          if this.m_IEmailMailbox.all /= null then
             temp := this.m_IEmailMailbox.all.Release;
-            Free (this.m_IEmailMailbox);
+            if temp < 1 then
+               Free (this.m_IEmailMailbox);
+            end if;
          end if;
       end if;
    end;
@@ -5150,7 +5168,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxAction /= null then
          if this.m_IEmailMailboxAction.all /= null then
             temp := this.m_IEmailMailboxAction.all.Release;
-            Free (this.m_IEmailMailboxAction);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxAction);
+            end if;
          end if;
       end if;
    end;
@@ -5207,7 +5227,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxAutoReply /= null then
          if this.m_IEmailMailboxAutoReply.all /= null then
             temp := this.m_IEmailMailboxAutoReply.all.Release;
-            Free (this.m_IEmailMailboxAutoReply);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxAutoReply);
+            end if;
          end if;
       end if;
    end;
@@ -5299,7 +5321,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxAutoReplySettings /= null then
          if this.m_IEmailMailboxAutoReplySettings.all /= null then
             temp := this.m_IEmailMailboxAutoReplySettings.all.Release;
-            Free (this.m_IEmailMailboxAutoReplySettings);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxAutoReplySettings);
+            end if;
          end if;
       end if;
    end;
@@ -5535,7 +5559,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxCapabilities /= null then
          if this.m_IEmailMailboxCapabilities.all /= null then
             temp := this.m_IEmailMailboxCapabilities.all.Release;
-            Free (this.m_IEmailMailboxCapabilities);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -6086,7 +6112,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxChange /= null then
          if this.m_IEmailMailboxChange.all /= null then
             temp := this.m_IEmailMailboxChange.all.Release;
-            Free (this.m_IEmailMailboxChange);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxChange);
+            end if;
          end if;
       end if;
    end;
@@ -6186,7 +6214,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxChangeReader /= null then
          if this.m_IEmailMailboxChangeReader.all /= null then
             temp := this.m_IEmailMailboxChangeReader.all.Release;
-            Free (this.m_IEmailMailboxChangeReader);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -6301,7 +6331,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxChangeTracker /= null then
          if this.m_IEmailMailboxChangeTracker.all /= null then
             temp := this.m_IEmailMailboxChangeTracker.all.Release;
-            Free (this.m_IEmailMailboxChangeTracker);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxChangeTracker);
+            end if;
          end if;
       end if;
    end;
@@ -6389,7 +6421,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxChangedDeferral /= null then
          if this.m_IEmailMailboxChangedDeferral.all /= null then
             temp := this.m_IEmailMailboxChangedDeferral.all.Release;
-            Free (this.m_IEmailMailboxChangedDeferral);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxChangedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -6426,7 +6460,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxChangedEventArgs /= null then
          if this.m_IEmailMailboxChangedEventArgs.all /= null then
             temp := this.m_IEmailMailboxChangedEventArgs.all.Release;
-            Free (this.m_IEmailMailboxChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6469,7 +6505,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxCreateFolderResult /= null then
          if this.m_IEmailMailboxCreateFolderResult.all /= null then
             temp := this.m_IEmailMailboxCreateFolderResult.all.Release;
-            Free (this.m_IEmailMailboxCreateFolderResult);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxCreateFolderResult);
+            end if;
          end if;
       end if;
    end;
@@ -6529,7 +6567,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxPolicies /= null then
          if this.m_IEmailMailboxPolicies.all /= null then
             temp := this.m_IEmailMailboxPolicies.all.Release;
-            Free (this.m_IEmailMailboxPolicies);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxPolicies);
+            end if;
          end if;
       end if;
    end;
@@ -6782,7 +6822,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMailboxSyncManager /= null then
          if this.m_IEmailMailboxSyncManager.all /= null then
             temp := this.m_IEmailMailboxSyncManager.all.Release;
-            Free (this.m_IEmailMailboxSyncManager);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxSyncManager);
+            end if;
          end if;
       end if;
    end;
@@ -7164,7 +7206,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailManagerForUser /= null then
          if this.m_IEmailManagerForUser.all /= null then
             temp := this.m_IEmailManagerForUser.all.Release;
-            Free (this.m_IEmailManagerForUser);
+            if temp < 1 then
+               Free (this.m_IEmailManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -7317,7 +7361,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMeetingInfo /= null then
          if this.m_IEmailMeetingInfo.all /= null then
             temp := this.m_IEmailMeetingInfo.all.Release;
-            Free (this.m_IEmailMeetingInfo);
+            if temp < 1 then
+               Free (this.m_IEmailMeetingInfo);
+            end if;
          end if;
       end if;
    end;
@@ -7821,7 +7867,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMessage /= null then
          if this.m_IEmailMessage.all /= null then
             temp := this.m_IEmailMessage.all.Release;
-            Free (this.m_IEmailMessage);
+            if temp < 1 then
+               Free (this.m_IEmailMessage);
+            end if;
          end if;
       end if;
    end;
@@ -9122,7 +9170,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMessageBatch /= null then
          if this.m_IEmailMessageBatch.all /= null then
             temp := this.m_IEmailMessageBatch.all.Release;
-            Free (this.m_IEmailMessageBatch);
+            if temp < 1 then
+               Free (this.m_IEmailMessageBatch);
+            end if;
          end if;
       end if;
    end;
@@ -9182,7 +9232,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailMessageReader /= null then
          if this.m_IEmailMessageReader.all /= null then
             temp := this.m_IEmailMessageReader.all.Release;
-            Free (this.m_IEmailMessageReader);
+            if temp < 1 then
+               Free (this.m_IEmailMessageReader);
+            end if;
          end if;
       end if;
    end;
@@ -9271,7 +9323,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailQueryOptions /= null then
          if this.m_IEmailQueryOptions.all /= null then
             temp := this.m_IEmailQueryOptions.all.Release;
-            Free (this.m_IEmailQueryOptions);
+            if temp < 1 then
+               Free (this.m_IEmailQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -9502,7 +9556,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailQueryTextSearch /= null then
          if this.m_IEmailQueryTextSearch.all /= null then
             temp := this.m_IEmailQueryTextSearch.all.Release;
-            Free (this.m_IEmailQueryTextSearch);
+            if temp < 1 then
+               Free (this.m_IEmailQueryTextSearch);
+            end if;
          end if;
       end if;
    end;
@@ -9626,7 +9682,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailRecipient /= null then
          if this.m_IEmailRecipient.all /= null then
             temp := this.m_IEmailRecipient.all.Release;
-            Free (this.m_IEmailRecipient);
+            if temp < 1 then
+               Free (this.m_IEmailRecipient);
+            end if;
          end if;
       end if;
    end;
@@ -9797,7 +9855,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailRecipientResolutionResult /= null then
          if this.m_IEmailRecipientResolutionResult.all /= null then
             temp := this.m_IEmailRecipientResolutionResult.all.Release;
-            Free (this.m_IEmailRecipientResolutionResult);
+            if temp < 1 then
+               Free (this.m_IEmailRecipientResolutionResult);
+            end if;
          end if;
       end if;
    end;
@@ -9911,7 +9971,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailStore /= null then
          if this.m_IEmailStore.all /= null then
             temp := this.m_IEmailStore.all.Release;
-            Free (this.m_IEmailStore);
+            if temp < 1 then
+               Free (this.m_IEmailStore);
+            end if;
          end if;
       end if;
    end;
@@ -10502,7 +10564,9 @@ package body WinRt.Windows.ApplicationModel.Email is
       if this.m_IEmailStoreNotificationTriggerDetails /= null then
          if this.m_IEmailStoreNotificationTriggerDetails.all /= null then
             temp := this.m_IEmailStoreNotificationTriggerDetails.all.Release;
-            Free (this.m_IEmailStoreNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IEmailStoreNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;

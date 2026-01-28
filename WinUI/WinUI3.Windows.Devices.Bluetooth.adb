@@ -74,7 +74,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothAdapter /= null then
          if this.m_IBluetoothAdapter.all /= null then
             temp := this.m_IBluetoothAdapter.all.Release;
-            Free (this.m_IBluetoothAdapter);
+            if temp < 1 then
+               Free (this.m_IBluetoothAdapter);
+            end if;
          end if;
       end if;
    end;
@@ -583,7 +585,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothClassOfDevice /= null then
          if this.m_IBluetoothClassOfDevice.all /= null then
             temp := this.m_IBluetoothClassOfDevice.all.Release;
-            Free (this.m_IBluetoothClassOfDevice);
+            if temp < 1 then
+               Free (this.m_IBluetoothClassOfDevice);
+            end if;
          end if;
       end if;
    end;
@@ -733,7 +737,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothDevice /= null then
          if this.m_IBluetoothDevice.all /= null then
             temp := this.m_IBluetoothDevice.all.Release;
-            Free (this.m_IBluetoothDevice);
+            if temp < 1 then
+               Free (this.m_IBluetoothDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1850,7 +1856,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothDeviceId /= null then
          if this.m_IBluetoothDeviceId.all /= null then
             temp := this.m_IBluetoothDeviceId.all.Release;
-            Free (this.m_IBluetoothDeviceId);
+            if temp < 1 then
+               Free (this.m_IBluetoothDeviceId);
+            end if;
          end if;
       end if;
    end;
@@ -1959,7 +1967,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEAppearance /= null then
          if this.m_IBluetoothLEAppearance.all /= null then
             temp := this.m_IBluetoothLEAppearance.all.Release;
-            Free (this.m_IBluetoothLEAppearance);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAppearance);
+            end if;
          end if;
       end if;
    end;
@@ -3153,7 +3163,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEConnectionParameters /= null then
          if this.m_IBluetoothLEConnectionParameters.all /= null then
             temp := this.m_IBluetoothLEConnectionParameters.all.Release;
-            Free (this.m_IBluetoothLEConnectionParameters);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEConnectionParameters);
+            end if;
          end if;
       end if;
    end;
@@ -3227,7 +3239,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEConnectionPhy /= null then
          if this.m_IBluetoothLEConnectionPhy.all /= null then
             temp := this.m_IBluetoothLEConnectionPhy.all.Release;
-            Free (this.m_IBluetoothLEConnectionPhy);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEConnectionPhy);
+            end if;
          end if;
       end if;
    end;
@@ -3290,7 +3304,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEConnectionPhyInfo /= null then
          if this.m_IBluetoothLEConnectionPhyInfo.all /= null then
             temp := this.m_IBluetoothLEConnectionPhyInfo.all.Release;
-            Free (this.m_IBluetoothLEConnectionPhyInfo);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEConnectionPhyInfo);
+            end if;
          end if;
       end if;
    end;
@@ -3364,7 +3380,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEDevice /= null then
          if this.m_IBluetoothLEDevice.all /= null then
             temp := this.m_IBluetoothLEDevice.all.Release;
-            Free (this.m_IBluetoothLEDevice);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEDevice);
+            end if;
          end if;
       end if;
    end;
@@ -4674,7 +4692,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEPreferredConnectionParameters /= null then
          if this.m_IBluetoothLEPreferredConnectionParameters.all /= null then
             temp := this.m_IBluetoothLEPreferredConnectionParameters.all.Release;
-            Free (this.m_IBluetoothLEPreferredConnectionParameters);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEPreferredConnectionParameters);
+            end if;
          end if;
       end if;
    end;
@@ -4840,7 +4860,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothLEPreferredConnectionParametersRequest /= null then
          if this.m_IBluetoothLEPreferredConnectionParametersRequest.all /= null then
             temp := this.m_IBluetoothLEPreferredConnectionParametersRequest.all.Release;
-            Free (this.m_IBluetoothLEPreferredConnectionParametersRequest);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEPreferredConnectionParametersRequest);
+            end if;
          end if;
       end if;
    end;
@@ -4898,7 +4920,9 @@ package body WinUI3.Windows.Devices.Bluetooth is
       if this.m_IBluetoothSignalStrengthFilter /= null then
          if this.m_IBluetoothSignalStrengthFilter.all /= null then
             temp := this.m_IBluetoothSignalStrengthFilter.all.Release;
-            Free (this.m_IBluetoothSignalStrengthFilter);
+            if temp < 1 then
+               Free (this.m_IBluetoothSignalStrengthFilter);
+            end if;
          end if;
       end if;
    end;

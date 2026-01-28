@@ -47,7 +47,9 @@ package body WinRt.Windows.Perception is
       if this.m_IPerceptionTimestamp /= null then
          if this.m_IPerceptionTimestamp.all /= null then
             temp := this.m_IPerceptionTimestamp.all.Release;
-            Free (this.m_IPerceptionTimestamp);
+            if temp < 1 then
+               Free (this.m_IPerceptionTimestamp);
+            end if;
          end if;
       end if;
    end;

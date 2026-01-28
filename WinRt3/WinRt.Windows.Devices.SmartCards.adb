@@ -113,7 +113,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ICardAddedEventArgs /= null then
          if this.m_ICardAddedEventArgs.all /= null then
             temp := this.m_ICardAddedEventArgs.all.Release;
-            Free (this.m_ICardAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICardAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -156,7 +158,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ICardRemovedEventArgs /= null then
          if this.m_ICardRemovedEventArgs.all /= null then
             temp := this.m_ICardRemovedEventArgs.all.Release;
-            Free (this.m_ICardRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICardRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -247,7 +251,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCard /= null then
          if this.m_ISmartCard.all /= null then
             temp := this.m_ISmartCard.all.Release;
-            Free (this.m_ISmartCard);
+            if temp < 1 then
+               Free (this.m_ISmartCard);
+            end if;
          end if;
       end if;
    end;
@@ -486,7 +492,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardAppletIdGroup /= null then
          if this.m_ISmartCardAppletIdGroup.all /= null then
             temp := this.m_ISmartCardAppletIdGroup.all.Release;
-            Free (this.m_ISmartCardAppletIdGroup);
+            if temp < 1 then
+               Free (this.m_ISmartCardAppletIdGroup);
+            end if;
          end if;
       end if;
    end;
@@ -880,7 +888,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardAppletIdGroupRegistration /= null then
          if this.m_ISmartCardAppletIdGroupRegistration.all /= null then
             temp := this.m_ISmartCardAppletIdGroupRegistration.all.Release;
-            Free (this.m_ISmartCardAppletIdGroupRegistration);
+            if temp < 1 then
+               Free (this.m_ISmartCardAppletIdGroupRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -1135,7 +1145,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardAutomaticResponseApdu /= null then
          if this.m_ISmartCardAutomaticResponseApdu.all /= null then
             temp := this.m_ISmartCardAutomaticResponseApdu.all.Release;
-            Free (this.m_ISmartCardAutomaticResponseApdu);
+            if temp < 1 then
+               Free (this.m_ISmartCardAutomaticResponseApdu);
+            end if;
          end if;
       end if;
    end;
@@ -1472,7 +1484,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardChallengeContext /= null then
          if this.m_ISmartCardChallengeContext.all /= null then
             temp := this.m_ISmartCardChallengeContext.all.Release;
-            Free (this.m_ISmartCardChallengeContext);
+            if temp < 1 then
+               Free (this.m_ISmartCardChallengeContext);
+            end if;
          end if;
       end if;
    end;
@@ -1727,7 +1741,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardConnection /= null then
          if this.m_ISmartCardConnection.all /= null then
             temp := this.m_ISmartCardConnection.all.Release;
-            Free (this.m_ISmartCardConnection);
+            if temp < 1 then
+               Free (this.m_ISmartCardConnection);
+            end if;
          end if;
       end if;
    end;
@@ -1832,7 +1848,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramGenerator /= null then
          if this.m_ISmartCardCryptogramGenerator.all /= null then
             temp := this.m_ISmartCardCryptogramGenerator.all.Release;
-            Free (this.m_ISmartCardCryptogramGenerator);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -2888,7 +2906,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all /= null then
             temp := this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult.all.Release;
-            Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialCharacteristicsResult);
+            end if;
          end if;
       end if;
    end;
@@ -2967,7 +2987,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all /= null then
             temp := this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult.all.Release;
-            Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramGetAllCryptogramMaterialPackageCharacteristicsResult);
+            end if;
          end if;
       end if;
    end;
@@ -3046,7 +3068,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult /= null then
          if this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all /= null then
             temp := this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult.all.Release;
-            Free (this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramGetAllCryptogramStorageKeyCharacteristicsResult);
+            end if;
          end if;
       end if;
    end;
@@ -3125,7 +3149,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramMaterialCharacteristics /= null then
          if this.m_ISmartCardCryptogramMaterialCharacteristics.all /= null then
             temp := this.m_ISmartCardCryptogramMaterialCharacteristics.all.Release;
-            Free (this.m_ISmartCardCryptogramMaterialCharacteristics);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramMaterialCharacteristics);
+            end if;
          end if;
       end if;
    end;
@@ -3315,7 +3341,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramMaterialPackageCharacteristics /= null then
          if this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all /= null then
             temp := this.m_ISmartCardCryptogramMaterialPackageCharacteristics.all.Release;
-            Free (this.m_ISmartCardCryptogramMaterialPackageCharacteristics);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramMaterialPackageCharacteristics);
+            end if;
          end if;
       end if;
    end;
@@ -3431,7 +3459,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramMaterialPossessionProof /= null then
          if this.m_ISmartCardCryptogramMaterialPossessionProof.all /= null then
             temp := this.m_ISmartCardCryptogramMaterialPossessionProof.all.Release;
-            Free (this.m_ISmartCardCryptogramMaterialPossessionProof);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramMaterialPossessionProof);
+            end if;
          end if;
       end if;
    end;
@@ -3488,7 +3518,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramPlacementStep /= null then
          if this.m_ISmartCardCryptogramPlacementStep.all /= null then
             temp := this.m_ISmartCardCryptogramPlacementStep.all.Release;
-            Free (this.m_ISmartCardCryptogramPlacementStep);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramPlacementStep);
+            end if;
          end if;
       end if;
    end;
@@ -3831,7 +3863,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramStorageKeyCharacteristics /= null then
          if this.m_ISmartCardCryptogramStorageKeyCharacteristics.all /= null then
             temp := this.m_ISmartCardCryptogramStorageKeyCharacteristics.all.Release;
-            Free (this.m_ISmartCardCryptogramStorageKeyCharacteristics);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramStorageKeyCharacteristics);
+            end if;
          end if;
       end if;
    end;
@@ -3944,7 +3978,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardCryptogramStorageKeyInfo /= null then
          if this.m_ISmartCardCryptogramStorageKeyInfo.all /= null then
             temp := this.m_ISmartCardCryptogramStorageKeyInfo.all.Release;
-            Free (this.m_ISmartCardCryptogramStorageKeyInfo);
+            if temp < 1 then
+               Free (this.m_ISmartCardCryptogramStorageKeyInfo);
+            end if;
          end if;
       end if;
    end;
@@ -4110,7 +4146,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardEmulator /= null then
          if this.m_ISmartCardEmulator.all /= null then
             temp := this.m_ISmartCardEmulator.all.Release;
-            Free (this.m_ISmartCardEmulator);
+            if temp < 1 then
+               Free (this.m_ISmartCardEmulator);
+            end if;
          end if;
       end if;
    end;
@@ -4575,7 +4613,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardEmulatorApduReceivedEventArgs /= null then
          if this.m_ISmartCardEmulatorApduReceivedEventArgs.all /= null then
             temp := this.m_ISmartCardEmulatorApduReceivedEventArgs.all.Release;
-            Free (this.m_ISmartCardEmulatorApduReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISmartCardEmulatorApduReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4945,7 +4985,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs /= null then
          if this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all /= null then
             temp := this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs.all.Release;
-            Free (this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISmartCardEmulatorConnectionDeactivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5005,7 +5047,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardEmulatorConnectionProperties /= null then
          if this.m_ISmartCardEmulatorConnectionProperties.all /= null then
             temp := this.m_ISmartCardEmulatorConnectionProperties.all.Release;
-            Free (this.m_ISmartCardEmulatorConnectionProperties);
+            if temp < 1 then
+               Free (this.m_ISmartCardEmulatorConnectionProperties);
+            end if;
          end if;
       end if;
    end;
@@ -5062,7 +5106,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardPinPolicy /= null then
          if this.m_ISmartCardPinPolicy.all /= null then
             temp := this.m_ISmartCardPinPolicy.all.Release;
-            Free (this.m_ISmartCardPinPolicy);
+            if temp < 1 then
+               Free (this.m_ISmartCardPinPolicy);
+            end if;
          end if;
       end if;
    end;
@@ -5296,7 +5342,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardPinResetDeferral /= null then
          if this.m_ISmartCardPinResetDeferral.all /= null then
             temp := this.m_ISmartCardPinResetDeferral.all.Release;
-            Free (this.m_ISmartCardPinResetDeferral);
+            if temp < 1 then
+               Free (this.m_ISmartCardPinResetDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -5349,7 +5397,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardPinResetRequest /= null then
          if this.m_ISmartCardPinResetRequest.all /= null then
             temp := this.m_ISmartCardPinResetRequest.all.Release;
-            Free (this.m_ISmartCardPinResetRequest);
+            if temp < 1 then
+               Free (this.m_ISmartCardPinResetRequest);
+            end if;
          end if;
       end if;
    end;
@@ -5441,7 +5491,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardProvisioning /= null then
          if this.m_ISmartCardProvisioning.all /= null then
             temp := this.m_ISmartCardProvisioning.all.Release;
-            Free (this.m_ISmartCardProvisioning);
+            if temp < 1 then
+               Free (this.m_ISmartCardProvisioning);
+            end if;
          end if;
       end if;
    end;
@@ -6332,7 +6384,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardReader /= null then
          if this.m_ISmartCardReader.all /= null then
             temp := this.m_ISmartCardReader.all.Release;
-            Free (this.m_ISmartCardReader);
+            if temp < 1 then
+               Free (this.m_ISmartCardReader);
+            end if;
          end if;
       end if;
    end;
@@ -6733,7 +6787,9 @@ package body WinRt.Windows.Devices.SmartCards is
       if this.m_ISmartCardTriggerDetails /= null then
          if this.m_ISmartCardTriggerDetails.all /= null then
             temp := this.m_ISmartCardTriggerDetails.all.Release;
-            Free (this.m_ISmartCardTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ISmartCardTriggerDetails);
+            end if;
          end if;
       end if;
    end;

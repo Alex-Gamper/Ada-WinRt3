@@ -2204,7 +2204,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_ILicenseInformation /= null then
          if this.m_ILicenseInformation.all /= null then
             temp := this.m_ILicenseInformation.all.Release;
-            Free (this.m_ILicenseInformation);
+            if temp < 1 then
+               Free (this.m_ILicenseInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2331,7 +2333,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IListingInformation /= null then
          if this.m_IListingInformation.all /= null then
             temp := this.m_IListingInformation.all.Release;
-            Free (this.m_IListingInformation);
+            if temp < 1 then
+               Free (this.m_IListingInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2561,7 +2565,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IProductLicense /= null then
          if this.m_IProductLicense.all /= null then
             temp := this.m_IProductLicense.all.Release;
-            Free (this.m_IProductLicense);
+            if temp < 1 then
+               Free (this.m_IProductLicense);
+            end if;
          end if;
       end if;
    end;
@@ -2659,7 +2665,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IProductListing /= null then
          if this.m_IProductListing.all /= null then
             temp := this.m_IProductListing.all.Release;
-            Free (this.m_IProductListing);
+            if temp < 1 then
+               Free (this.m_IProductListing);
+            end if;
          end if;
       end if;
    end;
@@ -2949,7 +2957,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IProductPurchaseDisplayProperties /= null then
          if this.m_IProductPurchaseDisplayProperties.all /= null then
             temp := this.m_IProductPurchaseDisplayProperties.all.Release;
-            Free (this.m_IProductPurchaseDisplayProperties);
+            if temp < 1 then
+               Free (this.m_IProductPurchaseDisplayProperties);
+            end if;
          end if;
       end if;
    end;
@@ -3126,7 +3136,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IPurchaseResults /= null then
          if this.m_IPurchaseResults.all /= null then
             temp := this.m_IPurchaseResults.all.Release;
-            Free (this.m_IPurchaseResults);
+            if temp < 1 then
+               Free (this.m_IPurchaseResults);
+            end if;
          end if;
       end if;
    end;
@@ -3223,7 +3235,9 @@ package body WinUI3.Windows.ApplicationModel.Store is
       if this.m_IUnfulfilledConsumable /= null then
          if this.m_IUnfulfilledConsumable.all /= null then
             temp := this.m_IUnfulfilledConsumable.all.Release;
-            Free (this.m_IUnfulfilledConsumable);
+            if temp < 1 then
+               Free (this.m_IUnfulfilledConsumable);
+            end if;
          end if;
       end if;
    end;

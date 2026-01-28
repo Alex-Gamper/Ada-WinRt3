@@ -48,7 +48,9 @@ package body WinRt.Windows.System.Power.Thermal is
       if this.m_IPowerThermalChannelConfiguration /= null then
          if this.m_IPowerThermalChannelConfiguration.all /= null then
             temp := this.m_IPowerThermalChannelConfiguration.all.Release;
-            Free (this.m_IPowerThermalChannelConfiguration);
+            if temp < 1 then
+               Free (this.m_IPowerThermalChannelConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -134,7 +136,9 @@ package body WinRt.Windows.System.Power.Thermal is
       if this.m_IPowerThermalChannelDataConsumer /= null then
          if this.m_IPowerThermalChannelDataConsumer.all /= null then
             temp := this.m_IPowerThermalChannelDataConsumer.all.Release;
-            Free (this.m_IPowerThermalChannelDataConsumer);
+            if temp < 1 then
+               Free (this.m_IPowerThermalChannelDataConsumer);
+            end if;
          end if;
       end if;
    end;
@@ -360,7 +364,9 @@ package body WinRt.Windows.System.Power.Thermal is
       if this.m_IPowerThermalChannelDataProducer /= null then
          if this.m_IPowerThermalChannelDataProducer.all /= null then
             temp := this.m_IPowerThermalChannelDataProducer.all.Release;
-            Free (this.m_IPowerThermalChannelDataProducer);
+            if temp < 1 then
+               Free (this.m_IPowerThermalChannelDataProducer);
+            end if;
          end if;
       end if;
    end;
@@ -584,7 +590,9 @@ package body WinRt.Windows.System.Power.Thermal is
       if this.m_IPowerThermalChannelDataReceivedEventArgs /= null then
          if this.m_IPowerThermalChannelDataReceivedEventArgs.all /= null then
             temp := this.m_IPowerThermalChannelDataReceivedEventArgs.all.Release;
-            Free (this.m_IPowerThermalChannelDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPowerThermalChannelDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -633,7 +641,9 @@ package body WinRt.Windows.System.Power.Thermal is
       if this.m_IPowerThermalChannelDiagnostics /= null then
          if this.m_IPowerThermalChannelDiagnostics.all /= null then
             temp := this.m_IPowerThermalChannelDiagnostics.all.Release;
-            Free (this.m_IPowerThermalChannelDiagnostics);
+            if temp < 1 then
+               Free (this.m_IPowerThermalChannelDiagnostics);
+            end if;
          end if;
       end if;
    end;

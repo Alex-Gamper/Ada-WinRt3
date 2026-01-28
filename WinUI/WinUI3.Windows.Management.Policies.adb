@@ -120,7 +120,9 @@ package body WinUI3.Windows.Management.Policies is
       if this.m_INamedPolicyData /= null then
          if this.m_INamedPolicyData.all /= null then
             temp := this.m_INamedPolicyData.all.Release;
-            Free (this.m_INamedPolicyData);
+            if temp < 1 then
+               Free (this.m_INamedPolicyData);
+            end if;
          end if;
       end if;
    end;

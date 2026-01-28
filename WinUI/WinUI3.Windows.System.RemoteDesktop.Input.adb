@@ -48,7 +48,9 @@ package body WinUI3.Windows.System.RemoteDesktop.Input is
       if this.m_IRemoteTextConnection /= null then
          if this.m_IRemoteTextConnection.all /= null then
             temp := this.m_IRemoteTextConnection.all.Release;
-            Free (this.m_IRemoteTextConnection);
+            if temp < 1 then
+               Free (this.m_IRemoteTextConnection);
+            end if;
          end if;
       end if;
    end;

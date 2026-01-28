@@ -67,7 +67,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorAuthentication /= null then
          if this.m_ISecondaryAuthenticationFactorAuthentication.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorAuthentication.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorAuthentication);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorAuthentication);
+            end if;
          end if;
       end if;
    end;
@@ -514,7 +516,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorAuthenticationResult /= null then
          if this.m_ISecondaryAuthenticationFactorAuthenticationResult.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorAuthenticationResult.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorAuthenticationResult);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorAuthenticationResult);
+            end if;
          end if;
       end if;
    end;
@@ -574,7 +578,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs /= null then
          if this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorAuthenticationStageChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -617,7 +623,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo /= null then
          if this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorAuthenticationStageInfo);
+            end if;
          end if;
       end if;
    end;
@@ -694,7 +702,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorInfo /= null then
          if this.m_ISecondaryAuthenticationFactorInfo.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorInfo.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorInfo);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorInfo);
+            end if;
          end if;
       end if;
    end;
@@ -883,7 +893,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorRegistration /= null then
          if this.m_ISecondaryAuthenticationFactorRegistration.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorRegistration.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorRegistration);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -1485,7 +1497,9 @@ package body WinUI3.Windows.Security.Authentication.Identity.Provider is
       if this.m_ISecondaryAuthenticationFactorRegistrationResult /= null then
          if this.m_ISecondaryAuthenticationFactorRegistrationResult.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorRegistrationResult.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorRegistrationResult);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorRegistrationResult);
+            end if;
          end if;
       end if;
    end;

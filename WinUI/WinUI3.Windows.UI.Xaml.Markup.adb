@@ -49,7 +49,9 @@ package body WinUI3.Windows.UI.Xaml.Markup is
       if this.m_IMarkupExtension /= null then
          if this.m_IMarkupExtension.all /= null then
             temp := this.m_IMarkupExtension.all.Release;
-            Free (this.m_IMarkupExtension);
+            if temp < 1 then
+               Free (this.m_IMarkupExtension);
+            end if;
          end if;
       end if;
    end;
@@ -121,7 +123,9 @@ package body WinUI3.Windows.UI.Xaml.Markup is
       if this.m_IXamlBinaryWriter /= null then
          if this.m_IXamlBinaryWriter.all /= null then
             temp := this.m_IXamlBinaryWriter.all.Release;
-            Free (this.m_IXamlBinaryWriter);
+            if temp < 1 then
+               Free (this.m_IXamlBinaryWriter);
+            end if;
          end if;
       end if;
    end;
@@ -173,7 +177,9 @@ package body WinUI3.Windows.UI.Xaml.Markup is
       if this.m_IXamlBindingHelper /= null then
          if this.m_IXamlBindingHelper.all /= null then
             temp := this.m_IXamlBindingHelper.all.Release;
-            Free (this.m_IXamlBindingHelper);
+            if temp < 1 then
+               Free (this.m_IXamlBindingHelper);
+            end if;
          end if;
       end if;
    end;
@@ -729,7 +735,9 @@ package body WinUI3.Windows.UI.Xaml.Markup is
       if this.m_IXamlMarkupHelper /= null then
          if this.m_IXamlMarkupHelper.all /= null then
             temp := this.m_IXamlMarkupHelper.all.Release;
-            Free (this.m_IXamlMarkupHelper);
+            if temp < 1 then
+               Free (this.m_IXamlMarkupHelper);
+            end if;
          end if;
       end if;
    end;
@@ -776,7 +784,9 @@ package body WinUI3.Windows.UI.Xaml.Markup is
       if this.m_IXamlReader /= null then
          if this.m_IXamlReader.all /= null then
             temp := this.m_IXamlReader.all.Release;
-            Free (this.m_IXamlReader);
+            if temp < 1 then
+               Free (this.m_IXamlReader);
+            end if;
          end if;
       end if;
    end;

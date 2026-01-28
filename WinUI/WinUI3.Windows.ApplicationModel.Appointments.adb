@@ -72,7 +72,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointment /= null then
          if this.m_IAppointment.all /= null then
             temp := this.m_IAppointment.all.Release;
-            Free (this.m_IAppointment);
+            if temp < 1 then
+               Free (this.m_IAppointment);
+            end if;
          end if;
       end if;
    end;
@@ -1072,7 +1074,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentCalendar /= null then
          if this.m_IAppointmentCalendar.all /= null then
             temp := this.m_IAppointmentCalendar.all.Release;
-            Free (this.m_IAppointmentCalendar);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendar);
+            end if;
          end if;
       end if;
    end;
@@ -2951,7 +2955,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentCalendarSyncManager /= null then
          if this.m_IAppointmentCalendarSyncManager.all /= null then
             temp := this.m_IAppointmentCalendarSyncManager.all.Release;
-            Free (this.m_IAppointmentCalendarSyncManager);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarSyncManager);
+            end if;
          end if;
       end if;
    end;
@@ -3178,7 +3184,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentConflictResult /= null then
          if this.m_IAppointmentConflictResult.all /= null then
             temp := this.m_IAppointmentConflictResult.all.Release;
-            Free (this.m_IAppointmentConflictResult);
+            if temp < 1 then
+               Free (this.m_IAppointmentConflictResult);
+            end if;
          end if;
       end if;
    end;
@@ -3235,7 +3243,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentException /= null then
          if this.m_IAppointmentException.all /= null then
             temp := this.m_IAppointmentException.all.Release;
-            Free (this.m_IAppointmentException);
+            if temp < 1 then
+               Free (this.m_IAppointmentException);
+            end if;
          end if;
       end if;
    end;
@@ -3315,7 +3325,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentInvitee /= null then
          if this.m_IAppointmentInvitee.all /= null then
             temp := this.m_IAppointmentInvitee.all.Release;
-            Free (this.m_IAppointmentInvitee);
+            if temp < 1 then
+               Free (this.m_IAppointmentInvitee);
+            end if;
          end if;
       end if;
    end;
@@ -4448,7 +4460,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentManagerForUser /= null then
          if this.m_IAppointmentManagerForUser.all /= null then
             temp := this.m_IAppointmentManagerForUser.all.Release;
-            Free (this.m_IAppointmentManagerForUser);
+            if temp < 1 then
+               Free (this.m_IAppointmentManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -5317,7 +5331,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentParticipant /= null then
          if this.m_IAppointmentParticipant.all /= null then
             temp := this.m_IAppointmentParticipant.all.Release;
-            Free (this.m_IAppointmentParticipant);
+            if temp < 1 then
+               Free (this.m_IAppointmentParticipant);
+            end if;
          end if;
       end if;
    end;
@@ -6063,7 +6079,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentRecurrence /= null then
          if this.m_IAppointmentRecurrence.all /= null then
             temp := this.m_IAppointmentRecurrence.all.Release;
-            Free (this.m_IAppointmentRecurrence);
+            if temp < 1 then
+               Free (this.m_IAppointmentRecurrence);
+            end if;
          end if;
       end if;
    end;
@@ -6457,7 +6475,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStore /= null then
          if this.m_IAppointmentStore.all /= null then
             temp := this.m_IAppointmentStore.all.Release;
-            Free (this.m_IAppointmentStore);
+            if temp < 1 then
+               Free (this.m_IAppointmentStore);
+            end if;
          end if;
       end if;
    end;
@@ -7930,7 +7950,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreChange /= null then
          if this.m_IAppointmentStoreChange.all /= null then
             temp := this.m_IAppointmentStoreChange.all.Release;
-            Free (this.m_IAppointmentStoreChange);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreChange);
+            end if;
          end if;
       end if;
    end;
@@ -8014,7 +8036,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreChangeReader /= null then
          if this.m_IAppointmentStoreChangeReader.all /= null then
             temp := this.m_IAppointmentStoreChangeReader.all.Release;
-            Free (this.m_IAppointmentStoreChangeReader);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -8129,7 +8153,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreChangeTracker /= null then
          if this.m_IAppointmentStoreChangeTracker.all /= null then
             temp := this.m_IAppointmentStoreChangeTracker.all.Release;
-            Free (this.m_IAppointmentStoreChangeTracker);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreChangeTracker);
+            end if;
          end if;
       end if;
    end;
@@ -8221,7 +8247,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreChangedDeferral /= null then
          if this.m_IAppointmentStoreChangedDeferral.all /= null then
             temp := this.m_IAppointmentStoreChangedDeferral.all.Release;
-            Free (this.m_IAppointmentStoreChangedDeferral);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreChangedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -8258,7 +8286,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreChangedEventArgs /= null then
          if this.m_IAppointmentStoreChangedEventArgs.all /= null then
             temp := this.m_IAppointmentStoreChangedEventArgs.all.Release;
-            Free (this.m_IAppointmentStoreChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8301,7 +8331,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IAppointmentStoreNotificationTriggerDetails /= null then
          if this.m_IAppointmentStoreNotificationTriggerDetails.all /= null then
             temp := this.m_IAppointmentStoreNotificationTriggerDetails.all.Release;
-            Free (this.m_IAppointmentStoreNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -8324,7 +8356,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments is
       if this.m_IFindAppointmentsOptions /= null then
          if this.m_IFindAppointmentsOptions.all /= null then
             temp := this.m_IFindAppointmentsOptions.all.Release;
-            Free (this.m_IFindAppointmentsOptions);
+            if temp < 1 then
+               Free (this.m_IFindAppointmentsOptions);
+            end if;
          end if;
       end if;
    end;

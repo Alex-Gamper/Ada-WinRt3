@@ -60,7 +60,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_ICivicAddress /= null then
          if this.m_ICivicAddress.all /= null then
             temp := this.m_ICivicAddress.all.Release;
-            Free (this.m_ICivicAddress);
+            if temp < 1 then
+               Free (this.m_ICivicAddress);
+            end if;
          end if;
       end if;
    end;
@@ -180,7 +182,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeoboundingBox /= null then
          if this.m_IGeoboundingBox.all /= null then
             temp := this.m_IGeoboundingBox.all.Release;
-            Free (this.m_IGeoboundingBox);
+            if temp < 1 then
+               Free (this.m_IGeoboundingBox);
+            end if;
          end if;
       end if;
    end;
@@ -519,7 +523,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeocircle /= null then
          if this.m_IGeocircle.all /= null then
             temp := this.m_IGeocircle.all.Release;
-            Free (this.m_IGeocircle);
+            if temp < 1 then
+               Free (this.m_IGeocircle);
+            end if;
          end if;
       end if;
    end;
@@ -720,7 +726,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeocoordinate /= null then
          if this.m_IGeocoordinate.all /= null then
             temp := this.m_IGeocoordinate.all.Release;
-            Free (this.m_IGeocoordinate);
+            if temp < 1 then
+               Free (this.m_IGeocoordinate);
+            end if;
          end if;
       end if;
    end;
@@ -1005,7 +1013,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeocoordinateSatelliteData /= null then
          if this.m_IGeocoordinateSatelliteData.all /= null then
             temp := this.m_IGeocoordinateSatelliteData.all.Release;
-            Free (this.m_IGeocoordinateSatelliteData);
+            if temp < 1 then
+               Free (this.m_IGeocoordinateSatelliteData);
+            end if;
          end if;
       end if;
    end;
@@ -1136,7 +1146,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeolocator /= null then
          if this.m_IGeolocator.all /= null then
             temp := this.m_IGeolocator.all.Release;
-            Free (this.m_IGeolocator);
+            if temp < 1 then
+               Free (this.m_IGeolocator);
+            end if;
          end if;
       end if;
    end;
@@ -1826,7 +1838,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeopath /= null then
          if this.m_IGeopath.all /= null then
             temp := this.m_IGeopath.all.Release;
-            Free (this.m_IGeopath);
+            if temp < 1 then
+               Free (this.m_IGeopath);
+            end if;
          end if;
       end if;
    end;
@@ -2010,7 +2024,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeopoint /= null then
          if this.m_IGeopoint.all /= null then
             temp := this.m_IGeopoint.all.Release;
-            Free (this.m_IGeopoint);
+            if temp < 1 then
+               Free (this.m_IGeopoint);
+            end if;
          end if;
       end if;
    end;
@@ -2191,7 +2207,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeoposition /= null then
          if this.m_IGeoposition.all /= null then
             temp := this.m_IGeoposition.all.Release;
-            Free (this.m_IGeoposition);
+            if temp < 1 then
+               Free (this.m_IGeoposition);
+            end if;
          end if;
       end if;
    end;
@@ -2278,7 +2296,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeovisit /= null then
          if this.m_IGeovisit.all /= null then
             temp := this.m_IGeovisit.all.Release;
-            Free (this.m_IGeovisit);
+            if temp < 1 then
+               Free (this.m_IGeovisit);
+            end if;
          end if;
       end if;
    end;
@@ -2355,7 +2375,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeovisitMonitor /= null then
          if this.m_IGeovisitMonitor.all /= null then
             temp := this.m_IGeovisitMonitor.all.Release;
-            Free (this.m_IGeovisitMonitor);
+            if temp < 1 then
+               Free (this.m_IGeovisitMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -2549,7 +2571,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeovisitStateChangedEventArgs /= null then
          if this.m_IGeovisitStateChangedEventArgs.all /= null then
             temp := this.m_IGeovisitStateChangedEventArgs.all.Release;
-            Free (this.m_IGeovisitStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGeovisitStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2592,7 +2616,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IGeovisitTriggerDetails /= null then
          if this.m_IGeovisitTriggerDetails.all /= null then
             temp := this.m_IGeovisitTriggerDetails.all.Release;
-            Free (this.m_IGeovisitTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IGeovisitTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2635,7 +2661,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IPositionChangedEventArgs /= null then
          if this.m_IPositionChangedEventArgs.all /= null then
             temp := this.m_IPositionChangedEventArgs.all.Release;
-            Free (this.m_IPositionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPositionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2678,7 +2706,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IStatusChangedEventArgs /= null then
          if this.m_IStatusChangedEventArgs.all /= null then
             temp := this.m_IStatusChangedEventArgs.all.Release;
-            Free (this.m_IStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2718,7 +2748,9 @@ package body WinRt.Windows.Devices.Geolocation is
       if this.m_IVenueData /= null then
          if this.m_IVenueData.all /= null then
             temp := this.m_IVenueData.all.Release;
-            Free (this.m_IVenueData);
+            if temp < 1 then
+               Free (this.m_IVenueData);
+            end if;
          end if;
       end if;
    end;

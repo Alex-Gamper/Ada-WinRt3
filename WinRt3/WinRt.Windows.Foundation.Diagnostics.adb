@@ -231,7 +231,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_IErrorDetails /= null then
          if this.m_IErrorDetails.all /= null then
             temp := this.m_IErrorDetails.all.Release;
-            Free (this.m_IErrorDetails);
+            if temp < 1 then
+               Free (this.m_IErrorDetails);
+            end if;
          end if;
       end if;
    end;
@@ -390,7 +392,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_IFileLoggingSession /= null then
          if this.m_IFileLoggingSession.all /= null then
             temp := this.m_IFileLoggingSession.all.Release;
-            Free (this.m_IFileLoggingSession);
+            if temp < 1 then
+               Free (this.m_IFileLoggingSession);
+            end if;
          end if;
       end if;
    end;
@@ -625,7 +629,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILogFileGeneratedEventArgs /= null then
          if this.m_ILogFileGeneratedEventArgs.all /= null then
             temp := this.m_ILogFileGeneratedEventArgs.all.Release;
-            Free (this.m_ILogFileGeneratedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILogFileGeneratedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -668,7 +674,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingActivity /= null then
          if this.m_ILoggingActivity.all /= null then
             temp := this.m_ILoggingActivity.all.Release;
-            Free (this.m_ILoggingActivity);
+            if temp < 1 then
+               Free (this.m_ILoggingActivity);
+            end if;
          end if;
       end if;
    end;
@@ -1164,7 +1172,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingChannel /= null then
          if this.m_ILoggingChannel.all /= null then
             temp := this.m_ILoggingChannel.all.Release;
-            Free (this.m_ILoggingChannel);
+            if temp < 1 then
+               Free (this.m_ILoggingChannel);
+            end if;
          end if;
       end if;
    end;
@@ -1739,7 +1749,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingChannelOptions /= null then
          if this.m_ILoggingChannelOptions.all /= null then
             temp := this.m_ILoggingChannelOptions.all.Release;
-            Free (this.m_ILoggingChannelOptions);
+            if temp < 1 then
+               Free (this.m_ILoggingChannelOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1837,7 +1849,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingFields /= null then
          if this.m_ILoggingFields.all /= null then
             temp := this.m_ILoggingFields.all.Release;
-            Free (this.m_ILoggingFields);
+            if temp < 1 then
+               Free (this.m_ILoggingFields);
+            end if;
          end if;
       end if;
    end;
@@ -4108,7 +4122,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingOptions /= null then
          if this.m_ILoggingOptions.all /= null then
             temp := this.m_ILoggingOptions.all.Release;
-            Free (this.m_ILoggingOptions);
+            if temp < 1 then
+               Free (this.m_ILoggingOptions);
+            end if;
          end if;
       end if;
    end;
@@ -4366,7 +4382,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ILoggingSession /= null then
          if this.m_ILoggingSession.all /= null then
             temp := this.m_ILoggingSession.all.Release;
-            Free (this.m_ILoggingSession);
+            if temp < 1 then
+               Free (this.m_ILoggingSession);
+            end if;
          end if;
       end if;
    end;
@@ -4572,7 +4590,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_IErrorReportingSettings /= null then
          if this.m_IErrorReportingSettings.all /= null then
             temp := this.m_IErrorReportingSettings.all.Release;
-            Free (this.m_IErrorReportingSettings);
+            if temp < 1 then
+               Free (this.m_IErrorReportingSettings);
+            end if;
          end if;
       end if;
    end;
@@ -4646,7 +4666,9 @@ package body WinRt.Windows.Foundation.Diagnostics is
       if this.m_ITracingStatusChangedEventArgs /= null then
          if this.m_ITracingStatusChangedEventArgs.all /= null then
             temp := this.m_ITracingStatusChangedEventArgs.all.Release;
-            Free (this.m_ITracingStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITracingStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

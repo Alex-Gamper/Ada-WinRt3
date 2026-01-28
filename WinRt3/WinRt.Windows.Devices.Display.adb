@@ -52,7 +52,9 @@ package body WinRt.Windows.Devices.Display is
       if this.m_IDisplayMonitor /= null then
          if this.m_IDisplayMonitor.all /= null then
             temp := this.m_IDisplayMonitor.all.Release;
-            Free (this.m_IDisplayMonitor);
+            if temp < 1 then
+               Free (this.m_IDisplayMonitor);
+            end if;
          end if;
       end if;
    end;

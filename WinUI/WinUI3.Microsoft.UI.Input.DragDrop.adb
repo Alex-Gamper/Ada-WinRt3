@@ -54,7 +54,9 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
       if this.m_IDragDropManager /= null then
          if this.m_IDragDropManager.all /= null then
             temp := this.m_IDragDropManager.all.Release;
-            Free (this.m_IDragDropManager);
+            if temp < 1 then
+               Free (this.m_IDragDropManager);
+            end if;
          end if;
       end if;
    end;
@@ -190,7 +192,9 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
       if this.m_IDragInfo /= null then
          if this.m_IDragInfo.all /= null then
             temp := this.m_IDragInfo.all.Release;
-            Free (this.m_IDragInfo);
+            if temp < 1 then
+               Free (this.m_IDragInfo);
+            end if;
          end if;
       end if;
    end;
@@ -284,7 +288,9 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
       if this.m_IDragOperation /= null then
          if this.m_IDragOperation.all /= null then
             temp := this.m_IDragOperation.all.Release;
-            Free (this.m_IDragOperation);
+            if temp < 1 then
+               Free (this.m_IDragOperation);
+            end if;
          end if;
       end if;
    end;
@@ -524,7 +530,9 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
       if this.m_IDragUIOverride /= null then
          if this.m_IDragUIOverride.all /= null then
             temp := this.m_IDragUIOverride.all.Release;
-            Free (this.m_IDragUIOverride);
+            if temp < 1 then
+               Free (this.m_IDragUIOverride);
+            end if;
          end if;
       end if;
    end;
@@ -725,7 +733,9 @@ package body WinUI3.Microsoft.UI.Input.DragDrop is
       if this.m_IDropOperationTargetRequestedEventArgs /= null then
          if this.m_IDropOperationTargetRequestedEventArgs.all /= null then
             temp := this.m_IDropOperationTargetRequestedEventArgs.all.Release;
-            Free (this.m_IDropOperationTargetRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDropOperationTargetRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

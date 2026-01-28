@@ -52,7 +52,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionEntity /= null then
          if this.m_IActionEntity.all /= null then
             temp := this.m_IActionEntity.all.Release;
-            Free (this.m_IActionEntity);
+            if temp < 1 then
+               Free (this.m_IActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -157,7 +159,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionEntityDisplayInfo /= null then
          if this.m_IActionEntityDisplayInfo.all /= null then
             temp := this.m_IActionEntityDisplayInfo.all.Release;
-            Free (this.m_IActionEntityDisplayInfo);
+            if temp < 1 then
+               Free (this.m_IActionEntityDisplayInfo);
+            end if;
          end if;
       end if;
    end;
@@ -218,7 +222,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionEntityFactory2 /= null then
          if this.m_IActionEntityFactory2.all /= null then
             temp := this.m_IActionEntityFactory2.all.Release;
-            Free (this.m_IActionEntityFactory2);
+            if temp < 1 then
+               Free (this.m_IActionEntityFactory2);
+            end if;
          end if;
       end if;
    end;
@@ -671,7 +677,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionFeedback /= null then
          if this.m_IActionFeedback.all /= null then
             temp := this.m_IActionFeedback.all.Release;
-            Free (this.m_IActionFeedback);
+            if temp < 1 then
+               Free (this.m_IActionFeedback);
+            end if;
          end if;
       end if;
    end;
@@ -729,7 +737,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionInvocationContext /= null then
          if this.m_IActionInvocationContext.all /= null then
             temp := this.m_IActionInvocationContext.all.Release;
-            Free (this.m_IActionInvocationContext);
+            if temp < 1 then
+               Free (this.m_IActionInvocationContext);
+            end if;
          end if;
       end if;
    end;
@@ -1045,7 +1055,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionInvocationHelpDetails /= null then
          if this.m_IActionInvocationHelpDetails.all /= null then
             temp := this.m_IActionInvocationHelpDetails.all.Release;
-            Free (this.m_IActionInvocationHelpDetails);
+            if temp < 1 then
+               Free (this.m_IActionInvocationHelpDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1305,7 +1317,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IActionRuntime /= null then
          if this.m_IActionRuntime.all /= null then
             temp := this.m_IActionRuntime.all.Release;
-            Free (this.m_IActionRuntime);
+            if temp < 1 then
+               Free (this.m_IActionRuntime);
+            end if;
          end if;
       end if;
    end;
@@ -1637,7 +1651,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IAppointmentActionEntity /= null then
          if this.m_IAppointmentActionEntity.all /= null then
             temp := this.m_IAppointmentActionEntity.all.Release;
-            Free (this.m_IAppointmentActionEntity);
+            if temp < 1 then
+               Free (this.m_IAppointmentActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -1825,7 +1841,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IArrayActionEntity /= null then
          if this.m_IArrayActionEntity.all /= null then
             temp := this.m_IArrayActionEntity.all.Release;
-            Free (this.m_IArrayActionEntity);
+            if temp < 1 then
+               Free (this.m_IArrayActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -1920,7 +1938,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IContactActionEntity /= null then
          if this.m_IContactActionEntity.all /= null then
             temp := this.m_IContactActionEntity.all.Release;
-            Free (this.m_IContactActionEntity);
+            if temp < 1 then
+               Free (this.m_IContactActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -1963,7 +1983,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_ICustomActionEntityStore /= null then
          if this.m_ICustomActionEntityStore.all /= null then
             temp := this.m_ICustomActionEntityStore.all.Release;
-            Free (this.m_ICustomActionEntityStore);
+            if temp < 1 then
+               Free (this.m_ICustomActionEntityStore);
+            end if;
          end if;
       end if;
    end;
@@ -2075,7 +2097,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_ICustomTextActionEntity /= null then
          if this.m_ICustomTextActionEntity.all /= null then
             temp := this.m_ICustomTextActionEntity.all.Release;
-            Free (this.m_ICustomTextActionEntity);
+            if temp < 1 then
+               Free (this.m_ICustomTextActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2158,7 +2182,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IDateTimeActionEntity /= null then
          if this.m_IDateTimeActionEntity.all /= null then
             temp := this.m_IDateTimeActionEntity.all.Release;
-            Free (this.m_IDateTimeActionEntity);
+            if temp < 1 then
+               Free (this.m_IDateTimeActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2198,7 +2224,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IDocumentActionEntity /= null then
          if this.m_IDocumentActionEntity.all /= null then
             temp := this.m_IDocumentActionEntity.all.Release;
-            Free (this.m_IDocumentActionEntity);
+            if temp < 1 then
+               Free (this.m_IDocumentActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2241,7 +2269,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IFileActionEntity /= null then
          if this.m_IFileActionEntity.all /= null then
             temp := this.m_IFileActionEntity.all.Release;
-            Free (this.m_IFileActionEntity);
+            if temp < 1 then
+               Free (this.m_IFileActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2284,7 +2314,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_INamedActionEntity /= null then
          if this.m_INamedActionEntity.all /= null then
             temp := this.m_INamedActionEntity.all.Release;
-            Free (this.m_INamedActionEntity);
+            if temp < 1 then
+               Free (this.m_INamedActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2397,7 +2429,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IPhotoActionEntity /= null then
          if this.m_IPhotoActionEntity.all /= null then
             temp := this.m_IPhotoActionEntity.all.Release;
-            Free (this.m_IPhotoActionEntity);
+            if temp < 1 then
+               Free (this.m_IPhotoActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2440,7 +2474,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IRemoteFileActionEntity /= null then
          if this.m_IRemoteFileActionEntity.all /= null then
             temp := this.m_IRemoteFileActionEntity.all.Release;
-            Free (this.m_IRemoteFileActionEntity);
+            if temp < 1 then
+               Free (this.m_IRemoteFileActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2806,7 +2842,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IStreamingTextActionEntity /= null then
          if this.m_IStreamingTextActionEntity.all /= null then
             temp := this.m_IStreamingTextActionEntity.all.Release;
-            Free (this.m_IStreamingTextActionEntity);
+            if temp < 1 then
+               Free (this.m_IStreamingTextActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -2916,7 +2954,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IStreamingTextActionEntityTextChangedArgs /= null then
          if this.m_IStreamingTextActionEntityTextChangedArgs.all /= null then
             temp := this.m_IStreamingTextActionEntityTextChangedArgs.all.Release;
-            Free (this.m_IStreamingTextActionEntityTextChangedArgs);
+            if temp < 1 then
+               Free (this.m_IStreamingTextActionEntityTextChangedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2976,7 +3016,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IStreamingTextActionEntityWriter /= null then
          if this.m_IStreamingTextActionEntityWriter.all /= null then
             temp := this.m_IStreamingTextActionEntityWriter.all.Release;
-            Free (this.m_IStreamingTextActionEntityWriter);
+            if temp < 1 then
+               Free (this.m_IStreamingTextActionEntityWriter);
+            end if;
          end if;
       end if;
    end;
@@ -3071,7 +3113,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_ITableActionEntity /= null then
          if this.m_ITableActionEntity.all /= null then
             temp := this.m_ITableActionEntity.all.Release;
-            Free (this.m_ITableActionEntity);
+            if temp < 1 then
+               Free (this.m_ITableActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -3156,7 +3200,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_ITextActionEntity /= null then
          if this.m_ITextActionEntity.all /= null then
             temp := this.m_ITextActionEntity.all.Release;
-            Free (this.m_ITextActionEntity);
+            if temp < 1 then
+               Free (this.m_ITextActionEntity);
+            end if;
          end if;
       end if;
    end;
@@ -3220,7 +3266,9 @@ package body WinRt.Windows.AI.Actions is
       if this.m_IUriActionEntity /= null then
          if this.m_IUriActionEntity.all /= null then
             temp := this.m_IUriActionEntity.all.Release;
-            Free (this.m_IUriActionEntity);
+            if temp < 1 then
+               Free (this.m_IUriActionEntity);
+            end if;
          end if;
       end if;
    end;

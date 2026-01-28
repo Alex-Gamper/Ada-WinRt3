@@ -124,7 +124,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IAdvertisingManagerForUser /= null then
          if this.m_IAdvertisingManagerForUser.all /= null then
             temp := this.m_IAdvertisingManagerForUser.all.Release;
-            Free (this.m_IAdvertisingManagerForUser);
+            if temp < 1 then
+               Free (this.m_IAdvertisingManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -187,7 +189,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IAssignedAccessSettings /= null then
          if this.m_IAssignedAccessSettings.all /= null then
             temp := this.m_IAssignedAccessSettings.all.Release;
-            Free (this.m_IAssignedAccessSettings);
+            if temp < 1 then
+               Free (this.m_IAssignedAccessSettings);
+            end if;
          end if;
       end if;
    end;
@@ -318,7 +322,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IDiagnosticsSettings /= null then
          if this.m_IDiagnosticsSettings.all /= null then
             temp := this.m_IDiagnosticsSettings.all.Release;
-            Free (this.m_IDiagnosticsSettings);
+            if temp < 1 then
+               Free (this.m_IDiagnosticsSettings);
+            end if;
          end if;
       end if;
    end;
@@ -432,7 +438,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IFirstSignInSettings /= null then
          if this.m_IFirstSignInSettings.all /= null then
             temp := this.m_IFirstSignInSettings.all.Release;
-            Free (this.m_IFirstSignInSettings);
+            if temp < 1 then
+               Free (this.m_IFirstSignInSettings);
+            end if;
          end if;
       end if;
    end;
@@ -800,7 +808,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IGlobalizationPreferencesForUser /= null then
          if this.m_IGlobalizationPreferencesForUser.all /= null then
             temp := this.m_IGlobalizationPreferencesForUser.all.Release;
-            Free (this.m_IGlobalizationPreferencesForUser);
+            if temp < 1 then
+               Free (this.m_IGlobalizationPreferencesForUser);
+            end if;
          end if;
       end if;
    end;
@@ -2021,7 +2031,9 @@ package body WinUI3.Windows.System.UserProfile is
       if this.m_IUserProfilePersonalizationSettings /= null then
          if this.m_IUserProfilePersonalizationSettings.all /= null then
             temp := this.m_IUserProfilePersonalizationSettings.all.Release;
-            Free (this.m_IUserProfilePersonalizationSettings);
+            if temp < 1 then
+               Free (this.m_IUserProfilePersonalizationSettings);
+            end if;
          end if;
       end if;
    end;

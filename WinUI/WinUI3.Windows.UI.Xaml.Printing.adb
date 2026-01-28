@@ -48,7 +48,9 @@ package body WinUI3.Windows.UI.Xaml.Printing is
       if this.m_IAddPagesEventArgs /= null then
          if this.m_IAddPagesEventArgs.all /= null then
             temp := this.m_IAddPagesEventArgs.all.Release;
-            Free (this.m_IAddPagesEventArgs);
+            if temp < 1 then
+               Free (this.m_IAddPagesEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -126,7 +128,9 @@ package body WinUI3.Windows.UI.Xaml.Printing is
       if this.m_IGetPreviewPageEventArgs /= null then
          if this.m_IGetPreviewPageEventArgs.all /= null then
             temp := this.m_IGetPreviewPageEventArgs.all.Release;
-            Free (this.m_IGetPreviewPageEventArgs);
+            if temp < 1 then
+               Free (this.m_IGetPreviewPageEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -201,7 +205,9 @@ package body WinUI3.Windows.UI.Xaml.Printing is
       if this.m_IPaginateEventArgs /= null then
          if this.m_IPaginateEventArgs.all /= null then
             temp := this.m_IPaginateEventArgs.all.Release;
-            Free (this.m_IPaginateEventArgs);
+            if temp < 1 then
+               Free (this.m_IPaginateEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -296,7 +302,9 @@ package body WinUI3.Windows.UI.Xaml.Printing is
       if this.m_IPrintDocument /= null then
          if this.m_IPrintDocument.all /= null then
             temp := this.m_IPrintDocument.all.Release;
-            Free (this.m_IPrintDocument);
+            if temp < 1 then
+               Free (this.m_IPrintDocument);
+            end if;
          end if;
       end if;
    end;

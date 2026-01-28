@@ -51,7 +51,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IAttachableInputObject /= null then
          if this.m_IAttachableInputObject.all /= null then
             temp := this.m_IAttachableInputObject.all.Release;
-            Free (this.m_IAttachableInputObject);
+            if temp < 1 then
+               Free (this.m_IAttachableInputObject);
+            end if;
          end if;
       end if;
    end;
@@ -95,7 +97,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ICrossSlidingEventArgs /= null then
          if this.m_ICrossSlidingEventArgs.all /= null then
             temp := this.m_ICrossSlidingEventArgs.all.Release;
-            Free (this.m_ICrossSlidingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICrossSlidingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -190,7 +194,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IDraggingEventArgs /= null then
          if this.m_IDraggingEventArgs.all /= null then
             temp := this.m_IDraggingEventArgs.all.Release;
-            Free (this.m_IDraggingEventArgs);
+            if temp < 1 then
+               Free (this.m_IDraggingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -285,7 +291,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IEdgeGesture /= null then
          if this.m_IEdgeGesture.all /= null then
             temp := this.m_IEdgeGesture.all.Release;
-            Free (this.m_IEdgeGesture);
+            if temp < 1 then
+               Free (this.m_IEdgeGesture);
+            end if;
          end if;
       end if;
    end;
@@ -434,7 +442,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IEdgeGestureEventArgs /= null then
          if this.m_IEdgeGestureEventArgs.all /= null then
             temp := this.m_IEdgeGestureEventArgs.all.Release;
-            Free (this.m_IEdgeGestureEventArgs);
+            if temp < 1 then
+               Free (this.m_IEdgeGestureEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -474,7 +484,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IGestureRecognizer /= null then
          if this.m_IGestureRecognizer.all /= null then
             temp := this.m_IGestureRecognizer.all.Release;
-            Free (this.m_IGestureRecognizer);
+            if temp < 1 then
+               Free (this.m_IGestureRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -1775,7 +1787,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IHoldingEventArgs /= null then
          if this.m_IHoldingEventArgs.all /= null then
             temp := this.m_IHoldingEventArgs.all.Release;
-            Free (this.m_IHoldingEventArgs);
+            if temp < 1 then
+               Free (this.m_IHoldingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1891,7 +1905,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IInputActivationListener /= null then
          if this.m_IInputActivationListener.all /= null then
             temp := this.m_IInputActivationListener.all.Release;
-            Free (this.m_IInputActivationListener);
+            if temp < 1 then
+               Free (this.m_IInputActivationListener);
+            end if;
          end if;
       end if;
    end;
@@ -1964,7 +1980,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IInputActivationListenerActivationChangedEventArgs /= null then
          if this.m_IInputActivationListenerActivationChangedEventArgs.all /= null then
             temp := this.m_IInputActivationListenerActivationChangedEventArgs.all.Release;
-            Free (this.m_IInputActivationListenerActivationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInputActivationListenerActivationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2004,7 +2022,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IKeyboardDeliveryInterceptor /= null then
          if this.m_IKeyboardDeliveryInterceptor.all /= null then
             temp := this.m_IKeyboardDeliveryInterceptor.all.Release;
-            Free (this.m_IKeyboardDeliveryInterceptor);
+            if temp < 1 then
+               Free (this.m_IKeyboardDeliveryInterceptor);
+            end if;
          end if;
       end if;
    end;
@@ -2152,7 +2172,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IManipulationCompletedEventArgs /= null then
          if this.m_IManipulationCompletedEventArgs.all /= null then
             temp := this.m_IManipulationCompletedEventArgs.all.Release;
-            Free (this.m_IManipulationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2285,7 +2307,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IManipulationInertiaStartingEventArgs /= null then
          if this.m_IManipulationInertiaStartingEventArgs.all /= null then
             temp := this.m_IManipulationInertiaStartingEventArgs.all.Release;
-            Free (this.m_IManipulationInertiaStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationInertiaStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2414,7 +2438,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IManipulationStartedEventArgs /= null then
          if this.m_IManipulationStartedEventArgs.all /= null then
             temp := this.m_IManipulationStartedEventArgs.all.Release;
-            Free (this.m_IManipulationStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2509,7 +2535,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IManipulationUpdatedEventArgs /= null then
          if this.m_IManipulationUpdatedEventArgs.all /= null then
             temp := this.m_IManipulationUpdatedEventArgs.all.Release;
-            Free (this.m_IManipulationUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2659,7 +2687,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IMouseWheelParameters /= null then
          if this.m_IMouseWheelParameters.all /= null then
             temp := this.m_IMouseWheelParameters.all.Release;
-            Free (this.m_IMouseWheelParameters);
+            if temp < 1 then
+               Free (this.m_IMouseWheelParameters);
+            end if;
          end if;
       end if;
    end;
@@ -2810,7 +2840,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IPhysicalGestureRecognizer /= null then
          if this.m_IPhysicalGestureRecognizer.all /= null then
             temp := this.m_IPhysicalGestureRecognizer.all.Release;
-            Free (this.m_IPhysicalGestureRecognizer);
+            if temp < 1 then
+               Free (this.m_IPhysicalGestureRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -3381,7 +3413,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IPointerPoint /= null then
          if this.m_IPointerPoint.all /= null then
             temp := this.m_IPointerPoint.all.Release;
-            Free (this.m_IPointerPoint);
+            if temp < 1 then
+               Free (this.m_IPointerPoint);
+            end if;
          end if;
       end if;
    end;
@@ -3695,7 +3729,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IPointerPointProperties /= null then
          if this.m_IPointerPointProperties.all /= null then
             temp := this.m_IPointerPointProperties.all.Release;
-            Free (this.m_IPointerPointProperties);
+            if temp < 1 then
+               Free (this.m_IPointerPointProperties);
+            end if;
          end if;
       end if;
    end;
@@ -4154,7 +4190,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IPointerVisualizationSettings /= null then
          if this.m_IPointerVisualizationSettings.all /= null then
             temp := this.m_IPointerVisualizationSettings.all.Release;
-            Free (this.m_IPointerVisualizationSettings);
+            if temp < 1 then
+               Free (this.m_IPointerVisualizationSettings);
+            end if;
          end if;
       end if;
    end;
@@ -4268,7 +4306,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialController /= null then
          if this.m_IRadialController.all /= null then
             temp := this.m_IRadialController.all.Release;
-            Free (this.m_IRadialController);
+            if temp < 1 then
+               Free (this.m_IRadialController);
+            end if;
          end if;
       end if;
    end;
@@ -4777,7 +4817,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerButtonClickedEventArgs /= null then
          if this.m_IRadialControllerButtonClickedEventArgs.all /= null then
             temp := this.m_IRadialControllerButtonClickedEventArgs.all.Release;
-            Free (this.m_IRadialControllerButtonClickedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerButtonClickedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4844,7 +4886,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerButtonHoldingEventArgs /= null then
          if this.m_IRadialControllerButtonHoldingEventArgs.all /= null then
             temp := this.m_IRadialControllerButtonHoldingEventArgs.all.Release;
-            Free (this.m_IRadialControllerButtonHoldingEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerButtonHoldingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4907,7 +4951,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerButtonPressedEventArgs /= null then
          if this.m_IRadialControllerButtonPressedEventArgs.all /= null then
             temp := this.m_IRadialControllerButtonPressedEventArgs.all.Release;
-            Free (this.m_IRadialControllerButtonPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerButtonPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4970,7 +5016,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerButtonReleasedEventArgs /= null then
          if this.m_IRadialControllerButtonReleasedEventArgs.all /= null then
             temp := this.m_IRadialControllerButtonReleasedEventArgs.all.Release;
-            Free (this.m_IRadialControllerButtonReleasedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerButtonReleasedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5033,7 +5081,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerConfiguration /= null then
          if this.m_IRadialControllerConfiguration.all /= null then
             temp := this.m_IRadialControllerConfiguration.all.Release;
-            Free (this.m_IRadialControllerConfiguration);
+            if temp < 1 then
+               Free (this.m_IRadialControllerConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -5300,7 +5350,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerControlAcquiredEventArgs /= null then
          if this.m_IRadialControllerControlAcquiredEventArgs.all /= null then
             temp := this.m_IRadialControllerControlAcquiredEventArgs.all.Release;
-            Free (this.m_IRadialControllerControlAcquiredEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerControlAcquiredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5388,7 +5440,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerMenu /= null then
          if this.m_IRadialControllerMenu.all /= null then
             temp := this.m_IRadialControllerMenu.all.Release;
-            Free (this.m_IRadialControllerMenu);
+            if temp < 1 then
+               Free (this.m_IRadialControllerMenu);
+            end if;
          end if;
       end if;
    end;
@@ -5515,7 +5569,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerMenuItem /= null then
          if this.m_IRadialControllerMenuItem.all /= null then
             temp := this.m_IRadialControllerMenuItem.all.Release;
-            Free (this.m_IRadialControllerMenuItem);
+            if temp < 1 then
+               Free (this.m_IRadialControllerMenuItem);
+            end if;
          end if;
       end if;
    end;
@@ -5757,7 +5813,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerRotationChangedEventArgs /= null then
          if this.m_IRadialControllerRotationChangedEventArgs.all /= null then
             temp := this.m_IRadialControllerRotationChangedEventArgs.all.Release;
-            Free (this.m_IRadialControllerRotationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerRotationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5862,7 +5920,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerScreenContact /= null then
          if this.m_IRadialControllerScreenContact.all /= null then
             temp := this.m_IRadialControllerScreenContact.all.Release;
-            Free (this.m_IRadialControllerScreenContact);
+            if temp < 1 then
+               Free (this.m_IRadialControllerScreenContact);
+            end if;
          end if;
       end if;
    end;
@@ -5919,7 +5979,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerScreenContactContinuedEventArgs /= null then
          if this.m_IRadialControllerScreenContactContinuedEventArgs.all /= null then
             temp := this.m_IRadialControllerScreenContactContinuedEventArgs.all.Release;
-            Free (this.m_IRadialControllerScreenContactContinuedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerScreenContactContinuedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6007,7 +6069,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerScreenContactEndedEventArgs /= null then
          if this.m_IRadialControllerScreenContactEndedEventArgs.all /= null then
             temp := this.m_IRadialControllerScreenContactEndedEventArgs.all.Release;
-            Free (this.m_IRadialControllerScreenContactEndedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerScreenContactEndedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6067,7 +6131,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRadialControllerScreenContactStartedEventArgs /= null then
          if this.m_IRadialControllerScreenContactStartedEventArgs.all /= null then
             temp := this.m_IRadialControllerScreenContactStartedEventArgs.all.Release;
-            Free (this.m_IRadialControllerScreenContactStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRadialControllerScreenContactStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6155,7 +6221,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_IRightTappedEventArgs /= null then
          if this.m_IRightTappedEventArgs.all /= null then
             temp := this.m_IRightTappedEventArgs.all.Release;
-            Free (this.m_IRightTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRightTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6233,7 +6301,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ISystemButtonEventController /= null then
          if this.m_ISystemButtonEventController.all /= null then
             temp := this.m_ISystemButtonEventController.all.Release;
-            Free (this.m_ISystemButtonEventController);
+            if temp < 1 then
+               Free (this.m_ISystemButtonEventController);
+            end if;
          end if;
       end if;
    end;
@@ -6418,7 +6488,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ISystemFunctionButtonEventArgs /= null then
          if this.m_ISystemFunctionButtonEventArgs.all /= null then
             temp := this.m_ISystemFunctionButtonEventArgs.all.Release;
-            Free (this.m_ISystemFunctionButtonEventArgs);
+            if temp < 1 then
+               Free (this.m_ISystemFunctionButtonEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6490,7 +6562,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ISystemFunctionLockChangedEventArgs /= null then
          if this.m_ISystemFunctionLockChangedEventArgs.all /= null then
             temp := this.m_ISystemFunctionLockChangedEventArgs.all.Release;
-            Free (this.m_ISystemFunctionLockChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISystemFunctionLockChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6579,7 +6653,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ISystemFunctionLockIndicatorChangedEventArgs /= null then
          if this.m_ISystemFunctionLockIndicatorChangedEventArgs.all /= null then
             temp := this.m_ISystemFunctionLockIndicatorChangedEventArgs.all.Release;
-            Free (this.m_ISystemFunctionLockIndicatorChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISystemFunctionLockIndicatorChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6668,7 +6744,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ITappedEventArgs /= null then
          if this.m_ITappedEventArgs.all /= null then
             temp := this.m_ITappedEventArgs.all.Release;
-            Free (this.m_ITappedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6763,7 +6841,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ITouchpadGesturesController /= null then
          if this.m_ITouchpadGesturesController.all /= null then
             temp := this.m_ITouchpadGesturesController.all.Release;
-            Free (this.m_ITouchpadGesturesController);
+            if temp < 1 then
+               Free (this.m_ITouchpadGesturesController);
+            end if;
          end if;
       end if;
    end;
@@ -7030,7 +7110,9 @@ package body WinRt.Windows.UI.Input is
       if this.m_ITouchpadGlobalActionEventArgs /= null then
          if this.m_ITouchpadGlobalActionEventArgs.all /= null then
             temp := this.m_ITouchpadGlobalActionEventArgs.all.Release;
-            Free (this.m_ITouchpadGlobalActionEventArgs);
+            if temp < 1 then
+               Free (this.m_ITouchpadGlobalActionEventArgs);
+            end if;
          end if;
       end if;
    end;

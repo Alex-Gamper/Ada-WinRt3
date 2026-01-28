@@ -56,7 +56,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkDrawingAttributes /= null then
          if this.m_IInkDrawingAttributes.all /= null then
             temp := this.m_IInkDrawingAttributes.all.Release;
-            Free (this.m_IInkDrawingAttributes);
+            if temp < 1 then
+               Free (this.m_IInkDrawingAttributes);
+            end if;
          end if;
       end if;
    end;
@@ -474,7 +476,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkDrawingAttributesPencilProperties /= null then
          if this.m_IInkDrawingAttributesPencilProperties.all /= null then
             temp := this.m_IInkDrawingAttributesPencilProperties.all.Release;
-            Free (this.m_IInkDrawingAttributesPencilProperties);
+            if temp < 1 then
+               Free (this.m_IInkDrawingAttributesPencilProperties);
+            end if;
          end if;
       end if;
    end;
@@ -529,7 +533,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkInputConfiguration /= null then
          if this.m_IInkInputConfiguration.all /= null then
             temp := this.m_IInkInputConfiguration.all.Release;
-            Free (this.m_IInkInputConfiguration);
+            if temp < 1 then
+               Free (this.m_IInkInputConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -656,7 +662,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkInputProcessingConfiguration /= null then
          if this.m_IInkInputProcessingConfiguration.all /= null then
             temp := this.m_IInkInputProcessingConfiguration.all.Release;
-            Free (this.m_IInkInputProcessingConfiguration);
+            if temp < 1 then
+               Free (this.m_IInkInputProcessingConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -743,7 +751,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkManager /= null then
          if this.m_IInkManager.all /= null then
             temp := this.m_IInkManager.all.Release;
-            Free (this.m_IInkManager);
+            if temp < 1 then
+               Free (this.m_IInkManager);
+            end if;
          end if;
       end if;
    end;
@@ -1430,7 +1440,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkModelerAttributes /= null then
          if this.m_IInkModelerAttributes.all /= null then
             temp := this.m_IInkModelerAttributes.all.Release;
-            Free (this.m_IInkModelerAttributes);
+            if temp < 1 then
+               Free (this.m_IInkModelerAttributes);
+            end if;
          end if;
       end if;
    end;
@@ -1557,7 +1569,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkPoint /= null then
          if this.m_IInkPoint.all /= null then
             temp := this.m_IInkPoint.all.Release;
-            Free (this.m_IInkPoint);
+            if temp < 1 then
+               Free (this.m_IInkPoint);
+            end if;
          end if;
       end if;
    end;
@@ -1733,7 +1747,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkPresenter /= null then
          if this.m_IInkPresenter.all /= null then
             temp := this.m_IInkPresenter.all.Release;
-            Free (this.m_IInkPresenter);
+            if temp < 1 then
+               Free (this.m_IInkPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -2115,7 +2131,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkPresenterProtractor /= null then
          if this.m_IInkPresenterProtractor.all /= null then
             temp := this.m_IInkPresenterProtractor.all.Release;
-            Free (this.m_IInkPresenterProtractor);
+            if temp < 1 then
+               Free (this.m_IInkPresenterProtractor);
+            end if;
          end if;
       end if;
    end;
@@ -2570,7 +2588,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkPresenterRuler /= null then
          if this.m_IInkPresenterRuler.all /= null then
             temp := this.m_IInkPresenterRuler.all.Release;
-            Free (this.m_IInkPresenterRuler);
+            if temp < 1 then
+               Free (this.m_IInkPresenterRuler);
+            end if;
          end if;
       end if;
    end;
@@ -2945,7 +2965,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkRecognitionResult /= null then
          if this.m_IInkRecognitionResult.all /= null then
             temp := this.m_IInkRecognitionResult.all.Release;
-            Free (this.m_IInkRecognitionResult);
+            if temp < 1 then
+               Free (this.m_IInkRecognitionResult);
+            end if;
          end if;
       end if;
    end;
@@ -3025,7 +3047,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkRecognizer /= null then
          if this.m_IInkRecognizer.all /= null then
             temp := this.m_IInkRecognizer.all.Release;
-            Free (this.m_IInkRecognizer);
+            if temp < 1 then
+               Free (this.m_IInkRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -3068,7 +3092,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkRecognizerContainer /= null then
          if this.m_IInkRecognizerContainer.all /= null then
             temp := this.m_IInkRecognizerContainer.all.Release;
-            Free (this.m_IInkRecognizerContainer);
+            if temp < 1 then
+               Free (this.m_IInkRecognizerContainer);
+            end if;
          end if;
       end if;
    end;
@@ -3210,7 +3236,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStroke /= null then
          if this.m_IInkStroke.all /= null then
             temp := this.m_IInkStroke.all.Release;
-            Free (this.m_IInkStroke);
+            if temp < 1 then
+               Free (this.m_IInkStroke);
+            end if;
          end if;
       end if;
    end;
@@ -3566,7 +3594,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokeBuilder /= null then
          if this.m_IInkStrokeBuilder.all /= null then
             temp := this.m_IInkStrokeBuilder.all.Release;
-            Free (this.m_IInkStrokeBuilder);
+            if temp < 1 then
+               Free (this.m_IInkStrokeBuilder);
+            end if;
          end if;
       end if;
    end;
@@ -3755,7 +3785,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokeContainer /= null then
          if this.m_IInkStrokeContainer.all /= null then
             temp := this.m_IInkStrokeContainer.all.Release;
-            Free (this.m_IInkStrokeContainer);
+            if temp < 1 then
+               Free (this.m_IInkStrokeContainer);
+            end if;
          end if;
       end if;
    end;
@@ -4243,7 +4275,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokeInput /= null then
          if this.m_IInkStrokeInput.all /= null then
             temp := this.m_IInkStrokeInput.all.Release;
-            Free (this.m_IInkStrokeInput);
+            if temp < 1 then
+               Free (this.m_IInkStrokeInput);
+            end if;
          end if;
       end if;
    end;
@@ -4418,7 +4452,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokeRenderingSegment /= null then
          if this.m_IInkStrokeRenderingSegment.all /= null then
             temp := this.m_IInkStrokeRenderingSegment.all.Release;
-            Free (this.m_IInkStrokeRenderingSegment);
+            if temp < 1 then
+               Free (this.m_IInkStrokeRenderingSegment);
+            end if;
          end if;
       end if;
    end;
@@ -4560,7 +4596,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokesCollectedEventArgs /= null then
          if this.m_IInkStrokesCollectedEventArgs.all /= null then
             temp := this.m_IInkStrokesCollectedEventArgs.all.Release;
-            Free (this.m_IInkStrokesCollectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInkStrokesCollectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4603,7 +4641,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkStrokesErasedEventArgs /= null then
          if this.m_IInkStrokesErasedEventArgs.all /= null then
             temp := this.m_IInkStrokesErasedEventArgs.all.Release;
-            Free (this.m_IInkStrokesErasedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInkStrokesErasedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4646,7 +4686,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkSynchronizer /= null then
          if this.m_IInkSynchronizer.all /= null then
             temp := this.m_IInkSynchronizer.all.Release;
-            Free (this.m_IInkSynchronizer);
+            if temp < 1 then
+               Free (this.m_IInkSynchronizer);
+            end if;
          end if;
       end if;
    end;
@@ -4703,7 +4745,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IInkUnprocessedInput /= null then
          if this.m_IInkUnprocessedInput.all /= null then
             temp := this.m_IInkUnprocessedInput.all.Release;
-            Free (this.m_IInkUnprocessedInput);
+            if temp < 1 then
+               Free (this.m_IInkUnprocessedInput);
+            end if;
          end if;
       end if;
    end;
@@ -4977,7 +5021,9 @@ package body WinUI3.Windows.UI.Input.Inking is
       if this.m_IPenAndInkSettings /= null then
          if this.m_IPenAndInkSettings.all /= null then
             temp := this.m_IPenAndInkSettings.all.Release;
-            Free (this.m_IPenAndInkSettings);
+            if temp < 1 then
+               Free (this.m_IPenAndInkSettings);
+            end if;
          end if;
       end if;
    end;

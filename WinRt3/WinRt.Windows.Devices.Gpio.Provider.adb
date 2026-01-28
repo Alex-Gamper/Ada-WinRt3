@@ -46,7 +46,9 @@ package body WinRt.Windows.Devices.Gpio.Provider is
       if this.m_IGpioPinProviderValueChangedEventArgs /= null then
          if this.m_IGpioPinProviderValueChangedEventArgs.all /= null then
             temp := this.m_IGpioPinProviderValueChangedEventArgs.all.Release;
-            Free (this.m_IGpioPinProviderValueChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGpioPinProviderValueChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

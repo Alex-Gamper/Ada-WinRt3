@@ -57,7 +57,9 @@ package body WinUI3.Windows.ApplicationModel.Payments.Provider is
       if this.m_IPaymentAppCanMakePaymentTriggerDetails /= null then
          if this.m_IPaymentAppCanMakePaymentTriggerDetails.all /= null then
             temp := this.m_IPaymentAppCanMakePaymentTriggerDetails.all.Release;
-            Free (this.m_IPaymentAppCanMakePaymentTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPaymentAppCanMakePaymentTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -115,7 +117,9 @@ package body WinUI3.Windows.ApplicationModel.Payments.Provider is
       if this.m_IPaymentAppManager /= null then
          if this.m_IPaymentAppManager.all /= null then
             temp := this.m_IPaymentAppManager.all.Release;
-            Free (this.m_IPaymentAppManager);
+            if temp < 1 then
+               Free (this.m_IPaymentAppManager);
+            end if;
          end if;
       end if;
    end;
@@ -250,7 +254,9 @@ package body WinUI3.Windows.ApplicationModel.Payments.Provider is
       if this.m_IPaymentTransaction /= null then
          if this.m_IPaymentTransaction.all /= null then
             temp := this.m_IPaymentTransaction.all.Release;
-            Free (this.m_IPaymentTransaction);
+            if temp < 1 then
+               Free (this.m_IPaymentTransaction);
+            end if;
          end if;
       end if;
    end;
@@ -697,7 +703,9 @@ package body WinUI3.Windows.ApplicationModel.Payments.Provider is
       if this.m_IPaymentTransactionAcceptResult /= null then
          if this.m_IPaymentTransactionAcceptResult.all /= null then
             temp := this.m_IPaymentTransactionAcceptResult.all.Release;
-            Free (this.m_IPaymentTransactionAcceptResult);
+            if temp < 1 then
+               Free (this.m_IPaymentTransactionAcceptResult);
+            end if;
          end if;
       end if;
    end;

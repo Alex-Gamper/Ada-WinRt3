@@ -56,7 +56,9 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
       if this.m_ISpatialSurfaceInfo /= null then
          if this.m_ISpatialSurfaceInfo.all /= null then
             temp := this.m_ISpatialSurfaceInfo.all.Release;
-            Free (this.m_ISpatialSurfaceInfo);
+            if temp < 1 then
+               Free (this.m_ISpatialSurfaceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -269,7 +271,9 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
       if this.m_ISpatialSurfaceMesh /= null then
          if this.m_ISpatialSurfaceMesh.all /= null then
             temp := this.m_ISpatialSurfaceMesh.all.Release;
-            Free (this.m_ISpatialSurfaceMesh);
+            if temp < 1 then
+               Free (this.m_ISpatialSurfaceMesh);
+            end if;
          end if;
       end if;
    end;
@@ -409,7 +413,9 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
       if this.m_ISpatialSurfaceMeshBuffer /= null then
          if this.m_ISpatialSurfaceMeshBuffer.all /= null then
             temp := this.m_ISpatialSurfaceMeshBuffer.all.Release;
-            Free (this.m_ISpatialSurfaceMeshBuffer);
+            if temp < 1 then
+               Free (this.m_ISpatialSurfaceMeshBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -500,7 +506,9 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
       if this.m_ISpatialSurfaceMeshOptions /= null then
          if this.m_ISpatialSurfaceMeshOptions.all /= null then
             temp := this.m_ISpatialSurfaceMeshOptions.all.Release;
-            Free (this.m_ISpatialSurfaceMeshOptions);
+            if temp < 1 then
+               Free (this.m_ISpatialSurfaceMeshOptions);
+            end if;
          end if;
       end if;
    end;
@@ -736,7 +744,9 @@ package body WinUI3.Windows.Perception.Spatial.Surfaces is
       if this.m_ISpatialSurfaceObserver /= null then
          if this.m_ISpatialSurfaceObserver.all /= null then
             temp := this.m_ISpatialSurfaceObserver.all.Release;
-            Free (this.m_ISpatialSurfaceObserver);
+            if temp < 1 then
+               Free (this.m_ISpatialSurfaceObserver);
+            end if;
          end if;
       end if;
    end;

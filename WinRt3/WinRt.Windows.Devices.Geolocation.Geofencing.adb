@@ -47,7 +47,9 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       if this.m_IGeofence /= null then
          if this.m_IGeofence.all /= null then
             temp := this.m_IGeofence.all.Release;
-            Free (this.m_IGeofence);
+            if temp < 1 then
+               Free (this.m_IGeofence);
+            end if;
          end if;
       end if;
    end;
@@ -313,7 +315,9 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       if this.m_IGeofenceMonitor /= null then
          if this.m_IGeofenceMonitor.all /= null then
             temp := this.m_IGeofenceMonitor.all.Release;
-            Free (this.m_IGeofenceMonitor);
+            if temp < 1 then
+               Free (this.m_IGeofenceMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -506,7 +510,9 @@ package body WinRt.Windows.Devices.Geolocation.Geofencing is
       if this.m_IGeofenceStateChangeReport /= null then
          if this.m_IGeofenceStateChangeReport.all /= null then
             temp := this.m_IGeofenceStateChangeReport.all.Release;
-            Free (this.m_IGeofenceStateChangeReport);
+            if temp < 1 then
+               Free (this.m_IGeofenceStateChangeReport);
+            end if;
          end if;
       end if;
    end;

@@ -81,7 +81,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IBufferProtectUnprotectResult /= null then
          if this.m_IBufferProtectUnprotectResult.all /= null then
             temp := this.m_IBufferProtectUnprotectResult.all.Release;
-            Free (this.m_IBufferProtectUnprotectResult);
+            if temp < 1 then
+               Free (this.m_IBufferProtectUnprotectResult);
+            end if;
          end if;
       end if;
    end;
@@ -141,7 +143,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IDataProtectionInfo /= null then
          if this.m_IDataProtectionInfo.all /= null then
             temp := this.m_IDataProtectionInfo.all.Release;
-            Free (this.m_IDataProtectionInfo);
+            if temp < 1 then
+               Free (this.m_IDataProtectionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -653,7 +657,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IFileProtectionInfo /= null then
          if this.m_IFileProtectionInfo.all /= null then
             temp := this.m_IFileProtectionInfo.all.Release;
-            Free (this.m_IFileProtectionInfo);
+            if temp < 1 then
+               Free (this.m_IFileProtectionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1886,7 +1892,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IFileUnprotectOptions /= null then
          if this.m_IFileUnprotectOptions.all /= null then
             temp := this.m_IFileUnprotectOptions.all.Release;
-            Free (this.m_IFileUnprotectOptions);
+            if temp < 1 then
+               Free (this.m_IFileUnprotectOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1968,7 +1976,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedAccessResumedEventArgs /= null then
          if this.m_IProtectedAccessResumedEventArgs.all /= null then
             temp := this.m_IProtectedAccessResumedEventArgs.all.Release;
-            Free (this.m_IProtectedAccessResumedEventArgs);
+            if temp < 1 then
+               Free (this.m_IProtectedAccessResumedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2011,7 +2021,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedAccessSuspendingEventArgs /= null then
          if this.m_IProtectedAccessSuspendingEventArgs.all /= null then
             temp := this.m_IProtectedAccessSuspendingEventArgs.all.Release;
-            Free (this.m_IProtectedAccessSuspendingEventArgs);
+            if temp < 1 then
+               Free (this.m_IProtectedAccessSuspendingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2091,7 +2103,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedContainerExportResult /= null then
          if this.m_IProtectedContainerExportResult.all /= null then
             temp := this.m_IProtectedContainerExportResult.all.Release;
-            Free (this.m_IProtectedContainerExportResult);
+            if temp < 1 then
+               Free (this.m_IProtectedContainerExportResult);
+            end if;
          end if;
       end if;
    end;
@@ -2151,7 +2165,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedContainerImportResult /= null then
          if this.m_IProtectedContainerImportResult.all /= null then
             temp := this.m_IProtectedContainerImportResult.all.Release;
-            Free (this.m_IProtectedContainerImportResult);
+            if temp < 1 then
+               Free (this.m_IProtectedContainerImportResult);
+            end if;
          end if;
       end if;
    end;
@@ -2211,7 +2227,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedContentRevokedEventArgs /= null then
          if this.m_IProtectedContentRevokedEventArgs.all /= null then
             temp := this.m_IProtectedContentRevokedEventArgs.all.Release;
-            Free (this.m_IProtectedContentRevokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IProtectedContentRevokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2254,7 +2272,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectedFileCreateResult /= null then
          if this.m_IProtectedFileCreateResult.all /= null then
             temp := this.m_IProtectedFileCreateResult.all.Release;
-            Free (this.m_IProtectedFileCreateResult);
+            if temp < 1 then
+               Free (this.m_IProtectedFileCreateResult);
+            end if;
          end if;
       end if;
    end;
@@ -2334,7 +2354,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectionPolicyAuditInfo /= null then
          if this.m_IProtectionPolicyAuditInfo.all /= null then
             temp := this.m_IProtectionPolicyAuditInfo.all.Release;
-            Free (this.m_IProtectionPolicyAuditInfo);
+            if temp < 1 then
+               Free (this.m_IProtectionPolicyAuditInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2563,7 +2585,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IProtectionPolicyManager /= null then
          if this.m_IProtectionPolicyManager.all /= null then
             temp := this.m_IProtectionPolicyManager.all.Release;
-            Free (this.m_IProtectionPolicyManager);
+            if temp < 1 then
+               Free (this.m_IProtectionPolicyManager);
+            end if;
          end if;
       end if;
    end;
@@ -4424,7 +4448,9 @@ package body WinRt.Windows.Security.EnterpriseData is
       if this.m_IThreadNetworkContext /= null then
          if this.m_IThreadNetworkContext.all /= null then
             temp := this.m_IThreadNetworkContext.all.Release;
-            Free (this.m_IThreadNetworkContext);
+            if temp < 1 then
+               Free (this.m_IThreadNetworkContext);
+            end if;
          end if;
       end if;
    end;

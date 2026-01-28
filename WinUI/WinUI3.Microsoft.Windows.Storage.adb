@@ -49,7 +49,9 @@ package body WinUI3.Microsoft.Windows.Storage is
       if this.m_IApplicationData /= null then
          if this.m_IApplicationData.all /= null then
             temp := this.m_IApplicationData.all.Release;
-            Free (this.m_IApplicationData);
+            if temp < 1 then
+               Free (this.m_IApplicationData);
+            end if;
          end if;
       end if;
    end;
@@ -544,7 +546,9 @@ package body WinUI3.Microsoft.Windows.Storage is
       if this.m_IApplicationDataContainer /= null then
          if this.m_IApplicationDataContainer.all /= null then
             temp := this.m_IApplicationDataContainer.all.Release;
-            Free (this.m_IApplicationDataContainer);
+            if temp < 1 then
+               Free (this.m_IApplicationDataContainer);
+            end if;
          end if;
       end if;
    end;

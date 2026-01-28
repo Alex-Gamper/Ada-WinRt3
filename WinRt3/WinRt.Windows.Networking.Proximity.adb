@@ -57,7 +57,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_IConnectionRequestedEventArgs /= null then
          if this.m_IConnectionRequestedEventArgs.all /= null then
             temp := this.m_IConnectionRequestedEventArgs.all.Release;
-            Free (this.m_IConnectionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IConnectionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -780,7 +782,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_IPeerInformation /= null then
          if this.m_IPeerInformation.all /= null then
             temp := this.m_IPeerInformation.all.Release;
-            Free (this.m_IPeerInformation);
+            if temp < 1 then
+               Free (this.m_IPeerInformation);
+            end if;
          end if;
       end if;
    end;
@@ -916,7 +920,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_IPeerWatcher /= null then
          if this.m_IPeerWatcher.all /= null then
             temp := this.m_IPeerWatcher.all.Release;
-            Free (this.m_IPeerWatcher);
+            if temp < 1 then
+               Free (this.m_IPeerWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -1149,7 +1155,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_IProximityDevice /= null then
          if this.m_IProximityDevice.all /= null then
             temp := this.m_IProximityDevice.all.Release;
-            Free (this.m_IProximityDevice);
+            if temp < 1 then
+               Free (this.m_IProximityDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1550,7 +1558,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_IProximityMessage /= null then
          if this.m_IProximityMessage.all /= null then
             temp := this.m_IProximityMessage.all.Release;
-            Free (this.m_IProximityMessage);
+            if temp < 1 then
+               Free (this.m_IProximityMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1647,7 +1657,9 @@ package body WinRt.Windows.Networking.Proximity is
       if this.m_ITriggeredConnectionStateChangedEventArgs /= null then
          if this.m_ITriggeredConnectionStateChangedEventArgs.all /= null then
             temp := this.m_ITriggeredConnectionStateChangedEventArgs.all.Release;
-            Free (this.m_ITriggeredConnectionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITriggeredConnectionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

@@ -49,7 +49,9 @@ package body WinRt.Windows.UI.Xaml.Core.Direct is
       if this.m_IXamlDirect /= null then
          if this.m_IXamlDirect.all /= null then
             temp := this.m_IXamlDirect.all.Release;
-            Free (this.m_IXamlDirect);
+            if temp < 1 then
+               Free (this.m_IXamlDirect);
+            end if;
          end if;
       end if;
    end;

@@ -81,7 +81,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapBuffer /= null then
          if this.m_IBitmapBuffer.all /= null then
             temp := this.m_IBitmapBuffer.all.Release;
-            Free (this.m_IBitmapBuffer);
+            if temp < 1 then
+               Free (this.m_IBitmapBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -178,7 +180,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapCodecInformation /= null then
          if this.m_IBitmapCodecInformation.all /= null then
             temp := this.m_IBitmapCodecInformation.all.Release;
-            Free (this.m_IBitmapCodecInformation);
+            if temp < 1 then
+               Free (this.m_IBitmapCodecInformation);
+            end if;
          end if;
       end if;
    end;
@@ -278,7 +282,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapDecoder /= null then
          if this.m_IBitmapDecoder.all /= null then
             temp := this.m_IBitmapDecoder.all.Release;
-            Free (this.m_IBitmapDecoder);
+            if temp < 1 then
+               Free (this.m_IBitmapDecoder);
+            end if;
          end if;
       end if;
    end;
@@ -1477,7 +1483,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapEncoder /= null then
          if this.m_IBitmapEncoder.all /= null then
             temp := this.m_IBitmapEncoder.all.Release;
-            Free (this.m_IBitmapEncoder);
+            if temp < 1 then
+               Free (this.m_IBitmapEncoder);
+            end if;
          end if;
       end if;
    end;
@@ -2311,7 +2319,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapFrame /= null then
          if this.m_IBitmapFrame.all /= null then
             temp := this.m_IBitmapFrame.all.Release;
-            Free (this.m_IBitmapFrame);
+            if temp < 1 then
+               Free (this.m_IBitmapFrame);
+            end if;
          end if;
       end if;
    end;
@@ -2911,7 +2921,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapProperties /= null then
          if this.m_IBitmapProperties.all /= null then
             temp := this.m_IBitmapProperties.all.Release;
-            Free (this.m_IBitmapProperties);
+            if temp < 1 then
+               Free (this.m_IBitmapProperties);
+            end if;
          end if;
       end if;
    end;
@@ -3048,7 +3060,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapPropertiesView /= null then
          if this.m_IBitmapPropertiesView.all /= null then
             temp := this.m_IBitmapPropertiesView.all.Release;
-            Free (this.m_IBitmapPropertiesView);
+            if temp < 1 then
+               Free (this.m_IBitmapPropertiesView);
+            end if;
          end if;
       end if;
    end;
@@ -3338,7 +3352,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapTransform /= null then
          if this.m_IBitmapTransform.all /= null then
             temp := this.m_IBitmapTransform.all.Release;
-            Free (this.m_IBitmapTransform);
+            if temp < 1 then
+               Free (this.m_IBitmapTransform);
+            end if;
          end if;
       end if;
    end;
@@ -3572,7 +3588,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IBitmapTypedValue /= null then
          if this.m_IBitmapTypedValue.all /= null then
             temp := this.m_IBitmapTypedValue.all.Release;
-            Free (this.m_IBitmapTypedValue);
+            if temp < 1 then
+               Free (this.m_IBitmapTypedValue);
+            end if;
          end if;
       end if;
    end;
@@ -3658,7 +3676,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IRandomAccessStreamWithContentType /= null then
          if this.m_IRandomAccessStreamWithContentType.all /= null then
             temp := this.m_IRandomAccessStreamWithContentType.all.Release;
-            Free (this.m_IRandomAccessStreamWithContentType);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStreamWithContentType);
+            end if;
          end if;
       end if;
    end;
@@ -4115,7 +4135,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_IPixelDataProvider /= null then
          if this.m_IPixelDataProvider.all /= null then
             temp := this.m_IPixelDataProvider.all.Release;
-            Free (this.m_IPixelDataProvider);
+            if temp < 1 then
+               Free (this.m_IPixelDataProvider);
+            end if;
          end if;
       end if;
    end;
@@ -4164,7 +4186,9 @@ package body WinUI3.Windows.Graphics.Imaging is
       if this.m_ISoftwareBitmap /= null then
          if this.m_ISoftwareBitmap.all /= null then
             temp := this.m_ISoftwareBitmap.all.Release;
-            Free (this.m_ISoftwareBitmap);
+            if temp < 1 then
+               Free (this.m_ISoftwareBitmap);
+            end if;
          end if;
       end if;
    end;

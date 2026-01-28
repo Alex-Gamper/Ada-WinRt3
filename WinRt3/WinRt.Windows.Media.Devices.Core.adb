@@ -50,7 +50,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_ICameraIntrinsics /= null then
          if this.m_ICameraIntrinsics.all /= null then
             temp := this.m_ICameraIntrinsics.all.Release;
-            Free (this.m_ICameraIntrinsics);
+            if temp < 1 then
+               Free (this.m_ICameraIntrinsics);
+            end if;
          end if;
       end if;
    end;
@@ -388,7 +390,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IDepthCorrelatedCoordinateMapper /= null then
          if this.m_IDepthCorrelatedCoordinateMapper.all /= null then
             temp := this.m_IDepthCorrelatedCoordinateMapper.all.Release;
-            Free (this.m_IDepthCorrelatedCoordinateMapper);
+            if temp < 1 then
+               Free (this.m_IDepthCorrelatedCoordinateMapper);
+            end if;
          end if;
       end if;
    end;
@@ -507,7 +511,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameControlCapabilities /= null then
          if this.m_IFrameControlCapabilities.all /= null then
             temp := this.m_IFrameControlCapabilities.all.Release;
-            Free (this.m_IFrameControlCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameControlCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -651,7 +657,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameController /= null then
          if this.m_IFrameController.all /= null then
             temp := this.m_IFrameController.all.Release;
-            Free (this.m_IFrameController);
+            if temp < 1 then
+               Free (this.m_IFrameController);
+            end if;
          end if;
       end if;
    end;
@@ -832,7 +840,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameExposureCapabilities /= null then
          if this.m_IFrameExposureCapabilities.all /= null then
             temp := this.m_IFrameExposureCapabilities.all.Release;
-            Free (this.m_IFrameExposureCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameExposureCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -923,7 +933,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameExposureCompensationCapabilities /= null then
          if this.m_IFrameExposureCompensationCapabilities.all /= null then
             temp := this.m_IFrameExposureCompensationCapabilities.all.Release;
-            Free (this.m_IFrameExposureCompensationCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameExposureCompensationCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -1014,7 +1026,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameExposureCompensationControl /= null then
          if this.m_IFrameExposureCompensationControl.all /= null then
             temp := this.m_IFrameExposureCompensationControl.all.Release;
-            Free (this.m_IFrameExposureCompensationControl);
+            if temp < 1 then
+               Free (this.m_IFrameExposureCompensationControl);
+            end if;
          end if;
       end if;
    end;
@@ -1072,7 +1086,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameExposureControl /= null then
          if this.m_IFrameExposureControl.all /= null then
             temp := this.m_IFrameExposureControl.all.Release;
-            Free (this.m_IFrameExposureControl);
+            if temp < 1 then
+               Free (this.m_IFrameExposureControl);
+            end if;
          end if;
       end if;
    end;
@@ -1162,7 +1178,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameFlashCapabilities /= null then
          if this.m_IFrameFlashCapabilities.all /= null then
             temp := this.m_IFrameFlashCapabilities.all.Release;
-            Free (this.m_IFrameFlashCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameFlashCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -1236,7 +1254,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameFlashControl /= null then
          if this.m_IFrameFlashControl.all /= null then
             temp := this.m_IFrameFlashControl.all.Release;
-            Free (this.m_IFrameFlashControl);
+            if temp < 1 then
+               Free (this.m_IFrameFlashControl);
+            end if;
          end if;
       end if;
    end;
@@ -1387,7 +1407,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameFocusCapabilities /= null then
          if this.m_IFrameFocusCapabilities.all /= null then
             temp := this.m_IFrameFocusCapabilities.all.Release;
-            Free (this.m_IFrameFocusCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameFocusCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -1478,7 +1500,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameFocusControl /= null then
          if this.m_IFrameFocusControl.all /= null then
             temp := this.m_IFrameFocusControl.all.Release;
-            Free (this.m_IFrameFocusControl);
+            if temp < 1 then
+               Free (this.m_IFrameFocusControl);
+            end if;
          end if;
       end if;
    end;
@@ -1536,7 +1560,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameIsoSpeedCapabilities /= null then
          if this.m_IFrameIsoSpeedCapabilities.all /= null then
             temp := this.m_IFrameIsoSpeedCapabilities.all.Release;
-            Free (this.m_IFrameIsoSpeedCapabilities);
+            if temp < 1 then
+               Free (this.m_IFrameIsoSpeedCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -1627,7 +1653,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IFrameIsoSpeedControl /= null then
          if this.m_IFrameIsoSpeedControl.all /= null then
             temp := this.m_IFrameIsoSpeedControl.all.Release;
-            Free (this.m_IFrameIsoSpeedControl);
+            if temp < 1 then
+               Free (this.m_IFrameIsoSpeedControl);
+            end if;
          end if;
       end if;
    end;
@@ -1717,7 +1745,9 @@ package body WinRt.Windows.Media.Devices.Core is
       if this.m_IVariablePhotoSequenceController /= null then
          if this.m_IVariablePhotoSequenceController.all /= null then
             temp := this.m_IVariablePhotoSequenceController.all.Release;
-            Free (this.m_IVariablePhotoSequenceController);
+            if temp < 1 then
+               Free (this.m_IVariablePhotoSequenceController);
+            end if;
          end if;
       end if;
    end;

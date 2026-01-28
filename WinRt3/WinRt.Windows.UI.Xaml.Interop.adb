@@ -62,7 +62,9 @@ package body WinRt.Windows.UI.Xaml.Interop is
       if this.m_INotifyCollectionChangedEventArgs /= null then
          if this.m_INotifyCollectionChangedEventArgs.all /= null then
             temp := this.m_INotifyCollectionChangedEventArgs.all.Release;
-            Free (this.m_INotifyCollectionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_INotifyCollectionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

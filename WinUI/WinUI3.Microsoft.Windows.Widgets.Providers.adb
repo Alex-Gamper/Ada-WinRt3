@@ -49,7 +49,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetActionInvokedArgs /= null then
          if this.m_IWidgetActionInvokedArgs.all /= null then
             temp := this.m_IWidgetActionInvokedArgs.all.Release;
-            Free (this.m_IWidgetActionInvokedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetActionInvokedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -152,7 +154,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetAnalyticsInfoReportedArgs /= null then
          if this.m_IWidgetAnalyticsInfoReportedArgs.all /= null then
             temp := this.m_IWidgetAnalyticsInfoReportedArgs.all.Release;
-            Free (this.m_IWidgetAnalyticsInfoReportedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetAnalyticsInfoReportedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -215,7 +219,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetContext /= null then
          if this.m_IWidgetContext.all /= null then
             temp := this.m_IWidgetContext.all.Release;
-            Free (this.m_IWidgetContext);
+            if temp < 1 then
+               Free (this.m_IWidgetContext);
+            end if;
          end if;
       end if;
    end;
@@ -312,7 +318,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetContextChangedArgs /= null then
          if this.m_IWidgetContextChangedArgs.all /= null then
             temp := this.m_IWidgetContextChangedArgs.all.Release;
-            Free (this.m_IWidgetContextChangedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetContextChangedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -355,7 +363,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetCustomizationRequestedArgs /= null then
          if this.m_IWidgetCustomizationRequestedArgs.all /= null then
             temp := this.m_IWidgetCustomizationRequestedArgs.all.Release;
-            Free (this.m_IWidgetCustomizationRequestedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetCustomizationRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -418,7 +428,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetErrorInfoReportedArgs /= null then
          if this.m_IWidgetErrorInfoReportedArgs.all /= null then
             temp := this.m_IWidgetErrorInfoReportedArgs.all.Release;
-            Free (this.m_IWidgetErrorInfoReportedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetErrorInfoReportedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -481,7 +493,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetInfo /= null then
          if this.m_IWidgetInfo.all /= null then
             temp := this.m_IWidgetInfo.all.Release;
-            Free (this.m_IWidgetInfo);
+            if temp < 1 then
+               Free (this.m_IWidgetInfo);
+            end if;
          end if;
       end if;
    end;
@@ -643,7 +657,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetManager /= null then
          if this.m_IWidgetManager.all /= null then
             temp := this.m_IWidgetManager.all.Release;
-            Free (this.m_IWidgetManager);
+            if temp < 1 then
+               Free (this.m_IWidgetManager);
+            end if;
          end if;
       end if;
    end;
@@ -831,7 +847,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetMessageReceivedArgs /= null then
          if this.m_IWidgetMessageReceivedArgs.all /= null then
             temp := this.m_IWidgetMessageReceivedArgs.all.Release;
-            Free (this.m_IWidgetMessageReceivedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetMessageReceivedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -894,7 +912,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetResourceRequest /= null then
          if this.m_IWidgetResourceRequest.all /= null then
             temp := this.m_IWidgetResourceRequest.all.Release;
-            Free (this.m_IWidgetResourceRequest);
+            if temp < 1 then
+               Free (this.m_IWidgetResourceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1026,7 +1046,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetResourceRequestedArgs /= null then
          if this.m_IWidgetResourceRequestedArgs.all /= null then
             temp := this.m_IWidgetResourceRequestedArgs.all.Release;
-            Free (this.m_IWidgetResourceRequestedArgs);
+            if temp < 1 then
+               Free (this.m_IWidgetResourceRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1144,7 +1166,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetResourceResponse /= null then
          if this.m_IWidgetResourceResponse.all /= null then
             temp := this.m_IWidgetResourceResponse.all.Release;
-            Free (this.m_IWidgetResourceResponse);
+            if temp < 1 then
+               Free (this.m_IWidgetResourceResponse);
+            end if;
          end if;
       end if;
    end;
@@ -1272,7 +1296,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Providers is
       if this.m_IWidgetUpdateRequestOptions /= null then
          if this.m_IWidgetUpdateRequestOptions.all /= null then
             temp := this.m_IWidgetUpdateRequestOptions.all.Release;
-            Free (this.m_IWidgetUpdateRequestOptions);
+            if temp < 1 then
+               Free (this.m_IWidgetUpdateRequestOptions);
+            end if;
          end if;
       end if;
    end;

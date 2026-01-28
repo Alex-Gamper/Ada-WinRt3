@@ -57,7 +57,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IBitmapSource /= null then
          if this.m_IBitmapSource.all /= null then
             temp := this.m_IBitmapSource.all.Release;
-            Free (this.m_IBitmapSource);
+            if temp < 1 then
+               Free (this.m_IBitmapSource);
+            end if;
          end if;
       end if;
    end;
@@ -251,7 +253,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IBitmapImage /= null then
          if this.m_IBitmapImage.all /= null then
             temp := this.m_IBitmapImage.all.Release;
-            Free (this.m_IBitmapImage);
+            if temp < 1 then
+               Free (this.m_IBitmapImage);
+            end if;
          end if;
       end if;
    end;
@@ -868,7 +872,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IDownloadProgressEventArgs /= null then
          if this.m_IDownloadProgressEventArgs.all /= null then
             temp := this.m_IDownloadProgressEventArgs.all.Release;
-            Free (this.m_IDownloadProgressEventArgs);
+            if temp < 1 then
+               Free (this.m_IDownloadProgressEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -939,7 +945,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IRenderTargetBitmap /= null then
          if this.m_IRenderTargetBitmap.all /= null then
             temp := this.m_IRenderTargetBitmap.all.Release;
-            Free (this.m_IRenderTargetBitmap);
+            if temp < 1 then
+               Free (this.m_IRenderTargetBitmap);
+            end if;
          end if;
       end if;
    end;
@@ -1217,7 +1225,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_ISoftwareBitmapSource /= null then
          if this.m_ISoftwareBitmapSource.all /= null then
             temp := this.m_ISoftwareBitmapSource.all.Release;
-            Free (this.m_ISoftwareBitmapSource);
+            if temp < 1 then
+               Free (this.m_ISoftwareBitmapSource);
+            end if;
          end if;
       end if;
    end;
@@ -1320,7 +1330,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_ISurfaceImageSource /= null then
          if this.m_ISurfaceImageSource.all /= null then
             temp := this.m_ISurfaceImageSource.all.Release;
-            Free (this.m_ISurfaceImageSource);
+            if temp < 1 then
+               Free (this.m_ISurfaceImageSource);
+            end if;
          end if;
       end if;
    end;
@@ -1401,7 +1413,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_ISvgImageSource /= null then
          if this.m_ISvgImageSource.all /= null then
             temp := this.m_ISvgImageSource.all.Release;
-            Free (this.m_ISvgImageSource);
+            if temp < 1 then
+               Free (this.m_ISvgImageSource);
+            end if;
          end if;
       end if;
    end;
@@ -1782,7 +1796,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_ISvgImageSourceFailedEventArgs /= null then
          if this.m_ISvgImageSourceFailedEventArgs.all /= null then
             temp := this.m_ISvgImageSourceFailedEventArgs.all.Release;
-            Free (this.m_ISvgImageSourceFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISvgImageSourceFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1822,7 +1838,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_ISvgImageSourceOpenedEventArgs /= null then
          if this.m_ISvgImageSourceOpenedEventArgs.all /= null then
             temp := this.m_ISvgImageSourceOpenedEventArgs.all.Release;
-            Free (this.m_ISvgImageSourceOpenedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISvgImageSourceOpenedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1845,7 +1863,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IVirtualSurfaceImageSource /= null then
          if this.m_IVirtualSurfaceImageSource.all /= null then
             temp := this.m_IVirtualSurfaceImageSource.all.Release;
-            Free (this.m_IVirtualSurfaceImageSource);
+            if temp < 1 then
+               Free (this.m_IVirtualSurfaceImageSource);
+            end if;
          end if;
       end if;
    end;
@@ -1922,7 +1942,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IWriteableBitmap /= null then
          if this.m_IWriteableBitmap.all /= null then
             temp := this.m_IWriteableBitmap.all.Release;
-            Free (this.m_IWriteableBitmap);
+            if temp < 1 then
+               Free (this.m_IWriteableBitmap);
+            end if;
          end if;
       end if;
    end;
@@ -2004,7 +2026,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Imaging is
       if this.m_IXamlRenderingBackgroundTask /= null then
          if this.m_IXamlRenderingBackgroundTask.all /= null then
             temp := this.m_IXamlRenderingBackgroundTask.all.Release;
-            Free (this.m_IXamlRenderingBackgroundTask);
+            if temp < 1 then
+               Free (this.m_IXamlRenderingBackgroundTask);
+            end if;
          end if;
       end if;
    end;

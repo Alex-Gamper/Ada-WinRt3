@@ -264,7 +264,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_ICurrentMediaPlaybackItemChangedEventArgs /= null then
          if this.m_ICurrentMediaPlaybackItemChangedEventArgs.all /= null then
             temp := this.m_ICurrentMediaPlaybackItemChangedEventArgs.all.Release;
-            Free (this.m_ICurrentMediaPlaybackItemChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICurrentMediaPlaybackItemChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -348,7 +350,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreak /= null then
          if this.m_IMediaBreak.all /= null then
             temp := this.m_IMediaBreak.all.Release;
-            Free (this.m_IMediaBreak);
+            if temp < 1 then
+               Free (this.m_IMediaBreak);
+            end if;
          end if;
       end if;
    end;
@@ -532,7 +536,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakEndedEventArgs /= null then
          if this.m_IMediaBreakEndedEventArgs.all /= null then
             temp := this.m_IMediaBreakEndedEventArgs.all.Release;
-            Free (this.m_IMediaBreakEndedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaBreakEndedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -575,7 +581,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakManager /= null then
          if this.m_IMediaBreakManager.all /= null then
             temp := this.m_IMediaBreakManager.all.Release;
-            Free (this.m_IMediaBreakManager);
+            if temp < 1 then
+               Free (this.m_IMediaBreakManager);
+            end if;
          end if;
       end if;
    end;
@@ -799,7 +807,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakSchedule /= null then
          if this.m_IMediaBreakSchedule.all /= null then
             temp := this.m_IMediaBreakSchedule.all.Release;
-            Free (this.m_IMediaBreakSchedule);
+            if temp < 1 then
+               Free (this.m_IMediaBreakSchedule);
+            end if;
          end if;
       end if;
    end;
@@ -995,7 +1005,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakSeekedOverEventArgs /= null then
          if this.m_IMediaBreakSeekedOverEventArgs.all /= null then
             temp := this.m_IMediaBreakSeekedOverEventArgs.all.Release;
-            Free (this.m_IMediaBreakSeekedOverEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaBreakSeekedOverEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1072,7 +1084,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakSkippedEventArgs /= null then
          if this.m_IMediaBreakSkippedEventArgs.all /= null then
             temp := this.m_IMediaBreakSkippedEventArgs.all.Release;
-            Free (this.m_IMediaBreakSkippedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaBreakSkippedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1115,7 +1129,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaBreakStartedEventArgs /= null then
          if this.m_IMediaBreakStartedEventArgs.all /= null then
             temp := this.m_IMediaBreakStartedEventArgs.all.Release;
-            Free (this.m_IMediaBreakStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaBreakStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1158,7 +1174,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaItemDisplayProperties /= null then
          if this.m_IMediaItemDisplayProperties.all /= null then
             temp := this.m_IMediaItemDisplayProperties.all.Release;
-            Free (this.m_IMediaItemDisplayProperties);
+            if temp < 1 then
+               Free (this.m_IMediaItemDisplayProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1523,7 +1541,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManager /= null then
          if this.m_IMediaPlaybackCommandManager.all /= null then
             temp := this.m_IMediaPlaybackCommandManager.all.Release;
-            Free (this.m_IMediaPlaybackCommandManager);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManager);
+            end if;
          end if;
       end if;
    end;
@@ -2128,7 +2148,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerAutoRepeatModeReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2220,7 +2242,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerCommandBehavior /= null then
          if this.m_IMediaPlaybackCommandManagerCommandBehavior.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerCommandBehavior.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerCommandBehavior);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerCommandBehavior);
+            end if;
          end if;
       end if;
    end;
@@ -2345,7 +2369,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerFastForwardReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2420,7 +2446,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerNextReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2495,7 +2523,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerPauseReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2570,7 +2600,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerPlayReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2645,7 +2677,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerPositionReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2737,7 +2771,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerPreviousReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2812,7 +2848,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerRateReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2904,7 +2942,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerRewindReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2979,7 +3019,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs /= null then
          if this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackCommandManagerShuffleReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3071,7 +3113,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackItem /= null then
          if this.m_IMediaPlaybackItem.all /= null then
             temp := this.m_IMediaPlaybackItem.all.Release;
-            Free (this.m_IMediaPlaybackItem);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackItem);
+            end if;
          end if;
       end if;
    end;
@@ -3634,7 +3678,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackItemError /= null then
          if this.m_IMediaPlaybackItemError.all /= null then
             temp := this.m_IMediaPlaybackItemError.all.Release;
-            Free (this.m_IMediaPlaybackItemError);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackItemError);
+            end if;
          end if;
       end if;
    end;
@@ -3691,7 +3737,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackItemFailedEventArgs /= null then
          if this.m_IMediaPlaybackItemFailedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackItemFailedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackItemFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackItemFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3754,7 +3802,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackItemOpenedEventArgs /= null then
          if this.m_IMediaPlaybackItemOpenedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackItemOpenedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackItemOpenedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackItemOpenedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3797,7 +3847,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackList /= null then
          if this.m_IMediaPlaybackList.all /= null then
             temp := this.m_IMediaPlaybackList.all.Release;
-            Free (this.m_IMediaPlaybackList);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackList);
+            end if;
          end if;
       end if;
    end;
@@ -4292,7 +4344,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackSession /= null then
          if this.m_IMediaPlaybackSession.all /= null then
             temp := this.m_IMediaPlaybackSession.all.Release;
-            Free (this.m_IMediaPlaybackSession);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackSession);
+            end if;
          end if;
       end if;
    end;
@@ -5333,7 +5387,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackSessionBufferingStartedEventArgs /= null then
          if this.m_IMediaPlaybackSessionBufferingStartedEventArgs.all /= null then
             temp := this.m_IMediaPlaybackSessionBufferingStartedEventArgs.all.Release;
-            Free (this.m_IMediaPlaybackSessionBufferingStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackSessionBufferingStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5373,7 +5429,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackSessionOutputDegradationPolicyState /= null then
          if this.m_IMediaPlaybackSessionOutputDegradationPolicyState.all /= null then
             temp := this.m_IMediaPlaybackSessionOutputDegradationPolicyState.all.Release;
-            Free (this.m_IMediaPlaybackSessionOutputDegradationPolicyState);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackSessionOutputDegradationPolicyState);
+            end if;
          end if;
       end if;
    end;
@@ -5413,7 +5471,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlaybackSphericalVideoProjection /= null then
          if this.m_IMediaPlaybackSphericalVideoProjection.all /= null then
             temp := this.m_IMediaPlaybackSphericalVideoProjection.all.Release;
-            Free (this.m_IMediaPlaybackSphericalVideoProjection);
+            if temp < 1 then
+               Free (this.m_IMediaPlaybackSphericalVideoProjection);
+            end if;
          end if;
       end if;
    end;
@@ -6040,7 +6100,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlayer /= null then
          if this.m_IMediaPlayer.all /= null then
             temp := this.m_IMediaPlayer.all.Release;
-            Free (this.m_IMediaPlayer);
+            if temp < 1 then
+               Free (this.m_IMediaPlayer);
+            end if;
          end if;
       end if;
    end;
@@ -7849,7 +7911,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlayerDataReceivedEventArgs /= null then
          if this.m_IMediaPlayerDataReceivedEventArgs.all /= null then
             temp := this.m_IMediaPlayerDataReceivedEventArgs.all.Release;
-            Free (this.m_IMediaPlayerDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlayerDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7892,7 +7956,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlayerFailedEventArgs /= null then
          if this.m_IMediaPlayerFailedEventArgs.all /= null then
             temp := this.m_IMediaPlayerFailedEventArgs.all.Release;
-            Free (this.m_IMediaPlayerFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlayerFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7969,7 +8035,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlayerRateChangedEventArgs /= null then
          if this.m_IMediaPlayerRateChangedEventArgs.all /= null then
             temp := this.m_IMediaPlayerRateChangedEventArgs.all.Release;
-            Free (this.m_IMediaPlayerRateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPlayerRateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8009,7 +8077,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IMediaPlayerSurface /= null then
          if this.m_IMediaPlayerSurface.all /= null then
             temp := this.m_IMediaPlayerSurface.all.Release;
-            Free (this.m_IMediaPlayerSurface);
+            if temp < 1 then
+               Free (this.m_IMediaPlayerSurface);
+            end if;
          end if;
       end if;
    end;
@@ -8107,7 +8177,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IPlaybackMediaMarker /= null then
          if this.m_IPlaybackMediaMarker.all /= null then
             temp := this.m_IPlaybackMediaMarker.all.Release;
-            Free (this.m_IPlaybackMediaMarker);
+            if temp < 1 then
+               Free (this.m_IPlaybackMediaMarker);
+            end if;
          end if;
       end if;
    end;
@@ -8244,7 +8316,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IPlaybackMediaMarkerReachedEventArgs /= null then
          if this.m_IPlaybackMediaMarkerReachedEventArgs.all /= null then
             temp := this.m_IPlaybackMediaMarkerReachedEventArgs.all.Release;
-            Free (this.m_IPlaybackMediaMarkerReachedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlaybackMediaMarkerReachedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8287,7 +8361,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_IPlaybackMediaMarkerSequence /= null then
          if this.m_IPlaybackMediaMarkerSequence.all /= null then
             temp := this.m_IPlaybackMediaMarkerSequence.all.Release;
-            Free (this.m_IPlaybackMediaMarkerSequence);
+            if temp < 1 then
+               Free (this.m_IPlaybackMediaMarkerSequence);
+            end if;
          end if;
       end if;
    end;
@@ -8382,7 +8458,9 @@ package body WinUI3.Windows.Media.Playback is
       if this.m_ITimedMetadataPresentationModeChangedEventArgs /= null then
          if this.m_ITimedMetadataPresentationModeChangedEventArgs.all /= null then
             temp := this.m_ITimedMetadataPresentationModeChangedEventArgs.all.Release;
-            Free (this.m_ITimedMetadataPresentationModeChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITimedMetadataPresentationModeChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

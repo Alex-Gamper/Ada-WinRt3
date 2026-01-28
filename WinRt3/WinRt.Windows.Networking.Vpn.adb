@@ -64,7 +64,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnAppId /= null then
          if this.m_IVpnAppId.all /= null then
             temp := this.m_IVpnAppId.all.Release;
-            Free (this.m_IVpnAppId);
+            if temp < 1 then
+               Free (this.m_IVpnAppId);
+            end if;
          end if;
       end if;
    end;
@@ -186,7 +188,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnChannel /= null then
          if this.m_IVpnChannel.all /= null then
             temp := this.m_IVpnChannel.all.Release;
-            Free (this.m_IVpnChannel);
+            if temp < 1 then
+               Free (this.m_IVpnChannel);
+            end if;
          end if;
       end if;
    end;
@@ -1203,7 +1207,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnChannelActivityEventArgs /= null then
          if this.m_IVpnChannelActivityEventArgs.all /= null then
             temp := this.m_IVpnChannelActivityEventArgs.all.Release;
-            Free (this.m_IVpnChannelActivityEventArgs);
+            if temp < 1 then
+               Free (this.m_IVpnChannelActivityEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1243,7 +1249,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnChannelActivityStateChangedArgs /= null then
          if this.m_IVpnChannelActivityStateChangedArgs.all /= null then
             temp := this.m_IVpnChannelActivityStateChangedArgs.all.Release;
-            Free (this.m_IVpnChannelActivityStateChangedArgs);
+            if temp < 1 then
+               Free (this.m_IVpnChannelActivityStateChangedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1283,7 +1291,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnChannelConfiguration /= null then
          if this.m_IVpnChannelConfiguration.all /= null then
             temp := this.m_IVpnChannelConfiguration.all.Release;
-            Free (this.m_IVpnChannelConfiguration);
+            if temp < 1 then
+               Free (this.m_IVpnChannelConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1390,7 +1400,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCredential /= null then
          if this.m_IVpnCredential.all /= null then
             temp := this.m_IVpnCredential.all.Release;
-            Free (this.m_IVpnCredential);
+            if temp < 1 then
+               Free (this.m_IVpnCredential);
+            end if;
          end if;
       end if;
    end;
@@ -1493,7 +1505,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomCheckBox /= null then
          if this.m_IVpnCustomCheckBox.all /= null then
             temp := this.m_IVpnCustomCheckBox.all.Release;
-            Free (this.m_IVpnCustomCheckBox);
+            if temp < 1 then
+               Free (this.m_IVpnCustomCheckBox);
+            end if;
          end if;
       end if;
    end;
@@ -1709,7 +1723,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomComboBox /= null then
          if this.m_IVpnCustomComboBox.all /= null then
             temp := this.m_IVpnCustomComboBox.all.Release;
-            Free (this.m_IVpnCustomComboBox);
+            if temp < 1 then
+               Free (this.m_IVpnCustomComboBox);
+            end if;
          end if;
       end if;
    end;
@@ -1928,7 +1944,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomEditBox /= null then
          if this.m_IVpnCustomEditBox.all /= null then
             temp := this.m_IVpnCustomEditBox.all.Release;
-            Free (this.m_IVpnCustomEditBox);
+            if temp < 1 then
+               Free (this.m_IVpnCustomEditBox);
+            end if;
          end if;
       end if;
    end;
@@ -2184,7 +2202,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomErrorBox /= null then
          if this.m_IVpnCustomErrorBox.all /= null then
             temp := this.m_IVpnCustomErrorBox.all.Release;
-            Free (this.m_IVpnCustomErrorBox);
+            if temp < 1 then
+               Free (this.m_IVpnCustomErrorBox);
+            end if;
          end if;
       end if;
    end;
@@ -2351,7 +2371,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomPromptBooleanInput /= null then
          if this.m_IVpnCustomPromptBooleanInput.all /= null then
             temp := this.m_IVpnCustomPromptBooleanInput.all.Release;
-            Free (this.m_IVpnCustomPromptBooleanInput);
+            if temp < 1 then
+               Free (this.m_IVpnCustomPromptBooleanInput);
+            end if;
          end if;
       end if;
    end;
@@ -2567,7 +2589,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomPromptOptionSelector /= null then
          if this.m_IVpnCustomPromptOptionSelector.all /= null then
             temp := this.m_IVpnCustomPromptOptionSelector.all.Release;
-            Free (this.m_IVpnCustomPromptOptionSelector);
+            if temp < 1 then
+               Free (this.m_IVpnCustomPromptOptionSelector);
+            end if;
          end if;
       end if;
    end;
@@ -2771,7 +2795,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomPromptText /= null then
          if this.m_IVpnCustomPromptText.all /= null then
             temp := this.m_IVpnCustomPromptText.all.Release;
-            Free (this.m_IVpnCustomPromptText);
+            if temp < 1 then
+               Free (this.m_IVpnCustomPromptText);
+            end if;
          end if;
       end if;
    end;
@@ -2975,7 +3001,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomPromptTextInput /= null then
          if this.m_IVpnCustomPromptTextInput.all /= null then
             temp := this.m_IVpnCustomPromptTextInput.all.Release;
-            Free (this.m_IVpnCustomPromptTextInput);
+            if temp < 1 then
+               Free (this.m_IVpnCustomPromptTextInput);
+            end if;
          end if;
       end if;
    end;
@@ -3231,7 +3259,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnCustomTextBox /= null then
          if this.m_IVpnCustomTextBox.all /= null then
             temp := this.m_IVpnCustomTextBox.all.Release;
-            Free (this.m_IVpnCustomTextBox);
+            if temp < 1 then
+               Free (this.m_IVpnCustomTextBox);
+            end if;
          end if;
       end if;
    end;
@@ -3435,7 +3465,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnDomainNameAssignment /= null then
          if this.m_IVpnDomainNameAssignment.all /= null then
             temp := this.m_IVpnDomainNameAssignment.all.Release;
-            Free (this.m_IVpnDomainNameAssignment);
+            if temp < 1 then
+               Free (this.m_IVpnDomainNameAssignment);
+            end if;
          end if;
       end if;
    end;
@@ -3532,7 +3564,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnDomainNameInfo /= null then
          if this.m_IVpnDomainNameInfo.all /= null then
             temp := this.m_IVpnDomainNameInfo.all.Release;
-            Free (this.m_IVpnDomainNameInfo);
+            if temp < 1 then
+               Free (this.m_IVpnDomainNameInfo);
+            end if;
          end if;
       end if;
    end;
@@ -3718,7 +3752,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnForegroundActivatedEventArgs /= null then
          if this.m_IVpnForegroundActivatedEventArgs.all /= null then
             temp := this.m_IVpnForegroundActivatedEventArgs.all.Release;
-            Free (this.m_IVpnForegroundActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVpnForegroundActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3891,7 +3927,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnForegroundActivationOperation /= null then
          if this.m_IVpnForegroundActivationOperation.all /= null then
             temp := this.m_IVpnForegroundActivationOperation.all.Release;
-            Free (this.m_IVpnForegroundActivationOperation);
+            if temp < 1 then
+               Free (this.m_IVpnForegroundActivationOperation);
+            end if;
          end if;
       end if;
    end;
@@ -3929,7 +3967,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnInterfaceId /= null then
          if this.m_IVpnInterfaceId.all /= null then
             temp := this.m_IVpnInterfaceId.all.Release;
-            Free (this.m_IVpnInterfaceId);
+            if temp < 1 then
+               Free (this.m_IVpnInterfaceId);
+            end if;
          end if;
       end if;
    end;
@@ -3996,7 +4036,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnManagementAgent /= null then
          if this.m_IVpnManagementAgent.all /= null then
             temp := this.m_IVpnManagementAgent.all.Release;
-            Free (this.m_IVpnManagementAgent);
+            if temp < 1 then
+               Free (this.m_IVpnManagementAgent);
+            end if;
          end if;
       end if;
    end;
@@ -4618,7 +4660,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnNamespaceAssignment /= null then
          if this.m_IVpnNamespaceAssignment.all /= null then
             temp := this.m_IVpnNamespaceAssignment.all.Release;
-            Free (this.m_IVpnNamespaceAssignment);
+            if temp < 1 then
+               Free (this.m_IVpnNamespaceAssignment);
+            end if;
          end if;
       end if;
    end;
@@ -4730,7 +4774,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnNamespaceInfo /= null then
          if this.m_IVpnNamespaceInfo.all /= null then
             temp := this.m_IVpnNamespaceInfo.all.Release;
-            Free (this.m_IVpnNamespaceInfo);
+            if temp < 1 then
+               Free (this.m_IVpnNamespaceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -4891,7 +4937,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnNativeProfile /= null then
          if this.m_IVpnNativeProfile.all /= null then
             temp := this.m_IVpnNativeProfile.all.Release;
-            Free (this.m_IVpnNativeProfile);
+            if temp < 1 then
+               Free (this.m_IVpnNativeProfile);
+            end if;
          end if;
       end if;
    end;
@@ -5400,7 +5448,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnPacketBuffer /= null then
          if this.m_IVpnPacketBuffer.all /= null then
             temp := this.m_IVpnPacketBuffer.all.Release;
-            Free (this.m_IVpnPacketBuffer);
+            if temp < 1 then
+               Free (this.m_IVpnPacketBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -5600,7 +5650,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnPacketBufferList /= null then
          if this.m_IVpnPacketBufferList.all /= null then
             temp := this.m_IVpnPacketBufferList.all.Release;
-            Free (this.m_IVpnPacketBufferList);
+            if temp < 1 then
+               Free (this.m_IVpnPacketBufferList);
+            end if;
          end if;
       end if;
    end;
@@ -5782,7 +5834,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnPickedCredential /= null then
          if this.m_IVpnPickedCredential.all /= null then
             temp := this.m_IVpnPickedCredential.all.Release;
-            Free (this.m_IVpnPickedCredential);
+            if temp < 1 then
+               Free (this.m_IVpnPickedCredential);
+            end if;
          end if;
       end if;
    end;
@@ -5865,7 +5919,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnPlugInProfile /= null then
          if this.m_IVpnPlugInProfile.all /= null then
             temp := this.m_IVpnPlugInProfile.all.Release;
-            Free (this.m_IVpnPlugInProfile);
+            if temp < 1 then
+               Free (this.m_IVpnPlugInProfile);
+            end if;
          end if;
       end if;
    end;
@@ -6283,7 +6339,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnRoute /= null then
          if this.m_IVpnRoute.all /= null then
             temp := this.m_IVpnRoute.all.Release;
-            Free (this.m_IVpnRoute);
+            if temp < 1 then
+               Free (this.m_IVpnRoute);
+            end if;
          end if;
       end if;
    end;
@@ -6401,7 +6459,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnRouteAssignment /= null then
          if this.m_IVpnRouteAssignment.all /= null then
             temp := this.m_IVpnRouteAssignment.all.Release;
-            Free (this.m_IVpnRouteAssignment);
+            if temp < 1 then
+               Free (this.m_IVpnRouteAssignment);
+            end if;
          end if;
       end if;
    end;
@@ -6615,7 +6675,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnSystemHealth /= null then
          if this.m_IVpnSystemHealth.all /= null then
             temp := this.m_IVpnSystemHealth.all.Release;
-            Free (this.m_IVpnSystemHealth);
+            if temp < 1 then
+               Free (this.m_IVpnSystemHealth);
+            end if;
          end if;
       end if;
    end;
@@ -6658,7 +6720,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnTrafficFilter /= null then
          if this.m_IVpnTrafficFilter.all /= null then
             temp := this.m_IVpnTrafficFilter.all.Release;
-            Free (this.m_IVpnTrafficFilter);
+            if temp < 1 then
+               Free (this.m_IVpnTrafficFilter);
+            end if;
          end if;
       end if;
    end;
@@ -6907,7 +6971,9 @@ package body WinRt.Windows.Networking.Vpn is
       if this.m_IVpnTrafficFilterAssignment /= null then
          if this.m_IVpnTrafficFilterAssignment.all /= null then
             temp := this.m_IVpnTrafficFilterAssignment.all.Release;
-            Free (this.m_IVpnTrafficFilterAssignment);
+            if temp < 1 then
+               Free (this.m_IVpnTrafficFilterAssignment);
+            end if;
          end if;
       end if;
    end;

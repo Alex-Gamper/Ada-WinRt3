@@ -52,7 +52,9 @@ package body WinRt.Windows.System.Update is
       if this.m_ISystemUpdateItem /= null then
          if this.m_ISystemUpdateItem.all /= null then
             temp := this.m_ISystemUpdateItem.all.Release;
-            Free (this.m_ISystemUpdateItem);
+            if temp < 1 then
+               Free (this.m_ISystemUpdateItem);
+            end if;
          end if;
       end if;
    end;
@@ -220,7 +222,9 @@ package body WinRt.Windows.System.Update is
       if this.m_ISystemUpdateLastErrorInfo /= null then
          if this.m_ISystemUpdateLastErrorInfo.all /= null then
             temp := this.m_ISystemUpdateLastErrorInfo.all.Release;
-            Free (this.m_ISystemUpdateLastErrorInfo);
+            if temp < 1 then
+               Free (this.m_ISystemUpdateLastErrorInfo);
+            end if;
          end if;
       end if;
    end;

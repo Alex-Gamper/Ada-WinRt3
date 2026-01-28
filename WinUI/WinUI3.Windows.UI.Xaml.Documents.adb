@@ -58,7 +58,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ITextElement /= null then
          if this.m_ITextElement.all /= null then
             temp := this.m_ITextElement.all.Release;
-            Free (this.m_ITextElement);
+            if temp < 1 then
+               Free (this.m_ITextElement);
+            end if;
          end if;
       end if;
    end;
@@ -1498,7 +1500,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IBlock /= null then
          if this.m_IBlock.all /= null then
             temp := this.m_IBlock.all.Release;
-            Free (this.m_IBlock);
+            if temp < 1 then
+               Free (this.m_IBlock);
+            end if;
          end if;
       end if;
    end;
@@ -2146,7 +2150,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IInline /= null then
          if this.m_IInline.all /= null then
             temp := this.m_IInline.all.Release;
-            Free (this.m_IInline);
+            if temp < 1 then
+               Free (this.m_IInline);
+            end if;
          end if;
       end if;
    end;
@@ -2197,7 +2203,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ISpan /= null then
          if this.m_ISpan.all /= null then
             temp := this.m_ISpan.all.Release;
-            Free (this.m_ISpan);
+            if temp < 1 then
+               Free (this.m_ISpan);
+            end if;
          end if;
       end if;
    end;
@@ -2283,7 +2291,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IBold /= null then
          if this.m_IBold.all /= null then
             temp := this.m_IBold.all.Release;
-            Free (this.m_IBold);
+            if temp < 1 then
+               Free (this.m_IBold);
+            end if;
          end if;
       end if;
    end;
@@ -2325,7 +2335,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IContentLinkProvider /= null then
          if this.m_IContentLinkProvider.all /= null then
             temp := this.m_IContentLinkProvider.all.Release;
-            Free (this.m_IContentLinkProvider);
+            if temp < 1 then
+               Free (this.m_IContentLinkProvider);
+            end if;
          end if;
       end if;
    end;
@@ -2376,7 +2388,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IContactContentLinkProvider /= null then
          if this.m_IContactContentLinkProvider.all /= null then
             temp := this.m_IContactContentLinkProvider.all.Release;
-            Free (this.m_IContactContentLinkProvider);
+            if temp < 1 then
+               Free (this.m_IContactContentLinkProvider);
+            end if;
          end if;
       end if;
    end;
@@ -2418,7 +2432,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IContentLink /= null then
          if this.m_IContentLink.all /= null then
             temp := this.m_IContentLink.all.Release;
-            Free (this.m_IContentLink);
+            if temp < 1 then
+               Free (this.m_IContentLink);
+            end if;
          end if;
       end if;
    end;
@@ -3399,7 +3415,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IContentLinkInvokedEventArgs /= null then
          if this.m_IContentLinkInvokedEventArgs.all /= null then
             temp := this.m_IContentLinkInvokedEventArgs.all.Release;
-            Free (this.m_IContentLinkInvokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentLinkInvokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3474,7 +3492,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IContentLinkProviderCollection /= null then
          if this.m_IContentLinkProviderCollection.all /= null then
             temp := this.m_IContentLinkProviderCollection.all.Release;
-            Free (this.m_IContentLinkProviderCollection);
+            if temp < 1 then
+               Free (this.m_IContentLinkProviderCollection);
+            end if;
          end if;
       end if;
    end;
@@ -3806,7 +3826,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IGlyphs /= null then
          if this.m_IGlyphs.all /= null then
             temp := this.m_IGlyphs.all.Release;
-            Free (this.m_IGlyphs);
+            if temp < 1 then
+               Free (this.m_IGlyphs);
+            end if;
          end if;
       end if;
    end;
@@ -4443,7 +4465,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IHyperlink /= null then
          if this.m_IHyperlink.all /= null then
             temp := this.m_IHyperlink.all.Release;
-            Free (this.m_IHyperlink);
+            if temp < 1 then
+               Free (this.m_IHyperlink);
+            end if;
          end if;
       end if;
    end;
@@ -5509,7 +5533,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IHyperlinkClickEventArgs /= null then
          if this.m_IHyperlinkClickEventArgs.all /= null then
             temp := this.m_IHyperlinkClickEventArgs.all.Release;
-            Free (this.m_IHyperlinkClickEventArgs);
+            if temp < 1 then
+               Free (this.m_IHyperlinkClickEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5838,7 +5864,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IInlineUIContainer /= null then
          if this.m_IInlineUIContainer.all /= null then
             temp := this.m_IInlineUIContainer.all.Release;
-            Free (this.m_IInlineUIContainer);
+            if temp < 1 then
+               Free (this.m_IInlineUIContainer);
+            end if;
          end if;
       end if;
    end;
@@ -5915,7 +5943,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IItalic /= null then
          if this.m_IItalic.all /= null then
             temp := this.m_IItalic.all.Release;
-            Free (this.m_IItalic);
+            if temp < 1 then
+               Free (this.m_IItalic);
+            end if;
          end if;
       end if;
    end;
@@ -5957,7 +5987,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ILineBreak /= null then
          if this.m_ILineBreak.all /= null then
             temp := this.m_ILineBreak.all.Release;
-            Free (this.m_ILineBreak);
+            if temp < 1 then
+               Free (this.m_ILineBreak);
+            end if;
          end if;
       end if;
    end;
@@ -5999,7 +6031,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IParagraph /= null then
          if this.m_IParagraph.all /= null then
             temp := this.m_IParagraph.all.Release;
-            Free (this.m_IParagraph);
+            if temp < 1 then
+               Free (this.m_IParagraph);
+            end if;
          end if;
       end if;
    end;
@@ -6120,7 +6154,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IPlaceContentLinkProvider /= null then
          if this.m_IPlaceContentLinkProvider.all /= null then
             temp := this.m_IPlaceContentLinkProvider.all.Release;
-            Free (this.m_IPlaceContentLinkProvider);
+            if temp < 1 then
+               Free (this.m_IPlaceContentLinkProvider);
+            end if;
          end if;
       end if;
    end;
@@ -6162,7 +6198,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IRun /= null then
          if this.m_IRun.all /= null then
             temp := this.m_IRun.all.Release;
-            Free (this.m_IRun);
+            if temp < 1 then
+               Free (this.m_IRun);
+            end if;
          end if;
       end if;
    end;
@@ -6300,7 +6338,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ITextHighlighter /= null then
          if this.m_ITextHighlighter.all /= null then
             temp := this.m_ITextHighlighter.all.Release;
-            Free (this.m_ITextHighlighter);
+            if temp < 1 then
+               Free (this.m_ITextHighlighter);
+            end if;
          end if;
       end if;
    end;
@@ -6492,7 +6532,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ITextHighlighterBase /= null then
          if this.m_ITextHighlighterBase.all /= null then
             temp := this.m_ITextHighlighterBase.all.Release;
-            Free (this.m_ITextHighlighterBase);
+            if temp < 1 then
+               Free (this.m_ITextHighlighterBase);
+            end if;
          end if;
       end if;
    end;
@@ -6518,7 +6560,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ITextPointer /= null then
          if this.m_ITextPointer.all /= null then
             temp := this.m_ITextPointer.all.Release;
-            Free (this.m_ITextPointer);
+            if temp < 1 then
+               Free (this.m_ITextPointer);
+            end if;
          end if;
       end if;
    end;
@@ -6655,7 +6699,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_ITypography /= null then
          if this.m_ITypography.all /= null then
             temp := this.m_ITypography.all.Release;
-            Free (this.m_ITypography);
+            if temp < 1 then
+               Free (this.m_ITypography);
+            end if;
          end if;
       end if;
    end;
@@ -9691,7 +9737,9 @@ package body WinUI3.Windows.UI.Xaml.Documents is
       if this.m_IUnderline /= null then
          if this.m_IUnderline.all /= null then
             temp := this.m_IUnderline.all.Release;
-            Free (this.m_IUnderline);
+            if temp < 1 then
+               Free (this.m_IUnderline);
+            end if;
          end if;
       end if;
    end;

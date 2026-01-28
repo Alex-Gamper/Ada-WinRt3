@@ -63,7 +63,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_INamedResource /= null then
          if this.m_INamedResource.all /= null then
             temp := this.m_INamedResource.all.Release;
-            Free (this.m_INamedResource);
+            if temp < 1 then
+               Free (this.m_INamedResource);
+            end if;
          end if;
       end if;
    end;
@@ -208,7 +210,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_IResourceCandidate /= null then
          if this.m_IResourceCandidate.all /= null then
             temp := this.m_IResourceCandidate.all.Release;
-            Free (this.m_IResourceCandidate);
+            if temp < 1 then
+               Free (this.m_IResourceCandidate);
+            end if;
          end if;
       end if;
    end;
@@ -639,7 +643,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_IResourceContext /= null then
          if this.m_IResourceContext.all /= null then
             temp := this.m_IResourceContext.all.Release;
-            Free (this.m_IResourceContext);
+            if temp < 1 then
+               Free (this.m_IResourceContext);
+            end if;
          end if;
       end if;
    end;
@@ -1139,7 +1145,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_IResourceManager /= null then
          if this.m_IResourceManager.all /= null then
             temp := this.m_IResourceManager.all.Release;
-            Free (this.m_IResourceManager);
+            if temp < 1 then
+               Free (this.m_IResourceManager);
+            end if;
          end if;
       end if;
    end;
@@ -1361,7 +1369,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_IResourceMap /= null then
          if this.m_IResourceMap.all /= null then
             temp := this.m_IResourceMap.all.Release;
-            Free (this.m_IResourceMap);
+            if temp < 1 then
+               Free (this.m_IResourceMap);
+            end if;
          end if;
       end if;
    end;
@@ -1716,7 +1726,9 @@ package body WinRt.Windows.ApplicationModel.Resources.Core is
       if this.m_IResourceQualifier /= null then
          if this.m_IResourceQualifier.all /= null then
             temp := this.m_IResourceQualifier.all.Release;
-            Free (this.m_IResourceQualifier);
+            if temp < 1 then
+               Free (this.m_IResourceQualifier);
+            end if;
          end if;
       end if;
    end;

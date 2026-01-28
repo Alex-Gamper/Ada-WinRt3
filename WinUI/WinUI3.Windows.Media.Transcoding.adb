@@ -55,7 +55,9 @@ package body WinUI3.Windows.Media.Transcoding is
       if this.m_IMediaTranscoder /= null then
          if this.m_IMediaTranscoder.all /= null then
             temp := this.m_IMediaTranscoder.all.Release;
-            Free (this.m_IMediaTranscoder);
+            if temp < 1 then
+               Free (this.m_IMediaTranscoder);
+            end if;
          end if;
       end if;
    end;
@@ -562,7 +564,9 @@ package body WinUI3.Windows.Media.Transcoding is
       if this.m_IPrepareTranscodeResult /= null then
          if this.m_IPrepareTranscodeResult.all /= null then
             temp := this.m_IPrepareTranscodeResult.all.Release;
-            Free (this.m_IPrepareTranscodeResult);
+            if temp < 1 then
+               Free (this.m_IPrepareTranscodeResult);
+            end if;
          end if;
       end if;
    end;

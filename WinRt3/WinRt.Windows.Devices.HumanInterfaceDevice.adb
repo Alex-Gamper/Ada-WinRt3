@@ -62,7 +62,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidBooleanControl /= null then
          if this.m_IHidBooleanControl.all /= null then
             temp := this.m_IHidBooleanControl.all.Release;
-            Free (this.m_IHidBooleanControl);
+            if temp < 1 then
+               Free (this.m_IHidBooleanControl);
+            end if;
          end if;
       end if;
    end;
@@ -188,7 +190,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidBooleanControlDescription /= null then
          if this.m_IHidBooleanControlDescription.all /= null then
             temp := this.m_IHidBooleanControlDescription.all.Release;
-            Free (this.m_IHidBooleanControlDescription);
+            if temp < 1 then
+               Free (this.m_IHidBooleanControlDescription);
+            end if;
          end if;
       end if;
    end;
@@ -337,7 +341,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidCollection /= null then
          if this.m_IHidCollection.all /= null then
             temp := this.m_IHidCollection.all.Release;
-            Free (this.m_IHidCollection);
+            if temp < 1 then
+               Free (this.m_IHidCollection);
+            end if;
          end if;
       end if;
    end;
@@ -428,7 +434,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidDevice /= null then
          if this.m_IHidDevice.all /= null then
             temp := this.m_IHidDevice.all.Release;
-            Free (this.m_IHidDevice);
+            if temp < 1 then
+               Free (this.m_IHidDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1246,7 +1254,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidFeatureReport /= null then
          if this.m_IHidFeatureReport.all /= null then
             temp := this.m_IHidFeatureReport.all.Release;
-            Free (this.m_IHidFeatureReport);
+            if temp < 1 then
+               Free (this.m_IHidFeatureReport);
+            end if;
          end if;
       end if;
    end;
@@ -1404,7 +1414,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidInputReport /= null then
          if this.m_IHidInputReport.all /= null then
             temp := this.m_IHidInputReport.all.Release;
-            Free (this.m_IHidInputReport);
+            if temp < 1 then
+               Free (this.m_IHidInputReport);
+            end if;
          end if;
       end if;
    end;
@@ -1587,7 +1599,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidInputReportReceivedEventArgs /= null then
          if this.m_IHidInputReportReceivedEventArgs.all /= null then
             temp := this.m_IHidInputReportReceivedEventArgs.all.Release;
-            Free (this.m_IHidInputReportReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHidInputReportReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1630,7 +1644,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidNumericControl /= null then
          if this.m_IHidNumericControl.all /= null then
             temp := this.m_IHidNumericControl.all.Release;
-            Free (this.m_IHidNumericControl);
+            if temp < 1 then
+               Free (this.m_IHidNumericControl);
+            end if;
          end if;
       end if;
    end;
@@ -1805,7 +1821,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidNumericControlDescription /= null then
          if this.m_IHidNumericControlDescription.all /= null then
             temp := this.m_IHidNumericControlDescription.all.Release;
-            Free (this.m_IHidNumericControlDescription);
+            if temp < 1 then
+               Free (this.m_IHidNumericControlDescription);
+            end if;
          end if;
       end if;
    end;
@@ -2103,7 +2121,9 @@ package body WinRt.Windows.Devices.HumanInterfaceDevice is
       if this.m_IHidOutputReport /= null then
          if this.m_IHidOutputReport.all /= null then
             temp := this.m_IHidOutputReport.all.Release;
-            Free (this.m_IHidOutputReport);
+            if temp < 1 then
+               Free (this.m_IHidOutputReport);
+            end if;
          end if;
       end if;
    end;

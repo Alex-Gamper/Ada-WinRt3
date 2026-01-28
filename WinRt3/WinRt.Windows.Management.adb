@@ -47,7 +47,9 @@ package body WinRt.Windows.Management is
       if this.m_IMdmAlert /= null then
          if this.m_IMdmAlert.all /= null then
             temp := this.m_IMdmAlert.all.Release;
-            Free (this.m_IMdmAlert);
+            if temp < 1 then
+               Free (this.m_IMdmAlert);
+            end if;
          end if;
       end if;
    end;
@@ -318,7 +320,9 @@ package body WinRt.Windows.Management is
       if this.m_IMdmSession /= null then
          if this.m_IMdmSession.all /= null then
             temp := this.m_IMdmSession.all.Release;
-            Free (this.m_IMdmSession);
+            if temp < 1 then
+               Free (this.m_IMdmSession);
+            end if;
          end if;
       end if;
    end;

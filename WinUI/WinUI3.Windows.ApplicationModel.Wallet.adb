@@ -63,7 +63,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletBarcode /= null then
          if this.m_IWalletBarcode.all /= null then
             temp := this.m_IWalletBarcode.all.Release;
-            Free (this.m_IWalletBarcode);
+            if temp < 1 then
+               Free (this.m_IWalletBarcode);
+            end if;
          end if;
       end if;
    end;
@@ -240,7 +242,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletItem /= null then
          if this.m_IWalletItem.all /= null then
             temp := this.m_IWalletItem.all.Release;
-            Free (this.m_IWalletItem);
+            if temp < 1 then
+               Free (this.m_IWalletItem);
+            end if;
          end if;
       end if;
    end;
@@ -1183,7 +1187,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletItemCustomProperty /= null then
          if this.m_IWalletItemCustomProperty.all /= null then
             temp := this.m_IWalletItemCustomProperty.all.Release;
-            Free (this.m_IWalletItemCustomProperty);
+            if temp < 1 then
+               Free (this.m_IWalletItemCustomProperty);
+            end if;
          end if;
       end if;
    end;
@@ -1408,7 +1414,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletItemStore /= null then
          if this.m_IWalletItemStore.all /= null then
             temp := this.m_IWalletItemStore.all.Release;
-            Free (this.m_IWalletItemStore);
+            if temp < 1 then
+               Free (this.m_IWalletItemStore);
+            end if;
          end if;
       end if;
    end;
@@ -2033,7 +2041,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletRelevantLocation /= null then
          if this.m_IWalletRelevantLocation.all /= null then
             temp := this.m_IWalletRelevantLocation.all.Release;
-            Free (this.m_IWalletRelevantLocation);
+            if temp < 1 then
+               Free (this.m_IWalletRelevantLocation);
+            end if;
          end if;
       end if;
    end;
@@ -2144,7 +2154,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletTransaction /= null then
          if this.m_IWalletTransaction.all /= null then
             temp := this.m_IWalletTransaction.all.Release;
-            Free (this.m_IWalletTransaction);
+            if temp < 1 then
+               Free (this.m_IWalletTransaction);
+            end if;
          end if;
       end if;
    end;
@@ -2396,7 +2408,9 @@ package body WinUI3.Windows.ApplicationModel.Wallet is
       if this.m_IWalletVerb /= null then
          if this.m_IWalletVerb.all /= null then
             temp := this.m_IWalletVerb.all.Release;
-            Free (this.m_IWalletVerb);
+            if temp < 1 then
+               Free (this.m_IWalletVerb);
+            end if;
          end if;
       end if;
    end;

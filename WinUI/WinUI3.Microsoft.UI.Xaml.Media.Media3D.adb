@@ -46,7 +46,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Media3D is
       if this.m_ITransform3D /= null then
          if this.m_ITransform3D.all /= null then
             temp := this.m_ITransform3D.all.Release;
-            Free (this.m_ITransform3D);
+            if temp < 1 then
+               Free (this.m_ITransform3D);
+            end if;
          end if;
       end if;
    end;
@@ -97,7 +99,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Media3D is
       if this.m_ICompositeTransform3D /= null then
          if this.m_ICompositeTransform3D.all /= null then
             temp := this.m_ICompositeTransform3D.all.Release;
-            Free (this.m_ICompositeTransform3D);
+            if temp < 1 then
+               Free (this.m_ICompositeTransform3D);
+            end if;
          end if;
       end if;
    end;
@@ -814,7 +818,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Media3D is
       if this.m_IMatrix3DHelper /= null then
          if this.m_IMatrix3DHelper.all /= null then
             temp := this.m_IMatrix3DHelper.all.Release;
-            Free (this.m_IMatrix3DHelper);
+            if temp < 1 then
+               Free (this.m_IMatrix3DHelper);
+            end if;
          end if;
       end if;
    end;
@@ -997,7 +1003,9 @@ package body WinUI3.Microsoft.UI.Xaml.Media.Media3D is
       if this.m_IPerspectiveTransform3D /= null then
          if this.m_IPerspectiveTransform3D.all /= null then
             temp := this.m_IPerspectiveTransform3D.all.Release;
-            Free (this.m_IPerspectiveTransform3D);
+            if temp < 1 then
+               Free (this.m_IPerspectiveTransform3D);
+            end if;
          end if;
       end if;
    end;

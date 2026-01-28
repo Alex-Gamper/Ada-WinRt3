@@ -49,7 +49,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialFeedChildItem /= null then
          if this.m_ISocialFeedChildItem.all /= null then
             temp := this.m_ISocialFeedChildItem.all.Release;
-            Free (this.m_ISocialFeedChildItem);
+            if temp < 1 then
+               Free (this.m_ISocialFeedChildItem);
+            end if;
          end if;
       end if;
    end;
@@ -273,7 +275,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialFeedContent /= null then
          if this.m_ISocialFeedContent.all /= null then
             temp := this.m_ISocialFeedContent.all.Release;
-            Free (this.m_ISocialFeedContent);
+            if temp < 1 then
+               Free (this.m_ISocialFeedContent);
+            end if;
          end if;
       end if;
    end;
@@ -405,7 +409,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialFeedItem /= null then
          if this.m_ISocialFeedItem.all /= null then
             temp := this.m_ISocialFeedItem.all.Release;
-            Free (this.m_ISocialFeedItem);
+            if temp < 1 then
+               Free (this.m_ISocialFeedItem);
+            end if;
          end if;
       end if;
    end;
@@ -797,7 +803,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialFeedSharedItem /= null then
          if this.m_ISocialFeedSharedItem.all /= null then
             temp := this.m_ISocialFeedSharedItem.all.Release;
-            Free (this.m_ISocialFeedSharedItem);
+            if temp < 1 then
+               Free (this.m_ISocialFeedSharedItem);
+            end if;
          end if;
       end if;
    end;
@@ -996,7 +1004,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialItemThumbnail /= null then
          if this.m_ISocialItemThumbnail.all /= null then
             temp := this.m_ISocialItemThumbnail.all.Release;
-            Free (this.m_ISocialItemThumbnail);
+            if temp < 1 then
+               Free (this.m_ISocialItemThumbnail);
+            end if;
          end if;
       end if;
    end;
@@ -1183,7 +1193,9 @@ package body WinUI3.Windows.ApplicationModel.SocialInfo is
       if this.m_ISocialUserInfo /= null then
          if this.m_ISocialUserInfo.all /= null then
             temp := this.m_ISocialUserInfo.all.Release;
-            Free (this.m_ISocialUserInfo);
+            if temp < 1 then
+               Free (this.m_ISocialUserInfo);
+            end if;
          end if;
       end if;
    end;

@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.UI.System is
       if this.m_IThemeSettings /= null then
          if this.m_IThemeSettings.all /= null then
             temp := this.m_IThemeSettings.all.Release;
-            Free (this.m_IThemeSettings);
+            if temp < 1 then
+               Free (this.m_IThemeSettings);
+            end if;
          end if;
       end if;
    end;

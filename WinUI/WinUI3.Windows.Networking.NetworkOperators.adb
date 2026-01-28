@@ -103,7 +103,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESim /= null then
          if this.m_IESim.all /= null then
             temp := this.m_IESim.all.Release;
-            Free (this.m_IESim);
+            if temp < 1 then
+               Free (this.m_IESim);
+            end if;
          end if;
       end if;
    end;
@@ -724,7 +726,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimAddedEventArgs /= null then
          if this.m_IESimAddedEventArgs.all /= null then
             temp := this.m_IESimAddedEventArgs.all.Release;
-            Free (this.m_IESimAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IESimAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -767,7 +771,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimDiscoverEvent /= null then
          if this.m_IESimDiscoverEvent.all /= null then
             temp := this.m_IESimDiscoverEvent.all.Release;
-            Free (this.m_IESimDiscoverEvent);
+            if temp < 1 then
+               Free (this.m_IESimDiscoverEvent);
+            end if;
          end if;
       end if;
    end;
@@ -830,7 +836,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimDiscoverResult /= null then
          if this.m_IESimDiscoverResult.all /= null then
             temp := this.m_IESimDiscoverResult.all.Release;
-            Free (this.m_IESimDiscoverResult);
+            if temp < 1 then
+               Free (this.m_IESimDiscoverResult);
+            end if;
          end if;
       end if;
    end;
@@ -930,7 +938,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimDownloadProfileMetadataResult /= null then
          if this.m_IESimDownloadProfileMetadataResult.all /= null then
             temp := this.m_IESimDownloadProfileMetadataResult.all.Release;
-            Free (this.m_IESimDownloadProfileMetadataResult);
+            if temp < 1 then
+               Free (this.m_IESimDownloadProfileMetadataResult);
+            end if;
          end if;
       end if;
    end;
@@ -1092,7 +1102,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimOperationResult /= null then
          if this.m_IESimOperationResult.all /= null then
             temp := this.m_IESimOperationResult.all.Release;
-            Free (this.m_IESimOperationResult);
+            if temp < 1 then
+               Free (this.m_IESimOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1132,7 +1144,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimPolicy /= null then
          if this.m_IESimPolicy.all /= null then
             temp := this.m_IESimPolicy.all.Release;
-            Free (this.m_IESimPolicy);
+            if temp < 1 then
+               Free (this.m_IESimPolicy);
+            end if;
          end if;
       end if;
    end;
@@ -1172,7 +1186,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimProfile /= null then
          if this.m_IESimProfile.all /= null then
             temp := this.m_IESimProfile.all.Release;
-            Free (this.m_IESimProfile);
+            if temp < 1 then
+               Free (this.m_IESimProfile);
+            end if;
          end if;
       end if;
    end;
@@ -1547,7 +1563,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimProfileMetadata /= null then
          if this.m_IESimProfileMetadata.all /= null then
             temp := this.m_IESimProfileMetadata.all.Release;
-            Free (this.m_IESimProfileMetadata);
+            if temp < 1 then
+               Free (this.m_IESimProfileMetadata);
+            end if;
          end if;
       end if;
    end;
@@ -2001,7 +2019,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimProfilePolicy /= null then
          if this.m_IESimProfilePolicy.all /= null then
             temp := this.m_IESimProfilePolicy.all.Release;
-            Free (this.m_IESimProfilePolicy);
+            if temp < 1 then
+               Free (this.m_IESimProfilePolicy);
+            end if;
          end if;
       end if;
    end;
@@ -2075,7 +2095,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimRemovedEventArgs /= null then
          if this.m_IESimRemovedEventArgs.all /= null then
             temp := this.m_IESimRemovedEventArgs.all.Release;
-            Free (this.m_IESimRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IESimRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2118,7 +2140,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimServiceInfo /= null then
          if this.m_IESimServiceInfo.all /= null then
             temp := this.m_IESimServiceInfo.all.Release;
-            Free (this.m_IESimServiceInfo);
+            if temp < 1 then
+               Free (this.m_IESimServiceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2175,7 +2199,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimUpdatedEventArgs /= null then
          if this.m_IESimUpdatedEventArgs.all /= null then
             temp := this.m_IESimUpdatedEventArgs.all.Release;
-            Free (this.m_IESimUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IESimUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2218,7 +2244,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IESimWatcher /= null then
          if this.m_IESimWatcher.all /= null then
             temp := this.m_IESimWatcher.all.Release;
-            Free (this.m_IESimWatcher);
+            if temp < 1 then
+               Free (this.m_IESimWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -2451,7 +2479,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IHotspotAuthenticationContext /= null then
          if this.m_IHotspotAuthenticationContext.all /= null then
             temp := this.m_IHotspotAuthenticationContext.all.Release;
-            Free (this.m_IHotspotAuthenticationContext);
+            if temp < 1 then
+               Free (this.m_IHotspotAuthenticationContext);
+            end if;
          end if;
       end if;
    end;
@@ -2763,7 +2793,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IHotspotAuthenticationEventDetails /= null then
          if this.m_IHotspotAuthenticationEventDetails.all /= null then
             temp := this.m_IHotspotAuthenticationEventDetails.all.Release;
-            Free (this.m_IHotspotAuthenticationEventDetails);
+            if temp < 1 then
+               Free (this.m_IHotspotAuthenticationEventDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2806,7 +2838,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IHotspotCredentialsAuthenticationResult /= null then
          if this.m_IHotspotCredentialsAuthenticationResult.all /= null then
             temp := this.m_IHotspotCredentialsAuthenticationResult.all.Release;
-            Free (this.m_IHotspotCredentialsAuthenticationResult);
+            if temp < 1 then
+               Free (this.m_IHotspotCredentialsAuthenticationResult);
+            end if;
          end if;
       end if;
    end;
@@ -3287,7 +3321,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandAccount /= null then
          if this.m_IMobileBroadbandAccount.all /= null then
             temp := this.m_IMobileBroadbandAccount.all.Release;
-            Free (this.m_IMobileBroadbandAccount);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandAccount);
+            end if;
          end if;
       end if;
    end;
@@ -3508,7 +3544,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandAccountEventArgs /= null then
          if this.m_IMobileBroadbandAccountEventArgs.all /= null then
             temp := this.m_IMobileBroadbandAccountEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandAccountEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandAccountEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3551,7 +3589,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandAccountUpdatedEventArgs /= null then
          if this.m_IMobileBroadbandAccountUpdatedEventArgs.all /= null then
             temp := this.m_IMobileBroadbandAccountUpdatedEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandAccountUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandAccountUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3628,7 +3668,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandAccountWatcher /= null then
          if this.m_IMobileBroadbandAccountWatcher.all /= null then
             temp := this.m_IMobileBroadbandAccountWatcher.all.Release;
-            Free (this.m_IMobileBroadbandAccountWatcher);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandAccountWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -3880,7 +3922,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandAntennaSar /= null then
          if this.m_IMobileBroadbandAntennaSar.all /= null then
             temp := this.m_IMobileBroadbandAntennaSar.all.Release;
-            Free (this.m_IMobileBroadbandAntennaSar);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandAntennaSar);
+            end if;
          end if;
       end if;
    end;
@@ -3965,7 +4009,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellCdma /= null then
          if this.m_IMobileBroadbandCellCdma.all /= null then
             temp := this.m_IMobileBroadbandCellCdma.all.Release;
-            Free (this.m_IMobileBroadbandCellCdma);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellCdma);
+            end if;
          end if;
       end if;
    end;
@@ -4148,7 +4194,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellGsm /= null then
          if this.m_IMobileBroadbandCellGsm.all /= null then
             temp := this.m_IMobileBroadbandCellGsm.all.Release;
-            Free (this.m_IMobileBroadbandCellGsm);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellGsm);
+            end if;
          end if;
       end if;
    end;
@@ -4311,7 +4359,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellLte /= null then
          if this.m_IMobileBroadbandCellLte.all /= null then
             temp := this.m_IMobileBroadbandCellLte.all.Release;
-            Free (this.m_IMobileBroadbandCellLte);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellLte);
+            end if;
          end if;
       end if;
    end;
@@ -4494,7 +4544,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellNR /= null then
          if this.m_IMobileBroadbandCellNR.all /= null then
             temp := this.m_IMobileBroadbandCellNR.all.Release;
-            Free (this.m_IMobileBroadbandCellNR);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellNR);
+            end if;
          end if;
       end if;
    end;
@@ -4697,7 +4749,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellTdscdma /= null then
          if this.m_IMobileBroadbandCellTdscdma.all /= null then
             temp := this.m_IMobileBroadbandCellTdscdma.all.Release;
-            Free (this.m_IMobileBroadbandCellTdscdma);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellTdscdma);
+            end if;
          end if;
       end if;
    end;
@@ -4880,7 +4934,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellUmts /= null then
          if this.m_IMobileBroadbandCellUmts.all /= null then
             temp := this.m_IMobileBroadbandCellUmts.all.Release;
-            Free (this.m_IMobileBroadbandCellUmts);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellUmts);
+            end if;
          end if;
       end if;
    end;
@@ -5063,7 +5119,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCellsInfo /= null then
          if this.m_IMobileBroadbandCellsInfo.all /= null then
             temp := this.m_IMobileBroadbandCellsInfo.all.Release;
-            Free (this.m_IMobileBroadbandCellsInfo);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCellsInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5334,7 +5392,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs /= null then
          if this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs.all /= null then
             temp := this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandCurrentSlotIndexChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5374,7 +5434,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceInformation /= null then
          if this.m_IMobileBroadbandDeviceInformation.all /= null then
             temp := this.m_IMobileBroadbandDeviceInformation.all.Release;
-            Free (this.m_IMobileBroadbandDeviceInformation);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceInformation);
+            end if;
          end if;
       end if;
    end;
@@ -5830,7 +5892,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceService /= null then
          if this.m_IMobileBroadbandDeviceService.all /= null then
             temp := this.m_IMobileBroadbandDeviceService.all.Release;
-            Free (this.m_IMobileBroadbandDeviceService);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceService);
+            end if;
          end if;
       end if;
    end;
@@ -5930,7 +5994,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceCommandEventArgs /= null then
          if this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceCommandEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceCommandEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceCommandEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6024,7 +6090,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceCommandResult /= null then
          if this.m_IMobileBroadbandDeviceServiceCommandResult.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceCommandResult.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceCommandResult);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceCommandResult);
+            end if;
          end if;
       end if;
    end;
@@ -6081,7 +6149,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceCommandSession /= null then
          if this.m_IMobileBroadbandDeviceServiceCommandSession.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceCommandSession.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceCommandSession);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceCommandSession);
+            end if;
          end if;
       end if;
    end;
@@ -6295,7 +6365,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs /= null then
          if this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6335,7 +6407,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceDataSession /= null then
          if this.m_IMobileBroadbandDeviceServiceDataSession.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceDataSession.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceDataSession);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceDataSession);
+            end if;
          end if;
       end if;
    end;
@@ -6448,7 +6522,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceInformation /= null then
          if this.m_IMobileBroadbandDeviceServiceInformation.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceInformation.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceInformation);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceInformation);
+            end if;
          end if;
       end if;
    end;
@@ -6522,7 +6598,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandDeviceServiceTriggerDetails /= null then
          if this.m_IMobileBroadbandDeviceServiceTriggerDetails.all /= null then
             temp := this.m_IMobileBroadbandDeviceServiceTriggerDetails.all.Release;
-            Free (this.m_IMobileBroadbandDeviceServiceTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandDeviceServiceTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -6620,7 +6698,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandModem /= null then
          if this.m_IMobileBroadbandModem.all /= null then
             temp := this.m_IMobileBroadbandModem.all.Release;
-            Free (this.m_IMobileBroadbandModem);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandModem);
+            end if;
          end if;
       end if;
    end;
@@ -7432,7 +7512,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandModemConfiguration /= null then
          if this.m_IMobileBroadbandModemConfiguration.all /= null then
             temp := this.m_IMobileBroadbandModemConfiguration.all.Release;
-            Free (this.m_IMobileBroadbandModemConfiguration);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandModemConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -7539,7 +7621,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandModemIsolation /= null then
          if this.m_IMobileBroadbandModemIsolation.all /= null then
             temp := this.m_IMobileBroadbandModemIsolation.all.Release;
-            Free (this.m_IMobileBroadbandModemIsolation);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandModemIsolation);
+            end if;
          end if;
       end if;
    end;
@@ -7709,7 +7793,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandNetwork /= null then
          if this.m_IMobileBroadbandNetwork.all /= null then
             temp := this.m_IMobileBroadbandNetwork.all.Release;
-            Free (this.m_IMobileBroadbandNetwork);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandNetwork);
+            end if;
          end if;
       end if;
    end;
@@ -8072,7 +8158,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandNetworkRegistrationStateChange /= null then
          if this.m_IMobileBroadbandNetworkRegistrationStateChange.all /= null then
             temp := this.m_IMobileBroadbandNetworkRegistrationStateChange.all.Release;
-            Free (this.m_IMobileBroadbandNetworkRegistrationStateChange);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandNetworkRegistrationStateChange);
+            end if;
          end if;
       end if;
    end;
@@ -8135,7 +8223,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all /= null then
             temp := this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails.all.Release;
-            Free (this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandNetworkRegistrationStateChangeTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -8178,7 +8268,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPco /= null then
          if this.m_IMobileBroadbandPco.all /= null then
             temp := this.m_IMobileBroadbandPco.all.Release;
-            Free (this.m_IMobileBroadbandPco);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPco);
+            end if;
          end if;
       end if;
    end;
@@ -8255,7 +8347,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPcoDataChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all /= null then
             temp := this.m_IMobileBroadbandPcoDataChangeTriggerDetails.all.Release;
-            Free (this.m_IMobileBroadbandPcoDataChangeTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPcoDataChangeTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -8298,7 +8392,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPin /= null then
          if this.m_IMobileBroadbandPin.all /= null then
             temp := this.m_IMobileBroadbandPin.all.Release;
-            Free (this.m_IMobileBroadbandPin);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPin);
+            end if;
          end if;
       end if;
    end;
@@ -8791,7 +8887,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPinLockStateChange /= null then
          if this.m_IMobileBroadbandPinLockStateChange.all /= null then
             temp := this.m_IMobileBroadbandPinLockStateChange.all.Release;
-            Free (this.m_IMobileBroadbandPinLockStateChange);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPinLockStateChange);
+            end if;
          end if;
       end if;
    end;
@@ -8868,7 +8966,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPinLockStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all /= null then
             temp := this.m_IMobileBroadbandPinLockStateChangeTriggerDetails.all.Release;
-            Free (this.m_IMobileBroadbandPinLockStateChangeTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPinLockStateChangeTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -8911,7 +9011,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPinManager /= null then
          if this.m_IMobileBroadbandPinManager.all /= null then
             temp := this.m_IMobileBroadbandPinManager.all.Release;
-            Free (this.m_IMobileBroadbandPinManager);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPinManager);
+            end if;
          end if;
       end if;
    end;
@@ -8975,7 +9077,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandPinOperationResult /= null then
          if this.m_IMobileBroadbandPinOperationResult.all /= null then
             temp := this.m_IMobileBroadbandPinOperationResult.all.Release;
-            Free (this.m_IMobileBroadbandPinOperationResult);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandPinOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -9032,7 +9136,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandRadioStateChange /= null then
          if this.m_IMobileBroadbandRadioStateChange.all /= null then
             temp := this.m_IMobileBroadbandRadioStateChange.all.Release;
-            Free (this.m_IMobileBroadbandRadioStateChange);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandRadioStateChange);
+            end if;
          end if;
       end if;
    end;
@@ -9092,7 +9198,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandRadioStateChangeTriggerDetails /= null then
          if this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all /= null then
             temp := this.m_IMobileBroadbandRadioStateChangeTriggerDetails.all.Release;
-            Free (this.m_IMobileBroadbandRadioStateChangeTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandRadioStateChangeTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -9135,7 +9243,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandSarManager /= null then
          if this.m_IMobileBroadbandSarManager.all /= null then
             temp := this.m_IMobileBroadbandSarManager.all.Release;
-            Free (this.m_IMobileBroadbandSarManager);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandSarManager);
+            end if;
          end if;
       end if;
    end;
@@ -9582,7 +9692,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandSlotInfo /= null then
          if this.m_IMobileBroadbandSlotInfo.all /= null then
             temp := this.m_IMobileBroadbandSlotInfo.all.Release;
-            Free (this.m_IMobileBroadbandSlotInfo);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandSlotInfo);
+            end if;
          end if;
       end if;
    end;
@@ -9663,7 +9775,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandSlotInfoChangedEventArgs /= null then
          if this.m_IMobileBroadbandSlotInfoChangedEventArgs.all /= null then
             temp := this.m_IMobileBroadbandSlotInfoChangedEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandSlotInfoChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandSlotInfoChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9706,7 +9820,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandSlotManager /= null then
          if this.m_IMobileBroadbandSlotManager.all /= null then
             temp := this.m_IMobileBroadbandSlotManager.all.Release;
-            Free (this.m_IMobileBroadbandSlotManager);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandSlotManager);
+            end if;
          end if;
       end if;
    end;
@@ -9914,7 +10030,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandTransmissionStateChangedEventArgs /= null then
          if this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all /= null then
             temp := this.m_IMobileBroadbandTransmissionStateChangedEventArgs.all.Release;
-            Free (this.m_IMobileBroadbandTransmissionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandTransmissionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9954,7 +10072,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandUicc /= null then
          if this.m_IMobileBroadbandUicc.all /= null then
             temp := this.m_IMobileBroadbandUicc.all.Release;
-            Free (this.m_IMobileBroadbandUicc);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandUicc);
+            end if;
          end if;
       end if;
    end;
@@ -10063,7 +10183,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandUiccApp /= null then
          if this.m_IMobileBroadbandUiccApp.all /= null then
             temp := this.m_IMobileBroadbandUiccApp.all.Release;
-            Free (this.m_IMobileBroadbandUiccApp);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandUiccApp);
+            end if;
          end if;
       end if;
    end;
@@ -10255,7 +10377,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandUiccAppReadRecordResult /= null then
          if this.m_IMobileBroadbandUiccAppReadRecordResult.all /= null then
             temp := this.m_IMobileBroadbandUiccAppReadRecordResult.all.Release;
-            Free (this.m_IMobileBroadbandUiccAppReadRecordResult);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandUiccAppReadRecordResult);
+            end if;
          end if;
       end if;
    end;
@@ -10312,7 +10436,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandUiccAppRecordDetailsResult /= null then
          if this.m_IMobileBroadbandUiccAppRecordDetailsResult.all /= null then
             temp := this.m_IMobileBroadbandUiccAppRecordDetailsResult.all.Release;
-            Free (this.m_IMobileBroadbandUiccAppRecordDetailsResult);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandUiccAppRecordDetailsResult);
+            end if;
          end if;
       end if;
    end;
@@ -10437,7 +10563,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IMobileBroadbandUiccAppsResult /= null then
          if this.m_IMobileBroadbandUiccAppsResult.all /= null then
             temp := this.m_IMobileBroadbandUiccAppsResult.all.Release;
-            Free (this.m_IMobileBroadbandUiccAppsResult);
+            if temp < 1 then
+               Free (this.m_IMobileBroadbandUiccAppsResult);
+            end if;
          end if;
       end if;
    end;
@@ -10497,7 +10625,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorDataUsageTriggerDetails /= null then
          if this.m_INetworkOperatorDataUsageTriggerDetails.all /= null then
             temp := this.m_INetworkOperatorDataUsageTriggerDetails.all.Release;
-            Free (this.m_INetworkOperatorDataUsageTriggerDetails);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorDataUsageTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -10537,7 +10667,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorNotificationEventDetails /= null then
          if this.m_INetworkOperatorNotificationEventDetails.all /= null then
             temp := this.m_INetworkOperatorNotificationEventDetails.all.Release;
-            Free (this.m_INetworkOperatorNotificationEventDetails);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorNotificationEventDetails);
+            end if;
          end if;
       end if;
    end;
@@ -10693,7 +10825,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorTetheringAccessPointConfiguration /= null then
          if this.m_INetworkOperatorTetheringAccessPointConfiguration.all /= null then
             temp := this.m_INetworkOperatorTetheringAccessPointConfiguration.all.Release;
-            Free (this.m_INetworkOperatorTetheringAccessPointConfiguration);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorTetheringAccessPointConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -11069,7 +11203,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorTetheringClient /= null then
          if this.m_INetworkOperatorTetheringClient.all /= null then
             temp := this.m_INetworkOperatorTetheringClient.all.Release;
-            Free (this.m_INetworkOperatorTetheringClient);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorTetheringClient);
+            end if;
          end if;
       end if;
    end;
@@ -11132,7 +11268,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorTetheringManager /= null then
          if this.m_INetworkOperatorTetheringManager.all /= null then
             temp := this.m_INetworkOperatorTetheringManager.all.Release;
-            Free (this.m_INetworkOperatorTetheringManager);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorTetheringManager);
+            end if;
          end if;
       end if;
    end;
@@ -11782,7 +11920,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorTetheringOperationResult /= null then
          if this.m_INetworkOperatorTetheringOperationResult.all /= null then
             temp := this.m_INetworkOperatorTetheringOperationResult.all.Release;
-            Free (this.m_INetworkOperatorTetheringOperationResult);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorTetheringOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -11842,7 +11982,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_INetworkOperatorTetheringSessionAccessPointConfiguration /= null then
          if this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all /= null then
             temp := this.m_INetworkOperatorTetheringSessionAccessPointConfiguration.all.Release;
-            Free (this.m_INetworkOperatorTetheringSessionAccessPointConfiguration);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorTetheringSessionAccessPointConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -12218,7 +12360,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IProvisionFromXmlDocumentResults /= null then
          if this.m_IProvisionFromXmlDocumentResults.all /= null then
             temp := this.m_IProvisionFromXmlDocumentResults.all.Release;
-            Free (this.m_IProvisionFromXmlDocumentResults);
+            if temp < 1 then
+               Free (this.m_IProvisionFromXmlDocumentResults);
+            end if;
          end if;
       end if;
    end;
@@ -12278,7 +12422,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IProvisionedProfile /= null then
          if this.m_IProvisionedProfile.all /= null then
             temp := this.m_IProvisionedProfile.all.Release;
-            Free (this.m_IProvisionedProfile);
+            if temp < 1 then
+               Free (this.m_IProvisionedProfile);
+            end if;
          end if;
       end if;
    end;
@@ -12331,7 +12477,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IProvisioningAgent /= null then
          if this.m_IProvisioningAgent.all /= null then
             temp := this.m_IProvisioningAgent.all.Release;
-            Free (this.m_IProvisioningAgent);
+            if temp < 1 then
+               Free (this.m_IProvisioningAgent);
+            end if;
          end if;
       end if;
    end;
@@ -12498,7 +12646,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_ITetheringEntitlementCheckTriggerDetails /= null then
          if this.m_ITetheringEntitlementCheckTriggerDetails.all /= null then
             temp := this.m_ITetheringEntitlementCheckTriggerDetails.all.Release;
-            Free (this.m_ITetheringEntitlementCheckTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ITetheringEntitlementCheckTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -12572,7 +12722,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IUssdMessage /= null then
          if this.m_IUssdMessage.all /= null then
             temp := this.m_IUssdMessage.all.Release;
-            Free (this.m_IUssdMessage);
+            if temp < 1 then
+               Free (this.m_IUssdMessage);
+            end if;
          end if;
       end if;
    end;
@@ -12735,7 +12887,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IUssdReply /= null then
          if this.m_IUssdReply.all /= null then
             temp := this.m_IUssdReply.all.Release;
-            Free (this.m_IUssdReply);
+            if temp < 1 then
+               Free (this.m_IUssdReply);
+            end if;
          end if;
       end if;
    end;
@@ -12795,7 +12949,9 @@ package body WinUI3.Windows.Networking.NetworkOperators is
       if this.m_IUssdSession /= null then
          if this.m_IUssdSession.all /= null then
             temp := this.m_IUssdSession.all.Release;
-            Free (this.m_IUssdSession);
+            if temp < 1 then
+               Free (this.m_IUssdSession);
+            end if;
          end if;
       end if;
    end;

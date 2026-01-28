@@ -60,7 +60,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileDataSource /= null then
          if this.m_IMapTileDataSource.all /= null then
             temp := this.m_IMapTileDataSource.all.Release;
-            Free (this.m_IMapTileDataSource);
+            if temp < 1 then
+               Free (this.m_IMapTileDataSource);
+            end if;
          end if;
       end if;
    end;
@@ -111,7 +113,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_ICustomMapTileDataSource /= null then
          if this.m_ICustomMapTileDataSource.all /= null then
             temp := this.m_ICustomMapTileDataSource.all.Release;
-            Free (this.m_ICustomMapTileDataSource);
+            if temp < 1 then
+               Free (this.m_ICustomMapTileDataSource);
+            end if;
          end if;
       end if;
    end;
@@ -195,7 +199,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IHttpMapTileDataSource /= null then
          if this.m_IHttpMapTileDataSource.all /= null then
             temp := this.m_IHttpMapTileDataSource.all.Release;
-            Free (this.m_IHttpMapTileDataSource);
+            if temp < 1 then
+               Free (this.m_IHttpMapTileDataSource);
+            end if;
          end if;
       end if;
    end;
@@ -396,7 +402,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_ILocalMapTileDataSource /= null then
          if this.m_ILocalMapTileDataSource.all /= null then
             temp := this.m_ILocalMapTileDataSource.all.Release;
-            Free (this.m_ILocalMapTileDataSource);
+            if temp < 1 then
+               Free (this.m_ILocalMapTileDataSource);
+            end if;
          end if;
       end if;
    end;
@@ -545,7 +553,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapActualCameraChangedEventArgs /= null then
          if this.m_IMapActualCameraChangedEventArgs.all /= null then
             temp := this.m_IMapActualCameraChangedEventArgs.all.Release;
-            Free (this.m_IMapActualCameraChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapActualCameraChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -628,7 +638,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapActualCameraChangingEventArgs /= null then
          if this.m_IMapActualCameraChangingEventArgs.all /= null then
             temp := this.m_IMapActualCameraChangingEventArgs.all.Release;
-            Free (this.m_IMapActualCameraChangingEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapActualCameraChangingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -711,7 +723,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElement /= null then
          if this.m_IMapElement.all /= null then
             temp := this.m_IMapElement.all.Release;
-            Free (this.m_IMapElement);
+            if temp < 1 then
+               Free (this.m_IMapElement);
+            end if;
          end if;
       end if;
    end;
@@ -1207,7 +1221,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapBillboard /= null then
          if this.m_IMapBillboard.all /= null then
             temp := this.m_IMapBillboard.all.Release;
-            Free (this.m_IMapBillboard);
+            if temp < 1 then
+               Free (this.m_IMapBillboard);
+            end if;
          end if;
       end if;
    end;
@@ -1483,7 +1499,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapCamera /= null then
          if this.m_IMapCamera.all /= null then
             temp := this.m_IMapCamera.all.Release;
-            Free (this.m_IMapCamera);
+            if temp < 1 then
+               Free (this.m_IMapCamera);
+            end if;
          end if;
       end if;
    end;
@@ -1775,7 +1793,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapContextRequestedEventArgs /= null then
          if this.m_IMapContextRequestedEventArgs.all /= null then
             temp := this.m_IMapContextRequestedEventArgs.all.Release;
-            Free (this.m_IMapContextRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapContextRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1874,7 +1894,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControl /= null then
          if this.m_IMapControl.all /= null then
             temp := this.m_IMapControl.all.Release;
-            Free (this.m_IMapControl);
+            if temp < 1 then
+               Free (this.m_IMapControl);
+            end if;
          end if;
       end if;
    end;
@@ -6386,7 +6408,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlBusinessLandmarkClickEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkClickEventArgs.all /= null then
             temp := this.m_IMapControlBusinessLandmarkClickEventArgs.all.Release;
-            Free (this.m_IMapControlBusinessLandmarkClickEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlBusinessLandmarkClickEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6445,7 +6469,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all /= null then
             temp := this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs.all.Release;
-            Free (this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlBusinessLandmarkPointerEnteredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6504,7 +6530,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlBusinessLandmarkPointerExitedEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all /= null then
             temp := this.m_IMapControlBusinessLandmarkPointerExitedEventArgs.all.Release;
-            Free (this.m_IMapControlBusinessLandmarkPointerExitedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlBusinessLandmarkPointerExitedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6563,7 +6591,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlBusinessLandmarkRightTappedEventArgs /= null then
          if this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all /= null then
             temp := this.m_IMapControlBusinessLandmarkRightTappedEventArgs.all.Release;
-            Free (this.m_IMapControlBusinessLandmarkRightTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlBusinessLandmarkRightTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6622,7 +6652,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlDataHelper /= null then
          if this.m_IMapControlDataHelper.all /= null then
             temp := this.m_IMapControlDataHelper.all.Release;
-            Free (this.m_IMapControlDataHelper);
+            if temp < 1 then
+               Free (this.m_IMapControlDataHelper);
+            end if;
          end if;
       end if;
    end;
@@ -6998,7 +7030,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlTransitFeatureClickEventArgs /= null then
          if this.m_IMapControlTransitFeatureClickEventArgs.all /= null then
             temp := this.m_IMapControlTransitFeatureClickEventArgs.all.Release;
-            Free (this.m_IMapControlTransitFeatureClickEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlTransitFeatureClickEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7100,7 +7134,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlTransitFeaturePointerEnteredEventArgs /= null then
          if this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all /= null then
             temp := this.m_IMapControlTransitFeaturePointerEnteredEventArgs.all.Release;
-            Free (this.m_IMapControlTransitFeaturePointerEnteredEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlTransitFeaturePointerEnteredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7202,7 +7238,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlTransitFeaturePointerExitedEventArgs /= null then
          if this.m_IMapControlTransitFeaturePointerExitedEventArgs.all /= null then
             temp := this.m_IMapControlTransitFeaturePointerExitedEventArgs.all.Release;
-            Free (this.m_IMapControlTransitFeaturePointerExitedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlTransitFeaturePointerExitedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7304,7 +7342,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapControlTransitFeatureRightTappedEventArgs /= null then
          if this.m_IMapControlTransitFeatureRightTappedEventArgs.all /= null then
             temp := this.m_IMapControlTransitFeatureRightTappedEventArgs.all.Release;
-            Free (this.m_IMapControlTransitFeatureRightTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapControlTransitFeatureRightTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7406,7 +7446,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapCustomExperience /= null then
          if this.m_IMapCustomExperience.all /= null then
             temp := this.m_IMapCustomExperience.all.Release;
-            Free (this.m_IMapCustomExperience);
+            if temp < 1 then
+               Free (this.m_IMapCustomExperience);
+            end if;
          end if;
       end if;
    end;
@@ -7457,7 +7499,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapCustomExperienceChangedEventArgs /= null then
          if this.m_IMapCustomExperienceChangedEventArgs.all /= null then
             temp := this.m_IMapCustomExperienceChangedEventArgs.all.Release;
-            Free (this.m_IMapCustomExperienceChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapCustomExperienceChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7499,7 +7543,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElement3D /= null then
          if this.m_IMapElement3D.all /= null then
             temp := this.m_IMapElement3D.all.Release;
-            Free (this.m_IMapElement3D);
+            if temp < 1 then
+               Free (this.m_IMapElement3D);
+            end if;
          end if;
       end if;
    end;
@@ -7862,7 +7908,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementClickEventArgs /= null then
          if this.m_IMapElementClickEventArgs.all /= null then
             temp := this.m_IMapElementClickEventArgs.all.Release;
-            Free (this.m_IMapElementClickEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementClickEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7961,7 +8009,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementPointerEnteredEventArgs /= null then
          if this.m_IMapElementPointerEnteredEventArgs.all /= null then
             temp := this.m_IMapElementPointerEnteredEventArgs.all.Release;
-            Free (this.m_IMapElementPointerEnteredEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementPointerEnteredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8060,7 +8110,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementPointerExitedEventArgs /= null then
          if this.m_IMapElementPointerExitedEventArgs.all /= null then
             temp := this.m_IMapElementPointerExitedEventArgs.all.Release;
-            Free (this.m_IMapElementPointerExitedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementPointerExitedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8159,7 +8211,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapLayer /= null then
          if this.m_IMapLayer.all /= null then
             temp := this.m_IMapLayer.all.Release;
-            Free (this.m_IMapLayer);
+            if temp < 1 then
+               Free (this.m_IMapLayer);
+            end if;
          end if;
       end if;
    end;
@@ -8381,7 +8435,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementsLayer /= null then
          if this.m_IMapElementsLayer.all /= null then
             temp := this.m_IMapElementsLayer.all.Release;
-            Free (this.m_IMapElementsLayer);
+            if temp < 1 then
+               Free (this.m_IMapElementsLayer);
+            end if;
          end if;
       end if;
    end;
@@ -8617,7 +8673,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementsLayerClickEventArgs /= null then
          if this.m_IMapElementsLayerClickEventArgs.all /= null then
             temp := this.m_IMapElementsLayerClickEventArgs.all.Release;
-            Free (this.m_IMapElementsLayerClickEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementsLayerClickEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8716,7 +8774,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementsLayerContextRequestedEventArgs /= null then
          if this.m_IMapElementsLayerContextRequestedEventArgs.all /= null then
             temp := this.m_IMapElementsLayerContextRequestedEventArgs.all.Release;
-            Free (this.m_IMapElementsLayerContextRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementsLayerContextRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8815,7 +8875,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementsLayerPointerEnteredEventArgs /= null then
          if this.m_IMapElementsLayerPointerEnteredEventArgs.all /= null then
             temp := this.m_IMapElementsLayerPointerEnteredEventArgs.all.Release;
-            Free (this.m_IMapElementsLayerPointerEnteredEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementsLayerPointerEnteredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8914,7 +8976,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapElementsLayerPointerExitedEventArgs /= null then
          if this.m_IMapElementsLayerPointerExitedEventArgs.all /= null then
             temp := this.m_IMapElementsLayerPointerExitedEventArgs.all.Release;
-            Free (this.m_IMapElementsLayerPointerExitedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapElementsLayerPointerExitedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9013,7 +9077,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapIcon /= null then
          if this.m_IMapIcon.all /= null then
             temp := this.m_IMapIcon.all.Release;
-            Free (this.m_IMapIcon);
+            if temp < 1 then
+               Free (this.m_IMapIcon);
+            end if;
          end if;
       end if;
    end;
@@ -9330,7 +9396,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapInputEventArgs /= null then
          if this.m_IMapInputEventArgs.all /= null then
             temp := this.m_IMapInputEventArgs.all.Release;
-            Free (this.m_IMapInputEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapInputEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9409,7 +9477,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapItemsControl /= null then
          if this.m_IMapItemsControl.all /= null then
             temp := this.m_IMapItemsControl.all.Release;
-            Free (this.m_IMapItemsControl);
+            if temp < 1 then
+               Free (this.m_IMapItemsControl);
+            end if;
          end if;
       end if;
    end;
@@ -9613,7 +9683,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapModel3D /= null then
          if this.m_IMapModel3D.all /= null then
             temp := this.m_IMapModel3D.all.Release;
-            Free (this.m_IMapModel3D);
+            if temp < 1 then
+               Free (this.m_IMapModel3D);
+            end if;
          end if;
       end if;
    end;
@@ -9814,7 +9886,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapPolygon /= null then
          if this.m_IMapPolygon.all /= null then
             temp := this.m_IMapPolygon.all.Release;
-            Free (this.m_IMapPolygon);
+            if temp < 1 then
+               Free (this.m_IMapPolygon);
+            end if;
          end if;
       end if;
    end;
@@ -10115,7 +10189,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapPolyline /= null then
          if this.m_IMapPolyline.all /= null then
             temp := this.m_IMapPolyline.all.Release;
-            Free (this.m_IMapPolyline);
+            if temp < 1 then
+               Free (this.m_IMapPolyline);
+            end if;
          end if;
       end if;
    end;
@@ -10339,7 +10415,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapRightTappedEventArgs /= null then
          if this.m_IMapRightTappedEventArgs.all /= null then
             temp := this.m_IMapRightTappedEventArgs.all.Release;
-            Free (this.m_IMapRightTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapRightTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10418,7 +10496,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapRouteView /= null then
          if this.m_IMapRouteView.all /= null then
             temp := this.m_IMapRouteView.all.Release;
-            Free (this.m_IMapRouteView);
+            if temp < 1 then
+               Free (this.m_IMapRouteView);
+            end if;
          end if;
       end if;
    end;
@@ -10554,7 +10634,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapScene /= null then
          if this.m_IMapScene.all /= null then
             temp := this.m_IMapScene.all.Release;
-            Free (this.m_IMapScene);
+            if temp < 1 then
+               Free (this.m_IMapScene);
+            end if;
          end if;
       end if;
    end;
@@ -10886,7 +10968,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapStyleSheet /= null then
          if this.m_IMapStyleSheet.all /= null then
             temp := this.m_IMapStyleSheet.all.Release;
-            Free (this.m_IMapStyleSheet);
+            if temp < 1 then
+               Free (this.m_IMapStyleSheet);
+            end if;
          end if;
       end if;
    end;
@@ -12759,7 +12843,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTargetCameraChangedEventArgs /= null then
          if this.m_IMapTargetCameraChangedEventArgs.all /= null then
             temp := this.m_IMapTargetCameraChangedEventArgs.all.Release;
-            Free (this.m_IMapTargetCameraChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapTargetCameraChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12842,7 +12928,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileBitmapRequest /= null then
          if this.m_IMapTileBitmapRequest.all /= null then
             temp := this.m_IMapTileBitmapRequest.all.Release;
-            Free (this.m_IMapTileBitmapRequest);
+            if temp < 1 then
+               Free (this.m_IMapTileBitmapRequest);
+            end if;
          end if;
       end if;
    end;
@@ -12936,7 +13024,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileBitmapRequestDeferral /= null then
          if this.m_IMapTileBitmapRequestDeferral.all /= null then
             temp := this.m_IMapTileBitmapRequestDeferral.all.Release;
-            Free (this.m_IMapTileBitmapRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IMapTileBitmapRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -12992,7 +13082,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileBitmapRequestedEventArgs /= null then
          if this.m_IMapTileBitmapRequestedEventArgs.all /= null then
             temp := this.m_IMapTileBitmapRequestedEventArgs.all.Release;
-            Free (this.m_IMapTileBitmapRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapTileBitmapRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13126,7 +13218,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileSource /= null then
          if this.m_IMapTileSource.all /= null then
             temp := this.m_IMapTileSource.all.Release;
-            Free (this.m_IMapTileSource);
+            if temp < 1 then
+               Free (this.m_IMapTileSource);
+            end if;
          end if;
       end if;
    end;
@@ -14203,7 +14297,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileUriRequest /= null then
          if this.m_IMapTileUriRequest.all /= null then
             temp := this.m_IMapTileUriRequest.all.Release;
-            Free (this.m_IMapTileUriRequest);
+            if temp < 1 then
+               Free (this.m_IMapTileUriRequest);
+            end if;
          end if;
       end if;
    end;
@@ -14300,7 +14396,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileUriRequestDeferral /= null then
          if this.m_IMapTileUriRequestDeferral.all /= null then
             temp := this.m_IMapTileUriRequestDeferral.all.Release;
-            Free (this.m_IMapTileUriRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IMapTileUriRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -14356,7 +14454,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IMapTileUriRequestedEventArgs /= null then
          if this.m_IMapTileUriRequestedEventArgs.all /= null then
             temp := this.m_IMapTileUriRequestedEventArgs.all.Release;
-            Free (this.m_IMapTileUriRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMapTileUriRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14490,7 +14590,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IStreetsideExperience /= null then
          if this.m_IStreetsideExperience.all /= null then
             temp := this.m_IStreetsideExperience.all.Release;
-            Free (this.m_IStreetsideExperience);
+            if temp < 1 then
+               Free (this.m_IStreetsideExperience);
+            end if;
          end if;
       end if;
    end;
@@ -14759,7 +14861,9 @@ package body WinUI3.Windows.UI.Xaml.Controls.Maps is
       if this.m_IStreetsidePanorama /= null then
          if this.m_IStreetsidePanorama.all /= null then
             temp := this.m_IStreetsidePanorama.all.Release;
-            Free (this.m_IStreetsidePanorama);
+            if temp < 1 then
+               Free (this.m_IStreetsidePanorama);
+            end if;
          end if;
       end if;
    end;

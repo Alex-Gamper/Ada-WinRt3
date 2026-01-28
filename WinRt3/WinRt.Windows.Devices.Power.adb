@@ -52,7 +52,9 @@ package body WinRt.Windows.Devices.Power is
       if this.m_IBattery /= null then
          if this.m_IBattery.all /= null then
             temp := this.m_IBattery.all.Release;
-            Free (this.m_IBattery);
+            if temp < 1 then
+               Free (this.m_IBattery);
+            end if;
          end if;
       end if;
    end;
@@ -274,7 +276,9 @@ package body WinRt.Windows.Devices.Power is
       if this.m_IBatteryReport /= null then
          if this.m_IBatteryReport.all /= null then
             temp := this.m_IBatteryReport.all.Release;
-            Free (this.m_IBatteryReport);
+            if temp < 1 then
+               Free (this.m_IBatteryReport);
+            end if;
          end if;
       end if;
    end;
@@ -394,7 +398,9 @@ package body WinRt.Windows.Devices.Power is
       if this.m_IPowerGridData /= null then
          if this.m_IPowerGridData.all /= null then
             temp := this.m_IPowerGridData.all.Release;
-            Free (this.m_IPowerGridData);
+            if temp < 1 then
+               Free (this.m_IPowerGridData);
+            end if;
          end if;
       end if;
    end;
@@ -451,7 +457,9 @@ package body WinRt.Windows.Devices.Power is
       if this.m_IPowerGridForecast /= null then
          if this.m_IPowerGridForecast.all /= null then
             temp := this.m_IPowerGridForecast.all.Release;
-            Free (this.m_IPowerGridForecast);
+            if temp < 1 then
+               Free (this.m_IPowerGridForecast);
+            end if;
          end if;
       end if;
    end;

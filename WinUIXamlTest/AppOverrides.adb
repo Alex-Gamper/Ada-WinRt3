@@ -14,6 +14,12 @@ package body AppOverrides is
     function "+"(value : Wide_String) return Unbounded_Wide_String renames To_Unbounded_Wide_String;
     function "+"(value : Unbounded_Wide_String) return Wide_String renames To_Wide_String;
 
+    function OnActivated (this : access Kind_Interface; args_p : IActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
     function OnLaunched (this : access Kind_Interface; args_p : ILaunchActivatedEventArgs) return WinUI3.HResult is
 
         function QI is new WinUI3.Generic_QueryInterface(IInspectable_Interface, IUIElement, IID_IUIElement'Access) with inline;
@@ -48,6 +54,48 @@ package body AppOverrides is
         m_Window.Put_Content (m_UIElement);
         m_Window.Activate;
 
+        return Hr;
+    end;
+
+    function OnFileActivated (this : access Kind_Interface; args_p : IFileActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnSearchActivated (this : access Kind_Interface; args_p : ISearchActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnShareTargetActivated (this : access Kind_Interface; args_p : IShareTargetActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnFileOpenPickerActivated (this : access Kind_Interface; args_p : IFileOpenPickerActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnFileSavePickerActivated (this : access Kind_Interface; args_p : IFileSavePickerActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnCachedFileUpdaterActivated (this : access Kind_Interface; args_p : ICachedFileUpdaterActivatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
+        return Hr;
+    end;
+
+    function OnWindowCreated (this : access Kind_Interface; args_p : IWindowCreatedEventArgs) return WinUI3.HResult is
+        Hr  : HResult := 0;
+    begin
         return Hr;
     end;
 

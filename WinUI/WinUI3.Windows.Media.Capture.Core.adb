@@ -47,7 +47,9 @@ package body WinUI3.Windows.Media.Capture.Core is
       if this.m_IVariablePhotoCapturedEventArgs /= null then
          if this.m_IVariablePhotoCapturedEventArgs.all /= null then
             temp := this.m_IVariablePhotoCapturedEventArgs.all.Release;
-            Free (this.m_IVariablePhotoCapturedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVariablePhotoCapturedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -147,7 +149,9 @@ package body WinUI3.Windows.Media.Capture.Core is
       if this.m_IVariablePhotoSequenceCapture /= null then
          if this.m_IVariablePhotoSequenceCapture.all /= null then
             temp := this.m_IVariablePhotoSequenceCapture.all.Release;
-            Free (this.m_IVariablePhotoSequenceCapture);
+            if temp < 1 then
+               Free (this.m_IVariablePhotoSequenceCapture);
+            end if;
          end if;
       end if;
    end;

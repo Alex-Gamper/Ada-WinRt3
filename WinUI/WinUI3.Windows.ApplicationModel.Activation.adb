@@ -67,7 +67,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all /= null then
             temp := this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs.all.Release;
-            Free (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentsProviderAddAppointmentActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -224,7 +226,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all /= null then
             temp := this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs.all.Release;
-            Free (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentsProviderRemoveAppointmentActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -381,7 +385,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all /= null then
             temp := this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs.all.Release;
-            Free (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentsProviderReplaceAppointmentActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -538,7 +544,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all /= null then
             temp := this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs.all.Release;
-            Free (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentsProviderShowAppointmentDetailsActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -735,7 +743,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs /= null then
          if this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all /= null then
             temp := this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs.all.Release;
-            Free (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentsProviderShowTimeFrameActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -906,7 +916,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IBackgroundActivatedEventArgs /= null then
          if this.m_IBackgroundActivatedEventArgs.all /= null then
             temp := this.m_IBackgroundActivatedEventArgs.all.Release;
-            Free (this.m_IBackgroundActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBackgroundActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -946,7 +958,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IBarcodeScannerPreviewActivatedEventArgs /= null then
          if this.m_IBarcodeScannerPreviewActivatedEventArgs.all /= null then
             temp := this.m_IBarcodeScannerPreviewActivatedEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerPreviewActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerPreviewActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1079,7 +1093,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ICachedFileUpdaterActivatedEventArgs /= null then
          if this.m_ICachedFileUpdaterActivatedEventArgs.all /= null then
             temp := this.m_ICachedFileUpdaterActivatedEventArgs.all.Release;
-            Free (this.m_ICachedFileUpdaterActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICachedFileUpdaterActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1212,7 +1228,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ICameraSettingsActivatedEventArgs /= null then
          if this.m_ICameraSettingsActivatedEventArgs.all /= null then
             temp := this.m_ICameraSettingsActivatedEventArgs.all.Release;
-            Free (this.m_ICameraSettingsActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICameraSettingsActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1335,7 +1353,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ICommandLineActivatedEventArgs /= null then
          if this.m_ICommandLineActivatedEventArgs.all /= null then
             temp := this.m_ICommandLineActivatedEventArgs.all.Release;
-            Free (this.m_ICommandLineActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICommandLineActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1468,7 +1488,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ICommandLineActivationOperation /= null then
          if this.m_ICommandLineActivationOperation.all /= null then
             temp := this.m_ICommandLineActivationOperation.all.Release;
-            Free (this.m_ICommandLineActivationOperation);
+            if temp < 1 then
+               Free (this.m_ICommandLineActivationOperation);
+            end if;
          end if;
       end if;
    end;
@@ -1583,7 +1605,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactCallActivatedEventArgs /= null then
          if this.m_IContactCallActivatedEventArgs.all /= null then
             temp := this.m_IContactCallActivatedEventArgs.all.Release;
-            Free (this.m_IContactCallActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactCallActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1756,7 +1780,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactMapActivatedEventArgs /= null then
          if this.m_IContactMapActivatedEventArgs.all /= null then
             temp := this.m_IContactMapActivatedEventArgs.all.Release;
-            Free (this.m_IContactMapActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactMapActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1909,7 +1935,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactMessageActivatedEventArgs /= null then
          if this.m_IContactMessageActivatedEventArgs.all /= null then
             temp := this.m_IContactMessageActivatedEventArgs.all.Release;
-            Free (this.m_IContactMessageActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactMessageActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2082,7 +2110,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactPanelActivatedEventArgs /= null then
          if this.m_IContactPanelActivatedEventArgs.all /= null then
             temp := this.m_IContactPanelActivatedEventArgs.all.Release;
-            Free (this.m_IContactPanelActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactPanelActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2235,7 +2265,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactPickerActivatedEventArgs /= null then
          if this.m_IContactPickerActivatedEventArgs.all /= null then
             temp := this.m_IContactPickerActivatedEventArgs.all.Release;
-            Free (this.m_IContactPickerActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactPickerActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2344,7 +2376,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactPostActivatedEventArgs /= null then
          if this.m_IContactPostActivatedEventArgs.all /= null then
             temp := this.m_IContactPostActivatedEventArgs.all.Release;
-            Free (this.m_IContactPostActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactPostActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2517,7 +2551,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IContactVideoCallActivatedEventArgs /= null then
          if this.m_IContactVideoCallActivatedEventArgs.all /= null then
             temp := this.m_IContactVideoCallActivatedEventArgs.all.Release;
-            Free (this.m_IContactVideoCallActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactVideoCallActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2690,7 +2726,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IDeviceActivatedEventArgs /= null then
          if this.m_IDeviceActivatedEventArgs.all /= null then
             temp := this.m_IDeviceActivatedEventArgs.all.Release;
-            Free (this.m_IDeviceActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeviceActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2888,7 +2926,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IDevicePairingActivatedEventArgs /= null then
          if this.m_IDevicePairingActivatedEventArgs.all /= null then
             temp := this.m_IDevicePairingActivatedEventArgs.all.Release;
-            Free (this.m_IDevicePairingActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDevicePairingActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3021,7 +3061,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IDialReceiverActivatedEventArgs /= null then
          if this.m_IDialReceiverActivatedEventArgs.all /= null then
             temp := this.m_IDialReceiverActivatedEventArgs.all.Release;
-            Free (this.m_IDialReceiverActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDialReceiverActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3247,7 +3289,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFileActivatedEventArgs /= null then
          if this.m_IFileActivatedEventArgs.all /= null then
             temp := this.m_IFileActivatedEventArgs.all.Release;
-            Free (this.m_IFileActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3490,7 +3534,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFileOpenPickerActivatedEventArgs /= null then
          if this.m_IFileOpenPickerActivatedEventArgs.all /= null then
             temp := this.m_IFileOpenPickerActivatedEventArgs.all.Release;
-            Free (this.m_IFileOpenPickerActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileOpenPickerActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3647,7 +3693,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFileOpenPickerContinuationEventArgs /= null then
          if this.m_IFileOpenPickerContinuationEventArgs.all /= null then
             temp := this.m_IFileOpenPickerContinuationEventArgs.all.Release;
-            Free (this.m_IFileOpenPickerContinuationEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileOpenPickerContinuationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3801,7 +3849,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFileSavePickerActivatedEventArgs /= null then
          if this.m_IFileSavePickerActivatedEventArgs.all /= null then
             temp := this.m_IFileSavePickerActivatedEventArgs.all.Release;
-            Free (this.m_IFileSavePickerActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileSavePickerActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3982,7 +4032,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFileSavePickerContinuationEventArgs /= null then
          if this.m_IFileSavePickerContinuationEventArgs.all /= null then
             temp := this.m_IFileSavePickerContinuationEventArgs.all.Release;
-            Free (this.m_IFileSavePickerContinuationEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileSavePickerContinuationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4139,7 +4191,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IFolderPickerContinuationEventArgs /= null then
          if this.m_IFolderPickerContinuationEventArgs.all /= null then
             temp := this.m_IFolderPickerContinuationEventArgs.all.Release;
-            Free (this.m_IFolderPickerContinuationEventArgs);
+            if temp < 1 then
+               Free (this.m_IFolderPickerContinuationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4296,7 +4350,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ILaunchActivatedEventArgs /= null then
          if this.m_ILaunchActivatedEventArgs.all /= null then
             temp := this.m_ILaunchActivatedEventArgs.all.Release;
-            Free (this.m_ILaunchActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILaunchActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4539,7 +4595,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ILockScreenActivatedEventArgs /= null then
          if this.m_ILockScreenActivatedEventArgs.all /= null then
             temp := this.m_ILockScreenActivatedEventArgs.all.Release;
-            Free (this.m_ILockScreenActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILockScreenActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4669,7 +4727,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ILockScreenCallActivatedEventArgs /= null then
          if this.m_ILockScreenCallActivatedEventArgs.all /= null then
             temp := this.m_ILockScreenCallActivatedEventArgs.all.Release;
-            Free (this.m_ILockScreenCallActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILockScreenCallActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4871,7 +4931,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IActivatedEventArgs /= null then
          if this.m_IActivatedEventArgs.all /= null then
             temp := this.m_IActivatedEventArgs.all.Release;
-            Free (this.m_IActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4948,7 +5010,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IPhoneCallActivatedEventArgs /= null then
          if this.m_IPhoneCallActivatedEventArgs.all /= null then
             temp := this.m_IPhoneCallActivatedEventArgs.all.Release;
-            Free (this.m_IPhoneCallActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhoneCallActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5078,7 +5142,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IPickerReturnedActivatedEventArgs /= null then
          if this.m_IPickerReturnedActivatedEventArgs.all /= null then
             temp := this.m_IPickerReturnedActivatedEventArgs.all.Release;
-            Free (this.m_IPickerReturnedActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPickerReturnedActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5187,7 +5253,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IPrint3DWorkflowActivatedEventArgs /= null then
          if this.m_IPrint3DWorkflowActivatedEventArgs.all /= null then
             temp := this.m_IPrint3DWorkflowActivatedEventArgs.all.Release;
-            Free (this.m_IPrint3DWorkflowActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DWorkflowActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5296,7 +5364,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IPrintTaskSettingsActivatedEventArgs /= null then
          if this.m_IPrintTaskSettingsActivatedEventArgs.all /= null then
             temp := this.m_IPrintTaskSettingsActivatedEventArgs.all.Release;
-            Free (this.m_IPrintTaskSettingsActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskSettingsActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5405,7 +5475,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IProtocolActivatedEventArgs /= null then
          if this.m_IProtocolActivatedEventArgs.all /= null then
             temp := this.m_IProtocolActivatedEventArgs.all.Release;
-            Free (this.m_IProtocolActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IProtocolActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5631,7 +5703,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IProtocolForResultsActivatedEventArgs /= null then
          if this.m_IProtocolForResultsActivatedEventArgs.all /= null then
             temp := this.m_IProtocolForResultsActivatedEventArgs.all.Release;
-            Free (this.m_IProtocolForResultsActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IProtocolForResultsActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5881,7 +5955,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IRestrictedLaunchActivatedEventArgs /= null then
          if this.m_IRestrictedLaunchActivatedEventArgs.all /= null then
             temp := this.m_IRestrictedLaunchActivatedEventArgs.all.Release;
-            Free (this.m_IRestrictedLaunchActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRestrictedLaunchActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6011,7 +6087,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ISearchActivatedEventArgs /= null then
          if this.m_ISearchActivatedEventArgs.all /= null then
             temp := this.m_ISearchActivatedEventArgs.all.Release;
-            Free (this.m_ISearchActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6233,7 +6311,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IShareTargetActivatedEventArgs /= null then
          if this.m_IShareTargetActivatedEventArgs.all /= null then
             temp := this.m_IShareTargetActivatedEventArgs.all.Release;
-            Free (this.m_IShareTargetActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IShareTargetActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6366,7 +6446,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ISplashScreen /= null then
          if this.m_ISplashScreen.all /= null then
             temp := this.m_ISplashScreen.all.Release;
-            Free (this.m_ISplashScreen);
+            if temp < 1 then
+               Free (this.m_ISplashScreen);
+            end if;
          end if;
       end if;
    end;
@@ -6439,7 +6521,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IStartupTaskActivatedEventArgs /= null then
          if this.m_IStartupTaskActivatedEventArgs.all /= null then
             temp := this.m_IStartupTaskActivatedEventArgs.all.Release;
-            Free (this.m_IStartupTaskActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IStartupTaskActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6572,7 +6656,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_ITileActivatedInfo /= null then
          if this.m_ITileActivatedInfo.all /= null then
             temp := this.m_ITileActivatedInfo.all.Release;
-            Free (this.m_ITileActivatedInfo);
+            if temp < 1 then
+               Free (this.m_ITileActivatedInfo);
+            end if;
          end if;
       end if;
    end;
@@ -6612,7 +6698,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IToastNotificationActivatedEventArgs /= null then
          if this.m_IToastNotificationActivatedEventArgs.all /= null then
             temp := this.m_IToastNotificationActivatedEventArgs.all.Release;
-            Free (this.m_IToastNotificationActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IToastNotificationActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6786,7 +6874,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IUserDataAccountProviderActivatedEventArgs /= null then
          if this.m_IUserDataAccountProviderActivatedEventArgs.all /= null then
             temp := this.m_IUserDataAccountProviderActivatedEventArgs.all.Release;
-            Free (this.m_IUserDataAccountProviderActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountProviderActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6892,7 +6982,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IVoiceCommandActivatedEventArgs /= null then
          if this.m_IVoiceCommandActivatedEventArgs.all /= null then
             temp := this.m_IVoiceCommandActivatedEventArgs.all.Release;
-            Free (this.m_IVoiceCommandActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7025,7 +7117,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IWalletActionActivatedEventArgs /= null then
          if this.m_IWalletActionActivatedEventArgs.all /= null then
             temp := this.m_IWalletActionActivatedEventArgs.all.Release;
-            Free (this.m_IWalletActionActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWalletActionActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7171,7 +7265,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IWebAccountProviderActivatedEventArgs /= null then
          if this.m_IWebAccountProviderActivatedEventArgs.all /= null then
             temp := this.m_IWebAccountProviderActivatedEventArgs.all.Release;
-            Free (this.m_IWebAccountProviderActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7301,7 +7397,9 @@ package body WinUI3.Windows.ApplicationModel.Activation is
       if this.m_IWebAuthenticationBrokerContinuationEventArgs /= null then
          if this.m_IWebAuthenticationBrokerContinuationEventArgs.all /= null then
             temp := this.m_IWebAuthenticationBrokerContinuationEventArgs.all.Release;
-            Free (this.m_IWebAuthenticationBrokerContinuationEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebAuthenticationBrokerContinuationEventArgs);
+            end if;
          end if;
       end if;
    end;

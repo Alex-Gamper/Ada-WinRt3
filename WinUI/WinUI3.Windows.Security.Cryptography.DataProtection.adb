@@ -52,7 +52,9 @@ package body WinUI3.Windows.Security.Cryptography.DataProtection is
       if this.m_IDataProtectionProvider /= null then
          if this.m_IDataProtectionProvider.all /= null then
             temp := this.m_IDataProtectionProvider.all.Release;
-            Free (this.m_IDataProtectionProvider);
+            if temp < 1 then
+               Free (this.m_IDataProtectionProvider);
+            end if;
          end if;
       end if;
    end;

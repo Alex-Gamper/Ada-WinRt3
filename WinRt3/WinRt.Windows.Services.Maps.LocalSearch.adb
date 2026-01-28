@@ -251,7 +251,9 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       if this.m_ILocalLocation /= null then
          if this.m_ILocalLocation.all /= null then
             temp := this.m_ILocalLocation.all.Release;
-            Free (this.m_ILocalLocation);
+            if temp < 1 then
+               Free (this.m_ILocalLocation);
+            end if;
          end if;
       end if;
    end;
@@ -572,7 +574,9 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       if this.m_ILocalLocationFinderResult /= null then
          if this.m_ILocalLocationFinderResult.all /= null then
             temp := this.m_ILocalLocationFinderResult.all.Release;
-            Free (this.m_ILocalLocationFinderResult);
+            if temp < 1 then
+               Free (this.m_ILocalLocationFinderResult);
+            end if;
          end if;
       end if;
    end;
@@ -632,7 +636,9 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       if this.m_ILocalLocationHoursOfOperationItem /= null then
          if this.m_ILocalLocationHoursOfOperationItem.all /= null then
             temp := this.m_ILocalLocationHoursOfOperationItem.all.Release;
-            Free (this.m_ILocalLocationHoursOfOperationItem);
+            if temp < 1 then
+               Free (this.m_ILocalLocationHoursOfOperationItem);
+            end if;
          end if;
       end if;
    end;
@@ -706,7 +712,9 @@ package body WinRt.Windows.Services.Maps.LocalSearch is
       if this.m_ILocalLocationRatingInfo /= null then
          if this.m_ILocalLocationRatingInfo.all /= null then
             temp := this.m_ILocalLocationRatingInfo.all.Release;
-            Free (this.m_ILocalLocationRatingInfo);
+            if temp < 1 then
+               Free (this.m_ILocalLocationRatingInfo);
+            end if;
          end if;
       end if;
    end;

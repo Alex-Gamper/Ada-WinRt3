@@ -60,7 +60,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       if this.m_IMicrosoftAccountMultiFactorAuthenticationManager /= null then
          if this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all /= null then
             temp := this.m_IMicrosoftAccountMultiFactorAuthenticationManager.all.Release;
-            Free (this.m_IMicrosoftAccountMultiFactorAuthenticationManager);
+            if temp < 1 then
+               Free (this.m_IMicrosoftAccountMultiFactorAuthenticationManager);
+            end if;
          end if;
       end if;
    end;
@@ -791,7 +793,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       if this.m_IMicrosoftAccountMultiFactorGetSessionsResult /= null then
          if this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all /= null then
             temp := this.m_IMicrosoftAccountMultiFactorGetSessionsResult.all.Release;
-            Free (this.m_IMicrosoftAccountMultiFactorGetSessionsResult);
+            if temp < 1 then
+               Free (this.m_IMicrosoftAccountMultiFactorGetSessionsResult);
+            end if;
          end if;
       end if;
    end;
@@ -851,7 +855,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       if this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all /= null then
             temp := this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo.all.Release;
-            Free (this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo);
+            if temp < 1 then
+               Free (this.m_IMicrosoftAccountMultiFactorOneTimeCodedInfo);
+            end if;
          end if;
       end if;
    end;
@@ -945,7 +951,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       if this.m_IMicrosoftAccountMultiFactorSessionInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorSessionInfo.all /= null then
             temp := this.m_IMicrosoftAccountMultiFactorSessionInfo.all.Release;
-            Free (this.m_IMicrosoftAccountMultiFactorSessionInfo);
+            if temp < 1 then
+               Free (this.m_IMicrosoftAccountMultiFactorSessionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1096,7 +1104,9 @@ package body WinRt.Windows.Security.Authentication.Identity.Core is
       if this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo /= null then
          if this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all /= null then
             temp := this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo.all.Release;
-            Free (this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo);
+            if temp < 1 then
+               Free (this.m_IMicrosoftAccountMultiFactorUnregisteredAccountsAndSessionInfo);
+            end if;
          end if;
       end if;
    end;

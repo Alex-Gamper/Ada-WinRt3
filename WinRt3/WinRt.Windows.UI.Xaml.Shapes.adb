@@ -48,7 +48,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IShape /= null then
          if this.m_IShape.all /= null then
             temp := this.m_IShape.all.Release;
-            Free (this.m_IShape);
+            if temp < 1 then
+               Free (this.m_IShape);
+            end if;
          end if;
       end if;
    end;
@@ -771,7 +773,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IEllipse /= null then
          if this.m_IEllipse.all /= null then
             temp := this.m_IEllipse.all.Release;
-            Free (this.m_IEllipse);
+            if temp < 1 then
+               Free (this.m_IEllipse);
+            end if;
          end if;
       end if;
    end;
@@ -813,7 +817,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_ILine /= null then
          if this.m_ILine.all /= null then
             temp := this.m_ILine.all.Release;
-            Free (this.m_ILine);
+            if temp < 1 then
+               Free (this.m_ILine);
+            end if;
          end if;
       end if;
    end;
@@ -1082,7 +1088,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IPath /= null then
          if this.m_IPath.all /= null then
             temp := this.m_IPath.all.Release;
-            Free (this.m_IPath);
+            if temp < 1 then
+               Free (this.m_IPath);
+            end if;
          end if;
       end if;
    end;
@@ -1195,7 +1203,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IPolygon /= null then
          if this.m_IPolygon.all /= null then
             temp := this.m_IPolygon.all.Release;
-            Free (this.m_IPolygon);
+            if temp < 1 then
+               Free (this.m_IPolygon);
+            end if;
          end if;
       end if;
    end;
@@ -1355,7 +1365,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IPolyline /= null then
          if this.m_IPolyline.all /= null then
             temp := this.m_IPolyline.all.Release;
-            Free (this.m_IPolyline);
+            if temp < 1 then
+               Free (this.m_IPolyline);
+            end if;
          end if;
       end if;
    end;
@@ -1515,7 +1527,9 @@ package body WinRt.Windows.UI.Xaml.Shapes is
       if this.m_IRectangle /= null then
          if this.m_IRectangle.all /= null then
             temp := this.m_IRectangle.all.Release;
-            Free (this.m_IRectangle);
+            if temp < 1 then
+               Free (this.m_IRectangle);
+            end if;
          end if;
       end if;
    end;

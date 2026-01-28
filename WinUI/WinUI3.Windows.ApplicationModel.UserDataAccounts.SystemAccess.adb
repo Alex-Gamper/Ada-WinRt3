@@ -58,7 +58,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.SystemAccess is
       if this.m_IDeviceAccountConfiguration /= null then
          if this.m_IDeviceAccountConfiguration.all /= null then
             temp := this.m_IDeviceAccountConfiguration.all.Release;
-            Free (this.m_IDeviceAccountConfiguration);
+            if temp < 1 then
+               Free (this.m_IDeviceAccountConfiguration);
+            end if;
          end if;
       end if;
    end;

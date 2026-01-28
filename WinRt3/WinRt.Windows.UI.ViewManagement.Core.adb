@@ -51,7 +51,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreFrameworkInputView /= null then
          if this.m_ICoreFrameworkInputView.all /= null then
             temp := this.m_ICoreFrameworkInputView.all.Release;
-            Free (this.m_ICoreFrameworkInputView);
+            if temp < 1 then
+               Free (this.m_ICoreFrameworkInputView);
+            end if;
          end if;
       end if;
    end;
@@ -194,7 +196,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreFrameworkInputViewAnimationStartingEventArgs /= null then
          if this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all /= null then
             temp := this.m_ICoreFrameworkInputViewAnimationStartingEventArgs.all.Release;
-            Free (this.m_ICoreFrameworkInputViewAnimationStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreFrameworkInputViewAnimationStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +275,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs /= null then
          if this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all /= null then
             temp := this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs.all.Release;
-            Free (this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreFrameworkInputViewOcclusionsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -331,7 +337,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputView /= null then
          if this.m_ICoreInputView.all /= null then
             temp := this.m_ICoreInputView.all.Release;
-            Free (this.m_ICoreInputView);
+            if temp < 1 then
+               Free (this.m_ICoreInputView);
+            end if;
          end if;
       end if;
    end;
@@ -850,7 +858,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewAnimationStartingEventArgs /= null then
          if this.m_ICoreInputViewAnimationStartingEventArgs.all /= null then
             temp := this.m_ICoreInputViewAnimationStartingEventArgs.all.Release;
-            Free (this.m_ICoreInputViewAnimationStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewAnimationStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -942,7 +952,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewHidingEventArgs /= null then
          if this.m_ICoreInputViewHidingEventArgs.all /= null then
             temp := this.m_ICoreInputViewHidingEventArgs.all.Release;
-            Free (this.m_ICoreInputViewHidingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewHidingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -982,7 +994,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewOcclusion /= null then
          if this.m_ICoreInputViewOcclusion.all /= null then
             temp := this.m_ICoreInputViewOcclusion.all.Release;
-            Free (this.m_ICoreInputViewOcclusion);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewOcclusion);
+            end if;
          end if;
       end if;
    end;
@@ -1039,7 +1053,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewOcclusionsChangedEventArgs /= null then
          if this.m_ICoreInputViewOcclusionsChangedEventArgs.all /= null then
             temp := this.m_ICoreInputViewOcclusionsChangedEventArgs.all.Release;
-            Free (this.m_ICoreInputViewOcclusionsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewOcclusionsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1114,7 +1130,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewShowingEventArgs /= null then
          if this.m_ICoreInputViewShowingEventArgs.all /= null then
             temp := this.m_ICoreInputViewShowingEventArgs.all.Release;
-            Free (this.m_ICoreInputViewShowingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewShowingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1154,7 +1172,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_ICoreInputViewTransferringXYFocusEventArgs /= null then
          if this.m_ICoreInputViewTransferringXYFocusEventArgs.all /= null then
             temp := this.m_ICoreInputViewTransferringXYFocusEventArgs.all.Release;
-            Free (this.m_ICoreInputViewTransferringXYFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreInputViewTransferringXYFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1275,7 +1295,9 @@ package body WinRt.Windows.UI.ViewManagement.Core is
       if this.m_IUISettingsController /= null then
          if this.m_IUISettingsController.all /= null then
             temp := this.m_IUISettingsController.all.Release;
-            Free (this.m_IUISettingsController);
+            if temp < 1 then
+               Free (this.m_IUISettingsController);
+            end if;
          end if;
       end if;
    end;

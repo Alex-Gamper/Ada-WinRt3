@@ -50,7 +50,9 @@ package body WinUI3.Microsoft.Graphics.Imaging is
       if this.m_IImageBuffer /= null then
          if this.m_IImageBuffer.all /= null then
             temp := this.m_IImageBuffer.all.Release;
-            Free (this.m_IImageBuffer);
+            if temp < 1 then
+               Free (this.m_IImageBuffer);
+            end if;
          end if;
       end if;
    end;

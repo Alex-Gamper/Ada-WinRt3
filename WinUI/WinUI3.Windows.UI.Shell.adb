@@ -89,7 +89,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IFocusSession /= null then
          if this.m_IFocusSession.all /= null then
             temp := this.m_IFocusSession.all.Release;
-            Free (this.m_IFocusSession);
+            if temp < 1 then
+               Free (this.m_IFocusSession);
+            end if;
          end if;
       end if;
    end;
@@ -146,7 +148,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IFocusSessionManager /= null then
          if this.m_IFocusSessionManager.all /= null then
             temp := this.m_IFocusSessionManager.all.Release;
-            Free (this.m_IFocusSessionManager);
+            if temp < 1 then
+               Free (this.m_IFocusSessionManager);
+            end if;
          end if;
       end if;
    end;
@@ -345,7 +349,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_ISecurityAppManager /= null then
          if this.m_ISecurityAppManager.all /= null then
             temp := this.m_ISecurityAppManager.all.Release;
-            Free (this.m_ISecurityAppManager);
+            if temp < 1 then
+               Free (this.m_ISecurityAppManager);
+            end if;
          end if;
       end if;
    end;
@@ -445,7 +451,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IShareWindowCommandEventArgs /= null then
          if this.m_IShareWindowCommandEventArgs.all /= null then
             temp := this.m_IShareWindowCommandEventArgs.all.Release;
-            Free (this.m_IShareWindowCommandEventArgs);
+            if temp < 1 then
+               Free (this.m_IShareWindowCommandEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -517,7 +525,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IShareWindowCommandSource /= null then
          if this.m_IShareWindowCommandSource.all /= null then
             temp := this.m_IShareWindowCommandSource.all.Release;
-            Free (this.m_IShareWindowCommandSource);
+            if temp < 1 then
+               Free (this.m_IShareWindowCommandSource);
+            end if;
          end if;
       end if;
    end;
@@ -675,7 +685,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_ITaskbarManager /= null then
          if this.m_ITaskbarManager.all /= null then
             temp := this.m_ITaskbarManager.all.Release;
-            Free (this.m_ITaskbarManager);
+            if temp < 1 then
+               Free (this.m_ITaskbarManager);
+            end if;
          end if;
       end if;
    end;
@@ -1221,7 +1233,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTab /= null then
          if this.m_IWindowTab.all /= null then
             temp := this.m_IWindowTab.all.Release;
-            Free (this.m_IWindowTab);
+            if temp < 1 then
+               Free (this.m_IWindowTab);
+            end if;
          end if;
       end if;
    end;
@@ -1453,7 +1467,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabCloseRequestedEventArgs /= null then
          if this.m_IWindowTabCloseRequestedEventArgs.all /= null then
             temp := this.m_IWindowTabCloseRequestedEventArgs.all.Release;
-            Free (this.m_IWindowTabCloseRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowTabCloseRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1496,7 +1512,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabCollection /= null then
          if this.m_IWindowTabCollection.all /= null then
             temp := this.m_IWindowTabCollection.all.Release;
-            Free (this.m_IWindowTabCollection);
+            if temp < 1 then
+               Free (this.m_IWindowTabCollection);
+            end if;
          end if;
       end if;
    end;
@@ -1825,7 +1843,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabGroup /= null then
          if this.m_IWindowTabGroup.all /= null then
             temp := this.m_IWindowTabGroup.all.Release;
-            Free (this.m_IWindowTabGroup);
+            if temp < 1 then
+               Free (this.m_IWindowTabGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1939,7 +1959,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabIcon /= null then
          if this.m_IWindowTabIcon.all /= null then
             temp := this.m_IWindowTabIcon.all.Release;
-            Free (this.m_IWindowTabIcon);
+            if temp < 1 then
+               Free (this.m_IWindowTabIcon);
+            end if;
          end if;
       end if;
    end;
@@ -2057,7 +2079,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabManager /= null then
          if this.m_IWindowTabManager.all /= null then
             temp := this.m_IWindowTabManager.all.Release;
-            Free (this.m_IWindowTabManager);
+            if temp < 1 then
+               Free (this.m_IWindowTabManager);
+            end if;
          end if;
       end if;
    end;
@@ -2319,7 +2343,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabSwitchRequestedEventArgs /= null then
          if this.m_IWindowTabSwitchRequestedEventArgs.all /= null then
             temp := this.m_IWindowTabSwitchRequestedEventArgs.all.Release;
-            Free (this.m_IWindowTabSwitchRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowTabSwitchRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2362,7 +2388,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabTearOutRequestedEventArgs /= null then
          if this.m_IWindowTabTearOutRequestedEventArgs.all /= null then
             temp := this.m_IWindowTabTearOutRequestedEventArgs.all.Release;
-            Free (this.m_IWindowTabTearOutRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowTabTearOutRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2457,7 +2485,9 @@ package body WinUI3.Windows.UI.Shell is
       if this.m_IWindowTabThumbnailRequestedEventArgs /= null then
          if this.m_IWindowTabThumbnailRequestedEventArgs.all /= null then
             temp := this.m_IWindowTabThumbnailRequestedEventArgs.all.Release;
-            Free (this.m_IWindowTabThumbnailRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowTabThumbnailRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

@@ -52,7 +52,9 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       if this.m_ICoreDragDropManager /= null then
          if this.m_ICoreDragDropManager.all /= null then
             temp := this.m_ICoreDragDropManager.all.Release;
-            Free (this.m_ICoreDragDropManager);
+            if temp < 1 then
+               Free (this.m_ICoreDragDropManager);
+            end if;
          end if;
       end if;
    end;
@@ -167,7 +169,9 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       if this.m_ICoreDragInfo /= null then
          if this.m_ICoreDragInfo.all /= null then
             temp := this.m_ICoreDragInfo.all.Release;
-            Free (this.m_ICoreDragInfo);
+            if temp < 1 then
+               Free (this.m_ICoreDragInfo);
+            end if;
          end if;
       end if;
    end;
@@ -265,7 +269,9 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       if this.m_ICoreDragOperation /= null then
          if this.m_ICoreDragOperation.all /= null then
             temp := this.m_ICoreDragOperation.all.Release;
-            Free (this.m_ICoreDragOperation);
+            if temp < 1 then
+               Free (this.m_ICoreDragOperation);
+            end if;
          end if;
       end if;
    end;
@@ -508,7 +514,9 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       if this.m_ICoreDragUIOverride /= null then
          if this.m_ICoreDragUIOverride.all /= null then
             temp := this.m_ICoreDragUIOverride.all.Release;
-            Free (this.m_ICoreDragUIOverride);
+            if temp < 1 then
+               Free (this.m_ICoreDragUIOverride);
+            end if;
          end if;
       end if;
    end;
@@ -709,7 +717,9 @@ package body WinRt.Windows.ApplicationModel.DataTransfer.DragDrop.Core is
       if this.m_ICoreDropOperationTargetRequestedEventArgs /= null then
          if this.m_ICoreDropOperationTargetRequestedEventArgs.all /= null then
             temp := this.m_ICoreDropOperationTargetRequestedEventArgs.all.Release;
-            Free (this.m_ICoreDropOperationTargetRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreDropOperationTargetRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

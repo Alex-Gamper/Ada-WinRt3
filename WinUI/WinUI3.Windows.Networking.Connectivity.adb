@@ -64,7 +64,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IAttributedNetworkUsage /= null then
          if this.m_IAttributedNetworkUsage.all /= null then
             temp := this.m_IAttributedNetworkUsage.all.Release;
-            Free (this.m_IAttributedNetworkUsage);
+            if temp < 1 then
+               Free (this.m_IAttributedNetworkUsage);
+            end if;
          end if;
       end if;
    end;
@@ -178,7 +180,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_ICellularApnContext /= null then
          if this.m_ICellularApnContext.all /= null then
             temp := this.m_ICellularApnContext.all.Release;
-            Free (this.m_ICellularApnContext);
+            if temp < 1 then
+               Free (this.m_ICellularApnContext);
+            end if;
          end if;
       end if;
    end;
@@ -477,7 +481,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IConnectionCost /= null then
          if this.m_IConnectionCost.all /= null then
             temp := this.m_IConnectionCost.all.Release;
-            Free (this.m_IConnectionCost);
+            if temp < 1 then
+               Free (this.m_IConnectionCost);
+            end if;
          end if;
       end if;
    end;
@@ -589,7 +595,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IConnectionProfile /= null then
          if this.m_IConnectionProfile.all /= null then
             temp := this.m_IConnectionProfile.all.Release;
-            Free (this.m_IConnectionProfile);
+            if temp < 1 then
+               Free (this.m_IConnectionProfile);
+            end if;
          end if;
       end if;
    end;
@@ -1344,7 +1352,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IConnectionProfileFilter /= null then
          if this.m_IConnectionProfileFilter.all /= null then
             temp := this.m_IConnectionProfileFilter.all.Release;
-            Free (this.m_IConnectionProfileFilter);
+            if temp < 1 then
+               Free (this.m_IConnectionProfileFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1742,7 +1752,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IConnectionSession /= null then
          if this.m_IConnectionSession.all /= null then
             temp := this.m_IConnectionSession.all.Release;
-            Free (this.m_IConnectionSession);
+            if temp < 1 then
+               Free (this.m_IConnectionSession);
+            end if;
          end if;
       end if;
    end;
@@ -1803,7 +1815,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IConnectivityInterval /= null then
          if this.m_IConnectivityInterval.all /= null then
             temp := this.m_IConnectivityInterval.all.Release;
-            Free (this.m_IConnectivityInterval);
+            if temp < 1 then
+               Free (this.m_IConnectivityInterval);
+            end if;
          end if;
       end if;
    end;
@@ -1981,7 +1995,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IDataPlanStatus /= null then
          if this.m_IDataPlanStatus.all /= null then
             temp := this.m_IDataPlanStatus.all.Release;
-            Free (this.m_IDataPlanStatus);
+            if temp < 1 then
+               Free (this.m_IDataPlanStatus);
+            end if;
          end if;
       end if;
    end;
@@ -2124,7 +2140,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IDataPlanUsage /= null then
          if this.m_IDataPlanUsage.all /= null then
             temp := this.m_IDataPlanUsage.all.Release;
-            Free (this.m_IDataPlanUsage);
+            if temp < 1 then
+               Free (this.m_IDataPlanUsage);
+            end if;
          end if;
       end if;
    end;
@@ -2181,7 +2199,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IDataUsage /= null then
          if this.m_IDataUsage.all /= null then
             temp := this.m_IDataUsage.all.Release;
-            Free (this.m_IDataUsage);
+            if temp < 1 then
+               Free (this.m_IDataUsage);
+            end if;
          end if;
       end if;
    end;
@@ -2238,7 +2258,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IIPInformation /= null then
          if this.m_IIPInformation.all /= null then
             temp := this.m_IIPInformation.all.Release;
-            Free (this.m_IIPInformation);
+            if temp < 1 then
+               Free (this.m_IIPInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2301,7 +2323,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_ILanIdentifier /= null then
          if this.m_ILanIdentifier.all /= null then
             temp := this.m_ILanIdentifier.all.Release;
-            Free (this.m_ILanIdentifier);
+            if temp < 1 then
+               Free (this.m_ILanIdentifier);
+            end if;
          end if;
       end if;
    end;
@@ -2381,7 +2405,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_ILanIdentifierData /= null then
          if this.m_ILanIdentifierData.all /= null then
             temp := this.m_ILanIdentifierData.all.Release;
-            Free (this.m_ILanIdentifierData);
+            if temp < 1 then
+               Free (this.m_ILanIdentifierData);
+            end if;
          end if;
       end if;
    end;
@@ -2441,7 +2467,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_INetworkAdapter /= null then
          if this.m_INetworkAdapter.all /= null then
             temp := this.m_INetworkAdapter.all.Release;
-            Free (this.m_INetworkAdapter);
+            if temp < 1 then
+               Free (this.m_INetworkAdapter);
+            end if;
          end if;
       end if;
    end;
@@ -2924,7 +2952,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_INetworkItem /= null then
          if this.m_INetworkItem.all /= null then
             temp := this.m_INetworkItem.all.Release;
-            Free (this.m_INetworkItem);
+            if temp < 1 then
+               Free (this.m_INetworkItem);
+            end if;
          end if;
       end if;
    end;
@@ -2981,7 +3011,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_INetworkSecuritySettings /= null then
          if this.m_INetworkSecuritySettings.all /= null then
             temp := this.m_INetworkSecuritySettings.all.Release;
-            Free (this.m_INetworkSecuritySettings);
+            if temp < 1 then
+               Free (this.m_INetworkSecuritySettings);
+            end if;
          end if;
       end if;
    end;
@@ -3038,7 +3070,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_INetworkStateChangeEventDetails /= null then
          if this.m_INetworkStateChangeEventDetails.all /= null then
             temp := this.m_INetworkStateChangeEventDetails.all.Release;
-            Free (this.m_INetworkStateChangeEventDetails);
+            if temp < 1 then
+               Free (this.m_INetworkStateChangeEventDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3220,7 +3254,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_INetworkUsage /= null then
          if this.m_INetworkUsage.all /= null then
             temp := this.m_INetworkUsage.all.Release;
-            Free (this.m_INetworkUsage);
+            if temp < 1 then
+               Free (this.m_INetworkUsage);
+            end if;
          end if;
       end if;
    end;
@@ -3294,7 +3330,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IProviderNetworkUsage /= null then
          if this.m_IProviderNetworkUsage.all /= null then
             temp := this.m_IProviderNetworkUsage.all.Release;
-            Free (this.m_IProviderNetworkUsage);
+            if temp < 1 then
+               Free (this.m_IProviderNetworkUsage);
+            end if;
          end if;
       end if;
    end;
@@ -3371,7 +3409,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IProxyConfiguration /= null then
          if this.m_IProxyConfiguration.all /= null then
             temp := this.m_IProxyConfiguration.all.Release;
-            Free (this.m_IProxyConfiguration);
+            if temp < 1 then
+               Free (this.m_IProxyConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -3431,7 +3471,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IRoutePolicy /= null then
          if this.m_IRoutePolicy.all /= null then
             temp := this.m_IRoutePolicy.all.Release;
-            Free (this.m_IRoutePolicy);
+            if temp < 1 then
+               Free (this.m_IRoutePolicy);
+            end if;
          end if;
       end if;
    end;
@@ -3540,7 +3582,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IWlanConnectionProfileDetails /= null then
          if this.m_IWlanConnectionProfileDetails.all /= null then
             temp := this.m_IWlanConnectionProfileDetails.all.Release;
-            Free (this.m_IWlanConnectionProfileDetails);
+            if temp < 1 then
+               Free (this.m_IWlanConnectionProfileDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3583,7 +3627,9 @@ package body WinUI3.Windows.Networking.Connectivity is
       if this.m_IWwanConnectionProfileDetails /= null then
          if this.m_IWwanConnectionProfileDetails.all /= null then
             temp := this.m_IWwanConnectionProfileDetails.all.Release;
-            Free (this.m_IWwanConnectionProfileDetails);
+            if temp < 1 then
+               Free (this.m_IWwanConnectionProfileDetails);
+            end if;
          end if;
       end if;
    end;

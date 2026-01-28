@@ -84,7 +84,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       if this.m_IStorageItemInformation /= null then
          if this.m_IStorageItemInformation.all /= null then
             temp := this.m_IStorageItemInformation.all.Release;
-            Free (this.m_IStorageItemInformation);
+            if temp < 1 then
+               Free (this.m_IStorageItemInformation);
+            end if;
          end if;
       end if;
    end;
@@ -2042,7 +2044,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       if this.m_IFileInformationFactory /= null then
          if this.m_IFileInformationFactory.all /= null then
             temp := this.m_IFileInformationFactory.all.Release;
-            Free (this.m_IFileInformationFactory);
+            if temp < 1 then
+               Free (this.m_IFileInformationFactory);
+            end if;
          end if;
       end if;
    end;
@@ -2609,7 +2613,9 @@ package body WinRt.Windows.Storage.BulkAccess is
       if this.m_IStorageItemInformation /= null then
          if this.m_IStorageItemInformation.all /= null then
             temp := this.m_IStorageItemInformation.all.Release;
-            Free (this.m_IStorageItemInformation);
+            if temp < 1 then
+               Free (this.m_IStorageItemInformation);
+            end if;
          end if;
       end if;
    end;

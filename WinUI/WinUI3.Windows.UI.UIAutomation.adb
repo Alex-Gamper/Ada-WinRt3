@@ -46,7 +46,9 @@ package body WinUI3.Windows.UI.UIAutomation is
       if this.m_IAutomationConnection /= null then
          if this.m_IAutomationConnection.all /= null then
             temp := this.m_IAutomationConnection.all.Release;
-            Free (this.m_IAutomationConnection);
+            if temp < 1 then
+               Free (this.m_IAutomationConnection);
+            end if;
          end if;
       end if;
    end;
@@ -126,7 +128,9 @@ package body WinUI3.Windows.UI.UIAutomation is
       if this.m_IAutomationConnectionBoundObject /= null then
          if this.m_IAutomationConnectionBoundObject.all /= null then
             temp := this.m_IAutomationConnectionBoundObject.all.Release;
-            Free (this.m_IAutomationConnectionBoundObject);
+            if temp < 1 then
+               Free (this.m_IAutomationConnectionBoundObject);
+            end if;
          end if;
       end if;
    end;
@@ -169,7 +173,9 @@ package body WinUI3.Windows.UI.UIAutomation is
       if this.m_IAutomationElement /= null then
          if this.m_IAutomationElement.all /= null then
             temp := this.m_IAutomationElement.all.Release;
-            Free (this.m_IAutomationElement);
+            if temp < 1 then
+               Free (this.m_IAutomationElement);
+            end if;
          end if;
       end if;
    end;
@@ -249,7 +255,9 @@ package body WinUI3.Windows.UI.UIAutomation is
       if this.m_IAutomationTextRange /= null then
          if this.m_IAutomationTextRange.all /= null then
             temp := this.m_IAutomationTextRange.all.Release;
-            Free (this.m_IAutomationTextRange);
+            if temp < 1 then
+               Free (this.m_IAutomationTextRange);
+            end if;
          end if;
       end if;
    end;

@@ -52,7 +52,9 @@ package body WinUI3.Windows.Devices.SerialCommunication is
       if this.m_IErrorReceivedEventArgs /= null then
          if this.m_IErrorReceivedEventArgs.all /= null then
             temp := this.m_IErrorReceivedEventArgs.all.Release;
-            Free (this.m_IErrorReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IErrorReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -92,7 +94,9 @@ package body WinUI3.Windows.Devices.SerialCommunication is
       if this.m_IPinChangedEventArgs /= null then
          if this.m_IPinChangedEventArgs.all /= null then
             temp := this.m_IPinChangedEventArgs.all.Release;
-            Free (this.m_IPinChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPinChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -132,7 +136,9 @@ package body WinUI3.Windows.Devices.SerialCommunication is
       if this.m_ISerialDevice /= null then
          if this.m_ISerialDevice.all /= null then
             temp := this.m_ISerialDevice.all.Release;
-            Free (this.m_ISerialDevice);
+            if temp < 1 then
+               Free (this.m_ISerialDevice);
+            end if;
          end if;
       end if;
    end;

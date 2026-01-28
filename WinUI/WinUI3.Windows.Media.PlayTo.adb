@@ -48,7 +48,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_ICurrentTimeChangeRequestedEventArgs /= null then
          if this.m_ICurrentTimeChangeRequestedEventArgs.all /= null then
             temp := this.m_ICurrentTimeChangeRequestedEventArgs.all.Release;
-            Free (this.m_ICurrentTimeChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICurrentTimeChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -88,7 +90,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IMuteChangeRequestedEventArgs /= null then
          if this.m_IMuteChangeRequestedEventArgs.all /= null then
             temp := this.m_IMuteChangeRequestedEventArgs.all.Release;
-            Free (this.m_IMuteChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMuteChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -128,7 +132,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToConnection /= null then
          if this.m_IPlayToConnection.all /= null then
             temp := this.m_IPlayToConnection.all.Release;
-            Free (this.m_IPlayToConnection);
+            if temp < 1 then
+               Free (this.m_IPlayToConnection);
+            end if;
          end if;
       end if;
    end;
@@ -267,7 +273,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToConnectionErrorEventArgs /= null then
          if this.m_IPlayToConnectionErrorEventArgs.all /= null then
             temp := this.m_IPlayToConnectionErrorEventArgs.all.Release;
-            Free (this.m_IPlayToConnectionErrorEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlayToConnectionErrorEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -327,7 +335,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToConnectionStateChangedEventArgs /= null then
          if this.m_IPlayToConnectionStateChangedEventArgs.all /= null then
             temp := this.m_IPlayToConnectionStateChangedEventArgs.all.Release;
-            Free (this.m_IPlayToConnectionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlayToConnectionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -384,7 +394,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToConnectionTransferredEventArgs /= null then
          if this.m_IPlayToConnectionTransferredEventArgs.all /= null then
             temp := this.m_IPlayToConnectionTransferredEventArgs.all.Release;
-            Free (this.m_IPlayToConnectionTransferredEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlayToConnectionTransferredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -447,7 +459,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToManager /= null then
          if this.m_IPlayToManager.all /= null then
             temp := this.m_IPlayToManager.all.Release;
-            Free (this.m_IPlayToManager);
+            if temp < 1 then
+               Free (this.m_IPlayToManager);
+            end if;
          end if;
       end if;
    end;
@@ -613,7 +627,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToReceiver /= null then
          if this.m_IPlayToReceiver.all /= null then
             temp := this.m_IPlayToReceiver.all.Release;
-            Free (this.m_IPlayToReceiver);
+            if temp < 1 then
+               Free (this.m_IPlayToReceiver);
+            end if;
          end if;
       end if;
    end;
@@ -1359,7 +1375,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToSource /= null then
          if this.m_IPlayToSource.all /= null then
             temp := this.m_IPlayToSource.all.Release;
-            Free (this.m_IPlayToSource);
+            if temp < 1 then
+               Free (this.m_IPlayToSource);
+            end if;
          end if;
       end if;
    end;
@@ -1494,7 +1512,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToSourceDeferral /= null then
          if this.m_IPlayToSourceDeferral.all /= null then
             temp := this.m_IPlayToSourceDeferral.all.Release;
-            Free (this.m_IPlayToSourceDeferral);
+            if temp < 1 then
+               Free (this.m_IPlayToSourceDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -1531,7 +1551,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToSourceRequest /= null then
          if this.m_IPlayToSourceRequest.all /= null then
             temp := this.m_IPlayToSourceRequest.all.Release;
-            Free (this.m_IPlayToSourceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayToSourceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1623,7 +1645,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToSourceRequestedEventArgs /= null then
          if this.m_IPlayToSourceRequestedEventArgs.all /= null then
             temp := this.m_IPlayToSourceRequestedEventArgs.all.Release;
-            Free (this.m_IPlayToSourceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlayToSourceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1666,7 +1690,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlayToSourceSelectedEventArgs /= null then
          if this.m_IPlayToSourceSelectedEventArgs.all /= null then
             temp := this.m_IPlayToSourceSelectedEventArgs.all.Release;
-            Free (this.m_IPlayToSourceSelectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlayToSourceSelectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1777,7 +1803,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IPlaybackRateChangeRequestedEventArgs /= null then
          if this.m_IPlaybackRateChangeRequestedEventArgs.all /= null then
             temp := this.m_IPlaybackRateChangeRequestedEventArgs.all.Release;
-            Free (this.m_IPlaybackRateChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlaybackRateChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1817,7 +1845,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_ISourceChangeRequestedEventArgs /= null then
          if this.m_ISourceChangeRequestedEventArgs.all /= null then
             temp := this.m_ISourceChangeRequestedEventArgs.all.Release;
-            Free (this.m_ISourceChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISourceChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2034,7 +2064,9 @@ package body WinUI3.Windows.Media.PlayTo is
       if this.m_IVolumeChangeRequestedEventArgs /= null then
          if this.m_IVolumeChangeRequestedEventArgs.all /= null then
             temp := this.m_IVolumeChangeRequestedEventArgs.all.Release;
-            Free (this.m_IVolumeChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVolumeChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

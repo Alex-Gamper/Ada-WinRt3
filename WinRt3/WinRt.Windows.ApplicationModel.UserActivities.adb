@@ -59,7 +59,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivity /= null then
          if this.m_IUserActivity.all /= null then
             temp := this.m_IUserActivity.all.Release;
-            Free (this.m_IUserActivity);
+            if temp < 1 then
+               Free (this.m_IUserActivity);
+            end if;
          end if;
       end if;
    end;
@@ -553,7 +555,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityAttribution /= null then
          if this.m_IUserActivityAttribution.all /= null then
             temp := this.m_IUserActivityAttribution.all.Release;
-            Free (this.m_IUserActivityAttribution);
+            if temp < 1 then
+               Free (this.m_IUserActivityAttribution);
+            end if;
          end if;
       end if;
    end;
@@ -723,7 +727,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityChannel /= null then
          if this.m_IUserActivityChannel.all /= null then
             temp := this.m_IUserActivityChannel.all.Release;
-            Free (this.m_IUserActivityChannel);
+            if temp < 1 then
+               Free (this.m_IUserActivityChannel);
+            end if;
          end if;
       end if;
    end;
@@ -1140,7 +1146,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityContentInfo /= null then
          if this.m_IUserActivityContentInfo.all /= null then
             temp := this.m_IUserActivityContentInfo.all.Release;
-            Free (this.m_IUserActivityContentInfo);
+            if temp < 1 then
+               Free (this.m_IUserActivityContentInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1215,7 +1223,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityRequest /= null then
          if this.m_IUserActivityRequest.all /= null then
             temp := this.m_IUserActivityRequest.all.Release;
-            Free (this.m_IUserActivityRequest);
+            if temp < 1 then
+               Free (this.m_IUserActivityRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1253,7 +1263,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityRequestManager /= null then
          if this.m_IUserActivityRequestManager.all /= null then
             temp := this.m_IUserActivityRequestManager.all.Release;
-            Free (this.m_IUserActivityRequestManager);
+            if temp < 1 then
+               Free (this.m_IUserActivityRequestManager);
+            end if;
          end if;
       end if;
    end;
@@ -1336,7 +1348,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityRequestedEventArgs /= null then
          if this.m_IUserActivityRequestedEventArgs.all /= null then
             temp := this.m_IUserActivityRequestedEventArgs.all.Release;
-            Free (this.m_IUserActivityRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserActivityRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1399,7 +1413,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivitySession /= null then
          if this.m_IUserActivitySession.all /= null then
             temp := this.m_IUserActivitySession.all.Release;
-            Free (this.m_IUserActivitySession);
+            if temp < 1 then
+               Free (this.m_IUserActivitySession);
+            end if;
          end if;
       end if;
    end;
@@ -1460,7 +1476,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivitySessionHistoryItem /= null then
          if this.m_IUserActivitySessionHistoryItem.all /= null then
             temp := this.m_IUserActivitySessionHistoryItem.all.Release;
-            Free (this.m_IUserActivitySessionHistoryItem);
+            if temp < 1 then
+               Free (this.m_IUserActivitySessionHistoryItem);
+            end if;
          end if;
       end if;
    end;
@@ -1540,7 +1558,9 @@ package body WinRt.Windows.ApplicationModel.UserActivities is
       if this.m_IUserActivityVisualElements /= null then
          if this.m_IUserActivityVisualElements.all /= null then
             temp := this.m_IUserActivityVisualElements.all.Release;
-            Free (this.m_IUserActivityVisualElements);
+            if temp < 1 then
+               Free (this.m_IUserActivityVisualElements);
+            end if;
          end if;
       end if;
    end;

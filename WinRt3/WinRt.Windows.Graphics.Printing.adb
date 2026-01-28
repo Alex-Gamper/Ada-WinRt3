@@ -53,7 +53,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintManager /= null then
          if this.m_IPrintManager.all /= null then
             temp := this.m_IPrintManager.all.Release;
-            Free (this.m_IPrintManager);
+            if temp < 1 then
+               Free (this.m_IPrintManager);
+            end if;
          end if;
       end if;
    end;
@@ -224,7 +226,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintPageInfo /= null then
          if this.m_IPrintPageInfo.all /= null then
             temp := this.m_IPrintPageInfo.all.Release;
-            Free (this.m_IPrintPageInfo);
+            if temp < 1 then
+               Free (this.m_IPrintPageInfo);
+            end if;
          end if;
       end if;
    end;
@@ -426,7 +430,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintPageRange /= null then
          if this.m_IPrintPageRange.all /= null then
             temp := this.m_IPrintPageRange.all.Release;
-            Free (this.m_IPrintPageRange);
+            if temp < 1 then
+               Free (this.m_IPrintPageRange);
+            end if;
          end if;
       end if;
    end;
@@ -535,7 +541,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintPageRangeOptions /= null then
          if this.m_IPrintPageRangeOptions.all /= null then
             temp := this.m_IPrintPageRangeOptions.all.Release;
-            Free (this.m_IPrintPageRangeOptions);
+            if temp < 1 then
+               Free (this.m_IPrintPageRangeOptions);
+            end if;
          end if;
       end if;
    end;
@@ -654,7 +662,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTask /= null then
          if this.m_IPrintTask.all /= null then
             temp := this.m_IPrintTask.all.Release;
-            Free (this.m_IPrintTask);
+            if temp < 1 then
+               Free (this.m_IPrintTask);
+            end if;
          end if;
       end if;
    end;
@@ -986,7 +996,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskCompletedEventArgs /= null then
          if this.m_IPrintTaskCompletedEventArgs.all /= null then
             temp := this.m_IPrintTaskCompletedEventArgs.all.Release;
-            Free (this.m_IPrintTaskCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1026,7 +1038,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskOptionsCore /= null then
          if this.m_IPrintTaskOptionsCore.all /= null then
             temp := this.m_IPrintTaskOptionsCore.all.Release;
-            Free (this.m_IPrintTaskOptionsCore);
+            if temp < 1 then
+               Free (this.m_IPrintTaskOptionsCore);
+            end if;
          end if;
       end if;
    end;
@@ -1683,7 +1697,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskProgressingEventArgs /= null then
          if this.m_IPrintTaskProgressingEventArgs.all /= null then
             temp := this.m_IPrintTaskProgressingEventArgs.all.Release;
-            Free (this.m_IPrintTaskProgressingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskProgressingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1723,7 +1739,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskRequest /= null then
          if this.m_IPrintTaskRequest.all /= null then
             temp := this.m_IPrintTaskRequest.all.Release;
-            Free (this.m_IPrintTaskRequest);
+            if temp < 1 then
+               Free (this.m_IPrintTaskRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1807,7 +1825,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskRequestedDeferral /= null then
          if this.m_IPrintTaskRequestedDeferral.all /= null then
             temp := this.m_IPrintTaskRequestedDeferral.all.Release;
-            Free (this.m_IPrintTaskRequestedDeferral);
+            if temp < 1 then
+               Free (this.m_IPrintTaskRequestedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -1844,7 +1864,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskRequestedEventArgs /= null then
          if this.m_IPrintTaskRequestedEventArgs.all /= null then
             temp := this.m_IPrintTaskRequestedEventArgs.all.Release;
-            Free (this.m_IPrintTaskRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1887,7 +1909,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskSourceRequestedArgs /= null then
          if this.m_IPrintTaskSourceRequestedArgs.all /= null then
             temp := this.m_IPrintTaskSourceRequestedArgs.all.Release;
-            Free (this.m_IPrintTaskSourceRequestedArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskSourceRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1962,7 +1986,9 @@ package body WinRt.Windows.Graphics.Printing is
       if this.m_IPrintTaskSourceRequestedDeferral /= null then
          if this.m_IPrintTaskSourceRequestedDeferral.all /= null then
             temp := this.m_IPrintTaskSourceRequestedDeferral.all.Release;
-            Free (this.m_IPrintTaskSourceRequestedDeferral);
+            if temp < 1 then
+               Free (this.m_IPrintTaskSourceRequestedDeferral);
+            end if;
          end if;
       end if;
    end;

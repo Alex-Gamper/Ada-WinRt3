@@ -48,7 +48,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisement /= null then
          if this.m_IBluetoothLEAdvertisement.all /= null then
             temp := this.m_IBluetoothLEAdvertisement.all.Release;
-            Free (this.m_IBluetoothLEAdvertisement);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisement);
+            end if;
          end if;
       end if;
    end;
@@ -264,7 +266,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementBytePattern /= null then
          if this.m_IBluetoothLEAdvertisementBytePattern.all /= null then
             temp := this.m_IBluetoothLEAdvertisementBytePattern.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementBytePattern);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementBytePattern);
+            end if;
          end if;
       end if;
    end;
@@ -428,7 +432,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementDataSection /= null then
          if this.m_IBluetoothLEAdvertisementDataSection.all /= null then
             temp := this.m_IBluetoothLEAdvertisementDataSection.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementDataSection);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementDataSection);
+            end if;
          end if;
       end if;
    end;
@@ -1027,7 +1033,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementFilter /= null then
          if this.m_IBluetoothLEAdvertisementFilter.all /= null then
             temp := this.m_IBluetoothLEAdvertisementFilter.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementFilter);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1124,7 +1132,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementPublisher /= null then
          if this.m_IBluetoothLEAdvertisementPublisher.all /= null then
             temp := this.m_IBluetoothLEAdvertisementPublisher.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementPublisher);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementPublisher);
+            end if;
          end if;
       end if;
    end;
@@ -1531,7 +1541,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementPublisherStatusChangedEventArgs /= null then
          if this.m_IBluetoothLEAdvertisementPublisherStatusChangedEventArgs.all /= null then
             temp := this.m_IBluetoothLEAdvertisementPublisherStatusChangedEventArgs.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementPublisherStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementPublisherStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1612,7 +1624,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementReceivedEventArgs /= null then
          if this.m_IBluetoothLEAdvertisementReceivedEventArgs.all /= null then
             temp := this.m_IBluetoothLEAdvertisementReceivedEventArgs.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1915,7 +1929,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementScanParameters /= null then
          if this.m_IBluetoothLEAdvertisementScanParameters.all /= null then
             temp := this.m_IBluetoothLEAdvertisementScanParameters.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementScanParameters);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementScanParameters);
+            end if;
          end if;
       end if;
    end;
@@ -2023,7 +2039,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementWatcher /= null then
          if this.m_IBluetoothLEAdvertisementWatcher.all /= null then
             temp := this.m_IBluetoothLEAdvertisementWatcher.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementWatcher);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -2573,7 +2591,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEAdvertisementWatcherStoppedEventArgs /= null then
          if this.m_IBluetoothLEAdvertisementWatcherStoppedEventArgs.all /= null then
             temp := this.m_IBluetoothLEAdvertisementWatcherStoppedEventArgs.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementWatcherStoppedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementWatcherStoppedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2613,7 +2633,9 @@ package body WinRt.Windows.Devices.Bluetooth.Advertisement is
       if this.m_IBluetoothLEManufacturerData /= null then
          if this.m_IBluetoothLEManufacturerData.all /= null then
             temp := this.m_IBluetoothLEManufacturerData.all.Release;
-            Free (this.m_IBluetoothLEManufacturerData);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEManufacturerData);
+            end if;
          end if;
       end if;
    end;

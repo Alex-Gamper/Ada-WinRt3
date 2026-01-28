@@ -567,7 +567,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IAsymmetricKeyAlgorithmProvider /= null then
          if this.m_IAsymmetricKeyAlgorithmProvider.all /= null then
             temp := this.m_IAsymmetricKeyAlgorithmProvider.all.Release;
-            Free (this.m_IAsymmetricKeyAlgorithmProvider);
+            if temp < 1 then
+               Free (this.m_IAsymmetricKeyAlgorithmProvider);
+            end if;
          end if;
       end if;
    end;
@@ -1260,7 +1262,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IHashComputation /= null then
          if this.m_IHashComputation.all /= null then
             temp := this.m_IHashComputation.all.Release;
-            Free (this.m_IHashComputation);
+            if temp < 1 then
+               Free (this.m_IHashComputation);
+            end if;
          end if;
       end if;
    end;
@@ -1315,7 +1319,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_ICryptographicKey /= null then
          if this.m_ICryptographicKey.all /= null then
             temp := this.m_ICryptographicKey.all.Release;
-            Free (this.m_ICryptographicKey);
+            if temp < 1 then
+               Free (this.m_ICryptographicKey);
+            end if;
          end if;
       end if;
    end;
@@ -2532,7 +2538,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IEncryptedAndAuthenticatedData /= null then
          if this.m_IEncryptedAndAuthenticatedData.all /= null then
             temp := this.m_IEncryptedAndAuthenticatedData.all.Release;
-            Free (this.m_IEncryptedAndAuthenticatedData);
+            if temp < 1 then
+               Free (this.m_IEncryptedAndAuthenticatedData);
+            end if;
          end if;
       end if;
    end;
@@ -2715,7 +2723,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IHashAlgorithmProvider /= null then
          if this.m_IHashAlgorithmProvider.all /= null then
             temp := this.m_IHashAlgorithmProvider.all.Release;
-            Free (this.m_IHashAlgorithmProvider);
+            if temp < 1 then
+               Free (this.m_IHashAlgorithmProvider);
+            end if;
          end if;
       end if;
    end;
@@ -3331,7 +3341,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IKeyDerivationAlgorithmProvider /= null then
          if this.m_IKeyDerivationAlgorithmProvider.all /= null then
             temp := this.m_IKeyDerivationAlgorithmProvider.all.Release;
-            Free (this.m_IKeyDerivationAlgorithmProvider);
+            if temp < 1 then
+               Free (this.m_IKeyDerivationAlgorithmProvider);
+            end if;
          end if;
       end if;
    end;
@@ -3427,7 +3439,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IKeyDerivationParameters /= null then
          if this.m_IKeyDerivationParameters.all /= null then
             temp := this.m_IKeyDerivationParameters.all.Release;
-            Free (this.m_IKeyDerivationParameters);
+            if temp < 1 then
+               Free (this.m_IKeyDerivationParameters);
+            end if;
          end if;
       end if;
    end;
@@ -3806,7 +3820,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_IMacAlgorithmProvider /= null then
          if this.m_IMacAlgorithmProvider.all /= null then
             temp := this.m_IMacAlgorithmProvider.all.Release;
-            Free (this.m_IMacAlgorithmProvider);
+            if temp < 1 then
+               Free (this.m_IMacAlgorithmProvider);
+            end if;
          end if;
       end if;
    end;
@@ -4520,7 +4536,9 @@ package body WinRt.Windows.Security.Cryptography.Core is
       if this.m_ISymmetricKeyAlgorithmProvider /= null then
          if this.m_ISymmetricKeyAlgorithmProvider.all /= null then
             temp := this.m_ISymmetricKeyAlgorithmProvider.all.Release;
-            Free (this.m_ISymmetricKeyAlgorithmProvider);
+            if temp < 1 then
+               Free (this.m_ISymmetricKeyAlgorithmProvider);
+            end if;
          end if;
       end if;
    end;

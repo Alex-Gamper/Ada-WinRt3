@@ -58,7 +58,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbBulkInEndpointDescriptor /= null then
          if this.m_IUsbBulkInEndpointDescriptor.all /= null then
             temp := this.m_IUsbBulkInEndpointDescriptor.all.Release;
-            Free (this.m_IUsbBulkInEndpointDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbBulkInEndpointDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -135,7 +137,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbBulkInPipe /= null then
          if this.m_IUsbBulkInPipe.all /= null then
             temp := this.m_IUsbBulkInPipe.all.Release;
-            Free (this.m_IUsbBulkInPipe);
+            if temp < 1 then
+               Free (this.m_IUsbBulkInPipe);
+            end if;
          end if;
       end if;
    end;
@@ -300,7 +304,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbBulkOutEndpointDescriptor /= null then
          if this.m_IUsbBulkOutEndpointDescriptor.all /= null then
             temp := this.m_IUsbBulkOutEndpointDescriptor.all.Release;
-            Free (this.m_IUsbBulkOutEndpointDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbBulkOutEndpointDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -377,7 +383,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbBulkOutPipe /= null then
          if this.m_IUsbBulkOutPipe.all /= null then
             temp := this.m_IUsbBulkOutPipe.all.Release;
-            Free (this.m_IUsbBulkOutPipe);
+            if temp < 1 then
+               Free (this.m_IUsbBulkOutPipe);
+            end if;
          end if;
       end if;
    end;
@@ -511,7 +519,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbConfiguration /= null then
          if this.m_IUsbConfiguration.all /= null then
             temp := this.m_IUsbConfiguration.all.Release;
-            Free (this.m_IUsbConfiguration);
+            if temp < 1 then
+               Free (this.m_IUsbConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -594,7 +604,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbConfigurationDescriptor /= null then
          if this.m_IUsbConfigurationDescriptor.all /= null then
             temp := this.m_IUsbConfigurationDescriptor.all.Release;
-            Free (this.m_IUsbConfigurationDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbConfigurationDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -740,7 +752,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbControlRequestType /= null then
          if this.m_IUsbControlRequestType.all /= null then
             temp := this.m_IUsbControlRequestType.all.Release;
-            Free (this.m_IUsbControlRequestType);
+            if temp < 1 then
+               Free (this.m_IUsbControlRequestType);
+            end if;
          end if;
       end if;
    end;
@@ -910,7 +924,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbDescriptor /= null then
          if this.m_IUsbDescriptor.all /= null then
             temp := this.m_IUsbDescriptor.all.Release;
-            Free (this.m_IUsbDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -982,7 +998,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbDevice /= null then
          if this.m_IUsbDevice.all /= null then
             temp := this.m_IUsbDevice.all.Release;
-            Free (this.m_IUsbDevice);
+            if temp < 1 then
+               Free (this.m_IUsbDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1530,7 +1548,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbDeviceClass /= null then
          if this.m_IUsbDeviceClass.all /= null then
             temp := this.m_IUsbDeviceClass.all.Release;
-            Free (this.m_IUsbDeviceClass);
+            if temp < 1 then
+               Free (this.m_IUsbDeviceClass);
+            end if;
          end if;
       end if;
    end;
@@ -1674,7 +1694,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbDeviceClasses /= null then
          if this.m_IUsbDeviceClasses.all /= null then
             temp := this.m_IUsbDeviceClasses.all.Release;
-            Free (this.m_IUsbDeviceClasses);
+            if temp < 1 then
+               Free (this.m_IUsbDeviceClasses);
+            end if;
          end if;
       end if;
    end;
@@ -1916,7 +1938,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbDeviceDescriptor /= null then
          if this.m_IUsbDeviceDescriptor.all /= null then
             temp := this.m_IUsbDeviceDescriptor.all.Release;
-            Free (this.m_IUsbDeviceDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbDeviceDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2041,7 +2065,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbEndpointDescriptor /= null then
          if this.m_IUsbEndpointDescriptor.all /= null then
             temp := this.m_IUsbEndpointDescriptor.all.Release;
-            Free (this.m_IUsbEndpointDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbEndpointDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2250,7 +2276,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterface /= null then
          if this.m_IUsbInterface.all /= null then
             temp := this.m_IUsbInterface.all.Release;
-            Free (this.m_IUsbInterface);
+            if temp < 1 then
+               Free (this.m_IUsbInterface);
+            end if;
          end if;
       end if;
    end;
@@ -2410,7 +2438,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterfaceDescriptor /= null then
          if this.m_IUsbInterfaceDescriptor.all /= null then
             temp := this.m_IUsbInterfaceDescriptor.all.Release;
-            Free (this.m_IUsbInterfaceDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbInterfaceDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2573,7 +2603,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterfaceSetting /= null then
          if this.m_IUsbInterfaceSetting.all /= null then
             temp := this.m_IUsbInterfaceSetting.all.Release;
-            Free (this.m_IUsbInterfaceSetting);
+            if temp < 1 then
+               Free (this.m_IUsbInterfaceSetting);
+            end if;
          end if;
       end if;
    end;
@@ -2775,7 +2807,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterruptInEndpointDescriptor /= null then
          if this.m_IUsbInterruptInEndpointDescriptor.all /= null then
             temp := this.m_IUsbInterruptInEndpointDescriptor.all.Release;
-            Free (this.m_IUsbInterruptInEndpointDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbInterruptInEndpointDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2869,7 +2903,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterruptInEventArgs /= null then
          if this.m_IUsbInterruptInEventArgs.all /= null then
             temp := this.m_IUsbInterruptInEventArgs.all.Release;
-            Free (this.m_IUsbInterruptInEventArgs);
+            if temp < 1 then
+               Free (this.m_IUsbInterruptInEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2909,7 +2945,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterruptInPipe /= null then
          if this.m_IUsbInterruptInPipe.all /= null then
             temp := this.m_IUsbInterruptInPipe.all.Release;
-            Free (this.m_IUsbInterruptInPipe);
+            if temp < 1 then
+               Free (this.m_IUsbInterruptInPipe);
+            end if;
          end if;
       end if;
    end;
@@ -3027,7 +3065,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterruptOutEndpointDescriptor /= null then
          if this.m_IUsbInterruptOutEndpointDescriptor.all /= null then
             temp := this.m_IUsbInterruptOutEndpointDescriptor.all.Release;
-            Free (this.m_IUsbInterruptOutEndpointDescriptor);
+            if temp < 1 then
+               Free (this.m_IUsbInterruptOutEndpointDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -3121,7 +3161,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbInterruptOutPipe /= null then
          if this.m_IUsbInterruptOutPipe.all /= null then
             temp := this.m_IUsbInterruptOutPipe.all.Release;
-            Free (this.m_IUsbInterruptOutPipe);
+            if temp < 1 then
+               Free (this.m_IUsbInterruptOutPipe);
+            end if;
          end if;
       end if;
    end;
@@ -3255,7 +3297,9 @@ package body WinRt.Windows.Devices.Usb is
       if this.m_IUsbSetupPacket /= null then
          if this.m_IUsbSetupPacket.all /= null then
             temp := this.m_IUsbSetupPacket.all.Release;
-            Free (this.m_IUsbSetupPacket);
+            if temp < 1 then
+               Free (this.m_IUsbSetupPacket);
+            end if;
          end if;
       end if;
    end;

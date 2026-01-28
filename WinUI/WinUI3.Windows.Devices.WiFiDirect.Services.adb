@@ -60,7 +60,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectService /= null then
          if this.m_IWiFiDirectService.all /= null then
             temp := this.m_IWiFiDirectService.all.Release;
-            Free (this.m_IWiFiDirectService);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectService);
+            end if;
          end if;
       end if;
    end;
@@ -573,7 +575,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceAdvertiser /= null then
          if this.m_IWiFiDirectServiceAdvertiser.all /= null then
             temp := this.m_IWiFiDirectServiceAdvertiser.all.Release;
-            Free (this.m_IWiFiDirectServiceAdvertiser);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceAdvertiser);
+            end if;
          end if;
       end if;
    end;
@@ -1175,7 +1179,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs /= null then
          if this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs.all /= null then
             temp := this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs.all.Release;
-            Free (this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceAutoAcceptSessionConnectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1235,7 +1241,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceProvisioningInfo /= null then
          if this.m_IWiFiDirectServiceProvisioningInfo.all /= null then
             temp := this.m_IWiFiDirectServiceProvisioningInfo.all.Release;
-            Free (this.m_IWiFiDirectServiceProvisioningInfo);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceProvisioningInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1292,7 +1300,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceRemotePortAddedEventArgs /= null then
          if this.m_IWiFiDirectServiceRemotePortAddedEventArgs.all /= null then
             temp := this.m_IWiFiDirectServiceRemotePortAddedEventArgs.all.Release;
-            Free (this.m_IWiFiDirectServiceRemotePortAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceRemotePortAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1349,7 +1359,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceSession /= null then
          if this.m_IWiFiDirectServiceSession.all /= null then
             temp := this.m_IWiFiDirectServiceSession.all.Release;
-            Free (this.m_IWiFiDirectServiceSession);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceSession);
+            end if;
          end if;
       end if;
    end;
@@ -1687,7 +1699,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceSessionDeferredEventArgs /= null then
          if this.m_IWiFiDirectServiceSessionDeferredEventArgs.all /= null then
             temp := this.m_IWiFiDirectServiceSessionDeferredEventArgs.all.Release;
-            Free (this.m_IWiFiDirectServiceSessionDeferredEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceSessionDeferredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1727,7 +1741,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceSessionRequest /= null then
          if this.m_IWiFiDirectServiceSessionRequest.all /= null then
             temp := this.m_IWiFiDirectServiceSessionRequest.all.Release;
-            Free (this.m_IWiFiDirectServiceSessionRequest);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceSessionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1825,7 +1841,9 @@ package body WinUI3.Windows.Devices.WiFiDirect.Services is
       if this.m_IWiFiDirectServiceSessionRequestedEventArgs /= null then
          if this.m_IWiFiDirectServiceSessionRequestedEventArgs.all /= null then
             temp := this.m_IWiFiDirectServiceSessionRequestedEventArgs.all.Release;
-            Free (this.m_IWiFiDirectServiceSessionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectServiceSessionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

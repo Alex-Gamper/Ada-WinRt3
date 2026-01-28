@@ -48,7 +48,9 @@ package body WinUI3.Windows.Media.AppBroadcasting is
       if this.m_IAppBroadcastingMonitor /= null then
          if this.m_IAppBroadcastingMonitor.all /= null then
             temp := this.m_IAppBroadcastingMonitor.all.Release;
-            Free (this.m_IAppBroadcastingMonitor);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastingMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -140,7 +142,9 @@ package body WinUI3.Windows.Media.AppBroadcasting is
       if this.m_IAppBroadcastingStatus /= null then
          if this.m_IAppBroadcastingStatus.all /= null then
             temp := this.m_IAppBroadcastingStatus.all.Release;
-            Free (this.m_IAppBroadcastingStatus);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastingStatus);
+            end if;
          end if;
       end if;
    end;
@@ -200,7 +204,9 @@ package body WinUI3.Windows.Media.AppBroadcasting is
       if this.m_IAppBroadcastingStatusDetails /= null then
          if this.m_IAppBroadcastingStatusDetails.all /= null then
             temp := this.m_IAppBroadcastingStatusDetails.all.Release;
-            Free (this.m_IAppBroadcastingStatusDetails);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastingStatusDetails);
+            end if;
          end if;
       end if;
    end;
@@ -359,7 +365,9 @@ package body WinUI3.Windows.Media.AppBroadcasting is
       if this.m_IAppBroadcastingUI /= null then
          if this.m_IAppBroadcastingUI.all /= null then
             temp := this.m_IAppBroadcastingUI.all.Release;
-            Free (this.m_IAppBroadcastingUI);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastingUI);
+            end if;
          end if;
       end if;
    end;

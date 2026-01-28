@@ -886,7 +886,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrame /= null then
          if this.m_IPerceptionColorFrame.all /= null then
             temp := this.m_IPerceptionColorFrame.all.Release;
-            Free (this.m_IPerceptionColorFrame);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrame);
+            end if;
          end if;
       end if;
    end;
@@ -947,7 +949,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameArrivedEventArgs /= null then
          if this.m_IPerceptionColorFrameArrivedEventArgs.all /= null then
             temp := this.m_IPerceptionColorFrameArrivedEventArgs.all.Release;
-            Free (this.m_IPerceptionColorFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1007,7 +1011,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameReader /= null then
          if this.m_IPerceptionColorFrameReader.all /= null then
             temp := this.m_IPerceptionColorFrameReader.all.Release;
-            Free (this.m_IPerceptionColorFrameReader);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -1153,7 +1159,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameSource /= null then
          if this.m_IPerceptionColorFrameSource.all /= null then
             temp := this.m_IPerceptionColorFrameSource.all.Release;
-            Free (this.m_IPerceptionColorFrameSource);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameSource);
+            end if;
          end if;
       end if;
    end;
@@ -2118,7 +2126,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionColorFrameSourceAddedEventArgs.all /= null then
             temp := this.m_IPerceptionColorFrameSourceAddedEventArgs.all.Release;
-            Free (this.m_IPerceptionColorFrameSourceAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameSourceAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2161,7 +2171,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionColorFrameSourceRemovedEventArgs.all /= null then
             temp := this.m_IPerceptionColorFrameSourceRemovedEventArgs.all.Release;
-            Free (this.m_IPerceptionColorFrameSourceRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameSourceRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2204,7 +2216,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionColorFrameSourceWatcher /= null then
          if this.m_IPerceptionColorFrameSourceWatcher.all /= null then
             temp := this.m_IPerceptionColorFrameSourceWatcher.all.Release;
-            Free (this.m_IPerceptionColorFrameSourceWatcher);
+            if temp < 1 then
+               Free (this.m_IPerceptionColorFrameSourceWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -2404,7 +2418,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionControlSession /= null then
          if this.m_IPerceptionControlSession.all /= null then
             temp := this.m_IPerceptionControlSession.all.Release;
-            Free (this.m_IPerceptionControlSession);
+            if temp < 1 then
+               Free (this.m_IPerceptionControlSession);
+            end if;
          end if;
       end if;
    end;
@@ -2548,7 +2564,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthCorrelatedCameraIntrinsics /= null then
          if this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all /= null then
             temp := this.m_IPerceptionDepthCorrelatedCameraIntrinsics.all.Release;
-            Free (this.m_IPerceptionDepthCorrelatedCameraIntrinsics);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthCorrelatedCameraIntrinsics);
+            end if;
          end if;
       end if;
    end;
@@ -2700,7 +2718,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthCorrelatedCoordinateMapper /= null then
          if this.m_IPerceptionDepthCorrelatedCoordinateMapper.all /= null then
             temp := this.m_IPerceptionDepthCorrelatedCoordinateMapper.all.Release;
-            Free (this.m_IPerceptionDepthCorrelatedCoordinateMapper);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthCorrelatedCoordinateMapper);
+            end if;
          end if;
       end if;
    end;
@@ -2852,7 +2872,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrame /= null then
          if this.m_IPerceptionDepthFrame.all /= null then
             temp := this.m_IPerceptionDepthFrame.all.Release;
-            Free (this.m_IPerceptionDepthFrame);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrame);
+            end if;
          end if;
       end if;
    end;
@@ -2913,7 +2935,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameArrivedEventArgs /= null then
          if this.m_IPerceptionDepthFrameArrivedEventArgs.all /= null then
             temp := this.m_IPerceptionDepthFrameArrivedEventArgs.all.Release;
-            Free (this.m_IPerceptionDepthFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2973,7 +2997,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameReader /= null then
          if this.m_IPerceptionDepthFrameReader.all /= null then
             temp := this.m_IPerceptionDepthFrameReader.all.Release;
-            Free (this.m_IPerceptionDepthFrameReader);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -3119,7 +3145,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameSource /= null then
          if this.m_IPerceptionDepthFrameSource.all /= null then
             temp := this.m_IPerceptionDepthFrameSource.all.Release;
-            Free (this.m_IPerceptionDepthFrameSource);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameSource);
+            end if;
          end if;
       end if;
    end;
@@ -4084,7 +4112,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionDepthFrameSourceAddedEventArgs.all /= null then
             temp := this.m_IPerceptionDepthFrameSourceAddedEventArgs.all.Release;
-            Free (this.m_IPerceptionDepthFrameSourceAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameSourceAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4127,7 +4157,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all /= null then
             temp := this.m_IPerceptionDepthFrameSourceRemovedEventArgs.all.Release;
-            Free (this.m_IPerceptionDepthFrameSourceRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameSourceRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4170,7 +4202,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionDepthFrameSourceWatcher /= null then
          if this.m_IPerceptionDepthFrameSourceWatcher.all /= null then
             temp := this.m_IPerceptionDepthFrameSourceWatcher.all.Release;
-            Free (this.m_IPerceptionDepthFrameSourceWatcher);
+            if temp < 1 then
+               Free (this.m_IPerceptionDepthFrameSourceWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -4370,7 +4404,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionFrameSourcePropertiesChangedEventArgs /= null then
          if this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all /= null then
             temp := this.m_IPerceptionFrameSourcePropertiesChangedEventArgs.all.Release;
-            Free (this.m_IPerceptionFrameSourcePropertiesChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionFrameSourcePropertiesChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4430,7 +4466,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionFrameSourcePropertyChangeResult /= null then
          if this.m_IPerceptionFrameSourcePropertyChangeResult.all /= null then
             temp := this.m_IPerceptionFrameSourcePropertyChangeResult.all.Release;
-            Free (this.m_IPerceptionFrameSourcePropertyChangeResult);
+            if temp < 1 then
+               Free (this.m_IPerceptionFrameSourcePropertyChangeResult);
+            end if;
          end if;
       end if;
    end;
@@ -4487,7 +4525,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrame /= null then
          if this.m_IPerceptionInfraredFrame.all /= null then
             temp := this.m_IPerceptionInfraredFrame.all.Release;
-            Free (this.m_IPerceptionInfraredFrame);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrame);
+            end if;
          end if;
       end if;
    end;
@@ -4548,7 +4588,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameArrivedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameArrivedEventArgs.all /= null then
             temp := this.m_IPerceptionInfraredFrameArrivedEventArgs.all.Release;
-            Free (this.m_IPerceptionInfraredFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4608,7 +4650,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameReader /= null then
          if this.m_IPerceptionInfraredFrameReader.all /= null then
             temp := this.m_IPerceptionInfraredFrameReader.all.Release;
-            Free (this.m_IPerceptionInfraredFrameReader);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -4754,7 +4798,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameSource /= null then
          if this.m_IPerceptionInfraredFrameSource.all /= null then
             temp := this.m_IPerceptionInfraredFrameSource.all.Release;
-            Free (this.m_IPerceptionInfraredFrameSource);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameSource);
+            end if;
          end if;
       end if;
    end;
@@ -5719,7 +5765,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameSourceAddedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all /= null then
             temp := this.m_IPerceptionInfraredFrameSourceAddedEventArgs.all.Release;
-            Free (this.m_IPerceptionInfraredFrameSourceAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameSourceAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5762,7 +5810,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameSourceRemovedEventArgs /= null then
          if this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all /= null then
             temp := this.m_IPerceptionInfraredFrameSourceRemovedEventArgs.all.Release;
-            Free (this.m_IPerceptionInfraredFrameSourceRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameSourceRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5805,7 +5855,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionInfraredFrameSourceWatcher /= null then
          if this.m_IPerceptionInfraredFrameSourceWatcher.all /= null then
             temp := this.m_IPerceptionInfraredFrameSourceWatcher.all.Release;
-            Free (this.m_IPerceptionInfraredFrameSourceWatcher);
+            if temp < 1 then
+               Free (this.m_IPerceptionInfraredFrameSourceWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -6005,7 +6057,9 @@ package body WinUI3.Windows.Devices.Perception is
       if this.m_IPerceptionVideoProfile /= null then
          if this.m_IPerceptionVideoProfile.all /= null then
             temp := this.m_IPerceptionVideoProfile.all.Release;
-            Free (this.m_IPerceptionVideoProfile);
+            if temp < 1 then
+               Free (this.m_IPerceptionVideoProfile);
+            end if;
          end if;
       end if;
    end;

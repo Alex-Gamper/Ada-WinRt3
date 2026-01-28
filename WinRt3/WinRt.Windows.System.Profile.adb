@@ -177,7 +177,9 @@ package body WinRt.Windows.System.Profile is
       if this.m_IAnalyticsVersionInfo /= null then
          if this.m_IAnalyticsVersionInfo.all /= null then
             temp := this.m_IAnalyticsVersionInfo.all.Release;
-            Free (this.m_IAnalyticsVersionInfo);
+            if temp < 1 then
+               Free (this.m_IAnalyticsVersionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -354,7 +356,9 @@ package body WinRt.Windows.System.Profile is
       if this.m_IHardwareToken /= null then
          if this.m_IHardwareToken.all /= null then
             temp := this.m_IHardwareToken.all.Release;
-            Free (this.m_IHardwareToken);
+            if temp < 1 then
+               Free (this.m_IHardwareToken);
+            end if;
          end if;
       end if;
    end;
@@ -1310,7 +1314,9 @@ package body WinRt.Windows.System.Profile is
       if this.m_ISystemIdentificationInfo /= null then
          if this.m_ISystemIdentificationInfo.all /= null then
             temp := this.m_ISystemIdentificationInfo.all.Release;
-            Free (this.m_ISystemIdentificationInfo);
+            if temp < 1 then
+               Free (this.m_ISystemIdentificationInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1439,7 +1445,9 @@ package body WinRt.Windows.System.Profile is
       if this.m_IUnsupportedAppRequirement /= null then
          if this.m_IUnsupportedAppRequirement.all /= null then
             temp := this.m_IUnsupportedAppRequirement.all.Release;
-            Free (this.m_IUnsupportedAppRequirement);
+            if temp < 1 then
+               Free (this.m_IUnsupportedAppRequirement);
+            end if;
          end if;
       end if;
    end;

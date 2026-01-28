@@ -60,7 +60,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialGestureRecognizer /= null then
          if this.m_ISpatialGestureRecognizer.all /= null then
             temp := this.m_ISpatialGestureRecognizer.all.Release;
-            Free (this.m_ISpatialGestureRecognizer);
+            if temp < 1 then
+               Free (this.m_ISpatialGestureRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -636,7 +638,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialHoldCanceledEventArgs /= null then
          if this.m_ISpatialHoldCanceledEventArgs.all /= null then
             temp := this.m_ISpatialHoldCanceledEventArgs.all.Release;
-            Free (this.m_ISpatialHoldCanceledEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialHoldCanceledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -676,7 +680,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialHoldCompletedEventArgs /= null then
          if this.m_ISpatialHoldCompletedEventArgs.all /= null then
             temp := this.m_ISpatialHoldCompletedEventArgs.all.Release;
-            Free (this.m_ISpatialHoldCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialHoldCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -716,7 +722,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialHoldStartedEventArgs /= null then
          if this.m_ISpatialHoldStartedEventArgs.all /= null then
             temp := this.m_ISpatialHoldStartedEventArgs.all.Release;
-            Free (this.m_ISpatialHoldStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialHoldStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -777,7 +785,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteraction /= null then
          if this.m_ISpatialInteraction.all /= null then
             temp := this.m_ISpatialInteraction.all.Release;
-            Free (this.m_ISpatialInteraction);
+            if temp < 1 then
+               Free (this.m_ISpatialInteraction);
+            end if;
          end if;
       end if;
    end;
@@ -820,7 +830,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionController /= null then
          if this.m_ISpatialInteractionController.all /= null then
             temp := this.m_ISpatialInteractionController.all.Release;
-            Free (this.m_ISpatialInteractionController);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionController);
+            end if;
          end if;
       end if;
    end;
@@ -1039,7 +1051,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionControllerProperties /= null then
          if this.m_ISpatialInteractionControllerProperties.all /= null then
             temp := this.m_ISpatialInteractionControllerProperties.all.Release;
-            Free (this.m_ISpatialInteractionControllerProperties);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionControllerProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1181,7 +1195,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionDetectedEventArgs /= null then
          if this.m_ISpatialInteractionDetectedEventArgs.all /= null then
             temp := this.m_ISpatialInteractionDetectedEventArgs.all.Release;
-            Free (this.m_ISpatialInteractionDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1286,7 +1302,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionManager /= null then
          if this.m_ISpatialInteractionManager.all /= null then
             temp := this.m_ISpatialInteractionManager.all.Release;
-            Free (this.m_ISpatialInteractionManager);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionManager);
+            end if;
          end if;
       end if;
    end;
@@ -1579,7 +1597,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionSource /= null then
          if this.m_ISpatialInteractionSource.all /= null then
             temp := this.m_ISpatialInteractionSource.all.Release;
-            Free (this.m_ISpatialInteractionSource);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionSource);
+            end if;
          end if;
       end if;
    end;
@@ -1863,7 +1883,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionSourceEventArgs /= null then
          if this.m_ISpatialInteractionSourceEventArgs.all /= null then
             temp := this.m_ISpatialInteractionSourceEventArgs.all.Release;
-            Free (this.m_ISpatialInteractionSourceEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionSourceEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1927,7 +1949,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionSourceLocation /= null then
          if this.m_ISpatialInteractionSourceLocation.all /= null then
             temp := this.m_ISpatialInteractionSourceLocation.all.Release;
-            Free (this.m_ISpatialInteractionSourceLocation);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionSourceLocation);
+            end if;
          end if;
       end if;
    end;
@@ -2083,7 +2107,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionSourceProperties /= null then
          if this.m_ISpatialInteractionSourceProperties.all /= null then
             temp := this.m_ISpatialInteractionSourceProperties.all.Release;
-            Free (this.m_ISpatialInteractionSourceProperties);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionSourceProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2165,7 +2191,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialInteractionSourceState /= null then
          if this.m_ISpatialInteractionSourceState.all /= null then
             temp := this.m_ISpatialInteractionSourceState.all.Release;
-            Free (this.m_ISpatialInteractionSourceState);
+            if temp < 1 then
+               Free (this.m_ISpatialInteractionSourceState);
+            end if;
          end if;
       end if;
    end;
@@ -2418,7 +2446,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialManipulationCanceledEventArgs /= null then
          if this.m_ISpatialManipulationCanceledEventArgs.all /= null then
             temp := this.m_ISpatialManipulationCanceledEventArgs.all.Release;
-            Free (this.m_ISpatialManipulationCanceledEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialManipulationCanceledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2458,7 +2488,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialManipulationCompletedEventArgs /= null then
          if this.m_ISpatialManipulationCompletedEventArgs.all /= null then
             temp := this.m_ISpatialManipulationCompletedEventArgs.all.Release;
-            Free (this.m_ISpatialManipulationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialManipulationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2519,7 +2551,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialManipulationDelta /= null then
          if this.m_ISpatialManipulationDelta.all /= null then
             temp := this.m_ISpatialManipulationDelta.all.Release;
-            Free (this.m_ISpatialManipulationDelta);
+            if temp < 1 then
+               Free (this.m_ISpatialManipulationDelta);
+            end if;
          end if;
       end if;
    end;
@@ -2559,7 +2593,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialManipulationStartedEventArgs /= null then
          if this.m_ISpatialManipulationStartedEventArgs.all /= null then
             temp := this.m_ISpatialManipulationStartedEventArgs.all.Release;
-            Free (this.m_ISpatialManipulationStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialManipulationStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2620,7 +2656,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialManipulationUpdatedEventArgs /= null then
          if this.m_ISpatialManipulationUpdatedEventArgs.all /= null then
             temp := this.m_ISpatialManipulationUpdatedEventArgs.all.Release;
-            Free (this.m_ISpatialManipulationUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialManipulationUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2681,7 +2719,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialNavigationCanceledEventArgs /= null then
          if this.m_ISpatialNavigationCanceledEventArgs.all /= null then
             temp := this.m_ISpatialNavigationCanceledEventArgs.all.Release;
-            Free (this.m_ISpatialNavigationCanceledEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialNavigationCanceledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2721,7 +2761,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialNavigationCompletedEventArgs /= null then
          if this.m_ISpatialNavigationCompletedEventArgs.all /= null then
             temp := this.m_ISpatialNavigationCompletedEventArgs.all.Release;
-            Free (this.m_ISpatialNavigationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialNavigationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2778,7 +2820,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialNavigationStartedEventArgs /= null then
          if this.m_ISpatialNavigationStartedEventArgs.all /= null then
             temp := this.m_ISpatialNavigationStartedEventArgs.all.Release;
-            Free (this.m_ISpatialNavigationStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialNavigationStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2890,7 +2934,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialNavigationUpdatedEventArgs /= null then
          if this.m_ISpatialNavigationUpdatedEventArgs.all /= null then
             temp := this.m_ISpatialNavigationUpdatedEventArgs.all.Release;
-            Free (this.m_ISpatialNavigationUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialNavigationUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2947,7 +2993,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialPointerInteractionSourcePose /= null then
          if this.m_ISpatialPointerInteractionSourcePose.all /= null then
             temp := this.m_ISpatialPointerInteractionSourcePose.all.Release;
-            Free (this.m_ISpatialPointerInteractionSourcePose);
+            if temp < 1 then
+               Free (this.m_ISpatialPointerInteractionSourcePose);
+            end if;
          end if;
       end if;
    end;
@@ -3063,7 +3111,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialPointerPose /= null then
          if this.m_ISpatialPointerPose.all /= null then
             temp := this.m_ISpatialPointerPose.all.Release;
-            Free (this.m_ISpatialPointerPose);
+            if temp < 1 then
+               Free (this.m_ISpatialPointerPose);
+            end if;
          end if;
       end if;
    end;
@@ -3227,7 +3277,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialRecognitionEndedEventArgs /= null then
          if this.m_ISpatialRecognitionEndedEventArgs.all /= null then
             temp := this.m_ISpatialRecognitionEndedEventArgs.all.Release;
-            Free (this.m_ISpatialRecognitionEndedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialRecognitionEndedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3267,7 +3319,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialRecognitionStartedEventArgs /= null then
          if this.m_ISpatialRecognitionStartedEventArgs.all /= null then
             temp := this.m_ISpatialRecognitionStartedEventArgs.all.Release;
-            Free (this.m_ISpatialRecognitionStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialRecognitionStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3346,7 +3400,9 @@ package body WinRt.Windows.UI.Input.Spatial is
       if this.m_ISpatialTappedEventArgs /= null then
          if this.m_ISpatialTappedEventArgs.all /= null then
             temp := this.m_ISpatialTappedEventArgs.all.Release;
-            Free (this.m_ISpatialTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpatialTappedEventArgs);
+            end if;
          end if;
       end if;
    end;

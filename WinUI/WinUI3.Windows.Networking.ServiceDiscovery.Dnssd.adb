@@ -55,7 +55,9 @@ package body WinUI3.Windows.Networking.ServiceDiscovery.Dnssd is
       if this.m_IDnssdRegistrationResult /= null then
          if this.m_IDnssdRegistrationResult.all /= null then
             temp := this.m_IDnssdRegistrationResult.all.Release;
-            Free (this.m_IDnssdRegistrationResult);
+            if temp < 1 then
+               Free (this.m_IDnssdRegistrationResult);
+            end if;
          end if;
       end if;
    end;
@@ -175,7 +177,9 @@ package body WinUI3.Windows.Networking.ServiceDiscovery.Dnssd is
       if this.m_IDnssdServiceInstance /= null then
          if this.m_IDnssdServiceInstance.all /= null then
             temp := this.m_IDnssdServiceInstance.all.Release;
-            Free (this.m_IDnssdServiceInstance);
+            if temp < 1 then
+               Free (this.m_IDnssdServiceInstance);
+            end if;
          end if;
       end if;
    end;
@@ -851,7 +855,9 @@ package body WinUI3.Windows.Networking.ServiceDiscovery.Dnssd is
       if this.m_IDnssdServiceWatcher /= null then
          if this.m_IDnssdServiceWatcher.all /= null then
             temp := this.m_IDnssdServiceWatcher.all.Release;
-            Free (this.m_IDnssdServiceWatcher);
+            if temp < 1 then
+               Free (this.m_IDnssdServiceWatcher);
+            end if;
          end if;
       end if;
    end;

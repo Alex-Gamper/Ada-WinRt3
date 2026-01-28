@@ -54,7 +54,9 @@ package body WinRt.Windows.Data.Pdf is
       if this.m_IPdfDocument /= null then
          if this.m_IPdfDocument.all /= null then
             temp := this.m_IPdfDocument.all.Release;
-            Free (this.m_IPdfDocument);
+            if temp < 1 then
+               Free (this.m_IPdfDocument);
+            end if;
          end if;
       end if;
    end;
@@ -433,7 +435,9 @@ package body WinRt.Windows.Data.Pdf is
       if this.m_IPdfPage /= null then
          if this.m_IPdfPage.all /= null then
             temp := this.m_IPdfPage.all.Release;
-            Free (this.m_IPdfPage);
+            if temp < 1 then
+               Free (this.m_IPdfPage);
+            end if;
          end if;
       end if;
    end;
@@ -691,7 +695,9 @@ package body WinRt.Windows.Data.Pdf is
       if this.m_IPdfPageDimensions /= null then
          if this.m_IPdfPageDimensions.all /= null then
             temp := this.m_IPdfPageDimensions.all.Release;
-            Free (this.m_IPdfPageDimensions);
+            if temp < 1 then
+               Free (this.m_IPdfPageDimensions);
+            end if;
          end if;
       end if;
    end;
@@ -799,7 +805,9 @@ package body WinRt.Windows.Data.Pdf is
       if this.m_IPdfPageRenderOptions /= null then
          if this.m_IPdfPageRenderOptions.all /= null then
             temp := this.m_IPdfPageRenderOptions.all.Release;
-            Free (this.m_IPdfPageRenderOptions);
+            if temp < 1 then
+               Free (this.m_IPdfPageRenderOptions);
+            end if;
          end if;
       end if;
    end;

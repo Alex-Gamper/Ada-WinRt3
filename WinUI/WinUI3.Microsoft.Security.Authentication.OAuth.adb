@@ -57,7 +57,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_IAuthFailure /= null then
          if this.m_IAuthFailure.all /= null then
             temp := this.m_IAuthFailure.all.Release;
-            Free (this.m_IAuthFailure);
+            if temp < 1 then
+               Free (this.m_IAuthFailure);
+            end if;
          end if;
       end if;
    end;
@@ -180,7 +182,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_IAuthRequestParams /= null then
          if this.m_IAuthRequestParams.all /= null then
             temp := this.m_IAuthRequestParams.all.Release;
-            Free (this.m_IAuthRequestParams);
+            if temp < 1 then
+               Free (this.m_IAuthRequestParams);
+            end if;
          end if;
       end if;
    end;
@@ -599,7 +603,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_IAuthRequestResult /= null then
          if this.m_IAuthRequestResult.all /= null then
             temp := this.m_IAuthRequestResult.all.Release;
-            Free (this.m_IAuthRequestResult);
+            if temp < 1 then
+               Free (this.m_IAuthRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -682,7 +688,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_IAuthResponse /= null then
          if this.m_IAuthResponse.all /= null then
             temp := this.m_IAuthResponse.all.Release;
-            Free (this.m_IAuthResponse);
+            if temp < 1 then
+               Free (this.m_IAuthResponse);
+            end if;
          end if;
       end if;
    end;
@@ -845,7 +853,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_IClientAuthentication /= null then
          if this.m_IClientAuthentication.all /= null then
             temp := this.m_IClientAuthentication.all.Release;
-            Free (this.m_IClientAuthentication);
+            if temp < 1 then
+               Free (this.m_IClientAuthentication);
+            end if;
          end if;
       end if;
    end;
@@ -1290,7 +1300,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_ITokenFailure /= null then
          if this.m_ITokenFailure.all /= null then
             temp := this.m_ITokenFailure.all.Release;
-            Free (this.m_ITokenFailure);
+            if temp < 1 then
+               Free (this.m_ITokenFailure);
+            end if;
          end if;
       end if;
    end;
@@ -1424,7 +1436,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_ITokenRequestParams /= null then
          if this.m_ITokenRequestParams.all /= null then
             temp := this.m_ITokenRequestParams.all.Release;
-            Free (this.m_ITokenRequestParams);
+            if temp < 1 then
+               Free (this.m_ITokenRequestParams);
+            end if;
          end if;
       end if;
    end;
@@ -1937,7 +1951,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_ITokenRequestResult /= null then
          if this.m_ITokenRequestResult.all /= null then
             temp := this.m_ITokenRequestResult.all.Release;
-            Free (this.m_ITokenRequestResult);
+            if temp < 1 then
+               Free (this.m_ITokenRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -2020,7 +2036,9 @@ package body WinUI3.Microsoft.Security.Authentication.OAuth is
       if this.m_ITokenResponse /= null then
          if this.m_ITokenResponse.all /= null then
             temp := this.m_ITokenResponse.all.Release;
-            Free (this.m_ITokenResponse);
+            if temp < 1 then
+               Free (this.m_ITokenResponse);
+            end if;
          end if;
       end if;
    end;

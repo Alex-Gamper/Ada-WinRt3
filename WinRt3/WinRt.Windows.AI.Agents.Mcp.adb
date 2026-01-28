@@ -50,7 +50,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpHttpConnectionResult /= null then
          if this.m_IMcpHttpConnectionResult.all /= null then
             temp := this.m_IMcpHttpConnectionResult.all.Release;
-            Free (this.m_IMcpHttpConnectionResult);
+            if temp < 1 then
+               Free (this.m_IMcpHttpConnectionResult);
+            end if;
          end if;
       end if;
    end;
@@ -128,7 +130,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpNamedPipeConnectionResult /= null then
          if this.m_IMcpNamedPipeConnectionResult.all /= null then
             temp := this.m_IMcpNamedPipeConnectionResult.all.Release;
-            Free (this.m_IMcpNamedPipeConnectionResult);
+            if temp < 1 then
+               Free (this.m_IMcpNamedPipeConnectionResult);
+            end if;
          end if;
       end if;
    end;
@@ -349,7 +353,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpServerContext /= null then
          if this.m_IMcpServerContext.all /= null then
             temp := this.m_IMcpServerContext.all.Release;
-            Free (this.m_IMcpServerContext);
+            if temp < 1 then
+               Free (this.m_IMcpServerContext);
+            end if;
          end if;
       end if;
    end;
@@ -443,7 +449,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpServerInfo /= null then
          if this.m_IMcpServerInfo.all /= null then
             temp := this.m_IMcpServerInfo.all.Release;
-            Free (this.m_IMcpServerInfo);
+            if temp < 1 then
+               Free (this.m_IMcpServerInfo);
+            end if;
          end if;
       end if;
    end;
@@ -583,7 +591,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpServerRegistry /= null then
          if this.m_IMcpServerRegistry.all /= null then
             temp := this.m_IMcpServerRegistry.all.Release;
-            Free (this.m_IMcpServerRegistry);
+            if temp < 1 then
+               Free (this.m_IMcpServerRegistry);
+            end if;
          end if;
       end if;
    end;
@@ -686,7 +696,9 @@ package body WinRt.Windows.AI.Agents.Mcp is
       if this.m_IMcpStdioConnectionInfo /= null then
          if this.m_IMcpStdioConnectionInfo.all /= null then
             temp := this.m_IMcpStdioConnectionInfo.all.Release;
-            Free (this.m_IMcpStdioConnectionInfo);
+            if temp < 1 then
+               Free (this.m_IMcpStdioConnectionInfo);
+            end if;
          end if;
       end if;
    end;

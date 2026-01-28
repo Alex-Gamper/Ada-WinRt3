@@ -221,7 +221,9 @@ package body WinUI3.Microsoft.Windows.AppLifecycle is
       if this.m_IAppActivationArguments /= null then
          if this.m_IAppActivationArguments.all /= null then
             temp := this.m_IAppActivationArguments.all.Release;
-            Free (this.m_IAppActivationArguments);
+            if temp < 1 then
+               Free (this.m_IAppActivationArguments);
+            end if;
          end if;
       end if;
    end;
@@ -278,7 +280,9 @@ package body WinUI3.Microsoft.Windows.AppLifecycle is
       if this.m_IAppInstance /= null then
          if this.m_IAppInstance.all /= null then
             temp := this.m_IAppInstance.all.Release;
-            Free (this.m_IAppInstance);
+            if temp < 1 then
+               Free (this.m_IAppInstance);
+            end if;
          end if;
       end if;
    end;

@@ -46,7 +46,9 @@ package body WinUI3.Windows.UI.Composition.Diagnostics is
       if this.m_ICompositionDebugHeatMaps /= null then
          if this.m_ICompositionDebugHeatMaps.all /= null then
             temp := this.m_ICompositionDebugHeatMaps.all.Release;
-            Free (this.m_ICompositionDebugHeatMaps);
+            if temp < 1 then
+               Free (this.m_ICompositionDebugHeatMaps);
+            end if;
          end if;
       end if;
    end;
@@ -130,7 +132,9 @@ package body WinUI3.Windows.UI.Composition.Diagnostics is
       if this.m_ICompositionDebugSettings /= null then
          if this.m_ICompositionDebugSettings.all /= null then
             temp := this.m_ICompositionDebugSettings.all.Release;
-            Free (this.m_ICompositionDebugSettings);
+            if temp < 1 then
+               Free (this.m_ICompositionDebugSettings);
+            end if;
          end if;
       end if;
    end;

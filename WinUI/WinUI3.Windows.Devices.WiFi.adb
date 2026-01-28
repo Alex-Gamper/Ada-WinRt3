@@ -68,7 +68,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiAdapter /= null then
          if this.m_IWiFiAdapter.all /= null then
             temp := this.m_IWiFiAdapter.all.Release;
-            Free (this.m_IWiFiAdapter);
+            if temp < 1 then
+               Free (this.m_IWiFiAdapter);
+            end if;
          end if;
       end if;
    end;
@@ -813,7 +815,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiAvailableNetwork /= null then
          if this.m_IWiFiAvailableNetwork.all /= null then
             temp := this.m_IWiFiAvailableNetwork.all.Release;
-            Free (this.m_IWiFiAvailableNetwork);
+            if temp < 1 then
+               Free (this.m_IWiFiAvailableNetwork);
+            end if;
          end if;
       end if;
    end;
@@ -1032,7 +1036,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiConnectionResult /= null then
          if this.m_IWiFiConnectionResult.all /= null then
             temp := this.m_IWiFiConnectionResult.all.Release;
-            Free (this.m_IWiFiConnectionResult);
+            if temp < 1 then
+               Free (this.m_IWiFiConnectionResult);
+            end if;
          end if;
       end if;
    end;
@@ -1072,7 +1078,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiNetworkReport /= null then
          if this.m_IWiFiNetworkReport.all /= null then
             temp := this.m_IWiFiNetworkReport.all.Release;
-            Free (this.m_IWiFiNetworkReport);
+            if temp < 1 then
+               Free (this.m_IWiFiNetworkReport);
+            end if;
          end if;
       end if;
    end;
@@ -1132,7 +1140,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiOnDemandHotspotConnectTriggerDetails /= null then
          if this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all /= null then
             temp := this.m_IWiFiOnDemandHotspotConnectTriggerDetails.all.Release;
-            Free (this.m_IWiFiOnDemandHotspotConnectTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IWiFiOnDemandHotspotConnectTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1276,7 +1286,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiOnDemandHotspotConnectionResult /= null then
          if this.m_IWiFiOnDemandHotspotConnectionResult.all /= null then
             temp := this.m_IWiFiOnDemandHotspotConnectionResult.all.Release;
-            Free (this.m_IWiFiOnDemandHotspotConnectionResult);
+            if temp < 1 then
+               Free (this.m_IWiFiOnDemandHotspotConnectionResult);
+            end if;
          end if;
       end if;
    end;
@@ -1316,7 +1328,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiOnDemandHotspotNetwork /= null then
          if this.m_IWiFiOnDemandHotspotNetwork.all /= null then
             temp := this.m_IWiFiOnDemandHotspotNetwork.all.Release;
-            Free (this.m_IWiFiOnDemandHotspotNetwork);
+            if temp < 1 then
+               Free (this.m_IWiFiOnDemandHotspotNetwork);
+            end if;
          end if;
       end if;
    end;
@@ -1421,7 +1435,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiOnDemandHotspotNetworkProperties /= null then
          if this.m_IWiFiOnDemandHotspotNetworkProperties.all /= null then
             temp := this.m_IWiFiOnDemandHotspotNetworkProperties.all.Release;
-            Free (this.m_IWiFiOnDemandHotspotNetworkProperties);
+            if temp < 1 then
+               Free (this.m_IWiFiOnDemandHotspotNetworkProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1687,7 +1703,9 @@ package body WinUI3.Windows.Devices.WiFi is
       if this.m_IWiFiWpsConfigurationResult /= null then
          if this.m_IWiFiWpsConfigurationResult.all /= null then
             temp := this.m_IWiFiWpsConfigurationResult.all.Release;
-            Free (this.m_IWiFiWpsConfigurationResult);
+            if temp < 1 then
+               Free (this.m_IWiFiWpsConfigurationResult);
+            end if;
          end if;
       end if;
    end;

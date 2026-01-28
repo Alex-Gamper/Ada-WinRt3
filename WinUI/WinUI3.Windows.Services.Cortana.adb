@@ -57,7 +57,9 @@ package body WinUI3.Windows.Services.Cortana is
       if this.m_ICortanaActionableInsights /= null then
          if this.m_ICortanaActionableInsights.all /= null then
             temp := this.m_ICortanaActionableInsights.all.Release;
-            Free (this.m_ICortanaActionableInsights);
+            if temp < 1 then
+               Free (this.m_ICortanaActionableInsights);
+            end if;
          end if;
       end if;
    end;
@@ -482,7 +484,9 @@ package body WinUI3.Windows.Services.Cortana is
       if this.m_ICortanaActionableInsightsOptions /= null then
          if this.m_ICortanaActionableInsightsOptions.all /= null then
             temp := this.m_ICortanaActionableInsightsOptions.all.Release;
-            Free (this.m_ICortanaActionableInsightsOptions);
+            if temp < 1 then
+               Free (this.m_ICortanaActionableInsightsOptions);
+            end if;
          end if;
       end if;
    end;
@@ -596,7 +600,9 @@ package body WinUI3.Windows.Services.Cortana is
       if this.m_ICortanaPermissionsManager /= null then
          if this.m_ICortanaPermissionsManager.all /= null then
             temp := this.m_ICortanaPermissionsManager.all.Release;
-            Free (this.m_ICortanaPermissionsManager);
+            if temp < 1 then
+               Free (this.m_ICortanaPermissionsManager);
+            end if;
          end if;
       end if;
    end;
@@ -855,7 +861,9 @@ package body WinUI3.Windows.Services.Cortana is
       if this.m_ICortanaSettings /= null then
          if this.m_ICortanaSettings.all /= null then
             temp := this.m_ICortanaSettings.all.Release;
-            Free (this.m_ICortanaSettings);
+            if temp < 1 then
+               Free (this.m_ICortanaSettings);
+            end if;
          end if;
       end if;
    end;

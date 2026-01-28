@@ -68,7 +68,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountClientView /= null then
          if this.m_IWebAccountClientView.all /= null then
             temp := this.m_IWebAccountClientView.all.Release;
-            Free (this.m_IWebAccountClientView);
+            if temp < 1 then
+               Free (this.m_IWebAccountClientView);
+            end if;
          end if;
       end if;
    end;
@@ -1652,7 +1654,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderAddAccountOperation /= null then
          if this.m_IWebAccountProviderAddAccountOperation.all /= null then
             temp := this.m_IWebAccountProviderAddAccountOperation.all.Release;
-            Free (this.m_IWebAccountProviderAddAccountOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderAddAccountOperation);
+            end if;
          end if;
       end if;
    end;
@@ -1710,7 +1714,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderDeleteAccountOperation /= null then
          if this.m_IWebAccountProviderDeleteAccountOperation.all /= null then
             temp := this.m_IWebAccountProviderDeleteAccountOperation.all.Release;
-            Free (this.m_IWebAccountProviderDeleteAccountOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderDeleteAccountOperation);
+            end if;
          end if;
       end if;
    end;
@@ -1811,7 +1817,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderTokenOperation /= null then
          if this.m_IWebAccountProviderTokenOperation.all /= null then
             temp := this.m_IWebAccountProviderTokenOperation.all.Release;
-            Free (this.m_IWebAccountProviderTokenOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderTokenOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2001,7 +2009,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderManageAccountOperation /= null then
          if this.m_IWebAccountProviderManageAccountOperation.all /= null then
             temp := this.m_IWebAccountProviderManageAccountOperation.all.Release;
-            Free (this.m_IWebAccountProviderManageAccountOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderManageAccountOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2079,7 +2089,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderTokenOperation /= null then
          if this.m_IWebAccountProviderTokenOperation.all /= null then
             temp := this.m_IWebAccountProviderTokenOperation.all.Release;
-            Free (this.m_IWebAccountProviderTokenOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderTokenOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2250,7 +2262,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderRetrieveCookiesOperation /= null then
          if this.m_IWebAccountProviderRetrieveCookiesOperation.all /= null then
             temp := this.m_IWebAccountProviderRetrieveCookiesOperation.all.Release;
-            Free (this.m_IWebAccountProviderRetrieveCookiesOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderRetrieveCookiesOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2423,7 +2437,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderSignOutAccountOperation /= null then
          if this.m_IWebAccountProviderSignOutAccountOperation.all /= null then
             temp := this.m_IWebAccountProviderSignOutAccountOperation.all.Release;
-            Free (this.m_IWebAccountProviderSignOutAccountOperation);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderSignOutAccountOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2564,7 +2580,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebAccountProviderTokenObjects /= null then
          if this.m_IWebAccountProviderTokenObjects.all /= null then
             temp := this.m_IWebAccountProviderTokenObjects.all.Release;
-            Free (this.m_IWebAccountProviderTokenObjects);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderTokenObjects);
+            end if;
          end if;
       end if;
    end;
@@ -2628,7 +2646,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebProviderTokenRequest /= null then
          if this.m_IWebProviderTokenRequest.all /= null then
             temp := this.m_IWebProviderTokenRequest.all.Release;
-            Free (this.m_IWebProviderTokenRequest);
+            if temp < 1 then
+               Free (this.m_IWebProviderTokenRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2980,7 +3000,9 @@ package body WinRt.Windows.Security.Authentication.Web.Provider is
       if this.m_IWebProviderTokenResponse /= null then
          if this.m_IWebProviderTokenResponse.all /= null then
             temp := this.m_IWebProviderTokenResponse.all.Release;
-            Free (this.m_IWebProviderTokenResponse);
+            if temp < 1 then
+               Free (this.m_IWebProviderTokenResponse);
+            end if;
          end if;
       end if;
    end;

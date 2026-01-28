@@ -56,7 +56,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IEnhancedWaypoint /= null then
          if this.m_IEnhancedWaypoint.all /= null then
             temp := this.m_IEnhancedWaypoint.all.Release;
-            Free (this.m_IEnhancedWaypoint);
+            if temp < 1 then
+               Free (this.m_IEnhancedWaypoint);
+            end if;
          end if;
       end if;
    end;
@@ -144,7 +146,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IManeuverWarning /= null then
          if this.m_IManeuverWarning.all /= null then
             temp := this.m_IManeuverWarning.all.Release;
-            Free (this.m_IManeuverWarning);
+            if temp < 1 then
+               Free (this.m_IManeuverWarning);
+            end if;
          end if;
       end if;
    end;
@@ -201,7 +205,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapAddress /= null then
          if this.m_IMapAddress.all /= null then
             temp := this.m_IMapAddress.all.Release;
-            Free (this.m_IMapAddress);
+            if temp < 1 then
+               Free (this.m_IMapAddress);
+            end if;
          end if;
       end if;
    end;
@@ -548,7 +554,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapLocation /= null then
          if this.m_IMapLocation.all /= null then
             temp := this.m_IMapLocation.all.Release;
-            Free (this.m_IMapLocation);
+            if temp < 1 then
+               Free (this.m_IMapLocation);
+            end if;
          end if;
       end if;
    end;
@@ -957,7 +965,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapLocationFinderResult /= null then
          if this.m_IMapLocationFinderResult.all /= null then
             temp := this.m_IMapLocationFinderResult.all.Release;
-            Free (this.m_IMapLocationFinderResult);
+            if temp < 1 then
+               Free (this.m_IMapLocationFinderResult);
+            end if;
          end if;
       end if;
    end;
@@ -1059,7 +1069,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapRoute /= null then
          if this.m_IMapRoute.all /= null then
             temp := this.m_IMapRoute.all.Release;
-            Free (this.m_IMapRoute);
+            if temp < 1 then
+               Free (this.m_IMapRoute);
+            end if;
          end if;
       end if;
    end;
@@ -1298,7 +1310,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapRouteDrivingOptions /= null then
          if this.m_IMapRouteDrivingOptions.all /= null then
             temp := this.m_IMapRouteDrivingOptions.all.Release;
-            Free (this.m_IMapRouteDrivingOptions);
+            if temp < 1 then
+               Free (this.m_IMapRouteDrivingOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2489,7 +2503,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapRouteFinderResult /= null then
          if this.m_IMapRouteFinderResult.all /= null then
             temp := this.m_IMapRouteFinderResult.all.Release;
-            Free (this.m_IMapRouteFinderResult);
+            if temp < 1 then
+               Free (this.m_IMapRouteFinderResult);
+            end if;
          end if;
       end if;
    end;
@@ -2573,7 +2589,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapRouteLeg /= null then
          if this.m_IMapRouteLeg.all /= null then
             temp := this.m_IMapRouteLeg.all.Release;
-            Free (this.m_IMapRouteLeg);
+            if temp < 1 then
+               Free (this.m_IMapRouteLeg);
+            end if;
          end if;
       end if;
    end;
@@ -2732,7 +2750,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IMapRouteManeuver /= null then
          if this.m_IMapRouteManeuver.all /= null then
             temp := this.m_IMapRouteManeuver.all.Release;
-            Free (this.m_IMapRouteManeuver);
+            if temp < 1 then
+               Free (this.m_IMapRouteManeuver);
+            end if;
          end if;
       end if;
    end;
@@ -3099,7 +3119,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IPlaceInfo /= null then
          if this.m_IPlaceInfo.all /= null then
             temp := this.m_IPlaceInfo.all.Release;
-            Free (this.m_IPlaceInfo);
+            if temp < 1 then
+               Free (this.m_IPlaceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -3457,7 +3479,9 @@ package body WinRt.Windows.Services.Maps is
       if this.m_IPlaceInfoCreateOptions /= null then
          if this.m_IPlaceInfoCreateOptions.all /= null then
             temp := this.m_IPlaceInfoCreateOptions.all.Release;
-            Free (this.m_IPlaceInfoCreateOptions);
+            if temp < 1 then
+               Free (this.m_IPlaceInfoCreateOptions);
+            end if;
          end if;
       end if;
    end;

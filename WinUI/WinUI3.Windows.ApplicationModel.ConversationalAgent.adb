@@ -101,7 +101,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IActivationSignalDetectionConfiguration /= null then
          if this.m_IActivationSignalDetectionConfiguration.all /= null then
             temp := this.m_IActivationSignalDetectionConfiguration.all.Release;
-            Free (this.m_IActivationSignalDetectionConfiguration);
+            if temp < 1 then
+               Free (this.m_IActivationSignalDetectionConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1014,7 +1016,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IActivationSignalDetectionConfigurationCreationResult /= null then
          if this.m_IActivationSignalDetectionConfigurationCreationResult.all /= null then
             temp := this.m_IActivationSignalDetectionConfigurationCreationResult.all.Release;
-            Free (this.m_IActivationSignalDetectionConfigurationCreationResult);
+            if temp < 1 then
+               Free (this.m_IActivationSignalDetectionConfigurationCreationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1074,7 +1078,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IActivationSignalDetector /= null then
          if this.m_IActivationSignalDetector.all /= null then
             temp := this.m_IActivationSignalDetector.all.Release;
-            Free (this.m_IActivationSignalDetector);
+            if temp < 1 then
+               Free (this.m_IActivationSignalDetector);
+            end if;
          end if;
       end if;
    end;
@@ -1956,7 +1962,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentDetectorManager /= null then
          if this.m_IConversationalAgentDetectorManager.all /= null then
             temp := this.m_IConversationalAgentDetectorManager.all.Release;
-            Free (this.m_IConversationalAgentDetectorManager);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentDetectorManager);
+            end if;
          end if;
       end if;
    end;
@@ -2274,7 +2282,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentSession /= null then
          if this.m_IConversationalAgentSession.all /= null then
             temp := this.m_IConversationalAgentSession.all.Release;
-            Free (this.m_IConversationalAgentSession);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentSession);
+            end if;
          end if;
       end if;
    end;
@@ -3726,7 +3736,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentSessionInterruptedEventArgs /= null then
          if this.m_IConversationalAgentSessionInterruptedEventArgs.all /= null then
             temp := this.m_IConversationalAgentSessionInterruptedEventArgs.all.Release;
-            Free (this.m_IConversationalAgentSessionInterruptedEventArgs);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentSessionInterruptedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3749,7 +3761,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentSignal /= null then
          if this.m_IConversationalAgentSignal.all /= null then
             temp := this.m_IConversationalAgentSignal.all.Release;
-            Free (this.m_IConversationalAgentSignal);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentSignal);
+            end if;
          end if;
       end if;
    end;
@@ -4019,7 +4033,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentSignalDetectedEventArgs /= null then
          if this.m_IConversationalAgentSignalDetectedEventArgs.all /= null then
             temp := this.m_IConversationalAgentSignalDetectedEventArgs.all.Release;
-            Free (this.m_IConversationalAgentSignalDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentSignalDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4042,7 +4058,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IConversationalAgentSystemStateChangedEventArgs /= null then
          if this.m_IConversationalAgentSystemStateChangedEventArgs.all /= null then
             temp := this.m_IConversationalAgentSystemStateChangedEventArgs.all.Release;
-            Free (this.m_IConversationalAgentSystemStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IConversationalAgentSystemStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4082,7 +4100,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IDetectionConfigurationAvailabilityChangedEventArgs /= null then
          if this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all /= null then
             temp := this.m_IDetectionConfigurationAvailabilityChangedEventArgs.all.Release;
-            Free (this.m_IDetectionConfigurationAvailabilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDetectionConfigurationAvailabilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4122,7 +4142,9 @@ package body WinUI3.Windows.ApplicationModel.ConversationalAgent is
       if this.m_IDetectionConfigurationAvailabilityInfo /= null then
          if this.m_IDetectionConfigurationAvailabilityInfo.all /= null then
             temp := this.m_IDetectionConfigurationAvailabilityInfo.all.Release;
-            Free (this.m_IDetectionConfigurationAvailabilityInfo);
+            if temp < 1 then
+               Free (this.m_IDetectionConfigurationAvailabilityInfo);
+            end if;
          end if;
       end if;
    end;

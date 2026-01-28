@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IBindingBase /= null then
          if this.m_IBindingBase.all /= null then
             temp := this.m_IBindingBase.all.Release;
-            Free (this.m_IBindingBase);
+            if temp < 1 then
+               Free (this.m_IBindingBase);
+            end if;
          end if;
       end if;
    end;
@@ -98,7 +100,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IBinding /= null then
          if this.m_IBinding.all /= null then
             temp := this.m_IBinding.all.Release;
-            Free (this.m_IBinding);
+            if temp < 1 then
+               Free (this.m_IBinding);
+            end if;
          end if;
       end if;
    end;
@@ -517,7 +521,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IBindingExpressionBase /= null then
          if this.m_IBindingExpressionBase.all /= null then
             temp := this.m_IBindingExpressionBase.all.Release;
-            Free (this.m_IBindingExpressionBase);
+            if temp < 1 then
+               Free (this.m_IBindingExpressionBase);
+            end if;
          end if;
       end if;
    end;
@@ -543,7 +549,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IBindingExpression /= null then
          if this.m_IBindingExpression.all /= null then
             temp := this.m_IBindingExpression.all.Release;
-            Free (this.m_IBindingExpression);
+            if temp < 1 then
+               Free (this.m_IBindingExpression);
+            end if;
          end if;
       end if;
    end;
@@ -620,7 +628,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IBindingOperations /= null then
          if this.m_IBindingOperations.all /= null then
             temp := this.m_IBindingOperations.all.Release;
-            Free (this.m_IBindingOperations);
+            if temp < 1 then
+               Free (this.m_IBindingOperations);
+            end if;
          end if;
       end if;
    end;
@@ -669,7 +679,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_ICollectionViewSource /= null then
          if this.m_ICollectionViewSource.all /= null then
             temp := this.m_ICollectionViewSource.all.Release;
-            Free (this.m_ICollectionViewSource);
+            if temp < 1 then
+               Free (this.m_ICollectionViewSource);
+            end if;
          end if;
       end if;
    end;
@@ -926,7 +938,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_ICurrentChangingEventArgs /= null then
          if this.m_ICurrentChangingEventArgs.all /= null then
             temp := this.m_ICurrentChangingEventArgs.all.Release;
-            Free (this.m_ICurrentChangingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICurrentChangingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1068,7 +1082,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IDataErrorsChangedEventArgs /= null then
          if this.m_IDataErrorsChangedEventArgs.all /= null then
             temp := this.m_IDataErrorsChangedEventArgs.all.Release;
-            Free (this.m_IDataErrorsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDataErrorsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1157,7 +1173,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IItemIndexRange /= null then
          if this.m_IItemIndexRange.all /= null then
             temp := this.m_IItemIndexRange.all.Release;
-            Free (this.m_IItemIndexRange);
+            if temp < 1 then
+               Free (this.m_IItemIndexRange);
+            end if;
          end if;
       end if;
    end;
@@ -1261,7 +1279,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IPropertyChangedEventArgs /= null then
          if this.m_IPropertyChangedEventArgs.all /= null then
             temp := this.m_IPropertyChangedEventArgs.all.Release;
-            Free (this.m_IPropertyChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPropertyChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1351,7 +1371,9 @@ package body WinUI3.Microsoft.UI.Xaml.Data is
       if this.m_IRelativeSource /= null then
          if this.m_IRelativeSource.all /= null then
             temp := this.m_IRelativeSource.all.Release;
-            Free (this.m_IRelativeSource);
+            if temp < 1 then
+               Free (this.m_IRelativeSource);
+            end if;
          end if;
       end if;
    end;

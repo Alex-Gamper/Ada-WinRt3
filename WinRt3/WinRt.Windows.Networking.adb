@@ -48,7 +48,9 @@ package body WinRt.Windows.Networking is
       if this.m_IEndpointPair /= null then
          if this.m_IEndpointPair.all /= null then
             temp := this.m_IEndpointPair.all.Release;
-            Free (this.m_IEndpointPair);
+            if temp < 1 then
+               Free (this.m_IEndpointPair);
+            end if;
          end if;
       end if;
    end;
@@ -249,7 +251,9 @@ package body WinRt.Windows.Networking is
       if this.m_IHostName /= null then
          if this.m_IHostName.all /= null then
             temp := this.m_IHostName.all.Release;
-            Free (this.m_IHostName);
+            if temp < 1 then
+               Free (this.m_IHostName);
+            end if;
          end if;
       end if;
    end;

@@ -57,7 +57,9 @@ package body WinRt.Windows.Media is
       if this.m_IAudioBuffer /= null then
          if this.m_IAudioBuffer.all /= null then
             temp := this.m_IAudioBuffer.all.Release;
-            Free (this.m_IAudioBuffer);
+            if temp < 1 then
+               Free (this.m_IAudioBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -168,7 +170,9 @@ package body WinRt.Windows.Media is
       if this.m_IAudioFrame /= null then
          if this.m_IAudioFrame.all /= null then
             temp := this.m_IAudioFrame.all.Release;
-            Free (this.m_IAudioFrame);
+            if temp < 1 then
+               Free (this.m_IAudioFrame);
+            end if;
          end if;
       end if;
    end;
@@ -492,7 +496,9 @@ package body WinRt.Windows.Media is
       if this.m_IAutoRepeatModeChangeRequestedEventArgs /= null then
          if this.m_IAutoRepeatModeChangeRequestedEventArgs.all /= null then
             temp := this.m_IAutoRepeatModeChangeRequestedEventArgs.all.Release;
-            Free (this.m_IAutoRepeatModeChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAutoRepeatModeChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -532,7 +538,9 @@ package body WinRt.Windows.Media is
       if this.m_IImageDisplayProperties /= null then
          if this.m_IImageDisplayProperties.all /= null then
             temp := this.m_IImageDisplayProperties.all.Release;
-            Free (this.m_IImageDisplayProperties);
+            if temp < 1 then
+               Free (this.m_IImageDisplayProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1377,7 +1385,9 @@ package body WinRt.Windows.Media is
       if this.m_IMediaExtensionManager /= null then
          if this.m_IMediaExtensionManager.all /= null then
             temp := this.m_IMediaExtensionManager.all.Release;
-            Free (this.m_IMediaExtensionManager);
+            if temp < 1 then
+               Free (this.m_IMediaExtensionManager);
+            end if;
          end if;
       end if;
    end;
@@ -1713,7 +1723,9 @@ package body WinRt.Windows.Media is
       if this.m_IMediaProcessingTriggerDetails /= null then
          if this.m_IMediaProcessingTriggerDetails.all /= null then
             temp := this.m_IMediaProcessingTriggerDetails.all.Release;
-            Free (this.m_IMediaProcessingTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IMediaProcessingTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1756,7 +1768,9 @@ package body WinRt.Windows.Media is
       if this.m_IMediaTimelineController /= null then
          if this.m_IMediaTimelineController.all /= null then
             temp := this.m_IMediaTimelineController.all.Release;
-            Free (this.m_IMediaTimelineController);
+            if temp < 1 then
+               Free (this.m_IMediaTimelineController);
+            end if;
          end if;
       end if;
    end;
@@ -2152,7 +2166,9 @@ package body WinRt.Windows.Media is
       if this.m_IMediaTimelineControllerFailedEventArgs /= null then
          if this.m_IMediaTimelineControllerFailedEventArgs.all /= null then
             temp := this.m_IMediaTimelineControllerFailedEventArgs.all.Release;
-            Free (this.m_IMediaTimelineControllerFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaTimelineControllerFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2192,7 +2208,9 @@ package body WinRt.Windows.Media is
       if this.m_IMusicDisplayProperties /= null then
          if this.m_IMusicDisplayProperties.all /= null then
             temp := this.m_IMusicDisplayProperties.all.Release;
-            Free (this.m_IMusicDisplayProperties);
+            if temp < 1 then
+               Free (this.m_IMusicDisplayProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2475,7 +2493,9 @@ package body WinRt.Windows.Media is
       if this.m_IPlaybackPositionChangeRequestedEventArgs /= null then
          if this.m_IPlaybackPositionChangeRequestedEventArgs.all /= null then
             temp := this.m_IPlaybackPositionChangeRequestedEventArgs.all.Release;
-            Free (this.m_IPlaybackPositionChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlaybackPositionChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2515,7 +2535,9 @@ package body WinRt.Windows.Media is
       if this.m_IPlaybackRateChangeRequestedEventArgs /= null then
          if this.m_IPlaybackRateChangeRequestedEventArgs.all /= null then
             temp := this.m_IPlaybackRateChangeRequestedEventArgs.all.Release;
-            Free (this.m_IPlaybackRateChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlaybackRateChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2555,7 +2577,9 @@ package body WinRt.Windows.Media is
       if this.m_IShuffleEnabledChangeRequestedEventArgs /= null then
          if this.m_IShuffleEnabledChangeRequestedEventArgs.all /= null then
             temp := this.m_IShuffleEnabledChangeRequestedEventArgs.all.Release;
-            Free (this.m_IShuffleEnabledChangeRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IShuffleEnabledChangeRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2595,7 +2619,9 @@ package body WinRt.Windows.Media is
       if this.m_ISystemMediaTransportControls /= null then
          if this.m_ISystemMediaTransportControls.all /= null then
             temp := this.m_ISystemMediaTransportControls.all.Release;
-            Free (this.m_ISystemMediaTransportControls);
+            if temp < 1 then
+               Free (this.m_ISystemMediaTransportControls);
+            end if;
          end if;
       end if;
    end;
@@ -3435,7 +3461,9 @@ package body WinRt.Windows.Media is
       if this.m_ISystemMediaTransportControlsButtonPressedEventArgs /= null then
          if this.m_ISystemMediaTransportControlsButtonPressedEventArgs.all /= null then
             temp := this.m_ISystemMediaTransportControlsButtonPressedEventArgs.all.Release;
-            Free (this.m_ISystemMediaTransportControlsButtonPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISystemMediaTransportControlsButtonPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3475,7 +3503,9 @@ package body WinRt.Windows.Media is
       if this.m_ISystemMediaTransportControlsDisplayUpdater /= null then
          if this.m_ISystemMediaTransportControlsDisplayUpdater.all /= null then
             temp := this.m_ISystemMediaTransportControlsDisplayUpdater.all.Release;
-            Free (this.m_ISystemMediaTransportControlsDisplayUpdater);
+            if temp < 1 then
+               Free (this.m_ISystemMediaTransportControlsDisplayUpdater);
+            end if;
          end if;
       end if;
    end;
@@ -3755,7 +3785,9 @@ package body WinRt.Windows.Media is
       if this.m_ISystemMediaTransportControlsPropertyChangedEventArgs /= null then
          if this.m_ISystemMediaTransportControlsPropertyChangedEventArgs.all /= null then
             temp := this.m_ISystemMediaTransportControlsPropertyChangedEventArgs.all.Release;
-            Free (this.m_ISystemMediaTransportControlsPropertyChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISystemMediaTransportControlsPropertyChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3795,7 +3827,9 @@ package body WinRt.Windows.Media is
       if this.m_ISystemMediaTransportControlsTimelineProperties /= null then
          if this.m_ISystemMediaTransportControlsTimelineProperties.all /= null then
             temp := this.m_ISystemMediaTransportControlsTimelineProperties.all.Release;
-            Free (this.m_ISystemMediaTransportControlsTimelineProperties);
+            if temp < 1 then
+               Free (this.m_ISystemMediaTransportControlsTimelineProperties);
+            end if;
          end if;
       end if;
    end;
@@ -3997,7 +4031,9 @@ package body WinRt.Windows.Media is
       if this.m_IVideoDisplayProperties /= null then
          if this.m_IVideoDisplayProperties.all /= null then
             temp := this.m_IVideoDisplayProperties.all.Release;
-            Free (this.m_IVideoDisplayProperties);
+            if temp < 1 then
+               Free (this.m_IVideoDisplayProperties);
+            end if;
          end if;
       end if;
    end;
@@ -4148,7 +4184,9 @@ package body WinRt.Windows.Media is
       if this.m_IVideoFrame /= null then
          if this.m_IVideoFrame.all /= null then
             temp := this.m_IVideoFrame.all.Release;
-            Free (this.m_IVideoFrame);
+            if temp < 1 then
+               Free (this.m_IVideoFrame);
+            end if;
          end if;
       end if;
    end;

@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
       if this.m_IAppNotificationBuilder /= null then
          if this.m_IAppNotificationBuilder.all /= null then
             temp := this.m_IAppNotificationBuilder.all.Release;
-            Free (this.m_IAppNotificationBuilder);
+            if temp < 1 then
+               Free (this.m_IAppNotificationBuilder);
+            end if;
          end if;
       end if;
    end;
@@ -766,7 +768,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
       if this.m_IAppNotificationButton /= null then
          if this.m_IAppNotificationButton.all /= null then
             temp := this.m_IAppNotificationButton.all.Release;
-            Free (this.m_IAppNotificationButton);
+            if temp < 1 then
+               Free (this.m_IAppNotificationButton);
+            end if;
          end if;
       end if;
    end;
@@ -1375,7 +1379,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
       if this.m_IAppNotificationComboBox /= null then
          if this.m_IAppNotificationComboBox.all /= null then
             temp := this.m_IAppNotificationComboBox.all.Release;
-            Free (this.m_IAppNotificationComboBox);
+            if temp < 1 then
+               Free (this.m_IAppNotificationComboBox);
+            end if;
          end if;
       end if;
    end;
@@ -1608,7 +1614,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
       if this.m_IAppNotificationProgressBar /= null then
          if this.m_IAppNotificationProgressBar.all /= null then
             temp := this.m_IAppNotificationProgressBar.all.Release;
-            Free (this.m_IAppNotificationProgressBar);
+            if temp < 1 then
+               Free (this.m_IAppNotificationProgressBar);
+            end if;
          end if;
       end if;
    end;
@@ -1963,7 +1971,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications.Builder is
       if this.m_IAppNotificationTextProperties /= null then
          if this.m_IAppNotificationTextProperties.all /= null then
             temp := this.m_IAppNotificationTextProperties.all.Release;
-            Free (this.m_IAppNotificationTextProperties);
+            if temp < 1 then
+               Free (this.m_IAppNotificationTextProperties);
+            end if;
          end if;
       end if;
    end;

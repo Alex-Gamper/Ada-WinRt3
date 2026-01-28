@@ -51,7 +51,9 @@ package body WinUI3.Windows.Graphics.Display.Core is
       if this.m_IHdmiDisplayInformation /= null then
          if this.m_IHdmiDisplayInformation.all /= null then
             temp := this.m_IHdmiDisplayInformation.all.Release;
-            Free (this.m_IHdmiDisplayInformation);
+            if temp < 1 then
+               Free (this.m_IHdmiDisplayInformation);
+            end if;
          end if;
       end if;
    end;
@@ -411,7 +413,9 @@ package body WinUI3.Windows.Graphics.Display.Core is
       if this.m_IHdmiDisplayMode /= null then
          if this.m_IHdmiDisplayMode.all /= null then
             temp := this.m_IHdmiDisplayMode.all.Release;
-            Free (this.m_IHdmiDisplayMode);
+            if temp < 1 then
+               Free (this.m_IHdmiDisplayMode);
+            end if;
          end if;
       end if;
    end;

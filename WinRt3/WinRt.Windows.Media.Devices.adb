@@ -57,7 +57,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAdvancedPhotoCaptureSettings /= null then
          if this.m_IAdvancedPhotoCaptureSettings.all /= null then
             temp := this.m_IAdvancedPhotoCaptureSettings.all.Release;
-            Free (this.m_IAdvancedPhotoCaptureSettings);
+            if temp < 1 then
+               Free (this.m_IAdvancedPhotoCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -131,7 +133,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAdvancedPhotoControl /= null then
          if this.m_IAdvancedPhotoControl.all /= null then
             temp := this.m_IAdvancedPhotoControl.all.Release;
-            Free (this.m_IAdvancedPhotoControl);
+            if temp < 1 then
+               Free (this.m_IAdvancedPhotoControl);
+            end if;
          end if;
       end if;
    end;
@@ -223,7 +227,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAudioDeviceController /= null then
          if this.m_IAudioDeviceController.all /= null then
             temp := this.m_IAudioDeviceController.all.Release;
-            Free (this.m_IAudioDeviceController);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceController);
+            end if;
          end if;
       end if;
    end;
@@ -426,7 +432,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAudioDeviceModule /= null then
          if this.m_IAudioDeviceModule.all /= null then
             temp := this.m_IAudioDeviceModule.all.Release;
-            Free (this.m_IAudioDeviceModule);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceModule);
+            end if;
          end if;
       end if;
    end;
@@ -607,7 +615,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAudioDeviceModuleNotificationEventArgs /= null then
          if this.m_IAudioDeviceModuleNotificationEventArgs.all /= null then
             temp := this.m_IAudioDeviceModuleNotificationEventArgs.all.Release;
-            Free (this.m_IAudioDeviceModuleNotificationEventArgs);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceModuleNotificationEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -667,7 +677,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IAudioDeviceModulesManager /= null then
          if this.m_IAudioDeviceModulesManager.all /= null then
             temp := this.m_IAudioDeviceModulesManager.all.Release;
-            Free (this.m_IAudioDeviceModulesManager);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceModulesManager);
+            end if;
          end if;
       end if;
    end;
@@ -795,7 +807,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ICallControl /= null then
          if this.m_ICallControl.all /= null then
             temp := this.m_ICallControl.all.Release;
-            Free (this.m_ICallControl);
+            if temp < 1 then
+               Free (this.m_ICallControl);
+            end if;
          end if;
       end if;
    end;
@@ -1172,7 +1186,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ICameraOcclusionInfo /= null then
          if this.m_ICameraOcclusionInfo.all /= null then
             temp := this.m_ICameraOcclusionInfo.all.Release;
-            Free (this.m_ICameraOcclusionInfo);
+            if temp < 1 then
+               Free (this.m_ICameraOcclusionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1266,7 +1282,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ICameraOcclusionState /= null then
          if this.m_ICameraOcclusionState.all /= null then
             temp := this.m_ICameraOcclusionState.all.Release;
-            Free (this.m_ICameraOcclusionState);
+            if temp < 1 then
+               Free (this.m_ICameraOcclusionState);
+            end if;
          end if;
       end if;
    end;
@@ -1324,7 +1342,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ICameraOcclusionStateChangedEventArgs /= null then
          if this.m_ICameraOcclusionStateChangedEventArgs.all /= null then
             temp := this.m_ICameraOcclusionStateChangedEventArgs.all.Release;
-            Free (this.m_ICameraOcclusionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICameraOcclusionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1367,7 +1387,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDefaultAudioDeviceChangedEventArgs /= null then
          if this.m_IDefaultAudioDeviceChangedEventArgs.all /= null then
             temp := this.m_IDefaultAudioDeviceChangedEventArgs.all.Release;
-            Free (this.m_IDefaultAudioDeviceChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDefaultAudioDeviceChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1427,7 +1449,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDefaultAudioDeviceChangedEventArgs /= null then
          if this.m_IDefaultAudioDeviceChangedEventArgs.all /= null then
             temp := this.m_IDefaultAudioDeviceChangedEventArgs.all.Release;
-            Free (this.m_IDefaultAudioDeviceChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDefaultAudioDeviceChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1487,7 +1511,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDialRequestedEventArgs /= null then
          if this.m_IDialRequestedEventArgs.all /= null then
             temp := this.m_IDialRequestedEventArgs.all.Release;
-            Free (this.m_IDialRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDialRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1557,7 +1583,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDigitalWindowBounds /= null then
          if this.m_IDigitalWindowBounds.all /= null then
             temp := this.m_IDigitalWindowBounds.all.Release;
-            Free (this.m_IDigitalWindowBounds);
+            if temp < 1 then
+               Free (this.m_IDigitalWindowBounds);
+            end if;
          end if;
       end if;
    end;
@@ -1695,7 +1723,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDigitalWindowCapability /= null then
          if this.m_IDigitalWindowCapability.all /= null then
             temp := this.m_IDigitalWindowCapability.all.Release;
-            Free (this.m_IDigitalWindowCapability);
+            if temp < 1 then
+               Free (this.m_IDigitalWindowCapability);
+            end if;
          end if;
       end if;
    end;
@@ -1820,7 +1850,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IDigitalWindowControl /= null then
          if this.m_IDigitalWindowControl.all /= null then
             temp := this.m_IDigitalWindowControl.all.Release;
-            Free (this.m_IDigitalWindowControl);
+            if temp < 1 then
+               Free (this.m_IDigitalWindowControl);
+            end if;
          end if;
       end if;
    end;
@@ -1996,7 +2028,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IExposureCompensationControl /= null then
          if this.m_IExposureCompensationControl.all /= null then
             temp := this.m_IExposureCompensationControl.all.Release;
-            Free (this.m_IExposureCompensationControl);
+            if temp < 1 then
+               Free (this.m_IExposureCompensationControl);
+            end if;
          end if;
       end if;
    end;
@@ -2147,7 +2181,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IExposureControl /= null then
          if this.m_IExposureControl.all /= null then
             temp := this.m_IExposureControl.all.Release;
-            Free (this.m_IExposureControl);
+            if temp < 1 then
+               Free (this.m_IExposureControl);
+            end if;
          end if;
       end if;
    end;
@@ -2358,7 +2394,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IExposurePriorityVideoControl /= null then
          if this.m_IExposurePriorityVideoControl.all /= null then
             temp := this.m_IExposurePriorityVideoControl.all.Release;
-            Free (this.m_IExposurePriorityVideoControl);
+            if temp < 1 then
+               Free (this.m_IExposurePriorityVideoControl);
+            end if;
          end if;
       end if;
    end;
@@ -2430,7 +2468,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IFlashControl /= null then
          if this.m_IFlashControl.all /= null then
             temp := this.m_IFlashControl.all.Release;
-            Free (this.m_IFlashControl);
+            if temp < 1 then
+               Free (this.m_IFlashControl);
+            end if;
          end if;
       end if;
    end;
@@ -2693,7 +2733,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IFocusControl /= null then
          if this.m_IFocusControl.all /= null then
             temp := this.m_IFocusControl.all.Release;
-            Free (this.m_IFocusControl);
+            if temp < 1 then
+               Free (this.m_IFocusControl);
+            end if;
          end if;
       end if;
    end;
@@ -3277,7 +3319,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IFocusSettings /= null then
          if this.m_IFocusSettings.all /= null then
             temp := this.m_IFocusSettings.all.Release;
-            Free (this.m_IFocusSettings);
+            if temp < 1 then
+               Free (this.m_IFocusSettings);
+            end if;
          end if;
       end if;
    end;
@@ -3517,7 +3561,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IHdrVideoControl /= null then
          if this.m_IHdrVideoControl.all /= null then
             temp := this.m_IHdrVideoControl.all.Release;
-            Free (this.m_IHdrVideoControl);
+            if temp < 1 then
+               Free (this.m_IHdrVideoControl);
+            end if;
          end if;
       end if;
    end;
@@ -3609,7 +3655,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IInfraredTorchControl /= null then
          if this.m_IInfraredTorchControl.all /= null then
             temp := this.m_IInfraredTorchControl.all.Release;
-            Free (this.m_IInfraredTorchControl);
+            if temp < 1 then
+               Free (this.m_IInfraredTorchControl);
+            end if;
          end if;
       end if;
    end;
@@ -3784,7 +3832,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IIsoSpeedControl /= null then
          if this.m_IIsoSpeedControl.all /= null then
             temp := this.m_IIsoSpeedControl.all.Release;
-            Free (this.m_IIsoSpeedControl);
+            if temp < 1 then
+               Free (this.m_IIsoSpeedControl);
+            end if;
          end if;
       end if;
    end;
@@ -4102,7 +4152,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IKeypadPressedEventArgs /= null then
          if this.m_IKeypadPressedEventArgs.all /= null then
             temp := this.m_IKeypadPressedEventArgs.all.Release;
-            Free (this.m_IKeypadPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_IKeypadPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4158,7 +4210,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ILowLagPhotoControl /= null then
          if this.m_ILowLagPhotoControl.all /= null then
             temp := this.m_ILowLagPhotoControl.all.Release;
-            Free (this.m_ILowLagPhotoControl);
+            if temp < 1 then
+               Free (this.m_ILowLagPhotoControl);
+            end if;
          end if;
       end if;
    end;
@@ -4335,7 +4389,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ILowLagPhotoSequenceControl /= null then
          if this.m_ILowLagPhotoSequenceControl.all /= null then
             temp := this.m_ILowLagPhotoSequenceControl.all.Release;
-            Free (this.m_ILowLagPhotoSequenceControl);
+            if temp < 1 then
+               Free (this.m_ILowLagPhotoSequenceControl);
+            end if;
          end if;
       end if;
    end;
@@ -4849,7 +4905,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IMediaDeviceControl /= null then
          if this.m_IMediaDeviceControl.all /= null then
             temp := this.m_IMediaDeviceControl.all.Release;
-            Free (this.m_IMediaDeviceControl);
+            if temp < 1 then
+               Free (this.m_IMediaDeviceControl);
+            end if;
          end if;
       end if;
    end;
@@ -4964,7 +5022,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IMediaDeviceControlCapabilities /= null then
          if this.m_IMediaDeviceControlCapabilities.all /= null then
             temp := this.m_IMediaDeviceControlCapabilities.all.Release;
-            Free (this.m_IMediaDeviceControlCapabilities);
+            if temp < 1 then
+               Free (this.m_IMediaDeviceControlCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -5089,7 +5149,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IModuleCommandResult /= null then
          if this.m_IModuleCommandResult.all /= null then
             temp := this.m_IModuleCommandResult.all.Release;
-            Free (this.m_IModuleCommandResult);
+            if temp < 1 then
+               Free (this.m_IModuleCommandResult);
+            end if;
          end if;
       end if;
    end;
@@ -5146,7 +5208,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IOpticalImageStabilizationControl /= null then
          if this.m_IOpticalImageStabilizationControl.all /= null then
             temp := this.m_IOpticalImageStabilizationControl.all.Release;
-            Free (this.m_IOpticalImageStabilizationControl);
+            if temp < 1 then
+               Free (this.m_IOpticalImageStabilizationControl);
+            end if;
          end if;
       end if;
    end;
@@ -5238,7 +5302,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IPanelBasedOptimizationControl /= null then
          if this.m_IPanelBasedOptimizationControl.all /= null then
             temp := this.m_IPanelBasedOptimizationControl.all.Release;
-            Free (this.m_IPanelBasedOptimizationControl);
+            if temp < 1 then
+               Free (this.m_IPanelBasedOptimizationControl);
+            end if;
          end if;
       end if;
    end;
@@ -5310,7 +5376,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IPhotoConfirmationControl /= null then
          if this.m_IPhotoConfirmationControl.all /= null then
             temp := this.m_IPhotoConfirmationControl.all.Release;
-            Free (this.m_IPhotoConfirmationControl);
+            if temp < 1 then
+               Free (this.m_IPhotoConfirmationControl);
+            end if;
          end if;
       end if;
    end;
@@ -5414,7 +5482,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IRedialRequestedEventArgs /= null then
          if this.m_IRedialRequestedEventArgs.all /= null then
             temp := this.m_IRedialRequestedEventArgs.all.Release;
-            Free (this.m_IRedialRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRedialRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5467,7 +5537,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IRegionOfInterest /= null then
          if this.m_IRegionOfInterest.all /= null then
             temp := this.m_IRegionOfInterest.all.Release;
-            Free (this.m_IRegionOfInterest);
+            if temp < 1 then
+               Free (this.m_IRegionOfInterest);
+            end if;
          end if;
       end if;
    end;
@@ -5757,7 +5829,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IRegionsOfInterestControl /= null then
          if this.m_IRegionsOfInterestControl.all /= null then
             temp := this.m_IRegionsOfInterestControl.all.Release;
-            Free (this.m_IRegionsOfInterestControl);
+            if temp < 1 then
+               Free (this.m_IRegionsOfInterestControl);
+            end if;
          end if;
       end if;
    end;
@@ -5977,7 +6051,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ISceneModeControl /= null then
          if this.m_ISceneModeControl.all /= null then
             temp := this.m_ISceneModeControl.all.Release;
-            Free (this.m_ISceneModeControl);
+            if temp < 1 then
+               Free (this.m_ISceneModeControl);
+            end if;
          end if;
       end if;
    end;
@@ -6080,7 +6156,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_ITorchControl /= null then
          if this.m_ITorchControl.all /= null then
             temp := this.m_ITorchControl.all.Release;
-            Free (this.m_ITorchControl);
+            if temp < 1 then
+               Free (this.m_ITorchControl);
+            end if;
          end if;
       end if;
    end;
@@ -6201,7 +6279,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IVideoDeviceController /= null then
          if this.m_IVideoDeviceController.all /= null then
             temp := this.m_IVideoDeviceController.all.Release;
-            Free (this.m_IVideoDeviceController);
+            if temp < 1 then
+               Free (this.m_IVideoDeviceController);
+            end if;
          end if;
       end if;
    end;
@@ -7404,7 +7484,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IVideoDeviceControllerGetDevicePropertyResult /= null then
          if this.m_IVideoDeviceControllerGetDevicePropertyResult.all /= null then
             temp := this.m_IVideoDeviceControllerGetDevicePropertyResult.all.Release;
-            Free (this.m_IVideoDeviceControllerGetDevicePropertyResult);
+            if temp < 1 then
+               Free (this.m_IVideoDeviceControllerGetDevicePropertyResult);
+            end if;
          end if;
       end if;
    end;
@@ -7461,7 +7543,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IVideoTemporalDenoisingControl /= null then
          if this.m_IVideoTemporalDenoisingControl.all /= null then
             temp := this.m_IVideoTemporalDenoisingControl.all.Release;
-            Free (this.m_IVideoTemporalDenoisingControl);
+            if temp < 1 then
+               Free (this.m_IVideoTemporalDenoisingControl);
+            end if;
          end if;
       end if;
    end;
@@ -7553,7 +7637,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IWhiteBalanceControl /= null then
          if this.m_IWhiteBalanceControl.all /= null then
             temp := this.m_IWhiteBalanceControl.all.Release;
-            Free (this.m_IWhiteBalanceControl);
+            if temp < 1 then
+               Free (this.m_IWhiteBalanceControl);
+            end if;
          end if;
       end if;
    end;
@@ -7764,7 +7850,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IZoomControl /= null then
          if this.m_IZoomControl.all /= null then
             temp := this.m_IZoomControl.all.Release;
-            Free (this.m_IZoomControl);
+            if temp < 1 then
+               Free (this.m_IZoomControl);
+            end if;
          end if;
       end if;
    end;
@@ -7951,7 +8039,9 @@ package body WinRt.Windows.Media.Devices is
       if this.m_IZoomSettings /= null then
          if this.m_IZoomSettings.all /= null then
             temp := this.m_IZoomSettings.all.Release;
-            Free (this.m_IZoomSettings);
+            if temp < 1 then
+               Free (this.m_IZoomSettings);
+            end if;
          end if;
       end if;
    end;

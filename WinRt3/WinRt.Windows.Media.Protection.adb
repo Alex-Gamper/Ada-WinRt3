@@ -55,7 +55,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IComponentLoadFailedEventArgs /= null then
          if this.m_IComponentLoadFailedEventArgs.all /= null then
             temp := this.m_IComponentLoadFailedEventArgs.all.Release;
-            Free (this.m_IComponentLoadFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IComponentLoadFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -210,7 +212,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IHdcpSession /= null then
          if this.m_IHdcpSession.all /= null then
             temp := this.m_IHdcpSession.all.Release;
-            Free (this.m_IHdcpSession);
+            if temp < 1 then
+               Free (this.m_IHdcpSession);
+            end if;
          end if;
       end if;
    end;
@@ -405,7 +409,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IMediaProtectionManager /= null then
          if this.m_IMediaProtectionManager.all /= null then
             temp := this.m_IMediaProtectionManager.all.Release;
-            Free (this.m_IMediaProtectionManager);
+            if temp < 1 then
+               Free (this.m_IMediaProtectionManager);
+            end if;
          end if;
       end if;
    end;
@@ -563,7 +569,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IMediaProtectionPMPServer /= null then
          if this.m_IMediaProtectionPMPServer.all /= null then
             temp := this.m_IMediaProtectionPMPServer.all.Release;
-            Free (this.m_IMediaProtectionPMPServer);
+            if temp < 1 then
+               Free (this.m_IMediaProtectionPMPServer);
+            end if;
          end if;
       end if;
    end;
@@ -630,7 +638,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IMediaProtectionServiceCompletion /= null then
          if this.m_IMediaProtectionServiceCompletion.all /= null then
             temp := this.m_IMediaProtectionServiceCompletion.all.Release;
-            Free (this.m_IMediaProtectionServiceCompletion);
+            if temp < 1 then
+               Free (this.m_IMediaProtectionServiceCompletion);
+            end if;
          end if;
       end if;
    end;
@@ -668,7 +678,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IProtectionCapabilities /= null then
          if this.m_IProtectionCapabilities.all /= null then
             temp := this.m_IProtectionCapabilities.all.Release;
-            Free (this.m_IProtectionCapabilities);
+            if temp < 1 then
+               Free (this.m_IProtectionCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -748,7 +760,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IRevocationAndRenewalInformation /= null then
          if this.m_IRevocationAndRenewalInformation.all /= null then
             temp := this.m_IRevocationAndRenewalInformation.all.Release;
-            Free (this.m_IRevocationAndRenewalInformation);
+            if temp < 1 then
+               Free (this.m_IRevocationAndRenewalInformation);
+            end if;
          end if;
       end if;
    end;
@@ -791,7 +805,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IRevocationAndRenewalItem /= null then
          if this.m_IRevocationAndRenewalItem.all /= null then
             temp := this.m_IRevocationAndRenewalItem.all.Release;
-            Free (this.m_IRevocationAndRenewalItem);
+            if temp < 1 then
+               Free (this.m_IRevocationAndRenewalItem);
+            end if;
          end if;
       end if;
    end;
@@ -911,7 +927,9 @@ package body WinRt.Windows.Media.Protection is
       if this.m_IServiceRequestedEventArgs /= null then
          if this.m_IServiceRequestedEventArgs.all /= null then
             temp := this.m_IServiceRequestedEventArgs.all.Release;
-            Free (this.m_IServiceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IServiceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

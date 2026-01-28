@@ -46,7 +46,9 @@ package body WinRt.Windows.UI.Composition.Desktop is
       if this.m_IDesktopWindowTarget /= null then
          if this.m_IDesktopWindowTarget.all /= null then
             temp := this.m_IDesktopWindowTarget.all.Release;
-            Free (this.m_IDesktopWindowTarget);
+            if temp < 1 then
+               Free (this.m_IDesktopWindowTarget);
+            end if;
          end if;
       end if;
    end;

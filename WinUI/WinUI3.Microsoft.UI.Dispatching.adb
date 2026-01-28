@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.UI.Dispatching is
       if this.m_IDispatcherExitDeferral /= null then
          if this.m_IDispatcherExitDeferral.all /= null then
             temp := this.m_IDispatcherExitDeferral.all.Release;
-            Free (this.m_IDispatcherExitDeferral);
+            if temp < 1 then
+               Free (this.m_IDispatcherExitDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -103,7 +105,9 @@ package body WinUI3.Microsoft.UI.Dispatching is
       if this.m_IDispatcherQueue /= null then
          if this.m_IDispatcherQueue.all /= null then
             temp := this.m_IDispatcherQueue.all.Release;
-            Free (this.m_IDispatcherQueue);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueue);
+            end if;
          end if;
       end if;
    end;
@@ -453,7 +457,9 @@ package body WinUI3.Microsoft.UI.Dispatching is
       if this.m_IDispatcherQueueController /= null then
          if this.m_IDispatcherQueueController.all /= null then
             temp := this.m_IDispatcherQueueController.all.Release;
-            Free (this.m_IDispatcherQueueController);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueController);
+            end if;
          end if;
       end if;
    end;
@@ -621,7 +627,9 @@ package body WinUI3.Microsoft.UI.Dispatching is
       if this.m_IDispatcherQueueShutdownStartingEventArgs /= null then
          if this.m_IDispatcherQueueShutdownStartingEventArgs.all /= null then
             temp := this.m_IDispatcherQueueShutdownStartingEventArgs.all.Release;
-            Free (this.m_IDispatcherQueueShutdownStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueShutdownStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -664,7 +672,9 @@ package body WinUI3.Microsoft.UI.Dispatching is
       if this.m_IDispatcherQueueTimer /= null then
          if this.m_IDispatcherQueueTimer.all /= null then
             temp := this.m_IDispatcherQueueTimer.all.Release;
-            Free (this.m_IDispatcherQueueTimer);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueTimer);
+            end if;
          end if;
       end if;
    end;

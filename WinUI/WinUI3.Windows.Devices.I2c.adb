@@ -58,7 +58,9 @@ package body WinUI3.Windows.Devices.I2c is
       if this.m_II2cConnectionSettings /= null then
          if this.m_II2cConnectionSettings.all /= null then
             temp := this.m_II2cConnectionSettings.all.Release;
-            Free (this.m_II2cConnectionSettings);
+            if temp < 1 then
+               Free (this.m_II2cConnectionSettings);
+            end if;
          end if;
       end if;
    end;
@@ -204,7 +206,9 @@ package body WinUI3.Windows.Devices.I2c is
       if this.m_II2cController /= null then
          if this.m_II2cController.all /= null then
             temp := this.m_II2cController.all.Release;
-            Free (this.m_II2cController);
+            if temp < 1 then
+               Free (this.m_II2cController);
+            end if;
          end if;
       end if;
    end;
@@ -391,7 +395,9 @@ package body WinUI3.Windows.Devices.I2c is
       if this.m_II2cDevice /= null then
          if this.m_II2cDevice.all /= null then
             temp := this.m_II2cDevice.all.Release;
-            Free (this.m_II2cDevice);
+            if temp < 1 then
+               Free (this.m_II2cDevice);
+            end if;
          end if;
       end if;
    end;

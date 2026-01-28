@@ -168,7 +168,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystem /= null then
          if this.m_IRemoteSystem.all /= null then
             temp := this.m_IRemoteSystem.all.Release;
-            Free (this.m_IRemoteSystem);
+            if temp < 1 then
+               Free (this.m_IRemoteSystem);
+            end if;
          end if;
       end if;
    end;
@@ -766,7 +768,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemAddedEventArgs /= null then
          if this.m_IRemoteSystemAddedEventArgs.all /= null then
             temp := this.m_IRemoteSystemAddedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -809,7 +813,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemApp /= null then
          if this.m_IRemoteSystemApp.all /= null then
             temp := this.m_IRemoteSystemApp.all.Release;
-            Free (this.m_IRemoteSystemApp);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemApp);
+            end if;
          end if;
       end if;
    end;
@@ -974,7 +980,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemAppRegistration /= null then
          if this.m_IRemoteSystemAppRegistration.all /= null then
             temp := this.m_IRemoteSystemAppRegistration.all.Release;
-            Free (this.m_IRemoteSystemAppRegistration);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemAppRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -1154,7 +1162,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemAuthorizationKindFilter /= null then
          if this.m_IRemoteSystemAuthorizationKindFilter.all /= null then
             temp := this.m_IRemoteSystemAuthorizationKindFilter.all.Release;
-            Free (this.m_IRemoteSystemAuthorizationKindFilter);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemAuthorizationKindFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1221,7 +1231,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemConnectionInfo /= null then
          if this.m_IRemoteSystemConnectionInfo.all /= null then
             temp := this.m_IRemoteSystemConnectionInfo.all.Release;
-            Free (this.m_IRemoteSystemConnectionInfo);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemConnectionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1291,7 +1303,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemConnectionRequest /= null then
          if this.m_IRemoteSystemConnectionRequest.all /= null then
             temp := this.m_IRemoteSystemConnectionRequest.all.Release;
-            Free (this.m_IRemoteSystemConnectionRequest);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemConnectionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1498,7 +1512,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemDiscoveryTypeFilter /= null then
          if this.m_IRemoteSystemDiscoveryTypeFilter.all /= null then
             temp := this.m_IRemoteSystemDiscoveryTypeFilter.all.Release;
-            Free (this.m_IRemoteSystemDiscoveryTypeFilter);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemDiscoveryTypeFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1565,7 +1581,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemEnumerationCompletedEventArgs /= null then
          if this.m_IRemoteSystemEnumerationCompletedEventArgs.all /= null then
             temp := this.m_IRemoteSystemEnumerationCompletedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemEnumerationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemEnumerationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1588,7 +1606,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemKindFilter /= null then
          if this.m_IRemoteSystemKindFilter.all /= null then
             temp := this.m_IRemoteSystemKindFilter.all.Release;
-            Free (this.m_IRemoteSystemKindFilter);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemKindFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1856,7 +1876,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemRemovedEventArgs /= null then
          if this.m_IRemoteSystemRemovedEventArgs.all /= null then
             temp := this.m_IRemoteSystemRemovedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1899,7 +1921,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSession /= null then
          if this.m_IRemoteSystemSession.all /= null then
             temp := this.m_IRemoteSystemSession.all.Release;
-            Free (this.m_IRemoteSystemSession);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSession);
+            end if;
          end if;
       end if;
    end;
@@ -2144,7 +2168,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionAddedEventArgs /= null then
          if this.m_IRemoteSystemSessionAddedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionAddedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2187,7 +2213,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionController /= null then
          if this.m_IRemoteSystemSessionController.all /= null then
             temp := this.m_IRemoteSystemSessionController.all.Release;
-            Free (this.m_IRemoteSystemSessionController);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionController);
+            end if;
          end if;
       end if;
    end;
@@ -2429,7 +2457,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionCreationResult /= null then
          if this.m_IRemoteSystemSessionCreationResult.all /= null then
             temp := this.m_IRemoteSystemSessionCreationResult.all.Release;
-            Free (this.m_IRemoteSystemSessionCreationResult);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionCreationResult);
+            end if;
          end if;
       end if;
    end;
@@ -2489,7 +2519,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionDisconnectedEventArgs /= null then
          if this.m_IRemoteSystemSessionDisconnectedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionDisconnectedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionDisconnectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionDisconnectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2529,7 +2561,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionInfo /= null then
          if this.m_IRemoteSystemSessionInfo.all /= null then
             temp := this.m_IRemoteSystemSessionInfo.all.Release;
-            Free (this.m_IRemoteSystemSessionInfo);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2658,7 +2692,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionInvitation /= null then
          if this.m_IRemoteSystemSessionInvitation.all /= null then
             temp := this.m_IRemoteSystemSessionInvitation.all.Release;
-            Free (this.m_IRemoteSystemSessionInvitation);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionInvitation);
+            end if;
          end if;
       end if;
    end;
@@ -2721,7 +2757,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionInvitationListener /= null then
          if this.m_IRemoteSystemSessionInvitationListener.all /= null then
             temp := this.m_IRemoteSystemSessionInvitationListener.all.Release;
-            Free (this.m_IRemoteSystemSessionInvitationListener);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionInvitationListener);
+            end if;
          end if;
       end if;
    end;
@@ -2796,7 +2834,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionInvitationReceivedEventArgs /= null then
          if this.m_IRemoteSystemSessionInvitationReceivedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionInvitationReceivedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionInvitationReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionInvitationReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2839,7 +2879,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionJoinRequest /= null then
          if this.m_IRemoteSystemSessionJoinRequest.all /= null then
             temp := this.m_IRemoteSystemSessionJoinRequest.all.Release;
-            Free (this.m_IRemoteSystemSessionJoinRequest);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionJoinRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2896,7 +2938,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionJoinRequestedEventArgs /= null then
          if this.m_IRemoteSystemSessionJoinRequestedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionJoinRequestedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionJoinRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionJoinRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2959,7 +3003,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionJoinResult /= null then
          if this.m_IRemoteSystemSessionJoinResult.all /= null then
             temp := this.m_IRemoteSystemSessionJoinResult.all.Release;
-            Free (this.m_IRemoteSystemSessionJoinResult);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionJoinResult);
+            end if;
          end if;
       end if;
    end;
@@ -3019,7 +3065,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionMessageChannel /= null then
          if this.m_IRemoteSystemSessionMessageChannel.all /= null then
             temp := this.m_IRemoteSystemSessionMessageChannel.all.Release;
-            Free (this.m_IRemoteSystemSessionMessageChannel);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionMessageChannel);
+            end if;
          end if;
       end if;
    end;
@@ -3347,7 +3395,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionOptions /= null then
          if this.m_IRemoteSystemSessionOptions.all /= null then
             temp := this.m_IRemoteSystemSessionOptions.all.Release;
-            Free (this.m_IRemoteSystemSessionOptions);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3421,7 +3471,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionParticipant /= null then
          if this.m_IRemoteSystemSessionParticipant.all /= null then
             temp := this.m_IRemoteSystemSessionParticipant.all.Release;
-            Free (this.m_IRemoteSystemSessionParticipant);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionParticipant);
+            end if;
          end if;
       end if;
    end;
@@ -3481,7 +3533,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionParticipantAddedEventArgs /= null then
          if this.m_IRemoteSystemSessionParticipantAddedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionParticipantAddedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionParticipantAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionParticipantAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3524,7 +3578,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionParticipantRemovedEventArgs /= null then
          if this.m_IRemoteSystemSessionParticipantRemovedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionParticipantRemovedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionParticipantRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionParticipantRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3567,7 +3623,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionParticipantWatcher /= null then
          if this.m_IRemoteSystemSessionParticipantWatcher.all /= null then
             temp := this.m_IRemoteSystemSessionParticipantWatcher.all.Release;
-            Free (this.m_IRemoteSystemSessionParticipantWatcher);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionParticipantWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -3734,7 +3792,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionRemovedEventArgs /= null then
          if this.m_IRemoteSystemSessionRemovedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionRemovedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3777,7 +3837,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionUpdatedEventArgs /= null then
          if this.m_IRemoteSystemSessionUpdatedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionUpdatedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3820,7 +3882,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionValueSetReceivedEventArgs /= null then
          if this.m_IRemoteSystemSessionValueSetReceivedEventArgs.all /= null then
             temp := this.m_IRemoteSystemSessionValueSetReceivedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemSessionValueSetReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionValueSetReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3883,7 +3947,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemSessionWatcher /= null then
          if this.m_IRemoteSystemSessionWatcher.all /= null then
             temp := this.m_IRemoteSystemSessionWatcher.all.Release;
-            Free (this.m_IRemoteSystemSessionWatcher);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemSessionWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -4050,7 +4116,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemStatusTypeFilter /= null then
          if this.m_IRemoteSystemStatusTypeFilter.all /= null then
             temp := this.m_IRemoteSystemStatusTypeFilter.all.Release;
-            Free (this.m_IRemoteSystemStatusTypeFilter);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemStatusTypeFilter);
+            end if;
          end if;
       end if;
    end;
@@ -4117,7 +4185,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemUpdatedEventArgs /= null then
          if this.m_IRemoteSystemUpdatedEventArgs.all /= null then
             temp := this.m_IRemoteSystemUpdatedEventArgs.all.Release;
-            Free (this.m_IRemoteSystemUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4160,7 +4230,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemWatcher /= null then
          if this.m_IRemoteSystemWatcher.all /= null then
             temp := this.m_IRemoteSystemWatcher.all.Release;
-            Free (this.m_IRemoteSystemWatcher);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -4416,7 +4488,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemWatcherErrorOccurredEventArgs /= null then
          if this.m_IRemoteSystemWatcherErrorOccurredEventArgs.all /= null then
             temp := this.m_IRemoteSystemWatcherErrorOccurredEventArgs.all.Release;
-            Free (this.m_IRemoteSystemWatcherErrorOccurredEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemWatcherErrorOccurredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4456,7 +4530,9 @@ package body WinUI3.Windows.System.RemoteSystems is
       if this.m_IRemoteSystemWebAccountFilter /= null then
          if this.m_IRemoteSystemWebAccountFilter.all /= null then
             temp := this.m_IRemoteSystemWebAccountFilter.all.Release;
-            Free (this.m_IRemoteSystemWebAccountFilter);
+            if temp < 1 then
+               Free (this.m_IRemoteSystemWebAccountFilter);
+            end if;
          end if;
       end if;
    end;

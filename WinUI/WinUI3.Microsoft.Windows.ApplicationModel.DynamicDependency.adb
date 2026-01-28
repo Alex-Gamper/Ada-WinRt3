@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
       if this.m_IAddPackageDependencyOptions /= null then
          if this.m_IAddPackageDependencyOptions.all /= null then
             temp := this.m_IAddPackageDependencyOptions.all.Release;
-            Free (this.m_IAddPackageDependencyOptions);
+            if temp < 1 then
+               Free (this.m_IAddPackageDependencyOptions);
+            end if;
          end if;
       end if;
    end;
@@ -153,7 +155,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
       if this.m_ICreatePackageDependencyOptions /= null then
          if this.m_ICreatePackageDependencyOptions.all /= null then
             temp := this.m_ICreatePackageDependencyOptions.all.Release;
-            Free (this.m_ICreatePackageDependencyOptions);
+            if temp < 1 then
+               Free (this.m_ICreatePackageDependencyOptions);
+            end if;
          end if;
       end if;
    end;
@@ -328,7 +332,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
       if this.m_IPackageDependency /= null then
          if this.m_IPackageDependency.all /= null then
             temp := this.m_IPackageDependency.all.Release;
-            Free (this.m_IPackageDependency);
+            if temp < 1 then
+               Free (this.m_IPackageDependency);
+            end if;
          end if;
       end if;
    end;
@@ -621,7 +627,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.DynamicDependency is
       if this.m_IPackageDependencyContext /= null then
          if this.m_IPackageDependencyContext.all /= null then
             temp := this.m_IPackageDependencyContext.all.Release;
-            Free (this.m_IPackageDependencyContext);
+            if temp < 1 then
+               Free (this.m_IPackageDependencyContext);
+            end if;
          end if;
       end if;
    end;

@@ -63,7 +63,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IAdaptiveNotificationText /= null then
          if this.m_IAdaptiveNotificationText.all /= null then
             temp := this.m_IAdaptiveNotificationText.all.Release;
-            Free (this.m_IAdaptiveNotificationText);
+            if temp < 1 then
+               Free (this.m_IAdaptiveNotificationText);
+            end if;
          end if;
       end if;
    end;
@@ -224,7 +226,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IBadgeNotification /= null then
          if this.m_IBadgeNotification.all /= null then
             temp := this.m_IBadgeNotification.all.Release;
-            Free (this.m_IBadgeNotification);
+            if temp < 1 then
+               Free (this.m_IBadgeNotification);
+            end if;
          end if;
       end if;
    end;
@@ -471,7 +475,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IBadgeUpdateManagerForUser /= null then
          if this.m_IBadgeUpdateManagerForUser.all /= null then
             temp := this.m_IBadgeUpdateManagerForUser.all.Release;
-            Free (this.m_IBadgeUpdateManagerForUser);
+            if temp < 1 then
+               Free (this.m_IBadgeUpdateManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -580,7 +586,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IBadgeUpdater /= null then
          if this.m_IBadgeUpdater.all /= null then
             temp := this.m_IBadgeUpdater.all.Release;
-            Free (this.m_IBadgeUpdater);
+            if temp < 1 then
+               Free (this.m_IBadgeUpdater);
+            end if;
          end if;
       end if;
    end;
@@ -1321,7 +1329,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_INotification /= null then
          if this.m_INotification.all /= null then
             temp := this.m_INotification.all.Release;
-            Free (this.m_INotification);
+            if temp < 1 then
+               Free (this.m_INotification);
+            end if;
          end if;
       end if;
    end;
@@ -1433,7 +1443,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_INotificationBinding /= null then
          if this.m_INotificationBinding.all /= null then
             temp := this.m_INotificationBinding.all.Release;
-            Free (this.m_INotificationBinding);
+            if temp < 1 then
+               Free (this.m_INotificationBinding);
+            end if;
          end if;
       end if;
    end;
@@ -1570,7 +1582,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_INotificationData /= null then
          if this.m_INotificationData.all /= null then
             temp := this.m_INotificationData.all.Release;
-            Free (this.m_INotificationData);
+            if temp < 1 then
+               Free (this.m_INotificationData);
+            end if;
          end if;
       end if;
    end;
@@ -1713,7 +1727,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_INotificationVisual /= null then
          if this.m_INotificationVisual.all /= null then
             temp := this.m_INotificationVisual.all.Release;
-            Free (this.m_INotificationVisual);
+            if temp < 1 then
+               Free (this.m_INotificationVisual);
+            end if;
          end if;
       end if;
    end;
@@ -1816,7 +1832,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IScheduledTileNotification /= null then
          if this.m_IScheduledTileNotification.all /= null then
             temp := this.m_IScheduledTileNotification.all.Release;
-            Free (this.m_IScheduledTileNotification);
+            if temp < 1 then
+               Free (this.m_IScheduledTileNotification);
+            end if;
          end if;
       end if;
    end;
@@ -2013,7 +2031,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IScheduledToastNotification /= null then
          if this.m_IScheduledToastNotification.all /= null then
             temp := this.m_IScheduledToastNotification.all.Release;
-            Free (this.m_IScheduledToastNotification);
+            if temp < 1 then
+               Free (this.m_IScheduledToastNotification);
+            end if;
          end if;
       end if;
    end;
@@ -2460,7 +2480,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IScheduledToastNotificationShowingEventArgs /= null then
          if this.m_IScheduledToastNotificationShowingEventArgs.all /= null then
             temp := this.m_IScheduledToastNotificationShowingEventArgs.all.Release;
-            Free (this.m_IScheduledToastNotificationShowingEventArgs);
+            if temp < 1 then
+               Free (this.m_IScheduledToastNotificationShowingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2555,7 +2577,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IShownTileNotification /= null then
          if this.m_IShownTileNotification.all /= null then
             temp := this.m_IShownTileNotification.all.Release;
-            Free (this.m_IShownTileNotification);
+            if temp < 1 then
+               Free (this.m_IShownTileNotification);
+            end if;
          end if;
       end if;
    end;
@@ -2598,7 +2622,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_ITileFlyoutNotification /= null then
          if this.m_ITileFlyoutNotification.all /= null then
             temp := this.m_ITileFlyoutNotification.all.Release;
-            Free (this.m_ITileFlyoutNotification);
+            if temp < 1 then
+               Free (this.m_ITileFlyoutNotification);
+            end if;
          end if;
       end if;
    end;
@@ -2818,7 +2844,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_ITileFlyoutUpdater /= null then
          if this.m_ITileFlyoutUpdater.all /= null then
             temp := this.m_ITileFlyoutUpdater.all.Release;
-            Free (this.m_ITileFlyoutUpdater);
+            if temp < 1 then
+               Free (this.m_ITileFlyoutUpdater);
+            end if;
          end if;
       end if;
    end;
@@ -2934,7 +2962,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_ITileNotification /= null then
          if this.m_ITileNotification.all /= null then
             temp := this.m_ITileNotification.all.Release;
-            Free (this.m_ITileNotification);
+            if temp < 1 then
+               Free (this.m_ITileNotification);
+            end if;
          end if;
       end if;
    end;
@@ -3218,7 +3248,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_ITileUpdateManagerForUser /= null then
          if this.m_ITileUpdateManagerForUser.all /= null then
             temp := this.m_ITileUpdateManagerForUser.all.Release;
-            Free (this.m_ITileUpdateManagerForUser);
+            if temp < 1 then
+               Free (this.m_ITileUpdateManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -3327,7 +3359,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_ITileUpdater /= null then
          if this.m_ITileUpdater.all /= null then
             temp := this.m_ITileUpdater.all.Release;
-            Free (this.m_ITileUpdater);
+            if temp < 1 then
+               Free (this.m_ITileUpdater);
+            end if;
          end if;
       end if;
    end;
@@ -3598,7 +3632,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastActivatedEventArgs /= null then
          if this.m_IToastActivatedEventArgs.all /= null then
             temp := this.m_IToastActivatedEventArgs.all.Release;
-            Free (this.m_IToastActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IToastActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3665,7 +3701,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastCollection /= null then
          if this.m_IToastCollection.all /= null then
             temp := this.m_IToastCollection.all.Release;
-            Free (this.m_IToastCollection);
+            if temp < 1 then
+               Free (this.m_IToastCollection);
+            end if;
          end if;
       end if;
    end;
@@ -3853,7 +3891,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastCollectionManager /= null then
          if this.m_IToastCollectionManager.all /= null then
             temp := this.m_IToastCollectionManager.all.Release;
-            Free (this.m_IToastCollectionManager);
+            if temp < 1 then
+               Free (this.m_IToastCollectionManager);
+            end if;
          end if;
       end if;
    end;
@@ -4178,7 +4218,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastDismissedEventArgs /= null then
          if this.m_IToastDismissedEventArgs.all /= null then
             temp := this.m_IToastDismissedEventArgs.all.Release;
-            Free (this.m_IToastDismissedEventArgs);
+            if temp < 1 then
+               Free (this.m_IToastDismissedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4218,7 +4260,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastFailedEventArgs /= null then
          if this.m_IToastFailedEventArgs.all /= null then
             temp := this.m_IToastFailedEventArgs.all.Release;
-            Free (this.m_IToastFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IToastFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4258,7 +4302,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotification /= null then
          if this.m_IToastNotification.all /= null then
             temp := this.m_IToastNotification.all.Release;
-            Free (this.m_IToastNotification);
+            if temp < 1 then
+               Free (this.m_IToastNotification);
+            end if;
          end if;
       end if;
    end;
@@ -4800,7 +4846,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotificationActionTriggerDetail /= null then
          if this.m_IToastNotificationActionTriggerDetail.all /= null then
             temp := this.m_IToastNotificationActionTriggerDetail.all.Release;
-            Free (this.m_IToastNotificationActionTriggerDetail);
+            if temp < 1 then
+               Free (this.m_IToastNotificationActionTriggerDetail);
+            end if;
          end if;
       end if;
    end;
@@ -4863,7 +4911,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotificationHistory /= null then
          if this.m_IToastNotificationHistory.all /= null then
             temp := this.m_IToastNotificationHistory.all.Release;
-            Free (this.m_IToastNotificationHistory);
+            if temp < 1 then
+               Free (this.m_IToastNotificationHistory);
+            end if;
          end if;
       end if;
    end;
@@ -5065,7 +5115,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotificationHistoryChangedTriggerDetail /= null then
          if this.m_IToastNotificationHistoryChangedTriggerDetail.all /= null then
             temp := this.m_IToastNotificationHistoryChangedTriggerDetail.all.Release;
-            Free (this.m_IToastNotificationHistoryChangedTriggerDetail);
+            if temp < 1 then
+               Free (this.m_IToastNotificationHistoryChangedTriggerDetail);
+            end if;
          end if;
       end if;
    end;
@@ -5311,7 +5363,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotificationManagerForUser /= null then
          if this.m_IToastNotificationManagerForUser.all /= null then
             temp := this.m_IToastNotificationManagerForUser.all.Release;
-            Free (this.m_IToastNotificationManagerForUser);
+            if temp < 1 then
+               Free (this.m_IToastNotificationManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -5676,7 +5730,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IToastNotifier /= null then
          if this.m_IToastNotifier.all /= null then
             temp := this.m_IToastNotifier.all.Release;
-            Free (this.m_IToastNotifier);
+            if temp < 1 then
+               Free (this.m_IToastNotifier);
+            end if;
          end if;
       end if;
    end;
@@ -5890,7 +5946,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IUserNotification /= null then
          if this.m_IUserNotification.all /= null then
             temp := this.m_IUserNotification.all.Release;
-            Free (this.m_IUserNotification);
+            if temp < 1 then
+               Free (this.m_IUserNotification);
+            end if;
          end if;
       end if;
    end;
@@ -5987,7 +6045,9 @@ package body WinRt.Windows.UI.Notifications is
       if this.m_IUserNotificationChangedEventArgs /= null then
          if this.m_IUserNotificationChangedEventArgs.all /= null then
             temp := this.m_IUserNotificationChangedEventArgs.all.Release;
-            Free (this.m_IUserNotificationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserNotificationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

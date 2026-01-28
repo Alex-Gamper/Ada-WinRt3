@@ -86,7 +86,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IActivitySensorTrigger /= null then
          if this.m_IActivitySensorTrigger.all /= null then
             temp := this.m_IActivitySensorTrigger.all.Release;
-            Free (this.m_IActivitySensorTrigger);
+            if temp < 1 then
+               Free (this.m_IActivitySensorTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -298,7 +300,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IAppBroadcastTrigger /= null then
          if this.m_IAppBroadcastTrigger.all /= null then
             temp := this.m_IAppBroadcastTrigger.all.Release;
-            Free (this.m_IAppBroadcastTrigger);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -385,7 +389,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IAppBroadcastTriggerProviderInfo /= null then
          if this.m_IAppBroadcastTriggerProviderInfo.all /= null then
             temp := this.m_IAppBroadcastTriggerProviderInfo.all.Release;
-            Free (this.m_IAppBroadcastTriggerProviderInfo);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastTriggerProviderInfo);
+            end if;
          end if;
       end if;
    end;
@@ -610,7 +616,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IApplicationTrigger /= null then
          if this.m_IApplicationTrigger.all /= null then
             temp := this.m_IApplicationTrigger.all.Release;
-            Free (this.m_IApplicationTrigger);
+            if temp < 1 then
+               Free (this.m_IApplicationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -779,7 +787,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IApplicationTriggerDetails /= null then
          if this.m_IApplicationTriggerDetails.all /= null then
             temp := this.m_IApplicationTriggerDetails.all.Release;
-            Free (this.m_IApplicationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IApplicationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -822,7 +832,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IAppointmentStoreNotificationTrigger /= null then
          if this.m_IAppointmentStoreNotificationTrigger.all /= null then
             temp := this.m_IAppointmentStoreNotificationTrigger.all.Release;
-            Free (this.m_IAppointmentStoreNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IAppointmentStoreNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -1290,7 +1302,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskBuilder /= null then
          if this.m_IBackgroundTaskBuilder.all /= null then
             temp := this.m_IBackgroundTaskBuilder.all.Release;
-            Free (this.m_IBackgroundTaskBuilder);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskBuilder);
+            end if;
          end if;
       end if;
    end;
@@ -1726,7 +1740,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskCompletedEventArgs /= null then
          if this.m_IBackgroundTaskCompletedEventArgs.all /= null then
             temp := this.m_IBackgroundTaskCompletedEventArgs.all.Release;
-            Free (this.m_IBackgroundTaskCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1796,7 +1812,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskDeferral /= null then
          if this.m_IBackgroundTaskDeferral.all /= null then
             temp := this.m_IBackgroundTaskDeferral.all.Release;
-            Free (this.m_IBackgroundTaskDeferral);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -1833,7 +1851,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskProgressEventArgs /= null then
          if this.m_IBackgroundTaskProgressEventArgs.all /= null then
             temp := this.m_IBackgroundTaskProgressEventArgs.all.Release;
-            Free (this.m_IBackgroundTaskProgressEventArgs);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskProgressEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1906,7 +1926,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskRegistration /= null then
          if this.m_IBackgroundTaskRegistration.all /= null then
             temp := this.m_IBackgroundTaskRegistration.all.Release;
-            Free (this.m_IBackgroundTaskRegistration);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -2208,7 +2230,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskRegistrationGroup /= null then
          if this.m_IBackgroundTaskRegistrationGroup.all /= null then
             temp := this.m_IBackgroundTaskRegistrationGroup.all.Release;
-            Free (this.m_IBackgroundTaskRegistrationGroup);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskRegistrationGroup);
+            end if;
          end if;
       end if;
    end;
@@ -2472,7 +2496,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBluetoothLEAdvertisementPublisherTrigger /= null then
          if this.m_IBluetoothLEAdvertisementPublisherTrigger.all /= null then
             temp := this.m_IBluetoothLEAdvertisementPublisherTrigger.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementPublisherTrigger);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementPublisherTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -2777,7 +2803,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBluetoothLEAdvertisementWatcherTrigger /= null then
          if this.m_IBluetoothLEAdvertisementWatcherTrigger.all /= null then
             temp := this.m_IBluetoothLEAdvertisementWatcherTrigger.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementWatcherTrigger);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementWatcherTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3120,7 +3148,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ICachedFileUpdaterTrigger /= null then
          if this.m_ICachedFileUpdaterTrigger.all /= null then
             temp := this.m_ICachedFileUpdaterTrigger.all.Release;
-            Free (this.m_ICachedFileUpdaterTrigger);
+            if temp < 1 then
+               Free (this.m_ICachedFileUpdaterTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3162,7 +3192,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ICachedFileUpdaterTriggerDetails /= null then
          if this.m_ICachedFileUpdaterTriggerDetails.all /= null then
             temp := this.m_ICachedFileUpdaterTriggerDetails.all.Release;
-            Free (this.m_ICachedFileUpdaterTriggerDetails);
+            if temp < 1 then
+               Free (this.m_ICachedFileUpdaterTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3239,7 +3271,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IChatMessageNotificationTrigger /= null then
          if this.m_IChatMessageNotificationTrigger.all /= null then
             temp := this.m_IChatMessageNotificationTrigger.all.Release;
-            Free (this.m_IChatMessageNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IChatMessageNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3281,7 +3315,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IChatMessageReceivedNotificationTrigger /= null then
          if this.m_IChatMessageReceivedNotificationTrigger.all /= null then
             temp := this.m_IChatMessageReceivedNotificationTrigger.all.Release;
-            Free (this.m_IChatMessageReceivedNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IChatMessageReceivedNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3323,7 +3359,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ICommunicationBlockingAppSetAsActiveTrigger /= null then
          if this.m_ICommunicationBlockingAppSetAsActiveTrigger.all /= null then
             temp := this.m_ICommunicationBlockingAppSetAsActiveTrigger.all.Release;
-            Free (this.m_ICommunicationBlockingAppSetAsActiveTrigger);
+            if temp < 1 then
+               Free (this.m_ICommunicationBlockingAppSetAsActiveTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3365,7 +3403,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IContactStoreNotificationTrigger /= null then
          if this.m_IContactStoreNotificationTrigger.all /= null then
             temp := this.m_IContactStoreNotificationTrigger.all.Release;
-            Free (this.m_IContactStoreNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IContactStoreNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3407,7 +3447,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IContentPrefetchTrigger /= null then
          if this.m_IContentPrefetchTrigger.all /= null then
             temp := this.m_IContentPrefetchTrigger.all.Release;
-            Free (this.m_IContentPrefetchTrigger);
+            if temp < 1 then
+               Free (this.m_IContentPrefetchTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3490,7 +3532,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3532,7 +3576,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ICustomSystemEventTrigger /= null then
          if this.m_ICustomSystemEventTrigger.all /= null then
             temp := this.m_ICustomSystemEventTrigger.all.Release;
-            Free (this.m_ICustomSystemEventTrigger);
+            if temp < 1 then
+               Free (this.m_ICustomSystemEventTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3622,7 +3668,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IDeviceConnectionChangeTrigger /= null then
          if this.m_IDeviceConnectionChangeTrigger.all /= null then
             temp := this.m_IDeviceConnectionChangeTrigger.all.Release;
-            Free (this.m_IDeviceConnectionChangeTrigger);
+            if temp < 1 then
+               Free (this.m_IDeviceConnectionChangeTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3792,7 +3840,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IDeviceManufacturerNotificationTrigger /= null then
          if this.m_IDeviceManufacturerNotificationTrigger.all /= null then
             temp := this.m_IDeviceManufacturerNotificationTrigger.all.Release;
-            Free (this.m_IDeviceManufacturerNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IDeviceManufacturerNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -3882,7 +3932,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IDeviceServicingTrigger /= null then
          if this.m_IDeviceServicingTrigger.all /= null then
             temp := this.m_IDeviceServicingTrigger.all.Release;
-            Free (this.m_IDeviceServicingTrigger);
+            if temp < 1 then
+               Free (this.m_IDeviceServicingTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4061,7 +4113,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IDeviceUseTrigger /= null then
          if this.m_IDeviceUseTrigger.all /= null then
             temp := this.m_IDeviceUseTrigger.all.Release;
-            Free (this.m_IDeviceUseTrigger);
+            if temp < 1 then
+               Free (this.m_IDeviceUseTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4238,7 +4292,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IDeviceWatcherTrigger /= null then
          if this.m_IDeviceWatcherTrigger.all /= null then
             temp := this.m_IDeviceWatcherTrigger.all.Release;
-            Free (this.m_IDeviceWatcherTrigger);
+            if temp < 1 then
+               Free (this.m_IDeviceWatcherTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4261,7 +4317,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IEmailStoreNotificationTrigger /= null then
          if this.m_IEmailStoreNotificationTrigger.all /= null then
             temp := this.m_IEmailStoreNotificationTrigger.all.Release;
-            Free (this.m_IEmailStoreNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IEmailStoreNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4303,7 +4361,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IGattCharacteristicNotificationTrigger /= null then
          if this.m_IGattCharacteristicNotificationTrigger.all /= null then
             temp := this.m_IGattCharacteristicNotificationTrigger.all.Release;
-            Free (this.m_IGattCharacteristicNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_IGattCharacteristicNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4419,7 +4479,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IGattServiceProviderTrigger /= null then
          if this.m_IGattServiceProviderTrigger.all /= null then
             temp := this.m_IGattServiceProviderTrigger.all.Release;
-            Free (this.m_IGattServiceProviderTrigger);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4596,7 +4658,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IGattServiceProviderTriggerResult /= null then
          if this.m_IGattServiceProviderTriggerResult.all /= null then
             temp := this.m_IGattServiceProviderTriggerResult.all.Release;
-            Free (this.m_IGattServiceProviderTriggerResult);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderTriggerResult);
+            end if;
          end if;
       end if;
    end;
@@ -4656,7 +4720,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IGeovisitTrigger /= null then
          if this.m_IGeovisitTrigger.all /= null then
             temp := this.m_IGeovisitTrigger.all.Release;
-            Free (this.m_IGeovisitTrigger);
+            if temp < 1 then
+               Free (this.m_IGeovisitTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4730,7 +4796,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ILocationTrigger /= null then
          if this.m_ILocationTrigger.all /= null then
             temp := this.m_ILocationTrigger.all.Release;
-            Free (this.m_ILocationTrigger);
+            if temp < 1 then
+               Free (this.m_ILocationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4797,7 +4865,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IMaintenanceTrigger /= null then
          if this.m_IMaintenanceTrigger.all /= null then
             temp := this.m_IMaintenanceTrigger.all.Release;
-            Free (this.m_IMaintenanceTrigger);
+            if temp < 1 then
+               Free (this.m_IMaintenanceTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -4882,7 +4952,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IMediaProcessingTrigger /= null then
          if this.m_IMediaProcessingTrigger.all /= null then
             temp := this.m_IMediaProcessingTrigger.all.Release;
-            Free (this.m_IMediaProcessingTrigger);
+            if temp < 1 then
+               Free (this.m_IMediaProcessingTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5051,7 +5123,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5093,7 +5167,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5135,7 +5211,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5177,7 +5255,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5219,7 +5299,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5261,7 +5343,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5303,7 +5387,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_INetworkOperatorHotspotAuthenticationTrigger /= null then
          if this.m_INetworkOperatorHotspotAuthenticationTrigger.all /= null then
             temp := this.m_INetworkOperatorHotspotAuthenticationTrigger.all.Release;
-            Free (this.m_INetworkOperatorHotspotAuthenticationTrigger);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorHotspotAuthenticationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5345,7 +5431,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_INetworkOperatorNotificationTrigger /= null then
          if this.m_INetworkOperatorNotificationTrigger.all /= null then
             temp := this.m_INetworkOperatorNotificationTrigger.all.Release;
-            Free (this.m_INetworkOperatorNotificationTrigger);
+            if temp < 1 then
+               Free (this.m_INetworkOperatorNotificationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5417,7 +5505,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5459,7 +5549,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IPhoneTrigger /= null then
          if this.m_IPhoneTrigger.all /= null then
             temp := this.m_IPhoneTrigger.all.Release;
-            Free (this.m_IPhoneTrigger);
+            if temp < 1 then
+               Free (this.m_IPhoneTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5544,7 +5636,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5612,7 +5706,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IRcsEndUserMessageAvailableTrigger /= null then
          if this.m_IRcsEndUserMessageAvailableTrigger.all /= null then
             temp := this.m_IRcsEndUserMessageAvailableTrigger.all.Release;
-            Free (this.m_IRcsEndUserMessageAvailableTrigger);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessageAvailableTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5654,7 +5750,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IRfcommConnectionTrigger /= null then
          if this.m_IRfcommConnectionTrigger.all /= null then
             temp := this.m_IRfcommConnectionTrigger.all.Release;
-            Free (this.m_IRfcommConnectionTrigger);
+            if temp < 1 then
+               Free (this.m_IRfcommConnectionTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5835,7 +5933,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ISecondaryAuthenticationFactorAuthenticationTrigger /= null then
          if this.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all /= null then
             temp := this.m_ISecondaryAuthenticationFactorAuthenticationTrigger.all.Release;
-            Free (this.m_ISecondaryAuthenticationFactorAuthenticationTrigger);
+            if temp < 1 then
+               Free (this.m_ISecondaryAuthenticationFactorAuthenticationTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5877,7 +5977,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ISensorDataThresholdTrigger /= null then
          if this.m_ISensorDataThresholdTrigger.all /= null then
             temp := this.m_ISensorDataThresholdTrigger.all.Release;
-            Free (this.m_ISensorDataThresholdTrigger);
+            if temp < 1 then
+               Free (this.m_ISensorDataThresholdTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5927,7 +6029,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ISmartCardTrigger /= null then
          if this.m_ISmartCardTrigger.all /= null then
             temp := this.m_ISmartCardTrigger.all.Release;
-            Free (this.m_ISmartCardTrigger);
+            if temp < 1 then
+               Free (this.m_ISmartCardTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -5994,7 +6098,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6044,7 +6150,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6107,7 +6215,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6157,7 +6267,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IStorageLibraryContentChangedTrigger /= null then
          if this.m_IStorageLibraryContentChangedTrigger.all /= null then
             temp := this.m_IStorageLibraryContentChangedTrigger.all.Release;
-            Free (this.m_IStorageLibraryContentChangedTrigger);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryContentChangedTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6237,7 +6349,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ISystemCondition /= null then
          if this.m_ISystemCondition.all /= null then
             temp := this.m_ISystemCondition.all.Release;
-            Free (this.m_ISystemCondition);
+            if temp < 1 then
+               Free (this.m_ISystemCondition);
+            end if;
          end if;
       end if;
    end;
@@ -6304,7 +6418,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ISystemTrigger /= null then
          if this.m_ISystemTrigger.all /= null then
             temp := this.m_ISystemTrigger.all.Release;
-            Free (this.m_ISystemTrigger);
+            if temp < 1 then
+               Free (this.m_ISystemTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6389,7 +6505,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6431,7 +6549,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_ITimeTrigger /= null then
          if this.m_ITimeTrigger.all /= null then
             temp := this.m_ITimeTrigger.all.Release;
-            Free (this.m_ITimeTrigger);
+            if temp < 1 then
+               Free (this.m_ITimeTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6516,7 +6636,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6584,7 +6706,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6652,7 +6776,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6702,7 +6828,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -6744,7 +6872,9 @@ package body WinRt.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTrigger /= null then
          if this.m_IBackgroundTrigger.all /= null then
             temp := this.m_IBackgroundTrigger.all.Release;
-            Free (this.m_IBackgroundTrigger);
+            if temp < 1 then
+               Free (this.m_IBackgroundTrigger);
+            end if;
          end if;
       end if;
    end;

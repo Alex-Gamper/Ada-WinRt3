@@ -47,7 +47,9 @@ package body WinUI3.Windows.UI.Composition.Effects is
       if this.m_ISceneLightingEffect /= null then
          if this.m_ISceneLightingEffect.all /= null then
             temp := this.m_ISceneLightingEffect.all.Release;
-            Free (this.m_ISceneLightingEffect);
+            if temp < 1 then
+               Free (this.m_ISceneLightingEffect);
+            end if;
          end if;
       end if;
    end;

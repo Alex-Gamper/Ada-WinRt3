@@ -46,7 +46,9 @@ package body WinRt.Windows.UI is
       if this.m_IColorHelper /= null then
          if this.m_IColorHelper.all /= null then
             temp := this.m_IColorHelper.all.Release;
-            Free (this.m_IColorHelper);
+            if temp < 1 then
+               Free (this.m_IColorHelper);
+            end if;
          end if;
       end if;
    end;
@@ -126,7 +128,9 @@ package body WinRt.Windows.UI is
       if this.m_IColors /= null then
          if this.m_IColors.all /= null then
             temp := this.m_IColors.all.Release;
-            Free (this.m_IColors);
+            if temp < 1 then
+               Free (this.m_IColors);
+            end if;
          end if;
       end if;
    end;
@@ -3113,7 +3117,9 @@ package body WinRt.Windows.UI is
       if this.m_IUIContentRoot /= null then
          if this.m_IUIContentRoot.all /= null then
             temp := this.m_IUIContentRoot.all.Release;
-            Free (this.m_IUIContentRoot);
+            if temp < 1 then
+               Free (this.m_IUIContentRoot);
+            end if;
          end if;
       end if;
    end;
@@ -3156,7 +3162,9 @@ package body WinRt.Windows.UI is
       if this.m_IUIContext /= null then
          if this.m_IUIContext.all /= null then
             temp := this.m_IUIContext.all.Release;
-            Free (this.m_IUIContext);
+            if temp < 1 then
+               Free (this.m_IUIContext);
+            end if;
          end if;
       end if;
    end;

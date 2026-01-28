@@ -53,7 +53,9 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
       if this.m_ICameraCaptureUI /= null then
          if this.m_ICameraCaptureUI.all /= null then
             temp := this.m_ICameraCaptureUI.all.Release;
-            Free (this.m_ICameraCaptureUI);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUI);
+            end if;
          end if;
       end if;
    end;
@@ -210,7 +212,9 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
       if this.m_ICameraCaptureUIPhotoCaptureSettings /= null then
          if this.m_ICameraCaptureUIPhotoCaptureSettings.all /= null then
             temp := this.m_ICameraCaptureUIPhotoCaptureSettings.all.Release;
-            Free (this.m_ICameraCaptureUIPhotoCaptureSettings);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUIPhotoCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -412,7 +416,9 @@ package body WinUI3.Microsoft.Windows.Media.Capture is
       if this.m_ICameraCaptureUIVideoCaptureSettings /= null then
          if this.m_ICameraCaptureUIVideoCaptureSettings.all /= null then
             temp := this.m_ICameraCaptureUIVideoCaptureSettings.all.Release;
-            Free (this.m_ICameraCaptureUIVideoCaptureSettings);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUIVideoCaptureSettings);
+            end if;
          end if;
       end if;
    end;

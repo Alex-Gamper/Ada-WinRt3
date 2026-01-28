@@ -54,7 +54,9 @@ package body WinUI3.Windows.Networking.PushNotifications is
       if this.m_IPushNotificationChannel /= null then
          if this.m_IPushNotificationChannel.all /= null then
             temp := this.m_IPushNotificationChannel.all.Release;
-            Free (this.m_IPushNotificationChannel);
+            if temp < 1 then
+               Free (this.m_IPushNotificationChannel);
+            end if;
          end if;
       end if;
    end;
@@ -483,7 +485,9 @@ package body WinUI3.Windows.Networking.PushNotifications is
       if this.m_IPushNotificationChannelManagerForUser /= null then
          if this.m_IPushNotificationChannelManagerForUser.all /= null then
             temp := this.m_IPushNotificationChannelManagerForUser.all.Release;
-            Free (this.m_IPushNotificationChannelManagerForUser);
+            if temp < 1 then
+               Free (this.m_IPushNotificationChannelManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -881,7 +885,9 @@ package body WinUI3.Windows.Networking.PushNotifications is
       if this.m_IPushNotificationChannelsRevokedEventArgs /= null then
          if this.m_IPushNotificationChannelsRevokedEventArgs.all /= null then
             temp := this.m_IPushNotificationChannelsRevokedEventArgs.all.Release;
-            Free (this.m_IPushNotificationChannelsRevokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPushNotificationChannelsRevokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -904,7 +910,9 @@ package body WinUI3.Windows.Networking.PushNotifications is
       if this.m_IPushNotificationReceivedEventArgs /= null then
          if this.m_IPushNotificationReceivedEventArgs.all /= null then
             temp := this.m_IPushNotificationReceivedEventArgs.all.Release;
-            Free (this.m_IPushNotificationReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPushNotificationReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1056,7 +1064,9 @@ package body WinUI3.Windows.Networking.PushNotifications is
       if this.m_IRawNotification /= null then
          if this.m_IRawNotification.all /= null then
             temp := this.m_IRawNotification.all.Release;
-            Free (this.m_IRawNotification);
+            if temp < 1 then
+               Free (this.m_IRawNotification);
+            end if;
          end if;
       end if;
    end;

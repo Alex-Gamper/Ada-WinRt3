@@ -51,7 +51,9 @@ package body WinRt.Windows.System.Inventory is
       if this.m_IInstalledDesktopApp /= null then
          if this.m_IInstalledDesktopApp.all /= null then
             temp := this.m_IInstalledDesktopApp.all.Release;
-            Free (this.m_IInstalledDesktopApp);
+            if temp < 1 then
+               Free (this.m_IInstalledDesktopApp);
+            end if;
          end if;
       end if;
    end;

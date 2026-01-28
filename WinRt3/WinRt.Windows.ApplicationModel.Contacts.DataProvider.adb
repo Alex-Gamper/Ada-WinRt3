@@ -47,7 +47,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactDataProviderConnection /= null then
          if this.m_IContactDataProviderConnection.all /= null then
             temp := this.m_IContactDataProviderConnection.all.Release;
-            Free (this.m_IContactDataProviderConnection);
+            if temp < 1 then
+               Free (this.m_IContactDataProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -232,7 +234,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactDataProviderTriggerDetails /= null then
          if this.m_IContactDataProviderTriggerDetails.all /= null then
             temp := this.m_IContactDataProviderTriggerDetails.all.Release;
-            Free (this.m_IContactDataProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IContactDataProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -275,7 +279,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListCreateOrUpdateContactRequest /= null then
          if this.m_IContactListCreateOrUpdateContactRequest.all /= null then
             temp := this.m_IContactListCreateOrUpdateContactRequest.all.Release;
-            Free (this.m_IContactListCreateOrUpdateContactRequest);
+            if temp < 1 then
+               Free (this.m_IContactListCreateOrUpdateContactRequest);
+            end if;
          end if;
       end if;
    end;
@@ -423,7 +429,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListCreateOrUpdateContactRequestEventArgs /= null then
          if this.m_IContactListCreateOrUpdateContactRequestEventArgs.all /= null then
             temp := this.m_IContactListCreateOrUpdateContactRequestEventArgs.all.Release;
-            Free (this.m_IContactListCreateOrUpdateContactRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactListCreateOrUpdateContactRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -486,7 +494,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListDeleteContactRequest /= null then
          if this.m_IContactListDeleteContactRequest.all /= null then
             temp := this.m_IContactListDeleteContactRequest.all.Release;
-            Free (this.m_IContactListDeleteContactRequest);
+            if temp < 1 then
+               Free (this.m_IContactListDeleteContactRequest);
+            end if;
          end if;
       end if;
    end;
@@ -633,7 +643,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListDeleteContactRequestEventArgs /= null then
          if this.m_IContactListDeleteContactRequestEventArgs.all /= null then
             temp := this.m_IContactListDeleteContactRequestEventArgs.all.Release;
-            Free (this.m_IContactListDeleteContactRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactListDeleteContactRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -696,7 +708,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListServerSearchReadBatchRequest /= null then
          if this.m_IContactListServerSearchReadBatchRequest.all /= null then
             temp := this.m_IContactListServerSearchReadBatchRequest.all.Release;
-            Free (this.m_IContactListServerSearchReadBatchRequest);
+            if temp < 1 then
+               Free (this.m_IContactListServerSearchReadBatchRequest);
+            end if;
          end if;
       end if;
    end;
@@ -924,7 +938,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListServerSearchReadBatchRequestEventArgs /= null then
          if this.m_IContactListServerSearchReadBatchRequestEventArgs.all /= null then
             temp := this.m_IContactListServerSearchReadBatchRequestEventArgs.all.Release;
-            Free (this.m_IContactListServerSearchReadBatchRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactListServerSearchReadBatchRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -987,7 +1003,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListSyncManagerSyncRequest /= null then
          if this.m_IContactListSyncManagerSyncRequest.all /= null then
             temp := this.m_IContactListSyncManagerSyncRequest.all.Release;
-            Free (this.m_IContactListSyncManagerSyncRequest);
+            if temp < 1 then
+               Free (this.m_IContactListSyncManagerSyncRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1114,7 +1132,9 @@ package body WinRt.Windows.ApplicationModel.Contacts.DataProvider is
       if this.m_IContactListSyncManagerSyncRequestEventArgs /= null then
          if this.m_IContactListSyncManagerSyncRequestEventArgs.all /= null then
             temp := this.m_IContactListSyncManagerSyncRequestEventArgs.all.Release;
-            Free (this.m_IContactListSyncManagerSyncRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactListSyncManagerSyncRequestEventArgs);
+            end if;
          end if;
       end if;
    end;

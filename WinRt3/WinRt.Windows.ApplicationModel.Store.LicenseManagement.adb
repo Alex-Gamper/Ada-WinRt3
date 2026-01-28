@@ -230,7 +230,9 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       if this.m_ILicenseSatisfactionInfo /= null then
          if this.m_ILicenseSatisfactionInfo.all /= null then
             temp := this.m_ILicenseSatisfactionInfo.all.Release;
-            Free (this.m_ILicenseSatisfactionInfo);
+            if temp < 1 then
+               Free (this.m_ILicenseSatisfactionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -372,7 +374,9 @@ package body WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       if this.m_ILicenseSatisfactionResult /= null then
          if this.m_ILicenseSatisfactionResult.all /= null then
             temp := this.m_ILicenseSatisfactionResult.all.Release;
-            Free (this.m_ILicenseSatisfactionResult);
+            if temp < 1 then
+               Free (this.m_ILicenseSatisfactionResult);
+            end if;
          end if;
       end if;
    end;

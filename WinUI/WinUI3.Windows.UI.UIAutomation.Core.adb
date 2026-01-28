@@ -51,7 +51,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_IAutomationRemoteOperationResult /= null then
          if this.m_IAutomationRemoteOperationResult.all /= null then
             temp := this.m_IAutomationRemoteOperationResult.all.Release;
-            Free (this.m_IAutomationRemoteOperationResult);
+            if temp < 1 then
+               Free (this.m_IAutomationRemoteOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -212,7 +214,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_ICoreAutomationRemoteOperation /= null then
          if this.m_ICoreAutomationRemoteOperation.all /= null then
             temp := this.m_ICoreAutomationRemoteOperation.all.Release;
-            Free (this.m_ICoreAutomationRemoteOperation);
+            if temp < 1 then
+               Free (this.m_ICoreAutomationRemoteOperation);
+            end if;
          end if;
       end if;
    end;
@@ -361,7 +365,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_ICoreAutomationRemoteOperationContext /= null then
          if this.m_ICoreAutomationRemoteOperationContext.all /= null then
             temp := this.m_ICoreAutomationRemoteOperationContext.all.Release;
-            Free (this.m_ICoreAutomationRemoteOperationContext);
+            if temp < 1 then
+               Free (this.m_ICoreAutomationRemoteOperationContext);
+            end if;
          end if;
       end if;
    end;
@@ -435,7 +441,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_IRemoteAutomationClientSession /= null then
          if this.m_IRemoteAutomationClientSession.all /= null then
             temp := this.m_IRemoteAutomationClientSession.all.Release;
-            Free (this.m_IRemoteAutomationClientSession);
+            if temp < 1 then
+               Free (this.m_IRemoteAutomationClientSession);
+            end if;
          end if;
       end if;
    end;
@@ -694,7 +702,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_IRemoteAutomationConnectionRequestedEventArgs /= null then
          if this.m_IRemoteAutomationConnectionRequestedEventArgs.all /= null then
             temp := this.m_IRemoteAutomationConnectionRequestedEventArgs.all.Release;
-            Free (this.m_IRemoteAutomationConnectionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteAutomationConnectionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -754,7 +764,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_IRemoteAutomationDisconnectedEventArgs /= null then
          if this.m_IRemoteAutomationDisconnectedEventArgs.all /= null then
             temp := this.m_IRemoteAutomationDisconnectedEventArgs.all.Release;
-            Free (this.m_IRemoteAutomationDisconnectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteAutomationDisconnectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -824,7 +836,9 @@ package body WinUI3.Windows.UI.UIAutomation.Core is
       if this.m_IRemoteAutomationWindow /= null then
          if this.m_IRemoteAutomationWindow.all /= null then
             temp := this.m_IRemoteAutomationWindow.all.Release;
-            Free (this.m_IRemoteAutomationWindow);
+            if temp < 1 then
+               Free (this.m_IRemoteAutomationWindow);
+            end if;
          end if;
       end if;
    end;

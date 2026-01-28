@@ -49,7 +49,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionCatalog /= null then
          if this.m_IActionCatalog.all /= null then
             temp := this.m_IActionCatalog.all.Release;
-            Free (this.m_IActionCatalog);
+            if temp < 1 then
+               Free (this.m_IActionCatalog);
+            end if;
          end if;
       end if;
    end;
@@ -264,7 +266,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionDefinition /= null then
          if this.m_IActionDefinition.all /= null then
             temp := this.m_IActionDefinition.all.Release;
-            Free (this.m_IActionDefinition);
+            if temp < 1 then
+               Free (this.m_IActionDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -611,7 +615,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionEntityRegistrationInfo /= null then
          if this.m_IActionEntityRegistrationInfo.all /= null then
             temp := this.m_IActionEntityRegistrationInfo.all.Release;
-            Free (this.m_IActionEntityRegistrationInfo);
+            if temp < 1 then
+               Free (this.m_IActionEntityRegistrationInfo);
+            end if;
          end if;
       end if;
    end;
@@ -721,7 +727,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionInstance /= null then
          if this.m_IActionInstance.all /= null then
             temp := this.m_IActionInstance.all.Release;
-            Free (this.m_IActionInstance);
+            if temp < 1 then
+               Free (this.m_IActionInstance);
+            end if;
          end if;
       end if;
    end;
@@ -846,7 +854,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionInstanceDisplayInfo /= null then
          if this.m_IActionInstanceDisplayInfo.all /= null then
             temp := this.m_IActionInstanceDisplayInfo.all.Release;
-            Free (this.m_IActionInstanceDisplayInfo);
+            if temp < 1 then
+               Free (this.m_IActionInstanceDisplayInfo);
+            end if;
          end if;
       end if;
    end;
@@ -889,7 +899,9 @@ package body WinRt.Windows.AI.Actions.Hosting is
       if this.m_IActionOverload /= null then
          if this.m_IActionOverload.all /= null then
             temp := this.m_IActionOverload.all.Release;
-            Free (this.m_IActionOverload);
+            if temp < 1 then
+               Free (this.m_IActionOverload);
+            end if;
          end if;
       end if;
    end;

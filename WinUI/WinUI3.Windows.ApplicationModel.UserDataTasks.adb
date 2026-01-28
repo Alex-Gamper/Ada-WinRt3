@@ -70,7 +70,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTask /= null then
          if this.m_IUserDataTask.all /= null then
             temp := this.m_IUserDataTask.all.Release;
-            Free (this.m_IUserDataTask);
+            if temp < 1 then
+               Free (this.m_IUserDataTask);
+            end if;
          end if;
       end if;
    end;
@@ -586,7 +588,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskBatch /= null then
          if this.m_IUserDataTaskBatch.all /= null then
             temp := this.m_IUserDataTaskBatch.all.Release;
-            Free (this.m_IUserDataTaskBatch);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskBatch);
+            end if;
          end if;
       end if;
    end;
@@ -629,7 +633,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskList /= null then
          if this.m_IUserDataTaskList.all /= null then
             temp := this.m_IUserDataTaskList.all.Release;
-            Free (this.m_IUserDataTaskList);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskList);
+            end if;
          end if;
       end if;
    end;
@@ -1177,7 +1183,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskListLimitedWriteOperations /= null then
          if this.m_IUserDataTaskListLimitedWriteOperations.all /= null then
             temp := this.m_IUserDataTaskListLimitedWriteOperations.all.Release;
-            Free (this.m_IUserDataTaskListLimitedWriteOperations);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListLimitedWriteOperations);
+            end if;
          end if;
       end if;
    end;
@@ -1465,7 +1473,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskListSyncManager /= null then
          if this.m_IUserDataTaskListSyncManager.all /= null then
             temp := this.m_IUserDataTaskListSyncManager.all.Release;
-            Free (this.m_IUserDataTaskListSyncManager);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskListSyncManager);
+            end if;
          end if;
       end if;
    end;
@@ -1680,7 +1690,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskManager /= null then
          if this.m_IUserDataTaskManager.all /= null then
             temp := this.m_IUserDataTaskManager.all.Release;
-            Free (this.m_IUserDataTaskManager);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskManager);
+            end if;
          end if;
       end if;
    end;
@@ -1844,7 +1856,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskQueryOptions /= null then
          if this.m_IUserDataTaskQueryOptions.all /= null then
             temp := this.m_IUserDataTaskQueryOptions.all.Release;
-            Free (this.m_IUserDataTaskQueryOptions);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1950,7 +1964,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskReader /= null then
          if this.m_IUserDataTaskReader.all /= null then
             temp := this.m_IUserDataTaskReader.all.Release;
-            Free (this.m_IUserDataTaskReader);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskReader);
+            end if;
          end if;
       end if;
    end;
@@ -2039,7 +2055,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskRecurrenceProperties /= null then
          if this.m_IUserDataTaskRecurrenceProperties.all /= null then
             temp := this.m_IUserDataTaskRecurrenceProperties.all.Release;
-            Free (this.m_IUserDataTaskRecurrenceProperties);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskRecurrenceProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2355,7 +2373,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskRegenerationProperties /= null then
          if this.m_IUserDataTaskRegenerationProperties.all /= null then
             temp := this.m_IUserDataTaskRegenerationProperties.all.Release;
-            Free (this.m_IUserDataTaskRegenerationProperties);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskRegenerationProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2531,7 +2551,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataTasks is
       if this.m_IUserDataTaskStore /= null then
          if this.m_IUserDataTaskStore.all /= null then
             temp := this.m_IUserDataTaskStore.all.Release;
-            Free (this.m_IUserDataTaskStore);
+            if temp < 1 then
+               Free (this.m_IUserDataTaskStore);
+            end if;
          end if;
       end if;
    end;

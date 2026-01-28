@@ -63,7 +63,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ITransition /= null then
          if this.m_ITransition.all /= null then
             temp := this.m_ITransition.all.Release;
-            Free (this.m_ITransition);
+            if temp < 1 then
+               Free (this.m_ITransition);
+            end if;
          end if;
       end if;
    end;
@@ -89,7 +91,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IAddDeleteThemeTransition /= null then
          if this.m_IAddDeleteThemeTransition.all /= null then
             temp := this.m_IAddDeleteThemeTransition.all.Release;
-            Free (this.m_IAddDeleteThemeTransition);
+            if temp < 1 then
+               Free (this.m_IAddDeleteThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -131,7 +135,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEasingFunctionBase /= null then
          if this.m_IEasingFunctionBase.all /= null then
             temp := this.m_IEasingFunctionBase.all.Release;
-            Free (this.m_IEasingFunctionBase);
+            if temp < 1 then
+               Free (this.m_IEasingFunctionBase);
+            end if;
          end if;
       end if;
    end;
@@ -234,7 +240,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IBackEase /= null then
          if this.m_IBackEase.all /= null then
             temp := this.m_IBackEase.all.Release;
-            Free (this.m_IBackEase);
+            if temp < 1 then
+               Free (this.m_IBackEase);
+            end if;
          end if;
       end if;
    end;
@@ -335,7 +343,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IConnectedAnimationConfiguration /= null then
          if this.m_IConnectedAnimationConfiguration.all /= null then
             temp := this.m_IConnectedAnimationConfiguration.all.Release;
-            Free (this.m_IConnectedAnimationConfiguration);
+            if temp < 1 then
+               Free (this.m_IConnectedAnimationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -361,7 +371,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IBasicConnectedAnimationConfiguration /= null then
          if this.m_IBasicConnectedAnimationConfiguration.all /= null then
             temp := this.m_IBasicConnectedAnimationConfiguration.all.Release;
-            Free (this.m_IBasicConnectedAnimationConfiguration);
+            if temp < 1 then
+               Free (this.m_IBasicConnectedAnimationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -412,7 +424,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IBeginStoryboard /= null then
          if this.m_IBeginStoryboard.all /= null then
             temp := this.m_IBeginStoryboard.all.Release;
-            Free (this.m_IBeginStoryboard);
+            if temp < 1 then
+               Free (this.m_IBeginStoryboard);
+            end if;
          end if;
       end if;
    end;
@@ -516,7 +530,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IBounceEase /= null then
          if this.m_IBounceEase.all /= null then
             temp := this.m_IBounceEase.all.Release;
-            Free (this.m_IBounceEase);
+            if temp < 1 then
+               Free (this.m_IBounceEase);
+            end if;
          end if;
       end if;
    end;
@@ -673,7 +689,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ICircleEase /= null then
          if this.m_ICircleEase.all /= null then
             temp := this.m_ICircleEase.all.Release;
-            Free (this.m_ICircleEase);
+            if temp < 1 then
+               Free (this.m_ICircleEase);
+            end if;
          end if;
       end if;
    end;
@@ -715,7 +733,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ITimeline /= null then
          if this.m_ITimeline.all /= null then
             temp := this.m_ITimeline.all.Release;
-            Free (this.m_ITimeline);
+            if temp < 1 then
+               Free (this.m_ITimeline);
+            end if;
          end if;
       end if;
    end;
@@ -1183,7 +1203,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IColorAnimation /= null then
          if this.m_IColorAnimation.all /= null then
             temp := this.m_IColorAnimation.all.Release;
-            Free (this.m_IColorAnimation);
+            if temp < 1 then
+               Free (this.m_IColorAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -1520,7 +1542,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IColorAnimationUsingKeyFrames /= null then
          if this.m_IColorAnimationUsingKeyFrames.all /= null then
             temp := this.m_IColorAnimationUsingKeyFrames.all.Release;
-            Free (this.m_IColorAnimationUsingKeyFrames);
+            if temp < 1 then
+               Free (this.m_IColorAnimationUsingKeyFrames);
+            end if;
          end if;
       end if;
    end;
@@ -1641,7 +1665,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IColorKeyFrame /= null then
          if this.m_IColorKeyFrame.all /= null then
             temp := this.m_IColorKeyFrame.all.Release;
-            Free (this.m_IColorKeyFrame);
+            if temp < 1 then
+               Free (this.m_IColorKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -2132,7 +2158,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_INavigationTransitionInfo /= null then
          if this.m_INavigationTransitionInfo.all /= null then
             temp := this.m_INavigationTransitionInfo.all.Release;
-            Free (this.m_INavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_INavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2228,7 +2256,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ICommonNavigationTransitionInfo /= null then
          if this.m_ICommonNavigationTransitionInfo.all /= null then
             temp := this.m_ICommonNavigationTransitionInfo.all.Release;
-            Free (this.m_ICommonNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_ICommonNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2399,7 +2429,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IConnectedAnimation /= null then
          if this.m_IConnectedAnimation.all /= null then
             temp := this.m_IConnectedAnimation.all.Release;
-            Free (this.m_IConnectedAnimation);
+            if temp < 1 then
+               Free (this.m_IConnectedAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -2613,7 +2645,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IConnectedAnimationService /= null then
          if this.m_IConnectedAnimationService.all /= null then
             temp := this.m_IConnectedAnimationService.all.Release;
-            Free (this.m_IConnectedAnimationService);
+            if temp < 1 then
+               Free (this.m_IConnectedAnimationService);
+            end if;
          end if;
       end if;
    end;
@@ -2777,7 +2811,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IContentThemeTransition /= null then
          if this.m_IContentThemeTransition.all /= null then
             temp := this.m_IContentThemeTransition.all.Release;
-            Free (this.m_IContentThemeTransition);
+            if temp < 1 then
+               Free (this.m_IContentThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -2934,7 +2970,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IContinuumNavigationTransitionInfo /= null then
          if this.m_IContinuumNavigationTransitionInfo.all /= null then
             temp := this.m_IContinuumNavigationTransitionInfo.all.Release;
-            Free (this.m_IContinuumNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_IContinuumNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -3248,7 +3286,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ICubicEase /= null then
          if this.m_ICubicEase.all /= null then
             temp := this.m_ICubicEase.all.Release;
-            Free (this.m_ICubicEase);
+            if temp < 1 then
+               Free (this.m_ICubicEase);
+            end if;
          end if;
       end if;
    end;
@@ -3290,7 +3330,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDirectConnectedAnimationConfiguration /= null then
          if this.m_IDirectConnectedAnimationConfiguration.all /= null then
             temp := this.m_IDirectConnectedAnimationConfiguration.all.Release;
-            Free (this.m_IDirectConnectedAnimationConfiguration);
+            if temp < 1 then
+               Free (this.m_IDirectConnectedAnimationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -3341,7 +3383,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDiscreteColorKeyFrame /= null then
          if this.m_IDiscreteColorKeyFrame.all /= null then
             temp := this.m_IDiscreteColorKeyFrame.all.Release;
-            Free (this.m_IDiscreteColorKeyFrame);
+            if temp < 1 then
+               Free (this.m_IDiscreteColorKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3383,7 +3427,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDoubleKeyFrame /= null then
          if this.m_IDoubleKeyFrame.all /= null then
             temp := this.m_IDoubleKeyFrame.all.Release;
-            Free (this.m_IDoubleKeyFrame);
+            if temp < 1 then
+               Free (this.m_IDoubleKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3549,7 +3595,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDiscreteDoubleKeyFrame /= null then
          if this.m_IDiscreteDoubleKeyFrame.all /= null then
             temp := this.m_IDiscreteDoubleKeyFrame.all.Release;
-            Free (this.m_IDiscreteDoubleKeyFrame);
+            if temp < 1 then
+               Free (this.m_IDiscreteDoubleKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3591,7 +3639,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IObjectKeyFrame /= null then
          if this.m_IObjectKeyFrame.all /= null then
             temp := this.m_IObjectKeyFrame.all.Release;
-            Free (this.m_IObjectKeyFrame);
+            if temp < 1 then
+               Free (this.m_IObjectKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3757,7 +3807,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDiscreteObjectKeyFrame /= null then
          if this.m_IDiscreteObjectKeyFrame.all /= null then
             temp := this.m_IDiscreteObjectKeyFrame.all.Release;
-            Free (this.m_IDiscreteObjectKeyFrame);
+            if temp < 1 then
+               Free (this.m_IDiscreteObjectKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3799,7 +3851,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPointKeyFrame /= null then
          if this.m_IPointKeyFrame.all /= null then
             temp := this.m_IPointKeyFrame.all.Release;
-            Free (this.m_IPointKeyFrame);
+            if temp < 1 then
+               Free (this.m_IPointKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3965,7 +4019,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDiscretePointKeyFrame /= null then
          if this.m_IDiscretePointKeyFrame.all /= null then
             temp := this.m_IDiscretePointKeyFrame.all.Release;
-            Free (this.m_IDiscretePointKeyFrame);
+            if temp < 1 then
+               Free (this.m_IDiscretePointKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -4007,7 +4063,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDoubleAnimation /= null then
          if this.m_IDoubleAnimation.all /= null then
             temp := this.m_IDoubleAnimation.all.Release;
-            Free (this.m_IDoubleAnimation);
+            if temp < 1 then
+               Free (this.m_IDoubleAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -4344,7 +4402,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDoubleAnimationUsingKeyFrames /= null then
          if this.m_IDoubleAnimationUsingKeyFrames.all /= null then
             temp := this.m_IDoubleAnimationUsingKeyFrames.all.Release;
-            Free (this.m_IDoubleAnimationUsingKeyFrames);
+            if temp < 1 then
+               Free (this.m_IDoubleAnimationUsingKeyFrames);
+            end if;
          end if;
       end if;
    end;
@@ -4790,7 +4850,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDragItemThemeAnimation /= null then
          if this.m_IDragItemThemeAnimation.all /= null then
             temp := this.m_IDragItemThemeAnimation.all.Release;
-            Free (this.m_IDragItemThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IDragItemThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -4896,7 +4958,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDragOverThemeAnimation /= null then
          if this.m_IDragOverThemeAnimation.all /= null then
             temp := this.m_IDragOverThemeAnimation.all.Release;
-            Free (this.m_IDragOverThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IDragOverThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -5114,7 +5178,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDrillInNavigationTransitionInfo /= null then
          if this.m_IDrillInNavigationTransitionInfo.all /= null then
             temp := this.m_IDrillInNavigationTransitionInfo.all.Release;
-            Free (this.m_IDrillInNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_IDrillInNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5156,7 +5222,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDrillInThemeAnimation /= null then
          if this.m_IDrillInThemeAnimation.all /= null then
             temp := this.m_IDrillInThemeAnimation.all.Release;
-            Free (this.m_IDrillInThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IDrillInThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -5441,7 +5509,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDrillOutThemeAnimation /= null then
          if this.m_IDrillOutThemeAnimation.all /= null then
             temp := this.m_IDrillOutThemeAnimation.all.Release;
-            Free (this.m_IDrillOutThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IDrillOutThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -5726,7 +5796,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IDropTargetItemThemeAnimation /= null then
          if this.m_IDropTargetItemThemeAnimation.all /= null then
             temp := this.m_IDropTargetItemThemeAnimation.all.Release;
-            Free (this.m_IDropTargetItemThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IDropTargetItemThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -5832,7 +5904,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEasingColorKeyFrame /= null then
          if this.m_IEasingColorKeyFrame.all /= null then
             temp := this.m_IEasingColorKeyFrame.all.Release;
-            Free (this.m_IEasingColorKeyFrame);
+            if temp < 1 then
+               Free (this.m_IEasingColorKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -5936,7 +6010,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEasingDoubleKeyFrame /= null then
          if this.m_IEasingDoubleKeyFrame.all /= null then
             temp := this.m_IEasingDoubleKeyFrame.all.Release;
-            Free (this.m_IEasingDoubleKeyFrame);
+            if temp < 1 then
+               Free (this.m_IEasingDoubleKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -6040,7 +6116,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEasingPointKeyFrame /= null then
          if this.m_IEasingPointKeyFrame.all /= null then
             temp := this.m_IEasingPointKeyFrame.all.Release;
-            Free (this.m_IEasingPointKeyFrame);
+            if temp < 1 then
+               Free (this.m_IEasingPointKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -6144,7 +6222,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEdgeUIThemeTransition /= null then
          if this.m_IEdgeUIThemeTransition.all /= null then
             temp := this.m_IEdgeUIThemeTransition.all.Release;
-            Free (this.m_IEdgeUIThemeTransition);
+            if temp < 1 then
+               Free (this.m_IEdgeUIThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -6245,7 +6325,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IElasticEase /= null then
          if this.m_IElasticEase.all /= null then
             temp := this.m_IElasticEase.all.Release;
-            Free (this.m_IElasticEase);
+            if temp < 1 then
+               Free (this.m_IElasticEase);
+            end if;
          end if;
       end if;
    end;
@@ -6402,7 +6484,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEntranceNavigationTransitionInfo /= null then
          if this.m_IEntranceNavigationTransitionInfo.all /= null then
             temp := this.m_IEntranceNavigationTransitionInfo.all.Release;
-            Free (this.m_IEntranceNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_IEntranceNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -6517,7 +6601,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IEntranceThemeTransition /= null then
          if this.m_IEntranceThemeTransition.all /= null then
             temp := this.m_IEntranceThemeTransition.all.Release;
-            Free (this.m_IEntranceThemeTransition);
+            if temp < 1 then
+               Free (this.m_IEntranceThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -6730,7 +6816,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IExponentialEase /= null then
          if this.m_IExponentialEase.all /= null then
             temp := this.m_IExponentialEase.all.Release;
-            Free (this.m_IExponentialEase);
+            if temp < 1 then
+               Free (this.m_IExponentialEase);
+            end if;
          end if;
       end if;
    end;
@@ -6831,7 +6919,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IFadeInThemeAnimation /= null then
          if this.m_IFadeInThemeAnimation.all /= null then
             temp := this.m_IFadeInThemeAnimation.all.Release;
-            Free (this.m_IFadeInThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IFadeInThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -6937,7 +7027,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IFadeOutThemeAnimation /= null then
          if this.m_IFadeOutThemeAnimation.all /= null then
             temp := this.m_IFadeOutThemeAnimation.all.Release;
-            Free (this.m_IFadeOutThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IFadeOutThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -7043,7 +7135,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IGravityConnectedAnimationConfiguration /= null then
          if this.m_IGravityConnectedAnimationConfiguration.all /= null then
             temp := this.m_IGravityConnectedAnimationConfiguration.all.Release;
-            Free (this.m_IGravityConnectedAnimationConfiguration);
+            if temp < 1 then
+               Free (this.m_IGravityConnectedAnimationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -7134,7 +7228,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IKeySpline /= null then
          if this.m_IKeySpline.all /= null then
             temp := this.m_IKeySpline.all.Release;
-            Free (this.m_IKeySpline);
+            if temp < 1 then
+               Free (this.m_IKeySpline);
+            end if;
          end if;
       end if;
    end;
@@ -7240,7 +7336,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IKeyTimeHelper /= null then
          if this.m_IKeyTimeHelper.all /= null then
             temp := this.m_IKeyTimeHelper.all.Release;
-            Free (this.m_IKeyTimeHelper);
+            if temp < 1 then
+               Free (this.m_IKeyTimeHelper);
+            end if;
          end if;
       end if;
    end;
@@ -7290,7 +7388,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ILinearColorKeyFrame /= null then
          if this.m_ILinearColorKeyFrame.all /= null then
             temp := this.m_ILinearColorKeyFrame.all.Release;
-            Free (this.m_ILinearColorKeyFrame);
+            if temp < 1 then
+               Free (this.m_ILinearColorKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -7332,7 +7432,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ILinearDoubleKeyFrame /= null then
          if this.m_ILinearDoubleKeyFrame.all /= null then
             temp := this.m_ILinearDoubleKeyFrame.all.Release;
-            Free (this.m_ILinearDoubleKeyFrame);
+            if temp < 1 then
+               Free (this.m_ILinearDoubleKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -7374,7 +7476,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ILinearPointKeyFrame /= null then
          if this.m_ILinearPointKeyFrame.all /= null then
             temp := this.m_ILinearPointKeyFrame.all.Release;
-            Free (this.m_ILinearPointKeyFrame);
+            if temp < 1 then
+               Free (this.m_ILinearPointKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -7416,7 +7520,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_INavigationThemeTransition /= null then
          if this.m_INavigationThemeTransition.all /= null then
             temp := this.m_INavigationThemeTransition.all.Release;
-            Free (this.m_INavigationThemeTransition);
+            if temp < 1 then
+               Free (this.m_INavigationThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -7520,7 +7626,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IObjectAnimationUsingKeyFrames /= null then
          if this.m_IObjectAnimationUsingKeyFrames.all /= null then
             temp := this.m_IObjectAnimationUsingKeyFrames.all.Release;
-            Free (this.m_IObjectAnimationUsingKeyFrames);
+            if temp < 1 then
+               Free (this.m_IObjectAnimationUsingKeyFrames);
+            end if;
          end if;
       end if;
    end;
@@ -7966,7 +8074,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPaneThemeTransition /= null then
          if this.m_IPaneThemeTransition.all /= null then
             temp := this.m_IPaneThemeTransition.all.Release;
-            Free (this.m_IPaneThemeTransition);
+            if temp < 1 then
+               Free (this.m_IPaneThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -8067,7 +8177,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPointAnimation /= null then
          if this.m_IPointAnimation.all /= null then
             temp := this.m_IPointAnimation.all.Release;
-            Free (this.m_IPointAnimation);
+            if temp < 1 then
+               Free (this.m_IPointAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -8404,7 +8516,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPointAnimationUsingKeyFrames /= null then
          if this.m_IPointAnimationUsingKeyFrames.all /= null then
             temp := this.m_IPointAnimationUsingKeyFrames.all.Release;
-            Free (this.m_IPointAnimationUsingKeyFrames);
+            if temp < 1 then
+               Free (this.m_IPointAnimationUsingKeyFrames);
+            end if;
          end if;
       end if;
    end;
@@ -8850,7 +8964,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPointerDownThemeAnimation /= null then
          if this.m_IPointerDownThemeAnimation.all /= null then
             temp := this.m_IPointerDownThemeAnimation.all.Release;
-            Free (this.m_IPointerDownThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IPointerDownThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -8956,7 +9072,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPointerUpThemeAnimation /= null then
          if this.m_IPointerUpThemeAnimation.all /= null then
             temp := this.m_IPointerUpThemeAnimation.all.Release;
-            Free (this.m_IPointerUpThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IPointerUpThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -9062,7 +9180,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPopInThemeAnimation /= null then
          if this.m_IPopInThemeAnimation.all /= null then
             temp := this.m_IPopInThemeAnimation.all.Release;
-            Free (this.m_IPopInThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IPopInThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -9280,7 +9400,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPopOutThemeAnimation /= null then
          if this.m_IPopOutThemeAnimation.all /= null then
             temp := this.m_IPopOutThemeAnimation.all.Release;
-            Free (this.m_IPopOutThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IPopOutThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -9386,7 +9508,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPopupThemeTransition /= null then
          if this.m_IPopupThemeTransition.all /= null then
             temp := this.m_IPopupThemeTransition.all.Release;
-            Free (this.m_IPopupThemeTransition);
+            if temp < 1 then
+               Free (this.m_IPopupThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -9543,7 +9667,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IPowerEase /= null then
          if this.m_IPowerEase.all /= null then
             temp := this.m_IPowerEase.all.Release;
-            Free (this.m_IPowerEase);
+            if temp < 1 then
+               Free (this.m_IPowerEase);
+            end if;
          end if;
       end if;
    end;
@@ -9644,7 +9770,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IQuadraticEase /= null then
          if this.m_IQuadraticEase.all /= null then
             temp := this.m_IQuadraticEase.all.Release;
-            Free (this.m_IQuadraticEase);
+            if temp < 1 then
+               Free (this.m_IQuadraticEase);
+            end if;
          end if;
       end if;
    end;
@@ -9686,7 +9814,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IQuarticEase /= null then
          if this.m_IQuarticEase.all /= null then
             temp := this.m_IQuarticEase.all.Release;
-            Free (this.m_IQuarticEase);
+            if temp < 1 then
+               Free (this.m_IQuarticEase);
+            end if;
          end if;
       end if;
    end;
@@ -9728,7 +9858,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IQuinticEase /= null then
          if this.m_IQuinticEase.all /= null then
             temp := this.m_IQuinticEase.all.Release;
-            Free (this.m_IQuinticEase);
+            if temp < 1 then
+               Free (this.m_IQuinticEase);
+            end if;
          end if;
       end if;
    end;
@@ -9770,7 +9902,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IReorderThemeTransition /= null then
          if this.m_IReorderThemeTransition.all /= null then
             temp := this.m_IReorderThemeTransition.all.Release;
-            Free (this.m_IReorderThemeTransition);
+            if temp < 1 then
+               Free (this.m_IReorderThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -9812,7 +9946,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IRepeatBehaviorHelper /= null then
          if this.m_IRepeatBehaviorHelper.all /= null then
             temp := this.m_IRepeatBehaviorHelper.all.Release;
-            Free (this.m_IRepeatBehaviorHelper);
+            if temp < 1 then
+               Free (this.m_IRepeatBehaviorHelper);
+            end if;
          end if;
       end if;
    end;
@@ -9980,7 +10116,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IRepositionThemeAnimation /= null then
          if this.m_IRepositionThemeAnimation.all /= null then
             temp := this.m_IRepositionThemeAnimation.all.Release;
-            Free (this.m_IRepositionThemeAnimation);
+            if temp < 1 then
+               Free (this.m_IRepositionThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -10198,7 +10336,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IRepositionThemeTransition /= null then
          if this.m_IRepositionThemeTransition.all /= null then
             temp := this.m_IRepositionThemeTransition.all.Release;
-            Free (this.m_IRepositionThemeTransition);
+            if temp < 1 then
+               Free (this.m_IRepositionThemeTransition);
+            end if;
          end if;
       end if;
    end;
@@ -10307,7 +10447,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISineEase /= null then
          if this.m_ISineEase.all /= null then
             temp := this.m_ISineEase.all.Release;
-            Free (this.m_ISineEase);
+            if temp < 1 then
+               Free (this.m_ISineEase);
+            end if;
          end if;
       end if;
    end;
@@ -10349,7 +10491,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISlideNavigationTransitionInfo /= null then
          if this.m_ISlideNavigationTransitionInfo.all /= null then
             temp := this.m_ISlideNavigationTransitionInfo.all.Release;
-            Free (this.m_ISlideNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_ISlideNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -10458,7 +10602,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISplineColorKeyFrame /= null then
          if this.m_ISplineColorKeyFrame.all /= null then
             temp := this.m_ISplineColorKeyFrame.all.Release;
-            Free (this.m_ISplineColorKeyFrame);
+            if temp < 1 then
+               Free (this.m_ISplineColorKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -10562,7 +10708,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISplineDoubleKeyFrame /= null then
          if this.m_ISplineDoubleKeyFrame.all /= null then
             temp := this.m_ISplineDoubleKeyFrame.all.Release;
-            Free (this.m_ISplineDoubleKeyFrame);
+            if temp < 1 then
+               Free (this.m_ISplineDoubleKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -10666,7 +10814,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISplinePointKeyFrame /= null then
          if this.m_ISplinePointKeyFrame.all /= null then
             temp := this.m_ISplinePointKeyFrame.all.Release;
-            Free (this.m_ISplinePointKeyFrame);
+            if temp < 1 then
+               Free (this.m_ISplinePointKeyFrame);
+            end if;
          end if;
       end if;
    end;
@@ -10770,7 +10920,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISplitCloseThemeAnimation /= null then
          if this.m_ISplitCloseThemeAnimation.all /= null then
             temp := this.m_ISplitCloseThemeAnimation.all.Release;
-            Free (this.m_ISplitCloseThemeAnimation);
+            if temp < 1 then
+               Free (this.m_ISplitCloseThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -11455,7 +11607,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISplitOpenThemeAnimation /= null then
          if this.m_ISplitOpenThemeAnimation.all /= null then
             temp := this.m_ISplitOpenThemeAnimation.all.Release;
-            Free (this.m_ISplitOpenThemeAnimation);
+            if temp < 1 then
+               Free (this.m_ISplitOpenThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -12140,7 +12294,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_IStoryboard /= null then
          if this.m_IStoryboard.all /= null then
             temp := this.m_IStoryboard.all.Release;
-            Free (this.m_IStoryboard);
+            if temp < 1 then
+               Free (this.m_IStoryboard);
+            end if;
          end if;
       end if;
    end;
@@ -12511,7 +12667,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISuppressNavigationTransitionInfo /= null then
          if this.m_ISuppressNavigationTransitionInfo.all /= null then
             temp := this.m_ISuppressNavigationTransitionInfo.all.Release;
-            Free (this.m_ISuppressNavigationTransitionInfo);
+            if temp < 1 then
+               Free (this.m_ISuppressNavigationTransitionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -12553,7 +12711,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISwipeBackThemeAnimation /= null then
          if this.m_ISwipeBackThemeAnimation.all /= null then
             temp := this.m_ISwipeBackThemeAnimation.all.Release;
-            Free (this.m_ISwipeBackThemeAnimation);
+            if temp < 1 then
+               Free (this.m_ISwipeBackThemeAnimation);
+            end if;
          end if;
       end if;
    end;
@@ -12771,7 +12931,9 @@ package body WinUI3.Windows.UI.Xaml.Media.Animation is
       if this.m_ISwipeHintThemeAnimation /= null then
          if this.m_ISwipeHintThemeAnimation.all /= null then
             temp := this.m_ISwipeHintThemeAnimation.all.Release;
-            Free (this.m_ISwipeHintThemeAnimation);
+            if temp < 1 then
+               Free (this.m_ISwipeHintThemeAnimation);
+            end if;
          end if;
       end if;
    end;

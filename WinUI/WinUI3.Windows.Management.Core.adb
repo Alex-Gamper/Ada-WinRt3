@@ -47,7 +47,9 @@ package body WinUI3.Windows.Management.Core is
       if this.m_IApplicationDataManager /= null then
          if this.m_IApplicationDataManager.all /= null then
             temp := this.m_IApplicationDataManager.all.Release;
-            Free (this.m_IApplicationDataManager);
+            if temp < 1 then
+               Free (this.m_IApplicationDataManager);
+            end if;
          end if;
       end if;
    end;

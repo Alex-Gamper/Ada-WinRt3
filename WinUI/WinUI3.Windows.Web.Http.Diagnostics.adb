@@ -48,7 +48,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticProvider /= null then
          if this.m_IHttpDiagnosticProvider.all /= null then
             temp := this.m_IHttpDiagnosticProvider.all.Release;
-            Free (this.m_IHttpDiagnosticProvider);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticProvider);
+            end if;
          end if;
       end if;
    end;
@@ -228,7 +230,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs /= null then
          if this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all /= null then
             temp := this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs.all.Release;
-            Free (this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticProviderRequestResponseCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -379,7 +383,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticProviderRequestResponseTimestamps /= null then
          if this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all /= null then
             temp := this.m_IHttpDiagnosticProviderRequestResponseTimestamps.all.Release;
-            Free (this.m_IHttpDiagnosticProviderRequestResponseTimestamps);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticProviderRequestResponseTimestamps);
+            end if;
          end if;
       end if;
    end;
@@ -582,7 +588,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticProviderRequestSentEventArgs /= null then
          if this.m_IHttpDiagnosticProviderRequestSentEventArgs.all /= null then
             temp := this.m_IHttpDiagnosticProviderRequestSentEventArgs.all.Release;
-            Free (this.m_IHttpDiagnosticProviderRequestSentEventArgs);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticProviderRequestSentEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -730,7 +738,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticProviderResponseReceivedEventArgs /= null then
          if this.m_IHttpDiagnosticProviderResponseReceivedEventArgs.all /= null then
             temp := this.m_IHttpDiagnosticProviderResponseReceivedEventArgs.all.Release;
-            Free (this.m_IHttpDiagnosticProviderResponseReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticProviderResponseReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -807,7 +817,9 @@ package body WinUI3.Windows.Web.Http.Diagnostics is
       if this.m_IHttpDiagnosticSourceLocation /= null then
          if this.m_IHttpDiagnosticSourceLocation.all /= null then
             temp := this.m_IHttpDiagnosticSourceLocation.all.Release;
-            Free (this.m_IHttpDiagnosticSourceLocation);
+            if temp < 1 then
+               Free (this.m_IHttpDiagnosticSourceLocation);
+            end if;
          end if;
       end if;
    end;

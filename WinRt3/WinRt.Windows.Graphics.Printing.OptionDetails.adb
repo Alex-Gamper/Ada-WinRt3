@@ -48,7 +48,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -326,7 +328,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -604,7 +608,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -882,7 +888,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1160,7 +1168,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1456,7 +1466,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintCustomItemDetails /= null then
          if this.m_IPrintCustomItemDetails.all /= null then
             temp := this.m_IPrintCustomItemDetails.all.Release;
-            Free (this.m_IPrintCustomItemDetails);
+            if temp < 1 then
+               Free (this.m_IPrintCustomItemDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1536,7 +1548,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1911,7 +1925,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2250,7 +2266,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2549,7 +2567,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2827,7 +2847,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3105,7 +3127,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3383,7 +3407,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3661,7 +3687,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3939,7 +3967,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4193,7 +4223,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4471,7 +4503,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintOptionDetails /= null then
          if this.m_IPrintOptionDetails.all /= null then
             temp := this.m_IPrintOptionDetails.all.Release;
-            Free (this.m_IPrintOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintOptionDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4749,7 +4783,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintTaskOptionChangedEventArgs /= null then
          if this.m_IPrintTaskOptionChangedEventArgs.all /= null then
             temp := this.m_IPrintTaskOptionChangedEventArgs.all.Release;
-            Free (this.m_IPrintTaskOptionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskOptionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4789,7 +4825,9 @@ package body WinRt.Windows.Graphics.Printing.OptionDetails is
       if this.m_IPrintTaskOptionDetails /= null then
          if this.m_IPrintTaskOptionDetails.all /= null then
             temp := this.m_IPrintTaskOptionDetails.all.Release;
-            Free (this.m_IPrintTaskOptionDetails);
+            if temp < 1 then
+               Free (this.m_IPrintTaskOptionDetails);
+            end if;
          end if;
       end if;
    end;

@@ -51,7 +51,9 @@ package body WinRt.Windows.Data.Json is
       if this.m_IJsonArray /= null then
          if this.m_IJsonArray.all /= null then
             temp := this.m_IJsonArray.all.Release;
-            Free (this.m_IJsonArray);
+            if temp < 1 then
+               Free (this.m_IJsonArray);
+            end if;
          end if;
       end if;
    end;
@@ -745,7 +747,9 @@ package body WinRt.Windows.Data.Json is
       if this.m_IJsonObject /= null then
          if this.m_IJsonObject.all /= null then
             temp := this.m_IJsonObject.all.Release;
-            Free (this.m_IJsonObject);
+            if temp < 1 then
+               Free (this.m_IJsonObject);
+            end if;
          end if;
       end if;
    end;
@@ -1505,7 +1509,9 @@ package body WinRt.Windows.Data.Json is
       if this.m_IJsonValue /= null then
          if this.m_IJsonValue.all /= null then
             temp := this.m_IJsonValue.all.Release;
-            Free (this.m_IJsonValue);
+            if temp < 1 then
+               Free (this.m_IJsonValue);
+            end if;
          end if;
       end if;
    end;

@@ -78,7 +78,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceAccessChangedEventArgs /= null then
          if this.m_IDeviceAccessChangedEventArgs.all /= null then
             temp := this.m_IDeviceAccessChangedEventArgs.all.Release;
-            Free (this.m_IDeviceAccessChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeviceAccessChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -163,7 +165,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceAccessInformation /= null then
          if this.m_IDeviceAccessInformation.all /= null then
             temp := this.m_IDeviceAccessInformation.all.Release;
-            Free (this.m_IDeviceAccessInformation);
+            if temp < 1 then
+               Free (this.m_IDeviceAccessInformation);
+            end if;
          end if;
       end if;
    end;
@@ -343,7 +347,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceConnectionChangeTriggerDetails /= null then
          if this.m_IDeviceConnectionChangeTriggerDetails.all /= null then
             temp := this.m_IDeviceConnectionChangeTriggerDetails.all.Release;
-            Free (this.m_IDeviceConnectionChangeTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IDeviceConnectionChangeTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -386,7 +392,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceDisconnectButtonClickedEventArgs /= null then
          if this.m_IDeviceDisconnectButtonClickedEventArgs.all /= null then
             temp := this.m_IDeviceDisconnectButtonClickedEventArgs.all.Release;
-            Free (this.m_IDeviceDisconnectButtonClickedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeviceDisconnectButtonClickedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -429,7 +437,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceInformation /= null then
          if this.m_IDeviceInformation.all /= null then
             temp := this.m_IDeviceInformation.all.Release;
-            Free (this.m_IDeviceInformation);
+            if temp < 1 then
+               Free (this.m_IDeviceInformation);
+            end if;
          end if;
       end if;
    end;
@@ -1858,7 +1868,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceInformationCustomPairing /= null then
          if this.m_IDeviceInformationCustomPairing.all /= null then
             temp := this.m_IDeviceInformationCustomPairing.all.Release;
-            Free (this.m_IDeviceInformationCustomPairing);
+            if temp < 1 then
+               Free (this.m_IDeviceInformationCustomPairing);
+            end if;
          end if;
       end if;
    end;
@@ -2178,7 +2190,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceInformationPairing /= null then
          if this.m_IDeviceInformationPairing.all /= null then
             temp := this.m_IDeviceInformationPairing.all.Release;
-            Free (this.m_IDeviceInformationPairing);
+            if temp < 1 then
+               Free (this.m_IDeviceInformationPairing);
+            end if;
          end if;
       end if;
    end;
@@ -2607,7 +2621,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceInformationUpdate /= null then
          if this.m_IDeviceInformationUpdate.all /= null then
             temp := this.m_IDeviceInformationUpdate.all.Release;
-            Free (this.m_IDeviceInformationUpdate);
+            if temp < 1 then
+               Free (this.m_IDeviceInformationUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -2691,7 +2707,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePairingRequestedEventArgs /= null then
          if this.m_IDevicePairingRequestedEventArgs.all /= null then
             temp := this.m_IDevicePairingRequestedEventArgs.all.Release;
-            Free (this.m_IDevicePairingRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDevicePairingRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2862,7 +2880,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePairingResult /= null then
          if this.m_IDevicePairingResult.all /= null then
             temp := this.m_IDevicePairingResult.all.Release;
-            Free (this.m_IDevicePairingResult);
+            if temp < 1 then
+               Free (this.m_IDevicePairingResult);
+            end if;
          end if;
       end if;
    end;
@@ -2919,7 +2939,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePairingSetMembersRequestedEventArgs /= null then
          if this.m_IDevicePairingSetMembersRequestedEventArgs.all /= null then
             temp := this.m_IDevicePairingSetMembersRequestedEventArgs.all.Release;
-            Free (this.m_IDevicePairingSetMembersRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDevicePairingSetMembersRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2999,7 +3021,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePicker /= null then
          if this.m_IDevicePicker.all /= null then
             temp := this.m_IDevicePicker.all.Release;
-            Free (this.m_IDevicePicker);
+            if temp < 1 then
+               Free (this.m_IDevicePicker);
+            end if;
          end if;
       end if;
    end;
@@ -3399,7 +3423,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePickerAppearance /= null then
          if this.m_IDevicePickerAppearance.all /= null then
             temp := this.m_IDevicePickerAppearance.all.Release;
-            Free (this.m_IDevicePickerAppearance);
+            if temp < 1 then
+               Free (this.m_IDevicePickerAppearance);
+            end if;
          end if;
       end if;
    end;
@@ -3651,7 +3677,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDevicePickerFilter /= null then
          if this.m_IDevicePickerFilter.all /= null then
             temp := this.m_IDevicePickerFilter.all.Release;
-            Free (this.m_IDevicePickerFilter);
+            if temp < 1 then
+               Free (this.m_IDevicePickerFilter);
+            end if;
          end if;
       end if;
    end;
@@ -3714,7 +3742,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceSelectedEventArgs /= null then
          if this.m_IDeviceSelectedEventArgs.all /= null then
             temp := this.m_IDeviceSelectedEventArgs.all.Release;
-            Free (this.m_IDeviceSelectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeviceSelectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3758,7 +3788,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IRandomAccessStreamWithContentType /= null then
          if this.m_IRandomAccessStreamWithContentType.all /= null then
             temp := this.m_IRandomAccessStreamWithContentType.all.Release;
-            Free (this.m_IRandomAccessStreamWithContentType);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStreamWithContentType);
+            end if;
          end if;
       end if;
    end;
@@ -4215,7 +4247,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceUnpairingResult /= null then
          if this.m_IDeviceUnpairingResult.all /= null then
             temp := this.m_IDeviceUnpairingResult.all.Release;
-            Free (this.m_IDeviceUnpairingResult);
+            if temp < 1 then
+               Free (this.m_IDeviceUnpairingResult);
+            end if;
          end if;
       end if;
    end;
@@ -4255,7 +4289,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceWatcher /= null then
          if this.m_IDeviceWatcher.all /= null then
             temp := this.m_IDeviceWatcher.all.Release;
-            Free (this.m_IDeviceWatcher);
+            if temp < 1 then
+               Free (this.m_IDeviceWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -4513,7 +4549,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceWatcherEvent /= null then
          if this.m_IDeviceWatcherEvent.all /= null then
             temp := this.m_IDeviceWatcherEvent.all.Release;
-            Free (this.m_IDeviceWatcherEvent);
+            if temp < 1 then
+               Free (this.m_IDeviceWatcherEvent);
+            end if;
          end if;
       end if;
    end;
@@ -4593,7 +4631,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IDeviceWatcherTriggerDetails /= null then
          if this.m_IDeviceWatcherTriggerDetails.all /= null then
             temp := this.m_IDeviceWatcherTriggerDetails.all.Release;
-            Free (this.m_IDeviceWatcherTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IDeviceWatcherTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4636,7 +4676,9 @@ package body WinUI3.Windows.Devices.Enumeration is
       if this.m_IEnclosureLocation /= null then
          if this.m_IEnclosureLocation.all /= null then
             temp := this.m_IEnclosureLocation.all.Release;
-            Free (this.m_IEnclosureLocation);
+            if temp < 1 then
+               Free (this.m_IEnclosureLocation);
+            end if;
          end if;
       end if;
    end;

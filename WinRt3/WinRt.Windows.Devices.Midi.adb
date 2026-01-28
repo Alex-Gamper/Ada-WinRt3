@@ -59,7 +59,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -152,7 +154,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiChannelPressureMessage /= null then
          if this.m_IMidiChannelPressureMessage.all /= null then
             temp := this.m_IMidiChannelPressureMessage.all.Release;
-            Free (this.m_IMidiChannelPressureMessage);
+            if temp < 1 then
+               Free (this.m_IMidiChannelPressureMessage);
+            end if;
          end if;
       end if;
    end;
@@ -300,7 +304,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -393,7 +399,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiControlChangeMessage /= null then
          if this.m_IMidiControlChangeMessage.all /= null then
             temp := this.m_IMidiControlChangeMessage.all.Release;
-            Free (this.m_IMidiControlChangeMessage);
+            if temp < 1 then
+               Free (this.m_IMidiControlChangeMessage);
+            end if;
          end if;
       end if;
    end;
@@ -559,7 +567,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiInPort /= null then
          if this.m_IMidiInPort.all /= null then
             temp := this.m_IMidiInPort.all.Release;
-            Free (this.m_IMidiInPort);
+            if temp < 1 then
+               Free (this.m_IMidiInPort);
+            end if;
          end if;
       end if;
    end;
@@ -755,7 +765,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessageReceivedEventArgs /= null then
          if this.m_IMidiMessageReceivedEventArgs.all /= null then
             temp := this.m_IMidiMessageReceivedEventArgs.all.Release;
-            Free (this.m_IMidiMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMidiMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -795,7 +807,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiNoteOffMessage /= null then
          if this.m_IMidiNoteOffMessage.all /= null then
             temp := this.m_IMidiNoteOffMessage.all.Release;
-            Free (this.m_IMidiNoteOffMessage);
+            if temp < 1 then
+               Free (this.m_IMidiNoteOffMessage);
+            end if;
          end if;
       end if;
    end;
@@ -961,7 +975,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiNoteOnMessage /= null then
          if this.m_IMidiNoteOnMessage.all /= null then
             temp := this.m_IMidiNoteOnMessage.all.Release;
-            Free (this.m_IMidiNoteOnMessage);
+            if temp < 1 then
+               Free (this.m_IMidiNoteOnMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1127,7 +1143,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiOutPort /= null then
          if this.m_IMidiOutPort.all /= null then
             temp := this.m_IMidiOutPort.all.Release;
-            Free (this.m_IMidiOutPort);
+            if temp < 1 then
+               Free (this.m_IMidiOutPort);
+            end if;
          end if;
       end if;
    end;
@@ -1317,7 +1335,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiPitchBendChangeMessage /= null then
          if this.m_IMidiPitchBendChangeMessage.all /= null then
             temp := this.m_IMidiPitchBendChangeMessage.all.Release;
-            Free (this.m_IMidiPitchBendChangeMessage);
+            if temp < 1 then
+               Free (this.m_IMidiPitchBendChangeMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1465,7 +1485,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiPolyphonicKeyPressureMessage /= null then
          if this.m_IMidiPolyphonicKeyPressureMessage.all /= null then
             temp := this.m_IMidiPolyphonicKeyPressureMessage.all.Release;
-            Free (this.m_IMidiPolyphonicKeyPressureMessage);
+            if temp < 1 then
+               Free (this.m_IMidiPolyphonicKeyPressureMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1631,7 +1653,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiProgramChangeMessage /= null then
          if this.m_IMidiProgramChangeMessage.all /= null then
             temp := this.m_IMidiProgramChangeMessage.all.Release;
-            Free (this.m_IMidiProgramChangeMessage);
+            if temp < 1 then
+               Free (this.m_IMidiProgramChangeMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1779,7 +1803,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiSongPositionPointerMessage /= null then
          if this.m_IMidiSongPositionPointerMessage.all /= null then
             temp := this.m_IMidiSongPositionPointerMessage.all.Release;
-            Free (this.m_IMidiSongPositionPointerMessage);
+            if temp < 1 then
+               Free (this.m_IMidiSongPositionPointerMessage);
+            end if;
          end if;
       end if;
    end;
@@ -1909,7 +1935,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiSongSelectMessage /= null then
          if this.m_IMidiSongSelectMessage.all /= null then
             temp := this.m_IMidiSongSelectMessage.all.Release;
-            Free (this.m_IMidiSongSelectMessage);
+            if temp < 1 then
+               Free (this.m_IMidiSongSelectMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2039,7 +2067,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2132,7 +2162,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2225,7 +2257,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiSynthesizer /= null then
          if this.m_IMidiSynthesizer.all /= null then
             temp := this.m_IMidiSynthesizer.all.Release;
-            Free (this.m_IMidiSynthesizer);
+            if temp < 1 then
+               Free (this.m_IMidiSynthesizer);
+            end if;
          end if;
       end if;
    end;
@@ -2550,7 +2584,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2651,7 +2687,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2744,7 +2782,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiTimeCodeMessage /= null then
          if this.m_IMidiTimeCodeMessage.all /= null then
             temp := this.m_IMidiTimeCodeMessage.all.Release;
-            Free (this.m_IMidiTimeCodeMessage);
+            if temp < 1 then
+               Free (this.m_IMidiTimeCodeMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2892,7 +2932,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2985,7 +3027,9 @@ package body WinRt.Windows.Devices.Midi is
       if this.m_IMidiMessage /= null then
          if this.m_IMidiMessage.all /= null then
             temp := this.m_IMidiMessage.all.Release;
-            Free (this.m_IMidiMessage);
+            if temp < 1 then
+               Free (this.m_IMidiMessage);
+            end if;
          end if;
       end if;
    end;

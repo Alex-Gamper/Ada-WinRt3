@@ -51,7 +51,9 @@ package body WinUI3.Windows.Devices.Sensors.Custom is
       if this.m_ICustomSensor /= null then
          if this.m_ICustomSensor.all /= null then
             temp := this.m_ICustomSensor.all.Release;
-            Free (this.m_ICustomSensor);
+            if temp < 1 then
+               Free (this.m_ICustomSensor);
+            end if;
          end if;
       end if;
    end;
@@ -362,7 +364,9 @@ package body WinUI3.Windows.Devices.Sensors.Custom is
       if this.m_ICustomSensorReading /= null then
          if this.m_ICustomSensorReading.all /= null then
             temp := this.m_ICustomSensorReading.all.Release;
-            Free (this.m_ICustomSensorReading);
+            if temp < 1 then
+               Free (this.m_ICustomSensorReading);
+            end if;
          end if;
       end if;
    end;
@@ -446,7 +450,9 @@ package body WinUI3.Windows.Devices.Sensors.Custom is
       if this.m_ICustomSensorReadingChangedEventArgs /= null then
          if this.m_ICustomSensorReadingChangedEventArgs.all /= null then
             temp := this.m_ICustomSensorReadingChangedEventArgs.all.Release;
-            Free (this.m_ICustomSensorReadingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICustomSensorReadingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

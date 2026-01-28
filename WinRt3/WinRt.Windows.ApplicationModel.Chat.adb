@@ -84,7 +84,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatCapabilities /= null then
          if this.m_IChatCapabilities.all /= null then
             temp := this.m_IChatCapabilities.all.Release;
-            Free (this.m_IChatCapabilities);
+            if temp < 1 then
+               Free (this.m_IChatCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -504,7 +506,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatConversation /= null then
          if this.m_IChatConversation.all /= null then
             temp := this.m_IChatConversation.all.Release;
-            Free (this.m_IChatConversation);
+            if temp < 1 then
+               Free (this.m_IChatConversation);
+            end if;
          end if;
       end if;
    end;
@@ -1018,7 +1022,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatConversationReader /= null then
          if this.m_IChatConversationReader.all /= null then
             temp := this.m_IChatConversationReader.all.Release;
-            Free (this.m_IChatConversationReader);
+            if temp < 1 then
+               Free (this.m_IChatConversationReader);
+            end if;
          end if;
       end if;
    end;
@@ -1168,7 +1174,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatConversationThreadingInfo /= null then
          if this.m_IChatConversationThreadingInfo.all /= null then
             temp := this.m_IChatConversationThreadingInfo.all.Release;
-            Free (this.m_IChatConversationThreadingInfo);
+            if temp < 1 then
+               Free (this.m_IChatConversationThreadingInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1373,7 +1381,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessage /= null then
          if this.m_IChatMessage.all /= null then
             temp := this.m_IChatMessage.all.Release;
-            Free (this.m_IChatMessage);
+            if temp < 1 then
+               Free (this.m_IChatMessage);
+            end if;
          end if;
       end if;
    end;
@@ -2387,7 +2397,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageAttachment /= null then
          if this.m_IChatMessageAttachment.all /= null then
             temp := this.m_IChatMessageAttachment.all.Release;
-            Free (this.m_IChatMessageAttachment);
+            if temp < 1 then
+               Free (this.m_IChatMessageAttachment);
+            end if;
          end if;
       end if;
    end;
@@ -2761,7 +2773,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageChange /= null then
          if this.m_IChatMessageChange.all /= null then
             temp := this.m_IChatMessageChange.all.Release;
-            Free (this.m_IChatMessageChange);
+            if temp < 1 then
+               Free (this.m_IChatMessageChange);
+            end if;
          end if;
       end if;
    end;
@@ -2821,7 +2835,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageChangeReader /= null then
          if this.m_IChatMessageChangeReader.all /= null then
             temp := this.m_IChatMessageChangeReader.all.Release;
-            Free (this.m_IChatMessageChangeReader);
+            if temp < 1 then
+               Free (this.m_IChatMessageChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -2936,7 +2952,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageChangeTracker /= null then
          if this.m_IChatMessageChangeTracker.all /= null then
             temp := this.m_IChatMessageChangeTracker.all.Release;
-            Free (this.m_IChatMessageChangeTracker);
+            if temp < 1 then
+               Free (this.m_IChatMessageChangeTracker);
+            end if;
          end if;
       end if;
    end;
@@ -3007,7 +3025,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageChangedDeferral /= null then
          if this.m_IChatMessageChangedDeferral.all /= null then
             temp := this.m_IChatMessageChangedDeferral.all.Release;
-            Free (this.m_IChatMessageChangedDeferral);
+            if temp < 1 then
+               Free (this.m_IChatMessageChangedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -3044,7 +3064,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageChangedEventArgs /= null then
          if this.m_IChatMessageChangedEventArgs.all /= null then
             temp := this.m_IChatMessageChangedEventArgs.all.Release;
-            Free (this.m_IChatMessageChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IChatMessageChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3512,7 +3534,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageNotificationTriggerDetails /= null then
          if this.m_IChatMessageNotificationTriggerDetails.all /= null then
             temp := this.m_IChatMessageNotificationTriggerDetails.all.Release;
-            Free (this.m_IChatMessageNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IChatMessageNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3639,7 +3663,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageReader /= null then
          if this.m_IChatMessageReader.all /= null then
             temp := this.m_IChatMessageReader.all.Release;
-            Free (this.m_IChatMessageReader);
+            if temp < 1 then
+               Free (this.m_IChatMessageReader);
+            end if;
          end if;
       end if;
    end;
@@ -3793,7 +3819,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageStore /= null then
          if this.m_IChatMessageStore.all /= null then
             temp := this.m_IChatMessageStore.all.Release;
-            Free (this.m_IChatMessageStore);
+            if temp < 1 then
+               Free (this.m_IChatMessageStore);
+            end if;
          end if;
       end if;
    end;
@@ -5194,7 +5222,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageStoreChangedEventArgs /= null then
          if this.m_IChatMessageStoreChangedEventArgs.all /= null then
             temp := this.m_IChatMessageStoreChangedEventArgs.all.Release;
-            Free (this.m_IChatMessageStoreChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IChatMessageStoreChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5254,7 +5284,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageTransport /= null then
          if this.m_IChatMessageTransport.all /= null then
             temp := this.m_IChatMessageTransport.all.Release;
-            Free (this.m_IChatMessageTransport);
+            if temp < 1 then
+               Free (this.m_IChatMessageTransport);
+            end if;
          end if;
       end if;
    end;
@@ -5438,7 +5470,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageTransportConfiguration /= null then
          if this.m_IChatMessageTransportConfiguration.all /= null then
             temp := this.m_IChatMessageTransportConfiguration.all.Release;
-            Free (this.m_IChatMessageTransportConfiguration);
+            if temp < 1 then
+               Free (this.m_IChatMessageTransportConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -5552,7 +5586,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatMessageValidationResult /= null then
          if this.m_IChatMessageValidationResult.all /= null then
             temp := this.m_IChatMessageValidationResult.all.Release;
-            Free (this.m_IChatMessageValidationResult);
+            if temp < 1 then
+               Free (this.m_IChatMessageValidationResult);
+            end if;
          end if;
       end if;
    end;
@@ -5652,7 +5688,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatQueryOptions /= null then
          if this.m_IChatQueryOptions.all /= null then
             temp := this.m_IChatQueryOptions.all.Release;
-            Free (this.m_IChatQueryOptions);
+            if temp < 1 then
+               Free (this.m_IChatQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5731,7 +5769,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatRecipientDeliveryInfo /= null then
          if this.m_IChatRecipientDeliveryInfo.all /= null then
             temp := this.m_IChatRecipientDeliveryInfo.all.Release;
-            Free (this.m_IChatRecipientDeliveryInfo);
+            if temp < 1 then
+               Free (this.m_IChatRecipientDeliveryInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5965,7 +6005,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatSearchReader /= null then
          if this.m_IChatSearchReader.all /= null then
             temp := this.m_IChatSearchReader.all.Release;
-            Free (this.m_IChatSearchReader);
+            if temp < 1 then
+               Free (this.m_IChatSearchReader);
+            end if;
          end if;
       end if;
    end;
@@ -6115,7 +6157,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatSyncConfiguration /= null then
          if this.m_IChatSyncConfiguration.all /= null then
             temp := this.m_IChatSyncConfiguration.all.Release;
-            Free (this.m_IChatSyncConfiguration);
+            if temp < 1 then
+               Free (this.m_IChatSyncConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -6202,7 +6246,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IChatSyncManager /= null then
          if this.m_IChatSyncManager.all /= null then
             temp := this.m_IChatSyncManager.all.Release;
-            Free (this.m_IChatSyncManager);
+            if temp < 1 then
+               Free (this.m_IChatSyncManager);
+            end if;
          end if;
       end if;
    end;
@@ -6405,7 +6451,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsEndUserMessage /= null then
          if this.m_IRcsEndUserMessage.all /= null then
             temp := this.m_IRcsEndUserMessage.all.Release;
-            Free (this.m_IRcsEndUserMessage);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessage);
+            end if;
          end if;
       end if;
    end;
@@ -6614,7 +6662,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsEndUserMessageAction /= null then
          if this.m_IRcsEndUserMessageAction.all /= null then
             temp := this.m_IRcsEndUserMessageAction.all.Release;
-            Free (this.m_IRcsEndUserMessageAction);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessageAction);
+            end if;
          end if;
       end if;
    end;
@@ -6657,7 +6707,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsEndUserMessageAvailableEventArgs /= null then
          if this.m_IRcsEndUserMessageAvailableEventArgs.all /= null then
             temp := this.m_IRcsEndUserMessageAvailableEventArgs.all.Release;
-            Free (this.m_IRcsEndUserMessageAvailableEventArgs);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessageAvailableEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6717,7 +6769,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsEndUserMessageAvailableTriggerDetails /= null then
          if this.m_IRcsEndUserMessageAvailableTriggerDetails.all /= null then
             temp := this.m_IRcsEndUserMessageAvailableTriggerDetails.all.Release;
-            Free (this.m_IRcsEndUserMessageAvailableTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessageAvailableTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -6780,7 +6834,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsEndUserMessageManager /= null then
          if this.m_IRcsEndUserMessageManager.all /= null then
             temp := this.m_IRcsEndUserMessageManager.all.Release;
-            Free (this.m_IRcsEndUserMessageManager);
+            if temp < 1 then
+               Free (this.m_IRcsEndUserMessageManager);
+            end if;
          end if;
       end if;
    end;
@@ -7102,7 +7158,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsServiceKindSupportedChangedEventArgs /= null then
          if this.m_IRcsServiceKindSupportedChangedEventArgs.all /= null then
             temp := this.m_IRcsServiceKindSupportedChangedEventArgs.all.Release;
-            Free (this.m_IRcsServiceKindSupportedChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRcsServiceKindSupportedChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7142,7 +7200,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsTransport /= null then
          if this.m_IRcsTransport.all /= null then
             temp := this.m_IRcsTransport.all.Release;
-            Free (this.m_IRcsTransport);
+            if temp < 1 then
+               Free (this.m_IRcsTransport);
+            end if;
          end if;
       end if;
    end;
@@ -7331,7 +7391,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRcsTransportConfiguration /= null then
          if this.m_IRcsTransportConfiguration.all /= null then
             temp := this.m_IRcsTransportConfiguration.all.Release;
-            Free (this.m_IRcsTransportConfiguration);
+            if temp < 1 then
+               Free (this.m_IRcsTransportConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -7456,7 +7518,9 @@ package body WinRt.Windows.ApplicationModel.Chat is
       if this.m_IRemoteParticipantComposingChangedEventArgs /= null then
          if this.m_IRemoteParticipantComposingChangedEventArgs.all /= null then
             temp := this.m_IRemoteParticipantComposingChangedEventArgs.all.Release;
-            Free (this.m_IRemoteParticipantComposingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRemoteParticipantComposingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

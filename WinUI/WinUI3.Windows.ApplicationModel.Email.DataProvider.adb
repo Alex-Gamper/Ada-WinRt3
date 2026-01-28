@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailDataProviderConnection /= null then
          if this.m_IEmailDataProviderConnection.all /= null then
             temp := this.m_IEmailDataProviderConnection.all.Release;
-            Free (this.m_IEmailDataProviderConnection);
+            if temp < 1 then
+               Free (this.m_IEmailDataProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -579,7 +581,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailDataProviderTriggerDetails /= null then
          if this.m_IEmailDataProviderTriggerDetails.all /= null then
             temp := this.m_IEmailDataProviderTriggerDetails.all.Release;
-            Free (this.m_IEmailDataProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IEmailDataProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -622,7 +626,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxCreateFolderRequest /= null then
          if this.m_IEmailMailboxCreateFolderRequest.all /= null then
             temp := this.m_IEmailMailboxCreateFolderRequest.all.Release;
-            Free (this.m_IEmailMailboxCreateFolderRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxCreateFolderRequest);
+            end if;
          end if;
       end if;
    end;
@@ -791,7 +797,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxCreateFolderRequestEventArgs /= null then
          if this.m_IEmailMailboxCreateFolderRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxCreateFolderRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxCreateFolderRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxCreateFolderRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -854,7 +862,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDeleteFolderRequest /= null then
          if this.m_IEmailMailboxDeleteFolderRequest.all /= null then
             temp := this.m_IEmailMailboxDeleteFolderRequest.all.Release;
-            Free (this.m_IEmailMailboxDeleteFolderRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDeleteFolderRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1002,7 +1012,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDeleteFolderRequestEventArgs /= null then
          if this.m_IEmailMailboxDeleteFolderRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxDeleteFolderRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxDeleteFolderRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDeleteFolderRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1065,7 +1077,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDownloadAttachmentRequest /= null then
          if this.m_IEmailMailboxDownloadAttachmentRequest.all /= null then
             temp := this.m_IEmailMailboxDownloadAttachmentRequest.all.Release;
-            Free (this.m_IEmailMailboxDownloadAttachmentRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDownloadAttachmentRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1232,7 +1246,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDownloadAttachmentRequestEventArgs /= null then
          if this.m_IEmailMailboxDownloadAttachmentRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxDownloadAttachmentRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxDownloadAttachmentRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDownloadAttachmentRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1295,7 +1311,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDownloadMessageRequest /= null then
          if this.m_IEmailMailboxDownloadMessageRequest.all /= null then
             temp := this.m_IEmailMailboxDownloadMessageRequest.all.Release;
-            Free (this.m_IEmailMailboxDownloadMessageRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDownloadMessageRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1442,7 +1460,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxDownloadMessageRequestEventArgs /= null then
          if this.m_IEmailMailboxDownloadMessageRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxDownloadMessageRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxDownloadMessageRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxDownloadMessageRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1505,7 +1525,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxEmptyFolderRequest /= null then
          if this.m_IEmailMailboxEmptyFolderRequest.all /= null then
             temp := this.m_IEmailMailboxEmptyFolderRequest.all.Release;
-            Free (this.m_IEmailMailboxEmptyFolderRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxEmptyFolderRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1653,7 +1675,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxEmptyFolderRequestEventArgs /= null then
          if this.m_IEmailMailboxEmptyFolderRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxEmptyFolderRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxEmptyFolderRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxEmptyFolderRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1716,7 +1740,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxForwardMeetingRequest /= null then
          if this.m_IEmailMailboxForwardMeetingRequest.all /= null then
             temp := this.m_IEmailMailboxForwardMeetingRequest.all.Release;
-            Free (this.m_IEmailMailboxForwardMeetingRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxForwardMeetingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1960,7 +1986,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxForwardMeetingRequestEventArgs /= null then
          if this.m_IEmailMailboxForwardMeetingRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxForwardMeetingRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxForwardMeetingRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxForwardMeetingRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2023,7 +2051,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxGetAutoReplySettingsRequest /= null then
          if this.m_IEmailMailboxGetAutoReplySettingsRequest.all /= null then
             temp := this.m_IEmailMailboxGetAutoReplySettingsRequest.all.Release;
-            Free (this.m_IEmailMailboxGetAutoReplySettingsRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxGetAutoReplySettingsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2168,7 +2198,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxGetAutoReplySettingsRequestEventArgs /= null then
          if this.m_IEmailMailboxGetAutoReplySettingsRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxGetAutoReplySettingsRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxGetAutoReplySettingsRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxGetAutoReplySettingsRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2231,7 +2263,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxMoveFolderRequest /= null then
          if this.m_IEmailMailboxMoveFolderRequest.all /= null then
             temp := this.m_IEmailMailboxMoveFolderRequest.all.Release;
-            Free (this.m_IEmailMailboxMoveFolderRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxMoveFolderRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2418,7 +2452,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxMoveFolderRequestEventArgs /= null then
          if this.m_IEmailMailboxMoveFolderRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxMoveFolderRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxMoveFolderRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxMoveFolderRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2481,7 +2517,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxProposeNewTimeForMeetingRequest /= null then
          if this.m_IEmailMailboxProposeNewTimeForMeetingRequest.all /= null then
             temp := this.m_IEmailMailboxProposeNewTimeForMeetingRequest.all.Release;
-            Free (this.m_IEmailMailboxProposeNewTimeForMeetingRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxProposeNewTimeForMeetingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2702,7 +2740,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxProposeNewTimeForMeetingRequestEventArgs /= null then
          if this.m_IEmailMailboxProposeNewTimeForMeetingRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxProposeNewTimeForMeetingRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxProposeNewTimeForMeetingRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxProposeNewTimeForMeetingRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2765,7 +2805,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxResolveRecipientsRequest /= null then
          if this.m_IEmailMailboxResolveRecipientsRequest.all /= null then
             temp := this.m_IEmailMailboxResolveRecipientsRequest.all.Release;
-            Free (this.m_IEmailMailboxResolveRecipientsRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxResolveRecipientsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2913,7 +2955,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxResolveRecipientsRequestEventArgs /= null then
          if this.m_IEmailMailboxResolveRecipientsRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxResolveRecipientsRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxResolveRecipientsRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxResolveRecipientsRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2976,7 +3020,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxServerSearchReadBatchRequest /= null then
          if this.m_IEmailMailboxServerSearchReadBatchRequest.all /= null then
             temp := this.m_IEmailMailboxServerSearchReadBatchRequest.all.Release;
-            Free (this.m_IEmailMailboxServerSearchReadBatchRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxServerSearchReadBatchRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3224,7 +3270,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxServerSearchReadBatchRequestEventArgs /= null then
          if this.m_IEmailMailboxServerSearchReadBatchRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxServerSearchReadBatchRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxServerSearchReadBatchRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxServerSearchReadBatchRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3287,7 +3335,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxSetAutoReplySettingsRequest /= null then
          if this.m_IEmailMailboxSetAutoReplySettingsRequest.all /= null then
             temp := this.m_IEmailMailboxSetAutoReplySettingsRequest.all.Release;
-            Free (this.m_IEmailMailboxSetAutoReplySettingsRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxSetAutoReplySettingsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3434,7 +3484,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxSetAutoReplySettingsRequestEventArgs /= null then
          if this.m_IEmailMailboxSetAutoReplySettingsRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxSetAutoReplySettingsRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxSetAutoReplySettingsRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxSetAutoReplySettingsRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3497,7 +3549,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxSyncManagerSyncRequest /= null then
          if this.m_IEmailMailboxSyncManagerSyncRequest.all /= null then
             temp := this.m_IEmailMailboxSyncManagerSyncRequest.all.Release;
-            Free (this.m_IEmailMailboxSyncManagerSyncRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxSyncManagerSyncRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3624,7 +3678,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxSyncManagerSyncRequestEventArgs /= null then
          if this.m_IEmailMailboxSyncManagerSyncRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxSyncManagerSyncRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxSyncManagerSyncRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxSyncManagerSyncRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3687,7 +3743,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxUpdateMeetingResponseRequest /= null then
          if this.m_IEmailMailboxUpdateMeetingResponseRequest.all /= null then
             temp := this.m_IEmailMailboxUpdateMeetingResponseRequest.all.Release;
-            Free (this.m_IEmailMailboxUpdateMeetingResponseRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxUpdateMeetingResponseRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3908,7 +3966,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxUpdateMeetingResponseRequestEventArgs /= null then
          if this.m_IEmailMailboxUpdateMeetingResponseRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxUpdateMeetingResponseRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxUpdateMeetingResponseRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxUpdateMeetingResponseRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3971,7 +4031,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxValidateCertificatesRequest /= null then
          if this.m_IEmailMailboxValidateCertificatesRequest.all /= null then
             temp := this.m_IEmailMailboxValidateCertificatesRequest.all.Release;
-            Free (this.m_IEmailMailboxValidateCertificatesRequest);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxValidateCertificatesRequest);
+            end if;
          end if;
       end if;
    end;
@@ -4116,7 +4178,9 @@ package body WinUI3.Windows.ApplicationModel.Email.DataProvider is
       if this.m_IEmailMailboxValidateCertificatesRequestEventArgs /= null then
          if this.m_IEmailMailboxValidateCertificatesRequestEventArgs.all /= null then
             temp := this.m_IEmailMailboxValidateCertificatesRequestEventArgs.all.Release;
-            Free (this.m_IEmailMailboxValidateCertificatesRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IEmailMailboxValidateCertificatesRequestEventArgs);
+            end if;
          end if;
       end if;
    end;

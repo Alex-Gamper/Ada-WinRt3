@@ -51,7 +51,9 @@ package body WinRt.Windows.UI.Popups is
       if this.m_IMessageDialog /= null then
          if this.m_IMessageDialog.all /= null then
             temp := this.m_IMessageDialog.all.Release;
-            Free (this.m_IMessageDialog);
+            if temp < 1 then
+               Free (this.m_IMessageDialog);
+            end if;
          end if;
       end if;
    end;
@@ -385,7 +387,9 @@ package body WinRt.Windows.UI.Popups is
       if this.m_IPopupMenu /= null then
          if this.m_IPopupMenu.all /= null then
             temp := this.m_IPopupMenu.all.Release;
-            Free (this.m_IPopupMenu);
+            if temp < 1 then
+               Free (this.m_IPopupMenu);
+            end if;
          end if;
       end if;
    end;
@@ -640,7 +644,9 @@ package body WinRt.Windows.UI.Popups is
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
             temp := this.m_IUICommand.all.Release;
-            Free (this.m_IUICommand);
+            if temp < 1 then
+               Free (this.m_IUICommand);
+            end if;
          end if;
       end if;
    end;
@@ -879,7 +885,9 @@ package body WinRt.Windows.UI.Popups is
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
             temp := this.m_IUICommand.all.Release;
-            Free (this.m_IUICommand);
+            if temp < 1 then
+               Free (this.m_IUICommand);
+            end if;
          end if;
       end if;
    end;

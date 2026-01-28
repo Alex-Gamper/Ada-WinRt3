@@ -55,7 +55,9 @@ package body WinUI3.Windows.Services.Maps.OfflineMaps is
       if this.m_IOfflineMapPackage /= null then
          if this.m_IOfflineMapPackage.all /= null then
             temp := this.m_IOfflineMapPackage.all.Release;
-            Free (this.m_IOfflineMapPackage);
+            if temp < 1 then
+               Free (this.m_IOfflineMapPackage);
+            end if;
          end if;
       end if;
    end;
@@ -473,7 +475,9 @@ package body WinUI3.Windows.Services.Maps.OfflineMaps is
       if this.m_IOfflineMapPackageQueryResult /= null then
          if this.m_IOfflineMapPackageQueryResult.all /= null then
             temp := this.m_IOfflineMapPackageQueryResult.all.Release;
-            Free (this.m_IOfflineMapPackageQueryResult);
+            if temp < 1 then
+               Free (this.m_IOfflineMapPackageQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -533,7 +537,9 @@ package body WinUI3.Windows.Services.Maps.OfflineMaps is
       if this.m_IOfflineMapPackageStartDownloadResult /= null then
          if this.m_IOfflineMapPackageStartDownloadResult.all /= null then
             temp := this.m_IOfflineMapPackageStartDownloadResult.all.Release;
-            Free (this.m_IOfflineMapPackageStartDownloadResult);
+            if temp < 1 then
+               Free (this.m_IOfflineMapPackageStartDownloadResult);
+            end if;
          end if;
       end if;
    end;

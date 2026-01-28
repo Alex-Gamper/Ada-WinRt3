@@ -66,7 +66,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundDownloader /= null then
          if this.m_IBackgroundDownloader.all /= null then
             temp := this.m_IBackgroundDownloader.all.Release;
-            Free (this.m_IBackgroundDownloader);
+            if temp < 1 then
+               Free (this.m_IBackgroundDownloader);
+            end if;
          end if;
       end if;
    end;
@@ -1010,7 +1012,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundTransferCompletionGroup /= null then
          if this.m_IBackgroundTransferCompletionGroup.all /= null then
             temp := this.m_IBackgroundTransferCompletionGroup.all.Release;
-            Free (this.m_IBackgroundTransferCompletionGroup);
+            if temp < 1 then
+               Free (this.m_IBackgroundTransferCompletionGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1100,7 +1104,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundTransferCompletionGroupTriggerDetails /= null then
          if this.m_IBackgroundTransferCompletionGroupTriggerDetails.all /= null then
             temp := this.m_IBackgroundTransferCompletionGroupTriggerDetails.all.Release;
-            Free (this.m_IBackgroundTransferCompletionGroupTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IBackgroundTransferCompletionGroupTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1163,7 +1169,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundTransferContentPart /= null then
          if this.m_IBackgroundTransferContentPart.all /= null then
             temp := this.m_IBackgroundTransferContentPart.all.Release;
-            Free (this.m_IBackgroundTransferContentPart);
+            if temp < 1 then
+               Free (this.m_IBackgroundTransferContentPart);
+            end if;
          end if;
       end if;
    end;
@@ -1342,7 +1350,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundTransferGroup /= null then
          if this.m_IBackgroundTransferGroup.all /= null then
             temp := this.m_IBackgroundTransferGroup.all.Release;
-            Free (this.m_IBackgroundTransferGroup);
+            if temp < 1 then
+               Free (this.m_IBackgroundTransferGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1449,7 +1459,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundTransferRangesDownloadedEventArgs /= null then
          if this.m_IBackgroundTransferRangesDownloadedEventArgs.all /= null then
             temp := this.m_IBackgroundTransferRangesDownloadedEventArgs.all.Release;
-            Free (this.m_IBackgroundTransferRangesDownloadedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBackgroundTransferRangesDownloadedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1529,7 +1541,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IBackgroundUploader /= null then
          if this.m_IBackgroundUploader.all /= null then
             temp := this.m_IBackgroundUploader.all.Release;
-            Free (this.m_IBackgroundUploader);
+            if temp < 1 then
+               Free (this.m_IBackgroundUploader);
+            end if;
          end if;
       end if;
    end;
@@ -2755,7 +2769,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IDownloadOperation /= null then
          if this.m_IDownloadOperation.all /= null then
             temp := this.m_IDownloadOperation.all.Release;
-            Free (this.m_IDownloadOperation);
+            if temp < 1 then
+               Free (this.m_IDownloadOperation);
+            end if;
          end if;
       end if;
    end;
@@ -3465,7 +3481,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IResponseInformation /= null then
          if this.m_IResponseInformation.all /= null then
             temp := this.m_IResponseInformation.all.Release;
-            Free (this.m_IResponseInformation);
+            if temp < 1 then
+               Free (this.m_IResponseInformation);
+            end if;
          end if;
       end if;
    end;
@@ -3562,7 +3580,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IUnconstrainedTransferRequestResult /= null then
          if this.m_IUnconstrainedTransferRequestResult.all /= null then
             temp := this.m_IUnconstrainedTransferRequestResult.all.Release;
-            Free (this.m_IUnconstrainedTransferRequestResult);
+            if temp < 1 then
+               Free (this.m_IUnconstrainedTransferRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -3602,7 +3622,9 @@ package body WinRt.Windows.Networking.BackgroundTransfer is
       if this.m_IUploadOperation /= null then
          if this.m_IUploadOperation.all /= null then
             temp := this.m_IUploadOperation.all.Release;
-            Free (this.m_IUploadOperation);
+            if temp < 1 then
+               Free (this.m_IUploadOperation);
+            end if;
          end if;
       end if;
    end;

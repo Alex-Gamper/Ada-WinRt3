@@ -85,7 +85,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IAppDisplayInfo /= null then
          if this.m_IAppDisplayInfo.all /= null then
             temp := this.m_IAppDisplayInfo.all.Release;
-            Free (this.m_IAppDisplayInfo);
+            if temp < 1 then
+               Free (this.m_IAppDisplayInfo);
+            end if;
          end if;
       end if;
    end;
@@ -169,7 +171,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IAppInfo /= null then
          if this.m_IAppInfo.all /= null then
             temp := this.m_IAppInfo.all.Release;
-            Free (this.m_IAppInfo);
+            if temp < 1 then
+               Free (this.m_IAppInfo);
+            end if;
          end if;
       end if;
    end;
@@ -435,7 +439,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IAppInstallerInfo /= null then
          if this.m_IAppInstallerInfo.all /= null then
             temp := this.m_IAppInstallerInfo.all.Release;
-            Free (this.m_IAppInstallerInfo);
+            if temp < 1 then
+               Free (this.m_IAppInstallerInfo);
+            end if;
          end if;
       end if;
    end;
@@ -808,7 +814,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IAppInstance /= null then
          if this.m_IAppInstance.all /= null then
             temp := this.m_IAppInstance.all.Release;
-            Free (this.m_IAppInstance);
+            if temp < 1 then
+               Free (this.m_IAppInstance);
+            end if;
          end if;
       end if;
    end;
@@ -1046,7 +1054,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IEnteredBackgroundEventArgs /= null then
          if this.m_IEnteredBackgroundEventArgs.all /= null then
             temp := this.m_IEnteredBackgroundEventArgs.all.Release;
-            Free (this.m_IEnteredBackgroundEventArgs);
+            if temp < 1 then
+               Free (this.m_IEnteredBackgroundEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1089,7 +1099,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IFindRelatedPackagesOptions /= null then
          if this.m_IFindRelatedPackagesOptions.all /= null then
             temp := this.m_IFindRelatedPackagesOptions.all.Release;
-            Free (this.m_IFindRelatedPackagesOptions);
+            if temp < 1 then
+               Free (this.m_IFindRelatedPackagesOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1299,7 +1311,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IFullTrustProcessLaunchResult /= null then
          if this.m_IFullTrustProcessLaunchResult.all /= null then
             temp := this.m_IFullTrustProcessLaunchResult.all.Release;
-            Free (this.m_IFullTrustProcessLaunchResult);
+            if temp < 1 then
+               Free (this.m_IFullTrustProcessLaunchResult);
+            end if;
          end if;
       end if;
    end;
@@ -1717,7 +1731,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_ILeavingBackgroundEventArgs /= null then
          if this.m_ILeavingBackgroundEventArgs.all /= null then
             temp := this.m_ILeavingBackgroundEventArgs.all.Release;
-            Free (this.m_ILeavingBackgroundEventArgs);
+            if temp < 1 then
+               Free (this.m_ILeavingBackgroundEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1760,7 +1776,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_ILimitedAccessFeatureRequestResult /= null then
          if this.m_ILimitedAccessFeatureRequestResult.all /= null then
             temp := this.m_ILimitedAccessFeatureRequestResult.all.Release;
-            Free (this.m_ILimitedAccessFeatureRequestResult);
+            if temp < 1 then
+               Free (this.m_ILimitedAccessFeatureRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -1881,7 +1899,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackage /= null then
          if this.m_IPackage.all /= null then
             temp := this.m_IPackage.all.Release;
-            Free (this.m_IPackage);
+            if temp < 1 then
+               Free (this.m_IPackage);
+            end if;
          end if;
       end if;
    end;
@@ -3273,7 +3293,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageCatalog /= null then
          if this.m_IPackageCatalog.all /= null then
             temp := this.m_IPackageCatalog.all.Release;
-            Free (this.m_IPackageCatalog);
+            if temp < 1 then
+               Free (this.m_IPackageCatalog);
+            end if;
          end if;
       end if;
    end;
@@ -3872,7 +3894,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageCatalogAddOptionalPackageResult /= null then
          if this.m_IPackageCatalogAddOptionalPackageResult.all /= null then
             temp := this.m_IPackageCatalogAddOptionalPackageResult.all.Release;
-            Free (this.m_IPackageCatalogAddOptionalPackageResult);
+            if temp < 1 then
+               Free (this.m_IPackageCatalogAddOptionalPackageResult);
+            end if;
          end if;
       end if;
    end;
@@ -3932,7 +3956,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageCatalogAddResourcePackageResult /= null then
          if this.m_IPackageCatalogAddResourcePackageResult.all /= null then
             temp := this.m_IPackageCatalogAddResourcePackageResult.all.Release;
-            Free (this.m_IPackageCatalogAddResourcePackageResult);
+            if temp < 1 then
+               Free (this.m_IPackageCatalogAddResourcePackageResult);
+            end if;
          end if;
       end if;
    end;
@@ -4009,7 +4035,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageCatalogRemoveOptionalPackagesResult /= null then
          if this.m_IPackageCatalogRemoveOptionalPackagesResult.all /= null then
             temp := this.m_IPackageCatalogRemoveOptionalPackagesResult.all.Release;
-            Free (this.m_IPackageCatalogRemoveOptionalPackagesResult);
+            if temp < 1 then
+               Free (this.m_IPackageCatalogRemoveOptionalPackagesResult);
+            end if;
          end if;
       end if;
    end;
@@ -4069,7 +4097,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageCatalogRemoveResourcePackagesResult /= null then
          if this.m_IPackageCatalogRemoveResourcePackagesResult.all /= null then
             temp := this.m_IPackageCatalogRemoveResourcePackagesResult.all.Release;
-            Free (this.m_IPackageCatalogRemoveResourcePackagesResult);
+            if temp < 1 then
+               Free (this.m_IPackageCatalogRemoveResourcePackagesResult);
+            end if;
          end if;
       end if;
    end;
@@ -4129,7 +4159,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageContentGroup /= null then
          if this.m_IPackageContentGroup.all /= null then
             temp := this.m_IPackageContentGroup.all.Release;
-            Free (this.m_IPackageContentGroup);
+            if temp < 1 then
+               Free (this.m_IPackageContentGroup);
+            end if;
          end if;
       end if;
    end;
@@ -4253,7 +4285,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageContentGroupStagingEventArgs /= null then
          if this.m_IPackageContentGroupStagingEventArgs.all /= null then
             temp := this.m_IPackageContentGroupStagingEventArgs.all.Release;
-            Free (this.m_IPackageContentGroupStagingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageContentGroupStagingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4401,7 +4435,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageId /= null then
          if this.m_IPackageId.all /= null then
             temp := this.m_IPackageId.all.Release;
-            Free (this.m_IPackageId);
+            if temp < 1 then
+               Free (this.m_IPackageId);
+            end if;
          end if;
       end if;
    end;
@@ -4626,7 +4662,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageInstallingEventArgs /= null then
          if this.m_IPackageInstallingEventArgs.all /= null then
             temp := this.m_IPackageInstallingEventArgs.all.Release;
-            Free (this.m_IPackageInstallingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageInstallingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4737,7 +4775,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageStagingEventArgs /= null then
          if this.m_IPackageStagingEventArgs.all /= null then
             temp := this.m_IPackageStagingEventArgs.all.Release;
-            Free (this.m_IPackageStagingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageStagingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4848,7 +4888,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageStatus /= null then
          if this.m_IPackageStatus.all /= null then
             temp := this.m_IPackageStatus.all.Release;
-            Free (this.m_IPackageStatus);
+            if temp < 1 then
+               Free (this.m_IPackageStatus);
+            end if;
          end if;
       end if;
    end;
@@ -5096,7 +5138,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageStatusChangedEventArgs /= null then
          if this.m_IPackageStatusChangedEventArgs.all /= null then
             temp := this.m_IPackageStatusChangedEventArgs.all.Release;
-            Free (this.m_IPackageStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5139,7 +5183,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageUninstallingEventArgs /= null then
          if this.m_IPackageUninstallingEventArgs.all /= null then
             temp := this.m_IPackageUninstallingEventArgs.all.Release;
-            Free (this.m_IPackageUninstallingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageUninstallingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5250,7 +5296,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageUpdateAvailabilityResult /= null then
          if this.m_IPackageUpdateAvailabilityResult.all /= null then
             temp := this.m_IPackageUpdateAvailabilityResult.all.Release;
-            Free (this.m_IPackageUpdateAvailabilityResult);
+            if temp < 1 then
+               Free (this.m_IPackageUpdateAvailabilityResult);
+            end if;
          end if;
       end if;
    end;
@@ -5307,7 +5355,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IPackageUpdatingEventArgs /= null then
          if this.m_IPackageUpdatingEventArgs.all /= null then
             temp := this.m_IPackageUpdatingEventArgs.all.Release;
-            Free (this.m_IPackageUpdatingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPackageUpdatingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5438,7 +5488,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_IStartupTask /= null then
          if this.m_IStartupTask.all /= null then
             temp := this.m_IStartupTask.all.Release;
-            Free (this.m_IStartupTask);
+            if temp < 1 then
+               Free (this.m_IStartupTask);
+            end if;
          end if;
       end if;
    end;
@@ -5720,7 +5772,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_ISuspendingDeferral /= null then
          if this.m_ISuspendingDeferral.all /= null then
             temp := this.m_ISuspendingDeferral.all.Release;
-            Free (this.m_ISuspendingDeferral);
+            if temp < 1 then
+               Free (this.m_ISuspendingDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -5757,7 +5811,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_ISuspendingEventArgs /= null then
          if this.m_ISuspendingEventArgs.all /= null then
             temp := this.m_ISuspendingEventArgs.all.Release;
-            Free (this.m_ISuspendingEventArgs);
+            if temp < 1 then
+               Free (this.m_ISuspendingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5800,7 +5856,9 @@ package body WinUI3.Windows.ApplicationModel is
       if this.m_ISuspendingOperation /= null then
          if this.m_ISuspendingOperation.all /= null then
             temp := this.m_ISuspendingOperation.all.Release;
-            Free (this.m_ISuspendingOperation);
+            if temp < 1 then
+               Free (this.m_ISuspendingOperation);
+            end if;
          end if;
       end if;
    end;

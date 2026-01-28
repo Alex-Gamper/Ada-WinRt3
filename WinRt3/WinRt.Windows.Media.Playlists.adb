@@ -55,7 +55,9 @@ package body WinRt.Windows.Media.Playlists is
       if this.m_IPlaylist /= null then
          if this.m_IPlaylist.all /= null then
             temp := this.m_IPlaylist.all.Release;
-            Free (this.m_IPlaylist);
+            if temp < 1 then
+               Free (this.m_IPlaylist);
+            end if;
          end if;
       end if;
    end;

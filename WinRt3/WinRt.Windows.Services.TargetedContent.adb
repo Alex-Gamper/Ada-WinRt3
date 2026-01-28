@@ -58,7 +58,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentAction /= null then
          if this.m_ITargetedContentAction.all /= null then
             temp := this.m_ITargetedContentAction.all.Release;
-            Free (this.m_ITargetedContentAction);
+            if temp < 1 then
+               Free (this.m_ITargetedContentAction);
+            end if;
          end if;
       end if;
    end;
@@ -123,7 +125,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentAvailabilityChangedEventArgs /= null then
          if this.m_ITargetedContentAvailabilityChangedEventArgs.all /= null then
             temp := this.m_ITargetedContentAvailabilityChangedEventArgs.all.Release;
-            Free (this.m_ITargetedContentAvailabilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITargetedContentAvailabilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -166,7 +170,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentChangedEventArgs /= null then
          if this.m_ITargetedContentChangedEventArgs.all /= null then
             temp := this.m_ITargetedContentChangedEventArgs.all.Release;
-            Free (this.m_ITargetedContentChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITargetedContentChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -226,7 +232,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentCollection /= null then
          if this.m_ITargetedContentCollection.all /= null then
             temp := this.m_ITargetedContentCollection.all.Release;
-            Free (this.m_ITargetedContentCollection);
+            if temp < 1 then
+               Free (this.m_ITargetedContentCollection);
+            end if;
          end if;
       end if;
    end;
@@ -381,7 +389,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentContainer /= null then
          if this.m_ITargetedContentContainer.all /= null then
             temp := this.m_ITargetedContentContainer.all.Release;
-            Free (this.m_ITargetedContentContainer);
+            if temp < 1 then
+               Free (this.m_ITargetedContentContainer);
+            end if;
          end if;
       end if;
    end;
@@ -580,7 +590,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_IRandomAccessStreamReference /= null then
          if this.m_IRandomAccessStreamReference.all /= null then
             temp := this.m_IRandomAccessStreamReference.all.Release;
-            Free (this.m_IRandomAccessStreamReference);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStreamReference);
+            end if;
          end if;
       end if;
    end;
@@ -666,7 +678,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentImage /= null then
          if this.m_ITargetedContentImage.all /= null then
             temp := this.m_ITargetedContentImage.all.Release;
-            Free (this.m_ITargetedContentImage);
+            if temp < 1 then
+               Free (this.m_ITargetedContentImage);
+            end if;
          end if;
       end if;
    end;
@@ -790,7 +804,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentItem /= null then
          if this.m_ITargetedContentItem.all /= null then
             temp := this.m_ITargetedContentItem.all.Release;
-            Free (this.m_ITargetedContentItem);
+            if temp < 1 then
+               Free (this.m_ITargetedContentItem);
+            end if;
          end if;
       end if;
    end;
@@ -925,7 +941,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentItemState /= null then
          if this.m_ITargetedContentItemState.all /= null then
             temp := this.m_ITargetedContentItemState.all.Release;
-            Free (this.m_ITargetedContentItemState);
+            if temp < 1 then
+               Free (this.m_ITargetedContentItemState);
+            end if;
          end if;
       end if;
    end;
@@ -982,7 +1000,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentObject /= null then
          if this.m_ITargetedContentObject.all /= null then
             temp := this.m_ITargetedContentObject.all.Release;
-            Free (this.m_ITargetedContentObject);
+            if temp < 1 then
+               Free (this.m_ITargetedContentObject);
+            end if;
          end if;
       end if;
    end;
@@ -1082,7 +1102,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentStateChangedEventArgs /= null then
          if this.m_ITargetedContentStateChangedEventArgs.all /= null then
             temp := this.m_ITargetedContentStateChangedEventArgs.all.Release;
-            Free (this.m_ITargetedContentStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITargetedContentStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1125,7 +1147,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentSubscription /= null then
          if this.m_ITargetedContentSubscription.all /= null then
             temp := this.m_ITargetedContentSubscription.all.Release;
-            Free (this.m_ITargetedContentSubscription);
+            if temp < 1 then
+               Free (this.m_ITargetedContentSubscription);
+            end if;
          end if;
       end if;
    end;
@@ -1440,7 +1464,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentSubscriptionOptions /= null then
          if this.m_ITargetedContentSubscriptionOptions.all /= null then
             temp := this.m_ITargetedContentSubscriptionOptions.all.Release;
-            Free (this.m_ITargetedContentSubscriptionOptions);
+            if temp < 1 then
+               Free (this.m_ITargetedContentSubscriptionOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1569,7 +1595,9 @@ package body WinRt.Windows.Services.TargetedContent is
       if this.m_ITargetedContentValue /= null then
          if this.m_ITargetedContentValue.all /= null then
             temp := this.m_ITargetedContentValue.all.Release;
-            Free (this.m_ITargetedContentValue);
+            if temp < 1 then
+               Free (this.m_ITargetedContentValue);
+            end if;
          end if;
       end if;
    end;

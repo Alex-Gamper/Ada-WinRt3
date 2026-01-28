@@ -51,7 +51,9 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       if this.m_IEasClientDeviceInformation /= null then
          if this.m_IEasClientDeviceInformation.all /= null then
             temp := this.m_IEasClientDeviceInformation.all.Release;
-            Free (this.m_IEasClientDeviceInformation);
+            if temp < 1 then
+               Free (this.m_IEasClientDeviceInformation);
+            end if;
          end if;
       end if;
    end;
@@ -258,7 +260,9 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       if this.m_IEasClientSecurityPolicy /= null then
          if this.m_IEasClientSecurityPolicy.all /= null then
             temp := this.m_IEasClientSecurityPolicy.all.Release;
-            Free (this.m_IEasClientSecurityPolicy);
+            if temp < 1 then
+               Free (this.m_IEasClientSecurityPolicy);
+            end if;
          end if;
       end if;
    end;
@@ -642,7 +646,9 @@ package body WinRt.Windows.Security.ExchangeActiveSyncProvisioning is
       if this.m_IEasComplianceResults /= null then
          if this.m_IEasComplianceResults.all /= null then
             temp := this.m_IEasComplianceResults.all.Release;
-            Free (this.m_IEasComplianceResults);
+            if temp < 1 then
+               Free (this.m_IEasComplianceResults);
+            end if;
          end if;
       end if;
    end;

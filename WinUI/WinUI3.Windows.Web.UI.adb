@@ -49,7 +49,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlContentLoadingEventArgs /= null then
          if this.m_IWebViewControlContentLoadingEventArgs.all /= null then
             temp := this.m_IWebViewControlContentLoadingEventArgs.all.Release;
-            Free (this.m_IWebViewControlContentLoadingEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlContentLoadingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -92,7 +94,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlDOMContentLoadedEventArgs /= null then
          if this.m_IWebViewControlDOMContentLoadedEventArgs.all /= null then
             temp := this.m_IWebViewControlDOMContentLoadedEventArgs.all.Release;
-            Free (this.m_IWebViewControlDOMContentLoadedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlDOMContentLoadedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -135,7 +139,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlDeferredPermissionRequest /= null then
          if this.m_IWebViewControlDeferredPermissionRequest.all /= null then
             temp := this.m_IWebViewControlDeferredPermissionRequest.all.Release;
-            Free (this.m_IWebViewControlDeferredPermissionRequest);
+            if temp < 1 then
+               Free (this.m_IWebViewControlDeferredPermissionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -240,7 +246,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlLongRunningScriptDetectedEventArgs /= null then
          if this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all /= null then
             temp := this.m_IWebViewControlLongRunningScriptDetectedEventArgs.all.Release;
-            Free (this.m_IWebViewControlLongRunningScriptDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlLongRunningScriptDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -312,7 +320,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlNavigationCompletedEventArgs /= null then
          if this.m_IWebViewControlNavigationCompletedEventArgs.all /= null then
             temp := this.m_IWebViewControlNavigationCompletedEventArgs.all.Release;
-            Free (this.m_IWebViewControlNavigationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlNavigationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -389,7 +399,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlNavigationStartingEventArgs /= null then
          if this.m_IWebViewControlNavigationStartingEventArgs.all /= null then
             temp := this.m_IWebViewControlNavigationStartingEventArgs.all.Release;
-            Free (this.m_IWebViewControlNavigationStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlNavigationStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -464,7 +476,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlNewWindowRequestedEventArgs /= null then
          if this.m_IWebViewControlNewWindowRequestedEventArgs.all /= null then
             temp := this.m_IWebViewControlNewWindowRequestedEventArgs.all.Release;
-            Free (this.m_IWebViewControlNewWindowRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlNewWindowRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -623,7 +637,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlPermissionRequest /= null then
          if this.m_IWebViewControlPermissionRequest.all /= null then
             temp := this.m_IWebViewControlPermissionRequest.all.Release;
-            Free (this.m_IWebViewControlPermissionRequest);
+            if temp < 1 then
+               Free (this.m_IWebViewControlPermissionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -759,7 +775,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlPermissionRequestedEventArgs /= null then
          if this.m_IWebViewControlPermissionRequestedEventArgs.all /= null then
             temp := this.m_IWebViewControlPermissionRequestedEventArgs.all.Release;
-            Free (this.m_IWebViewControlPermissionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlPermissionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -802,7 +820,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlScriptNotifyEventArgs /= null then
          if this.m_IWebViewControlScriptNotifyEventArgs.all /= null then
             temp := this.m_IWebViewControlScriptNotifyEventArgs.all.Release;
-            Free (this.m_IWebViewControlScriptNotifyEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlScriptNotifyEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -865,7 +885,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlSettings /= null then
          if this.m_IWebViewControlSettings.all /= null then
             temp := this.m_IWebViewControlSettings.all.Release;
-            Free (this.m_IWebViewControlSettings);
+            if temp < 1 then
+               Free (this.m_IWebViewControlSettings);
+            end if;
          end if;
       end if;
    end;
@@ -984,7 +1006,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs /= null then
          if this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all /= null then
             temp := this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs.all.Release;
-            Free (this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlUnsupportedUriSchemeIdentifiedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1059,7 +1083,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlUnviewableContentIdentifiedEventArgs /= null then
          if this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all /= null then
             temp := this.m_IWebViewControlUnviewableContentIdentifiedEventArgs.all.Release;
-            Free (this.m_IWebViewControlUnviewableContentIdentifiedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlUnviewableContentIdentifiedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1142,7 +1168,9 @@ package body WinUI3.Windows.Web.UI is
       if this.m_IWebViewControlWebResourceRequestedEventArgs /= null then
          if this.m_IWebViewControlWebResourceRequestedEventArgs.all /= null then
             temp := this.m_IWebViewControlWebResourceRequestedEventArgs.all.Release;
-            Free (this.m_IWebViewControlWebResourceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlWebResourceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

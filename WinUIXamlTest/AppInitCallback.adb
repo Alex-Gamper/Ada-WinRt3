@@ -1,6 +1,6 @@
 ﻿--------------------------------------------------------------------------------
 with WinUI3;                                    use WinUI3;
-with WinUI3.Microsoft.UI.Xaml;                  use WinUI3.Microsoft.UI.Xaml; 
+with WinUI3.Windows.UI.Xaml;                    use WinUI3.Windows.UI.Xaml; 
 with AppOverrides;                              use AppOverrides;
 --------------------------------------------------------------------------------
 package body AppInitCallback is
@@ -13,7 +13,7 @@ package body AppInitCallback is
         m_Inner         : aliased IUnknown := null;
         m_Application   : aliased Application := Constructor (IInspectable(m_Outer), m_InnerObject'access);
     begin
-        Hr := m_InnerObject.QueryInterface (Microsoft.UI.Xaml.IID_IApplication'access, m_Inner'access);
+        Hr := m_InnerObject.QueryInterface (Windows.UI.Xaml.IID_IApplication'access, m_Inner'access);
         m_Outer.m_Interface := m_Inner;
     end;
 

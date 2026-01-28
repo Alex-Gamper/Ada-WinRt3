@@ -70,7 +70,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IBrush /= null then
          if this.m_IBrush.all /= null then
             temp := this.m_IBrush.all.Release;
-            Free (this.m_IBrush);
+            if temp < 1 then
+               Free (this.m_IBrush);
+            end if;
          end if;
       end if;
    end;
@@ -342,7 +344,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITileBrush /= null then
          if this.m_ITileBrush.all /= null then
             temp := this.m_ITileBrush.all.Release;
-            Free (this.m_ITileBrush);
+            if temp < 1 then
+               Free (this.m_ITileBrush);
+            end if;
          end if;
       end if;
    end;
@@ -564,7 +568,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IXamlCompositionBrushBase /= null then
          if this.m_IXamlCompositionBrushBase.all /= null then
             temp := this.m_IXamlCompositionBrushBase.all.Release;
-            Free (this.m_IXamlCompositionBrushBase);
+            if temp < 1 then
+               Free (this.m_IXamlCompositionBrushBase);
+            end if;
          end if;
       end if;
    end;
@@ -753,7 +759,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IAcrylicBrush /= null then
          if this.m_IAcrylicBrush.all /= null then
             temp := this.m_IAcrylicBrush.all.Release;
-            Free (this.m_IAcrylicBrush);
+            if temp < 1 then
+               Free (this.m_IAcrylicBrush);
+            end if;
          end if;
       end if;
    end;
@@ -1154,7 +1162,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPathSegment /= null then
          if this.m_IPathSegment.all /= null then
             temp := this.m_IPathSegment.all.Release;
-            Free (this.m_IPathSegment);
+            if temp < 1 then
+               Free (this.m_IPathSegment);
+            end if;
          end if;
       end if;
    end;
@@ -1180,7 +1190,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IArcSegment /= null then
          if this.m_IArcSegment.all /= null then
             temp := this.m_IArcSegment.all.Release;
-            Free (this.m_IArcSegment);
+            if temp < 1 then
+               Free (this.m_IArcSegment);
+            end if;
          end if;
       end if;
    end;
@@ -1505,7 +1517,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IBezierSegment /= null then
          if this.m_IBezierSegment.all /= null then
             temp := this.m_IBezierSegment.all.Release;
-            Free (this.m_IBezierSegment);
+            if temp < 1 then
+               Free (this.m_IBezierSegment);
+            end if;
          end if;
       end if;
    end;
@@ -1718,7 +1732,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ICacheMode /= null then
          if this.m_ICacheMode.all /= null then
             temp := this.m_ICacheMode.all.Release;
-            Free (this.m_ICacheMode);
+            if temp < 1 then
+               Free (this.m_ICacheMode);
+            end if;
          end if;
       end if;
    end;
@@ -1769,7 +1785,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IBitmapCache /= null then
          if this.m_IBitmapCache.all /= null then
             temp := this.m_IBitmapCache.all.Release;
-            Free (this.m_IBitmapCache);
+            if temp < 1 then
+               Free (this.m_IBitmapCache);
+            end if;
          end if;
       end if;
    end;
@@ -2136,7 +2154,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IGeneralTransform /= null then
          if this.m_IGeneralTransform.all /= null then
             temp := this.m_IGeneralTransform.all.Release;
-            Free (this.m_IGeneralTransform);
+            if temp < 1 then
+               Free (this.m_IGeneralTransform);
+            end if;
          end if;
       end if;
    end;
@@ -2331,7 +2351,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITransform /= null then
          if this.m_ITransform.all /= null then
             temp := this.m_ITransform.all.Release;
-            Free (this.m_ITransform);
+            if temp < 1 then
+               Free (this.m_ITransform);
+            end if;
          end if;
       end if;
    end;
@@ -2357,7 +2379,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ICompositeTransform /= null then
          if this.m_ICompositeTransform.all /= null then
             temp := this.m_ICompositeTransform.all.Release;
-            Free (this.m_ICompositeTransform);
+            if temp < 1 then
+               Free (this.m_ICompositeTransform);
+            end if;
          end if;
       end if;
    end;
@@ -2906,7 +2930,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ICompositionTarget /= null then
          if this.m_ICompositionTarget.all /= null then
             temp := this.m_ICompositionTarget.all.Release;
-            Free (this.m_ICompositionTarget);
+            if temp < 1 then
+               Free (this.m_ICompositionTarget);
+            end if;
          end if;
       end if;
    end;
@@ -3383,7 +3409,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IGeometry /= null then
          if this.m_IGeometry.all /= null then
             temp := this.m_IGeometry.all.Release;
-            Free (this.m_IGeometry);
+            if temp < 1 then
+               Free (this.m_IGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -3533,7 +3561,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IEllipseGeometry /= null then
          if this.m_IEllipseGeometry.all /= null then
             temp := this.m_IEllipseGeometry.all.Release;
-            Free (this.m_IEllipseGeometry);
+            if temp < 1 then
+               Free (this.m_IEllipseGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -3746,7 +3776,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IFontFamily /= null then
          if this.m_IFontFamily.all /= null then
             temp := this.m_IFontFamily.all.Release;
-            Free (this.m_IFontFamily);
+            if temp < 1 then
+               Free (this.m_IFontFamily);
+            end if;
          end if;
       end if;
    end;
@@ -4172,7 +4204,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IGeometryGroup /= null then
          if this.m_IGeometryGroup.all /= null then
             temp := this.m_IGeometryGroup.all.Release;
-            Free (this.m_IGeometryGroup);
+            if temp < 1 then
+               Free (this.m_IGeometryGroup);
+            end if;
          end if;
       end if;
    end;
@@ -4332,7 +4366,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IGradientBrush /= null then
          if this.m_IGradientBrush.all /= null then
             temp := this.m_IGradientBrush.all.Release;
-            Free (this.m_IGradientBrush);
+            if temp < 1 then
+               Free (this.m_IGradientBrush);
+            end if;
          end if;
       end if;
    end;
@@ -4613,7 +4649,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IGradientStop /= null then
          if this.m_IGradientStop.all /= null then
             temp := this.m_IGradientStop.all.Release;
-            Free (this.m_IGradientStop);
+            if temp < 1 then
+               Free (this.m_IGradientStop);
+            end if;
          end if;
       end if;
    end;
@@ -5095,7 +5133,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IImageBrush /= null then
          if this.m_IImageBrush.all /= null then
             temp := this.m_IImageBrush.all.Release;
-            Free (this.m_IImageBrush);
+            if temp < 1 then
+               Free (this.m_IImageBrush);
+            end if;
          end if;
       end if;
    end;
@@ -5265,7 +5305,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IImageSource /= null then
          if this.m_IImageSource.all /= null then
             temp := this.m_IImageSource.all.Release;
-            Free (this.m_IImageSource);
+            if temp < 1 then
+               Free (this.m_IImageSource);
+            end if;
          end if;
       end if;
    end;
@@ -5291,7 +5333,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ILineGeometry /= null then
          if this.m_ILineGeometry.all /= null then
             temp := this.m_ILineGeometry.all.Release;
-            Free (this.m_ILineGeometry);
+            if temp < 1 then
+               Free (this.m_ILineGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -5448,7 +5492,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ILineSegment /= null then
          if this.m_ILineSegment.all /= null then
             temp := this.m_ILineSegment.all.Release;
-            Free (this.m_ILineSegment);
+            if temp < 1 then
+               Free (this.m_ILineSegment);
+            end if;
          end if;
       end if;
    end;
@@ -5549,7 +5595,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ILinearGradientBrush /= null then
          if this.m_ILinearGradientBrush.all /= null then
             temp := this.m_ILinearGradientBrush.all.Release;
-            Free (this.m_ILinearGradientBrush);
+            if temp < 1 then
+               Free (this.m_ILinearGradientBrush);
+            end if;
          end if;
       end if;
    end;
@@ -5731,7 +5779,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ILoadedImageSourceLoadCompletedEventArgs /= null then
          if this.m_ILoadedImageSourceLoadCompletedEventArgs.all /= null then
             temp := this.m_ILoadedImageSourceLoadCompletedEventArgs.all.Release;
-            Free (this.m_ILoadedImageSourceLoadCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILoadedImageSourceLoadCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5771,7 +5821,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ILoadedImageSurface /= null then
          if this.m_ILoadedImageSurface.all /= null then
             temp := this.m_ILoadedImageSurface.all.Release;
-            Free (this.m_ILoadedImageSurface);
+            if temp < 1 then
+               Free (this.m_ILoadedImageSurface);
+            end if;
          end if;
       end if;
    end;
@@ -6009,7 +6061,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IProjection /= null then
          if this.m_IProjection.all /= null then
             temp := this.m_IProjection.all.Release;
-            Free (this.m_IProjection);
+            if temp < 1 then
+               Free (this.m_IProjection);
+            end if;
          end if;
       end if;
    end;
@@ -6060,7 +6114,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IMatrix3DProjection /= null then
          if this.m_IMatrix3DProjection.all /= null then
             temp := this.m_IMatrix3DProjection.all.Release;
-            Free (this.m_IMatrix3DProjection);
+            if temp < 1 then
+               Free (this.m_IMatrix3DProjection);
+            end if;
          end if;
       end if;
    end;
@@ -6161,7 +6217,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IMatrixHelper /= null then
          if this.m_IMatrixHelper.all /= null then
             temp := this.m_IMatrixHelper.all.Release;
-            Free (this.m_IMatrixHelper);
+            if temp < 1 then
+               Free (this.m_IMatrixHelper);
+            end if;
          end if;
       end if;
    end;
@@ -6286,7 +6344,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IMatrixTransform /= null then
          if this.m_IMatrixTransform.all /= null then
             temp := this.m_IMatrixTransform.all.Release;
-            Free (this.m_IMatrixTransform);
+            if temp < 1 then
+               Free (this.m_IMatrixTransform);
+            end if;
          end if;
       end if;
    end;
@@ -6387,7 +6447,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IMediaTransportControlsThumbnailRequestedEventArgs /= null then
          if this.m_IMediaTransportControlsThumbnailRequestedEventArgs.all /= null then
             temp := this.m_IMediaTransportControlsThumbnailRequestedEventArgs.all.Release;
-            Free (this.m_IMediaTransportControlsThumbnailRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaTransportControlsThumbnailRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6445,7 +6507,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPartialMediaFailureDetectedEventArgs /= null then
          if this.m_IPartialMediaFailureDetectedEventArgs.all /= null then
             temp := this.m_IPartialMediaFailureDetectedEventArgs.all.Release;
-            Free (this.m_IPartialMediaFailureDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPartialMediaFailureDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6525,7 +6589,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPathFigure /= null then
          if this.m_IPathFigure.all /= null then
             temp := this.m_IPathFigure.all.Release;
-            Free (this.m_IPathFigure);
+            if temp < 1 then
+               Free (this.m_IPathFigure);
+            end if;
          end if;
       end if;
    end;
@@ -7122,7 +7188,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPathGeometry /= null then
          if this.m_IPathGeometry.all /= null then
             temp := this.m_IPathGeometry.all.Release;
-            Free (this.m_IPathGeometry);
+            if temp < 1 then
+               Free (this.m_IPathGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -7607,7 +7675,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPlaneProjection /= null then
          if this.m_IPlaneProjection.all /= null then
             temp := this.m_IPlaneProjection.all.Release;
-            Free (this.m_IPlaneProjection);
+            if temp < 1 then
+               Free (this.m_IPlaneProjection);
+            end if;
          end if;
       end if;
    end;
@@ -8681,7 +8751,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPolyBezierSegment /= null then
          if this.m_IPolyBezierSegment.all /= null then
             temp := this.m_IPolyBezierSegment.all.Release;
-            Free (this.m_IPolyBezierSegment);
+            if temp < 1 then
+               Free (this.m_IPolyBezierSegment);
+            end if;
          end if;
       end if;
    end;
@@ -8785,7 +8857,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPolyLineSegment /= null then
          if this.m_IPolyLineSegment.all /= null then
             temp := this.m_IPolyLineSegment.all.Release;
-            Free (this.m_IPolyLineSegment);
+            if temp < 1 then
+               Free (this.m_IPolyLineSegment);
+            end if;
          end if;
       end if;
    end;
@@ -8889,7 +8963,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IPolyQuadraticBezierSegment /= null then
          if this.m_IPolyQuadraticBezierSegment.all /= null then
             temp := this.m_IPolyQuadraticBezierSegment.all.Release;
-            Free (this.m_IPolyQuadraticBezierSegment);
+            if temp < 1 then
+               Free (this.m_IPolyQuadraticBezierSegment);
+            end if;
          end if;
       end if;
    end;
@@ -8993,7 +9069,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IQuadraticBezierSegment /= null then
          if this.m_IQuadraticBezierSegment.all /= null then
             temp := this.m_IQuadraticBezierSegment.all.Release;
-            Free (this.m_IQuadraticBezierSegment);
+            if temp < 1 then
+               Free (this.m_IQuadraticBezierSegment);
+            end if;
          end if;
       end if;
    end;
@@ -9150,7 +9228,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRateChangedRoutedEventArgs /= null then
          if this.m_IRateChangedRoutedEventArgs.all /= null then
             temp := this.m_IRateChangedRoutedEventArgs.all.Release;
-            Free (this.m_IRateChangedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRateChangedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9208,7 +9288,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRectangleGeometry /= null then
          if this.m_IRectangleGeometry.all /= null then
             temp := this.m_IRectangleGeometry.all.Release;
-            Free (this.m_IRectangleGeometry);
+            if temp < 1 then
+               Free (this.m_IRectangleGeometry);
+            end if;
          end if;
       end if;
    end;
@@ -9309,7 +9391,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRenderedEventArgs /= null then
          if this.m_IRenderedEventArgs.all /= null then
             temp := this.m_IRenderedEventArgs.all.Release;
-            Free (this.m_IRenderedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRenderedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9349,7 +9433,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRenderingEventArgs /= null then
          if this.m_IRenderingEventArgs.all /= null then
             temp := this.m_IRenderingEventArgs.all.Release;
-            Free (this.m_IRenderingEventArgs);
+            if temp < 1 then
+               Free (this.m_IRenderingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9389,7 +9475,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRevealBrush /= null then
          if this.m_IRevealBrush.all /= null then
             temp := this.m_IRevealBrush.all.Release;
-            Free (this.m_IRevealBrush);
+            if temp < 1 then
+               Free (this.m_IRevealBrush);
+            end if;
          end if;
       end if;
    end;
@@ -9681,7 +9769,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRevealBackgroundBrush /= null then
          if this.m_IRevealBackgroundBrush.all /= null then
             temp := this.m_IRevealBackgroundBrush.all.Release;
-            Free (this.m_IRevealBackgroundBrush);
+            if temp < 1 then
+               Free (this.m_IRevealBackgroundBrush);
+            end if;
          end if;
       end if;
    end;
@@ -9732,7 +9822,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRevealBorderBrush /= null then
          if this.m_IRevealBorderBrush.all /= null then
             temp := this.m_IRevealBorderBrush.all.Release;
-            Free (this.m_IRevealBorderBrush);
+            if temp < 1 then
+               Free (this.m_IRevealBorderBrush);
+            end if;
          end if;
       end if;
    end;
@@ -9783,7 +9875,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IRotateTransform /= null then
          if this.m_IRotateTransform.all /= null then
             temp := this.m_IRotateTransform.all.Release;
-            Free (this.m_IRotateTransform);
+            if temp < 1 then
+               Free (this.m_IRotateTransform);
+            end if;
          end if;
       end if;
    end;
@@ -9996,7 +10090,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IScaleTransform /= null then
          if this.m_IScaleTransform.all /= null then
             temp := this.m_IScaleTransform.all.Release;
-            Free (this.m_IScaleTransform);
+            if temp < 1 then
+               Free (this.m_IScaleTransform);
+            end if;
          end if;
       end if;
    end;
@@ -10265,7 +10361,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IShadow /= null then
          if this.m_IShadow.all /= null then
             temp := this.m_IShadow.all.Release;
-            Free (this.m_IShadow);
+            if temp < 1 then
+               Free (this.m_IShadow);
+            end if;
          end if;
       end if;
    end;
@@ -10291,7 +10389,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ISkewTransform /= null then
          if this.m_ISkewTransform.all /= null then
             temp := this.m_ISkewTransform.all.Release;
-            Free (this.m_ISkewTransform);
+            if temp < 1 then
+               Free (this.m_ISkewTransform);
+            end if;
          end if;
       end if;
    end;
@@ -10560,7 +10660,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ISolidColorBrush /= null then
          if this.m_ISolidColorBrush.all /= null then
             temp := this.m_ISolidColorBrush.all.Release;
-            Free (this.m_ISolidColorBrush);
+            if temp < 1 then
+               Free (this.m_ISolidColorBrush);
+            end if;
          end if;
       end if;
    end;
@@ -10685,7 +10787,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IThemeShadow /= null then
          if this.m_IThemeShadow.all /= null then
             temp := this.m_IThemeShadow.all.Release;
-            Free (this.m_IThemeShadow);
+            if temp < 1 then
+               Free (this.m_IThemeShadow);
+            end if;
          end if;
       end if;
    end;
@@ -10756,7 +10860,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITimelineMarker /= null then
          if this.m_ITimelineMarker.all /= null then
             temp := this.m_ITimelineMarker.all.Release;
-            Free (this.m_ITimelineMarker);
+            if temp < 1 then
+               Free (this.m_ITimelineMarker);
+            end if;
          end if;
       end if;
    end;
@@ -11304,7 +11410,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITimelineMarkerRoutedEventArgs /= null then
          if this.m_ITimelineMarkerRoutedEventArgs.all /= null then
             temp := this.m_ITimelineMarkerRoutedEventArgs.all.Release;
-            Free (this.m_ITimelineMarkerRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITimelineMarkerRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11722,7 +11830,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITransformGroup /= null then
          if this.m_ITransformGroup.all /= null then
             temp := this.m_ITransformGroup.all.Release;
-            Free (this.m_ITransformGroup);
+            if temp < 1 then
+               Free (this.m_ITransformGroup);
+            end if;
          end if;
       end if;
    end;
@@ -11843,7 +11953,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_ITranslateTransform /= null then
          if this.m_ITranslateTransform.all /= null then
             temp := this.m_ITranslateTransform.all.Release;
-            Free (this.m_ITranslateTransform);
+            if temp < 1 then
+               Free (this.m_ITranslateTransform);
+            end if;
          end if;
       end if;
    end;
@@ -12000,7 +12112,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IVisualTreeHelper /= null then
          if this.m_IVisualTreeHelper.all /= null then
             temp := this.m_IVisualTreeHelper.all.Release;
-            Free (this.m_IVisualTreeHelper);
+            if temp < 1 then
+               Free (this.m_IVisualTreeHelper);
+            end if;
          end if;
       end if;
    end;
@@ -12276,7 +12390,9 @@ package body WinUI3.Windows.UI.Xaml.Media is
       if this.m_IXamlLight /= null then
          if this.m_IXamlLight.all /= null then
             temp := this.m_IXamlLight.all.Release;
-            Free (this.m_IXamlLight);
+            if temp < 1 then
+               Free (this.m_IXamlLight);
+            end if;
          end if;
       end if;
    end;

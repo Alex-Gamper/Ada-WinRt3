@@ -47,7 +47,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IFileOpenPickerUI /= null then
          if this.m_IFileOpenPickerUI.all /= null then
             temp := this.m_IFileOpenPickerUI.all.Release;
-            Free (this.m_IFileOpenPickerUI);
+            if temp < 1 then
+               Free (this.m_IFileOpenPickerUI);
+            end if;
          end if;
       end if;
    end;
@@ -306,7 +308,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IFileRemovedEventArgs /= null then
          if this.m_IFileRemovedEventArgs.all /= null then
             temp := this.m_IFileRemovedEventArgs.all.Release;
-            Free (this.m_IFileRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -349,7 +353,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IFileSavePickerUI /= null then
          if this.m_IFileSavePickerUI.all /= null then
             temp := this.m_IFileSavePickerUI.all.Release;
-            Free (this.m_IFileSavePickerUI);
+            if temp < 1 then
+               Free (this.m_IFileSavePickerUI);
+            end if;
          end if;
       end if;
    end;
@@ -555,7 +561,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IPickerClosingDeferral /= null then
          if this.m_IPickerClosingDeferral.all /= null then
             temp := this.m_IPickerClosingDeferral.all.Release;
-            Free (this.m_IPickerClosingDeferral);
+            if temp < 1 then
+               Free (this.m_IPickerClosingDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -592,7 +600,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IPickerClosingEventArgs /= null then
          if this.m_IPickerClosingEventArgs.all /= null then
             temp := this.m_IPickerClosingEventArgs.all.Release;
-            Free (this.m_IPickerClosingEventArgs);
+            if temp < 1 then
+               Free (this.m_IPickerClosingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -652,7 +662,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_IPickerClosingOperation /= null then
          if this.m_IPickerClosingOperation.all /= null then
             temp := this.m_IPickerClosingOperation.all.Release;
-            Free (this.m_IPickerClosingOperation);
+            if temp < 1 then
+               Free (this.m_IPickerClosingOperation);
+            end if;
          end if;
       end if;
    end;
@@ -712,7 +724,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_ITargetFileRequest /= null then
          if this.m_ITargetFileRequest.all /= null then
             temp := this.m_ITargetFileRequest.all.Release;
-            Free (this.m_ITargetFileRequest);
+            if temp < 1 then
+               Free (this.m_ITargetFileRequest);
+            end if;
          end if;
       end if;
    end;
@@ -787,7 +801,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_ITargetFileRequestDeferral /= null then
          if this.m_ITargetFileRequestDeferral.all /= null then
             temp := this.m_ITargetFileRequestDeferral.all.Release;
-            Free (this.m_ITargetFileRequestDeferral);
+            if temp < 1 then
+               Free (this.m_ITargetFileRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -824,7 +840,9 @@ package body WinUI3.Windows.Storage.Pickers.Provider is
       if this.m_ITargetFileRequestedEventArgs /= null then
          if this.m_ITargetFileRequestedEventArgs.all /= null then
             temp := this.m_ITargetFileRequestedEventArgs.all.Release;
-            Free (this.m_ITargetFileRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITargetFileRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

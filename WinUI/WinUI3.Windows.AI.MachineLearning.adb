@@ -60,7 +60,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_IImageFeatureDescriptor /= null then
          if this.m_IImageFeatureDescriptor.all /= null then
             temp := this.m_IImageFeatureDescriptor.all.Release;
-            Free (this.m_IImageFeatureDescriptor);
+            if temp < 1 then
+               Free (this.m_IImageFeatureDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -262,7 +264,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_IImageFeatureValue /= null then
          if this.m_IImageFeatureValue.all /= null then
             temp := this.m_IImageFeatureValue.all.Release;
-            Free (this.m_IImageFeatureValue);
+            if temp < 1 then
+               Free (this.m_IImageFeatureValue);
+            end if;
          end if;
       end if;
    end;
@@ -356,7 +360,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModel /= null then
          if this.m_ILearningModel.all /= null then
             temp := this.m_ILearningModel.all.Release;
-            Free (this.m_ILearningModel);
+            if temp < 1 then
+               Free (this.m_ILearningModel);
+            end if;
          end if;
       end if;
    end;
@@ -965,7 +971,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModelBinding /= null then
          if this.m_ILearningModelBinding.all /= null then
             temp := this.m_ILearningModelBinding.all.Release;
-            Free (this.m_ILearningModelBinding);
+            if temp < 1 then
+               Free (this.m_ILearningModelBinding);
+            end if;
          end if;
       end if;
    end;
@@ -1160,7 +1168,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModelDevice /= null then
          if this.m_ILearningModelDevice.all /= null then
             temp := this.m_ILearningModelDevice.all.Release;
-            Free (this.m_ILearningModelDevice);
+            if temp < 1 then
+               Free (this.m_ILearningModelDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1274,7 +1284,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModelEvaluationResult /= null then
          if this.m_ILearningModelEvaluationResult.all /= null then
             temp := this.m_ILearningModelEvaluationResult.all.Release;
-            Free (this.m_ILearningModelEvaluationResult);
+            if temp < 1 then
+               Free (this.m_ILearningModelEvaluationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1371,7 +1383,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModelSession /= null then
          if this.m_ILearningModelSession.all /= null then
             temp := this.m_ILearningModelSession.all.Release;
-            Free (this.m_ILearningModelSession);
+            if temp < 1 then
+               Free (this.m_ILearningModelSession);
+            end if;
          end if;
       end if;
    end;
@@ -1735,7 +1749,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ILearningModelSessionOptions /= null then
          if this.m_ILearningModelSessionOptions.all /= null then
             temp := this.m_ILearningModelSessionOptions.all.Release;
-            Free (this.m_ILearningModelSessionOptions);
+            if temp < 1 then
+               Free (this.m_ILearningModelSessionOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1871,7 +1887,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_IMapFeatureDescriptor /= null then
          if this.m_IMapFeatureDescriptor.all /= null then
             temp := this.m_IMapFeatureDescriptor.all.Release;
-            Free (this.m_IMapFeatureDescriptor);
+            if temp < 1 then
+               Free (this.m_IMapFeatureDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2018,7 +2036,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ISequenceFeatureDescriptor /= null then
          if this.m_ISequenceFeatureDescriptor.all /= null then
             temp := this.m_ISequenceFeatureDescriptor.all.Release;
-            Free (this.m_ISequenceFeatureDescriptor);
+            if temp < 1 then
+               Free (this.m_ISequenceFeatureDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2148,7 +2168,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorBoolean /= null then
          if this.m_ITensorBoolean.all /= null then
             temp := this.m_ITensorBoolean.all.Release;
-            Free (this.m_ITensorBoolean);
+            if temp < 1 then
+               Free (this.m_ITensorBoolean);
+            end if;
          end if;
       end if;
    end;
@@ -2466,7 +2488,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorDouble /= null then
          if this.m_ITensorDouble.all /= null then
             temp := this.m_ITensorDouble.all.Release;
-            Free (this.m_ITensorDouble);
+            if temp < 1 then
+               Free (this.m_ITensorDouble);
+            end if;
          end if;
       end if;
    end;
@@ -2784,7 +2808,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorFeatureDescriptor /= null then
          if this.m_ITensorFeatureDescriptor.all /= null then
             temp := this.m_ITensorFeatureDescriptor.all.Release;
-            Free (this.m_ITensorFeatureDescriptor);
+            if temp < 1 then
+               Free (this.m_ITensorFeatureDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -2934,7 +2960,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorFloat /= null then
          if this.m_ITensorFloat.all /= null then
             temp := this.m_ITensorFloat.all.Release;
-            Free (this.m_ITensorFloat);
+            if temp < 1 then
+               Free (this.m_ITensorFloat);
+            end if;
          end if;
       end if;
    end;
@@ -3252,7 +3280,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorFloat16Bit /= null then
          if this.m_ITensorFloat16Bit.all /= null then
             temp := this.m_ITensorFloat16Bit.all.Release;
-            Free (this.m_ITensorFloat16Bit);
+            if temp < 1 then
+               Free (this.m_ITensorFloat16Bit);
+            end if;
          end if;
       end if;
    end;
@@ -3570,7 +3600,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorInt16Bit /= null then
          if this.m_ITensorInt16Bit.all /= null then
             temp := this.m_ITensorInt16Bit.all.Release;
-            Free (this.m_ITensorInt16Bit);
+            if temp < 1 then
+               Free (this.m_ITensorInt16Bit);
+            end if;
          end if;
       end if;
    end;
@@ -3888,7 +3920,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorInt32Bit /= null then
          if this.m_ITensorInt32Bit.all /= null then
             temp := this.m_ITensorInt32Bit.all.Release;
-            Free (this.m_ITensorInt32Bit);
+            if temp < 1 then
+               Free (this.m_ITensorInt32Bit);
+            end if;
          end if;
       end if;
    end;
@@ -4206,7 +4240,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorInt64Bit /= null then
          if this.m_ITensorInt64Bit.all /= null then
             temp := this.m_ITensorInt64Bit.all.Release;
-            Free (this.m_ITensorInt64Bit);
+            if temp < 1 then
+               Free (this.m_ITensorInt64Bit);
+            end if;
          end if;
       end if;
    end;
@@ -4524,7 +4560,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorInt8Bit /= null then
          if this.m_ITensorInt8Bit.all /= null then
             temp := this.m_ITensorInt8Bit.all.Release;
-            Free (this.m_ITensorInt8Bit);
+            if temp < 1 then
+               Free (this.m_ITensorInt8Bit);
+            end if;
          end if;
       end if;
    end;
@@ -4842,7 +4880,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorString /= null then
          if this.m_ITensorString.all /= null then
             temp := this.m_ITensorString.all.Release;
-            Free (this.m_ITensorString);
+            if temp < 1 then
+               Free (this.m_ITensorString);
+            end if;
          end if;
       end if;
    end;
@@ -5131,7 +5171,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorUInt16Bit /= null then
          if this.m_ITensorUInt16Bit.all /= null then
             temp := this.m_ITensorUInt16Bit.all.Release;
-            Free (this.m_ITensorUInt16Bit);
+            if temp < 1 then
+               Free (this.m_ITensorUInt16Bit);
+            end if;
          end if;
       end if;
    end;
@@ -5449,7 +5491,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorUInt32Bit /= null then
          if this.m_ITensorUInt32Bit.all /= null then
             temp := this.m_ITensorUInt32Bit.all.Release;
-            Free (this.m_ITensorUInt32Bit);
+            if temp < 1 then
+               Free (this.m_ITensorUInt32Bit);
+            end if;
          end if;
       end if;
    end;
@@ -5767,7 +5811,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorUInt64Bit /= null then
          if this.m_ITensorUInt64Bit.all /= null then
             temp := this.m_ITensorUInt64Bit.all.Release;
-            Free (this.m_ITensorUInt64Bit);
+            if temp < 1 then
+               Free (this.m_ITensorUInt64Bit);
+            end if;
          end if;
       end if;
    end;
@@ -6085,7 +6131,9 @@ package body WinUI3.Windows.AI.MachineLearning is
       if this.m_ITensorUInt8Bit /= null then
          if this.m_ITensorUInt8Bit.all /= null then
             temp := this.m_ITensorUInt8Bit.all.Release;
-            Free (this.m_ITensorUInt8Bit);
+            if temp < 1 then
+               Free (this.m_ITensorUInt8Bit);
+            end if;
          end if;
       end if;
    end;

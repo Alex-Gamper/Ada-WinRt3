@@ -84,7 +84,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioDeviceInputNode /= null then
          if this.m_IAudioDeviceInputNode.all /= null then
             temp := this.m_IAudioDeviceInputNode.all.Release;
-            Free (this.m_IAudioDeviceInputNode);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceInputNode);
+            end if;
          end if;
       end if;
    end;
@@ -468,7 +470,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioDeviceOutputNode /= null then
          if this.m_IAudioDeviceOutputNode.all /= null then
             temp := this.m_IAudioDeviceOutputNode.all.Release;
-            Free (this.m_IAudioDeviceOutputNode);
+            if temp < 1 then
+               Free (this.m_IAudioDeviceOutputNode);
+            end if;
          end if;
       end if;
    end;
@@ -789,7 +793,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioEffectsPackConfiguration /= null then
          if this.m_IAudioEffectsPackConfiguration.all /= null then
             temp := this.m_IAudioEffectsPackConfiguration.all.Release;
-            Free (this.m_IAudioEffectsPackConfiguration);
+            if temp < 1 then
+               Free (this.m_IAudioEffectsPackConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -966,7 +972,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioFileInputNode /= null then
          if this.m_IAudioFileInputNode.all /= null then
             temp := this.m_IAudioFileInputNode.all.Release;
-            Free (this.m_IAudioFileInputNode);
+            if temp < 1 then
+               Free (this.m_IAudioFileInputNode);
+            end if;
          end if;
       end if;
    end;
@@ -1569,7 +1577,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioFileOutputNode /= null then
          if this.m_IAudioFileOutputNode.all /= null then
             temp := this.m_IAudioFileOutputNode.all.Release;
-            Free (this.m_IAudioFileOutputNode);
+            if temp < 1 then
+               Free (this.m_IAudioFileOutputNode);
+            end if;
          end if;
       end if;
    end;
@@ -1927,7 +1937,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioFrameCompletedEventArgs /= null then
          if this.m_IAudioFrameCompletedEventArgs.all /= null then
             temp := this.m_IAudioFrameCompletedEventArgs.all.Release;
-            Free (this.m_IAudioFrameCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAudioFrameCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1970,7 +1982,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioFrameInputNode /= null then
          if this.m_IAudioFrameInputNode.all /= null then
             temp := this.m_IAudioFrameInputNode.all.Release;
-            Free (this.m_IAudioFrameInputNode);
+            if temp < 1 then
+               Free (this.m_IAudioFrameInputNode);
+            end if;
          end if;
       end if;
    end;
@@ -2478,7 +2492,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioFrameOutputNode /= null then
          if this.m_IAudioFrameOutputNode.all /= null then
             temp := this.m_IAudioFrameOutputNode.all.Release;
-            Free (this.m_IAudioFrameOutputNode);
+            if temp < 1 then
+               Free (this.m_IAudioFrameOutputNode);
+            end if;
          end if;
       end if;
    end;
@@ -2756,7 +2772,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioGraph /= null then
          if this.m_IAudioGraph.all /= null then
             temp := this.m_IAudioGraph.all.Release;
-            Free (this.m_IAudioGraph);
+            if temp < 1 then
+               Free (this.m_IAudioGraph);
+            end if;
          end if;
       end if;
    end;
@@ -4083,7 +4101,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IClosable /= null then
          if this.m_IClosable.all /= null then
             temp := this.m_IClosable.all.Release;
-            Free (this.m_IClosable);
+            if temp < 1 then
+               Free (this.m_IClosable);
+            end if;
          end if;
       end if;
    end;
@@ -4120,7 +4140,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioGraphConnection /= null then
          if this.m_IAudioGraphConnection.all /= null then
             temp := this.m_IAudioGraphConnection.all.Release;
-            Free (this.m_IAudioGraphConnection);
+            if temp < 1 then
+               Free (this.m_IAudioGraphConnection);
+            end if;
          end if;
       end if;
    end;
@@ -4192,7 +4214,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioGraphSettings /= null then
          if this.m_IAudioGraphSettings.all /= null then
             temp := this.m_IAudioGraphSettings.all.Release;
-            Free (this.m_IAudioGraphSettings);
+            if temp < 1 then
+               Free (this.m_IAudioGraphSettings);
+            end if;
          end if;
       end if;
    end;
@@ -4480,7 +4504,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs /= null then
          if this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs.all /= null then
             temp := this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs.all.Release;
-            Free (this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs);
+            if temp < 1 then
+               Free (this.m_IAudioGraphUnrecoverableErrorOccurredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4520,7 +4546,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeEmitter /= null then
          if this.m_IAudioNodeEmitter.all /= null then
             temp := this.m_IAudioNodeEmitter.all.Release;
-            Free (this.m_IAudioNodeEmitter);
+            if temp < 1 then
+               Free (this.m_IAudioNodeEmitter);
+            end if;
          end if;
       end if;
    end;
@@ -4877,7 +4905,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeEmitterConeProperties /= null then
          if this.m_IAudioNodeEmitterConeProperties.all /= null then
             temp := this.m_IAudioNodeEmitterConeProperties.all.Release;
-            Free (this.m_IAudioNodeEmitterConeProperties);
+            if temp < 1 then
+               Free (this.m_IAudioNodeEmitterConeProperties);
+            end if;
          end if;
       end if;
    end;
@@ -4951,7 +4981,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeEmitterDecayModel /= null then
          if this.m_IAudioNodeEmitterDecayModel.all /= null then
             temp := this.m_IAudioNodeEmitterDecayModel.all.Release;
-            Free (this.m_IAudioNodeEmitterDecayModel);
+            if temp < 1 then
+               Free (this.m_IAudioNodeEmitterDecayModel);
+            end if;
          end if;
       end if;
    end;
@@ -5106,7 +5138,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeEmitterNaturalDecayModelProperties /= null then
          if this.m_IAudioNodeEmitterNaturalDecayModelProperties.all /= null then
             temp := this.m_IAudioNodeEmitterNaturalDecayModelProperties.all.Release;
-            Free (this.m_IAudioNodeEmitterNaturalDecayModelProperties);
+            if temp < 1 then
+               Free (this.m_IAudioNodeEmitterNaturalDecayModelProperties);
+            end if;
          end if;
       end if;
    end;
@@ -5163,7 +5197,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeEmitterShape /= null then
          if this.m_IAudioNodeEmitterShape.all /= null then
             temp := this.m_IAudioNodeEmitterShape.all.Release;
-            Free (this.m_IAudioNodeEmitterShape);
+            if temp < 1 then
+               Free (this.m_IAudioNodeEmitterShape);
+            end if;
          end if;
       end if;
    end;
@@ -5279,7 +5315,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioNodeListener /= null then
          if this.m_IAudioNodeListener.all /= null then
             temp := this.m_IAudioNodeListener.all.Release;
-            Free (this.m_IAudioNodeListener);
+            if temp < 1 then
+               Free (this.m_IAudioNodeListener);
+            end if;
          end if;
       end if;
    end;
@@ -5449,7 +5487,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioPlaybackConnection /= null then
          if this.m_IAudioPlaybackConnection.all /= null then
             temp := this.m_IAudioPlaybackConnection.all.Release;
-            Free (this.m_IAudioPlaybackConnection);
+            if temp < 1 then
+               Free (this.m_IAudioPlaybackConnection);
+            end if;
          end if;
       end if;
    end;
@@ -5758,7 +5798,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioPlaybackConnectionOpenResult /= null then
          if this.m_IAudioPlaybackConnectionOpenResult.all /= null then
             temp := this.m_IAudioPlaybackConnectionOpenResult.all.Release;
-            Free (this.m_IAudioPlaybackConnectionOpenResult);
+            if temp < 1 then
+               Free (this.m_IAudioPlaybackConnectionOpenResult);
+            end if;
          end if;
       end if;
    end;
@@ -5815,7 +5857,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioStateMonitor /= null then
          if this.m_IAudioStateMonitor.all /= null then
             temp := this.m_IAudioStateMonitor.all.Release;
-            Free (this.m_IAudioStateMonitor);
+            if temp < 1 then
+               Free (this.m_IAudioStateMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -6109,7 +6153,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IAudioInputNode /= null then
          if this.m_IAudioInputNode.all /= null then
             temp := this.m_IAudioInputNode.all.Release;
-            Free (this.m_IAudioInputNode);
+            if temp < 1 then
+               Free (this.m_IAudioInputNode);
+            end if;
          end if;
       end if;
    end;
@@ -6457,7 +6503,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateAudioDeviceInputNodeResult /= null then
          if this.m_ICreateAudioDeviceInputNodeResult.all /= null then
             temp := this.m_ICreateAudioDeviceInputNodeResult.all.Release;
-            Free (this.m_ICreateAudioDeviceInputNodeResult);
+            if temp < 1 then
+               Free (this.m_ICreateAudioDeviceInputNodeResult);
+            end if;
          end if;
       end if;
    end;
@@ -6538,7 +6586,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateAudioDeviceOutputNodeResult /= null then
          if this.m_ICreateAudioDeviceOutputNodeResult.all /= null then
             temp := this.m_ICreateAudioDeviceOutputNodeResult.all.Release;
-            Free (this.m_ICreateAudioDeviceOutputNodeResult);
+            if temp < 1 then
+               Free (this.m_ICreateAudioDeviceOutputNodeResult);
+            end if;
          end if;
       end if;
    end;
@@ -6619,7 +6669,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateAudioFileInputNodeResult /= null then
          if this.m_ICreateAudioFileInputNodeResult.all /= null then
             temp := this.m_ICreateAudioFileInputNodeResult.all.Release;
-            Free (this.m_ICreateAudioFileInputNodeResult);
+            if temp < 1 then
+               Free (this.m_ICreateAudioFileInputNodeResult);
+            end if;
          end if;
       end if;
    end;
@@ -6700,7 +6752,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateAudioFileOutputNodeResult /= null then
          if this.m_ICreateAudioFileOutputNodeResult.all /= null then
             temp := this.m_ICreateAudioFileOutputNodeResult.all.Release;
-            Free (this.m_ICreateAudioFileOutputNodeResult);
+            if temp < 1 then
+               Free (this.m_ICreateAudioFileOutputNodeResult);
+            end if;
          end if;
       end if;
    end;
@@ -6781,7 +6835,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateAudioGraphResult /= null then
          if this.m_ICreateAudioGraphResult.all /= null then
             temp := this.m_ICreateAudioGraphResult.all.Release;
-            Free (this.m_ICreateAudioGraphResult);
+            if temp < 1 then
+               Free (this.m_ICreateAudioGraphResult);
+            end if;
          end if;
       end if;
    end;
@@ -6862,7 +6918,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ICreateMediaSourceAudioInputNodeResult /= null then
          if this.m_ICreateMediaSourceAudioInputNodeResult.all /= null then
             temp := this.m_ICreateMediaSourceAudioInputNodeResult.all.Release;
-            Free (this.m_ICreateMediaSourceAudioInputNodeResult);
+            if temp < 1 then
+               Free (this.m_ICreateMediaSourceAudioInputNodeResult);
+            end if;
          end if;
       end if;
    end;
@@ -6943,7 +7001,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IEchoEffectDefinition /= null then
          if this.m_IEchoEffectDefinition.all /= null then
             temp := this.m_IEchoEffectDefinition.all.Release;
-            Free (this.m_IEchoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IEchoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -7134,7 +7194,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IEqualizerBand /= null then
          if this.m_IEqualizerBand.all /= null then
             temp := this.m_IEqualizerBand.all.Release;
-            Free (this.m_IEqualizerBand);
+            if temp < 1 then
+               Free (this.m_IEqualizerBand);
+            end if;
          end if;
       end if;
    end;
@@ -7253,7 +7315,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IEqualizerEffectDefinition /= null then
          if this.m_IEqualizerEffectDefinition.all /= null then
             temp := this.m_IEqualizerEffectDefinition.all.Release;
-            Free (this.m_IEqualizerEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IEqualizerEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -7368,7 +7432,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IFrameInputNodeQuantumStartedEventArgs /= null then
          if this.m_IFrameInputNodeQuantumStartedEventArgs.all /= null then
             temp := this.m_IFrameInputNodeQuantumStartedEventArgs.all.Release;
-            Free (this.m_IFrameInputNodeQuantumStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFrameInputNodeQuantumStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7408,7 +7474,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ILimiterEffectDefinition /= null then
          if this.m_ILimiterEffectDefinition.all /= null then
             temp := this.m_ILimiterEffectDefinition.all.Release;
-            Free (this.m_ILimiterEffectDefinition);
+            if temp < 1 then
+               Free (this.m_ILimiterEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -7567,7 +7635,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IMediaSourceAudioInputNode /= null then
          if this.m_IMediaSourceAudioInputNode.all /= null then
             temp := this.m_IMediaSourceAudioInputNode.all.Release;
-            Free (this.m_IMediaSourceAudioInputNode);
+            if temp < 1 then
+               Free (this.m_IMediaSourceAudioInputNode);
+            end if;
          end if;
       end if;
    end;
@@ -8170,7 +8240,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_IReverbEffectDefinition /= null then
          if this.m_IReverbEffectDefinition.all /= null then
             temp := this.m_IReverbEffectDefinition.all.Release;
-            Free (this.m_IReverbEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IReverbEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -9001,7 +9073,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ISetDefaultSpatialAudioFormatResult /= null then
          if this.m_ISetDefaultSpatialAudioFormatResult.all /= null then
             temp := this.m_ISetDefaultSpatialAudioFormatResult.all.Release;
-            Free (this.m_ISetDefaultSpatialAudioFormatResult);
+            if temp < 1 then
+               Free (this.m_ISetDefaultSpatialAudioFormatResult);
+            end if;
          end if;
       end if;
    end;
@@ -9041,7 +9115,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ISpatialAudioDeviceConfiguration /= null then
          if this.m_ISpatialAudioDeviceConfiguration.all /= null then
             temp := this.m_ISpatialAudioDeviceConfiguration.all.Release;
-            Free (this.m_ISpatialAudioDeviceConfiguration);
+            if temp < 1 then
+               Free (this.m_ISpatialAudioDeviceConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -9295,7 +9371,9 @@ package body WinRt.Windows.Media.Audio is
       if this.m_ISpatialAudioFormatConfiguration /= null then
          if this.m_ISpatialAudioFormatConfiguration.all /= null then
             temp := this.m_ISpatialAudioFormatConfiguration.all.Release;
-            Free (this.m_ISpatialAudioFormatConfiguration);
+            if temp < 1 then
+               Free (this.m_ISpatialAudioFormatConfiguration);
+            end if;
          end if;
       end if;
    end;

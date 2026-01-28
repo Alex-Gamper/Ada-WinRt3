@@ -47,7 +47,9 @@ package body WinUI3.Windows.System.Implementation.FileExplorer is
       if this.m_ISysStorageProviderEventReceivedEventArgs /= null then
          if this.m_ISysStorageProviderEventReceivedEventArgs.all /= null then
             temp := this.m_ISysStorageProviderEventReceivedEventArgs.all.Release;
-            Free (this.m_ISysStorageProviderEventReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISysStorageProviderEventReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;

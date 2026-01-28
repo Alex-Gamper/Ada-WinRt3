@@ -66,7 +66,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppAttributeError /= null then
          if this.m_IIppAttributeError.all /= null then
             temp := this.m_IIppAttributeError.all.Release;
-            Free (this.m_IIppAttributeError);
+            if temp < 1 then
+               Free (this.m_IIppAttributeError);
+            end if;
          end if;
       end if;
    end;
@@ -143,7 +145,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppAttributeValue /= null then
          if this.m_IIppAttributeValue.all /= null then
             temp := this.m_IIppAttributeValue.all.Release;
-            Free (this.m_IIppAttributeValue);
+            if temp < 1 then
+               Free (this.m_IIppAttributeValue);
+            end if;
          end if;
       end if;
    end;
@@ -1598,7 +1602,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppIntegerRange /= null then
          if this.m_IIppIntegerRange.all /= null then
             temp := this.m_IIppIntegerRange.all.Release;
-            Free (this.m_IIppIntegerRange);
+            if temp < 1 then
+               Free (this.m_IIppIntegerRange);
+            end if;
          end if;
       end if;
    end;
@@ -1683,7 +1689,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppPrintDevice /= null then
          if this.m_IIppPrintDevice.all /= null then
             temp := this.m_IIppPrintDevice.all.Release;
-            Free (this.m_IIppPrintDevice);
+            if temp < 1 then
+               Free (this.m_IIppPrintDevice);
+            end if;
          end if;
       end if;
    end;
@@ -2231,7 +2239,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppPrintDeviceInstallationResult /= null then
          if this.m_IIppPrintDeviceInstallationResult.all /= null then
             temp := this.m_IIppPrintDeviceInstallationResult.all.Release;
-            Free (this.m_IIppPrintDeviceInstallationResult);
+            if temp < 1 then
+               Free (this.m_IIppPrintDeviceInstallationResult);
+            end if;
          end if;
       end if;
    end;
@@ -2411,7 +2421,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppResolution /= null then
          if this.m_IIppResolution.all /= null then
             temp := this.m_IIppResolution.all.Release;
-            Free (this.m_IIppResolution);
+            if temp < 1 then
+               Free (this.m_IIppResolution);
+            end if;
          end if;
       end if;
    end;
@@ -2514,7 +2526,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppSetAttributesResult /= null then
          if this.m_IIppSetAttributesResult.all /= null then
             temp := this.m_IIppSetAttributesResult.all.Release;
-            Free (this.m_IIppSetAttributesResult);
+            if temp < 1 then
+               Free (this.m_IIppSetAttributesResult);
+            end if;
          end if;
       end if;
    end;
@@ -2574,7 +2588,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IIppTextWithLanguage /= null then
          if this.m_IIppTextWithLanguage.all /= null then
             temp := this.m_IIppTextWithLanguage.all.Release;
-            Free (this.m_IIppTextWithLanguage);
+            if temp < 1 then
+               Free (this.m_IIppTextWithLanguage);
+            end if;
          end if;
       end if;
    end;
@@ -2669,7 +2685,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IPageConfigurationSettings /= null then
          if this.m_IPageConfigurationSettings.all /= null then
             temp := this.m_IPageConfigurationSettings.all.Release;
-            Free (this.m_IPageConfigurationSettings);
+            if temp < 1 then
+               Free (this.m_IPageConfigurationSettings);
+            end if;
          end if;
       end if;
    end;
@@ -2775,7 +2793,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IPdlPassthroughProvider /= null then
          if this.m_IPdlPassthroughProvider.all /= null then
             temp := this.m_IPdlPassthroughProvider.all.Release;
-            Free (this.m_IPdlPassthroughProvider);
+            if temp < 1 then
+               Free (this.m_IPdlPassthroughProvider);
+            end if;
          end if;
       end if;
    end;
@@ -2874,7 +2894,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IPdlPassthroughTarget /= null then
          if this.m_IPdlPassthroughTarget.all /= null then
             temp := this.m_IPdlPassthroughTarget.all.Release;
-            Free (this.m_IPdlPassthroughTarget);
+            if temp < 1 then
+               Free (this.m_IPdlPassthroughTarget);
+            end if;
          end if;
       end if;
    end;
@@ -2963,7 +2985,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IPrint3DDevice /= null then
          if this.m_IPrint3DDevice.all /= null then
             temp := this.m_IPrint3DDevice.all.Release;
-            Free (this.m_IPrint3DDevice);
+            if temp < 1 then
+               Free (this.m_IPrint3DDevice);
+            end if;
          end if;
       end if;
    end;
@@ -3108,7 +3132,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IPrintSchema /= null then
          if this.m_IPrintSchema.all /= null then
             temp := this.m_IPrintSchema.all.Release;
-            Free (this.m_IPrintSchema);
+            if temp < 1 then
+               Free (this.m_IPrintSchema);
+            end if;
          end if;
       end if;
    end;
@@ -3322,7 +3348,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IReplaceDevicePropertiesResult /= null then
          if this.m_IReplaceDevicePropertiesResult.all /= null then
             temp := this.m_IReplaceDevicePropertiesResult.all.Release;
-            Free (this.m_IReplaceDevicePropertiesResult);
+            if temp < 1 then
+               Free (this.m_IReplaceDevicePropertiesResult);
+            end if;
          end if;
       end if;
    end;
@@ -3379,7 +3407,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IVirtualPrinterInstallationParameters /= null then
          if this.m_IVirtualPrinterInstallationParameters.all /= null then
             temp := this.m_IVirtualPrinterInstallationParameters.all.Release;
-            Free (this.m_IVirtualPrinterInstallationParameters);
+            if temp < 1 then
+               Free (this.m_IVirtualPrinterInstallationParameters);
+            end if;
          end if;
       end if;
    end;
@@ -3676,7 +3706,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IVirtualPrinterInstallationResult /= null then
          if this.m_IVirtualPrinterInstallationResult.all /= null then
             temp := this.m_IVirtualPrinterInstallationResult.all.Release;
-            Free (this.m_IVirtualPrinterInstallationResult);
+            if temp < 1 then
+               Free (this.m_IVirtualPrinterInstallationResult);
+            end if;
          end if;
       end if;
    end;
@@ -4234,7 +4266,9 @@ package body WinUI3.Windows.Devices.Printers is
       if this.m_IVirtualPrinterSupportedFormat /= null then
          if this.m_IVirtualPrinterSupportedFormat.all /= null then
             temp := this.m_IVirtualPrinterSupportedFormat.all.Release;
-            Free (this.m_IVirtualPrinterSupportedFormat);
+            if temp < 1 then
+               Free (this.m_IVirtualPrinterSupportedFormat);
+            end if;
          end if;
       end if;
    end;

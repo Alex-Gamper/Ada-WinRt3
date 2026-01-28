@@ -53,7 +53,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicCamera /= null then
          if this.m_IHolographicCamera.all /= null then
             temp := this.m_IHolographicCamera.all.Release;
-            Free (this.m_IHolographicCamera);
+            if temp < 1 then
+               Free (this.m_IHolographicCamera);
+            end if;
          end if;
       end if;
    end;
@@ -452,7 +454,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicCameraPose /= null then
          if this.m_IHolographicCameraPose.all /= null then
             temp := this.m_IHolographicCameraPose.all.Release;
-            Free (this.m_IHolographicCameraPose);
+            if temp < 1 then
+               Free (this.m_IHolographicCameraPose);
+            end if;
          end if;
       end if;
    end;
@@ -679,7 +683,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicCameraRenderingParameters /= null then
          if this.m_IHolographicCameraRenderingParameters.all /= null then
             temp := this.m_IHolographicCameraRenderingParameters.all.Release;
-            Free (this.m_IHolographicCameraRenderingParameters);
+            if temp < 1 then
+               Free (this.m_IHolographicCameraRenderingParameters);
+            end if;
          end if;
       end if;
    end;
@@ -926,7 +932,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicCameraViewportParameters /= null then
          if this.m_IHolographicCameraViewportParameters.all /= null then
             temp := this.m_IHolographicCameraViewportParameters.all.Release;
-            Free (this.m_IHolographicCameraViewportParameters);
+            if temp < 1 then
+               Free (this.m_IHolographicCameraViewportParameters);
+            end if;
          end if;
       end if;
    end;
@@ -1001,7 +1009,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicDisplay /= null then
          if this.m_IHolographicDisplay.all /= null then
             temp := this.m_IHolographicDisplay.all.Release;
-            Free (this.m_IHolographicDisplay);
+            if temp < 1 then
+               Free (this.m_IHolographicDisplay);
+            end if;
          end if;
       end if;
    end;
@@ -1205,7 +1215,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFrame /= null then
          if this.m_IHolographicFrame.all /= null then
             temp := this.m_IHolographicFrame.all.Release;
-            Free (this.m_IHolographicFrame);
+            if temp < 1 then
+               Free (this.m_IHolographicFrame);
+            end if;
          end if;
       end if;
    end;
@@ -1435,7 +1447,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFramePrediction /= null then
          if this.m_IHolographicFramePrediction.all /= null then
             temp := this.m_IHolographicFramePrediction.all.Release;
-            Free (this.m_IHolographicFramePrediction);
+            if temp < 1 then
+               Free (this.m_IHolographicFramePrediction);
+            end if;
          end if;
       end if;
    end;
@@ -1498,7 +1512,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFramePresentationMonitor /= null then
          if this.m_IHolographicFramePresentationMonitor.all /= null then
             temp := this.m_IHolographicFramePresentationMonitor.all.Release;
-            Free (this.m_IHolographicFramePresentationMonitor);
+            if temp < 1 then
+               Free (this.m_IHolographicFramePresentationMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -1559,7 +1575,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFramePresentationReport /= null then
          if this.m_IHolographicFramePresentationReport.all /= null then
             temp := this.m_IHolographicFramePresentationReport.all.Release;
-            Free (this.m_IHolographicFramePresentationReport);
+            if temp < 1 then
+               Free (this.m_IHolographicFramePresentationReport);
+            end if;
          end if;
       end if;
    end;
@@ -1667,7 +1685,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFrameRenderingReport /= null then
          if this.m_IHolographicFrameRenderingReport.all /= null then
             temp := this.m_IHolographicFrameRenderingReport.all.Release;
-            Free (this.m_IHolographicFrameRenderingReport);
+            if temp < 1 then
+               Free (this.m_IHolographicFrameRenderingReport);
+            end if;
          end if;
       end if;
    end;
@@ -1775,7 +1795,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFrameScanoutMonitor /= null then
          if this.m_IHolographicFrameScanoutMonitor.all /= null then
             temp := this.m_IHolographicFrameScanoutMonitor.all.Release;
-            Free (this.m_IHolographicFrameScanoutMonitor);
+            if temp < 1 then
+               Free (this.m_IHolographicFrameScanoutMonitor);
+            end if;
          end if;
       end if;
    end;
@@ -1836,7 +1858,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicFrameScanoutReport /= null then
          if this.m_IHolographicFrameScanoutReport.all /= null then
             temp := this.m_IHolographicFrameScanoutReport.all.Release;
-            Free (this.m_IHolographicFrameScanoutReport);
+            if temp < 1 then
+               Free (this.m_IHolographicFrameScanoutReport);
+            end if;
          end if;
       end if;
    end;
@@ -1947,7 +1971,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicQuadLayer /= null then
          if this.m_IHolographicQuadLayer.all /= null then
             temp := this.m_IHolographicQuadLayer.all.Release;
-            Free (this.m_IHolographicQuadLayer);
+            if temp < 1 then
+               Free (this.m_IHolographicQuadLayer);
+            end if;
          end if;
       end if;
    end;
@@ -2074,7 +2100,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicQuadLayerUpdateParameters /= null then
          if this.m_IHolographicQuadLayerUpdateParameters.all /= null then
             temp := this.m_IHolographicQuadLayerUpdateParameters.all.Release;
-            Free (this.m_IHolographicQuadLayerUpdateParameters);
+            if temp < 1 then
+               Free (this.m_IHolographicQuadLayerUpdateParameters);
+            end if;
          end if;
       end if;
    end;
@@ -2234,7 +2262,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicSpace /= null then
          if this.m_IHolographicSpace.all /= null then
             temp := this.m_IHolographicSpace.all.Release;
-            Free (this.m_IHolographicSpace);
+            if temp < 1 then
+               Free (this.m_IHolographicSpace);
+            end if;
          end if;
       end if;
    end;
@@ -2662,7 +2692,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicSpaceCameraAddedEventArgs /= null then
          if this.m_IHolographicSpaceCameraAddedEventArgs.all /= null then
             temp := this.m_IHolographicSpaceCameraAddedEventArgs.all.Release;
-            Free (this.m_IHolographicSpaceCameraAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHolographicSpaceCameraAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2725,7 +2757,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicSpaceCameraRemovedEventArgs /= null then
          if this.m_IHolographicSpaceCameraRemovedEventArgs.all /= null then
             temp := this.m_IHolographicSpaceCameraRemovedEventArgs.all.Release;
-            Free (this.m_IHolographicSpaceCameraRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IHolographicSpaceCameraRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2768,7 +2802,9 @@ package body WinRt.Windows.Graphics.Holographic is
       if this.m_IHolographicViewConfiguration /= null then
          if this.m_IHolographicViewConfiguration.all /= null then
             temp := this.m_IHolographicViewConfiguration.all.Release;
-            Free (this.m_IHolographicViewConfiguration);
+            if temp < 1 then
+               Free (this.m_IHolographicViewConfiguration);
+            end if;
          end if;
       end if;
    end;

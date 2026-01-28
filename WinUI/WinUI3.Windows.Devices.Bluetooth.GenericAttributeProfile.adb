@@ -104,7 +104,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattCharacteristic /= null then
          if this.m_IGattCharacteristic.all /= null then
             temp := this.m_IGattCharacteristic.all.Release;
-            Free (this.m_IGattCharacteristic);
+            if temp < 1 then
+               Free (this.m_IGattCharacteristic);
+            end if;
          end if;
       end if;
    end;
@@ -2976,7 +2978,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattCharacteristicsResult /= null then
          if this.m_IGattCharacteristicsResult.all /= null then
             temp := this.m_IGattCharacteristicsResult.all.Release;
-            Free (this.m_IGattCharacteristicsResult);
+            if temp < 1 then
+               Free (this.m_IGattCharacteristicsResult);
+            end if;
          end if;
       end if;
    end;
@@ -3056,7 +3060,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattClientNotificationResult /= null then
          if this.m_IGattClientNotificationResult.all /= null then
             temp := this.m_IGattClientNotificationResult.all.Release;
-            Free (this.m_IGattClientNotificationResult);
+            if temp < 1 then
+               Free (this.m_IGattClientNotificationResult);
+            end if;
          end if;
       end if;
    end;
@@ -3157,7 +3163,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattDescriptor /= null then
          if this.m_IGattDescriptor.all /= null then
             temp := this.m_IGattDescriptor.all.Release;
-            Free (this.m_IGattDescriptor);
+            if temp < 1 then
+               Free (this.m_IGattDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -3673,7 +3681,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattDescriptorsResult /= null then
          if this.m_IGattDescriptorsResult.all /= null then
             temp := this.m_IGattDescriptorsResult.all.Release;
-            Free (this.m_IGattDescriptorsResult);
+            if temp < 1 then
+               Free (this.m_IGattDescriptorsResult);
+            end if;
          end if;
       end if;
    end;
@@ -3753,7 +3763,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattDeviceService /= null then
          if this.m_IGattDeviceService.all /= null then
             temp := this.m_IGattDeviceService.all.Release;
-            Free (this.m_IGattDeviceService);
+            if temp < 1 then
+               Free (this.m_IGattDeviceService);
+            end if;
          end if;
       end if;
    end;
@@ -5102,7 +5114,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattDeviceServicesResult /= null then
          if this.m_IGattDeviceServicesResult.all /= null then
             temp := this.m_IGattDeviceServicesResult.all.Release;
-            Free (this.m_IGattDeviceServicesResult);
+            if temp < 1 then
+               Free (this.m_IGattDeviceServicesResult);
+            end if;
          end if;
       end if;
    end;
@@ -5182,7 +5196,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalCharacteristic /= null then
          if this.m_IGattLocalCharacteristic.all /= null then
             temp := this.m_IGattLocalCharacteristic.all.Release;
-            Free (this.m_IGattLocalCharacteristic);
+            if temp < 1 then
+               Free (this.m_IGattLocalCharacteristic);
+            end if;
          end if;
       end if;
    end;
@@ -5669,7 +5685,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalCharacteristicParameters /= null then
          if this.m_IGattLocalCharacteristicParameters.all /= null then
             temp := this.m_IGattLocalCharacteristicParameters.all.Release;
-            Free (this.m_IGattLocalCharacteristicParameters);
+            if temp < 1 then
+               Free (this.m_IGattLocalCharacteristicParameters);
+            end if;
          end if;
       end if;
    end;
@@ -5896,7 +5914,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalCharacteristicResult /= null then
          if this.m_IGattLocalCharacteristicResult.all /= null then
             temp := this.m_IGattLocalCharacteristicResult.all.Release;
-            Free (this.m_IGattLocalCharacteristicResult);
+            if temp < 1 then
+               Free (this.m_IGattLocalCharacteristicResult);
+            end if;
          end if;
       end if;
    end;
@@ -5956,7 +5976,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalDescriptor /= null then
          if this.m_IGattLocalDescriptor.all /= null then
             temp := this.m_IGattLocalDescriptor.all.Release;
-            Free (this.m_IGattLocalDescriptor);
+            if temp < 1 then
+               Free (this.m_IGattLocalDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -6113,7 +6135,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalDescriptorParameters /= null then
          if this.m_IGattLocalDescriptorParameters.all /= null then
             temp := this.m_IGattLocalDescriptorParameters.all.Release;
-            Free (this.m_IGattLocalDescriptorParameters);
+            if temp < 1 then
+               Free (this.m_IGattLocalDescriptorParameters);
+            end if;
          end if;
       end if;
    end;
@@ -6251,7 +6275,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalDescriptorResult /= null then
          if this.m_IGattLocalDescriptorResult.all /= null then
             temp := this.m_IGattLocalDescriptorResult.all.Release;
-            Free (this.m_IGattLocalDescriptorResult);
+            if temp < 1 then
+               Free (this.m_IGattLocalDescriptorResult);
+            end if;
          end if;
       end if;
    end;
@@ -6311,7 +6337,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattLocalService /= null then
          if this.m_IGattLocalService.all /= null then
             temp := this.m_IGattLocalService.all.Release;
-            Free (this.m_IGattLocalService);
+            if temp < 1 then
+               Free (this.m_IGattLocalService);
+            end if;
          end if;
       end if;
    end;
@@ -6439,7 +6467,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattPresentationFormat /= null then
          if this.m_IGattPresentationFormat.all /= null then
             temp := this.m_IGattPresentationFormat.all.Release;
-            Free (this.m_IGattPresentationFormat);
+            if temp < 1 then
+               Free (this.m_IGattPresentationFormat);
+            end if;
          end if;
       end if;
    end;
@@ -7538,7 +7568,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattReadClientCharacteristicConfigurationDescriptorResult /= null then
          if this.m_IGattReadClientCharacteristicConfigurationDescriptorResult.all /= null then
             temp := this.m_IGattReadClientCharacteristicConfigurationDescriptorResult.all.Release;
-            Free (this.m_IGattReadClientCharacteristicConfigurationDescriptorResult);
+            if temp < 1 then
+               Free (this.m_IGattReadClientCharacteristicConfigurationDescriptorResult);
+            end if;
          end if;
       end if;
    end;
@@ -7619,7 +7651,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattReadRequest /= null then
          if this.m_IGattReadRequest.all /= null then
             temp := this.m_IGattReadRequest.all.Release;
-            Free (this.m_IGattReadRequest);
+            if temp < 1 then
+               Free (this.m_IGattReadRequest);
+            end if;
          end if;
       end if;
    end;
@@ -7756,7 +7790,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattReadRequestedEventArgs /= null then
          if this.m_IGattReadRequestedEventArgs.all /= null then
             temp := this.m_IGattReadRequestedEventArgs.all.Release;
-            Free (this.m_IGattReadRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattReadRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7885,7 +7921,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattReadResult /= null then
          if this.m_IGattReadResult.all /= null then
             temp := this.m_IGattReadResult.all.Release;
-            Free (this.m_IGattReadResult);
+            if temp < 1 then
+               Free (this.m_IGattReadResult);
+            end if;
          end if;
       end if;
    end;
@@ -7966,7 +8004,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattReliableWriteTransaction /= null then
          if this.m_IGattReliableWriteTransaction.all /= null then
             temp := this.m_IGattReliableWriteTransaction.all.Release;
-            Free (this.m_IGattReliableWriteTransaction);
+            if temp < 1 then
+               Free (this.m_IGattReliableWriteTransaction);
+            end if;
          end if;
       end if;
    end;
@@ -8157,7 +8197,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattRequestStateChangedEventArgs /= null then
          if this.m_IGattRequestStateChangedEventArgs.all /= null then
             temp := this.m_IGattRequestStateChangedEventArgs.all.Release;
-            Free (this.m_IGattRequestStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattRequestStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8214,7 +8256,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattServiceProvider /= null then
          if this.m_IGattServiceProvider.all /= null then
             temp := this.m_IGattServiceProvider.all.Release;
-            Free (this.m_IGattServiceProvider);
+            if temp < 1 then
+               Free (this.m_IGattServiceProvider);
+            end if;
          end if;
       end if;
    end;
@@ -8445,7 +8489,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs /= null then
          if this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs.all /= null then
             temp := this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs.all.Release;
-            Free (this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderAdvertisementStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8502,7 +8548,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattServiceProviderAdvertisingParameters /= null then
          if this.m_IGattServiceProviderAdvertisingParameters.all /= null then
             temp := this.m_IGattServiceProviderAdvertisingParameters.all.Release;
-            Free (this.m_IGattServiceProviderAdvertisingParameters);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderAdvertisingParameters);
+            end if;
          end if;
       end if;
    end;
@@ -8728,7 +8776,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattServiceProviderResult /= null then
          if this.m_IGattServiceProviderResult.all /= null then
             temp := this.m_IGattServiceProviderResult.all.Release;
-            Free (this.m_IGattServiceProviderResult);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderResult);
+            end if;
          end if;
       end if;
    end;
@@ -9256,7 +9306,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattSession /= null then
          if this.m_IGattSession.all /= null then
             temp := this.m_IGattSession.all.Release;
-            Free (this.m_IGattSession);
+            if temp < 1 then
+               Free (this.m_IGattSession);
+            end if;
          end if;
       end if;
    end;
@@ -9542,7 +9594,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattSessionStatusChangedEventArgs /= null then
          if this.m_IGattSessionStatusChangedEventArgs.all /= null then
             temp := this.m_IGattSessionStatusChangedEventArgs.all.Release;
-            Free (this.m_IGattSessionStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattSessionStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9599,7 +9653,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattSubscribedClient /= null then
          if this.m_IGattSubscribedClient.all /= null then
             temp := this.m_IGattSubscribedClient.all.Release;
-            Free (this.m_IGattSubscribedClient);
+            if temp < 1 then
+               Free (this.m_IGattSubscribedClient);
+            end if;
          end if;
       end if;
    end;
@@ -9692,7 +9748,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattValueChangedEventArgs /= null then
          if this.m_IGattValueChangedEventArgs.all /= null then
             temp := this.m_IGattValueChangedEventArgs.all.Release;
-            Free (this.m_IGattValueChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattValueChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9749,7 +9807,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattWriteRequest /= null then
          if this.m_IGattWriteRequest.all /= null then
             temp := this.m_IGattWriteRequest.all.Release;
-            Free (this.m_IGattWriteRequest);
+            if temp < 1 then
+               Free (this.m_IGattWriteRequest);
+            end if;
          end if;
       end if;
    end;
@@ -9902,7 +9962,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattWriteRequestedEventArgs /= null then
          if this.m_IGattWriteRequestedEventArgs.all /= null then
             temp := this.m_IGattWriteRequestedEventArgs.all.Release;
-            Free (this.m_IGattWriteRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGattWriteRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10031,7 +10093,9 @@ package body WinUI3.Windows.Devices.Bluetooth.GenericAttributeProfile is
       if this.m_IGattWriteResult /= null then
          if this.m_IGattWriteResult.all /= null then
             temp := this.m_IGattWriteResult.all.Release;
-            Free (this.m_IGattWriteResult);
+            if temp < 1 then
+               Free (this.m_IGattWriteResult);
+            end if;
          end if;
       end if;
    end;

@@ -47,7 +47,9 @@ package body WinUI3.Windows.System.Profile.SystemManufacturers is
       if this.m_IOemSupportInfo /= null then
          if this.m_IOemSupportInfo.all /= null then
             temp := this.m_IOemSupportInfo.all.Release;
-            Free (this.m_IOemSupportInfo);
+            if temp < 1 then
+               Free (this.m_IOemSupportInfo);
+            end if;
          end if;
       end if;
    end;
@@ -160,7 +162,9 @@ package body WinUI3.Windows.System.Profile.SystemManufacturers is
       if this.m_ISystemSupportDeviceInfo /= null then
          if this.m_ISystemSupportDeviceInfo.all /= null then
             temp := this.m_ISystemSupportDeviceInfo.all.Release;
-            Free (this.m_ISystemSupportDeviceInfo);
+            if temp < 1 then
+               Free (this.m_ISystemSupportDeviceInfo);
+            end if;
          end if;
       end if;
    end;

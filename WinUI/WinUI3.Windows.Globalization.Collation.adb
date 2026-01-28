@@ -49,7 +49,9 @@ package body WinUI3.Windows.Globalization.Collation is
       if this.m_ICharacterGrouping /= null then
          if this.m_ICharacterGrouping.all /= null then
             temp := this.m_ICharacterGrouping.all.Release;
-            Free (this.m_ICharacterGrouping);
+            if temp < 1 then
+               Free (this.m_ICharacterGrouping);
+            end if;
          end if;
       end if;
    end;
@@ -112,7 +114,9 @@ package body WinUI3.Windows.Globalization.Collation is
       if this.m_ICharacterGroupings /= null then
          if this.m_ICharacterGroupings.all /= null then
             temp := this.m_ICharacterGroupings.all.Release;
-            Free (this.m_ICharacterGroupings);
+            if temp < 1 then
+               Free (this.m_ICharacterGroupings);
+            end if;
          end if;
       end if;
    end;

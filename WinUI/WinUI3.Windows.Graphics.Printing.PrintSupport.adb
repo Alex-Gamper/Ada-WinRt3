@@ -55,7 +55,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportAppInfo /= null then
          if this.m_IPrintSupportAppInfo.all /= null then
             temp := this.m_IPrintSupportAppInfo.all.Release;
-            Free (this.m_IPrintSupportAppInfo);
+            if temp < 1 then
+               Free (this.m_IPrintSupportAppInfo);
+            end if;
          end if;
       end if;
    end;
@@ -174,7 +176,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportCommunicationErrorDetectedEventArgs /= null then
          if this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all /= null then
             temp := this.m_IPrintSupportCommunicationErrorDetectedEventArgs.all.Release;
-            Free (this.m_IPrintSupportCommunicationErrorDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportCommunicationErrorDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +275,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportEnterpriseManagementUIEventArgs /= null then
          if this.m_IPrintSupportEnterpriseManagementUIEventArgs.all /= null then
             temp := this.m_IPrintSupportEnterpriseManagementUIEventArgs.all.Release;
-            Free (this.m_IPrintSupportEnterpriseManagementUIEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportEnterpriseManagementUIEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -314,7 +320,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportExtensionSession /= null then
          if this.m_IPrintSupportExtensionSession.all /= null then
             temp := this.m_IPrintSupportExtensionSession.all.Release;
-            Free (this.m_IPrintSupportExtensionSession);
+            if temp < 1 then
+               Free (this.m_IPrintSupportExtensionSession);
+            end if;
          end if;
       end if;
    end;
@@ -519,7 +527,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportExtensionTriggerDetails /= null then
          if this.m_IPrintSupportExtensionTriggerDetails.all /= null then
             temp := this.m_IPrintSupportExtensionTriggerDetails.all.Release;
-            Free (this.m_IPrintSupportExtensionTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IPrintSupportExtensionTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -562,7 +572,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportIppCommunicationConfiguration /= null then
          if this.m_IPrintSupportIppCommunicationConfiguration.all /= null then
             temp := this.m_IPrintSupportIppCommunicationConfiguration.all.Release;
-            Free (this.m_IPrintSupportIppCommunicationConfiguration);
+            if temp < 1 then
+               Free (this.m_IPrintSupportIppCommunicationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -659,7 +671,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportIppCommunicationTimeouts /= null then
          if this.m_IPrintSupportIppCommunicationTimeouts.all /= null then
             temp := this.m_IPrintSupportIppCommunicationTimeouts.all.Release;
-            Free (this.m_IPrintSupportIppCommunicationTimeouts);
+            if temp < 1 then
+               Free (this.m_IPrintSupportIppCommunicationTimeouts);
+            end if;
          end if;
       end if;
    end;
@@ -778,7 +792,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportMxdcImageQualityConfiguration /= null then
          if this.m_IPrintSupportMxdcImageQualityConfiguration.all /= null then
             temp := this.m_IPrintSupportMxdcImageQualityConfiguration.all.Release;
-            Free (this.m_IPrintSupportMxdcImageQualityConfiguration);
+            if temp < 1 then
+               Free (this.m_IPrintSupportMxdcImageQualityConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1025,7 +1041,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs /= null then
          if this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs.all /= null then
             temp := this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs.all.Release;
-            Free (this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportPrintDeviceCapabilitiesChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1256,7 +1274,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy /= null then
          if this.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy.all /= null then
             temp := this.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy.all.Release;
-            Free (this.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+            if temp < 1 then
+               Free (this.m_IPrintSupportPrintDeviceCapabilitiesUpdatePolicy);
+            end if;
          end if;
       end if;
    end;
@@ -1336,7 +1356,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportPrintTicketElement /= null then
          if this.m_IPrintSupportPrintTicketElement.all /= null then
             temp := this.m_IPrintSupportPrintTicketElement.all.Release;
-            Free (this.m_IPrintSupportPrintTicketElement);
+            if temp < 1 then
+               Free (this.m_IPrintSupportPrintTicketElement);
+            end if;
          end if;
       end if;
    end;
@@ -1452,7 +1474,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportPrintTicketValidationRequestedEventArgs /= null then
          if this.m_IPrintSupportPrintTicketValidationRequestedEventArgs.all /= null then
             temp := this.m_IPrintSupportPrintTicketValidationRequestedEventArgs.all.Release;
-            Free (this.m_IPrintSupportPrintTicketValidationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportPrintTicketValidationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1549,7 +1573,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportPrinterSelectedEventArgs /= null then
          if this.m_IPrintSupportPrinterSelectedEventArgs.all /= null then
             temp := this.m_IPrintSupportPrinterSelectedEventArgs.all.Release;
-            Free (this.m_IPrintSupportPrinterSelectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportPrinterSelectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1709,7 +1735,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportSessionInfo /= null then
          if this.m_IPrintSupportSessionInfo.all /= null then
             temp := this.m_IPrintSupportSessionInfo.all.Release;
-            Free (this.m_IPrintSupportSessionInfo);
+            if temp < 1 then
+               Free (this.m_IPrintSupportSessionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1772,7 +1800,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportSettingsActivatedEventArgs /= null then
          if this.m_IPrintSupportSettingsActivatedEventArgs.all /= null then
             temp := this.m_IPrintSupportSettingsActivatedEventArgs.all.Release;
-            Free (this.m_IPrintSupportSettingsActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintSupportSettingsActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1946,7 +1976,9 @@ package body WinUI3.Windows.Graphics.Printing.PrintSupport is
       if this.m_IPrintSupportSettingsUISession /= null then
          if this.m_IPrintSupportSettingsUISession.all /= null then
             temp := this.m_IPrintSupportSettingsUISession.all.Release;
-            Free (this.m_IPrintSupportSettingsUISession);
+            if temp < 1 then
+               Free (this.m_IPrintSupportSettingsUISession);
+            end if;
          end if;
       end if;
    end;

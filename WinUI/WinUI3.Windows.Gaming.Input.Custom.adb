@@ -151,7 +151,9 @@ package body WinUI3.Windows.Gaming.Input.Custom is
       if this.m_IGipFirmwareUpdateResult /= null then
          if this.m_IGipFirmwareUpdateResult.all /= null then
             temp := this.m_IGipFirmwareUpdateResult.all.Release;
-            Free (this.m_IGipFirmwareUpdateResult);
+            if temp < 1 then
+               Free (this.m_IGipFirmwareUpdateResult);
+            end if;
          end if;
       end if;
    end;
@@ -225,7 +227,9 @@ package body WinUI3.Windows.Gaming.Input.Custom is
       if this.m_IGipGameControllerProvider /= null then
          if this.m_IGipGameControllerProvider.all /= null then
             temp := this.m_IGipGameControllerProvider.all.Release;
-            Free (this.m_IGipGameControllerProvider);
+            if temp < 1 then
+               Free (this.m_IGipGameControllerProvider);
+            end if;
          end if;
       end if;
    end;
@@ -458,7 +462,9 @@ package body WinUI3.Windows.Gaming.Input.Custom is
       if this.m_IHidGameControllerProvider /= null then
          if this.m_IHidGameControllerProvider.all /= null then
             temp := this.m_IHidGameControllerProvider.all.Release;
-            Free (this.m_IHidGameControllerProvider);
+            if temp < 1 then
+               Free (this.m_IHidGameControllerProvider);
+            end if;
          end if;
       end if;
    end;
@@ -671,7 +677,9 @@ package body WinUI3.Windows.Gaming.Input.Custom is
       if this.m_IXusbGameControllerProvider /= null then
          if this.m_IXusbGameControllerProvider.all /= null then
             temp := this.m_IXusbGameControllerProvider.all.Release;
-            Free (this.m_IXusbGameControllerProvider);
+            if temp < 1 then
+               Free (this.m_IXusbGameControllerProvider);
+            end if;
          end if;
       end if;
    end;

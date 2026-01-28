@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Notifications is
       if this.m_IFeedAnnouncement /= null then
          if this.m_IFeedAnnouncement.all /= null then
             temp := this.m_IFeedAnnouncement.all.Release;
-            Free (this.m_IFeedAnnouncement);
+            if temp < 1 then
+               Free (this.m_IFeedAnnouncement);
+            end if;
          end if;
       end if;
    end;
@@ -517,7 +519,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Notifications is
       if this.m_IFeedAnnouncementInvokedArgs /= null then
          if this.m_IFeedAnnouncementInvokedArgs.all /= null then
             temp := this.m_IFeedAnnouncementInvokedArgs.all.Release;
-            Free (this.m_IFeedAnnouncementInvokedArgs);
+            if temp < 1 then
+               Free (this.m_IFeedAnnouncementInvokedArgs);
+            end if;
          end if;
       end if;
    end;

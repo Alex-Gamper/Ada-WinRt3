@@ -63,7 +63,9 @@ package body WinRt.Windows.Security.DataProtection is
       if this.m_IUserDataAvailabilityStateChangedEventArgs /= null then
          if this.m_IUserDataAvailabilityStateChangedEventArgs.all /= null then
             temp := this.m_IUserDataAvailabilityStateChangedEventArgs.all.Release;
-            Free (this.m_IUserDataAvailabilityStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataAvailabilityStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -106,7 +108,9 @@ package body WinRt.Windows.Security.DataProtection is
       if this.m_IUserDataBufferUnprotectResult /= null then
          if this.m_IUserDataBufferUnprotectResult.all /= null then
             temp := this.m_IUserDataBufferUnprotectResult.all.Release;
-            Free (this.m_IUserDataBufferUnprotectResult);
+            if temp < 1 then
+               Free (this.m_IUserDataBufferUnprotectResult);
+            end if;
          end if;
       end if;
    end;
@@ -163,7 +167,9 @@ package body WinRt.Windows.Security.DataProtection is
       if this.m_IUserDataProtectionManager /= null then
          if this.m_IUserDataProtectionManager.all /= null then
             temp := this.m_IUserDataProtectionManager.all.Release;
-            Free (this.m_IUserDataProtectionManager);
+            if temp < 1 then
+               Free (this.m_IUserDataProtectionManager);
+            end if;
          end if;
       end if;
    end;
@@ -555,7 +561,9 @@ package body WinRt.Windows.Security.DataProtection is
       if this.m_IUserDataStorageItemProtectionInfo /= null then
          if this.m_IUserDataStorageItemProtectionInfo.all /= null then
             temp := this.m_IUserDataStorageItemProtectionInfo.all.Release;
-            Free (this.m_IUserDataStorageItemProtectionInfo);
+            if temp < 1 then
+               Free (this.m_IUserDataStorageItemProtectionInfo);
+            end if;
          end if;
       end if;
    end;

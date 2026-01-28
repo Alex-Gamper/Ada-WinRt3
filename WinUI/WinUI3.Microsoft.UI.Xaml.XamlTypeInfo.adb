@@ -50,7 +50,9 @@ package body WinUI3.Microsoft.UI.Xaml.XamlTypeInfo is
       if this.m_IXamlMetadataProvider /= null then
          if this.m_IXamlMetadataProvider.all /= null then
             temp := this.m_IXamlMetadataProvider.all.Release;
-            Free (this.m_IXamlMetadataProvider);
+            if temp < 1 then
+               Free (this.m_IXamlMetadataProvider);
+            end if;
          end if;
       end if;
    end;

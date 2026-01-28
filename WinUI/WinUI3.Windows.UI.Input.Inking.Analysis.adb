@@ -51,7 +51,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisInkBullet /= null then
          if this.m_IInkAnalysisInkBullet.all /= null then
             temp := this.m_IInkAnalysisInkBullet.all.Release;
-            Free (this.m_IInkAnalysisInkBullet);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisInkBullet);
+            end if;
          end if;
       end if;
    end;
@@ -250,7 +252,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisInkDrawing /= null then
          if this.m_IInkAnalysisInkDrawing.all /= null then
             temp := this.m_IInkAnalysisInkDrawing.all.Release;
-            Free (this.m_IInkAnalysisInkDrawing);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisInkDrawing);
+            end if;
          end if;
       end if;
    end;
@@ -483,7 +487,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisInkWord /= null then
          if this.m_IInkAnalysisInkWord.all /= null then
             temp := this.m_IInkAnalysisInkWord.all.Release;
-            Free (this.m_IInkAnalysisInkWord);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisInkWord);
+            end if;
          end if;
       end if;
    end;
@@ -702,7 +708,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisLine /= null then
          if this.m_IInkAnalysisLine.all /= null then
             temp := this.m_IInkAnalysisLine.all.Release;
-            Free (this.m_IInkAnalysisLine);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisLine);
+            end if;
          end if;
       end if;
    end;
@@ -918,7 +926,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisListItem /= null then
          if this.m_IInkAnalysisListItem.all /= null then
             temp := this.m_IInkAnalysisListItem.all.Release;
-            Free (this.m_IInkAnalysisListItem);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisListItem);
+            end if;
          end if;
       end if;
    end;
@@ -1117,7 +1127,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisNode /= null then
          if this.m_IInkAnalysisNode.all /= null then
             temp := this.m_IInkAnalysisNode.all.Release;
-            Free (this.m_IInkAnalysisNode);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisNode);
+            end if;
          end if;
       end if;
    end;
@@ -1268,7 +1280,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisParagraph /= null then
          if this.m_IInkAnalysisParagraph.all /= null then
             temp := this.m_IInkAnalysisParagraph.all.Release;
-            Free (this.m_IInkAnalysisParagraph);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisParagraph);
+            end if;
          end if;
       end if;
    end;
@@ -1467,7 +1481,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisResult /= null then
          if this.m_IInkAnalysisResult.all /= null then
             temp := this.m_IInkAnalysisResult.all.Release;
-            Free (this.m_IInkAnalysisResult);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisResult);
+            end if;
          end if;
       end if;
    end;
@@ -1507,7 +1523,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisRoot /= null then
          if this.m_IInkAnalysisRoot.all /= null then
             temp := this.m_IInkAnalysisRoot.all.Release;
-            Free (this.m_IInkAnalysisRoot);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisRoot);
+            end if;
          end if;
       end if;
    end;
@@ -1727,7 +1745,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalysisWritingRegion /= null then
          if this.m_IInkAnalysisWritingRegion.all /= null then
             temp := this.m_IInkAnalysisWritingRegion.all.Release;
-            Free (this.m_IInkAnalysisWritingRegion);
+            if temp < 1 then
+               Free (this.m_IInkAnalysisWritingRegion);
+            end if;
          end if;
       end if;
    end;
@@ -1926,7 +1946,9 @@ package body WinUI3.Windows.UI.Input.Inking.Analysis is
       if this.m_IInkAnalyzer /= null then
          if this.m_IInkAnalyzer.all /= null then
             temp := this.m_IInkAnalyzer.all.Release;
-            Free (this.m_IInkAnalyzer);
+            if temp < 1 then
+               Free (this.m_IInkAnalyzer);
+            end if;
          end if;
       end if;
    end;

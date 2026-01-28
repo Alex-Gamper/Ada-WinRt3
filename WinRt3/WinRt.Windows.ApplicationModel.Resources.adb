@@ -48,7 +48,9 @@ package body WinRt.Windows.ApplicationModel.Resources is
       if this.m_IResourceLoader /= null then
          if this.m_IResourceLoader.all /= null then
             temp := this.m_IResourceLoader.all.Release;
-            Free (this.m_IResourceLoader);
+            if temp < 1 then
+               Free (this.m_IResourceLoader);
+            end if;
          end if;
       end if;
    end;

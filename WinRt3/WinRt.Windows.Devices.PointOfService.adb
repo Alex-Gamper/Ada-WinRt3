@@ -108,7 +108,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScanner /= null then
          if this.m_IBarcodeScanner.all /= null then
             temp := this.m_IBarcodeScanner.all.Release;
-            Free (this.m_IBarcodeScanner);
+            if temp < 1 then
+               Free (this.m_IBarcodeScanner);
+            end if;
          end if;
       end if;
    end;
@@ -809,7 +811,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerCapabilities /= null then
          if this.m_IBarcodeScannerCapabilities.all /= null then
             temp := this.m_IBarcodeScannerCapabilities.all.Release;
-            Free (this.m_IBarcodeScannerCapabilities);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -942,7 +946,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerDataReceivedEventArgs /= null then
          if this.m_IBarcodeScannerDataReceivedEventArgs.all /= null then
             temp := this.m_IBarcodeScannerDataReceivedEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -985,7 +991,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerErrorOccurredEventArgs /= null then
          if this.m_IBarcodeScannerErrorOccurredEventArgs.all /= null then
             temp := this.m_IBarcodeScannerErrorOccurredEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerErrorOccurredEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerErrorOccurredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1065,7 +1073,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerImagePreviewReceivedEventArgs /= null then
          if this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all /= null then
             temp := this.m_IBarcodeScannerImagePreviewReceivedEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerImagePreviewReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerImagePreviewReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1105,7 +1115,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerReport /= null then
          if this.m_IBarcodeScannerReport.all /= null then
             temp := this.m_IBarcodeScannerReport.all.Release;
-            Free (this.m_IBarcodeScannerReport);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerReport);
+            end if;
          end if;
       end if;
    end;
@@ -1208,7 +1220,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeScannerStatusUpdatedEventArgs /= null then
          if this.m_IBarcodeScannerStatusUpdatedEventArgs.all /= null then
             temp := this.m_IBarcodeScannerStatusUpdatedEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerStatusUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerStatusUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3272,7 +3286,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IBarcodeSymbologyAttributes /= null then
          if this.m_IBarcodeSymbologyAttributes.all /= null then
             temp := this.m_IBarcodeSymbologyAttributes.all.Release;
-            Free (this.m_IBarcodeSymbologyAttributes);
+            if temp < 1 then
+               Free (this.m_IBarcodeSymbologyAttributes);
+            end if;
          end if;
       end if;
    end;
@@ -3506,7 +3522,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawer /= null then
          if this.m_ICashDrawer.all /= null then
             temp := this.m_ICashDrawer.all.Release;
-            Free (this.m_ICashDrawer);
+            if temp < 1 then
+               Free (this.m_ICashDrawer);
+            end if;
          end if;
       end if;
    end;
@@ -4076,7 +4094,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerCapabilities /= null then
          if this.m_ICashDrawerCapabilities.all /= null then
             temp := this.m_ICashDrawerCapabilities.all.Release;
-            Free (this.m_ICashDrawerCapabilities);
+            if temp < 1 then
+               Free (this.m_ICashDrawerCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -4201,7 +4221,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerCloseAlarm /= null then
          if this.m_ICashDrawerCloseAlarm.all /= null then
             temp := this.m_ICashDrawerCloseAlarm.all.Release;
-            Free (this.m_ICashDrawerCloseAlarm);
+            if temp < 1 then
+               Free (this.m_ICashDrawerCloseAlarm);
+            end if;
          end if;
       end if;
    end;
@@ -4448,7 +4470,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerEventSourceEventArgs /= null then
          if this.m_ICashDrawerEventSourceEventArgs.all /= null then
             temp := this.m_ICashDrawerEventSourceEventArgs.all.Release;
-            Free (this.m_ICashDrawerEventSourceEventArgs);
+            if temp < 1 then
+               Free (this.m_ICashDrawerEventSourceEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4491,7 +4515,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerEventSource /= null then
          if this.m_ICashDrawerEventSource.all /= null then
             temp := this.m_ICashDrawerEventSource.all.Release;
-            Free (this.m_ICashDrawerEventSource);
+            if temp < 1 then
+               Free (this.m_ICashDrawerEventSource);
+            end if;
          end if;
       end if;
    end;
@@ -4580,7 +4606,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerEventSourceEventArgs /= null then
          if this.m_ICashDrawerEventSourceEventArgs.all /= null then
             temp := this.m_ICashDrawerEventSourceEventArgs.all.Release;
-            Free (this.m_ICashDrawerEventSourceEventArgs);
+            if temp < 1 then
+               Free (this.m_ICashDrawerEventSourceEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4623,7 +4651,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerStatus /= null then
          if this.m_ICashDrawerStatus.all /= null then
             temp := this.m_ICashDrawerStatus.all.Release;
-            Free (this.m_ICashDrawerStatus);
+            if temp < 1 then
+               Free (this.m_ICashDrawerStatus);
+            end if;
          end if;
       end if;
    end;
@@ -4680,7 +4710,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ICashDrawerStatusUpdatedEventArgs /= null then
          if this.m_ICashDrawerStatusUpdatedEventArgs.all /= null then
             temp := this.m_ICashDrawerStatusUpdatedEventArgs.all.Release;
-            Free (this.m_ICashDrawerStatusUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICashDrawerStatusUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4723,7 +4755,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedBarcodeScanner /= null then
          if this.m_IClaimedBarcodeScanner.all /= null then
             temp := this.m_IClaimedBarcodeScanner.all.Release;
-            Free (this.m_IClaimedBarcodeScanner);
+            if temp < 1 then
+               Free (this.m_IClaimedBarcodeScanner);
+            end if;
          end if;
       end if;
    end;
@@ -5733,7 +5767,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedBarcodeScannerClosedEventArgs /= null then
          if this.m_IClaimedBarcodeScannerClosedEventArgs.all /= null then
             temp := this.m_IClaimedBarcodeScannerClosedEventArgs.all.Release;
-            Free (this.m_IClaimedBarcodeScannerClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClaimedBarcodeScannerClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5756,7 +5792,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedCashDrawer /= null then
          if this.m_IClaimedCashDrawer.all /= null then
             temp := this.m_IClaimedCashDrawer.all.Release;
-            Free (this.m_IClaimedCashDrawer);
+            if temp < 1 then
+               Free (this.m_IClaimedCashDrawer);
+            end if;
          end if;
       end if;
    end;
@@ -6325,7 +6363,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedCashDrawerClosedEventArgs /= null then
          if this.m_IClaimedCashDrawerClosedEventArgs.all /= null then
             temp := this.m_IClaimedCashDrawerClosedEventArgs.all.Release;
-            Free (this.m_IClaimedCashDrawerClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClaimedCashDrawerClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6348,7 +6388,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedJournalPrinter /= null then
          if this.m_IClaimedJournalPrinter.all /= null then
             temp := this.m_IClaimedJournalPrinter.all.Release;
-            Free (this.m_IClaimedJournalPrinter);
+            if temp < 1 then
+               Free (this.m_IClaimedJournalPrinter);
+            end if;
          end if;
       end if;
    end;
@@ -6783,7 +6825,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedLineDisplay /= null then
          if this.m_IClaimedLineDisplay.all /= null then
             temp := this.m_IClaimedLineDisplay.all.Release;
-            Free (this.m_IClaimedLineDisplay);
+            if temp < 1 then
+               Free (this.m_IClaimedLineDisplay);
+            end if;
          end if;
       end if;
    end;
@@ -8062,7 +8106,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedLineDisplayClosedEventArgs /= null then
          if this.m_IClaimedLineDisplayClosedEventArgs.all /= null then
             temp := this.m_IClaimedLineDisplayClosedEventArgs.all.Release;
-            Free (this.m_IClaimedLineDisplayClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClaimedLineDisplayClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8085,7 +8131,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedMagneticStripeReader /= null then
          if this.m_IClaimedMagneticStripeReader.all /= null then
             temp := this.m_IClaimedMagneticStripeReader.all.Release;
-            Free (this.m_IClaimedMagneticStripeReader);
+            if temp < 1 then
+               Free (this.m_IClaimedMagneticStripeReader);
+            end if;
          end if;
       end if;
    end;
@@ -8944,7 +8992,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedMagneticStripeReaderClosedEventArgs /= null then
          if this.m_IClaimedMagneticStripeReaderClosedEventArgs.all /= null then
             temp := this.m_IClaimedMagneticStripeReaderClosedEventArgs.all.Release;
-            Free (this.m_IClaimedMagneticStripeReaderClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClaimedMagneticStripeReaderClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8967,7 +9017,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedPosPrinter /= null then
          if this.m_IClaimedPosPrinter.all /= null then
             temp := this.m_IClaimedPosPrinter.all.Release;
-            Free (this.m_IClaimedPosPrinter);
+            if temp < 1 then
+               Free (this.m_IClaimedPosPrinter);
+            end if;
          end if;
       end if;
    end;
@@ -9609,7 +9661,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedPosPrinterClosedEventArgs /= null then
          if this.m_IClaimedPosPrinterClosedEventArgs.all /= null then
             temp := this.m_IClaimedPosPrinterClosedEventArgs.all.Release;
-            Free (this.m_IClaimedPosPrinterClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClaimedPosPrinterClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9632,7 +9686,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedReceiptPrinter /= null then
          if this.m_IClaimedReceiptPrinter.all /= null then
             temp := this.m_IClaimedReceiptPrinter.all.Release;
-            Free (this.m_IClaimedReceiptPrinter);
+            if temp < 1 then
+               Free (this.m_IClaimedReceiptPrinter);
+            end if;
          end if;
       end if;
    end;
@@ -10152,7 +10208,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IClaimedSlipPrinter /= null then
          if this.m_IClaimedSlipPrinter.all /= null then
             temp := this.m_IClaimedSlipPrinter.all.Release;
-            Free (this.m_IClaimedSlipPrinter);
+            if temp < 1 then
+               Free (this.m_IClaimedSlipPrinter);
+            end if;
          end if;
       end if;
    end;
@@ -10877,7 +10935,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterJob /= null then
          if this.m_IPosPrinterJob.all /= null then
             temp := this.m_IPosPrinterJob.all.Release;
-            Free (this.m_IPosPrinterJob);
+            if temp < 1 then
+               Free (this.m_IPosPrinterJob);
+            end if;
          end if;
       end if;
    end;
@@ -11071,7 +11131,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IJournalPrinterCapabilities /= null then
          if this.m_IJournalPrinterCapabilities.all /= null then
             temp := this.m_IJournalPrinterCapabilities.all.Release;
-            Free (this.m_IJournalPrinterCapabilities);
+            if temp < 1 then
+               Free (this.m_IJournalPrinterCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -11496,7 +11558,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplay /= null then
          if this.m_ILineDisplay.all /= null then
             temp := this.m_ILineDisplay.all.Release;
-            Free (this.m_ILineDisplay);
+            if temp < 1 then
+               Free (this.m_ILineDisplay);
+            end if;
          end if;
       end if;
    end;
@@ -12033,7 +12097,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayAttributes /= null then
          if this.m_ILineDisplayAttributes.all /= null then
             temp := this.m_ILineDisplayAttributes.all.Release;
-            Free (this.m_ILineDisplayAttributes);
+            if temp < 1 then
+               Free (this.m_ILineDisplayAttributes);
+            end if;
          end if;
       end if;
    end;
@@ -12283,7 +12349,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayCapabilities /= null then
          if this.m_ILineDisplayCapabilities.all /= null then
             temp := this.m_ILineDisplayCapabilities.all.Release;
-            Free (this.m_ILineDisplayCapabilities);
+            if temp < 1 then
+               Free (this.m_ILineDisplayCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -12612,7 +12680,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayCursor /= null then
          if this.m_ILineDisplayCursor.all /= null then
             temp := this.m_ILineDisplayCursor.all.Release;
-            Free (this.m_ILineDisplayCursor);
+            if temp < 1 then
+               Free (this.m_ILineDisplayCursor);
+            end if;
          end if;
       end if;
    end;
@@ -12838,7 +12908,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayCursorAttributes /= null then
          if this.m_ILineDisplayCursorAttributes.all /= null then
             temp := this.m_ILineDisplayCursorAttributes.all.Release;
-            Free (this.m_ILineDisplayCursorAttributes);
+            if temp < 1 then
+               Free (this.m_ILineDisplayCursorAttributes);
+            end if;
          end if;
       end if;
    end;
@@ -12989,7 +13061,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayCustomGlyphs /= null then
          if this.m_ILineDisplayCustomGlyphs.all /= null then
             temp := this.m_ILineDisplayCustomGlyphs.all.Release;
-            Free (this.m_ILineDisplayCustomGlyphs);
+            if temp < 1 then
+               Free (this.m_ILineDisplayCustomGlyphs);
+            end if;
          end if;
       end if;
    end;
@@ -13114,7 +13188,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayMarquee /= null then
          if this.m_ILineDisplayMarquee.all /= null then
             temp := this.m_ILineDisplayMarquee.all.Release;
-            Free (this.m_ILineDisplayMarquee);
+            if temp < 1 then
+               Free (this.m_ILineDisplayMarquee);
+            end if;
          end if;
       end if;
    end;
@@ -13360,7 +13436,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayStatisticsCategorySelector /= null then
          if this.m_ILineDisplayStatisticsCategorySelector.all /= null then
             temp := this.m_ILineDisplayStatisticsCategorySelector.all.Release;
-            Free (this.m_ILineDisplayStatisticsCategorySelector);
+            if temp < 1 then
+               Free (this.m_ILineDisplayStatisticsCategorySelector);
+            end if;
          end if;
       end if;
    end;
@@ -13443,7 +13521,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayStatusUpdatedEventArgs /= null then
          if this.m_ILineDisplayStatusUpdatedEventArgs.all /= null then
             temp := this.m_ILineDisplayStatusUpdatedEventArgs.all.Release;
-            Free (this.m_ILineDisplayStatusUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILineDisplayStatusUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13483,7 +13563,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayStoredBitmap /= null then
          if this.m_ILineDisplayStoredBitmap.all /= null then
             temp := this.m_ILineDisplayStoredBitmap.all.Release;
-            Free (this.m_ILineDisplayStoredBitmap);
+            if temp < 1 then
+               Free (this.m_ILineDisplayStoredBitmap);
+            end if;
          end if;
       end if;
    end;
@@ -13589,7 +13671,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ILineDisplayWindow /= null then
          if this.m_ILineDisplayWindow.all /= null then
             temp := this.m_ILineDisplayWindow.all.Release;
-            Free (this.m_ILineDisplayWindow);
+            if temp < 1 then
+               Free (this.m_ILineDisplayWindow);
+            end if;
          end if;
       end if;
    end;
@@ -14602,7 +14686,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReader /= null then
          if this.m_IMagneticStripeReader.all /= null then
             temp := this.m_IMagneticStripeReader.all.Release;
-            Free (this.m_IMagneticStripeReader);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReader);
+            end if;
          end if;
       end if;
    end;
@@ -15172,7 +15258,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all /= null then
             temp := this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs.all.Release;
-            Free (this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderAamvaCardDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15575,7 +15663,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all /= null then
             temp := this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs.all.Release;
-            Free (this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderBankCardDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15778,7 +15868,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderCapabilities /= null then
          if this.m_IMagneticStripeReaderCapabilities.all /= null then
             temp := this.m_IMagneticStripeReaderCapabilities.all.Release;
-            Free (this.m_IMagneticStripeReaderCapabilities);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -16150,7 +16242,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderErrorOccurredEventArgs /= null then
          if this.m_IMagneticStripeReaderErrorOccurredEventArgs.all /= null then
             temp := this.m_IMagneticStripeReaderErrorOccurredEventArgs.all.Release;
-            Free (this.m_IMagneticStripeReaderErrorOccurredEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderErrorOccurredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16281,7 +16375,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderReport /= null then
          if this.m_IMagneticStripeReaderReport.all /= null then
             temp := this.m_IMagneticStripeReaderReport.all.Release;
-            Free (this.m_IMagneticStripeReaderReport);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderReport);
+            end if;
          end if;
       end if;
    end;
@@ -16472,7 +16568,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderStatusUpdatedEventArgs /= null then
          if this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all /= null then
             temp := this.m_IMagneticStripeReaderStatusUpdatedEventArgs.all.Release;
-            Free (this.m_IMagneticStripeReaderStatusUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderStatusUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16529,7 +16627,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderTrackData /= null then
          if this.m_IMagneticStripeReaderTrackData.all /= null then
             temp := this.m_IMagneticStripeReaderTrackData.all.Release;
-            Free (this.m_IMagneticStripeReaderTrackData);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderTrackData);
+            end if;
          end if;
       end if;
    end;
@@ -16603,7 +16703,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs /= null then
          if this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all /= null then
             temp := this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs.all.Release;
-            Free (this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMagneticStripeReaderVendorSpecificCardDataReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16646,7 +16748,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinter /= null then
          if this.m_IPosPrinter.all /= null then
             temp := this.m_IPosPrinter.all.Release;
-            Free (this.m_IPosPrinter);
+            if temp < 1 then
+               Free (this.m_IPosPrinter);
+            end if;
          end if;
       end if;
    end;
@@ -17270,7 +17374,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterCapabilities /= null then
          if this.m_IPosPrinterCapabilities.all /= null then
             temp := this.m_IPosPrinterCapabilities.all.Release;
-            Free (this.m_IPosPrinterCapabilities);
+            if temp < 1 then
+               Free (this.m_IPosPrinterCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -17541,7 +17647,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterFontProperty /= null then
          if this.m_IPosPrinterFontProperty.all /= null then
             temp := this.m_IPosPrinterFontProperty.all.Release;
-            Free (this.m_IPosPrinterFontProperty);
+            if temp < 1 then
+               Free (this.m_IPosPrinterFontProperty);
+            end if;
          end if;
       end if;
    end;
@@ -17621,7 +17729,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterPrintOptions /= null then
          if this.m_IPosPrinterPrintOptions.all /= null then
             temp := this.m_IPosPrinterPrintOptions.all.Release;
-            Free (this.m_IPosPrinterPrintOptions);
+            if temp < 1 then
+               Free (this.m_IPosPrinterPrintOptions);
+            end if;
          end if;
       end if;
    end;
@@ -18084,7 +18194,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterReleaseDeviceRequestedEventArgs /= null then
          if this.m_IPosPrinterReleaseDeviceRequestedEventArgs.all /= null then
             temp := this.m_IPosPrinterReleaseDeviceRequestedEventArgs.all.Release;
-            Free (this.m_IPosPrinterReleaseDeviceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPosPrinterReleaseDeviceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -18107,7 +18219,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterStatus /= null then
          if this.m_IPosPrinterStatus.all /= null then
             temp := this.m_IPosPrinterStatus.all.Release;
-            Free (this.m_IPosPrinterStatus);
+            if temp < 1 then
+               Free (this.m_IPosPrinterStatus);
+            end if;
          end if;
       end if;
    end;
@@ -18164,7 +18278,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IPosPrinterStatusUpdatedEventArgs /= null then
          if this.m_IPosPrinterStatusUpdatedEventArgs.all /= null then
             temp := this.m_IPosPrinterStatusUpdatedEventArgs.all.Release;
-            Free (this.m_IPosPrinterStatusUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPosPrinterStatusUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -18207,7 +18323,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IReceiptPrintJob /= null then
          if this.m_IReceiptPrintJob.all /= null then
             temp := this.m_IReceiptPrintJob.all.Release;
-            Free (this.m_IReceiptPrintJob);
+            if temp < 1 then
+               Free (this.m_IReceiptPrintJob);
+            end if;
          end if;
       end if;
    end;
@@ -18801,7 +18919,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IReceiptPrinterCapabilities /= null then
          if this.m_IReceiptPrinterCapabilities.all /= null then
             temp := this.m_IReceiptPrinterCapabilities.all.Release;
-            Free (this.m_IReceiptPrinterCapabilities);
+            if temp < 1 then
+               Free (this.m_IReceiptPrinterCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -19472,7 +19592,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IReceiptOrSlipJob /= null then
          if this.m_IReceiptOrSlipJob.all /= null then
             temp := this.m_IReceiptOrSlipJob.all.Release;
-            Free (this.m_IReceiptOrSlipJob);
+            if temp < 1 then
+               Free (this.m_IReceiptOrSlipJob);
+            end if;
          end if;
       end if;
    end;
@@ -19944,7 +20066,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_ISlipPrinterCapabilities /= null then
          if this.m_ISlipPrinterCapabilities.all /= null then
             temp := this.m_ISlipPrinterCapabilities.all.Release;
-            Free (this.m_ISlipPrinterCapabilities);
+            if temp < 1 then
+               Free (this.m_ISlipPrinterCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -20598,7 +20722,9 @@ package body WinRt.Windows.Devices.PointOfService is
       if this.m_IUnifiedPosErrorData /= null then
          if this.m_IUnifiedPosErrorData.all /= null then
             temp := this.m_IUnifiedPosErrorData.all.Release;
-            Free (this.m_IUnifiedPosErrorData);
+            if temp < 1 then
+               Free (this.m_IUnifiedPosErrorData);
+            end if;
          end if;
       end if;
    end;

@@ -60,7 +60,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IJumpList /= null then
          if this.m_IJumpList.all /= null then
             temp := this.m_IJumpList.all.Release;
-            Free (this.m_IJumpList);
+            if temp < 1 then
+               Free (this.m_IJumpList);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +273,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IJumpListItem /= null then
          if this.m_IJumpListItem.all /= null then
             temp := this.m_IJumpListItem.all.Release;
-            Free (this.m_IJumpListItem);
+            if temp < 1 then
+               Free (this.m_IJumpListItem);
+            end if;
          end if;
       end if;
    end;
@@ -553,7 +557,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_ISecondaryTile /= null then
          if this.m_ISecondaryTile.all /= null then
             temp := this.m_ISecondaryTile.all.Release;
-            Free (this.m_ISecondaryTile);
+            if temp < 1 then
+               Free (this.m_ISecondaryTile);
+            end if;
          end if;
       end if;
    end;
@@ -2106,7 +2112,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_ISecondaryTileVisualElements /= null then
          if this.m_ISecondaryTileVisualElements.all /= null then
             temp := this.m_ISecondaryTileVisualElements.all.Release;
-            Free (this.m_ISecondaryTileVisualElements);
+            if temp < 1 then
+               Free (this.m_ISecondaryTileVisualElements);
+            end if;
          end if;
       end if;
    end;
@@ -2574,7 +2582,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IStartScreenManager /= null then
          if this.m_IStartScreenManager.all /= null then
             temp := this.m_IStartScreenManager.all.Release;
-            Free (this.m_IStartScreenManager);
+            if temp < 1 then
+               Free (this.m_IStartScreenManager);
+            end if;
          end if;
       end if;
    end;
@@ -2957,7 +2967,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_ITileMixedRealityModel /= null then
          if this.m_ITileMixedRealityModel.all /= null then
             temp := this.m_ITileMixedRealityModel.all.Release;
-            Free (this.m_ITileMixedRealityModel);
+            if temp < 1 then
+               Free (this.m_ITileMixedRealityModel);
+            end if;
          end if;
       end if;
    end;
@@ -3087,7 +3099,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IVisualElementsRequest /= null then
          if this.m_IVisualElementsRequest.all /= null then
             temp := this.m_IVisualElementsRequest.all.Release;
-            Free (this.m_IVisualElementsRequest);
+            if temp < 1 then
+               Free (this.m_IVisualElementsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3187,7 +3201,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IVisualElementsRequestDeferral /= null then
          if this.m_IVisualElementsRequestDeferral.all /= null then
             temp := this.m_IVisualElementsRequestDeferral.all.Release;
-            Free (this.m_IVisualElementsRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IVisualElementsRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -3224,7 +3240,9 @@ package body WinRt.Windows.UI.StartScreen is
       if this.m_IVisualElementsRequestedEventArgs /= null then
          if this.m_IVisualElementsRequestedEventArgs.all /= null then
             temp := this.m_IVisualElementsRequestedEventArgs.all.Release;
-            Free (this.m_IVisualElementsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVisualElementsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

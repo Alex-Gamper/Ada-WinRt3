@@ -554,7 +554,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IClipboardContentOptions /= null then
          if this.m_IClipboardContentOptions.all /= null then
             temp := this.m_IClipboardContentOptions.all.Release;
-            Free (this.m_IClipboardContentOptions);
+            if temp < 1 then
+               Free (this.m_IClipboardContentOptions);
+            end if;
          end if;
       end if;
    end;
@@ -700,7 +702,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IClipboardHistoryChangedEventArgs /= null then
          if this.m_IClipboardHistoryChangedEventArgs.all /= null then
             temp := this.m_IClipboardHistoryChangedEventArgs.all.Release;
-            Free (this.m_IClipboardHistoryChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IClipboardHistoryChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -723,7 +727,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IClipboardHistoryItem /= null then
          if this.m_IClipboardHistoryItem.all /= null then
             temp := this.m_IClipboardHistoryItem.all.Release;
-            Free (this.m_IClipboardHistoryItem);
+            if temp < 1 then
+               Free (this.m_IClipboardHistoryItem);
+            end if;
          end if;
       end if;
    end;
@@ -803,7 +809,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IClipboardHistoryItemsResult /= null then
          if this.m_IClipboardHistoryItemsResult.all /= null then
             temp := this.m_IClipboardHistoryItemsResult.all.Release;
-            Free (this.m_IClipboardHistoryItemsResult);
+            if temp < 1 then
+               Free (this.m_IClipboardHistoryItemsResult);
+            end if;
          end if;
       end if;
    end;
@@ -863,7 +871,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataPackage /= null then
          if this.m_IDataPackage.all /= null then
             temp := this.m_IDataPackage.all.Release;
-            Free (this.m_IDataPackage);
+            if temp < 1 then
+               Free (this.m_IDataPackage);
+            end if;
          end if;
       end if;
    end;
@@ -1328,7 +1338,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataPackagePropertySet /= null then
          if this.m_IDataPackagePropertySet.all /= null then
             temp := this.m_IDataPackagePropertySet.all.Release;
-            Free (this.m_IDataPackagePropertySet);
+            if temp < 1 then
+               Free (this.m_IDataPackagePropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -2012,7 +2024,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataPackagePropertySetView /= null then
          if this.m_IDataPackagePropertySetView.all /= null then
             temp := this.m_IDataPackagePropertySetView.all.Release;
-            Free (this.m_IDataPackagePropertySetView);
+            if temp < 1 then
+               Free (this.m_IDataPackagePropertySetView);
+            end if;
          end if;
       end if;
    end;
@@ -2432,7 +2446,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataPackageView /= null then
          if this.m_IDataPackageView.all /= null then
             temp := this.m_IDataPackageView.all.Release;
-            Free (this.m_IDataPackageView);
+            if temp < 1 then
+               Free (this.m_IDataPackageView);
+            end if;
          end if;
       end if;
    end;
@@ -3457,7 +3473,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataProviderDeferral /= null then
          if this.m_IDataProviderDeferral.all /= null then
             temp := this.m_IDataProviderDeferral.all.Release;
-            Free (this.m_IDataProviderDeferral);
+            if temp < 1 then
+               Free (this.m_IDataProviderDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -3509,7 +3527,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataProviderRequest /= null then
          if this.m_IDataProviderRequest.all /= null then
             temp := this.m_IDataProviderRequest.all.Release;
-            Free (this.m_IDataProviderRequest);
+            if temp < 1 then
+               Free (this.m_IDataProviderRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3604,7 +3624,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataRequest /= null then
          if this.m_IDataRequest.all /= null then
             temp := this.m_IDataRequest.all.Release;
-            Free (this.m_IDataRequest);
+            if temp < 1 then
+               Free (this.m_IDataRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3716,7 +3738,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataRequestDeferral /= null then
          if this.m_IDataRequestDeferral.all /= null then
             temp := this.m_IDataRequestDeferral.all.Release;
-            Free (this.m_IDataRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IDataRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -3753,7 +3777,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataRequestedEventArgs /= null then
          if this.m_IDataRequestedEventArgs.all /= null then
             temp := this.m_IDataRequestedEventArgs.all.Release;
-            Free (this.m_IDataRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDataRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3796,7 +3822,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IDataTransferManager /= null then
          if this.m_IDataTransferManager.all /= null then
             temp := this.m_IDataTransferManager.all.Release;
-            Free (this.m_IDataTransferManager);
+            if temp < 1 then
+               Free (this.m_IDataTransferManager);
+            end if;
          end if;
       end if;
    end;
@@ -4077,7 +4105,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IOperationCompletedEventArgs /= null then
          if this.m_IOperationCompletedEventArgs.all /= null then
             temp := this.m_IOperationCompletedEventArgs.all.Release;
-            Free (this.m_IOperationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IOperationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4141,7 +4171,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareCompletedEventArgs /= null then
          if this.m_IShareCompletedEventArgs.all /= null then
             temp := this.m_IShareCompletedEventArgs.all.Release;
-            Free (this.m_IShareCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IShareCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4184,7 +4216,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareProvider /= null then
          if this.m_IShareProvider.all /= null then
             temp := this.m_IShareProvider.all.Release;
-            Free (this.m_IShareProvider);
+            if temp < 1 then
+               Free (this.m_IShareProvider);
+            end if;
          end if;
       end if;
    end;
@@ -4343,7 +4377,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareProviderOperation /= null then
          if this.m_IShareProviderOperation.all /= null then
             temp := this.m_IShareProviderOperation.all.Release;
-            Free (this.m_IShareProviderOperation);
+            if temp < 1 then
+               Free (this.m_IShareProviderOperation);
+            end if;
          end if;
       end if;
    end;
@@ -4420,7 +4456,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareProvidersRequestedEventArgs /= null then
          if this.m_IShareProvidersRequestedEventArgs.all /= null then
             temp := this.m_IShareProvidersRequestedEventArgs.all.Release;
-            Free (this.m_IShareProvidersRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IShareProvidersRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4503,7 +4541,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareTargetInfo /= null then
          if this.m_IShareTargetInfo.all /= null then
             temp := this.m_IShareTargetInfo.all.Release;
-            Free (this.m_IShareTargetInfo);
+            if temp < 1 then
+               Free (this.m_IShareTargetInfo);
+            end if;
          end if;
       end if;
    end;
@@ -4566,7 +4606,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_IShareUIOptions /= null then
          if this.m_IShareUIOptions.all /= null then
             temp := this.m_IShareUIOptions.all.Release;
-            Free (this.m_IShareUIOptions);
+            if temp < 1 then
+               Free (this.m_IShareUIOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5028,7 +5070,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITargetApplicationChosenEventArgs /= null then
          if this.m_ITargetApplicationChosenEventArgs.all /= null then
             temp := this.m_ITargetApplicationChosenEventArgs.all.Release;
-            Free (this.m_ITargetApplicationChosenEventArgs);
+            if temp < 1 then
+               Free (this.m_ITargetApplicationChosenEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5071,7 +5115,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITransferTarget /= null then
          if this.m_ITransferTarget.all /= null then
             temp := this.m_ITransferTarget.all.Release;
-            Free (this.m_ITransferTarget);
+            if temp < 1 then
+               Free (this.m_ITransferTarget);
+            end if;
          end if;
       end if;
    end;
@@ -5198,7 +5244,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITransferTargetChangedEventArgs /= null then
          if this.m_ITransferTargetChangedEventArgs.all /= null then
             temp := this.m_ITransferTargetChangedEventArgs.all.Release;
-            Free (this.m_ITransferTargetChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITransferTargetChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5241,7 +5289,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITransferTargetDiscoveryOptions /= null then
          if this.m_ITransferTargetDiscoveryOptions.all /= null then
             temp := this.m_ITransferTargetDiscoveryOptions.all.Release;
-            Free (this.m_ITransferTargetDiscoveryOptions);
+            if temp < 1 then
+               Free (this.m_ITransferTargetDiscoveryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5387,7 +5437,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITransferTargetInvokeResult /= null then
          if this.m_ITransferTargetInvokeResult.all /= null then
             temp := this.m_ITransferTargetInvokeResult.all.Release;
-            Free (this.m_ITransferTargetInvokeResult);
+            if temp < 1 then
+               Free (this.m_ITransferTargetInvokeResult);
+            end if;
          end if;
       end if;
    end;
@@ -5444,7 +5496,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer is
       if this.m_ITransferTargetWatcher /= null then
          if this.m_ITransferTargetWatcher.all /= null then
             temp := this.m_ITransferTargetWatcher.all.Release;
-            Free (this.m_ITransferTargetWatcher);
+            if temp < 1 then
+               Free (this.m_ITransferTargetWatcher);
+            end if;
          end if;
       end if;
    end;

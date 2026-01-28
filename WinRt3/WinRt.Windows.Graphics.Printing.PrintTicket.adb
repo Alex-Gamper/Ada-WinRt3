@@ -53,7 +53,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketCapabilities /= null then
          if this.m_IPrintTicketCapabilities.all /= null then
             temp := this.m_IPrintTicketCapabilities.all.Release;
-            Free (this.m_IPrintTicketCapabilities);
+            if temp < 1 then
+               Free (this.m_IPrintTicketCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -485,7 +487,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketFeature /= null then
          if this.m_IPrintTicketFeature.all /= null then
             temp := this.m_IPrintTicketFeature.all.Release;
-            Free (this.m_IPrintTicketFeature);
+            if temp < 1 then
+               Free (this.m_IPrintTicketFeature);
+            end if;
          end if;
       end if;
    end;
@@ -683,7 +687,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketOption /= null then
          if this.m_IPrintTicketOption.all /= null then
             temp := this.m_IPrintTicketOption.all.Release;
-            Free (this.m_IPrintTicketOption);
+            if temp < 1 then
+               Free (this.m_IPrintTicketOption);
+            end if;
          end if;
       end if;
    end;
@@ -881,7 +887,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketParameterDefinition /= null then
          if this.m_IPrintTicketParameterDefinition.all /= null then
             temp := this.m_IPrintTicketParameterDefinition.all.Release;
-            Free (this.m_IPrintTicketParameterDefinition);
+            if temp < 1 then
+               Free (this.m_IPrintTicketParameterDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -1032,7 +1040,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketParameterInitializer /= null then
          if this.m_IPrintTicketParameterInitializer.all /= null then
             temp := this.m_IPrintTicketParameterInitializer.all.Release;
-            Free (this.m_IPrintTicketParameterInitializer);
+            if temp < 1 then
+               Free (this.m_IPrintTicketParameterInitializer);
+            end if;
          end if;
       end if;
    end;
@@ -1147,7 +1157,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IPrintTicketValue /= null then
          if this.m_IPrintTicketValue.all /= null then
             temp := this.m_IPrintTicketValue.all.Release;
-            Free (this.m_IPrintTicketValue);
+            if temp < 1 then
+               Free (this.m_IPrintTicketValue);
+            end if;
          end if;
       end if;
    end;
@@ -1224,7 +1236,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IWorkflowPrintTicket /= null then
          if this.m_IWorkflowPrintTicket.all /= null then
             temp := this.m_IWorkflowPrintTicket.all.Release;
-            Free (this.m_IWorkflowPrintTicket);
+            if temp < 1 then
+               Free (this.m_IWorkflowPrintTicket);
+            end if;
          end if;
       end if;
    end;
@@ -1891,7 +1905,9 @@ package body WinRt.Windows.Graphics.Printing.PrintTicket is
       if this.m_IWorkflowPrintTicketValidationResult /= null then
          if this.m_IWorkflowPrintTicketValidationResult.all /= null then
             temp := this.m_IWorkflowPrintTicketValidationResult.all.Release;
-            Free (this.m_IWorkflowPrintTicketValidationResult);
+            if temp < 1 then
+               Free (this.m_IWorkflowPrintTicketValidationResult);
+            end if;
          end if;
       end if;
    end;

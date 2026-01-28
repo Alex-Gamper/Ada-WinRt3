@@ -68,7 +68,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportDeleteImportedItemsFromSourceResult /= null then
          if this.m_IPhotoImportDeleteImportedItemsFromSourceResult.all /= null then
             temp := this.m_IPhotoImportDeleteImportedItemsFromSourceResult.all.Release;
-            Free (this.m_IPhotoImportDeleteImportedItemsFromSourceResult);
+            if temp < 1 then
+               Free (this.m_IPhotoImportDeleteImportedItemsFromSourceResult);
+            end if;
          end if;
       end if;
    end;
@@ -318,7 +320,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportFindItemsResult /= null then
          if this.m_IPhotoImportFindItemsResult.all /= null then
             temp := this.m_IPhotoImportFindItemsResult.all.Release;
-            Free (this.m_IPhotoImportFindItemsResult);
+            if temp < 1 then
+               Free (this.m_IPhotoImportFindItemsResult);
+            end if;
          end if;
       end if;
    end;
@@ -992,7 +996,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportImportItemsResult /= null then
          if this.m_IPhotoImportImportItemsResult.all /= null then
             temp := this.m_IPhotoImportImportItemsResult.all.Release;
-            Free (this.m_IPhotoImportImportItemsResult);
+            if temp < 1 then
+               Free (this.m_IPhotoImportImportItemsResult);
+            end if;
          end if;
       end if;
    end;
@@ -1308,7 +1314,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportItem /= null then
          if this.m_IPhotoImportItem.all /= null then
             temp := this.m_IPhotoImportItem.all.Release;
-            Free (this.m_IPhotoImportItem);
+            if temp < 1 then
+               Free (this.m_IPhotoImportItem);
+            end if;
          end if;
       end if;
    end;
@@ -1592,7 +1600,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportItemImportedEventArgs /= null then
          if this.m_IPhotoImportItemImportedEventArgs.all /= null then
             temp := this.m_IPhotoImportItemImportedEventArgs.all.Release;
-            Free (this.m_IPhotoImportItemImportedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhotoImportItemImportedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1796,7 +1806,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportOperation /= null then
          if this.m_IPhotoImportOperation.all /= null then
             temp := this.m_IPhotoImportOperation.all.Release;
-            Free (this.m_IPhotoImportOperation);
+            if temp < 1 then
+               Free (this.m_IPhotoImportOperation);
+            end if;
          end if;
       end if;
    end;
@@ -2054,7 +2066,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportSelectionChangedEventArgs /= null then
          if this.m_IPhotoImportSelectionChangedEventArgs.all /= null then
             temp := this.m_IPhotoImportSelectionChangedEventArgs.all.Release;
-            Free (this.m_IPhotoImportSelectionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhotoImportSelectionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2094,7 +2108,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportSession /= null then
          if this.m_IPhotoImportSession.all /= null then
             temp := this.m_IPhotoImportSession.all.Release;
-            Free (this.m_IPhotoImportSession);
+            if temp < 1 then
+               Free (this.m_IPhotoImportSession);
+            end if;
          end if;
       end if;
    end;
@@ -2453,7 +2469,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportSidecar /= null then
          if this.m_IPhotoImportSidecar.all /= null then
             temp := this.m_IPhotoImportSidecar.all.Release;
-            Free (this.m_IPhotoImportSidecar);
+            if temp < 1 then
+               Free (this.m_IPhotoImportSidecar);
+            end if;
          end if;
       end if;
    end;
@@ -2530,7 +2548,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportSource /= null then
          if this.m_IPhotoImportSource.all /= null then
             temp := this.m_IPhotoImportSource.all.Release;
-            Free (this.m_IPhotoImportSource);
+            if temp < 1 then
+               Free (this.m_IPhotoImportSource);
+            end if;
          end if;
       end if;
    end;
@@ -3029,7 +3049,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportStorageMedium /= null then
          if this.m_IPhotoImportStorageMedium.all /= null then
             temp := this.m_IPhotoImportStorageMedium.all.Release;
-            Free (this.m_IPhotoImportStorageMedium);
+            if temp < 1 then
+               Free (this.m_IPhotoImportStorageMedium);
+            end if;
          end if;
       end if;
    end;
@@ -3194,7 +3216,9 @@ package body WinUI3.Windows.Media.Import is
       if this.m_IPhotoImportVideoSegment /= null then
          if this.m_IPhotoImportVideoSegment.all /= null then
             temp := this.m_IPhotoImportVideoSegment.all.Release;
-            Free (this.m_IPhotoImportVideoSegment);
+            if temp < 1 then
+               Free (this.m_IPhotoImportVideoSegment);
+            end if;
          end if;
       end if;
    end;

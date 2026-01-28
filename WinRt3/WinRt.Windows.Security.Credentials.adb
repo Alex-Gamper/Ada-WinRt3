@@ -84,7 +84,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IKeyCredential /= null then
          if this.m_IKeyCredential.all /= null then
             temp := this.m_IKeyCredential.all.Release;
-            Free (this.m_IKeyCredential);
+            if temp < 1 then
+               Free (this.m_IKeyCredential);
+            end if;
          end if;
       end if;
    end;
@@ -392,7 +394,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IKeyCredentialAttestationResult /= null then
          if this.m_IKeyCredentialAttestationResult.all /= null then
             temp := this.m_IKeyCredentialAttestationResult.all.Release;
-            Free (this.m_IKeyCredentialAttestationResult);
+            if temp < 1 then
+               Free (this.m_IKeyCredentialAttestationResult);
+            end if;
          end if;
       end if;
    end;
@@ -466,7 +470,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IKeyCredentialCacheConfiguration /= null then
          if this.m_IKeyCredentialCacheConfiguration.all /= null then
             temp := this.m_IKeyCredentialCacheConfiguration.all.Release;
-            Free (this.m_IKeyCredentialCacheConfiguration);
+            if temp < 1 then
+               Free (this.m_IKeyCredentialCacheConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1053,7 +1059,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IKeyCredentialOperationResult /= null then
          if this.m_IKeyCredentialOperationResult.all /= null then
             temp := this.m_IKeyCredentialOperationResult.all.Release;
-            Free (this.m_IKeyCredentialOperationResult);
+            if temp < 1 then
+               Free (this.m_IKeyCredentialOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -1110,7 +1118,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IKeyCredentialRetrievalResult /= null then
          if this.m_IKeyCredentialRetrievalResult.all /= null then
             temp := this.m_IKeyCredentialRetrievalResult.all.Release;
-            Free (this.m_IKeyCredentialRetrievalResult);
+            if temp < 1 then
+               Free (this.m_IKeyCredentialRetrievalResult);
+            end if;
          end if;
       end if;
    end;
@@ -1170,7 +1180,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IPasswordCredential /= null then
          if this.m_IPasswordCredential.all /= null then
             temp := this.m_IPasswordCredential.all.Release;
-            Free (this.m_IPasswordCredential);
+            if temp < 1 then
+               Free (this.m_IPasswordCredential);
+            end if;
          end if;
       end if;
    end;
@@ -1387,7 +1399,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
             temp := this.m_IPropertySet.all.Release;
-            Free (this.m_IPropertySet);
+            if temp < 1 then
+               Free (this.m_IPropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -1636,7 +1650,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IPasswordVault /= null then
          if this.m_IPasswordVault.all /= null then
             temp := this.m_IPasswordVault.all.Release;
-            Free (this.m_IPasswordVault);
+            if temp < 1 then
+               Free (this.m_IPasswordVault);
+            end if;
          end if;
       end if;
    end;
@@ -1800,7 +1816,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IWebAccount /= null then
          if this.m_IWebAccount.all /= null then
             temp := this.m_IWebAccount.all.Release;
-            Free (this.m_IWebAccount);
+            if temp < 1 then
+               Free (this.m_IWebAccount);
+            end if;
          end if;
       end if;
    end;
@@ -2122,7 +2140,9 @@ package body WinRt.Windows.Security.Credentials is
       if this.m_IWebAccountProvider /= null then
          if this.m_IWebAccountProvider.all /= null then
             temp := this.m_IWebAccountProvider.all.Release;
-            Free (this.m_IWebAccountProvider);
+            if temp < 1 then
+               Free (this.m_IWebAccountProvider);
+            end if;
          end if;
       end if;
    end;

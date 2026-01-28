@@ -50,7 +50,9 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
       if this.m_IDesktopAcrylicController /= null then
          if this.m_IDesktopAcrylicController.all /= null then
             temp := this.m_IDesktopAcrylicController.all.Release;
-            Free (this.m_IDesktopAcrylicController);
+            if temp < 1 then
+               Free (this.m_IDesktopAcrylicController);
+            end if;
          end if;
       end if;
    end;
@@ -612,7 +614,9 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
       if this.m_IMicaController /= null then
          if this.m_IMicaController.all /= null then
             temp := this.m_IMicaController.all.Release;
-            Free (this.m_IMicaController);
+            if temp < 1 then
+               Free (this.m_IMicaController);
+            end if;
          end if;
       end if;
    end;
@@ -1174,7 +1178,9 @@ package body WinUI3.Microsoft.UI.Composition.SystemBackdrops is
       if this.m_ISystemBackdropConfiguration /= null then
          if this.m_ISystemBackdropConfiguration.all /= null then
             temp := this.m_ISystemBackdropConfiguration.all.Release;
-            Free (this.m_ISystemBackdropConfiguration);
+            if temp < 1 then
+               Free (this.m_ISystemBackdropConfiguration);
+            end if;
          end if;
       end if;
    end;

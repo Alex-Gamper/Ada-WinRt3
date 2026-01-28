@@ -176,7 +176,9 @@ package body WinRt.Windows.Globalization is
       if this.m_ICalendar /= null then
          if this.m_ICalendar.all /= null then
             temp := this.m_ICalendar.all.Release;
-            Free (this.m_ICalendar);
+            if temp < 1 then
+               Free (this.m_ICalendar);
+            end if;
          end if;
       end if;
    end;
@@ -2549,7 +2551,9 @@ package body WinRt.Windows.Globalization is
       if this.m_ICurrencyAmount /= null then
          if this.m_ICurrencyAmount.all /= null then
             temp := this.m_ICurrencyAmount.all.Release;
-            Free (this.m_ICurrencyAmount);
+            if temp < 1 then
+               Free (this.m_ICurrencyAmount);
+            end if;
          end if;
       end if;
    end;
@@ -6538,7 +6542,9 @@ package body WinRt.Windows.Globalization is
       if this.m_IGeographicRegion /= null then
          if this.m_IGeographicRegion.all /= null then
             temp := this.m_IGeographicRegion.all.Release;
-            Free (this.m_IGeographicRegion);
+            if temp < 1 then
+               Free (this.m_IGeographicRegion);
+            end if;
          end if;
       end if;
    end;
@@ -6775,7 +6781,9 @@ package body WinRt.Windows.Globalization is
       if this.m_IJapanesePhoneme /= null then
          if this.m_IJapanesePhoneme.all /= null then
             temp := this.m_IJapanesePhoneme.all.Release;
-            Free (this.m_IJapanesePhoneme);
+            if temp < 1 then
+               Free (this.m_IJapanesePhoneme);
+            end if;
          end if;
       end if;
    end;
@@ -6914,7 +6922,9 @@ package body WinRt.Windows.Globalization is
       if this.m_ILanguage /= null then
          if this.m_ILanguage.all /= null then
             temp := this.m_ILanguage.all.Release;
-            Free (this.m_ILanguage);
+            if temp < 1 then
+               Free (this.m_ILanguage);
+            end if;
          end if;
       end if;
    end;

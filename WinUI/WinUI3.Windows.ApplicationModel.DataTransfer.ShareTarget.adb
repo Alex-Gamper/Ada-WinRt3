@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget is
       if this.m_IQuickLink /= null then
          if this.m_IQuickLink.all /= null then
             temp := this.m_IQuickLink.all.Release;
-            Free (this.m_IQuickLink);
+            if temp < 1 then
+               Free (this.m_IQuickLink);
+            end if;
          end if;
       end if;
    end;
@@ -238,7 +240,9 @@ package body WinUI3.Windows.ApplicationModel.DataTransfer.ShareTarget is
       if this.m_IShareOperation /= null then
          if this.m_IShareOperation.all /= null then
             temp := this.m_IShareOperation.all.Release;
-            Free (this.m_IShareOperation);
+            if temp < 1 then
+               Free (this.m_IShareOperation);
+            end if;
          end if;
       end if;
    end;

@@ -50,7 +50,9 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       if this.m_IDevicePortalConnection /= null then
          if this.m_IDevicePortalConnection.all /= null then
             temp := this.m_IDevicePortalConnection.all.Release;
-            Free (this.m_IDevicePortalConnection);
+            if temp < 1 then
+               Free (this.m_IDevicePortalConnection);
+            end if;
          end if;
       end if;
    end;
@@ -310,7 +312,9 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       if this.m_IDevicePortalConnectionClosedEventArgs /= null then
          if this.m_IDevicePortalConnectionClosedEventArgs.all /= null then
             temp := this.m_IDevicePortalConnectionClosedEventArgs.all.Release;
-            Free (this.m_IDevicePortalConnectionClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDevicePortalConnectionClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -350,7 +354,9 @@ package body WinRt.Windows.System.Diagnostics.DevicePortal is
       if this.m_IDevicePortalConnectionRequestReceivedEventArgs /= null then
          if this.m_IDevicePortalConnectionRequestReceivedEventArgs.all /= null then
             temp := this.m_IDevicePortalConnectionRequestReceivedEventArgs.all.Release;
-            Free (this.m_IDevicePortalConnectionRequestReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDevicePortalConnectionRequestReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;

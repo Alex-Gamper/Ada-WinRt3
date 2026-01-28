@@ -53,7 +53,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdAuthenticator /= null then
          if this.m_IOnlineIdAuthenticator.all /= null then
             temp := this.m_IOnlineIdAuthenticator.all.Release;
-            Free (this.m_IOnlineIdAuthenticator);
+            if temp < 1 then
+               Free (this.m_IOnlineIdAuthenticator);
+            end if;
          end if;
       end if;
    end;
@@ -228,7 +230,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdServiceTicket /= null then
          if this.m_IOnlineIdServiceTicket.all /= null then
             temp := this.m_IOnlineIdServiceTicket.all.Release;
-            Free (this.m_IOnlineIdServiceTicket);
+            if temp < 1 then
+               Free (this.m_IOnlineIdServiceTicket);
+            end if;
          end if;
       end if;
    end;
@@ -308,7 +312,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdServiceTicketRequest /= null then
          if this.m_IOnlineIdServiceTicketRequest.all /= null then
             temp := this.m_IOnlineIdServiceTicketRequest.all.Release;
-            Free (this.m_IOnlineIdServiceTicketRequest);
+            if temp < 1 then
+               Free (this.m_IOnlineIdServiceTicketRequest);
+            end if;
          end if;
       end if;
    end;
@@ -486,7 +492,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdSystemAuthenticatorForUser /= null then
          if this.m_IOnlineIdSystemAuthenticatorForUser.all /= null then
             temp := this.m_IOnlineIdSystemAuthenticatorForUser.all.Release;
-            Free (this.m_IOnlineIdSystemAuthenticatorForUser);
+            if temp < 1 then
+               Free (this.m_IOnlineIdSystemAuthenticatorForUser);
+            end if;
          end if;
       end if;
    end;
@@ -628,7 +636,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdSystemIdentity /= null then
          if this.m_IOnlineIdSystemIdentity.all /= null then
             temp := this.m_IOnlineIdSystemIdentity.all.Release;
-            Free (this.m_IOnlineIdSystemIdentity);
+            if temp < 1 then
+               Free (this.m_IOnlineIdSystemIdentity);
+            end if;
          end if;
       end if;
    end;
@@ -691,7 +701,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IOnlineIdSystemTicketResult /= null then
          if this.m_IOnlineIdSystemTicketResult.all /= null then
             temp := this.m_IOnlineIdSystemTicketResult.all.Release;
-            Free (this.m_IOnlineIdSystemTicketResult);
+            if temp < 1 then
+               Free (this.m_IOnlineIdSystemTicketResult);
+            end if;
          end if;
       end if;
    end;
@@ -768,7 +780,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IAsyncAction /= null then
          if this.m_IAsyncAction.all /= null then
             temp := this.m_IAsyncAction.all.Release;
-            Free (this.m_IAsyncAction);
+            if temp < 1 then
+               Free (this.m_IAsyncAction);
+            end if;
          end if;
       end if;
    end;
@@ -1122,7 +1136,9 @@ package body WinUI3.Windows.Security.Authentication.OnlineId is
       if this.m_IUserIdentity /= null then
          if this.m_IUserIdentity.all /= null then
             temp := this.m_IUserIdentity.all.Release;
-            Free (this.m_IUserIdentity);
+            if temp < 1 then
+               Free (this.m_IUserIdentity);
+            end if;
          end if;
       end if;
    end;

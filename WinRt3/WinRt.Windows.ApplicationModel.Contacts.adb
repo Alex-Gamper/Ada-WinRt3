@@ -91,7 +91,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IAggregateContactManager /= null then
          if this.m_IAggregateContactManager.all /= null then
             temp := this.m_IAggregateContactManager.all.Release;
-            Free (this.m_IAggregateContactManager);
+            if temp < 1 then
+               Free (this.m_IAggregateContactManager);
+            end if;
          end if;
       end if;
    end;
@@ -409,7 +411,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContact /= null then
          if this.m_IContact.all /= null then
             temp := this.m_IContact.all.Release;
-            Free (this.m_IContact);
+            if temp < 1 then
+               Free (this.m_IContact);
+            end if;
          end if;
       end if;
    end;
@@ -1736,7 +1740,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactAddress /= null then
          if this.m_IContactAddress.all /= null then
             temp := this.m_IContactAddress.all.Release;
-            Free (this.m_IContactAddress);
+            if temp < 1 then
+               Free (this.m_IContactAddress);
+            end if;
          end if;
       end if;
    end;
@@ -2032,7 +2038,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactAnnotation /= null then
          if this.m_IContactAnnotation.all /= null then
             temp := this.m_IContactAnnotation.all.Release;
-            Free (this.m_IContactAnnotation);
+            if temp < 1 then
+               Free (this.m_IContactAnnotation);
+            end if;
          end if;
       end if;
    end;
@@ -2302,7 +2310,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactAnnotationList /= null then
          if this.m_IContactAnnotationList.all /= null then
             temp := this.m_IContactAnnotationList.all.Release;
-            Free (this.m_IContactAnnotationList);
+            if temp < 1 then
+               Free (this.m_IContactAnnotationList);
+            end if;
          end if;
       end if;
    end;
@@ -2732,7 +2742,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactAnnotationStore /= null then
          if this.m_IContactAnnotationStore.all /= null then
             temp := this.m_IContactAnnotationStore.all.Release;
-            Free (this.m_IContactAnnotationStore);
+            if temp < 1 then
+               Free (this.m_IContactAnnotationStore);
+            end if;
          end if;
       end if;
    end;
@@ -3331,7 +3343,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactBatch /= null then
          if this.m_IContactBatch.all /= null then
             temp := this.m_IContactBatch.all.Release;
-            Free (this.m_IContactBatch);
+            if temp < 1 then
+               Free (this.m_IContactBatch);
+            end if;
          end if;
       end if;
    end;
@@ -3391,7 +3405,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactCardDelayedDataLoader /= null then
          if this.m_IContactCardDelayedDataLoader.all /= null then
             temp := this.m_IContactCardDelayedDataLoader.all.Release;
-            Free (this.m_IContactCardDelayedDataLoader);
+            if temp < 1 then
+               Free (this.m_IContactCardDelayedDataLoader);
+            end if;
          end if;
       end if;
    end;
@@ -3447,7 +3463,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactCardOptions /= null then
          if this.m_IContactCardOptions.all /= null then
             temp := this.m_IContactCardOptions.all.Release;
-            Free (this.m_IContactCardOptions);
+            if temp < 1 then
+               Free (this.m_IContactCardOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3577,7 +3595,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactChange /= null then
          if this.m_IContactChange.all /= null then
             temp := this.m_IContactChange.all.Release;
-            Free (this.m_IContactChange);
+            if temp < 1 then
+               Free (this.m_IContactChange);
+            end if;
          end if;
       end if;
    end;
@@ -3637,7 +3657,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactChangeReader /= null then
          if this.m_IContactChangeReader.all /= null then
             temp := this.m_IContactChangeReader.all.Release;
-            Free (this.m_IContactChangeReader);
+            if temp < 1 then
+               Free (this.m_IContactChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -3752,7 +3774,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactChangeTracker /= null then
          if this.m_IContactChangeTracker.all /= null then
             temp := this.m_IContactChangeTracker.all.Release;
-            Free (this.m_IContactChangeTracker);
+            if temp < 1 then
+               Free (this.m_IContactChangeTracker);
+            end if;
          end if;
       end if;
    end;
@@ -3844,7 +3868,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactChangedDeferral /= null then
          if this.m_IContactChangedDeferral.all /= null then
             temp := this.m_IContactChangedDeferral.all.Release;
-            Free (this.m_IContactChangedDeferral);
+            if temp < 1 then
+               Free (this.m_IContactChangedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -3881,7 +3907,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactChangedEventArgs /= null then
          if this.m_IContactChangedEventArgs.all /= null then
             temp := this.m_IContactChangedEventArgs.all.Release;
-            Free (this.m_IContactChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3924,7 +3952,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactConnectedServiceAccount /= null then
          if this.m_IContactConnectedServiceAccount.all /= null then
             temp := this.m_IContactConnectedServiceAccount.all.Release;
-            Free (this.m_IContactConnectedServiceAccount);
+            if temp < 1 then
+               Free (this.m_IContactConnectedServiceAccount);
+            end if;
          end if;
       end if;
    end;
@@ -4040,7 +4070,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactDate /= null then
          if this.m_IContactDate.all /= null then
             temp := this.m_IContactDate.all.Release;
-            Free (this.m_IContactDate);
+            if temp < 1 then
+               Free (this.m_IContactDate);
+            end if;
          end if;
       end if;
    end;
@@ -4256,7 +4288,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactEmail /= null then
          if this.m_IContactEmail.all /= null then
             temp := this.m_IContactEmail.all.Release;
-            Free (this.m_IContactEmail);
+            if temp < 1 then
+               Free (this.m_IContactEmail);
+            end if;
          end if;
       end if;
    end;
@@ -4404,7 +4438,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactField /= null then
          if this.m_IContactField.all /= null then
             temp := this.m_IContactField.all.Release;
-            Free (this.m_IContactField);
+            if temp < 1 then
+               Free (this.m_IContactField);
+            end if;
          end if;
       end if;
    end;
@@ -4590,7 +4626,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactFieldFactory /= null then
          if this.m_IContactFieldFactory.all /= null then
             temp := this.m_IContactFieldFactory.all.Release;
-            Free (this.m_IContactFieldFactory);
+            if temp < 1 then
+               Free (this.m_IContactFieldFactory);
+            end if;
          end if;
       end if;
    end;
@@ -4897,7 +4935,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactGroup /= null then
          if this.m_IContactGroup.all /= null then
             temp := this.m_IContactGroup.all.Release;
-            Free (this.m_IContactGroup);
+            if temp < 1 then
+               Free (this.m_IContactGroup);
+            end if;
          end if;
       end if;
    end;
@@ -4920,7 +4960,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactInformation /= null then
          if this.m_IContactInformation.all /= null then
             temp := this.m_IContactInformation.all.Release;
-            Free (this.m_IContactInformation);
+            if temp < 1 then
+               Free (this.m_IContactInformation);
+            end if;
          end if;
       end if;
    end;
@@ -5149,7 +5191,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactInstantMessageField /= null then
          if this.m_IContactInstantMessageField.all /= null then
             temp := this.m_IContactInstantMessageField.all.Release;
-            Free (this.m_IContactInstantMessageField);
+            if temp < 1 then
+               Free (this.m_IContactInstantMessageField);
+            end if;
          end if;
       end if;
    end;
@@ -5432,7 +5476,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactJobInfo /= null then
          if this.m_IContactJobInfo.all /= null then
             temp := this.m_IContactJobInfo.all.Release;
-            Free (this.m_IContactJobInfo);
+            if temp < 1 then
+               Free (this.m_IContactJobInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5896,7 +5942,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactList /= null then
          if this.m_IContactList.all /= null then
             temp := this.m_IContactList.all.Release;
-            Free (this.m_IContactList);
+            if temp < 1 then
+               Free (this.m_IContactList);
+            end if;
          end if;
       end if;
    end;
@@ -6757,7 +6805,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactListLimitedWriteOperations /= null then
          if this.m_IContactListLimitedWriteOperations.all /= null then
             temp := this.m_IContactListLimitedWriteOperations.all.Release;
-            Free (this.m_IContactListLimitedWriteOperations);
+            if temp < 1 then
+               Free (this.m_IContactListLimitedWriteOperations);
+            end if;
          end if;
       end if;
    end;
@@ -6910,7 +6960,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactListSyncConstraints /= null then
          if this.m_IContactListSyncConstraints.all /= null then
             temp := this.m_IContactListSyncConstraints.all.Release;
-            Free (this.m_IContactListSyncConstraints);
+            if temp < 1 then
+               Free (this.m_IContactListSyncConstraints);
+            end if;
          end if;
       end if;
    end;
@@ -7910,7 +7962,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactListSyncManager /= null then
          if this.m_IContactListSyncManager.all /= null then
             temp := this.m_IContactListSyncManager.all.Release;
-            Free (this.m_IContactListSyncManager);
+            if temp < 1 then
+               Free (this.m_IContactListSyncManager);
+            end if;
          end if;
       end if;
    end;
@@ -8137,7 +8191,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactLocationField /= null then
          if this.m_IContactLocationField.all /= null then
             temp := this.m_IContactLocationField.all.Release;
-            Free (this.m_IContactLocationField);
+            if temp < 1 then
+               Free (this.m_IContactLocationField);
+            end if;
          end if;
       end if;
    end;
@@ -9322,7 +9378,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactManagerForUser /= null then
          if this.m_IContactManagerForUser.all /= null then
             temp := this.m_IContactManagerForUser.all.Release;
-            Free (this.m_IContactManagerForUser);
+            if temp < 1 then
+               Free (this.m_IContactManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -9785,7 +9843,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactMatchReason /= null then
          if this.m_IContactMatchReason.all /= null then
             temp := this.m_IContactMatchReason.all.Release;
-            Free (this.m_IContactMatchReason);
+            if temp < 1 then
+               Free (this.m_IContactMatchReason);
+            end if;
          end if;
       end if;
    end;
@@ -9862,7 +9922,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactPanel /= null then
          if this.m_IContactPanel.all /= null then
             temp := this.m_IContactPanel.all.Release;
-            Free (this.m_IContactPanel);
+            if temp < 1 then
+               Free (this.m_IContactPanel);
+            end if;
          end if;
       end if;
    end;
@@ -9997,7 +10059,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactPanelClosingEventArgs /= null then
          if this.m_IContactPanelClosingEventArgs.all /= null then
             temp := this.m_IContactPanelClosingEventArgs.all.Release;
-            Free (this.m_IContactPanelClosingEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactPanelClosingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10040,7 +10104,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactPanelLaunchFullAppRequestedEventArgs /= null then
          if this.m_IContactPanelLaunchFullAppRequestedEventArgs.all /= null then
             temp := this.m_IContactPanelLaunchFullAppRequestedEventArgs.all.Release;
-            Free (this.m_IContactPanelLaunchFullAppRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactPanelLaunchFullAppRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10095,7 +10161,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactPhone /= null then
          if this.m_IContactPhone.all /= null then
             temp := this.m_IContactPhone.all.Release;
-            Free (this.m_IContactPhone);
+            if temp < 1 then
+               Free (this.m_IContactPhone);
+            end if;
          end if;
       end if;
    end;
@@ -10243,7 +10311,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactPicker /= null then
          if this.m_IContactPicker.all /= null then
             temp := this.m_IContactPicker.all.Release;
-            Free (this.m_IContactPicker);
+            if temp < 1 then
+               Free (this.m_IContactPicker);
+            end if;
          end if;
       end if;
    end;
@@ -10785,7 +10855,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactQueryOptions /= null then
          if this.m_IContactQueryOptions.all /= null then
             temp := this.m_IContactQueryOptions.all.Release;
-            Free (this.m_IContactQueryOptions);
+            if temp < 1 then
+               Free (this.m_IContactQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -11036,7 +11108,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactQueryTextSearch /= null then
          if this.m_IContactQueryTextSearch.all /= null then
             temp := this.m_IContactQueryTextSearch.all.Release;
-            Free (this.m_IContactQueryTextSearch);
+            if temp < 1 then
+               Free (this.m_IContactQueryTextSearch);
+            end if;
          end if;
       end if;
    end;
@@ -11160,7 +11234,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactReader /= null then
          if this.m_IContactReader.all /= null then
             temp := this.m_IContactReader.all.Release;
-            Free (this.m_IContactReader);
+            if temp < 1 then
+               Free (this.m_IContactReader);
+            end if;
          end if;
       end if;
    end;
@@ -11270,7 +11346,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactSignificantOther /= null then
          if this.m_IContactSignificantOther.all /= null then
             temp := this.m_IContactSignificantOther.all.Release;
-            Free (this.m_IContactSignificantOther);
+            if temp < 1 then
+               Free (this.m_IContactSignificantOther);
+            end if;
          end if;
       end if;
    end;
@@ -11426,7 +11504,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactStore /= null then
          if this.m_IContactStore.all /= null then
             temp := this.m_IContactStore.all.Release;
-            Free (this.m_IContactStore);
+            if temp < 1 then
+               Free (this.m_IContactStore);
+            end if;
          end if;
       end if;
    end;
@@ -12171,7 +12251,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactStoreNotificationTriggerDetails /= null then
          if this.m_IContactStoreNotificationTriggerDetails.all /= null then
             temp := this.m_IContactStoreNotificationTriggerDetails.all.Release;
-            Free (this.m_IContactStoreNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IContactStoreNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -12194,7 +12276,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IContactWebsite /= null then
          if this.m_IContactWebsite.all /= null then
             temp := this.m_IContactWebsite.all.Release;
-            Free (this.m_IContactWebsite);
+            if temp < 1 then
+               Free (this.m_IContactWebsite);
+            end if;
          end if;
       end if;
    end;
@@ -12353,7 +12437,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IFullContactCardOptions /= null then
          if this.m_IFullContactCardOptions.all /= null then
             temp := this.m_IFullContactCardOptions.all.Release;
-            Free (this.m_IFullContactCardOptions);
+            if temp < 1 then
+               Free (this.m_IFullContactCardOptions);
+            end if;
          end if;
       end if;
    end;
@@ -12582,7 +12668,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IPinnedContactIdsQueryResult /= null then
          if this.m_IPinnedContactIdsQueryResult.all /= null then
             temp := this.m_IPinnedContactIdsQueryResult.all.Release;
-            Free (this.m_IPinnedContactIdsQueryResult);
+            if temp < 1 then
+               Free (this.m_IPinnedContactIdsQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -12625,7 +12713,9 @@ package body WinRt.Windows.ApplicationModel.Contacts is
       if this.m_IPinnedContactManager /= null then
          if this.m_IPinnedContactManager.all /= null then
             temp := this.m_IPinnedContactManager.all.Release;
-            Free (this.m_IPinnedContactManager);
+            if temp < 1 then
+               Free (this.m_IPinnedContactManager);
+            end if;
          end if;
       end if;
    end;

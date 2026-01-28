@@ -52,7 +52,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayBitmapEffect /= null then
          if this.m_ILampArrayBitmapEffect.all /= null then
             temp := this.m_ILampArrayBitmapEffect.all.Release;
-            Free (this.m_ILampArrayBitmapEffect);
+            if temp < 1 then
+               Free (this.m_ILampArrayBitmapEffect);
+            end if;
          end if;
       end if;
    end;
@@ -290,7 +292,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayBitmapRequestedEventArgs /= null then
          if this.m_ILampArrayBitmapRequestedEventArgs.all /= null then
             temp := this.m_ILampArrayBitmapRequestedEventArgs.all.Release;
-            Free (this.m_ILampArrayBitmapRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILampArrayBitmapRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -345,7 +349,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayBlinkEffect /= null then
          if this.m_ILampArrayBlinkEffect.all /= null then
             temp := this.m_ILampArrayBlinkEffect.all.Release;
-            Free (this.m_ILampArrayBlinkEffect);
+            if temp < 1 then
+               Free (this.m_ILampArrayBlinkEffect);
+            end if;
          end if;
       end if;
    end;
@@ -693,7 +699,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayColorRampEffect /= null then
          if this.m_ILampArrayColorRampEffect.all /= null then
             temp := this.m_ILampArrayColorRampEffect.all.Release;
-            Free (this.m_ILampArrayColorRampEffect);
+            if temp < 1 then
+               Free (this.m_ILampArrayColorRampEffect);
+            end if;
          end if;
       end if;
    end;
@@ -913,7 +921,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayCustomEffect /= null then
          if this.m_ILampArrayCustomEffect.all /= null then
             temp := this.m_ILampArrayCustomEffect.all.Release;
-            Free (this.m_ILampArrayCustomEffect);
+            if temp < 1 then
+               Free (this.m_ILampArrayCustomEffect);
+            end if;
          end if;
       end if;
    end;
@@ -1102,7 +1112,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayEffectPlaylist /= null then
          if this.m_ILampArrayEffectPlaylist.all /= null then
             temp := this.m_ILampArrayEffectPlaylist.all.Release;
-            Free (this.m_ILampArrayEffectPlaylist);
+            if temp < 1 then
+               Free (this.m_ILampArrayEffectPlaylist);
+            end if;
          end if;
       end if;
    end;
@@ -1496,7 +1508,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArraySolidEffect /= null then
          if this.m_ILampArraySolidEffect.all /= null then
             temp := this.m_ILampArraySolidEffect.all.Release;
-            Free (this.m_ILampArraySolidEffect);
+            if temp < 1 then
+               Free (this.m_ILampArraySolidEffect);
+            end if;
          end if;
       end if;
    end;
@@ -1716,7 +1730,9 @@ package body WinUI3.Windows.Devices.Lights.Effects is
       if this.m_ILampArrayUpdateRequestedEventArgs /= null then
          if this.m_ILampArrayUpdateRequestedEventArgs.all /= null then
             temp := this.m_ILampArrayUpdateRequestedEventArgs.all.Release;
-            Free (this.m_ILampArrayUpdateRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILampArrayUpdateRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

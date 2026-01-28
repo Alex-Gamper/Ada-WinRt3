@@ -49,7 +49,9 @@ package body WinUI3.Windows.System.RemoteDesktop.Provider is
       if this.m_IPerformLocalActionRequestedEventArgs /= null then
          if this.m_IPerformLocalActionRequestedEventArgs.all /= null then
             temp := this.m_IPerformLocalActionRequestedEventArgs.all.Release;
-            Free (this.m_IPerformLocalActionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPerformLocalActionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -89,7 +91,9 @@ package body WinUI3.Windows.System.RemoteDesktop.Provider is
       if this.m_IRemoteDesktopConnectionInfo /= null then
          if this.m_IRemoteDesktopConnectionInfo.all /= null then
             temp := this.m_IRemoteDesktopConnectionInfo.all.Release;
-            Free (this.m_IRemoteDesktopConnectionInfo);
+            if temp < 1 then
+               Free (this.m_IRemoteDesktopConnectionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -191,7 +195,9 @@ package body WinUI3.Windows.System.RemoteDesktop.Provider is
       if this.m_IRemoteDesktopConnectionRemoteInfo /= null then
          if this.m_IRemoteDesktopConnectionRemoteInfo.all /= null then
             temp := this.m_IRemoteDesktopConnectionRemoteInfo.all.Release;
-            Free (this.m_IRemoteDesktopConnectionRemoteInfo);
+            if temp < 1 then
+               Free (this.m_IRemoteDesktopConnectionRemoteInfo);
+            end if;
          end if;
       end if;
    end;
@@ -363,7 +369,9 @@ package body WinUI3.Windows.System.RemoteDesktop.Provider is
       if this.m_IRemoteDesktopInfo /= null then
          if this.m_IRemoteDesktopInfo.all /= null then
             temp := this.m_IRemoteDesktopInfo.all.Release;
-            Free (this.m_IRemoteDesktopInfo);
+            if temp < 1 then
+               Free (this.m_IRemoteDesktopInfo);
+            end if;
          end if;
       end if;
    end;

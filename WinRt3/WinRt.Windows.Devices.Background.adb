@@ -47,7 +47,9 @@ package body WinRt.Windows.Devices.Background is
       if this.m_IDeviceServicingDetails /= null then
          if this.m_IDeviceServicingDetails.all /= null then
             temp := this.m_IDeviceServicingDetails.all.Release;
-            Free (this.m_IDeviceServicingDetails);
+            if temp < 1 then
+               Free (this.m_IDeviceServicingDetails);
+            end if;
          end if;
       end if;
    end;
@@ -127,7 +129,9 @@ package body WinRt.Windows.Devices.Background is
       if this.m_IDeviceUseDetails /= null then
          if this.m_IDeviceUseDetails.all /= null then
             temp := this.m_IDeviceUseDetails.all.Release;
-            Free (this.m_IDeviceUseDetails);
+            if temp < 1 then
+               Free (this.m_IDeviceUseDetails);
+            end if;
          end if;
       end if;
    end;

@@ -186,7 +186,9 @@ package body WinUI3.Windows.Gaming.UI is
       if this.m_IGameChatMessageReceivedEventArgs /= null then
          if this.m_IGameChatMessageReceivedEventArgs.all /= null then
             temp := this.m_IGameChatMessageReceivedEventArgs.all.Release;
-            Free (this.m_IGameChatMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGameChatMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -306,7 +308,9 @@ package body WinUI3.Windows.Gaming.UI is
       if this.m_IGameChatOverlay /= null then
          if this.m_IGameChatOverlay.all /= null then
             temp := this.m_IGameChatOverlay.all.Release;
-            Free (this.m_IGameChatOverlay);
+            if temp < 1 then
+               Free (this.m_IGameChatOverlay);
+            end if;
          end if;
       end if;
    end;
@@ -409,7 +413,9 @@ package body WinUI3.Windows.Gaming.UI is
       if this.m_IGameChatOverlayMessageSource /= null then
          if this.m_IGameChatOverlayMessageSource.all /= null then
             temp := this.m_IGameChatOverlayMessageSource.all.Release;
-            Free (this.m_IGameChatOverlayMessageSource);
+            if temp < 1 then
+               Free (this.m_IGameChatOverlayMessageSource);
+            end if;
          end if;
       end if;
    end;
@@ -499,7 +505,9 @@ package body WinUI3.Windows.Gaming.UI is
       if this.m_IGameUIProviderActivatedEventArgs /= null then
          if this.m_IGameUIProviderActivatedEventArgs.all /= null then
             temp := this.m_IGameUIProviderActivatedEventArgs.all.Release;
-            Free (this.m_IGameUIProviderActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGameUIProviderActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;

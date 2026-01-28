@@ -57,7 +57,9 @@ package body WinUI3.Windows.Devices.Radios is
       if this.m_IRadio /= null then
          if this.m_IRadio.all /= null then
             temp := this.m_IRadio.all.Release;
-            Free (this.m_IRadio);
+            if temp < 1 then
+               Free (this.m_IRadio);
+            end if;
          end if;
       end if;
    end;

@@ -53,7 +53,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IAddPackageOptions /= null then
          if this.m_IAddPackageOptions.all /= null then
             temp := this.m_IAddPackageOptions.all.Release;
-            Free (this.m_IAddPackageOptions);
+            if temp < 1 then
+               Free (this.m_IAddPackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -683,7 +685,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IEnsureReadyOptions /= null then
          if this.m_IEnsureReadyOptions.all /= null then
             temp := this.m_IEnsureReadyOptions.all.Release;
-            Free (this.m_IEnsureReadyOptions);
+            if temp < 1 then
+               Free (this.m_IEnsureReadyOptions);
+            end if;
          end if;
       end if;
    end;
@@ -785,7 +789,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageDeploymentManager /= null then
          if this.m_IPackageDeploymentManager.all /= null then
             temp := this.m_IPackageDeploymentManager.all.Release;
-            Free (this.m_IPackageDeploymentManager);
+            if temp < 1 then
+               Free (this.m_IPackageDeploymentManager);
+            end if;
          end if;
       end if;
    end;
@@ -3079,7 +3085,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageDeploymentResult /= null then
          if this.m_IPackageDeploymentResult.all /= null then
             temp := this.m_IPackageDeploymentResult.all.Release;
-            Free (this.m_IPackageDeploymentResult);
+            if temp < 1 then
+               Free (this.m_IPackageDeploymentResult);
+            end if;
          end if;
       end if;
    end;
@@ -3190,7 +3198,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageRuntimeManager /= null then
          if this.m_IPackageRuntimeManager.all /= null then
             temp := this.m_IPackageRuntimeManager.all.Release;
-            Free (this.m_IPackageRuntimeManager);
+            if temp < 1 then
+               Free (this.m_IPackageRuntimeManager);
+            end if;
          end if;
       end if;
    end;
@@ -3299,7 +3309,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageSet /= null then
          if this.m_IPackageSet.all /= null then
             temp := this.m_IPackageSet.all.Release;
-            Free (this.m_IPackageSet);
+            if temp < 1 then
+               Free (this.m_IPackageSet);
+            end if;
          end if;
       end if;
    end;
@@ -3433,7 +3445,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageSetItem /= null then
          if this.m_IPackageSetItem.all /= null then
             temp := this.m_IPackageSetItem.all.Release;
-            Free (this.m_IPackageSetItem);
+            if temp < 1 then
+               Free (this.m_IPackageSetItem);
+            end if;
          end if;
       end if;
    end;
@@ -3648,7 +3662,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageSetItemRuntimeDisposition /= null then
          if this.m_IPackageSetItemRuntimeDisposition.all /= null then
             temp := this.m_IPackageSetItemRuntimeDisposition.all.Release;
-            Free (this.m_IPackageSetItemRuntimeDisposition);
+            if temp < 1 then
+               Free (this.m_IPackageSetItemRuntimeDisposition);
+            end if;
          end if;
       end if;
    end;
@@ -3767,7 +3783,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageSetRuntimeDisposition /= null then
          if this.m_IPackageSetRuntimeDisposition.all /= null then
             temp := this.m_IPackageSetRuntimeDisposition.all.Release;
-            Free (this.m_IPackageSetRuntimeDisposition);
+            if temp < 1 then
+               Free (this.m_IPackageSetRuntimeDisposition);
+            end if;
          end if;
       end if;
    end;
@@ -3866,7 +3884,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IPackageVolume /= null then
          if this.m_IPackageVolume.all /= null then
             temp := this.m_IPackageVolume.all.Release;
-            Free (this.m_IPackageVolume);
+            if temp < 1 then
+               Free (this.m_IPackageVolume);
+            end if;
          end if;
       end if;
    end;
@@ -4130,7 +4150,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IProvisionPackageOptions /= null then
          if this.m_IProvisionPackageOptions.all /= null then
             temp := this.m_IProvisionPackageOptions.all.Release;
-            Free (this.m_IProvisionPackageOptions);
+            if temp < 1 then
+               Free (this.m_IProvisionPackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -4246,7 +4268,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IRegisterPackageOptions /= null then
          if this.m_IRegisterPackageOptions.all /= null then
             temp := this.m_IRegisterPackageOptions.all.Release;
-            Free (this.m_IRegisterPackageOptions);
+            if temp < 1 then
+               Free (this.m_IRegisterPackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -4711,7 +4735,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IRemovePackageOptions /= null then
          if this.m_IRemovePackageOptions.all /= null then
             temp := this.m_IRemovePackageOptions.all.Release;
-            Free (this.m_IRemovePackageOptions);
+            if temp < 1 then
+               Free (this.m_IRemovePackageOptions);
+            end if;
          end if;
       end if;
    end;
@@ -4881,7 +4907,9 @@ package body WinUI3.Microsoft.Windows.Management.Deployment is
       if this.m_IStagePackageOptions /= null then
          if this.m_IStagePackageOptions.all /= null then
             temp := this.m_IStagePackageOptions.all.Release;
-            Free (this.m_IStagePackageOptions);
+            if temp < 1 then
+               Free (this.m_IStagePackageOptions);
+            end if;
          end if;
       end if;
    end;

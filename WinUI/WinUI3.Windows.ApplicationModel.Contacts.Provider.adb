@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Contacts.Provider is
       if this.m_IContactPickerUI /= null then
          if this.m_IContactPickerUI.all /= null then
             temp := this.m_IContactPickerUI.all.Release;
-            Free (this.m_IContactPickerUI);
+            if temp < 1 then
+               Free (this.m_IContactPickerUI);
+            end if;
          end if;
       end if;
    end;
@@ -244,7 +246,9 @@ package body WinUI3.Windows.ApplicationModel.Contacts.Provider is
       if this.m_IContactRemovedEventArgs /= null then
          if this.m_IContactRemovedEventArgs.all /= null then
             temp := this.m_IContactRemovedEventArgs.all.Release;
-            Free (this.m_IContactRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContactRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;

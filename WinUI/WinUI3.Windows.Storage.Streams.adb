@@ -70,7 +70,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IBuffer /= null then
          if this.m_IBuffer.all /= null then
             temp := this.m_IBuffer.all.Release;
-            Free (this.m_IBuffer);
+            if temp < 1 then
+               Free (this.m_IBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -226,7 +228,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IDataReader /= null then
          if this.m_IDataReader.all /= null then
             temp := this.m_IDataReader.all.Release;
-            Free (this.m_IDataReader);
+            if temp < 1 then
+               Free (this.m_IDataReader);
+            end if;
          end if;
       end if;
    end;
@@ -948,7 +952,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IDataWriter /= null then
          if this.m_IDataWriter.all /= null then
             temp := this.m_IDataWriter.all.Release;
-            Free (this.m_IDataWriter);
+            if temp < 1 then
+               Free (this.m_IDataWriter);
+            end if;
          end if;
       end if;
    end;
@@ -1693,7 +1699,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IInputStream /= null then
          if this.m_IInputStream.all /= null then
             temp := this.m_IInputStream.all.Release;
-            Free (this.m_IInputStream);
+            if temp < 1 then
+               Free (this.m_IInputStream);
+            end if;
          end if;
       end if;
    end;
@@ -1800,7 +1808,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IOutputStream /= null then
          if this.m_IOutputStream.all /= null then
             temp := this.m_IOutputStream.all.Release;
-            Free (this.m_IOutputStream);
+            if temp < 1 then
+               Free (this.m_IOutputStream);
+            end if;
          end if;
       end if;
    end;
@@ -1968,7 +1978,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IRandomAccessStream /= null then
          if this.m_IRandomAccessStream.all /= null then
             temp := this.m_IRandomAccessStream.all.Release;
-            Free (this.m_IRandomAccessStream);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStream);
+            end if;
          end if;
       end if;
    end;
@@ -2972,7 +2984,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IRandomAccessStream /= null then
          if this.m_IRandomAccessStream.all /= null then
             temp := this.m_IRandomAccessStream.all.Release;
-            Free (this.m_IRandomAccessStream);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStream);
+            end if;
          end if;
       end if;
    end;
@@ -3388,7 +3402,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IInputStream /= null then
          if this.m_IInputStream.all /= null then
             temp := this.m_IInputStream.all.Release;
-            Free (this.m_IInputStream);
+            if temp < 1 then
+               Free (this.m_IInputStream);
+            end if;
          end if;
       end if;
    end;
@@ -3495,7 +3511,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IOutputStream /= null then
          if this.m_IOutputStream.all /= null then
             temp := this.m_IOutputStream.all.Release;
-            Free (this.m_IOutputStream);
+            if temp < 1 then
+               Free (this.m_IOutputStream);
+            end if;
          end if;
       end if;
    end;
@@ -3883,7 +3901,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IRandomAccessStream /= null then
          if this.m_IRandomAccessStream.all /= null then
             temp := this.m_IRandomAccessStream.all.Release;
-            Free (this.m_IRandomAccessStream);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStream);
+            end if;
          end if;
       end if;
    end;
@@ -4280,7 +4300,9 @@ package body WinUI3.Windows.Storage.Streams is
       if this.m_IRandomAccessStreamReference /= null then
          if this.m_IRandomAccessStreamReference.all /= null then
             temp := this.m_IRandomAccessStreamReference.all.Release;
-            Free (this.m_IRandomAccessStreamReference);
+            if temp < 1 then
+               Free (this.m_IRandomAccessStreamReference);
+            end if;
          end if;
       end if;
    end;

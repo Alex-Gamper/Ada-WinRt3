@@ -83,7 +83,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -558,7 +560,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpClient /= null then
          if this.m_IHttpClient.all /= null then
             temp := this.m_IHttpClient.all.Release;
-            Free (this.m_IHttpClient);
+            if temp < 1 then
+               Free (this.m_IHttpClient);
+            end if;
          end if;
       end if;
    end;
@@ -2113,7 +2117,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpCookie /= null then
          if this.m_IHttpCookie.all /= null then
             temp := this.m_IHttpCookie.all.Release;
-            Free (this.m_IHttpCookie);
+            if temp < 1 then
+               Free (this.m_IHttpCookie);
+            end if;
          end if;
       end if;
    end;
@@ -2531,7 +2537,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpCookieManager /= null then
          if this.m_IHttpCookieManager.all /= null then
             temp := this.m_IHttpCookieManager.all.Release;
-            Free (this.m_IHttpCookieManager);
+            if temp < 1 then
+               Free (this.m_IHttpCookieManager);
+            end if;
          end if;
       end if;
    end;
@@ -2627,7 +2635,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -3076,7 +3086,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpGetBufferResult /= null then
          if this.m_IHttpGetBufferResult.all /= null then
             temp := this.m_IHttpGetBufferResult.all.Release;
-            Free (this.m_IHttpGetBufferResult);
+            if temp < 1 then
+               Free (this.m_IHttpGetBufferResult);
+            end if;
          end if;
       end if;
    end;
@@ -3232,7 +3244,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpGetInputStreamResult /= null then
          if this.m_IHttpGetInputStreamResult.all /= null then
             temp := this.m_IHttpGetInputStreamResult.all.Release;
-            Free (this.m_IHttpGetInputStreamResult);
+            if temp < 1 then
+               Free (this.m_IHttpGetInputStreamResult);
+            end if;
          end if;
       end if;
    end;
@@ -3388,7 +3402,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpGetStringResult /= null then
          if this.m_IHttpGetStringResult.all /= null then
             temp := this.m_IHttpGetStringResult.all.Release;
-            Free (this.m_IHttpGetStringResult);
+            if temp < 1 then
+               Free (this.m_IHttpGetStringResult);
+            end if;
          end if;
       end if;
    end;
@@ -3547,7 +3563,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpMethod /= null then
          if this.m_IHttpMethod.all /= null then
             temp := this.m_IHttpMethod.all.Release;
-            Free (this.m_IHttpMethod);
+            if temp < 1 then
+               Free (this.m_IHttpMethod);
+            end if;
          end if;
       end if;
    end;
@@ -3814,7 +3832,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -4352,7 +4372,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -4908,7 +4930,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpRequestMessage /= null then
          if this.m_IHttpRequestMessage.all /= null then
             temp := this.m_IHttpRequestMessage.all.Release;
-            Free (this.m_IHttpRequestMessage);
+            if temp < 1 then
+               Free (this.m_IHttpRequestMessage);
+            end if;
          end if;
       end if;
    end;
@@ -5224,7 +5248,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpRequestResult /= null then
          if this.m_IHttpRequestResult.all /= null then
             temp := this.m_IHttpRequestResult.all.Release;
-            Free (this.m_IHttpRequestResult);
+            if temp < 1 then
+               Free (this.m_IHttpRequestResult);
+            end if;
          end if;
       end if;
    end;
@@ -5363,7 +5389,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpResponseMessage /= null then
          if this.m_IHttpResponseMessage.all /= null then
             temp := this.m_IHttpResponseMessage.all.Release;
-            Free (this.m_IHttpResponseMessage);
+            if temp < 1 then
+               Free (this.m_IHttpResponseMessage);
+            end if;
          end if;
       end if;
    end;
@@ -5728,7 +5756,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -6177,7 +6207,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpContent /= null then
          if this.m_IHttpContent.all /= null then
             temp := this.m_IHttpContent.all.Release;
-            Free (this.m_IHttpContent);
+            if temp < 1 then
+               Free (this.m_IHttpContent);
+            end if;
          end if;
       end if;
    end;
@@ -6685,7 +6717,9 @@ package body WinUI3.Windows.Web.Http is
       if this.m_IHttpTransportInformation /= null then
          if this.m_IHttpTransportInformation.all /= null then
             temp := this.m_IHttpTransportInformation.all.Release;
-            Free (this.m_IHttpTransportInformation);
+            if temp < 1 then
+               Free (this.m_IHttpTransportInformation);
+            end if;
          end if;
       end if;
    end;

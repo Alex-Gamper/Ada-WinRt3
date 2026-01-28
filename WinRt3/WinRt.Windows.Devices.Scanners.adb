@@ -60,7 +60,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScanner /= null then
          if this.m_IImageScanner.all /= null then
             temp := this.m_IImageScanner.all.Release;
-            Free (this.m_IImageScanner);
+            if temp < 1 then
+               Free (this.m_IImageScanner);
+            end if;
          end if;
       end if;
    end;
@@ -454,7 +456,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScannerFormatConfiguration /= null then
          if this.m_IImageScannerFormatConfiguration.all /= null then
             temp := this.m_IImageScannerFormatConfiguration.all.Release;
-            Free (this.m_IImageScannerFormatConfiguration);
+            if temp < 1 then
+               Free (this.m_IImageScannerFormatConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -544,7 +548,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScannerFormatConfiguration /= null then
          if this.m_IImageScannerFormatConfiguration.all /= null then
             temp := this.m_IImageScannerFormatConfiguration.all.Release;
-            Free (this.m_IImageScannerFormatConfiguration);
+            if temp < 1 then
+               Free (this.m_IImageScannerFormatConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1580,7 +1586,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScannerFormatConfiguration /= null then
          if this.m_IImageScannerFormatConfiguration.all /= null then
             temp := this.m_IImageScannerFormatConfiguration.all.Release;
-            Free (this.m_IImageScannerFormatConfiguration);
+            if temp < 1 then
+               Free (this.m_IImageScannerFormatConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -2269,7 +2277,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScannerPreviewResult /= null then
          if this.m_IImageScannerPreviewResult.all /= null then
             temp := this.m_IImageScannerPreviewResult.all.Release;
-            Free (this.m_IImageScannerPreviewResult);
+            if temp < 1 then
+               Free (this.m_IImageScannerPreviewResult);
+            end if;
          end if;
       end if;
    end;
@@ -2326,7 +2336,9 @@ package body WinRt.Windows.Devices.Scanners is
       if this.m_IImageScannerScanResult /= null then
          if this.m_IImageScannerScanResult.all /= null then
             temp := this.m_IImageScannerScanResult.all.Release;
-            Free (this.m_IImageScannerScanResult);
+            if temp < 1 then
+               Free (this.m_IImageScannerScanResult);
+            end if;
          end if;
       end if;
    end;

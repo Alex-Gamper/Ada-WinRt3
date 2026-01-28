@@ -64,7 +64,9 @@ package body WinUI3.Windows.Web.AtomPub is
       if this.m_IAtomPubClient /= null then
          if this.m_IAtomPubClient.all /= null then
             temp := this.m_IAtomPubClient.all.Release;
-            Free (this.m_IAtomPubClient);
+            if temp < 1 then
+               Free (this.m_IAtomPubClient);
+            end if;
          end if;
       end if;
    end;
@@ -1008,7 +1010,9 @@ package body WinUI3.Windows.Web.AtomPub is
       if this.m_IResourceCollection /= null then
          if this.m_IResourceCollection.all /= null then
             temp := this.m_IResourceCollection.all.Release;
-            Free (this.m_IResourceCollection);
+            if temp < 1 then
+               Free (this.m_IResourceCollection);
+            end if;
          end if;
       end if;
    end;
@@ -1395,7 +1399,9 @@ package body WinUI3.Windows.Web.AtomPub is
       if this.m_IServiceDocument /= null then
          if this.m_IServiceDocument.all /= null then
             temp := this.m_IServiceDocument.all.Release;
-            Free (this.m_IServiceDocument);
+            if temp < 1 then
+               Free (this.m_IServiceDocument);
+            end if;
          end if;
       end if;
    end;
@@ -1728,7 +1734,9 @@ package body WinUI3.Windows.Web.AtomPub is
       if this.m_IWorkspace /= null then
          if this.m_IWorkspace.all /= null then
             temp := this.m_IWorkspace.all.Release;
-            Free (this.m_IWorkspace);
+            if temp < 1 then
+               Free (this.m_IWorkspace);
+            end if;
          end if;
       end if;
    end;

@@ -52,7 +52,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IDiagnosticActionResult /= null then
          if this.m_IDiagnosticActionResult.all /= null then
             temp := this.m_IDiagnosticActionResult.all.Release;
-            Free (this.m_IDiagnosticActionResult);
+            if temp < 1 then
+               Free (this.m_IDiagnosticActionResult);
+            end if;
          end if;
       end if;
    end;
@@ -112,7 +114,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IDiagnosticInvoker /= null then
          if this.m_IDiagnosticInvoker.all /= null then
             temp := this.m_IDiagnosticInvoker.all.Release;
-            Free (this.m_IDiagnosticInvoker);
+            if temp < 1 then
+               Free (this.m_IDiagnosticInvoker);
+            end if;
          end if;
       end if;
    end;
@@ -350,7 +354,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessCpuUsage /= null then
          if this.m_IProcessCpuUsage.all /= null then
             temp := this.m_IProcessCpuUsage.all.Release;
-            Free (this.m_IProcessCpuUsage);
+            if temp < 1 then
+               Free (this.m_IProcessCpuUsage);
+            end if;
          end if;
       end if;
    end;
@@ -393,7 +399,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessCpuUsageReport /= null then
          if this.m_IProcessCpuUsageReport.all /= null then
             temp := this.m_IProcessCpuUsageReport.all.Release;
-            Free (this.m_IProcessCpuUsageReport);
+            if temp < 1 then
+               Free (this.m_IProcessCpuUsageReport);
+            end if;
          end if;
       end if;
    end;
@@ -450,7 +458,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessDiagnosticInfo /= null then
          if this.m_IProcessDiagnosticInfo.all /= null then
             temp := this.m_IProcessDiagnosticInfo.all.Release;
-            Free (this.m_IProcessDiagnosticInfo);
+            if temp < 1 then
+               Free (this.m_IProcessDiagnosticInfo);
+            end if;
          end if;
       end if;
    end;
@@ -727,7 +737,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessDiskUsage /= null then
          if this.m_IProcessDiskUsage.all /= null then
             temp := this.m_IProcessDiskUsage.all.Release;
-            Free (this.m_IProcessDiskUsage);
+            if temp < 1 then
+               Free (this.m_IProcessDiskUsage);
+            end if;
          end if;
       end if;
    end;
@@ -770,7 +782,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessDiskUsageReport /= null then
          if this.m_IProcessDiskUsageReport.all /= null then
             temp := this.m_IProcessDiskUsageReport.all.Release;
-            Free (this.m_IProcessDiskUsageReport);
+            if temp < 1 then
+               Free (this.m_IProcessDiskUsageReport);
+            end if;
          end if;
       end if;
    end;
@@ -895,7 +909,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessMemoryUsage /= null then
          if this.m_IProcessMemoryUsage.all /= null then
             temp := this.m_IProcessMemoryUsage.all.Release;
-            Free (this.m_IProcessMemoryUsage);
+            if temp < 1 then
+               Free (this.m_IProcessMemoryUsage);
+            end if;
          end if;
       end if;
    end;
@@ -938,7 +954,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_IProcessMemoryUsageReport /= null then
          if this.m_IProcessMemoryUsageReport.all /= null then
             temp := this.m_IProcessMemoryUsageReport.all.Release;
-            Free (this.m_IProcessMemoryUsageReport);
+            if temp < 1 then
+               Free (this.m_IProcessMemoryUsageReport);
+            end if;
          end if;
       end if;
    end;
@@ -1165,7 +1183,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_ISystemCpuUsage /= null then
          if this.m_ISystemCpuUsage.all /= null then
             temp := this.m_ISystemCpuUsage.all.Release;
-            Free (this.m_ISystemCpuUsage);
+            if temp < 1 then
+               Free (this.m_ISystemCpuUsage);
+            end if;
          end if;
       end if;
    end;
@@ -1208,7 +1228,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_ISystemCpuUsageReport /= null then
          if this.m_ISystemCpuUsageReport.all /= null then
             temp := this.m_ISystemCpuUsageReport.all.Release;
-            Free (this.m_ISystemCpuUsageReport);
+            if temp < 1 then
+               Free (this.m_ISystemCpuUsageReport);
+            end if;
          end if;
       end if;
    end;
@@ -1282,7 +1304,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_ISystemDiagnosticInfo /= null then
          if this.m_ISystemDiagnosticInfo.all /= null then
             temp := this.m_ISystemDiagnosticInfo.all.Release;
-            Free (this.m_ISystemDiagnosticInfo);
+            if temp < 1 then
+               Free (this.m_ISystemDiagnosticInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1417,7 +1441,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_ISystemMemoryUsage /= null then
          if this.m_ISystemMemoryUsage.all /= null then
             temp := this.m_ISystemMemoryUsage.all.Release;
-            Free (this.m_ISystemMemoryUsage);
+            if temp < 1 then
+               Free (this.m_ISystemMemoryUsage);
+            end if;
          end if;
       end if;
    end;
@@ -1460,7 +1486,9 @@ package body WinRt.Windows.System.Diagnostics is
       if this.m_ISystemMemoryUsageReport /= null then
          if this.m_ISystemMemoryUsageReport.all /= null then
             temp := this.m_ISystemMemoryUsageReport.all.Release;
-            Free (this.m_ISystemMemoryUsageReport);
+            if temp < 1 then
+               Free (this.m_ISystemMemoryUsageReport);
+            end if;
          end if;
       end if;
    end;

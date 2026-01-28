@@ -48,7 +48,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IKeyboardCapabilities /= null then
          if this.m_IKeyboardCapabilities.all /= null then
             temp := this.m_IKeyboardCapabilities.all.Release;
-            Free (this.m_IKeyboardCapabilities);
+            if temp < 1 then
+               Free (this.m_IKeyboardCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -107,7 +109,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IMouseCapabilities /= null then
          if this.m_IMouseCapabilities.all /= null then
             temp := this.m_IMouseCapabilities.all.Release;
-            Free (this.m_IMouseCapabilities);
+            if temp < 1 then
+               Free (this.m_IMouseCapabilities);
+            end if;
          end if;
       end if;
    end;
@@ -234,7 +238,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IMouseDevice /= null then
          if this.m_IMouseDevice.all /= null then
             temp := this.m_IMouseDevice.all.Release;
-            Free (this.m_IMouseDevice);
+            if temp < 1 then
+               Free (this.m_IMouseDevice);
+            end if;
          end if;
       end if;
    end;
@@ -317,7 +323,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IMouseEventArgs /= null then
          if this.m_IMouseEventArgs.all /= null then
             temp := this.m_IMouseEventArgs.all.Release;
-            Free (this.m_IMouseEventArgs);
+            if temp < 1 then
+               Free (this.m_IMouseEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -357,7 +365,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenButtonListener /= null then
          if this.m_IPenButtonListener.all /= null then
             temp := this.m_IPenButtonListener.all.Release;
-            Free (this.m_IPenButtonListener);
+            if temp < 1 then
+               Free (this.m_IPenButtonListener);
+            end if;
          end if;
       end if;
    end;
@@ -556,7 +566,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenDevice /= null then
          if this.m_IPenDevice.all /= null then
             temp := this.m_IPenDevice.all.Release;
-            Free (this.m_IPenDevice);
+            if temp < 1 then
+               Free (this.m_IPenDevice);
+            end if;
          end if;
       end if;
    end;
@@ -650,7 +662,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenDockListener /= null then
          if this.m_IPenDockListener.all /= null then
             temp := this.m_IPenDockListener.all.Release;
-            Free (this.m_IPenDockListener);
+            if temp < 1 then
+               Free (this.m_IPenDockListener);
+            end if;
          end if;
       end if;
    end;
@@ -816,7 +830,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenDockedEventArgs /= null then
          if this.m_IPenDockedEventArgs.all /= null then
             temp := this.m_IPenDockedEventArgs.all.Release;
-            Free (this.m_IPenDockedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPenDockedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -839,7 +855,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenTailButtonClickedEventArgs /= null then
          if this.m_IPenTailButtonClickedEventArgs.all /= null then
             temp := this.m_IPenTailButtonClickedEventArgs.all.Release;
-            Free (this.m_IPenTailButtonClickedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPenTailButtonClickedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -862,7 +880,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenTailButtonDoubleClickedEventArgs /= null then
          if this.m_IPenTailButtonDoubleClickedEventArgs.all /= null then
             temp := this.m_IPenTailButtonDoubleClickedEventArgs.all.Release;
-            Free (this.m_IPenTailButtonDoubleClickedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPenTailButtonDoubleClickedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -885,7 +905,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenTailButtonLongPressedEventArgs /= null then
          if this.m_IPenTailButtonLongPressedEventArgs.all /= null then
             temp := this.m_IPenTailButtonLongPressedEventArgs.all.Release;
-            Free (this.m_IPenTailButtonLongPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPenTailButtonLongPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -908,7 +930,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPenUndockedEventArgs /= null then
          if this.m_IPenUndockedEventArgs.all /= null then
             temp := this.m_IPenUndockedEventArgs.all.Release;
-            Free (this.m_IPenUndockedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPenUndockedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -931,7 +955,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_IPointerDevice /= null then
          if this.m_IPointerDevice.all /= null then
             temp := this.m_IPointerDevice.all.Release;
-            Free (this.m_IPointerDevice);
+            if temp < 1 then
+               Free (this.m_IPointerDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1131,7 +1157,9 @@ package body WinRt.Windows.Devices.Input is
       if this.m_ITouchCapabilities /= null then
          if this.m_ITouchCapabilities.all /= null then
             temp := this.m_ITouchCapabilities.all.Release;
-            Free (this.m_ITouchCapabilities);
+            if temp < 1 then
+               Free (this.m_ITouchCapabilities);
+            end if;
          end if;
       end if;
    end;

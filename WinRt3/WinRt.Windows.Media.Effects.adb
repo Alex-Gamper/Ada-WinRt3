@@ -56,7 +56,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IAcousticEchoCancellationConfiguration /= null then
          if this.m_IAcousticEchoCancellationConfiguration.all /= null then
             temp := this.m_IAcousticEchoCancellationConfiguration.all.Release;
-            Free (this.m_IAcousticEchoCancellationConfiguration);
+            if temp < 1 then
+               Free (this.m_IAcousticEchoCancellationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -96,7 +98,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IAudioCaptureEffectsManager /= null then
          if this.m_IAudioCaptureEffectsManager.all /= null then
             temp := this.m_IAudioCaptureEffectsManager.all.Release;
-            Free (this.m_IAudioCaptureEffectsManager);
+            if temp < 1 then
+               Free (this.m_IAudioCaptureEffectsManager);
+            end if;
          end if;
       end if;
    end;
@@ -172,7 +176,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IAudioEffect /= null then
          if this.m_IAudioEffect.all /= null then
             temp := this.m_IAudioEffect.all.Release;
-            Free (this.m_IAudioEffect);
+            if temp < 1 then
+               Free (this.m_IAudioEffect);
+            end if;
          end if;
       end if;
    end;
@@ -297,7 +303,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IAudioEffectDefinition /= null then
          if this.m_IAudioEffectDefinition.all /= null then
             temp := this.m_IAudioEffectDefinition.all.Release;
-            Free (this.m_IAudioEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IAudioEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -541,7 +549,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IAudioRenderEffectsManager /= null then
          if this.m_IAudioRenderEffectsManager.all /= null then
             temp := this.m_IAudioRenderEffectsManager.all.Release;
-            Free (this.m_IAudioRenderEffectsManager);
+            if temp < 1 then
+               Free (this.m_IAudioRenderEffectsManager);
+            end if;
          end if;
       end if;
    end;
@@ -680,7 +690,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_ICompositeVideoFrameContext /= null then
          if this.m_ICompositeVideoFrameContext.all /= null then
             temp := this.m_ICompositeVideoFrameContext.all.Release;
-            Free (this.m_ICompositeVideoFrameContext);
+            if temp < 1 then
+               Free (this.m_ICompositeVideoFrameContext);
+            end if;
          end if;
       end if;
    end;
@@ -781,7 +793,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IProcessAudioFrameContext /= null then
          if this.m_IProcessAudioFrameContext.all /= null then
             temp := this.m_IProcessAudioFrameContext.all.Release;
-            Free (this.m_IProcessAudioFrameContext);
+            if temp < 1 then
+               Free (this.m_IProcessAudioFrameContext);
+            end if;
          end if;
       end if;
    end;
@@ -844,7 +858,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IProcessVideoFrameContext /= null then
          if this.m_IProcessVideoFrameContext.all /= null then
             temp := this.m_IProcessVideoFrameContext.all.Release;
-            Free (this.m_IProcessVideoFrameContext);
+            if temp < 1 then
+               Free (this.m_IProcessVideoFrameContext);
+            end if;
          end if;
       end if;
    end;
@@ -907,7 +923,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IVideoCompositorDefinition /= null then
          if this.m_IVideoCompositorDefinition.all /= null then
             temp := this.m_IVideoCompositorDefinition.all.Release;
-            Free (this.m_IVideoCompositorDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoCompositorDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -1023,7 +1041,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
             temp := this.m_IVideoEffectDefinition.all.Release;
-            Free (this.m_IVideoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -1139,7 +1159,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
             temp := this.m_IVideoEffectDefinition.all.Release;
-            Free (this.m_IVideoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -1482,7 +1504,9 @@ package body WinRt.Windows.Media.Effects is
       if this.m_IVideoTransformSphericalProjection /= null then
          if this.m_IVideoTransformSphericalProjection.all /= null then
             temp := this.m_IVideoTransformSphericalProjection.all.Release;
-            Free (this.m_IVideoTransformSphericalProjection);
+            if temp < 1 then
+               Free (this.m_IVideoTransformSphericalProjection);
+            end if;
          end if;
       end if;
    end;

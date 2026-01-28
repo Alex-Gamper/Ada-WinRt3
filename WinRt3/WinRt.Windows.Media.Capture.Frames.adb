@@ -75,7 +75,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IAudioMediaFrame /= null then
          if this.m_IAudioMediaFrame.all /= null then
             temp := this.m_IAudioMediaFrame.all.Release;
-            Free (this.m_IAudioMediaFrame);
+            if temp < 1 then
+               Free (this.m_IAudioMediaFrame);
+            end if;
          end if;
       end if;
    end;
@@ -158,7 +160,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IBufferMediaFrame /= null then
          if this.m_IBufferMediaFrame.all /= null then
             temp := this.m_IBufferMediaFrame.all.Release;
-            Free (this.m_IBufferMediaFrame);
+            if temp < 1 then
+               Free (this.m_IBufferMediaFrame);
+            end if;
          end if;
       end if;
    end;
@@ -218,7 +222,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IDepthMediaFrame /= null then
          if this.m_IDepthMediaFrame.all /= null then
             temp := this.m_IDepthMediaFrame.all.Release;
-            Free (this.m_IDepthMediaFrame);
+            if temp < 1 then
+               Free (this.m_IDepthMediaFrame);
+            end if;
          end if;
       end if;
    end;
@@ -365,7 +371,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IDepthMediaFrameFormat /= null then
          if this.m_IDepthMediaFrameFormat.all /= null then
             temp := this.m_IDepthMediaFrameFormat.all.Release;
-            Free (this.m_IDepthMediaFrameFormat);
+            if temp < 1 then
+               Free (this.m_IDepthMediaFrameFormat);
+            end if;
          end if;
       end if;
    end;
@@ -425,7 +433,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IInfraredMediaFrame /= null then
          if this.m_IInfraredMediaFrame.all /= null then
             temp := this.m_IInfraredMediaFrame.all.Release;
-            Free (this.m_IInfraredMediaFrame);
+            if temp < 1 then
+               Free (this.m_IInfraredMediaFrame);
+            end if;
          end if;
       end if;
    end;
@@ -505,7 +515,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameArrivedEventArgs /= null then
          if this.m_IMediaFrameArrivedEventArgs.all /= null then
             temp := this.m_IMediaFrameArrivedEventArgs.all.Release;
-            Free (this.m_IMediaFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -528,7 +540,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameFormat /= null then
          if this.m_IMediaFrameFormat.all /= null then
             temp := this.m_IMediaFrameFormat.all.Release;
-            Free (this.m_IMediaFrameFormat);
+            if temp < 1 then
+               Free (this.m_IMediaFrameFormat);
+            end if;
          end if;
       end if;
    end;
@@ -675,7 +689,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameReader /= null then
          if this.m_IMediaFrameReader.all /= null then
             temp := this.m_IMediaFrameReader.all.Release;
-            Free (this.m_IMediaFrameReader);
+            if temp < 1 then
+               Free (this.m_IMediaFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -914,7 +930,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameReference /= null then
          if this.m_IMediaFrameReference.all /= null then
             temp := this.m_IMediaFrameReference.all.Release;
-            Free (this.m_IMediaFrameReference);
+            if temp < 1 then
+               Free (this.m_IMediaFrameReference);
+            end if;
          end if;
       end if;
    end;
@@ -1133,7 +1151,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameSource /= null then
          if this.m_IMediaFrameSource.all /= null then
             temp := this.m_IMediaFrameSource.all.Release;
-            Free (this.m_IMediaFrameSource);
+            if temp < 1 then
+               Free (this.m_IMediaFrameSource);
+            end if;
          end if;
       end if;
    end;
@@ -1333,7 +1353,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameSourceController /= null then
          if this.m_IMediaFrameSourceController.all /= null then
             temp := this.m_IMediaFrameSourceController.all.Release;
-            Free (this.m_IMediaFrameSourceController);
+            if temp < 1 then
+               Free (this.m_IMediaFrameSourceController);
+            end if;
          end if;
       end if;
    end;
@@ -1680,7 +1702,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameSourceGetPropertyResult /= null then
          if this.m_IMediaFrameSourceGetPropertyResult.all /= null then
             temp := this.m_IMediaFrameSourceGetPropertyResult.all.Release;
-            Free (this.m_IMediaFrameSourceGetPropertyResult);
+            if temp < 1 then
+               Free (this.m_IMediaFrameSourceGetPropertyResult);
+            end if;
          end if;
       end if;
    end;
@@ -1737,7 +1761,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameSourceGroup /= null then
          if this.m_IMediaFrameSourceGroup.all /= null then
             temp := this.m_IMediaFrameSourceGroup.all.Release;
-            Free (this.m_IMediaFrameSourceGroup);
+            if temp < 1 then
+               Free (this.m_IMediaFrameSourceGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1989,7 +2015,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMediaFrameSourceInfo /= null then
          if this.m_IMediaFrameSourceInfo.all /= null then
             temp := this.m_IMediaFrameSourceInfo.all.Release;
-            Free (this.m_IMediaFrameSourceInfo);
+            if temp < 1 then
+               Free (this.m_IMediaFrameSourceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2237,7 +2265,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMultiSourceMediaFrameArrivedEventArgs /= null then
          if this.m_IMultiSourceMediaFrameArrivedEventArgs.all /= null then
             temp := this.m_IMultiSourceMediaFrameArrivedEventArgs.all.Release;
-            Free (this.m_IMultiSourceMediaFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMultiSourceMediaFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2260,7 +2290,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMultiSourceMediaFrameReader /= null then
          if this.m_IMultiSourceMediaFrameReader.all /= null then
             temp := this.m_IMultiSourceMediaFrameReader.all.Release;
-            Free (this.m_IMultiSourceMediaFrameReader);
+            if temp < 1 then
+               Free (this.m_IMultiSourceMediaFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -2499,7 +2531,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IMultiSourceMediaFrameReference /= null then
          if this.m_IMultiSourceMediaFrameReference.all /= null then
             temp := this.m_IMultiSourceMediaFrameReference.all.Release;
-            Free (this.m_IMultiSourceMediaFrameReference);
+            if temp < 1 then
+               Free (this.m_IMultiSourceMediaFrameReference);
+            end if;
          end if;
       end if;
    end;
@@ -2563,7 +2597,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IVideoMediaFrame /= null then
          if this.m_IVideoMediaFrame.all /= null then
             temp := this.m_IVideoMediaFrame.all.Release;
-            Free (this.m_IVideoMediaFrame);
+            if temp < 1 then
+               Free (this.m_IVideoMediaFrame);
+            end if;
          end if;
       end if;
    end;
@@ -2743,7 +2779,9 @@ package body WinRt.Windows.Media.Capture.Frames is
       if this.m_IVideoMediaFrameFormat /= null then
          if this.m_IVideoMediaFrameFormat.all /= null then
             temp := this.m_IVideoMediaFrameFormat.all.Release;
-            Free (this.m_IVideoMediaFrameFormat);
+            if temp < 1 then
+               Free (this.m_IVideoMediaFrameFormat);
+            end if;
          end if;
       end if;
    end;

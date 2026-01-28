@@ -146,7 +146,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceClosedEventArgs /= null then
          if this.m_IAppServiceClosedEventArgs.all /= null then
             temp := this.m_IAppServiceClosedEventArgs.all.Release;
-            Free (this.m_IAppServiceClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppServiceClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -186,7 +188,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceConnection /= null then
          if this.m_IAppServiceConnection.all /= null then
             temp := this.m_IAppServiceConnection.all.Release;
-            Free (this.m_IAppServiceConnection);
+            if temp < 1 then
+               Free (this.m_IAppServiceConnection);
+            end if;
          end if;
       end if;
    end;
@@ -705,7 +709,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceDeferral /= null then
          if this.m_IAppServiceDeferral.all /= null then
             temp := this.m_IAppServiceDeferral.all.Release;
-            Free (this.m_IAppServiceDeferral);
+            if temp < 1 then
+               Free (this.m_IAppServiceDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -742,7 +748,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceRequest /= null then
          if this.m_IAppServiceRequest.all /= null then
             temp := this.m_IAppServiceRequest.all.Release;
-            Free (this.m_IAppServiceRequest);
+            if temp < 1 then
+               Free (this.m_IAppServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -849,7 +857,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceRequestReceivedEventArgs /= null then
          if this.m_IAppServiceRequestReceivedEventArgs.all /= null then
             temp := this.m_IAppServiceRequestReceivedEventArgs.all.Release;
-            Free (this.m_IAppServiceRequestReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppServiceRequestReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -912,7 +922,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceResponse /= null then
          if this.m_IAppServiceResponse.all /= null then
             temp := this.m_IAppServiceResponse.all.Release;
-            Free (this.m_IAppServiceResponse);
+            if temp < 1 then
+               Free (this.m_IAppServiceResponse);
+            end if;
          end if;
       end if;
    end;
@@ -972,7 +984,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IAppServiceTriggerDetails /= null then
          if this.m_IAppServiceTriggerDetails.all /= null then
             temp := this.m_IAppServiceTriggerDetails.all.Release;
-            Free (this.m_IAppServiceTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IAppServiceTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1170,7 +1184,9 @@ package body WinRt.Windows.ApplicationModel.AppService is
       if this.m_IStatelessAppServiceResponse /= null then
          if this.m_IStatelessAppServiceResponse.all /= null then
             temp := this.m_IStatelessAppServiceResponse.all.Release;
-            Free (this.m_IStatelessAppServiceResponse);
+            if temp < 1 then
+               Free (this.m_IStatelessAppServiceResponse);
+            end if;
          end if;
       end if;
    end;

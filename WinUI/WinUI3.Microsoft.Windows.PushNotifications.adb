@@ -52,7 +52,9 @@ package body WinUI3.Microsoft.Windows.PushNotifications is
       if this.m_IPushNotificationChannel /= null then
          if this.m_IPushNotificationChannel.all /= null then
             temp := this.m_IPushNotificationChannel.all.Release;
-            Free (this.m_IPushNotificationChannel);
+            if temp < 1 then
+               Free (this.m_IPushNotificationChannel);
+            end if;
          end if;
       end if;
    end;
@@ -126,7 +128,9 @@ package body WinUI3.Microsoft.Windows.PushNotifications is
       if this.m_IPushNotificationCreateChannelResult /= null then
          if this.m_IPushNotificationCreateChannelResult.all /= null then
             temp := this.m_IPushNotificationCreateChannelResult.all.Release;
-            Free (this.m_IPushNotificationCreateChannelResult);
+            if temp < 1 then
+               Free (this.m_IPushNotificationCreateChannelResult);
+            end if;
          end if;
       end if;
    end;
@@ -203,7 +207,9 @@ package body WinUI3.Microsoft.Windows.PushNotifications is
       if this.m_IPushNotificationManager /= null then
          if this.m_IPushNotificationManager.all /= null then
             temp := this.m_IPushNotificationManager.all.Release;
-            Free (this.m_IPushNotificationManager);
+            if temp < 1 then
+               Free (this.m_IPushNotificationManager);
+            end if;
          end if;
       end if;
    end;
@@ -416,7 +422,9 @@ package body WinUI3.Microsoft.Windows.PushNotifications is
       if this.m_IPushNotificationReceivedEventArgs /= null then
          if this.m_IPushNotificationReceivedEventArgs.all /= null then
             temp := this.m_IPushNotificationReceivedEventArgs.all.Release;
-            Free (this.m_IPushNotificationReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPushNotificationReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;

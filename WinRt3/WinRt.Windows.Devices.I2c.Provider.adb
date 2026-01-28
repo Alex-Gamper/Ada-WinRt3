@@ -47,7 +47,9 @@ package body WinRt.Windows.Devices.I2c.Provider is
       if this.m_IProviderI2cConnectionSettings /= null then
          if this.m_IProviderI2cConnectionSettings.all /= null then
             temp := this.m_IProviderI2cConnectionSettings.all.Release;
-            Free (this.m_IProviderI2cConnectionSettings);
+            if temp < 1 then
+               Free (this.m_IProviderI2cConnectionSettings);
+            end if;
          end if;
       end if;
    end;

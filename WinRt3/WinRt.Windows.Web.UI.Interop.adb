@@ -63,7 +63,9 @@ package body WinRt.Windows.Web.UI.Interop is
       if this.m_IWebViewControl /= null then
          if this.m_IWebViewControl.all /= null then
             temp := this.m_IWebViewControl.all.Release;
-            Free (this.m_IWebViewControl);
+            if temp < 1 then
+               Free (this.m_IWebViewControl);
+            end if;
          end if;
       end if;
    end;
@@ -1531,7 +1533,9 @@ package body WinRt.Windows.Web.UI.Interop is
       if this.m_IWebViewControlAcceleratorKeyPressedEventArgs /= null then
          if this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all /= null then
             temp := this.m_IWebViewControlAcceleratorKeyPressedEventArgs.all.Release;
-            Free (this.m_IWebViewControlAcceleratorKeyPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlAcceleratorKeyPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1654,7 +1658,9 @@ package body WinRt.Windows.Web.UI.Interop is
       if this.m_IWebViewControlMoveFocusRequestedEventArgs /= null then
          if this.m_IWebViewControlMoveFocusRequestedEventArgs.all /= null then
             temp := this.m_IWebViewControlMoveFocusRequestedEventArgs.all.Release;
-            Free (this.m_IWebViewControlMoveFocusRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWebViewControlMoveFocusRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1694,7 +1700,9 @@ package body WinRt.Windows.Web.UI.Interop is
       if this.m_IWebViewControlProcess /= null then
          if this.m_IWebViewControlProcess.all /= null then
             temp := this.m_IWebViewControlProcess.all.Release;
-            Free (this.m_IWebViewControlProcess);
+            if temp < 1 then
+               Free (this.m_IWebViewControlProcess);
+            end if;
          end if;
       end if;
    end;
@@ -1947,7 +1955,9 @@ package body WinRt.Windows.Web.UI.Interop is
       if this.m_IWebViewControlProcessOptions /= null then
          if this.m_IWebViewControlProcessOptions.all /= null then
             temp := this.m_IWebViewControlProcessOptions.all.Release;
-            Free (this.m_IWebViewControlProcessOptions);
+            if temp < 1 then
+               Free (this.m_IWebViewControlProcessOptions);
+            end if;
          end if;
       end if;
    end;

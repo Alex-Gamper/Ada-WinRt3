@@ -57,7 +57,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IContentIndexer /= null then
          if this.m_IContentIndexer.all /= null then
             temp := this.m_IContentIndexer.all.Release;
-            Free (this.m_IContentIndexer);
+            if temp < 1 then
+               Free (this.m_IContentIndexer);
+            end if;
          end if;
       end if;
    end;
@@ -525,7 +527,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IContentIndexerQuery /= null then
          if this.m_IContentIndexerQuery.all /= null then
             temp := this.m_IContentIndexerQuery.all.Release;
-            Free (this.m_IContentIndexerQuery);
+            if temp < 1 then
+               Free (this.m_IContentIndexerQuery);
+            end if;
          end if;
       end if;
    end;
@@ -887,7 +891,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IIndexableContent /= null then
          if this.m_IIndexableContent.all /= null then
             temp := this.m_IIndexableContent.all.Release;
-            Free (this.m_IIndexableContent);
+            if temp < 1 then
+               Free (this.m_IIndexableContent);
+            end if;
          end if;
       end if;
    end;
@@ -1055,7 +1061,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IQueryOptions /= null then
          if this.m_IQueryOptions.all /= null then
             temp := this.m_IQueryOptions.all.Release;
-            Free (this.m_IQueryOptions);
+            if temp < 1 then
+               Free (this.m_IQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1789,7 +1797,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IStorageFileQueryResult /= null then
          if this.m_IStorageFileQueryResult.all /= null then
             temp := this.m_IStorageFileQueryResult.all.Release;
-            Free (this.m_IStorageFileQueryResult);
+            if temp < 1 then
+               Free (this.m_IStorageFileQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -2246,7 +2256,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IStorageFolderQueryResult /= null then
          if this.m_IStorageFolderQueryResult.all /= null then
             temp := this.m_IStorageFolderQueryResult.all.Release;
-            Free (this.m_IStorageFolderQueryResult);
+            if temp < 1 then
+               Free (this.m_IStorageFolderQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -2681,7 +2693,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IStorageItemQueryResult /= null then
          if this.m_IStorageItemQueryResult.all /= null then
             temp := this.m_IStorageItemQueryResult.all.Release;
-            Free (this.m_IStorageItemQueryResult);
+            if temp < 1 then
+               Free (this.m_IStorageItemQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -3116,7 +3130,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IStorageLibraryChangeTrackerTriggerDetails /= null then
          if this.m_IStorageLibraryChangeTrackerTriggerDetails.all /= null then
             temp := this.m_IStorageLibraryChangeTrackerTriggerDetails.all.Release;
-            Free (this.m_IStorageLibraryChangeTrackerTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryChangeTrackerTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3179,7 +3195,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IStorageLibraryContentChangedTriggerDetails /= null then
          if this.m_IStorageLibraryContentChangedTriggerDetails.all /= null then
             temp := this.m_IStorageLibraryContentChangedTriggerDetails.all.Release;
-            Free (this.m_IStorageLibraryContentChangedTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryContentChangedTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -3243,7 +3261,9 @@ package body WinRt.Windows.Storage.Search is
       if this.m_IValueAndLanguage /= null then
          if this.m_IValueAndLanguage.all /= null then
             temp := this.m_IValueAndLanguage.all.Release;
-            Free (this.m_IValueAndLanguage);
+            if temp < 1 then
+               Free (this.m_IValueAndLanguage);
+            end if;
          end if;
       end if;
    end;

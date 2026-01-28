@@ -74,7 +74,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IAudioStreamDescriptor /= null then
          if this.m_IAudioStreamDescriptor.all /= null then
             temp := this.m_IAudioStreamDescriptor.all.Release;
-            Free (this.m_IAudioStreamDescriptor);
+            if temp < 1 then
+               Free (this.m_IAudioStreamDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -410,7 +412,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaTrack /= null then
          if this.m_IMediaTrack.all /= null then
             temp := this.m_IMediaTrack.all.Release;
-            Free (this.m_IMediaTrack);
+            if temp < 1 then
+               Free (this.m_IMediaTrack);
+            end if;
          end if;
       end if;
    end;
@@ -664,7 +668,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IAudioTrackOpenFailedEventArgs /= null then
          if this.m_IAudioTrackOpenFailedEventArgs.all /= null then
             temp := this.m_IAudioTrackOpenFailedEventArgs.all.Release;
-            Free (this.m_IAudioTrackOpenFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAudioTrackOpenFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -704,7 +710,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IAudioTrackSupportInfo /= null then
          if this.m_IAudioTrackSupportInfo.all /= null then
             temp := this.m_IAudioTrackSupportInfo.all.Release;
-            Free (this.m_IAudioTrackSupportInfo);
+            if temp < 1 then
+               Free (this.m_IAudioTrackSupportInfo);
+            end if;
          end if;
       end if;
    end;
@@ -795,7 +803,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IChapterCue /= null then
          if this.m_IChapterCue.all /= null then
             temp := this.m_IChapterCue.all.Release;
-            Free (this.m_IChapterCue);
+            if temp < 1 then
+               Free (this.m_IChapterCue);
+            end if;
          end if;
       end if;
    end;
@@ -999,7 +1009,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ICodecInfo /= null then
          if this.m_ICodecInfo.all /= null then
             temp := this.m_ICodecInfo.all.Release;
-            Free (this.m_ICodecInfo);
+            if temp < 1 then
+               Free (this.m_ICodecInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1113,7 +1125,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ICodecQuery /= null then
          if this.m_ICodecQuery.all /= null then
             temp := this.m_ICodecQuery.all.Release;
-            Free (this.m_ICodecQuery);
+            if temp < 1 then
+               Free (this.m_ICodecQuery);
+            end if;
          end if;
       end if;
    end;
@@ -2477,7 +2491,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IDataCue /= null then
          if this.m_IDataCue.all /= null then
             temp := this.m_IDataCue.all.Release;
-            Free (this.m_IDataCue);
+            if temp < 1 then
+               Free (this.m_IDataCue);
+            end if;
          end if;
       end if;
    end;
@@ -2700,7 +2716,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IFaceDetectedEventArgs /= null then
          if this.m_IFaceDetectedEventArgs.all /= null then
             temp := this.m_IFaceDetectedEventArgs.all.Release;
-            Free (this.m_IFaceDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFaceDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2743,7 +2761,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IFaceDetectionEffect /= null then
          if this.m_IFaceDetectionEffect.all /= null then
             temp := this.m_IFaceDetectionEffect.all.Release;
-            Free (this.m_IFaceDetectionEffect);
+            if temp < 1 then
+               Free (this.m_IFaceDetectionEffect);
+            end if;
          end if;
       end if;
    end;
@@ -2883,7 +2903,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
             temp := this.m_IVideoEffectDefinition.all.Release;
-            Free (this.m_IVideoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -3043,7 +3065,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IFaceDetectionEffectFrame /= null then
          if this.m_IFaceDetectionEffectFrame.all /= null then
             temp := this.m_IFaceDetectionEffectFrame.all.Release;
-            Free (this.m_IFaceDetectionEffectFrame);
+            if temp < 1 then
+               Free (this.m_IFaceDetectionEffectFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3336,7 +3360,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IHighDynamicRangeControl /= null then
          if this.m_IHighDynamicRangeControl.all /= null then
             temp := this.m_IHighDynamicRangeControl.all.Release;
-            Free (this.m_IHighDynamicRangeControl);
+            if temp < 1 then
+               Free (this.m_IHighDynamicRangeControl);
+            end if;
          end if;
       end if;
    end;
@@ -3391,7 +3417,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IHighDynamicRangeOutput /= null then
          if this.m_IHighDynamicRangeOutput.all /= null then
             temp := this.m_IHighDynamicRangeOutput.all.Release;
-            Free (this.m_IHighDynamicRangeOutput);
+            if temp < 1 then
+               Free (this.m_IHighDynamicRangeOutput);
+            end if;
          end if;
       end if;
    end;
@@ -3448,7 +3476,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IImageCue /= null then
          if this.m_IImageCue.all /= null then
             temp := this.m_IImageCue.all.Release;
-            Free (this.m_IImageCue);
+            if temp < 1 then
+               Free (this.m_IImageCue);
+            end if;
          end if;
       end if;
    end;
@@ -3714,7 +3744,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IInitializeMediaStreamSourceRequestedEventArgs /= null then
          if this.m_IInitializeMediaStreamSourceRequestedEventArgs.all /= null then
             temp := this.m_IInitializeMediaStreamSourceRequestedEventArgs.all.Release;
-            Free (this.m_IInitializeMediaStreamSourceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInitializeMediaStreamSourceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3915,7 +3947,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ILowLightFusionResult /= null then
          if this.m_ILowLightFusionResult.all /= null then
             temp := this.m_ILowLightFusionResult.all.Release;
-            Free (this.m_ILowLightFusionResult);
+            if temp < 1 then
+               Free (this.m_ILowLightFusionResult);
+            end if;
          end if;
       end if;
    end;
@@ -3976,7 +4010,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaBinder /= null then
          if this.m_IMediaBinder.all /= null then
             temp := this.m_IMediaBinder.all.Release;
-            Free (this.m_IMediaBinder);
+            if temp < 1 then
+               Free (this.m_IMediaBinder);
+            end if;
          end if;
       end if;
    end;
@@ -4108,7 +4144,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaBindingEventArgs /= null then
          if this.m_IMediaBindingEventArgs.all /= null then
             temp := this.m_IMediaBindingEventArgs.all.Release;
-            Free (this.m_IMediaBindingEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaBindingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4312,7 +4350,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaCueEventArgs /= null then
          if this.m_IMediaCueEventArgs.all /= null then
             temp := this.m_IMediaCueEventArgs.all.Release;
-            Free (this.m_IMediaCueEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaCueEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4352,7 +4392,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaSource2 /= null then
          if this.m_IMediaSource2.all /= null then
             temp := this.m_IMediaSource2.all.Release;
-            Free (this.m_IMediaSource2);
+            if temp < 1 then
+               Free (this.m_IMediaSource2);
+            end if;
          end if;
       end if;
    end;
@@ -5075,7 +5117,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaSourceAppServiceConnection /= null then
          if this.m_IMediaSourceAppServiceConnection.all /= null then
             temp := this.m_IMediaSourceAppServiceConnection.all.Release;
-            Free (this.m_IMediaSourceAppServiceConnection);
+            if temp < 1 then
+               Free (this.m_IMediaSourceAppServiceConnection);
+            end if;
          end if;
       end if;
    end;
@@ -5172,7 +5216,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaSourceError /= null then
          if this.m_IMediaSourceError.all /= null then
             temp := this.m_IMediaSourceError.all.Release;
-            Free (this.m_IMediaSourceError);
+            if temp < 1 then
+               Free (this.m_IMediaSourceError);
+            end if;
          end if;
       end if;
    end;
@@ -5212,7 +5258,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaSourceOpenOperationCompletedEventArgs /= null then
          if this.m_IMediaSourceOpenOperationCompletedEventArgs.all /= null then
             temp := this.m_IMediaSourceOpenOperationCompletedEventArgs.all.Release;
-            Free (this.m_IMediaSourceOpenOperationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaSourceOpenOperationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5255,7 +5303,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaSourceStateChangedEventArgs /= null then
          if this.m_IMediaSourceStateChangedEventArgs.all /= null then
             temp := this.m_IMediaSourceStateChangedEventArgs.all.Release;
-            Free (this.m_IMediaSourceStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaSourceStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5312,7 +5362,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSample /= null then
          if this.m_IMediaStreamSample.all /= null then
             temp := this.m_IMediaStreamSample.all.Release;
-            Free (this.m_IMediaStreamSample);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSample);
+            end if;
          end if;
       end if;
    end;
@@ -5898,7 +5950,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSampleProtectionProperties /= null then
          if this.m_IMediaStreamSampleProtectionProperties.all /= null then
             temp := this.m_IMediaStreamSampleProtectionProperties.all.Release;
-            Free (this.m_IMediaStreamSampleProtectionProperties);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSampleProtectionProperties);
+            end if;
          end if;
       end if;
    end;
@@ -6017,7 +6071,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSource /= null then
          if this.m_IMediaStreamSource.all /= null then
             temp := this.m_IMediaStreamSource.all.Release;
-            Free (this.m_IMediaStreamSource);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSource);
+            end if;
          end if;
       end if;
    end;
@@ -6649,7 +6705,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceClosedEventArgs /= null then
          if this.m_IMediaStreamSourceClosedEventArgs.all /= null then
             temp := this.m_IMediaStreamSourceClosedEventArgs.all.Release;
-            Free (this.m_IMediaStreamSourceClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6692,7 +6750,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceClosedRequest /= null then
          if this.m_IMediaStreamSourceClosedRequest.all /= null then
             temp := this.m_IMediaStreamSourceClosedRequest.all.Release;
-            Free (this.m_IMediaStreamSourceClosedRequest);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceClosedRequest);
+            end if;
          end if;
       end if;
    end;
@@ -6732,7 +6792,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSampleRenderedEventArgs /= null then
          if this.m_IMediaStreamSourceSampleRenderedEventArgs.all /= null then
             temp := this.m_IMediaStreamSourceSampleRenderedEventArgs.all.Release;
-            Free (this.m_IMediaStreamSourceSampleRenderedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSampleRenderedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6772,7 +6834,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSampleRequest /= null then
          if this.m_IMediaStreamSourceSampleRequest.all /= null then
             temp := this.m_IMediaStreamSourceSampleRequest.all.Release;
-            Free (this.m_IMediaStreamSourceSampleRequest);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSampleRequest);
+            end if;
          end if;
       end if;
    end;
@@ -6882,7 +6946,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSampleRequestDeferral /= null then
          if this.m_IMediaStreamSourceSampleRequestDeferral.all /= null then
             temp := this.m_IMediaStreamSourceSampleRequestDeferral.all.Release;
-            Free (this.m_IMediaStreamSourceSampleRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSampleRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -6919,7 +6985,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSampleRequestedEventArgs /= null then
          if this.m_IMediaStreamSourceSampleRequestedEventArgs.all /= null then
             temp := this.m_IMediaStreamSourceSampleRequestedEventArgs.all.Release;
-            Free (this.m_IMediaStreamSourceSampleRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSampleRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6962,7 +7030,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceStartingEventArgs /= null then
          if this.m_IMediaStreamSourceStartingEventArgs.all /= null then
             temp := this.m_IMediaStreamSourceStartingEventArgs.all.Release;
-            Free (this.m_IMediaStreamSourceStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7005,7 +7075,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceStartingRequest /= null then
          if this.m_IMediaStreamSourceStartingRequest.all /= null then
             temp := this.m_IMediaStreamSourceStartingRequest.all.Release;
-            Free (this.m_IMediaStreamSourceStartingRequest);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceStartingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -7083,7 +7155,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceStartingRequestDeferral /= null then
          if this.m_IMediaStreamSourceStartingRequestDeferral.all /= null then
             temp := this.m_IMediaStreamSourceStartingRequestDeferral.all.Release;
-            Free (this.m_IMediaStreamSourceStartingRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceStartingRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -7120,7 +7194,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSwitchStreamsRequest /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequest.all /= null then
             temp := this.m_IMediaStreamSourceSwitchStreamsRequest.all.Release;
-            Free (this.m_IMediaStreamSourceSwitchStreamsRequest);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSwitchStreamsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -7197,7 +7273,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSwitchStreamsRequestDeferral /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all /= null then
             temp := this.m_IMediaStreamSourceSwitchStreamsRequestDeferral.all.Release;
-            Free (this.m_IMediaStreamSourceSwitchStreamsRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSwitchStreamsRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -7234,7 +7312,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs /= null then
          if this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all /= null then
             temp := this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs.all.Release;
-            Free (this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaStreamSourceSwitchStreamsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7277,7 +7357,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMseSourceBuffer /= null then
          if this.m_IMseSourceBuffer.all /= null then
             temp := this.m_IMseSourceBuffer.all.Release;
-            Free (this.m_IMseSourceBuffer);
+            if temp < 1 then
+               Free (this.m_IMseSourceBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -7709,7 +7791,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMseSourceBufferList /= null then
          if this.m_IMseSourceBufferList.all /= null then
             temp := this.m_IMseSourceBufferList.all.Release;
-            Free (this.m_IMseSourceBufferList);
+            if temp < 1 then
+               Free (this.m_IMseSourceBufferList);
+            end if;
          end if;
       end if;
    end;
@@ -7818,7 +7902,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMseStreamSource /= null then
          if this.m_IMseStreamSource.all /= null then
             temp := this.m_IMseStreamSource.all.Release;
-            Free (this.m_IMseStreamSource);
+            if temp < 1 then
+               Free (this.m_IMseStreamSource);
+            end if;
          end if;
       end if;
    end;
@@ -8176,7 +8262,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ISceneAnalysisEffect /= null then
          if this.m_ISceneAnalysisEffect.all /= null then
             temp := this.m_ISceneAnalysisEffect.all.Release;
-            Free (this.m_ISceneAnalysisEffect);
+            if temp < 1 then
+               Free (this.m_ISceneAnalysisEffect);
+            end if;
          end if;
       end if;
    end;
@@ -8304,7 +8392,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
             temp := this.m_IVideoEffectDefinition.all.Release;
-            Free (this.m_IVideoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -8384,7 +8474,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ISceneAnalysisEffectFrame /= null then
          if this.m_ISceneAnalysisEffectFrame.all /= null then
             temp := this.m_ISceneAnalysisEffectFrame.all.Release;
-            Free (this.m_ISceneAnalysisEffectFrame);
+            if temp < 1 then
+               Free (this.m_ISceneAnalysisEffectFrame);
+            end if;
          end if;
       end if;
    end;
@@ -8721,7 +8813,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ISceneAnalyzedEventArgs /= null then
          if this.m_ISceneAnalyzedEventArgs.all /= null then
             temp := this.m_ISceneAnalyzedEventArgs.all.Release;
-            Free (this.m_ISceneAnalyzedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISceneAnalyzedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8764,7 +8858,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ISpeechCue /= null then
          if this.m_ISpeechCue.all /= null then
             temp := this.m_ISpeechCue.all.Release;
-            Free (this.m_ISpeechCue);
+            if temp < 1 then
+               Free (this.m_ISpeechCue);
+            end if;
          end if;
       end if;
    end;
@@ -9038,7 +9134,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaStreamDescriptor /= null then
          if this.m_IMediaStreamDescriptor.all /= null then
             temp := this.m_IMediaStreamDescriptor.all.Release;
-            Free (this.m_IMediaStreamDescriptor);
+            if temp < 1 then
+               Free (this.m_IMediaStreamDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -9272,7 +9370,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedMetadataTrack /= null then
          if this.m_ITimedMetadataTrack.all /= null then
             temp := this.m_ITimedMetadataTrack.all.Release;
-            Free (this.m_ITimedMetadataTrack);
+            if temp < 1 then
+               Free (this.m_ITimedMetadataTrack);
+            end if;
          end if;
       end if;
    end;
@@ -9696,7 +9796,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedMetadataTrackError /= null then
          if this.m_ITimedMetadataTrackError.all /= null then
             temp := this.m_ITimedMetadataTrackError.all.Release;
-            Free (this.m_ITimedMetadataTrackError);
+            if temp < 1 then
+               Free (this.m_ITimedMetadataTrackError);
+            end if;
          end if;
       end if;
    end;
@@ -9753,7 +9855,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedMetadataTrackFailedEventArgs /= null then
          if this.m_ITimedMetadataTrackFailedEventArgs.all /= null then
             temp := this.m_ITimedMetadataTrackFailedEventArgs.all.Release;
-            Free (this.m_ITimedMetadataTrackFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITimedMetadataTrackFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9796,7 +9900,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextBouten /= null then
          if this.m_ITimedTextBouten.all /= null then
             temp := this.m_ITimedTextBouten.all.Release;
-            Free (this.m_ITimedTextBouten);
+            if temp < 1 then
+               Free (this.m_ITimedTextBouten);
+            end if;
          end if;
       end if;
    end;
@@ -9915,7 +10021,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextCue /= null then
          if this.m_ITimedTextCue.all /= null then
             temp := this.m_ITimedTextCue.all.Release;
-            Free (this.m_ITimedTextCue);
+            if temp < 1 then
+               Free (this.m_ITimedTextCue);
+            end if;
          end if;
       end if;
    end;
@@ -10172,7 +10280,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextLine /= null then
          if this.m_ITimedTextLine.all /= null then
             temp := this.m_ITimedTextLine.all.Release;
-            Free (this.m_ITimedTextLine);
+            if temp < 1 then
+               Free (this.m_ITimedTextLine);
+            end if;
          end if;
       end if;
    end;
@@ -10271,7 +10381,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextRegion /= null then
          if this.m_ITimedTextRegion.all /= null then
             temp := this.m_ITimedTextRegion.all.Release;
-            Free (this.m_ITimedTextRegion);
+            if temp < 1 then
+               Free (this.m_ITimedTextRegion);
+            end if;
          end if;
       end if;
    end;
@@ -10702,7 +10814,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextRuby /= null then
          if this.m_ITimedTextRuby.all /= null then
             temp := this.m_ITimedTextRuby.all.Release;
-            Free (this.m_ITimedTextRuby);
+            if temp < 1 then
+               Free (this.m_ITimedTextRuby);
+            end if;
          end if;
       end if;
    end;
@@ -10858,7 +10972,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextSource /= null then
          if this.m_ITimedTextSource.all /= null then
             temp := this.m_ITimedTextSource.all.Release;
-            Free (this.m_ITimedTextSource);
+            if temp < 1 then
+               Free (this.m_ITimedTextSource);
+            end if;
          end if;
       end if;
    end;
@@ -11149,7 +11265,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextSourceResolveResultEventArgs /= null then
          if this.m_ITimedTextSourceResolveResultEventArgs.all /= null then
             temp := this.m_ITimedTextSourceResolveResultEventArgs.all.Release;
-            Free (this.m_ITimedTextSourceResolveResultEventArgs);
+            if temp < 1 then
+               Free (this.m_ITimedTextSourceResolveResultEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11212,7 +11330,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextStyle /= null then
          if this.m_ITimedTextStyle.all /= null then
             temp := this.m_ITimedTextStyle.all.Release;
-            Free (this.m_ITimedTextStyle);
+            if temp < 1 then
+               Free (this.m_ITimedTextStyle);
+            end if;
          end if;
       end if;
    end;
@@ -11936,7 +12056,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_ITimedTextSubformat /= null then
          if this.m_ITimedTextSubformat.all /= null then
             temp := this.m_ITimedTextSubformat.all.Release;
-            Free (this.m_ITimedTextSubformat);
+            if temp < 1 then
+               Free (this.m_ITimedTextSubformat);
+            end if;
          end if;
       end if;
    end;
@@ -12077,7 +12199,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoStabilizationEffect /= null then
          if this.m_IVideoStabilizationEffect.all /= null then
             temp := this.m_IVideoStabilizationEffect.all.Release;
-            Free (this.m_IVideoStabilizationEffect);
+            if temp < 1 then
+               Free (this.m_IVideoStabilizationEffect);
+            end if;
          end if;
       end if;
    end;
@@ -12207,7 +12331,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoEffectDefinition /= null then
          if this.m_IVideoEffectDefinition.all /= null then
             temp := this.m_IVideoEffectDefinition.all.Release;
-            Free (this.m_IVideoEffectDefinition);
+            if temp < 1 then
+               Free (this.m_IVideoEffectDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -12287,7 +12413,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoStabilizationEffectEnabledChangedEventArgs /= null then
          if this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all /= null then
             temp := this.m_IVideoStabilizationEffectEnabledChangedEventArgs.all.Release;
-            Free (this.m_IVideoStabilizationEffectEnabledChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVideoStabilizationEffectEnabledChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12327,7 +12455,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoStreamDescriptor /= null then
          if this.m_IVideoStreamDescriptor.all /= null then
             temp := this.m_IVideoStreamDescriptor.all.Release;
-            Free (this.m_IVideoStreamDescriptor);
+            if temp < 1 then
+               Free (this.m_IVideoStreamDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -12577,7 +12707,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IMediaTrack /= null then
          if this.m_IMediaTrack.all /= null then
             temp := this.m_IMediaTrack.all.Release;
-            Free (this.m_IMediaTrack);
+            if temp < 1 then
+               Free (this.m_IMediaTrack);
+            end if;
          end if;
       end if;
    end;
@@ -12831,7 +12963,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoTrackOpenFailedEventArgs /= null then
          if this.m_IVideoTrackOpenFailedEventArgs.all /= null then
             temp := this.m_IVideoTrackOpenFailedEventArgs.all.Release;
-            Free (this.m_IVideoTrackOpenFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVideoTrackOpenFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12871,7 +13005,9 @@ package body WinUI3.Windows.Media.Core is
       if this.m_IVideoTrackSupportInfo /= null then
          if this.m_IVideoTrackSupportInfo.all /= null then
             temp := this.m_IVideoTrackSupportInfo.all.Release;
-            Free (this.m_IVideoTrackSupportInfo);
+            if temp < 1 then
+               Free (this.m_IVideoTrackSupportInfo);
+            end if;
          end if;
       end if;
    end;

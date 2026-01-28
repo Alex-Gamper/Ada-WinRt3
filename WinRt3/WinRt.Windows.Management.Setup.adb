@@ -51,7 +51,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IAgentProvisioningProgressReport /= null then
          if this.m_IAgentProvisioningProgressReport.all /= null then
             temp := this.m_IAgentProvisioningProgressReport.all.Release;
-            Free (this.m_IAgentProvisioningProgressReport);
+            if temp < 1 then
+               Free (this.m_IAgentProvisioningProgressReport);
+            end if;
          end if;
       end if;
    end;
@@ -315,7 +317,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDeploymentSessionConnectionChangedEventArgs /= null then
          if this.m_IDeploymentSessionConnectionChangedEventArgs.all /= null then
             temp := this.m_IDeploymentSessionConnectionChangedEventArgs.all.Release;
-            Free (this.m_IDeploymentSessionConnectionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeploymentSessionConnectionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -390,7 +394,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDeploymentSessionHeartbeatRequestedEventArgs /= null then
          if this.m_IDeploymentSessionHeartbeatRequestedEventArgs.all /= null then
             temp := this.m_IDeploymentSessionHeartbeatRequestedEventArgs.all.Release;
-            Free (this.m_IDeploymentSessionHeartbeatRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeploymentSessionHeartbeatRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -445,7 +451,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDeploymentSessionStateChangedEventArgs /= null then
          if this.m_IDeploymentSessionStateChangedEventArgs.all /= null then
             temp := this.m_IDeploymentSessionStateChangedEventArgs.all.Release;
-            Free (this.m_IDeploymentSessionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDeploymentSessionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -505,7 +513,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDeploymentWorkload /= null then
          if this.m_IDeploymentWorkload.all /= null then
             temp := this.m_IDeploymentWorkload.all.Release;
-            Free (this.m_IDeploymentWorkload);
+            if temp < 1 then
+               Free (this.m_IDeploymentWorkload);
+            end if;
          end if;
       end if;
    end;
@@ -896,7 +906,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDeploymentWorkloadBatch /= null then
          if this.m_IDeploymentWorkloadBatch.all /= null then
             temp := this.m_IDeploymentWorkloadBatch.all.Release;
-            Free (this.m_IDeploymentWorkloadBatch);
+            if temp < 1 then
+               Free (this.m_IDeploymentWorkloadBatch);
+            end if;
          end if;
       end if;
    end;
@@ -1020,7 +1032,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IDevicePreparationExecutionContext /= null then
          if this.m_IDevicePreparationExecutionContext.all /= null then
             temp := this.m_IDevicePreparationExecutionContext.all.Release;
-            Free (this.m_IDevicePreparationExecutionContext);
+            if temp < 1 then
+               Free (this.m_IDevicePreparationExecutionContext);
+            end if;
          end if;
       end if;
    end;
@@ -1063,7 +1077,9 @@ package body WinRt.Windows.Management.Setup is
       if this.m_IMachineProvisioningProgressReporter /= null then
          if this.m_IMachineProvisioningProgressReporter.all /= null then
             temp := this.m_IMachineProvisioningProgressReporter.all.Release;
-            Free (this.m_IMachineProvisioningProgressReporter);
+            if temp < 1 then
+               Free (this.m_IMachineProvisioningProgressReporter);
+            end if;
          end if;
       end if;
    end;

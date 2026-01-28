@@ -47,7 +47,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_ICurrencyFormatter /= null then
          if this.m_ICurrencyFormatter.all /= null then
             temp := this.m_ICurrencyFormatter.all.Release;
-            Free (this.m_ICurrencyFormatter);
+            if temp < 1 then
+               Free (this.m_ICurrencyFormatter);
+            end if;
          end if;
       end if;
    end;
@@ -877,7 +879,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumberFormatter /= null then
          if this.m_INumberFormatter.all /= null then
             temp := this.m_INumberFormatter.all.Release;
-            Free (this.m_INumberFormatter);
+            if temp < 1 then
+               Free (this.m_INumberFormatter);
+            end if;
          end if;
       end if;
    end;
@@ -1586,7 +1590,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumberRounder /= null then
          if this.m_INumberRounder.all /= null then
             temp := this.m_INumberRounder.all.Release;
-            Free (this.m_INumberRounder);
+            if temp < 1 then
+               Free (this.m_INumberRounder);
+            end if;
          end if;
       end if;
    end;
@@ -1816,7 +1822,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumeralSystemTranslator /= null then
          if this.m_INumeralSystemTranslator.all /= null then
             temp := this.m_INumeralSystemTranslator.all.Release;
-            Free (this.m_INumeralSystemTranslator);
+            if temp < 1 then
+               Free (this.m_INumeralSystemTranslator);
+            end if;
          end if;
       end if;
    end;
@@ -1982,7 +1990,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumberFormatter /= null then
          if this.m_INumberFormatter.all /= null then
             temp := this.m_INumberFormatter.all.Release;
-            Free (this.m_INumberFormatter);
+            if temp < 1 then
+               Free (this.m_INumberFormatter);
+            end if;
          end if;
       end if;
    end;
@@ -2691,7 +2701,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumberFormatter /= null then
          if this.m_INumberFormatter.all /= null then
             temp := this.m_INumberFormatter.all.Release;
-            Free (this.m_INumberFormatter);
+            if temp < 1 then
+               Free (this.m_INumberFormatter);
+            end if;
          end if;
       end if;
    end;
@@ -3400,7 +3412,9 @@ package body WinUI3.Windows.Globalization.NumberFormatting is
       if this.m_INumberRounder /= null then
          if this.m_INumberRounder.all /= null then
             temp := this.m_INumberRounder.all.Release;
-            Free (this.m_INumberRounder);
+            if temp < 1 then
+               Free (this.m_INumberRounder);
+            end if;
          end if;
       end if;
    end;

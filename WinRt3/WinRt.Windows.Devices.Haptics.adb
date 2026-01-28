@@ -378,7 +378,9 @@ package body WinRt.Windows.Devices.Haptics is
       if this.m_ISimpleHapticsController /= null then
          if this.m_ISimpleHapticsController.all /= null then
             temp := this.m_ISimpleHapticsController.all.Release;
-            Free (this.m_ISimpleHapticsController);
+            if temp < 1 then
+               Free (this.m_ISimpleHapticsController);
+            end if;
          end if;
       end if;
    end;
@@ -589,7 +591,9 @@ package body WinRt.Windows.Devices.Haptics is
       if this.m_ISimpleHapticsControllerFeedback /= null then
          if this.m_ISimpleHapticsControllerFeedback.all /= null then
             temp := this.m_ISimpleHapticsControllerFeedback.all.Release;
-            Free (this.m_ISimpleHapticsControllerFeedback);
+            if temp < 1 then
+               Free (this.m_ISimpleHapticsControllerFeedback);
+            end if;
          end if;
       end if;
    end;
@@ -646,7 +650,9 @@ package body WinRt.Windows.Devices.Haptics is
       if this.m_IVibrationDevice /= null then
          if this.m_IVibrationDevice.all /= null then
             temp := this.m_IVibrationDevice.all.Release;
-            Free (this.m_IVibrationDevice);
+            if temp < 1 then
+               Free (this.m_IVibrationDevice);
+            end if;
          end if;
       end if;
    end;

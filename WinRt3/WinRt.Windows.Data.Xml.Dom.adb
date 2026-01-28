@@ -55,7 +55,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IDtdEntity /= null then
          if this.m_IDtdEntity.all /= null then
             temp := this.m_IDtdEntity.all.Release;
-            Free (this.m_IDtdEntity);
+            if temp < 1 then
+               Free (this.m_IDtdEntity);
+            end if;
          end if;
       end if;
    end;
@@ -797,7 +799,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IDtdNotation /= null then
          if this.m_IDtdNotation.all /= null then
             temp := this.m_IDtdNotation.all.Release;
-            Free (this.m_IDtdNotation);
+            if temp < 1 then
+               Free (this.m_IDtdNotation);
+            end if;
          end if;
       end if;
    end;
@@ -1522,7 +1526,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlAttribute /= null then
          if this.m_IXmlAttribute.all /= null then
             temp := this.m_IXmlAttribute.all.Release;
-            Free (this.m_IXmlAttribute);
+            if temp < 1 then
+               Free (this.m_IXmlAttribute);
+            end if;
          end if;
       end if;
    end;
@@ -2287,7 +2293,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlCDataSection /= null then
          if this.m_IXmlCDataSection.all /= null then
             temp := this.m_IXmlCDataSection.all.Release;
-            Free (this.m_IXmlCDataSection);
+            if temp < 1 then
+               Free (this.m_IXmlCDataSection);
+            end if;
          end if;
       end if;
    end;
@@ -3178,7 +3186,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlComment /= null then
          if this.m_IXmlComment.all /= null then
             temp := this.m_IXmlComment.all.Release;
-            Free (this.m_IXmlComment);
+            if temp < 1 then
+               Free (this.m_IXmlComment);
+            end if;
          end if;
       end if;
    end;
@@ -4047,7 +4057,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlDocument /= null then
          if this.m_IXmlDocument.all /= null then
             temp := this.m_IXmlDocument.all.Release;
-            Free (this.m_IXmlDocument);
+            if temp < 1 then
+               Free (this.m_IXmlDocument);
+            end if;
          end if;
       end if;
    end;
@@ -5560,7 +5572,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlDocumentFragment /= null then
          if this.m_IXmlDocumentFragment.all /= null then
             temp := this.m_IXmlDocumentFragment.all.Release;
-            Free (this.m_IXmlDocumentFragment);
+            if temp < 1 then
+               Free (this.m_IXmlDocumentFragment);
+            end if;
          end if;
       end if;
    end;
@@ -6251,7 +6265,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlDocumentType /= null then
          if this.m_IXmlDocumentType.all /= null then
             temp := this.m_IXmlDocumentType.all.Release;
-            Free (this.m_IXmlDocumentType);
+            if temp < 1 then
+               Free (this.m_IXmlDocumentType);
+            end if;
          end if;
       end if;
    end;
@@ -7002,7 +7018,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlDomImplementation /= null then
          if this.m_IXmlDomImplementation.all /= null then
             temp := this.m_IXmlDomImplementation.all.Release;
-            Free (this.m_IXmlDomImplementation);
+            if temp < 1 then
+               Free (this.m_IXmlDomImplementation);
+            end if;
          end if;
       end if;
    end;
@@ -7046,7 +7064,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlElement /= null then
          if this.m_IXmlElement.all /= null then
             temp := this.m_IXmlElement.all.Release;
-            Free (this.m_IXmlElement);
+            if temp < 1 then
+               Free (this.m_IXmlElement);
+            end if;
          end if;
       end if;
    end;
@@ -8013,7 +8033,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlEntityReference /= null then
          if this.m_IXmlEntityReference.all /= null then
             temp := this.m_IXmlEntityReference.all.Release;
-            Free (this.m_IXmlEntityReference);
+            if temp < 1 then
+               Free (this.m_IXmlEntityReference);
+            end if;
          end if;
       end if;
    end;
@@ -8704,7 +8726,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlLoadSettings /= null then
          if this.m_IXmlLoadSettings.all /= null then
             temp := this.m_IXmlLoadSettings.all.Release;
-            Free (this.m_IXmlLoadSettings);
+            if temp < 1 then
+               Free (this.m_IXmlLoadSettings);
+            end if;
          end if;
       end if;
    end;
@@ -8906,7 +8930,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlNamedNodeMap /= null then
          if this.m_IXmlNamedNodeMap.all /= null then
             temp := this.m_IXmlNamedNodeMap.all.Release;
-            Free (this.m_IXmlNamedNodeMap);
+            if temp < 1 then
+               Free (this.m_IXmlNamedNodeMap);
+            end if;
          end if;
       end if;
    end;
@@ -9200,7 +9226,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlNodeList /= null then
          if this.m_IXmlNodeList.all /= null then
             temp := this.m_IXmlNodeList.all.Release;
-            Free (this.m_IXmlNodeList);
+            if temp < 1 then
+               Free (this.m_IXmlNodeList);
+            end if;
          end if;
       end if;
    end;
@@ -9376,7 +9404,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlProcessingInstruction /= null then
          if this.m_IXmlProcessingInstruction.all /= null then
             temp := this.m_IXmlProcessingInstruction.all.Release;
-            Free (this.m_IXmlProcessingInstruction);
+            if temp < 1 then
+               Free (this.m_IXmlProcessingInstruction);
+            end if;
          end if;
       end if;
    end;
@@ -10124,7 +10154,9 @@ package body WinRt.Windows.Data.Xml.Dom is
       if this.m_IXmlText /= null then
          if this.m_IXmlText.all /= null then
             temp := this.m_IXmlText.all.Release;
-            Free (this.m_IXmlText);
+            if temp < 1 then
+               Free (this.m_IXmlText);
+            end if;
          end if;
       end if;
    end;

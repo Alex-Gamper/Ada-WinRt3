@@ -50,7 +50,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IAccountsSettingsPane /= null then
          if this.m_IAccountsSettingsPane.all /= null then
             temp := this.m_IAccountsSettingsPane.all.Release;
-            Free (this.m_IAccountsSettingsPane);
+            if temp < 1 then
+               Free (this.m_IAccountsSettingsPane);
+            end if;
          end if;
       end if;
    end;
@@ -341,7 +343,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IAccountsSettingsPaneCommandsRequestedEventArgs /= null then
          if this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all /= null then
             temp := this.m_IAccountsSettingsPaneCommandsRequestedEventArgs.all.Release;
-            Free (this.m_IAccountsSettingsPaneCommandsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAccountsSettingsPaneCommandsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -522,7 +526,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IAccountsSettingsPaneEventDeferral /= null then
          if this.m_IAccountsSettingsPaneEventDeferral.all /= null then
             temp := this.m_IAccountsSettingsPaneEventDeferral.all.Release;
-            Free (this.m_IAccountsSettingsPaneEventDeferral);
+            if temp < 1 then
+               Free (this.m_IAccountsSettingsPaneEventDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -559,7 +565,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_ICredentialCommand /= null then
          if this.m_ICredentialCommand.all /= null then
             temp := this.m_ICredentialCommand.all.Release;
-            Free (this.m_ICredentialCommand);
+            if temp < 1 then
+               Free (this.m_ICredentialCommand);
+            end if;
          end if;
       end if;
    end;
@@ -687,7 +695,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IUICommand /= null then
          if this.m_IUICommand.all /= null then
             temp := this.m_IUICommand.all.Release;
-            Free (this.m_IUICommand);
+            if temp < 1 then
+               Free (this.m_IUICommand);
+            end if;
          end if;
       end if;
    end;
@@ -871,7 +881,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_ISettingsPane /= null then
          if this.m_ISettingsPane.all /= null then
             temp := this.m_ISettingsPane.all.Release;
-            Free (this.m_ISettingsPane);
+            if temp < 1 then
+               Free (this.m_ISettingsPane);
+            end if;
          end if;
       end if;
    end;
@@ -993,7 +1005,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_ISettingsPaneCommandsRequest /= null then
          if this.m_ISettingsPaneCommandsRequest.all /= null then
             temp := this.m_ISettingsPaneCommandsRequest.all.Release;
-            Free (this.m_ISettingsPaneCommandsRequest);
+            if temp < 1 then
+               Free (this.m_ISettingsPaneCommandsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1033,7 +1047,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_ISettingsPaneCommandsRequestedEventArgs /= null then
          if this.m_ISettingsPaneCommandsRequestedEventArgs.all /= null then
             temp := this.m_ISettingsPaneCommandsRequestedEventArgs.all.Release;
-            Free (this.m_ISettingsPaneCommandsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISettingsPaneCommandsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1076,7 +1092,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IWebAccountCommand /= null then
          if this.m_IWebAccountCommand.all /= null then
             temp := this.m_IWebAccountCommand.all.Release;
-            Free (this.m_IWebAccountCommand);
+            if temp < 1 then
+               Free (this.m_IWebAccountCommand);
+            end if;
          end if;
       end if;
    end;
@@ -1198,7 +1216,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IWebAccountInvokedArgs /= null then
          if this.m_IWebAccountInvokedArgs.all /= null then
             temp := this.m_IWebAccountInvokedArgs.all.Release;
-            Free (this.m_IWebAccountInvokedArgs);
+            if temp < 1 then
+               Free (this.m_IWebAccountInvokedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1238,7 +1258,9 @@ package body WinUI3.Windows.UI.ApplicationSettings is
       if this.m_IWebAccountProviderCommand /= null then
          if this.m_IWebAccountProviderCommand.all /= null then
             temp := this.m_IWebAccountProviderCommand.all.Release;
-            Free (this.m_IWebAccountProviderCommand);
+            if temp < 1 then
+               Free (this.m_IWebAccountProviderCommand);
+            end if;
          end if;
       end if;
    end;

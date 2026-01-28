@@ -48,7 +48,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IAnnotationPatternIdentifiers /= null then
          if this.m_IAnnotationPatternIdentifiers.all /= null then
             temp := this.m_IAnnotationPatternIdentifiers.all.Release;
-            Free (this.m_IAnnotationPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IAnnotationPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -194,7 +196,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IAutomationAnnotation /= null then
          if this.m_IAutomationAnnotation.all /= null then
             temp := this.m_IAutomationAnnotation.all.Release;
-            Free (this.m_IAutomationAnnotation);
+            if temp < 1 then
+               Free (this.m_IAutomationAnnotation);
+            end if;
          end if;
       end if;
    end;
@@ -403,7 +407,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IAutomationElementIdentifiers /= null then
          if this.m_IAutomationElementIdentifiers.all /= null then
             temp := this.m_IAutomationElementIdentifiers.all.Release;
-            Free (this.m_IAutomationElementIdentifiers);
+            if temp < 1 then
+               Free (this.m_IAutomationElementIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -1365,7 +1371,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IAutomationProperties /= null then
          if this.m_IAutomationProperties.all /= null then
             temp := this.m_IAutomationProperties.all.Release;
-            Free (this.m_IAutomationProperties);
+            if temp < 1 then
+               Free (this.m_IAutomationProperties);
+            end if;
          end if;
       end if;
    end;
@@ -3364,7 +3372,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IAutomationProperty /= null then
          if this.m_IAutomationProperty.all /= null then
             temp := this.m_IAutomationProperty.all.Release;
-            Free (this.m_IAutomationProperty);
+            if temp < 1 then
+               Free (this.m_IAutomationProperty);
+            end if;
          end if;
       end if;
    end;
@@ -3387,7 +3397,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IDockPatternIdentifiers /= null then
          if this.m_IDockPatternIdentifiers.all /= null then
             temp := this.m_IDockPatternIdentifiers.all.Release;
-            Free (this.m_IDockPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IDockPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3437,7 +3449,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IDragPatternIdentifiers /= null then
          if this.m_IDragPatternIdentifiers.all /= null then
             temp := this.m_IDragPatternIdentifiers.all.Release;
-            Free (this.m_IDragPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IDragPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3559,7 +3573,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IDropTargetPatternIdentifiers /= null then
          if this.m_IDropTargetPatternIdentifiers.all /= null then
             temp := this.m_IDropTargetPatternIdentifiers.all.Release;
-            Free (this.m_IDropTargetPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IDropTargetPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3633,7 +3649,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IExpandCollapsePatternIdentifiers /= null then
          if this.m_IExpandCollapsePatternIdentifiers.all /= null then
             temp := this.m_IExpandCollapsePatternIdentifiers.all.Release;
-            Free (this.m_IExpandCollapsePatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IExpandCollapsePatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3683,7 +3701,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IGridItemPatternIdentifiers /= null then
          if this.m_IGridItemPatternIdentifiers.all /= null then
             temp := this.m_IGridItemPatternIdentifiers.all.Release;
-            Free (this.m_IGridItemPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IGridItemPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3829,7 +3849,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IGridPatternIdentifiers /= null then
          if this.m_IGridPatternIdentifiers.all /= null then
             temp := this.m_IGridPatternIdentifiers.all.Release;
-            Free (this.m_IGridPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IGridPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3903,7 +3925,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IMultipleViewPatternIdentifiers /= null then
          if this.m_IMultipleViewPatternIdentifiers.all /= null then
             temp := this.m_IMultipleViewPatternIdentifiers.all.Release;
-            Free (this.m_IMultipleViewPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IMultipleViewPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -3977,7 +4001,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IRangeValuePatternIdentifiers /= null then
          if this.m_IRangeValuePatternIdentifiers.all /= null then
             temp := this.m_IRangeValuePatternIdentifiers.all.Release;
-            Free (this.m_IRangeValuePatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IRangeValuePatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4147,7 +4173,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IScrollPatternIdentifiers /= null then
          if this.m_IScrollPatternIdentifiers.all /= null then
             temp := this.m_IScrollPatternIdentifiers.all.Release;
-            Free (this.m_IScrollPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IScrollPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4338,7 +4366,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ISelectionItemPatternIdentifiers /= null then
          if this.m_ISelectionItemPatternIdentifiers.all /= null then
             temp := this.m_ISelectionItemPatternIdentifiers.all.Release;
-            Free (this.m_ISelectionItemPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ISelectionItemPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4412,7 +4442,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ISelectionPatternIdentifiers /= null then
          if this.m_ISelectionPatternIdentifiers.all /= null then
             temp := this.m_ISelectionPatternIdentifiers.all.Release;
-            Free (this.m_ISelectionPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ISelectionPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4510,7 +4542,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ISpreadsheetItemPatternIdentifiers /= null then
          if this.m_ISpreadsheetItemPatternIdentifiers.all /= null then
             temp := this.m_ISpreadsheetItemPatternIdentifiers.all.Release;
-            Free (this.m_ISpreadsheetItemPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ISpreadsheetItemPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4560,7 +4594,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IStylesPatternIdentifiers /= null then
          if this.m_IStylesPatternIdentifiers.all /= null then
             temp := this.m_IStylesPatternIdentifiers.all.Release;
-            Free (this.m_IStylesPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IStylesPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4754,7 +4790,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ITableItemPatternIdentifiers /= null then
          if this.m_ITableItemPatternIdentifiers.all /= null then
             temp := this.m_ITableItemPatternIdentifiers.all.Release;
-            Free (this.m_ITableItemPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ITableItemPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4828,7 +4866,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ITablePatternIdentifiers /= null then
          if this.m_ITablePatternIdentifiers.all /= null then
             temp := this.m_ITablePatternIdentifiers.all.Release;
-            Free (this.m_ITablePatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ITablePatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4926,7 +4966,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ITogglePatternIdentifiers /= null then
          if this.m_ITogglePatternIdentifiers.all /= null then
             temp := this.m_ITogglePatternIdentifiers.all.Release;
-            Free (this.m_ITogglePatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ITogglePatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -4976,7 +5018,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ITransformPattern2Identifiers /= null then
          if this.m_ITransformPattern2Identifiers.all /= null then
             temp := this.m_ITransformPattern2Identifiers.all.Release;
-            Free (this.m_ITransformPattern2Identifiers);
+            if temp < 1 then
+               Free (this.m_ITransformPattern2Identifiers);
+            end if;
          end if;
       end if;
    end;
@@ -5098,7 +5142,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_ITransformPatternIdentifiers /= null then
          if this.m_ITransformPatternIdentifiers.all /= null then
             temp := this.m_ITransformPatternIdentifiers.all.Release;
-            Free (this.m_ITransformPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_ITransformPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -5196,7 +5242,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IValuePatternIdentifiers /= null then
          if this.m_IValuePatternIdentifiers.all /= null then
             temp := this.m_IValuePatternIdentifiers.all.Release;
-            Free (this.m_IValuePatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IValuePatternIdentifiers);
+            end if;
          end if;
       end if;
    end;
@@ -5270,7 +5318,9 @@ package body WinUI3.Windows.UI.Xaml.Automation is
       if this.m_IWindowPatternIdentifiers /= null then
          if this.m_IWindowPatternIdentifiers.all /= null then
             temp := this.m_IWindowPatternIdentifiers.all.Release;
-            Free (this.m_IWindowPatternIdentifiers);
+            if temp < 1 then
+               Free (this.m_IWindowPatternIdentifiers);
+            end if;
          end if;
       end if;
    end;

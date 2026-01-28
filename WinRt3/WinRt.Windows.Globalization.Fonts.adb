@@ -47,7 +47,9 @@ package body WinRt.Windows.Globalization.Fonts is
       if this.m_ILanguageFont /= null then
          if this.m_ILanguageFont.all /= null then
             temp := this.m_ILanguageFont.all.Release;
-            Free (this.m_ILanguageFont);
+            if temp < 1 then
+               Free (this.m_ILanguageFont);
+            end if;
          end if;
       end if;
    end;
@@ -158,7 +160,9 @@ package body WinRt.Windows.Globalization.Fonts is
       if this.m_ILanguageFontGroup /= null then
          if this.m_ILanguageFontGroup.all /= null then
             temp := this.m_ILanguageFontGroup.all.Release;
-            Free (this.m_ILanguageFontGroup);
+            if temp < 1 then
+               Free (this.m_ILanguageFontGroup);
+            end if;
          end if;
       end if;
    end;

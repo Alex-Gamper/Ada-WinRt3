@@ -46,7 +46,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider is
       if this.m_IUserDataAccountPartnerAccountInfo /= null then
          if this.m_IUserDataAccountPartnerAccountInfo.all /= null then
             temp := this.m_IUserDataAccountPartnerAccountInfo.all.Release;
-            Free (this.m_IUserDataAccountPartnerAccountInfo);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountPartnerAccountInfo);
+            end if;
          end if;
       end if;
    end;
@@ -123,7 +125,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider is
       if this.m_IUserDataAccountProviderAddAccountOperation /= null then
          if this.m_IUserDataAccountProviderAddAccountOperation.all /= null then
             temp := this.m_IUserDataAccountProviderAddAccountOperation.all.Release;
-            Free (this.m_IUserDataAccountProviderAddAccountOperation);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountProviderAddAccountOperation);
+            end if;
          end if;
       end if;
    end;
@@ -221,7 +225,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider is
       if this.m_IUserDataAccountProviderResolveErrorsOperation /= null then
          if this.m_IUserDataAccountProviderResolveErrorsOperation.all /= null then
             temp := this.m_IUserDataAccountProviderResolveErrorsOperation.all.Release;
-            Free (this.m_IUserDataAccountProviderResolveErrorsOperation);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountProviderResolveErrorsOperation);
+            end if;
          end if;
       end if;
    end;
@@ -299,7 +305,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts.Provider is
       if this.m_IUserDataAccountProviderSettingsOperation /= null then
          if this.m_IUserDataAccountProviderSettingsOperation.all /= null then
             temp := this.m_IUserDataAccountProviderSettingsOperation.all.Release;
-            Free (this.m_IUserDataAccountProviderSettingsOperation);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountProviderSettingsOperation);
+            end if;
          end if;
       end if;
    end;

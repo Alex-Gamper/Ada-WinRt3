@@ -85,7 +85,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironment /= null then
          if this.m_IIsolatedWindowsEnvironment.all /= null then
             temp := this.m_IIsolatedWindowsEnvironment.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironment);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironment);
+            end if;
          end if;
       end if;
    end;
@@ -1225,7 +1227,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentCreateResult /= null then
          if this.m_IIsolatedWindowsEnvironmentCreateResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentCreateResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentCreateResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentCreateResult);
+            end if;
          end if;
       end if;
    end;
@@ -1321,7 +1325,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentFile /= null then
          if this.m_IIsolatedWindowsEnvironmentFile.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentFile.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentFile);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentFile);
+            end if;
          end if;
       end if;
    end;
@@ -1488,7 +1494,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentLaunchFileResult /= null then
          if this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentLaunchFileResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentLaunchFileResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentLaunchFileResult);
+            end if;
          end if;
       end if;
    end;
@@ -1565,7 +1573,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentOptions /= null then
          if this.m_IIsolatedWindowsEnvironmentOptions.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentOptions.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentOptions);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2120,7 +2130,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData /= null then
          if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationData);
+            end if;
          end if;
       end if;
    end;
@@ -2242,7 +2254,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult /= null then
          if this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentOwnerRegistrationResult);
+            end if;
          end if;
       end if;
    end;
@@ -2299,7 +2313,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentPostMessageResult /= null then
          if this.m_IIsolatedWindowsEnvironmentPostMessageResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentPostMessageResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentPostMessageResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentPostMessageResult);
+            end if;
          end if;
       end if;
    end;
@@ -2356,7 +2372,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentProcess /= null then
          if this.m_IIsolatedWindowsEnvironmentProcess.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentProcess.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentProcess);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentProcess);
+            end if;
          end if;
       end if;
    end;
@@ -2484,7 +2502,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentShareFileRequestOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2558,7 +2578,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentShareFileResult /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFileResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentShareFileResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentShareFileResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentShareFileResult);
+            end if;
          end if;
       end if;
    end;
@@ -2635,7 +2657,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentShareFolderRequestOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2709,7 +2733,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentShareFolderResult /= null then
          if this.m_IIsolatedWindowsEnvironmentShareFolderResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentShareFolderResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentShareFolderResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentShareFolderResult);
+            end if;
          end if;
       end if;
    end;
@@ -2766,7 +2792,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentStartProcessResult /= null then
          if this.m_IIsolatedWindowsEnvironmentStartProcessResult.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentStartProcessResult.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentStartProcessResult);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentStartProcessResult);
+            end if;
          end if;
       end if;
    end;
@@ -2843,7 +2871,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentTelemetryParameters /= null then
          if this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentTelemetryParameters.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentTelemetryParameters);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentTelemetryParameters);
+            end if;
          end if;
       end if;
    end;
@@ -2917,7 +2947,9 @@ package body WinRt.Windows.Security.Isolation is
       if this.m_IIsolatedWindowsEnvironmentUserInfo /= null then
          if this.m_IIsolatedWindowsEnvironmentUserInfo.all /= null then
             temp := this.m_IIsolatedWindowsEnvironmentUserInfo.all.Release;
-            Free (this.m_IIsolatedWindowsEnvironmentUserInfo);
+            if temp < 1 then
+               Free (this.m_IIsolatedWindowsEnvironmentUserInfo);
+            end if;
          end if;
       end if;
    end;

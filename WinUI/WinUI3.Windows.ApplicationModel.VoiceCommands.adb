@@ -61,7 +61,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommand /= null then
          if this.m_IVoiceCommand.all /= null then
             temp := this.m_IVoiceCommand.all.Release;
-            Free (this.m_IVoiceCommand);
+            if temp < 1 then
+               Free (this.m_IVoiceCommand);
+            end if;
          end if;
       end if;
    end;
@@ -141,7 +143,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandCompletedEventArgs /= null then
          if this.m_IVoiceCommandCompletedEventArgs.all /= null then
             temp := this.m_IVoiceCommandCompletedEventArgs.all.Release;
-            Free (this.m_IVoiceCommandCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -181,7 +185,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandConfirmationResult /= null then
          if this.m_IVoiceCommandConfirmationResult.all /= null then
             temp := this.m_IVoiceCommandConfirmationResult.all.Release;
-            Free (this.m_IVoiceCommandConfirmationResult);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandConfirmationResult);
+            end if;
          end if;
       end if;
    end;
@@ -221,7 +227,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandContentTile /= null then
          if this.m_IVoiceCommandContentTile.all /= null then
             temp := this.m_IVoiceCommandContentTile.all.Release;
-            Free (this.m_IVoiceCommandContentTile);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandContentTile);
+            end if;
          end if;
       end if;
    end;
@@ -544,7 +552,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandDefinition /= null then
          if this.m_IVoiceCommandDefinition.all /= null then
             temp := this.m_IVoiceCommandDefinition.all.Release;
-            Free (this.m_IVoiceCommandDefinition);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -729,7 +739,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandDisambiguationResult /= null then
          if this.m_IVoiceCommandDisambiguationResult.all /= null then
             temp := this.m_IVoiceCommandDisambiguationResult.all.Release;
-            Free (this.m_IVoiceCommandDisambiguationResult);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandDisambiguationResult);
+            end if;
          end if;
       end if;
    end;
@@ -772,7 +784,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandResponse /= null then
          if this.m_IVoiceCommandResponse.all /= null then
             temp := this.m_IVoiceCommandResponse.all.Release;
-            Free (this.m_IVoiceCommandResponse);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandResponse);
+            end if;
          end if;
       end if;
    end;
@@ -1058,7 +1072,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandServiceConnection /= null then
          if this.m_IVoiceCommandServiceConnection.all /= null then
             temp := this.m_IVoiceCommandServiceConnection.all.Release;
-            Free (this.m_IVoiceCommandServiceConnection);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandServiceConnection);
+            end if;
          end if;
       end if;
    end;
@@ -1536,7 +1552,9 @@ package body WinUI3.Windows.ApplicationModel.VoiceCommands is
       if this.m_IVoiceCommandUserMessage /= null then
          if this.m_IVoiceCommandUserMessage.all /= null then
             temp := this.m_IVoiceCommandUserMessage.all.Release;
-            Free (this.m_IVoiceCommandUserMessage);
+            if temp < 1 then
+               Free (this.m_IVoiceCommandUserMessage);
+            end if;
          end if;
       end if;
    end;

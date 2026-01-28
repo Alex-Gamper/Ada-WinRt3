@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarCancelMeetingRequest /= null then
          if this.m_IAppointmentCalendarCancelMeetingRequest.all /= null then
             temp := this.m_IAppointmentCalendarCancelMeetingRequest.all.Release;
-            Free (this.m_IAppointmentCalendarCancelMeetingRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarCancelMeetingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +273,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarCancelMeetingRequestEventArgs /= null then
          if this.m_IAppointmentCalendarCancelMeetingRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarCancelMeetingRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarCancelMeetingRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarCancelMeetingRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -334,7 +338,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequest /= null then
          if this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequest.all /= null then
             temp := this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequest.all.Release;
-            Free (this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequest);
+            end if;
          end if;
       end if;
    end;
@@ -519,7 +525,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs /= null then
          if this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarCreateOrUpdateAppointmentRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -582,7 +590,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarForwardMeetingRequest /= null then
          if this.m_IAppointmentCalendarForwardMeetingRequest.all /= null then
             temp := this.m_IAppointmentCalendarForwardMeetingRequest.all.Release;
-            Free (this.m_IAppointmentCalendarForwardMeetingRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarForwardMeetingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -829,7 +839,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarForwardMeetingRequestEventArgs /= null then
          if this.m_IAppointmentCalendarForwardMeetingRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarForwardMeetingRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarForwardMeetingRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarForwardMeetingRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -892,7 +904,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarProposeNewTimeForMeetingRequest /= null then
          if this.m_IAppointmentCalendarProposeNewTimeForMeetingRequest.all /= null then
             temp := this.m_IAppointmentCalendarProposeNewTimeForMeetingRequest.all.Release;
-            Free (this.m_IAppointmentCalendarProposeNewTimeForMeetingRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarProposeNewTimeForMeetingRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1133,7 +1147,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs /= null then
          if this.m_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarProposeNewTimeForMeetingRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1196,7 +1212,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarSyncManagerSyncRequest /= null then
          if this.m_IAppointmentCalendarSyncManagerSyncRequest.all /= null then
             temp := this.m_IAppointmentCalendarSyncManagerSyncRequest.all.Release;
-            Free (this.m_IAppointmentCalendarSyncManagerSyncRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarSyncManagerSyncRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1323,7 +1341,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarSyncManagerSyncRequestEventArgs /= null then
          if this.m_IAppointmentCalendarSyncManagerSyncRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarSyncManagerSyncRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarSyncManagerSyncRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarSyncManagerSyncRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1386,7 +1406,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarUpdateMeetingResponseRequest /= null then
          if this.m_IAppointmentCalendarUpdateMeetingResponseRequest.all /= null then
             temp := this.m_IAppointmentCalendarUpdateMeetingResponseRequest.all.Release;
-            Free (this.m_IAppointmentCalendarUpdateMeetingResponseRequest);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarUpdateMeetingResponseRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1627,7 +1649,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs /= null then
          if this.m_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs.all /= null then
             temp := this.m_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs.all.Release;
-            Free (this.m_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppointmentCalendarUpdateMeetingResponseRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1690,7 +1714,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentDataProviderConnection /= null then
          if this.m_IAppointmentDataProviderConnection.all /= null then
             temp := this.m_IAppointmentDataProviderConnection.all.Release;
-            Free (this.m_IAppointmentDataProviderConnection);
+            if temp < 1 then
+               Free (this.m_IAppointmentDataProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -1925,7 +1951,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.DataProvider is
       if this.m_IAppointmentDataProviderTriggerDetails /= null then
          if this.m_IAppointmentDataProviderTriggerDetails.all /= null then
             temp := this.m_IAppointmentDataProviderTriggerDetails.all.Release;
-            Free (this.m_IAppointmentDataProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IAppointmentDataProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;

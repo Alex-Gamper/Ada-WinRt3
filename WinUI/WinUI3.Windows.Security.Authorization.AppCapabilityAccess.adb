@@ -55,7 +55,9 @@ package body WinUI3.Windows.Security.Authorization.AppCapabilityAccess is
       if this.m_IAppCapability /= null then
          if this.m_IAppCapability.all /= null then
             temp := this.m_IAppCapability.all.Release;
-            Free (this.m_IAppCapability);
+            if temp < 1 then
+               Free (this.m_IAppCapability);
+            end if;
          end if;
       end if;
    end;
@@ -480,7 +482,9 @@ package body WinUI3.Windows.Security.Authorization.AppCapabilityAccess is
       if this.m_IAppCapabilityAccessChangedEventArgs /= null then
          if this.m_IAppCapabilityAccessChangedEventArgs.all /= null then
             temp := this.m_IAppCapabilityAccessChangedEventArgs.all.Release;
-            Free (this.m_IAppCapabilityAccessChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppCapabilityAccessChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

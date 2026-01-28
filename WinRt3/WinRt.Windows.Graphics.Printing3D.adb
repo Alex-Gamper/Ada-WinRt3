@@ -65,7 +65,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DManager /= null then
          if this.m_IPrint3DManager.all /= null then
             temp := this.m_IPrint3DManager.all.Release;
-            Free (this.m_IPrint3DManager);
+            if temp < 1 then
+               Free (this.m_IPrint3DManager);
+            end if;
          end if;
       end if;
    end;
@@ -215,7 +217,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTask /= null then
          if this.m_IPrint3DTask.all /= null then
             temp := this.m_IPrint3DTask.all.Release;
-            Free (this.m_IPrint3DTask);
+            if temp < 1 then
+               Free (this.m_IPrint3DTask);
+            end if;
          end if;
       end if;
    end;
@@ -357,7 +361,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTaskCompletedEventArgs /= null then
          if this.m_IPrint3DTaskCompletedEventArgs.all /= null then
             temp := this.m_IPrint3DTaskCompletedEventArgs.all.Release;
-            Free (this.m_IPrint3DTaskCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DTaskCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -414,7 +420,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTaskRequest /= null then
          if this.m_IPrint3DTaskRequest.all /= null then
             temp := this.m_IPrint3DTaskRequest.all.Release;
-            Free (this.m_IPrint3DTaskRequest);
+            if temp < 1 then
+               Free (this.m_IPrint3DTaskRequest);
+            end if;
          end if;
       end if;
    end;
@@ -464,7 +472,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTaskRequestedEventArgs /= null then
          if this.m_IPrint3DTaskRequestedEventArgs.all /= null then
             temp := this.m_IPrint3DTaskRequestedEventArgs.all.Release;
-            Free (this.m_IPrint3DTaskRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DTaskRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -507,7 +517,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTaskSourceChangedEventArgs /= null then
          if this.m_IPrint3DTaskSourceChangedEventArgs.all /= null then
             temp := this.m_IPrint3DTaskSourceChangedEventArgs.all.Release;
-            Free (this.m_IPrint3DTaskSourceChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DTaskSourceChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -550,7 +562,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrint3DTaskSourceRequestedArgs /= null then
          if this.m_IPrint3DTaskSourceRequestedArgs.all /= null then
             temp := this.m_IPrint3DTaskSourceRequestedArgs.all.Release;
-            Free (this.m_IPrint3DTaskSourceRequestedArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DTaskSourceRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -603,7 +617,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3D3MFPackage /= null then
          if this.m_IPrinting3D3MFPackage.all /= null then
             temp := this.m_IPrinting3D3MFPackage.all.Release;
-            Free (this.m_IPrinting3D3MFPackage);
+            if temp < 1 then
+               Free (this.m_IPrinting3D3MFPackage);
+            end if;
          end if;
       end if;
    end;
@@ -1053,7 +1069,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DBaseMaterial /= null then
          if this.m_IPrinting3DBaseMaterial.all /= null then
             temp := this.m_IPrinting3DBaseMaterial.all.Release;
-            Free (this.m_IPrinting3DBaseMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DBaseMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -1218,7 +1236,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DBaseMaterialGroup /= null then
          if this.m_IPrinting3DBaseMaterialGroup.all /= null then
             temp := this.m_IPrinting3DBaseMaterialGroup.all.Release;
-            Free (this.m_IPrinting3DBaseMaterialGroup);
+            if temp < 1 then
+               Free (this.m_IPrinting3DBaseMaterialGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1305,7 +1325,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DColorMaterial /= null then
          if this.m_IPrinting3DColorMaterial.all /= null then
             temp := this.m_IPrinting3DColorMaterial.all.Release;
-            Free (this.m_IPrinting3DColorMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DColorMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -1419,7 +1441,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DColorMaterialGroup /= null then
          if this.m_IPrinting3DColorMaterialGroup.all /= null then
             temp := this.m_IPrinting3DColorMaterialGroup.all.Release;
-            Free (this.m_IPrinting3DColorMaterialGroup);
+            if temp < 1 then
+               Free (this.m_IPrinting3DColorMaterialGroup);
+            end if;
          end if;
       end if;
    end;
@@ -1506,7 +1530,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DComponent /= null then
          if this.m_IPrinting3DComponent.all /= null then
             temp := this.m_IPrinting3DComponent.all.Release;
-            Free (this.m_IPrinting3DComponent);
+            if temp < 1 then
+               Free (this.m_IPrinting3DComponent);
+            end if;
          end if;
       end if;
    end;
@@ -1744,7 +1770,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DComponentWithMatrix /= null then
          if this.m_IPrinting3DComponentWithMatrix.all /= null then
             temp := this.m_IPrinting3DComponentWithMatrix.all.Release;
-            Free (this.m_IPrinting3DComponentWithMatrix);
+            if temp < 1 then
+               Free (this.m_IPrinting3DComponentWithMatrix);
+            end if;
          end if;
       end if;
    end;
@@ -1853,7 +1881,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DCompositeMaterial /= null then
          if this.m_IPrinting3DCompositeMaterial.all /= null then
             temp := this.m_IPrinting3DCompositeMaterial.all.Release;
-            Free (this.m_IPrinting3DCompositeMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DCompositeMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -1915,7 +1945,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DCompositeMaterialGroup /= null then
          if this.m_IPrinting3DCompositeMaterialGroup.all /= null then
             temp := this.m_IPrinting3DCompositeMaterialGroup.all.Release;
-            Free (this.m_IPrinting3DCompositeMaterialGroup);
+            if temp < 1 then
+               Free (this.m_IPrinting3DCompositeMaterialGroup);
+            end if;
          end if;
       end if;
    end;
@@ -2065,7 +2097,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DFaceReductionOptions /= null then
          if this.m_IPrinting3DFaceReductionOptions.all /= null then
             temp := this.m_IPrinting3DFaceReductionOptions.all.Release;
-            Free (this.m_IPrinting3DFaceReductionOptions);
+            if temp < 1 then
+               Free (this.m_IPrinting3DFaceReductionOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2203,7 +2237,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DMaterial /= null then
          if this.m_IPrinting3DMaterial.all /= null then
             temp := this.m_IPrinting3DMaterial.all.Release;
-            Free (this.m_IPrinting3DMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -2345,7 +2381,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DMesh /= null then
          if this.m_IPrinting3DMesh.all /= null then
             temp := this.m_IPrinting3DMesh.all.Release;
-            Free (this.m_IPrinting3DMesh);
+            if temp < 1 then
+               Free (this.m_IPrinting3DMesh);
+            end if;
          end if;
       end if;
    end;
@@ -2808,7 +2846,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DMeshVerificationResult /= null then
          if this.m_IPrinting3DMeshVerificationResult.all /= null then
             temp := this.m_IPrinting3DMeshVerificationResult.all.Release;
-            Free (this.m_IPrinting3DMeshVerificationResult);
+            if temp < 1 then
+               Free (this.m_IPrinting3DMeshVerificationResult);
+            end if;
          end if;
       end if;
    end;
@@ -2888,7 +2928,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DModel /= null then
          if this.m_IPrinting3DModel.all /= null then
             temp := this.m_IPrinting3DModel.all.Release;
-            Free (this.m_IPrinting3DModel);
+            if temp < 1 then
+               Free (this.m_IPrinting3DModel);
+            end if;
          end if;
       end if;
    end;
@@ -3637,7 +3679,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DModelTexture /= null then
          if this.m_IPrinting3DModelTexture.all /= null then
             temp := this.m_IPrinting3DModelTexture.all.Release;
-            Free (this.m_IPrinting3DModelTexture);
+            if temp < 1 then
+               Free (this.m_IPrinting3DModelTexture);
+            end if;
          end if;
       end if;
    end;
@@ -3778,7 +3822,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DMultiplePropertyMaterial /= null then
          if this.m_IPrinting3DMultiplePropertyMaterial.all /= null then
             temp := this.m_IPrinting3DMultiplePropertyMaterial.all.Release;
-            Free (this.m_IPrinting3DMultiplePropertyMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DMultiplePropertyMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -3840,7 +3886,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DMultiplePropertyMaterialGroup /= null then
          if this.m_IPrinting3DMultiplePropertyMaterialGroup.all /= null then
             temp := this.m_IPrinting3DMultiplePropertyMaterialGroup.all.Release;
-            Free (this.m_IPrinting3DMultiplePropertyMaterialGroup);
+            if temp < 1 then
+               Free (this.m_IPrinting3DMultiplePropertyMaterialGroup);
+            end if;
          end if;
       end if;
    end;
@@ -3947,7 +3995,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DTexture2CoordMaterial /= null then
          if this.m_IPrinting3DTexture2CoordMaterial.all /= null then
             temp := this.m_IPrinting3DTexture2CoordMaterial.all.Release;
-            Free (this.m_IPrinting3DTexture2CoordMaterial);
+            if temp < 1 then
+               Free (this.m_IPrinting3DTexture2CoordMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -4088,7 +4138,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DTexture2CoordMaterialGroup /= null then
          if this.m_IPrinting3DTexture2CoordMaterialGroup.all /= null then
             temp := this.m_IPrinting3DTexture2CoordMaterialGroup.all.Release;
-            Free (this.m_IPrinting3DTexture2CoordMaterialGroup);
+            if temp < 1 then
+               Free (this.m_IPrinting3DTexture2CoordMaterialGroup);
+            end if;
          end if;
       end if;
    end;
@@ -4218,7 +4270,9 @@ package body WinRt.Windows.Graphics.Printing3D is
       if this.m_IPrinting3DTextureResource /= null then
          if this.m_IPrinting3DTextureResource.all /= null then
             temp := this.m_IPrinting3DTextureResource.all.Release;
-            Free (this.m_IPrinting3DTextureResource);
+            if temp < 1 then
+               Free (this.m_IPrinting3DTextureResource);
+            end if;
          end if;
       end if;
    end;

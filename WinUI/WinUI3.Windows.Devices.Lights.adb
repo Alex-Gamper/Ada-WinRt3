@@ -60,7 +60,9 @@ package body WinUI3.Windows.Devices.Lights is
       if this.m_ILamp /= null then
          if this.m_ILamp.all /= null then
             temp := this.m_ILamp.all.Release;
-            Free (this.m_ILamp);
+            if temp < 1 then
+               Free (this.m_ILamp);
+            end if;
          end if;
       end if;
    end;
@@ -439,7 +441,9 @@ package body WinUI3.Windows.Devices.Lights is
       if this.m_ILampArray /= null then
          if this.m_ILampArray.all /= null then
             temp := this.m_ILampArray.all.Release;
-            Free (this.m_ILampArray);
+            if temp < 1 then
+               Free (this.m_ILampArray);
+            end if;
          end if;
       end if;
    end;
@@ -1162,7 +1166,9 @@ package body WinUI3.Windows.Devices.Lights is
       if this.m_ILampAvailabilityChangedEventArgs /= null then
          if this.m_ILampAvailabilityChangedEventArgs.all /= null then
             temp := this.m_ILampAvailabilityChangedEventArgs.all.Release;
-            Free (this.m_ILampAvailabilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILampAvailabilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1202,7 +1208,9 @@ package body WinUI3.Windows.Devices.Lights is
       if this.m_ILampInfo /= null then
          if this.m_ILampInfo.all /= null then
             temp := this.m_ILampInfo.all.Release;
-            Free (this.m_ILampInfo);
+            if temp < 1 then
+               Free (this.m_ILampInfo);
+            end if;
          end if;
       end if;
    end;

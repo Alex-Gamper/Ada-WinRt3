@@ -59,7 +59,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechContinuousRecognitionCompletedEventArgs /= null then
          if this.m_ISpeechContinuousRecognitionCompletedEventArgs.all /= null then
             temp := this.m_ISpeechContinuousRecognitionCompletedEventArgs.all.Release;
-            Free (this.m_ISpeechContinuousRecognitionCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpeechContinuousRecognitionCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -99,7 +101,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs /= null then
          if this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all /= null then
             temp := this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs.all.Release;
-            Free (this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpeechContinuousRecognitionResultGeneratedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -142,7 +146,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechContinuousRecognitionSession /= null then
          if this.m_ISpeechContinuousRecognitionSession.all /= null then
             temp := this.m_ISpeechContinuousRecognitionSession.all.Release;
-            Free (this.m_ISpeechContinuousRecognitionSession);
+            if temp < 1 then
+               Free (this.m_ISpeechContinuousRecognitionSession);
+            end if;
          end if;
       end if;
    end;
@@ -488,7 +494,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionCompilationResult /= null then
          if this.m_ISpeechRecognitionCompilationResult.all /= null then
             temp := this.m_ISpeechRecognitionCompilationResult.all.Release;
-            Free (this.m_ISpeechRecognitionCompilationResult);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionCompilationResult);
+            end if;
          end if;
       end if;
    end;
@@ -528,7 +536,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionGrammarFileConstraint /= null then
          if this.m_ISpeechRecognitionGrammarFileConstraint.all /= null then
             temp := this.m_ISpeechRecognitionGrammarFileConstraint.all.Release;
-            Free (this.m_ISpeechRecognitionGrammarFileConstraint);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionGrammarFileConstraint);
+            end if;
          end if;
       end if;
    end;
@@ -771,7 +781,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionHypothesis /= null then
          if this.m_ISpeechRecognitionHypothesis.all /= null then
             temp := this.m_ISpeechRecognitionHypothesis.all.Release;
-            Free (this.m_ISpeechRecognitionHypothesis);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionHypothesis);
+            end if;
          end if;
       end if;
    end;
@@ -814,7 +826,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionHypothesisGeneratedEventArgs /= null then
          if this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all /= null then
             temp := this.m_ISpeechRecognitionHypothesisGeneratedEventArgs.all.Release;
-            Free (this.m_ISpeechRecognitionHypothesisGeneratedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionHypothesisGeneratedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -857,7 +871,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionListConstraint /= null then
          if this.m_ISpeechRecognitionListConstraint.all /= null then
             temp := this.m_ISpeechRecognitionListConstraint.all.Release;
-            Free (this.m_ISpeechRecognitionListConstraint);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionListConstraint);
+            end if;
          end if;
       end if;
    end;
@@ -1100,7 +1116,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionQualityDegradingEventArgs /= null then
          if this.m_ISpeechRecognitionQualityDegradingEventArgs.all /= null then
             temp := this.m_ISpeechRecognitionQualityDegradingEventArgs.all.Release;
-            Free (this.m_ISpeechRecognitionQualityDegradingEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionQualityDegradingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1140,7 +1158,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionResult /= null then
          if this.m_ISpeechRecognitionResult.all /= null then
             temp := this.m_ISpeechRecognitionResult.all.Release;
-            Free (this.m_ISpeechRecognitionResult);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionResult);
+            end if;
          end if;
       end if;
    end;
@@ -1354,7 +1374,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionSemanticInterpretation /= null then
          if this.m_ISpeechRecognitionSemanticInterpretation.all /= null then
             temp := this.m_ISpeechRecognitionSemanticInterpretation.all.Release;
-            Free (this.m_ISpeechRecognitionSemanticInterpretation);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionSemanticInterpretation);
+            end if;
          end if;
       end if;
    end;
@@ -1394,7 +1416,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionTopicConstraint /= null then
          if this.m_ISpeechRecognitionTopicConstraint.all /= null then
             temp := this.m_ISpeechRecognitionTopicConstraint.all.Release;
-            Free (this.m_ISpeechRecognitionTopicConstraint);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionTopicConstraint);
+            end if;
          end if;
       end if;
    end;
@@ -1660,7 +1684,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint /= null then
          if this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all /= null then
             temp := this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint.all.Release;
-            Free (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognitionVoiceCommandDefinitionConstraint);
+            end if;
          end if;
       end if;
    end;
@@ -1829,7 +1855,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognizer /= null then
          if this.m_ISpeechRecognizer.all /= null then
             temp := this.m_ISpeechRecognizer.all.Release;
-            Free (this.m_ISpeechRecognizer);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -2528,7 +2556,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognizerStateChangedEventArgs /= null then
          if this.m_ISpeechRecognizerStateChangedEventArgs.all /= null then
             temp := this.m_ISpeechRecognizerStateChangedEventArgs.all.Release;
-            Free (this.m_ISpeechRecognizerStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognizerStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2568,7 +2598,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognizerTimeouts /= null then
          if this.m_ISpeechRecognizerTimeouts.all /= null then
             temp := this.m_ISpeechRecognizerTimeouts.all.Release;
-            Free (this.m_ISpeechRecognizerTimeouts);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognizerTimeouts);
+            end if;
          end if;
       end if;
    end;
@@ -2687,7 +2719,9 @@ package body WinUI3.Windows.Media.SpeechRecognition is
       if this.m_ISpeechRecognizerUIOptions /= null then
          if this.m_ISpeechRecognizerUIOptions.all /= null then
             temp := this.m_ISpeechRecognizerUIOptions.all.Release;
-            Free (this.m_ISpeechRecognizerUIOptions);
+            if temp < 1 then
+               Free (this.m_ISpeechRecognizerUIOptions);
+            end if;
          end if;
       end if;
    end;

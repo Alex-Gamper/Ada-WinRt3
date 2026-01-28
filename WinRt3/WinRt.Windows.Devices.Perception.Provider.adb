@@ -127,7 +127,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionControlGroup /= null then
          if this.m_IPerceptionControlGroup.all /= null then
             temp := this.m_IPerceptionControlGroup.all.Release;
-            Free (this.m_IPerceptionControlGroup);
+            if temp < 1 then
+               Free (this.m_IPerceptionControlGroup);
+            end if;
          end if;
       end if;
    end;
@@ -197,7 +199,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionCorrelation /= null then
          if this.m_IPerceptionCorrelation.all /= null then
             temp := this.m_IPerceptionCorrelation.all.Release;
-            Free (this.m_IPerceptionCorrelation);
+            if temp < 1 then
+               Free (this.m_IPerceptionCorrelation);
+            end if;
          end if;
       end if;
    end;
@@ -305,7 +309,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionCorrelationGroup /= null then
          if this.m_IPerceptionCorrelationGroup.all /= null then
             temp := this.m_IPerceptionCorrelationGroup.all.Release;
-            Free (this.m_IPerceptionCorrelationGroup);
+            if temp < 1 then
+               Free (this.m_IPerceptionCorrelationGroup);
+            end if;
          end if;
       end if;
    end;
@@ -375,7 +381,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionFaceAuthenticationGroup /= null then
          if this.m_IPerceptionFaceAuthenticationGroup.all /= null then
             temp := this.m_IPerceptionFaceAuthenticationGroup.all.Release;
-            Free (this.m_IPerceptionFaceAuthenticationGroup);
+            if temp < 1 then
+               Free (this.m_IPerceptionFaceAuthenticationGroup);
+            end if;
          end if;
       end if;
    end;
@@ -447,7 +455,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionFrame /= null then
          if this.m_IPerceptionFrame.all /= null then
             temp := this.m_IPerceptionFrame.all.Release;
-            Free (this.m_IPerceptionFrame);
+            if temp < 1 then
+               Free (this.m_IPerceptionFrame);
+            end if;
          end if;
       end if;
    end;
@@ -539,7 +549,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionFrameProviderInfo /= null then
          if this.m_IPerceptionFrameProviderInfo.all /= null then
             temp := this.m_IPerceptionFrameProviderInfo.all.Release;
-            Free (this.m_IPerceptionFrameProviderInfo);
+            if temp < 1 then
+               Free (this.m_IPerceptionFrameProviderInfo);
+            end if;
          end if;
       end if;
    end;
@@ -987,7 +999,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionPropertyChangeRequest /= null then
          if this.m_IPerceptionPropertyChangeRequest.all /= null then
             temp := this.m_IPerceptionPropertyChangeRequest.all.Release;
-            Free (this.m_IPerceptionPropertyChangeRequest);
+            if temp < 1 then
+               Free (this.m_IPerceptionPropertyChangeRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1129,7 +1143,9 @@ package body WinRt.Windows.Devices.Perception.Provider is
       if this.m_IPerceptionVideoFrameAllocator /= null then
          if this.m_IPerceptionVideoFrameAllocator.all /= null then
             temp := this.m_IPerceptionVideoFrameAllocator.all.Release;
-            Free (this.m_IPerceptionVideoFrameAllocator);
+            if temp < 1 then
+               Free (this.m_IPerceptionVideoFrameAllocator);
+            end if;
          end if;
       end if;
    end;

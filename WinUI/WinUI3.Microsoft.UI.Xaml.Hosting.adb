@@ -51,7 +51,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IDesktopWindowXamlSource /= null then
          if this.m_IDesktopWindowXamlSource.all /= null then
             temp := this.m_IDesktopWindowXamlSource.all.Release;
-            Free (this.m_IDesktopWindowXamlSource);
+            if temp < 1 then
+               Free (this.m_IDesktopWindowXamlSource);
+            end if;
          end if;
       end if;
    end;
@@ -369,7 +371,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IDesktopWindowXamlSourceGotFocusEventArgs /= null then
          if this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all /= null then
             temp := this.m_IDesktopWindowXamlSourceGotFocusEventArgs.all.Release;
-            Free (this.m_IDesktopWindowXamlSourceGotFocusEventArgs);
+            if temp < 1 then
+               Free (this.m_IDesktopWindowXamlSourceGotFocusEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -412,7 +416,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs /= null then
          if this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all /= null then
             temp := this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs.all.Release;
-            Free (this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDesktopWindowXamlSourceTakeFocusRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -455,7 +461,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IElementCompositionPreview /= null then
          if this.m_IElementCompositionPreview.all /= null then
             temp := this.m_IElementCompositionPreview.all.Release;
-            Free (this.m_IElementCompositionPreview);
+            if temp < 1 then
+               Free (this.m_IElementCompositionPreview);
+            end if;
          end if;
       end if;
    end;
@@ -677,7 +685,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IWindowsXamlManager /= null then
          if this.m_IWindowsXamlManager.all /= null then
             temp := this.m_IWindowsXamlManager.all.Release;
-            Free (this.m_IWindowsXamlManager);
+            if temp < 1 then
+               Free (this.m_IWindowsXamlManager);
+            end if;
          end if;
       end if;
    end;
@@ -810,7 +820,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IXamlShutdownCompletedOnThreadEventArgs /= null then
          if this.m_IXamlShutdownCompletedOnThreadEventArgs.all /= null then
             temp := this.m_IXamlShutdownCompletedOnThreadEventArgs.all.Release;
-            Free (this.m_IXamlShutdownCompletedOnThreadEventArgs);
+            if temp < 1 then
+               Free (this.m_IXamlShutdownCompletedOnThreadEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -853,7 +865,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IXamlSourceFocusNavigationRequest /= null then
          if this.m_IXamlSourceFocusNavigationRequest.all /= null then
             temp := this.m_IXamlSourceFocusNavigationRequest.all.Release;
-            Free (this.m_IXamlSourceFocusNavigationRequest);
+            if temp < 1 then
+               Free (this.m_IXamlSourceFocusNavigationRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1005,7 +1019,9 @@ package body WinUI3.Microsoft.UI.Xaml.Hosting is
       if this.m_IXamlSourceFocusNavigationResult /= null then
          if this.m_IXamlSourceFocusNavigationResult.all /= null then
             temp := this.m_IXamlSourceFocusNavigationResult.all.Release;
-            Free (this.m_IXamlSourceFocusNavigationResult);
+            if temp < 1 then
+               Free (this.m_IXamlSourceFocusNavigationResult);
+            end if;
          end if;
       end if;
    end;

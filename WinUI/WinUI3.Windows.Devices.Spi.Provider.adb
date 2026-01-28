@@ -47,7 +47,9 @@ package body WinUI3.Windows.Devices.Spi.Provider is
       if this.m_IProviderSpiConnectionSettings /= null then
          if this.m_IProviderSpiConnectionSettings.all /= null then
             temp := this.m_IProviderSpiConnectionSettings.all.Release;
-            Free (this.m_IProviderSpiConnectionSettings);
+            if temp < 1 then
+               Free (this.m_IProviderSpiConnectionSettings);
+            end if;
          end if;
       end if;
    end;

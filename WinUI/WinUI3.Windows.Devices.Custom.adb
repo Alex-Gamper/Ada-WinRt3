@@ -58,7 +58,9 @@ package body WinUI3.Windows.Devices.Custom is
       if this.m_ICustomDevice /= null then
          if this.m_ICustomDevice.all /= null then
             temp := this.m_ICustomDevice.all.Release;
-            Free (this.m_ICustomDevice);
+            if temp < 1 then
+               Free (this.m_ICustomDevice);
+            end if;
          end if;
       end if;
    end;
@@ -354,7 +356,9 @@ package body WinUI3.Windows.Devices.Custom is
       if this.m_IIOControlCode /= null then
          if this.m_IIOControlCode.all /= null then
             temp := this.m_IIOControlCode.all.Release;
-            Free (this.m_IIOControlCode);
+            if temp < 1 then
+               Free (this.m_IIOControlCode);
+            end if;
          end if;
       end if;
    end;

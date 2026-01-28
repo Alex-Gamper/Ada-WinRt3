@@ -47,7 +47,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.Background is
       if this.m_IBackgroundTaskBuilder /= null then
          if this.m_IBackgroundTaskBuilder.all /= null then
             temp := this.m_IBackgroundTaskBuilder.all.Release;
-            Free (this.m_IBackgroundTaskBuilder);
+            if temp < 1 then
+               Free (this.m_IBackgroundTaskBuilder);
+            end if;
          end if;
       end if;
    end;

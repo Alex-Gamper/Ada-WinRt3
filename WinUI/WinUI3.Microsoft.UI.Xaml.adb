@@ -83,7 +83,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDependencyObject /= null then
          if this.m_IDependencyObject.all /= null then
             temp := this.m_IDependencyObject.all.Release;
-            Free (this.m_IDependencyObject);
+            if temp < 1 then
+               Free (this.m_IDependencyObject);
+            end if;
          end if;
       end if;
    end;
@@ -294,7 +296,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IStateTriggerBase /= null then
          if this.m_IStateTriggerBase.all /= null then
             temp := this.m_IStateTriggerBase.all.Release;
-            Free (this.m_IStateTriggerBase);
+            if temp < 1 then
+               Free (this.m_IStateTriggerBase);
+            end if;
          end if;
       end if;
    end;
@@ -364,7 +368,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IAdaptiveTrigger /= null then
          if this.m_IAdaptiveTrigger.all /= null then
             temp := this.m_IAdaptiveTrigger.all.Release;
-            Free (this.m_IAdaptiveTrigger);
+            if temp < 1 then
+               Free (this.m_IAdaptiveTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -530,7 +536,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IApplication /= null then
          if this.m_IApplication.all /= null then
             temp := this.m_IApplication.all.Release;
-            Free (this.m_IApplication);
+            if temp < 1 then
+               Free (this.m_IApplication);
+            end if;
          end if;
       end if;
    end;
@@ -987,7 +995,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IApplicationInitializationCallbackParams /= null then
          if this.m_IApplicationInitializationCallbackParams.all /= null then
             temp := this.m_IApplicationInitializationCallbackParams.all.Release;
-            Free (this.m_IApplicationInitializationCallbackParams);
+            if temp < 1 then
+               Free (this.m_IApplicationInitializationCallbackParams);
+            end if;
          end if;
       end if;
    end;
@@ -1010,7 +1020,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IBindingFailedEventArgs /= null then
          if this.m_IBindingFailedEventArgs.all /= null then
             temp := this.m_IBindingFailedEventArgs.all.Release;
-            Free (this.m_IBindingFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBindingFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1069,7 +1081,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IBringIntoViewOptions /= null then
          if this.m_IBringIntoViewOptions.all /= null then
             temp := this.m_IBringIntoViewOptions.all.Release;
-            Free (this.m_IBringIntoViewOptions);
+            if temp < 1 then
+               Free (this.m_IBringIntoViewOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1306,7 +1320,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IRoutedEventArgs /= null then
          if this.m_IRoutedEventArgs.all /= null then
             temp := this.m_IRoutedEventArgs.all.Release;
-            Free (this.m_IRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1374,7 +1390,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IBringIntoViewRequestedEventArgs /= null then
          if this.m_IBringIntoViewRequestedEventArgs.all /= null then
             temp := this.m_IBringIntoViewRequestedEventArgs.all.Release;
-            Free (this.m_IBringIntoViewRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBringIntoViewRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1626,7 +1644,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IBrushTransition /= null then
          if this.m_IBrushTransition.all /= null then
             temp := this.m_IBrushTransition.all.Release;
-            Free (this.m_IBrushTransition);
+            if temp < 1 then
+               Free (this.m_IBrushTransition);
+            end if;
          end if;
       end if;
    end;
@@ -1709,7 +1729,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IResourceDictionary /= null then
          if this.m_IResourceDictionary.all /= null then
             temp := this.m_IResourceDictionary.all.Release;
-            Free (this.m_IResourceDictionary);
+            if temp < 1 then
+               Free (this.m_IResourceDictionary);
+            end if;
          end if;
       end if;
    end;
@@ -1989,7 +2011,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IColorPaletteResources /= null then
          if this.m_IColorPaletteResources.all /= null then
             temp := this.m_IColorPaletteResources.all.Release;
-            Free (this.m_IColorPaletteResources);
+            if temp < 1 then
+               Free (this.m_IColorPaletteResources);
+            end if;
          end if;
       end if;
    end;
@@ -2904,7 +2928,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IUIElement /= null then
          if this.m_IUIElement.all /= null then
             temp := this.m_IUIElement.all.Release;
-            Free (this.m_IUIElement);
+            if temp < 1 then
+               Free (this.m_IUIElement);
+            end if;
          end if;
       end if;
    end;
@@ -8878,7 +8904,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IFrameworkElement /= null then
          if this.m_IFrameworkElement.all /= null then
             temp := this.m_IFrameworkElement.all.Release;
-            Free (this.m_IFrameworkElement);
+            if temp < 1 then
+               Free (this.m_IFrameworkElement);
+            end if;
          end if;
       end if;
    end;
@@ -10921,7 +10949,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IFrameworkTemplate /= null then
          if this.m_IFrameworkTemplate.all /= null then
             temp := this.m_IFrameworkTemplate.all.Release;
-            Free (this.m_IFrameworkTemplate);
+            if temp < 1 then
+               Free (this.m_IFrameworkTemplate);
+            end if;
          end if;
       end if;
    end;
@@ -10972,7 +11002,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ICornerRadiusHelper /= null then
          if this.m_ICornerRadiusHelper.all /= null then
             temp := this.m_ICornerRadiusHelper.all.Release;
-            Free (this.m_ICornerRadiusHelper);
+            if temp < 1 then
+               Free (this.m_ICornerRadiusHelper);
+            end if;
          end if;
       end if;
    end;
@@ -11063,7 +11095,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDataContextChangedEventArgs /= null then
          if this.m_IDataContextChangedEventArgs.all /= null then
             temp := this.m_IDataContextChangedEventArgs.all.Release;
-            Free (this.m_IDataContextChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDataContextChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11135,7 +11169,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDataTemplate /= null then
          if this.m_IDataTemplate.all /= null then
             temp := this.m_IDataTemplate.all.Release;
-            Free (this.m_IDataTemplate);
+            if temp < 1 then
+               Free (this.m_IDataTemplate);
+            end if;
          end if;
       end if;
    end;
@@ -11323,7 +11359,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDataTemplateKey /= null then
          if this.m_IDataTemplateKey.all /= null then
             temp := this.m_IDataTemplateKey.all.Release;
-            Free (this.m_IDataTemplateKey);
+            if temp < 1 then
+               Free (this.m_IDataTemplateKey);
+            end if;
          end if;
       end if;
    end;
@@ -11432,7 +11470,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDebugSettings /= null then
          if this.m_IDebugSettings.all /= null then
             temp := this.m_IDebugSettings.all.Release;
-            Free (this.m_IDebugSettings);
+            if temp < 1 then
+               Free (this.m_IDebugSettings);
+            end if;
          end if;
       end if;
    end;
@@ -12155,7 +12195,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDependencyProperty /= null then
          if this.m_IDependencyProperty.all /= null then
             temp := this.m_IDependencyProperty.all.Release;
-            Free (this.m_IDependencyProperty);
+            if temp < 1 then
+               Free (this.m_IDependencyProperty);
+            end if;
          end if;
       end if;
    end;
@@ -12303,7 +12345,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDependencyPropertyChangedEventArgs /= null then
          if this.m_IDependencyPropertyChangedEventArgs.all /= null then
             temp := this.m_IDependencyPropertyChangedEventArgs.all.Release;
-            Free (this.m_IDependencyPropertyChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDependencyPropertyChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12396,7 +12440,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDispatcherTimer /= null then
          if this.m_IDispatcherTimer.all /= null then
             temp := this.m_IDispatcherTimer.all.Release;
-            Free (this.m_IDispatcherTimer);
+            if temp < 1 then
+               Free (this.m_IDispatcherTimer);
+            end if;
          end if;
       end if;
    end;
@@ -12557,7 +12603,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDragEventArgs /= null then
          if this.m_IDragEventArgs.all /= null then
             temp := this.m_IDragEventArgs.all.Release;
-            Free (this.m_IDragEventArgs);
+            if temp < 1 then
+               Free (this.m_IDragEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12807,7 +12855,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDragOperationDeferral /= null then
          if this.m_IDragOperationDeferral.all /= null then
             temp := this.m_IDragOperationDeferral.all.Release;
-            Free (this.m_IDragOperationDeferral);
+            if temp < 1 then
+               Free (this.m_IDragOperationDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -12844,7 +12894,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDragStartingEventArgs /= null then
          if this.m_IDragStartingEventArgs.all /= null then
             temp := this.m_IDragStartingEventArgs.all.Release;
-            Free (this.m_IDragStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IDragStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13009,7 +13061,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDragUI /= null then
          if this.m_IDragUI.all /= null then
             temp := this.m_IDragUI.all.Release;
-            Free (this.m_IDragUI);
+            if temp < 1 then
+               Free (this.m_IDragUI);
+            end if;
          end if;
       end if;
    end;
@@ -13108,7 +13162,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDragUIOverride /= null then
          if this.m_IDragUIOverride.all /= null then
             temp := this.m_IDragUIOverride.all.Release;
-            Free (this.m_IDragUIOverride);
+            if temp < 1 then
+               Free (this.m_IDragUIOverride);
+            end if;
          end if;
       end if;
    end;
@@ -13340,7 +13396,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDropCompletedEventArgs /= null then
          if this.m_IDropCompletedEventArgs.all /= null then
             temp := this.m_IDropCompletedEventArgs.all.Release;
-            Free (this.m_IDropCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDropCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13380,7 +13438,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IDurationHelper /= null then
          if this.m_IDurationHelper.all /= null then
             temp := this.m_IDurationHelper.all.Release;
-            Free (this.m_IDurationHelper);
+            if temp < 1 then
+               Free (this.m_IDurationHelper);
+            end if;
          end if;
       end if;
    end;
@@ -13596,7 +13656,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IEffectiveViewportChangedEventArgs /= null then
          if this.m_IEffectiveViewportChangedEventArgs.all /= null then
             temp := this.m_IEffectiveViewportChangedEventArgs.all.Release;
-            Free (this.m_IEffectiveViewportChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IEffectiveViewportChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13687,7 +13749,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IElementFactoryGetArgs /= null then
          if this.m_IElementFactoryGetArgs.all /= null then
             temp := this.m_IElementFactoryGetArgs.all.Release;
-            Free (this.m_IElementFactoryGetArgs);
+            if temp < 1 then
+               Free (this.m_IElementFactoryGetArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13805,7 +13869,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IElementFactoryRecycleArgs /= null then
          if this.m_IElementFactoryRecycleArgs.all /= null then
             temp := this.m_IElementFactoryRecycleArgs.all.Release;
-            Free (this.m_IElementFactoryRecycleArgs);
+            if temp < 1 then
+               Free (this.m_IElementFactoryRecycleArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13926,7 +13992,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IElementSoundPlayer /= null then
          if this.m_IElementSoundPlayer.all /= null then
             temp := this.m_IElementSoundPlayer.all.Release;
-            Free (this.m_IElementSoundPlayer);
+            if temp < 1 then
+               Free (this.m_IElementSoundPlayer);
+            end if;
          end if;
       end if;
    end;
@@ -14115,7 +14183,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ITriggerBase /= null then
          if this.m_ITriggerBase.all /= null then
             temp := this.m_ITriggerBase.all.Release;
-            Free (this.m_ITriggerBase);
+            if temp < 1 then
+               Free (this.m_ITriggerBase);
+            end if;
          end if;
       end if;
    end;
@@ -14141,7 +14211,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IEventTrigger /= null then
          if this.m_IEventTrigger.all /= null then
             temp := this.m_IEventTrigger.all.Release;
-            Free (this.m_IEventTrigger);
+            if temp < 1 then
+               Free (this.m_IEventTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -14238,7 +14310,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IExceptionRoutedEventArgs /= null then
          if this.m_IExceptionRoutedEventArgs.all /= null then
             temp := this.m_IExceptionRoutedEventArgs.all.Release;
-            Free (this.m_IExceptionRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IExceptionRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14300,7 +14374,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IFrameworkView /= null then
          if this.m_IFrameworkView.all /= null then
             temp := this.m_IFrameworkView.all.Release;
-            Free (this.m_IFrameworkView);
+            if temp < 1 then
+               Free (this.m_IFrameworkView);
+            end if;
          end if;
       end if;
    end;
@@ -14437,7 +14513,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IFrameworkViewSource /= null then
          if this.m_IFrameworkViewSource.all /= null then
             temp := this.m_IFrameworkViewSource.all.Release;
-            Free (this.m_IFrameworkViewSource);
+            if temp < 1 then
+               Free (this.m_IFrameworkViewSource);
+            end if;
          end if;
       end if;
    end;
@@ -14500,7 +14578,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IGridLengthHelper /= null then
          if this.m_IGridLengthHelper.all /= null then
             temp := this.m_IGridLengthHelper.all.Release;
-            Free (this.m_IGridLengthHelper);
+            if temp < 1 then
+               Free (this.m_IGridLengthHelper);
+            end if;
          end if;
       end if;
    end;
@@ -14693,7 +14773,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ILaunchActivatedEventArgs /= null then
          if this.m_ILaunchActivatedEventArgs.all /= null then
             temp := this.m_ILaunchActivatedEventArgs.all.Release;
-            Free (this.m_ILaunchActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ILaunchActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14772,7 +14854,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ITriggerAction /= null then
          if this.m_ITriggerAction.all /= null then
             temp := this.m_ITriggerAction.all.Release;
-            Free (this.m_ITriggerAction);
+            if temp < 1 then
+               Free (this.m_ITriggerAction);
+            end if;
          end if;
       end if;
    end;
@@ -14798,7 +14882,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IMediaFailedRoutedEventArgs /= null then
          if this.m_IMediaFailedRoutedEventArgs.all /= null then
             temp := this.m_IMediaFailedRoutedEventArgs.all.Release;
-            Free (this.m_IMediaFailedRoutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaFailedRoutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14841,7 +14927,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IPointHelper /= null then
          if this.m_IPointHelper.all /= null then
             temp := this.m_IPointHelper.all.Release;
-            Free (this.m_IPointHelper);
+            if temp < 1 then
+               Free (this.m_IPointHelper);
+            end if;
          end if;
       end if;
    end;
@@ -14908,7 +14996,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IPropertyMetadata /= null then
          if this.m_IPropertyMetadata.all /= null then
             temp := this.m_IPropertyMetadata.all.Release;
-            Free (this.m_IPropertyMetadata);
+            if temp < 1 then
+               Free (this.m_IPropertyMetadata);
+            end if;
          end if;
       end if;
    end;
@@ -15134,7 +15224,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IPropertyPath /= null then
          if this.m_IPropertyPath.all /= null then
             temp := this.m_IPropertyPath.all.Release;
-            Free (this.m_IPropertyPath);
+            if temp < 1 then
+               Free (this.m_IPropertyPath);
+            end if;
          end if;
       end if;
    end;
@@ -15206,7 +15298,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IRectHelper /= null then
          if this.m_IRectHelper.all /= null then
             temp := this.m_IRectHelper.all.Release;
-            Free (this.m_IRectHelper);
+            if temp < 1 then
+               Free (this.m_IRectHelper);
+            end if;
          end if;
       end if;
    end;
@@ -15575,7 +15669,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IResourceManagerRequestedEventArgs /= null then
          if this.m_IResourceManagerRequestedEventArgs.all /= null then
             temp := this.m_IResourceManagerRequestedEventArgs.all.Release;
-            Free (this.m_IResourceManagerRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IResourceManagerRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15630,7 +15726,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IRoutedEvent /= null then
          if this.m_IRoutedEvent.all /= null then
             temp := this.m_IRoutedEvent.all.Release;
-            Free (this.m_IRoutedEvent);
+            if temp < 1 then
+               Free (this.m_IRoutedEvent);
+            end if;
          end if;
       end if;
    end;
@@ -15669,7 +15767,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IScalarTransition /= null then
          if this.m_IScalarTransition.all /= null then
             temp := this.m_IScalarTransition.all.Release;
-            Free (this.m_IScalarTransition);
+            if temp < 1 then
+               Free (this.m_IScalarTransition);
+            end if;
          end if;
       end if;
    end;
@@ -15752,7 +15852,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ISetterBase /= null then
          if this.m_ISetterBase.all /= null then
             temp := this.m_ISetterBase.all.Release;
-            Free (this.m_ISetterBase);
+            if temp < 1 then
+               Free (this.m_ISetterBase);
+            end if;
          end if;
       end if;
    end;
@@ -15795,7 +15897,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ISetter /= null then
          if this.m_ISetter.all /= null then
             temp := this.m_ISetter.all.Release;
-            Free (this.m_ISetter);
+            if temp < 1 then
+               Free (this.m_ISetter);
+            end if;
          end if;
       end if;
    end;
@@ -15964,7 +16068,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ISetterBaseCollection /= null then
          if this.m_ISetterBaseCollection.all /= null then
             temp := this.m_ISetterBaseCollection.all.Release;
-            Free (this.m_ISetterBaseCollection);
+            if temp < 1 then
+               Free (this.m_ISetterBaseCollection);
+            end if;
          end if;
       end if;
    end;
@@ -16313,7 +16419,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ISizeChangedEventArgs /= null then
          if this.m_ISizeChangedEventArgs.all /= null then
             temp := this.m_ISizeChangedEventArgs.all.Release;
-            Free (this.m_ISizeChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISizeChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16386,7 +16494,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ISizeHelper /= null then
          if this.m_ISizeHelper.all /= null then
             temp := this.m_ISizeHelper.all.Release;
-            Free (this.m_ISizeHelper);
+            if temp < 1 then
+               Free (this.m_ISizeHelper);
+            end if;
          end if;
       end if;
    end;
@@ -16507,7 +16617,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IStateTrigger /= null then
          if this.m_IStateTrigger.all /= null then
             temp := this.m_IStateTrigger.all.Release;
-            Free (this.m_IStateTrigger);
+            if temp < 1 then
+               Free (this.m_IStateTrigger);
+            end if;
          end if;
       end if;
    end;
@@ -16608,7 +16720,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IStyle /= null then
          if this.m_IStyle.all /= null then
             temp := this.m_IStyle.all.Release;
-            Free (this.m_IStyle);
+            if temp < 1 then
+               Free (this.m_IStyle);
+            end if;
          end if;
       end if;
    end;
@@ -16808,7 +16922,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_ITargetPropertyPath /= null then
          if this.m_ITargetPropertyPath.all /= null then
             temp := this.m_ITargetPropertyPath.all.Release;
-            Free (this.m_ITargetPropertyPath);
+            if temp < 1 then
+               Free (this.m_ITargetPropertyPath);
+            end if;
          end if;
       end if;
    end;
@@ -16941,7 +17057,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IThicknessHelper /= null then
          if this.m_IThicknessHelper.all /= null then
             temp := this.m_IThicknessHelper.all.Release;
-            Free (this.m_IThicknessHelper);
+            if temp < 1 then
+               Free (this.m_IThicknessHelper);
+            end if;
          end if;
       end if;
    end;
@@ -17983,7 +18101,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IUnhandledExceptionEventArgs /= null then
          if this.m_IUnhandledExceptionEventArgs.all /= null then
             temp := this.m_IUnhandledExceptionEventArgs.all.Release;
-            Free (this.m_IUnhandledExceptionEventArgs);
+            if temp < 1 then
+               Free (this.m_IUnhandledExceptionEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -18091,7 +18211,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVector3Transition /= null then
          if this.m_IVector3Transition.all /= null then
             temp := this.m_IVector3Transition.all.Release;
-            Free (this.m_IVector3Transition);
+            if temp < 1 then
+               Free (this.m_IVector3Transition);
+            end if;
          end if;
       end if;
    end;
@@ -18206,7 +18328,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVisualState /= null then
          if this.m_IVisualState.all /= null then
             temp := this.m_IVisualState.all.Release;
-            Free (this.m_IVisualState);
+            if temp < 1 then
+               Free (this.m_IVisualState);
+            end if;
          end if;
       end if;
    end;
@@ -18343,7 +18467,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVisualStateChangedEventArgs /= null then
          if this.m_IVisualStateChangedEventArgs.all /= null then
             temp := this.m_IVisualStateChangedEventArgs.all.Release;
-            Free (this.m_IVisualStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IVisualStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -18506,7 +18632,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVisualStateGroup /= null then
          if this.m_IVisualStateGroup.all /= null then
             temp := this.m_IVisualStateGroup.all.Release;
-            Free (this.m_IVisualStateGroup);
+            if temp < 1 then
+               Free (this.m_IVisualStateGroup);
+            end if;
          end if;
       end if;
    end;
@@ -18694,7 +18822,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVisualStateManager /= null then
          if this.m_IVisualStateManager.all /= null then
             temp := this.m_IVisualStateManager.all.Release;
-            Free (this.m_IVisualStateManager);
+            if temp < 1 then
+               Free (this.m_IVisualStateManager);
+            end if;
          end if;
       end if;
    end;
@@ -18946,7 +19076,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IVisualTransition /= null then
          if this.m_IVisualTransition.all /= null then
             temp := this.m_IVisualTransition.all.Release;
-            Free (this.m_IVisualTransition);
+            if temp < 1 then
+               Free (this.m_IVisualTransition);
+            end if;
          end if;
       end if;
    end;
@@ -19173,7 +19305,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IWindow /= null then
          if this.m_IWindow.all /= null then
             temp := this.m_IWindow.all.Release;
-            Free (this.m_IWindow);
+            if temp < 1 then
+               Free (this.m_IWindow);
+            end if;
          end if;
       end if;
    end;
@@ -19711,7 +19845,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IWindowActivatedEventArgs /= null then
          if this.m_IWindowActivatedEventArgs.all /= null then
             temp := this.m_IWindowActivatedEventArgs.all.Release;
-            Free (this.m_IWindowActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -19783,7 +19919,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IWindowEventArgs /= null then
          if this.m_IWindowEventArgs.all /= null then
             temp := this.m_IWindowEventArgs.all.Release;
-            Free (this.m_IWindowEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -19838,7 +19976,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IWindowSizeChangedEventArgs /= null then
          if this.m_IWindowSizeChangedEventArgs.all /= null then
             temp := this.m_IWindowSizeChangedEventArgs.all.Release;
-            Free (this.m_IWindowSizeChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowSizeChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -19910,7 +20050,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IWindowVisibilityChangedEventArgs /= null then
          if this.m_IWindowVisibilityChangedEventArgs.all /= null then
             temp := this.m_IWindowVisibilityChangedEventArgs.all.Release;
-            Free (this.m_IWindowVisibilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowVisibilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -19982,7 +20124,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IXamlIsland /= null then
          if this.m_IXamlIsland.all /= null then
             temp := this.m_IXamlIsland.all.Release;
-            Free (this.m_IXamlIsland);
+            if temp < 1 then
+               Free (this.m_IXamlIsland);
+            end if;
          end if;
       end if;
    end;
@@ -20141,7 +20285,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IXamlResourceReferenceFailedEventArgs /= null then
          if this.m_IXamlResourceReferenceFailedEventArgs.all /= null then
             temp := this.m_IXamlResourceReferenceFailedEventArgs.all.Release;
-            Free (this.m_IXamlResourceReferenceFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IXamlResourceReferenceFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -20184,7 +20330,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IXamlRoot /= null then
          if this.m_IXamlRoot.all /= null then
             temp := this.m_IXamlRoot.all.Release;
-            Free (this.m_IXamlRoot);
+            if temp < 1 then
+               Free (this.m_IXamlRoot);
+            end if;
          end if;
       end if;
    end;
@@ -20383,7 +20531,9 @@ package body WinUI3.Microsoft.UI.Xaml is
       if this.m_IXamlRootChangedEventArgs /= null then
          if this.m_IXamlRootChangedEventArgs.all /= null then
             temp := this.m_IXamlRootChangedEventArgs.all.Release;
-            Free (this.m_IXamlRootChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IXamlRootChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

@@ -50,7 +50,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_ICustomQueryParametersRequestedArgs /= null then
          if this.m_ICustomQueryParametersRequestedArgs.all /= null then
             temp := this.m_ICustomQueryParametersRequestedArgs.all.Release;
-            Free (this.m_ICustomQueryParametersRequestedArgs);
+            if temp < 1 then
+               Free (this.m_ICustomQueryParametersRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -93,7 +95,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_ICustomQueryParametersUpdateOptions /= null then
          if this.m_ICustomQueryParametersUpdateOptions.all /= null then
             temp := this.m_ICustomQueryParametersUpdateOptions.all.Release;
-            Free (this.m_ICustomQueryParametersUpdateOptions);
+            if temp < 1 then
+               Free (this.m_ICustomQueryParametersUpdateOptions);
+            end if;
          end if;
       end if;
    end;
@@ -188,7 +192,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedAnalyticsInfoReportedArgs /= null then
          if this.m_IFeedAnalyticsInfoReportedArgs.all /= null then
             temp := this.m_IFeedAnalyticsInfoReportedArgs.all.Release;
-            Free (this.m_IFeedAnalyticsInfoReportedArgs);
+            if temp < 1 then
+               Free (this.m_IFeedAnalyticsInfoReportedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +277,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedDisabledArgs /= null then
          if this.m_IFeedDisabledArgs.all /= null then
             temp := this.m_IFeedDisabledArgs.all.Release;
-            Free (this.m_IFeedDisabledArgs);
+            if temp < 1 then
+               Free (this.m_IFeedDisabledArgs);
+            end if;
          end if;
       end if;
    end;
@@ -334,7 +342,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedEnabledArgs /= null then
          if this.m_IFeedEnabledArgs.all /= null then
             temp := this.m_IFeedEnabledArgs.all.Release;
-            Free (this.m_IFeedEnabledArgs);
+            if temp < 1 then
+               Free (this.m_IFeedEnabledArgs);
+            end if;
          end if;
       end if;
    end;
@@ -397,7 +407,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedErrorInfoReportedArgs /= null then
          if this.m_IFeedErrorInfoReportedArgs.all /= null then
             temp := this.m_IFeedErrorInfoReportedArgs.all.Release;
-            Free (this.m_IFeedErrorInfoReportedArgs);
+            if temp < 1 then
+               Free (this.m_IFeedErrorInfoReportedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -480,7 +492,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedManager /= null then
          if this.m_IFeedManager.all /= null then
             temp := this.m_IFeedManager.all.Release;
-            Free (this.m_IFeedManager);
+            if temp < 1 then
+               Free (this.m_IFeedManager);
+            end if;
          end if;
       end if;
    end;
@@ -655,7 +669,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedMessageReceivedArgs /= null then
          if this.m_IFeedMessageReceivedArgs.all /= null then
             temp := this.m_IFeedMessageReceivedArgs.all.Release;
-            Free (this.m_IFeedMessageReceivedArgs);
+            if temp < 1 then
+               Free (this.m_IFeedMessageReceivedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -738,7 +754,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedProviderDisabledArgs /= null then
          if this.m_IFeedProviderDisabledArgs.all /= null then
             temp := this.m_IFeedProviderDisabledArgs.all.Release;
-            Free (this.m_IFeedProviderDisabledArgs);
+            if temp < 1 then
+               Free (this.m_IFeedProviderDisabledArgs);
+            end if;
          end if;
       end if;
    end;
@@ -781,7 +799,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedProviderEnabledArgs /= null then
          if this.m_IFeedProviderEnabledArgs.all /= null then
             temp := this.m_IFeedProviderEnabledArgs.all.Release;
-            Free (this.m_IFeedProviderEnabledArgs);
+            if temp < 1 then
+               Free (this.m_IFeedProviderEnabledArgs);
+            end if;
          end if;
       end if;
    end;
@@ -824,7 +844,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedProviderInfo /= null then
          if this.m_IFeedProviderInfo.all /= null then
             temp := this.m_IFeedProviderInfo.all.Release;
-            Free (this.m_IFeedProviderInfo);
+            if temp < 1 then
+               Free (this.m_IFeedProviderInfo);
+            end if;
          end if;
       end if;
    end;
@@ -895,7 +917,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedResourceRequest /= null then
          if this.m_IFeedResourceRequest.all /= null then
             temp := this.m_IFeedResourceRequest.all.Release;
-            Free (this.m_IFeedResourceRequest);
+            if temp < 1 then
+               Free (this.m_IFeedResourceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1042,7 +1066,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedResourceRequestedArgs /= null then
          if this.m_IFeedResourceRequestedArgs.all /= null then
             temp := this.m_IFeedResourceRequestedArgs.all.Release;
-            Free (this.m_IFeedResourceRequestedArgs);
+            if temp < 1 then
+               Free (this.m_IFeedResourceRequestedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1180,7 +1206,9 @@ package body WinUI3.Microsoft.Windows.Widgets.Feeds.Providers is
       if this.m_IFeedResourceResponse /= null then
          if this.m_IFeedResourceResponse.all /= null then
             temp := this.m_IFeedResourceResponse.all.Release;
-            Free (this.m_IFeedResourceResponse);
+            if temp < 1 then
+               Free (this.m_IFeedResourceResponse);
+            end if;
          end if;
       end if;
    end;

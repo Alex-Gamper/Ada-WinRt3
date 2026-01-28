@@ -51,7 +51,9 @@ package body WinUI3.Windows.Devices is
       if this.m_ILowLevelDevicesAggregateProvider /= null then
          if this.m_ILowLevelDevicesAggregateProvider.all /= null then
             temp := this.m_ILowLevelDevicesAggregateProvider.all.Release;
-            Free (this.m_ILowLevelDevicesAggregateProvider);
+            if temp < 1 then
+               Free (this.m_ILowLevelDevicesAggregateProvider);
+            end if;
          end if;
       end if;
    end;
@@ -190,7 +192,9 @@ package body WinUI3.Windows.Devices is
       if this.m_ILowLevelDevicesController /= null then
          if this.m_ILowLevelDevicesController.all /= null then
             temp := this.m_ILowLevelDevicesController.all.Release;
-            Free (this.m_ILowLevelDevicesController);
+            if temp < 1 then
+               Free (this.m_ILowLevelDevicesController);
+            end if;
          end if;
       end if;
    end;

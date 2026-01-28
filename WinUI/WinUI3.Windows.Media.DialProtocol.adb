@@ -72,7 +72,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialApp /= null then
          if this.m_IDialApp.all /= null then
             temp := this.m_IDialApp.all.Release;
-            Free (this.m_IDialApp);
+            if temp < 1 then
+               Free (this.m_IDialApp);
+            end if;
          end if;
       end if;
    end;
@@ -310,7 +312,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialAppStateDetails /= null then
          if this.m_IDialAppStateDetails.all /= null then
             temp := this.m_IDialAppStateDetails.all.Release;
-            Free (this.m_IDialAppStateDetails);
+            if temp < 1 then
+               Free (this.m_IDialAppStateDetails);
+            end if;
          end if;
       end if;
    end;
@@ -370,7 +374,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialDevice /= null then
          if this.m_IDialDevice.all /= null then
             temp := this.m_IDialDevice.all.Release;
-            Free (this.m_IDialDevice);
+            if temp < 1 then
+               Free (this.m_IDialDevice);
+            end if;
          end if;
       end if;
    end;
@@ -658,7 +664,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialDevicePicker /= null then
          if this.m_IDialDevicePicker.all /= null then
             temp := this.m_IDialDevicePicker.all.Release;
-            Free (this.m_IDialDevicePicker);
+            if temp < 1 then
+               Free (this.m_IDialDevicePicker);
+            end if;
          end if;
       end if;
    end;
@@ -1035,7 +1043,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialDevicePickerFilter /= null then
          if this.m_IDialDevicePickerFilter.all /= null then
             temp := this.m_IDialDevicePickerFilter.all.Release;
-            Free (this.m_IDialDevicePickerFilter);
+            if temp < 1 then
+               Free (this.m_IDialDevicePickerFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1078,7 +1088,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialDeviceSelectedEventArgs /= null then
          if this.m_IDialDeviceSelectedEventArgs.all /= null then
             temp := this.m_IDialDeviceSelectedEventArgs.all.Release;
-            Free (this.m_IDialDeviceSelectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDialDeviceSelectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1121,7 +1133,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialDisconnectButtonClickedEventArgs /= null then
          if this.m_IDialDisconnectButtonClickedEventArgs.all /= null then
             temp := this.m_IDialDisconnectButtonClickedEventArgs.all.Release;
-            Free (this.m_IDialDisconnectButtonClickedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDialDisconnectButtonClickedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1164,7 +1178,9 @@ package body WinUI3.Windows.Media.DialProtocol is
       if this.m_IDialReceiverApp /= null then
          if this.m_IDialReceiverApp.all /= null then
             temp := this.m_IDialReceiverApp.all.Release;
-            Free (this.m_IDialReceiverApp);
+            if temp < 1 then
+               Free (this.m_IDialReceiverApp);
+            end if;
          end if;
       end if;
    end;

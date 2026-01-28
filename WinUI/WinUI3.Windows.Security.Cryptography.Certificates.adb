@@ -68,7 +68,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificate /= null then
          if this.m_ICertificate.all /= null then
             temp := this.m_ICertificate.all.Release;
-            Free (this.m_ICertificate);
+            if temp < 1 then
+               Free (this.m_ICertificate);
+            end if;
          end if;
       end if;
    end;
@@ -726,7 +728,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateChain /= null then
          if this.m_ICertificateChain.all /= null then
             temp := this.m_ICertificateChain.all.Release;
-            Free (this.m_ICertificateChain);
+            if temp < 1 then
+               Free (this.m_ICertificateChain);
+            end if;
          end if;
       end if;
    end;
@@ -1138,7 +1142,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateExtension /= null then
          if this.m_ICertificateExtension.all /= null then
             temp := this.m_ICertificateExtension.all.Release;
-            Free (this.m_ICertificateExtension);
+            if temp < 1 then
+               Free (this.m_ICertificateExtension);
+            end if;
          end if;
       end if;
    end;
@@ -1308,7 +1314,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateKeyUsages /= null then
          if this.m_ICertificateKeyUsages.all /= null then
             temp := this.m_ICertificateKeyUsages.all.Release;
-            Free (this.m_ICertificateKeyUsages);
+            if temp < 1 then
+               Free (this.m_ICertificateKeyUsages);
+            end if;
          end if;
       end if;
    end;
@@ -1606,7 +1614,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateQuery /= null then
          if this.m_ICertificateQuery.all /= null then
             temp := this.m_ICertificateQuery.all.Release;
-            Free (this.m_ICertificateQuery);
+            if temp < 1 then
+               Free (this.m_ICertificateQuery);
+            end if;
          end if;
       end if;
    end;
@@ -1941,7 +1951,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateRequestProperties /= null then
          if this.m_ICertificateRequestProperties.all /= null then
             temp := this.m_ICertificateRequestProperties.all.Release;
-            Free (this.m_ICertificateRequestProperties);
+            if temp < 1 then
+               Free (this.m_ICertificateRequestProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2724,7 +2736,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICertificateStore /= null then
          if this.m_ICertificateStore.all /= null then
             temp := this.m_ICertificateStore.all.Release;
-            Free (this.m_ICertificateStore);
+            if temp < 1 then
+               Free (this.m_ICertificateStore);
+            end if;
          end if;
       end if;
    end;
@@ -3050,7 +3064,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_IChainBuildingParameters /= null then
          if this.m_IChainBuildingParameters.all /= null then
             temp := this.m_IChainBuildingParameters.all.Release;
-            Free (this.m_IChainBuildingParameters);
+            if temp < 1 then
+               Free (this.m_IChainBuildingParameters);
+            end if;
          end if;
       end if;
    end;
@@ -3292,7 +3308,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_IChainValidationParameters /= null then
          if this.m_IChainValidationParameters.all /= null then
             temp := this.m_IChainValidationParameters.all.Release;
-            Free (this.m_IChainValidationParameters);
+            if temp < 1 then
+               Free (this.m_IChainValidationParameters);
+            end if;
          end if;
       end if;
    end;
@@ -3401,7 +3419,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICmsAttachedSignature /= null then
          if this.m_ICmsAttachedSignature.all /= null then
             temp := this.m_ICmsAttachedSignature.all.Release;
-            Free (this.m_ICmsAttachedSignature);
+            if temp < 1 then
+               Free (this.m_ICmsAttachedSignature);
+            end if;
          end if;
       end if;
    end;
@@ -3609,7 +3629,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICmsDetachedSignature /= null then
          if this.m_ICmsDetachedSignature.all /= null then
             temp := this.m_ICmsDetachedSignature.all.Release;
-            Free (this.m_ICmsDetachedSignature);
+            if temp < 1 then
+               Free (this.m_ICmsDetachedSignature);
+            end if;
          end if;
       end if;
    end;
@@ -3838,7 +3860,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICmsSignerInfo /= null then
          if this.m_ICmsSignerInfo.all /= null then
             temp := this.m_ICmsSignerInfo.all.Release;
-            Free (this.m_ICmsSignerInfo);
+            if temp < 1 then
+               Free (this.m_ICmsSignerInfo);
+            end if;
          end if;
       end if;
    end;
@@ -3972,7 +3996,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ICmsTimestampInfo /= null then
          if this.m_ICmsTimestampInfo.all /= null then
             temp := this.m_ICmsTimestampInfo.all.Release;
-            Free (this.m_ICmsTimestampInfo);
+            if temp < 1 then
+               Free (this.m_ICmsTimestampInfo);
+            end if;
          end if;
       end if;
    end;
@@ -4588,7 +4614,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_IPfxImportParameters /= null then
          if this.m_IPfxImportParameters.all /= null then
             temp := this.m_IPfxImportParameters.all.Release;
-            Free (this.m_IPfxImportParameters);
+            if temp < 1 then
+               Free (this.m_IPfxImportParameters);
+            end if;
          end if;
       end if;
    end;
@@ -4952,7 +4980,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_ISubjectAlternativeNameInfo /= null then
          if this.m_ISubjectAlternativeNameInfo.all /= null then
             temp := this.m_ISubjectAlternativeNameInfo.all.Release;
-            Free (this.m_ISubjectAlternativeNameInfo);
+            if temp < 1 then
+               Free (this.m_ISubjectAlternativeNameInfo);
+            end if;
          end if;
       end if;
    end;
@@ -5282,7 +5312,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_IUserCertificateEnrollmentManager /= null then
          if this.m_IUserCertificateEnrollmentManager.all /= null then
             temp := this.m_IUserCertificateEnrollmentManager.all.Release;
-            Free (this.m_IUserCertificateEnrollmentManager);
+            if temp < 1 then
+               Free (this.m_IUserCertificateEnrollmentManager);
+            end if;
          end if;
       end if;
    end;
@@ -5582,7 +5614,9 @@ package body WinUI3.Windows.Security.Cryptography.Certificates is
       if this.m_IUserCertificateStore /= null then
          if this.m_IUserCertificateStore.all /= null then
             temp := this.m_IUserCertificateStore.all.Release;
-            Free (this.m_IUserCertificateStore);
+            if temp < 1 then
+               Free (this.m_IUserCertificateStore);
+            end if;
          end if;
       end if;
    end;

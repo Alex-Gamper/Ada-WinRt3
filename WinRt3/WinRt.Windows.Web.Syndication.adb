@@ -53,7 +53,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationAttribute /= null then
          if this.m_ISyndicationAttribute.all /= null then
             temp := this.m_ISyndicationAttribute.all.Release;
-            Free (this.m_ISyndicationAttribute);
+            if temp < 1 then
+               Free (this.m_ISyndicationAttribute);
+            end if;
          end if;
       end if;
    end;
@@ -238,7 +240,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationCategory /= null then
          if this.m_ISyndicationCategory.all /= null then
             temp := this.m_ISyndicationCategory.all.Release;
-            Free (this.m_ISyndicationCategory);
+            if temp < 1 then
+               Free (this.m_ISyndicationCategory);
+            end if;
          end if;
       end if;
    end;
@@ -745,7 +749,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationClient /= null then
          if this.m_ISyndicationClient.all /= null then
             temp := this.m_ISyndicationClient.all.Release;
-            Free (this.m_ISyndicationClient);
+            if temp < 1 then
+               Free (this.m_ISyndicationClient);
+            end if;
          end if;
       end if;
    end;
@@ -1064,7 +1070,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationContent /= null then
          if this.m_ISyndicationContent.all /= null then
             temp := this.m_ISyndicationContent.all.Release;
-            Free (this.m_ISyndicationContent);
+            if temp < 1 then
+               Free (this.m_ISyndicationContent);
+            end if;
          end if;
       end if;
    end;
@@ -1651,7 +1659,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationFeed /= null then
          if this.m_ISyndicationFeed.all /= null then
             temp := this.m_ISyndicationFeed.all.Release;
-            Free (this.m_ISyndicationFeed);
+            if temp < 1 then
+               Free (this.m_ISyndicationFeed);
+            end if;
          end if;
       end if;
    end;
@@ -2518,7 +2528,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationGenerator /= null then
          if this.m_ISyndicationGenerator.all /= null then
             temp := this.m_ISyndicationGenerator.all.Release;
-            Free (this.m_ISyndicationGenerator);
+            if temp < 1 then
+               Free (this.m_ISyndicationGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -2991,7 +3003,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationItem /= null then
          if this.m_ISyndicationItem.all /= null then
             temp := this.m_ISyndicationItem.all.Release;
-            Free (this.m_ISyndicationItem);
+            if temp < 1 then
+               Free (this.m_ISyndicationItem);
+            end if;
          end if;
       end if;
    end;
@@ -3851,7 +3865,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationLink /= null then
          if this.m_ISyndicationLink.all /= null then
             temp := this.m_ISyndicationLink.all.Release;
-            Free (this.m_ISyndicationLink);
+            if temp < 1 then
+               Free (this.m_ISyndicationLink);
+            end if;
          end if;
       end if;
    end;
@@ -4462,7 +4478,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationNode /= null then
          if this.m_ISyndicationNode.all /= null then
             temp := this.m_ISyndicationNode.all.Release;
-            Free (this.m_ISyndicationNode);
+            if temp < 1 then
+               Free (this.m_ISyndicationNode);
+            end if;
          end if;
       end if;
    end;
@@ -4780,7 +4798,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationPerson /= null then
          if this.m_ISyndicationPerson.all /= null then
             temp := this.m_ISyndicationPerson.all.Release;
-            Free (this.m_ISyndicationPerson);
+            if temp < 1 then
+               Free (this.m_ISyndicationPerson);
+            end if;
          end if;
       end if;
    end;
@@ -5283,7 +5303,9 @@ package body WinRt.Windows.Web.Syndication is
       if this.m_ISyndicationText /= null then
          if this.m_ISyndicationText.all /= null then
             temp := this.m_ISyndicationText.all.Release;
-            Free (this.m_ISyndicationText);
+            if temp < 1 then
+               Free (this.m_ISyndicationText);
+            end if;
          end if;
       end if;
    end;

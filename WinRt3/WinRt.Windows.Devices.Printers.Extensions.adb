@@ -47,7 +47,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrint3DWorkflow /= null then
          if this.m_IPrint3DWorkflow.all /= null then
             temp := this.m_IPrint3DWorkflow.all.Release;
-            Free (this.m_IPrint3DWorkflow);
+            if temp < 1 then
+               Free (this.m_IPrint3DWorkflow);
+            end if;
          end if;
       end if;
    end;
@@ -213,7 +215,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrint3DWorkflowPrintRequestedEventArgs /= null then
          if this.m_IPrint3DWorkflowPrintRequestedEventArgs.all /= null then
             temp := this.m_IPrint3DWorkflowPrintRequestedEventArgs.all.Release;
-            Free (this.m_IPrint3DWorkflowPrintRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DWorkflowPrintRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -298,7 +302,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrint3DWorkflowPrinterChangedEventArgs /= null then
          if this.m_IPrint3DWorkflowPrinterChangedEventArgs.all /= null then
             temp := this.m_IPrint3DWorkflowPrinterChangedEventArgs.all.Release;
-            Free (this.m_IPrint3DWorkflowPrinterChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrint3DWorkflowPrinterChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -373,7 +379,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrintNotificationEventDetails /= null then
          if this.m_IPrintNotificationEventDetails.all /= null then
             temp := this.m_IPrintNotificationEventDetails.all.Release;
-            Free (this.m_IPrintNotificationEventDetails);
+            if temp < 1 then
+               Free (this.m_IPrintNotificationEventDetails);
+            end if;
          end if;
       end if;
    end;
@@ -453,7 +461,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrintTaskConfiguration /= null then
          if this.m_IPrintTaskConfiguration.all /= null then
             temp := this.m_IPrintTaskConfiguration.all.Release;
-            Free (this.m_IPrintTaskConfiguration);
+            if temp < 1 then
+               Free (this.m_IPrintTaskConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -526,7 +536,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrintTaskConfigurationSaveRequest /= null then
          if this.m_IPrintTaskConfigurationSaveRequest.all /= null then
             temp := this.m_IPrintTaskConfigurationSaveRequest.all.Release;
-            Free (this.m_IPrintTaskConfigurationSaveRequest);
+            if temp < 1 then
+               Free (this.m_IPrintTaskConfigurationSaveRequest);
+            end if;
          end if;
       end if;
    end;
@@ -615,7 +627,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrintTaskConfigurationSaveRequestedDeferral /= null then
          if this.m_IPrintTaskConfigurationSaveRequestedDeferral.all /= null then
             temp := this.m_IPrintTaskConfigurationSaveRequestedDeferral.all.Release;
-            Free (this.m_IPrintTaskConfigurationSaveRequestedDeferral);
+            if temp < 1 then
+               Free (this.m_IPrintTaskConfigurationSaveRequestedDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -652,7 +666,9 @@ package body WinRt.Windows.Devices.Printers.Extensions is
       if this.m_IPrintTaskConfigurationSaveRequestedEventArgs /= null then
          if this.m_IPrintTaskConfigurationSaveRequestedEventArgs.all /= null then
             temp := this.m_IPrintTaskConfigurationSaveRequestedEventArgs.all.Release;
-            Free (this.m_IPrintTaskConfigurationSaveRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPrintTaskConfigurationSaveRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

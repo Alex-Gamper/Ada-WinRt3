@@ -375,7 +375,9 @@ package body WinUI3.Windows.Storage.Pickers is
       if this.m_IFileOpenPicker /= null then
          if this.m_IFileOpenPicker.all /= null then
             temp := this.m_IFileOpenPicker.all.Release;
-            Free (this.m_IFileOpenPicker);
+            if temp < 1 then
+               Free (this.m_IFileOpenPicker);
+            end if;
          end if;
       end if;
    end;
@@ -1117,7 +1119,9 @@ package body WinUI3.Windows.Storage.Pickers is
       if this.m_IFileSavePicker /= null then
          if this.m_IFileSavePicker.all /= null then
             temp := this.m_IFileSavePicker.all.Release;
-            Free (this.m_IFileSavePicker);
+            if temp < 1 then
+               Free (this.m_IFileSavePicker);
+            end if;
          end if;
       end if;
    end;
@@ -1598,7 +1602,9 @@ package body WinUI3.Windows.Storage.Pickers is
       if this.m_IFolderPicker /= null then
          if this.m_IFolderPicker.all /= null then
             temp := this.m_IFolderPicker.all.Release;
-            Free (this.m_IFolderPicker);
+            if temp < 1 then
+               Free (this.m_IFolderPicker);
+            end if;
          end if;
       end if;
    end;

@@ -49,7 +49,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       if this.m_ICoreIncrementalInkStroke /= null then
          if this.m_ICoreIncrementalInkStroke.all /= null then
             temp := this.m_ICoreIncrementalInkStroke.all.Release;
-            Free (this.m_ICoreIncrementalInkStroke);
+            if temp < 1 then
+               Free (this.m_ICoreIncrementalInkStroke);
+            end if;
          end if;
       end if;
    end;
@@ -192,7 +194,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       if this.m_ICoreInkIndependentInputSource /= null then
          if this.m_ICoreInkIndependentInputSource.all /= null then
             temp := this.m_ICoreInkIndependentInputSource.all.Release;
-            Free (this.m_ICoreInkIndependentInputSource);
+            if temp < 1 then
+               Free (this.m_ICoreInkIndependentInputSource);
+            end if;
          end if;
       end if;
    end;
@@ -539,7 +543,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       if this.m_ICoreInkPresenterHost /= null then
          if this.m_ICoreInkPresenterHost.all /= null then
             temp := this.m_ICoreInkPresenterHost.all.Release;
-            Free (this.m_ICoreInkPresenterHost);
+            if temp < 1 then
+               Free (this.m_ICoreInkPresenterHost);
+            end if;
          end if;
       end if;
    end;
@@ -636,7 +642,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       if this.m_ICoreWetStrokeUpdateEventArgs /= null then
          if this.m_ICoreWetStrokeUpdateEventArgs.all /= null then
             temp := this.m_ICoreWetStrokeUpdateEventArgs.all.Release;
-            Free (this.m_ICoreWetStrokeUpdateEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWetStrokeUpdateEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -728,7 +736,9 @@ package body WinRt.Windows.UI.Input.Inking.Core is
       if this.m_ICoreWetStrokeUpdateSource /= null then
          if this.m_ICoreWetStrokeUpdateSource.all /= null then
             temp := this.m_ICoreWetStrokeUpdateSource.all.Release;
-            Free (this.m_ICoreWetStrokeUpdateSource);
+            if temp < 1 then
+               Free (this.m_ICoreWetStrokeUpdateSource);
+            end if;
          end if;
       end if;
    end;

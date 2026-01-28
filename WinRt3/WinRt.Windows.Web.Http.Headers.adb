@@ -77,7 +77,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpCacheDirectiveHeaderValueCollection /= null then
          if this.m_IHttpCacheDirectiveHeaderValueCollection.all /= null then
             temp := this.m_IHttpCacheDirectiveHeaderValueCollection.all.Release;
-            Free (this.m_IHttpCacheDirectiveHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpCacheDirectiveHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -591,7 +593,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpChallengeHeaderValue /= null then
          if this.m_IHttpChallengeHeaderValue.all /= null then
             temp := this.m_IHttpChallengeHeaderValue.all.Release;
-            Free (this.m_IHttpChallengeHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpChallengeHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -815,7 +819,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpChallengeHeaderValueCollection /= null then
          if this.m_IHttpChallengeHeaderValueCollection.all /= null then
             temp := this.m_IHttpChallengeHeaderValueCollection.all.Release;
-            Free (this.m_IHttpChallengeHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpChallengeHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -1189,7 +1195,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpConnectionOptionHeaderValue /= null then
          if this.m_IHttpConnectionOptionHeaderValue.all /= null then
             temp := this.m_IHttpConnectionOptionHeaderValue.all.Release;
-            Free (this.m_IHttpConnectionOptionHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpConnectionOptionHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -1344,7 +1352,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpConnectionOptionHeaderValueCollection /= null then
          if this.m_IHttpConnectionOptionHeaderValueCollection.all /= null then
             temp := this.m_IHttpConnectionOptionHeaderValueCollection.all.Release;
-            Free (this.m_IHttpConnectionOptionHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpConnectionOptionHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -1718,7 +1728,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentCodingHeaderValue /= null then
          if this.m_IHttpContentCodingHeaderValue.all /= null then
             temp := this.m_IHttpContentCodingHeaderValue.all.Release;
-            Free (this.m_IHttpContentCodingHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpContentCodingHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -1873,7 +1885,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentCodingHeaderValueCollection /= null then
          if this.m_IHttpContentCodingHeaderValueCollection.all /= null then
             temp := this.m_IHttpContentCodingHeaderValueCollection.all.Release;
-            Free (this.m_IHttpContentCodingHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpContentCodingHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -2247,7 +2261,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentCodingWithQualityHeaderValue /= null then
          if this.m_IHttpContentCodingWithQualityHeaderValue.all /= null then
             temp := this.m_IHttpContentCodingWithQualityHeaderValue.all.Release;
-            Free (this.m_IHttpContentCodingWithQualityHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpContentCodingWithQualityHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -2449,7 +2465,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentCodingWithQualityHeaderValueCollection /= null then
          if this.m_IHttpContentCodingWithQualityHeaderValueCollection.all /= null then
             temp := this.m_IHttpContentCodingWithQualityHeaderValueCollection.all.Release;
-            Free (this.m_IHttpContentCodingWithQualityHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpContentCodingWithQualityHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -2823,7 +2841,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentDispositionHeaderValue /= null then
          if this.m_IHttpContentDispositionHeaderValue.all /= null then
             temp := this.m_IHttpContentDispositionHeaderValue.all.Release;
-            Free (this.m_IHttpContentDispositionHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpContentDispositionHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -3161,7 +3181,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentHeaderCollection /= null then
          if this.m_IHttpContentHeaderCollection.all /= null then
             temp := this.m_IHttpContentHeaderCollection.all.Release;
-            Free (this.m_IHttpContentHeaderCollection);
+            if temp < 1 then
+               Free (this.m_IHttpContentHeaderCollection);
+            end if;
          end if;
       end if;
    end;
@@ -3754,7 +3776,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpContentRangeHeaderValue /= null then
          if this.m_IHttpContentRangeHeaderValue.all /= null then
             temp := this.m_IHttpContentRangeHeaderValue.all.Release;
-            Free (this.m_IHttpContentRangeHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpContentRangeHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -4035,7 +4059,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpCookiePairHeaderValue /= null then
          if this.m_IHttpCookiePairHeaderValue.all /= null then
             temp := this.m_IHttpCookiePairHeaderValue.all.Release;
-            Free (this.m_IHttpCookiePairHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpCookiePairHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -4256,7 +4282,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpCookiePairHeaderValueCollection /= null then
          if this.m_IHttpCookiePairHeaderValueCollection.all /= null then
             temp := this.m_IHttpCookiePairHeaderValueCollection.all.Release;
-            Free (this.m_IHttpCookiePairHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpCookiePairHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -4630,7 +4658,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpCredentialsHeaderValue /= null then
          if this.m_IHttpCredentialsHeaderValue.all /= null then
             temp := this.m_IHttpCredentialsHeaderValue.all.Release;
-            Free (this.m_IHttpCredentialsHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpCredentialsHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -4854,7 +4884,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpDateOrDeltaHeaderValue /= null then
          if this.m_IHttpDateOrDeltaHeaderValue.all /= null then
             temp := this.m_IHttpDateOrDeltaHeaderValue.all.Release;
-            Free (this.m_IHttpDateOrDeltaHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpDateOrDeltaHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -5000,7 +5032,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpExpectationHeaderValue /= null then
          if this.m_IHttpExpectationHeaderValue.all /= null then
             temp := this.m_IHttpExpectationHeaderValue.all.Release;
-            Free (this.m_IHttpExpectationHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpExpectationHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -5241,7 +5275,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpExpectationHeaderValueCollection /= null then
          if this.m_IHttpExpectationHeaderValueCollection.all /= null then
             temp := this.m_IHttpExpectationHeaderValueCollection.all.Release;
-            Free (this.m_IHttpExpectationHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpExpectationHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -5615,7 +5651,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpLanguageHeaderValueCollection /= null then
          if this.m_IHttpLanguageHeaderValueCollection.all /= null then
             temp := this.m_IHttpLanguageHeaderValueCollection.all.Release;
-            Free (this.m_IHttpLanguageHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpLanguageHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -5989,7 +6027,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpLanguageRangeWithQualityHeaderValue /= null then
          if this.m_IHttpLanguageRangeWithQualityHeaderValue.all /= null then
             temp := this.m_IHttpLanguageRangeWithQualityHeaderValue.all.Release;
-            Free (this.m_IHttpLanguageRangeWithQualityHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpLanguageRangeWithQualityHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -6191,7 +6231,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpLanguageRangeWithQualityHeaderValueCollection /= null then
          if this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all /= null then
             temp := this.m_IHttpLanguageRangeWithQualityHeaderValueCollection.all.Release;
-            Free (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpLanguageRangeWithQualityHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -6565,7 +6607,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpMediaTypeHeaderValue /= null then
          if this.m_IHttpMediaTypeHeaderValue.all /= null then
             temp := this.m_IHttpMediaTypeHeaderValue.all.Release;
-            Free (this.m_IHttpMediaTypeHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpMediaTypeHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -6794,7 +6838,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpMediaTypeWithQualityHeaderValue /= null then
          if this.m_IHttpMediaTypeWithQualityHeaderValue.all /= null then
             temp := this.m_IHttpMediaTypeWithQualityHeaderValue.all.Release;
-            Free (this.m_IHttpMediaTypeWithQualityHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpMediaTypeWithQualityHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -7085,7 +7131,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpMediaTypeWithQualityHeaderValueCollection /= null then
          if this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all /= null then
             temp := this.m_IHttpMediaTypeWithQualityHeaderValueCollection.all.Release;
-            Free (this.m_IHttpMediaTypeWithQualityHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpMediaTypeWithQualityHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -7459,7 +7507,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpMethodHeaderValueCollection /= null then
          if this.m_IHttpMethodHeaderValueCollection.all /= null then
             temp := this.m_IHttpMethodHeaderValueCollection.all.Release;
-            Free (this.m_IHttpMethodHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpMethodHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -7833,7 +7883,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpNameValueHeaderValue /= null then
          if this.m_IHttpNameValueHeaderValue.all /= null then
             temp := this.m_IHttpNameValueHeaderValue.all.Release;
-            Free (this.m_IHttpNameValueHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpNameValueHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -8054,7 +8106,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpProductHeaderValue /= null then
          if this.m_IHttpProductHeaderValue.all /= null then
             temp := this.m_IHttpProductHeaderValue.all.Release;
-            Free (this.m_IHttpProductHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpProductHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -8258,7 +8312,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpProductInfoHeaderValue /= null then
          if this.m_IHttpProductInfoHeaderValue.all /= null then
             temp := this.m_IHttpProductInfoHeaderValue.all.Release;
-            Free (this.m_IHttpProductInfoHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpProductInfoHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -8462,7 +8518,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpProductInfoHeaderValueCollection /= null then
          if this.m_IHttpProductInfoHeaderValueCollection.all /= null then
             temp := this.m_IHttpProductInfoHeaderValueCollection.all.Release;
-            Free (this.m_IHttpProductInfoHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpProductInfoHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;
@@ -8836,7 +8894,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpRequestHeaderCollection /= null then
          if this.m_IHttpRequestHeaderCollection.all /= null then
             temp := this.m_IHttpRequestHeaderCollection.all.Release;
-            Free (this.m_IHttpRequestHeaderCollection);
+            if temp < 1 then
+               Free (this.m_IHttpRequestHeaderCollection);
+            end if;
          end if;
       end if;
    end;
@@ -9590,7 +9650,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpResponseHeaderCollection /= null then
          if this.m_IHttpResponseHeaderCollection.all /= null then
             temp := this.m_IHttpResponseHeaderCollection.all.Release;
-            Free (this.m_IHttpResponseHeaderCollection);
+            if temp < 1 then
+               Free (this.m_IHttpResponseHeaderCollection);
+            end if;
          end if;
       end if;
    end;
@@ -10107,7 +10169,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpTransferCodingHeaderValue /= null then
          if this.m_IHttpTransferCodingHeaderValue.all /= null then
             temp := this.m_IHttpTransferCodingHeaderValue.all.Release;
-            Free (this.m_IHttpTransferCodingHeaderValue);
+            if temp < 1 then
+               Free (this.m_IHttpTransferCodingHeaderValue);
+            end if;
          end if;
       end if;
    end;
@@ -10282,7 +10346,9 @@ package body WinRt.Windows.Web.Http.Headers is
       if this.m_IHttpTransferCodingHeaderValueCollection /= null then
          if this.m_IHttpTransferCodingHeaderValueCollection.all /= null then
             temp := this.m_IHttpTransferCodingHeaderValueCollection.all.Release;
-            Free (this.m_IHttpTransferCodingHeaderValueCollection);
+            if temp < 1 then
+               Free (this.m_IHttpTransferCodingHeaderValueCollection);
+            end if;
          end if;
       end if;
    end;

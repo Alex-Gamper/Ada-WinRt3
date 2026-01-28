@@ -56,7 +56,9 @@ package body WinUI3.Windows.Devices.Enumeration.Pnp is
       if this.m_IPnpObject /= null then
          if this.m_IPnpObject.all /= null then
             temp := this.m_IPnpObject.all.Release;
-            Free (this.m_IPnpObject);
+            if temp < 1 then
+               Free (this.m_IPnpObject);
+            end if;
          end if;
       end if;
    end;
@@ -581,7 +583,9 @@ package body WinUI3.Windows.Devices.Enumeration.Pnp is
       if this.m_IPnpObjectUpdate /= null then
          if this.m_IPnpObjectUpdate.all /= null then
             temp := this.m_IPnpObjectUpdate.all.Release;
-            Free (this.m_IPnpObjectUpdate);
+            if temp < 1 then
+               Free (this.m_IPnpObjectUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -661,7 +665,9 @@ package body WinUI3.Windows.Devices.Enumeration.Pnp is
       if this.m_IPnpObjectWatcher /= null then
          if this.m_IPnpObjectWatcher.all /= null then
             temp := this.m_IPnpObjectWatcher.all.Release;
-            Free (this.m_IPnpObjectWatcher);
+            if temp < 1 then
+               Free (this.m_IPnpObjectWatcher);
+            end if;
          end if;
       end if;
    end;

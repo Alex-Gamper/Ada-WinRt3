@@ -103,7 +103,9 @@ package body WinRt.Windows.System is
       if this.m_IAppActivationResult /= null then
          if this.m_IAppActivationResult.all /= null then
             temp := this.m_IAppActivationResult.all.Release;
-            Free (this.m_IAppActivationResult);
+            if temp < 1 then
+               Free (this.m_IAppActivationResult);
+            end if;
          end if;
       end if;
    end;
@@ -163,7 +165,9 @@ package body WinRt.Windows.System is
       if this.m_IAppDiagnosticInfo /= null then
          if this.m_IAppDiagnosticInfo.all /= null then
             temp := this.m_IAppDiagnosticInfo.all.Release;
-            Free (this.m_IAppDiagnosticInfo);
+            if temp < 1 then
+               Free (this.m_IAppDiagnosticInfo);
+            end if;
          end if;
       end if;
    end;
@@ -696,7 +700,9 @@ package body WinRt.Windows.System is
       if this.m_IAppDiagnosticInfoWatcher /= null then
          if this.m_IAppDiagnosticInfoWatcher.all /= null then
             temp := this.m_IAppDiagnosticInfoWatcher.all.Release;
-            Free (this.m_IAppDiagnosticInfoWatcher);
+            if temp < 1 then
+               Free (this.m_IAppDiagnosticInfoWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -896,7 +902,9 @@ package body WinRt.Windows.System is
       if this.m_IAppDiagnosticInfoWatcherEventArgs /= null then
          if this.m_IAppDiagnosticInfoWatcherEventArgs.all /= null then
             temp := this.m_IAppDiagnosticInfoWatcherEventArgs.all.Release;
-            Free (this.m_IAppDiagnosticInfoWatcherEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppDiagnosticInfoWatcherEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -939,7 +947,9 @@ package body WinRt.Windows.System is
       if this.m_IAppExecutionStateChangeResult /= null then
          if this.m_IAppExecutionStateChangeResult.all /= null then
             temp := this.m_IAppExecutionStateChangeResult.all.Release;
-            Free (this.m_IAppExecutionStateChangeResult);
+            if temp < 1 then
+               Free (this.m_IAppExecutionStateChangeResult);
+            end if;
          end if;
       end if;
    end;
@@ -979,7 +989,9 @@ package body WinRt.Windows.System is
       if this.m_IAppMemoryReport /= null then
          if this.m_IAppMemoryReport.all /= null then
             temp := this.m_IAppMemoryReport.all.Release;
-            Free (this.m_IAppMemoryReport);
+            if temp < 1 then
+               Free (this.m_IAppMemoryReport);
+            end if;
          end if;
       end if;
    end;
@@ -1091,7 +1103,9 @@ package body WinRt.Windows.System is
       if this.m_IAppMemoryUsageLimitChangingEventArgs /= null then
          if this.m_IAppMemoryUsageLimitChangingEventArgs.all /= null then
             temp := this.m_IAppMemoryUsageLimitChangingEventArgs.all.Release;
-            Free (this.m_IAppMemoryUsageLimitChangingEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppMemoryUsageLimitChangingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1148,7 +1162,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupBackgroundTaskReport /= null then
          if this.m_IAppResourceGroupBackgroundTaskReport.all /= null then
             temp := this.m_IAppResourceGroupBackgroundTaskReport.all.Release;
-            Free (this.m_IAppResourceGroupBackgroundTaskReport);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupBackgroundTaskReport);
+            end if;
          end if;
       end if;
    end;
@@ -1248,7 +1264,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupInfo /= null then
          if this.m_IAppResourceGroupInfo.all /= null then
             temp := this.m_IAppResourceGroupInfo.all.Release;
-            Free (this.m_IAppResourceGroupInfo);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1592,7 +1610,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupInfoWatcher /= null then
          if this.m_IAppResourceGroupInfoWatcher.all /= null then
             temp := this.m_IAppResourceGroupInfoWatcher.all.Release;
-            Free (this.m_IAppResourceGroupInfoWatcher);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupInfoWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -1825,7 +1845,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupInfoWatcherEventArgs /= null then
          if this.m_IAppResourceGroupInfoWatcherEventArgs.all /= null then
             temp := this.m_IAppResourceGroupInfoWatcherEventArgs.all.Release;
-            Free (this.m_IAppResourceGroupInfoWatcherEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupInfoWatcherEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1888,7 +1910,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs /= null then
          if this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs.all /= null then
             temp := this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs.all.Release;
-            Free (this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupInfoWatcherExecutionStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1951,7 +1975,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupMemoryReport /= null then
          if this.m_IAppResourceGroupMemoryReport.all /= null then
             temp := this.m_IAppResourceGroupMemoryReport.all.Release;
-            Free (this.m_IAppResourceGroupMemoryReport);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupMemoryReport);
+            end if;
          end if;
       end if;
    end;
@@ -2042,7 +2068,9 @@ package body WinRt.Windows.System is
       if this.m_IAppResourceGroupStateReport /= null then
          if this.m_IAppResourceGroupStateReport.all /= null then
             temp := this.m_IAppResourceGroupStateReport.all.Release;
-            Free (this.m_IAppResourceGroupStateReport);
+            if temp < 1 then
+               Free (this.m_IAppResourceGroupStateReport);
+            end if;
          end if;
       end if;
    end;
@@ -2099,7 +2127,9 @@ package body WinRt.Windows.System is
       if this.m_IAppUriHandlerHost /= null then
          if this.m_IAppUriHandlerHost.all /= null then
             temp := this.m_IAppUriHandlerHost.all.Release;
-            Free (this.m_IAppUriHandlerHost);
+            if temp < 1 then
+               Free (this.m_IAppUriHandlerHost);
+            end if;
          end if;
       end if;
    end;
@@ -2244,7 +2274,9 @@ package body WinRt.Windows.System is
       if this.m_IAppUriHandlerRegistration /= null then
          if this.m_IAppUriHandlerRegistration.all /= null then
             temp := this.m_IAppUriHandlerRegistration.all.Release;
-            Free (this.m_IAppUriHandlerRegistration);
+            if temp < 1 then
+               Free (this.m_IAppUriHandlerRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -2480,7 +2512,9 @@ package body WinRt.Windows.System is
       if this.m_IAppUriHandlerRegistrationManager /= null then
          if this.m_IAppUriHandlerRegistrationManager.all /= null then
             temp := this.m_IAppUriHandlerRegistrationManager.all.Release;
-            Free (this.m_IAppUriHandlerRegistrationManager);
+            if temp < 1 then
+               Free (this.m_IAppUriHandlerRegistrationManager);
+            end if;
          end if;
       end if;
    end;
@@ -2710,7 +2744,9 @@ package body WinRt.Windows.System is
       if this.m_IDispatcherQueue /= null then
          if this.m_IDispatcherQueue.all /= null then
             temp := this.m_IDispatcherQueue.all.Release;
-            Free (this.m_IDispatcherQueue);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueue);
+            end if;
          end if;
       end if;
    end;
@@ -2904,7 +2940,9 @@ package body WinRt.Windows.System is
       if this.m_IDispatcherQueueController /= null then
          if this.m_IDispatcherQueueController.all /= null then
             temp := this.m_IDispatcherQueueController.all.Release;
-            Free (this.m_IDispatcherQueueController);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueController);
+            end if;
          end if;
       end if;
    end;
@@ -3030,7 +3068,9 @@ package body WinRt.Windows.System is
       if this.m_IDispatcherQueueShutdownStartingEventArgs /= null then
          if this.m_IDispatcherQueueShutdownStartingEventArgs.all /= null then
             temp := this.m_IDispatcherQueueShutdownStartingEventArgs.all.Release;
-            Free (this.m_IDispatcherQueueShutdownStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueShutdownStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3073,7 +3113,9 @@ package body WinRt.Windows.System is
       if this.m_IDispatcherQueueTimer /= null then
          if this.m_IDispatcherQueueTimer.all /= null then
             temp := this.m_IDispatcherQueueTimer.all.Release;
-            Free (this.m_IDispatcherQueueTimer);
+            if temp < 1 then
+               Free (this.m_IDispatcherQueueTimer);
+            end if;
          end if;
       end if;
    end;
@@ -3238,7 +3280,9 @@ package body WinRt.Windows.System is
       if this.m_IFolderLauncherOptions /= null then
          if this.m_IFolderLauncherOptions.all /= null then
             temp := this.m_IFolderLauncherOptions.all.Release;
-            Free (this.m_IFolderLauncherOptions);
+            if temp < 1 then
+               Free (this.m_IFolderLauncherOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3583,7 +3627,9 @@ package body WinRt.Windows.System is
       if this.m_ILaunchUriResult /= null then
          if this.m_ILaunchUriResult.all /= null then
             temp := this.m_ILaunchUriResult.all.Release;
-            Free (this.m_ILaunchUriResult);
+            if temp < 1 then
+               Free (this.m_ILaunchUriResult);
+            end if;
          end if;
       end if;
    end;
@@ -5670,7 +5716,9 @@ package body WinRt.Windows.System is
       if this.m_ILauncherOptions /= null then
          if this.m_ILauncherOptions.all /= null then
             temp := this.m_ILauncherOptions.all.Release;
-            Free (this.m_ILauncherOptions);
+            if temp < 1 then
+               Free (this.m_ILauncherOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6150,7 +6198,9 @@ package body WinRt.Windows.System is
       if this.m_ILauncherUIOptions /= null then
          if this.m_ILauncherUIOptions.all /= null then
             temp := this.m_ILauncherUIOptions.all.Release;
-            Free (this.m_ILauncherUIOptions);
+            if temp < 1 then
+               Free (this.m_ILauncherUIOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6735,7 +6785,9 @@ package body WinRt.Windows.System is
       if this.m_IProcessLauncherOptions /= null then
          if this.m_IProcessLauncherOptions.all /= null then
             temp := this.m_IProcessLauncherOptions.all.Release;
-            Free (this.m_IProcessLauncherOptions);
+            if temp < 1 then
+               Free (this.m_IProcessLauncherOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6910,7 +6962,9 @@ package body WinRt.Windows.System is
       if this.m_IProcessLauncherResult /= null then
          if this.m_IProcessLauncherResult.all /= null then
             temp := this.m_IProcessLauncherResult.all.Release;
-            Free (this.m_IProcessLauncherResult);
+            if temp < 1 then
+               Free (this.m_IProcessLauncherResult);
+            end if;
          end if;
       end if;
    end;
@@ -6950,7 +7004,9 @@ package body WinRt.Windows.System is
       if this.m_IProcessMemoryReport /= null then
          if this.m_IProcessMemoryReport.all /= null then
             temp := this.m_IProcessMemoryReport.all.Release;
-            Free (this.m_IProcessMemoryReport);
+            if temp < 1 then
+               Free (this.m_IProcessMemoryReport);
+            end if;
          end if;
       end if;
    end;
@@ -7007,7 +7063,9 @@ package body WinRt.Windows.System is
       if this.m_IProtocolForResultsOperation /= null then
          if this.m_IProtocolForResultsOperation.all /= null then
             temp := this.m_IProtocolForResultsOperation.all.Release;
-            Free (this.m_IProtocolForResultsOperation);
+            if temp < 1 then
+               Free (this.m_IProtocolForResultsOperation);
+            end if;
          end if;
       end if;
    end;
@@ -7267,7 +7325,9 @@ package body WinRt.Windows.System is
       if this.m_IRemoteLauncherOptions /= null then
          if this.m_IRemoteLauncherOptions.all /= null then
             temp := this.m_IRemoteLauncherOptions.all.Release;
-            Free (this.m_IRemoteLauncherOptions);
+            if temp < 1 then
+               Free (this.m_IRemoteLauncherOptions);
+            end if;
          end if;
       end if;
    end;
@@ -7642,7 +7702,9 @@ package body WinRt.Windows.System is
       if this.m_IUser /= null then
          if this.m_IUser.all /= null then
             temp := this.m_IUser.all.Release;
-            Free (this.m_IUser);
+            if temp < 1 then
+               Free (this.m_IUser);
+            end if;
          end if;
       end if;
    end;
@@ -8269,7 +8331,9 @@ package body WinRt.Windows.System is
       if this.m_IUserAuthenticationStatusChangeDeferral /= null then
          if this.m_IUserAuthenticationStatusChangeDeferral.all /= null then
             temp := this.m_IUserAuthenticationStatusChangeDeferral.all.Release;
-            Free (this.m_IUserAuthenticationStatusChangeDeferral);
+            if temp < 1 then
+               Free (this.m_IUserAuthenticationStatusChangeDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -8306,7 +8370,9 @@ package body WinRt.Windows.System is
       if this.m_IUserAuthenticationStatusChangingEventArgs /= null then
          if this.m_IUserAuthenticationStatusChangingEventArgs.all /= null then
             temp := this.m_IUserAuthenticationStatusChangingEventArgs.all.Release;
-            Free (this.m_IUserAuthenticationStatusChangingEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserAuthenticationStatusChangingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8403,7 +8469,9 @@ package body WinRt.Windows.System is
       if this.m_IUserChangedEventArgs /= null then
          if this.m_IUserChangedEventArgs.all /= null then
             temp := this.m_IUserChangedEventArgs.all.Release;
-            Free (this.m_IUserChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8550,7 +8618,9 @@ package body WinRt.Windows.System is
       if this.m_IUserDeviceAssociationChangedEventArgs /= null then
          if this.m_IUserDeviceAssociationChangedEventArgs.all /= null then
             temp := this.m_IUserDeviceAssociationChangedEventArgs.all.Release;
-            Free (this.m_IUserDeviceAssociationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDeviceAssociationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -8633,7 +8703,9 @@ package body WinRt.Windows.System is
       if this.m_IUserPicker /= null then
          if this.m_IUserPicker.all /= null then
             temp := this.m_IUserPicker.all.Release;
-            Free (this.m_IUserPicker);
+            if temp < 1 then
+               Free (this.m_IUserPicker);
+            end if;
          end if;
       end if;
    end;
@@ -8832,7 +8904,9 @@ package body WinRt.Windows.System is
       if this.m_IUserWatcher /= null then
          if this.m_IUserWatcher.all /= null then
             temp := this.m_IUserWatcher.all.Release;
-            Free (this.m_IUserWatcher);
+            if temp < 1 then
+               Free (this.m_IUserWatcher);
+            end if;
          end if;
       end if;
    end;

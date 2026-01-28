@@ -48,7 +48,9 @@ package body WinUI3.Windows.ApplicationModel.Search.Core is
       if this.m_IRequestingFocusOnKeyboardInputEventArgs /= null then
          if this.m_IRequestingFocusOnKeyboardInputEventArgs.all /= null then
             temp := this.m_IRequestingFocusOnKeyboardInputEventArgs.all.Release;
-            Free (this.m_IRequestingFocusOnKeyboardInputEventArgs);
+            if temp < 1 then
+               Free (this.m_IRequestingFocusOnKeyboardInputEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -71,7 +73,9 @@ package body WinUI3.Windows.ApplicationModel.Search.Core is
       if this.m_ISearchSuggestion /= null then
          if this.m_ISearchSuggestion.all /= null then
             temp := this.m_ISearchSuggestion.all.Release;
-            Free (this.m_ISearchSuggestion);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestion);
+            end if;
          end if;
       end if;
    end;
@@ -208,7 +212,9 @@ package body WinUI3.Windows.ApplicationModel.Search.Core is
       if this.m_ISearchSuggestionManager /= null then
          if this.m_ISearchSuggestionManager.all /= null then
             temp := this.m_ISearchSuggestionManager.all.Release;
-            Free (this.m_ISearchSuggestionManager);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestionManager);
+            end if;
          end if;
       end if;
    end;
@@ -529,7 +535,9 @@ package body WinUI3.Windows.ApplicationModel.Search.Core is
       if this.m_ISearchSuggestionsRequestedEventArgs /= null then
          if this.m_ISearchSuggestionsRequestedEventArgs.all /= null then
             temp := this.m_ISearchSuggestionsRequestedEventArgs.all.Release;
-            Free (this.m_ISearchSuggestionsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestionsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;

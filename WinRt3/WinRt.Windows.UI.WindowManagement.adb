@@ -55,7 +55,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindow /= null then
          if this.m_IAppWindow.all /= null then
             temp := this.m_IAppWindow.all.Release;
-            Free (this.m_IAppWindow);
+            if temp < 1 then
+               Free (this.m_IAppWindow);
+            end if;
          end if;
       end if;
    end;
@@ -773,7 +775,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowChangedEventArgs /= null then
          if this.m_IAppWindowChangedEventArgs.all /= null then
             temp := this.m_IAppWindowChangedEventArgs.all.Release;
-            Free (this.m_IAppWindowChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppWindowChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -932,7 +936,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowCloseRequestedEventArgs /= null then
          if this.m_IAppWindowCloseRequestedEventArgs.all /= null then
             temp := this.m_IAppWindowCloseRequestedEventArgs.all.Release;
-            Free (this.m_IAppWindowCloseRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppWindowCloseRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1007,7 +1013,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowClosedEventArgs /= null then
          if this.m_IAppWindowClosedEventArgs.all /= null then
             temp := this.m_IAppWindowClosedEventArgs.all.Release;
-            Free (this.m_IAppWindowClosedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppWindowClosedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1047,7 +1055,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowFrame /= null then
          if this.m_IAppWindowFrame.all /= null then
             temp := this.m_IAppWindowFrame.all.Release;
-            Free (this.m_IAppWindowFrame);
+            if temp < 1 then
+               Free (this.m_IAppWindowFrame);
+            end if;
          end if;
       end if;
    end;
@@ -1127,7 +1137,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowPlacement /= null then
          if this.m_IAppWindowPlacement.all /= null then
             temp := this.m_IAppWindowPlacement.all.Release;
-            Free (this.m_IAppWindowPlacement);
+            if temp < 1 then
+               Free (this.m_IAppWindowPlacement);
+            end if;
          end if;
       end if;
    end;
@@ -1204,7 +1216,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowPresentationConfiguration /= null then
          if this.m_IAppWindowPresentationConfiguration.all /= null then
             temp := this.m_IAppWindowPresentationConfiguration.all.Release;
-            Free (this.m_IAppWindowPresentationConfiguration);
+            if temp < 1 then
+               Free (this.m_IAppWindowPresentationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1247,7 +1261,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowPresenter /= null then
          if this.m_IAppWindowPresenter.all /= null then
             temp := this.m_IAppWindowPresenter.all.Release;
-            Free (this.m_IAppWindowPresenter);
+            if temp < 1 then
+               Free (this.m_IAppWindowPresenter);
+            end if;
          end if;
       end if;
    end;
@@ -1344,7 +1360,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowTitleBar /= null then
          if this.m_IAppWindowTitleBar.all /= null then
             temp := this.m_IAppWindowTitleBar.all.Release;
-            Free (this.m_IAppWindowTitleBar);
+            if temp < 1 then
+               Free (this.m_IAppWindowTitleBar);
+            end if;
          end if;
       end if;
    end;
@@ -1896,7 +1914,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IAppWindowTitleBarOcclusion /= null then
          if this.m_IAppWindowTitleBarOcclusion.all /= null then
             temp := this.m_IAppWindowTitleBarOcclusion.all.Release;
-            Free (this.m_IAppWindowTitleBarOcclusion);
+            if temp < 1 then
+               Free (this.m_IAppWindowTitleBarOcclusion);
+            end if;
          end if;
       end if;
    end;
@@ -1936,7 +1956,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_ICompactOverlayPresentationConfiguration /= null then
          if this.m_ICompactOverlayPresentationConfiguration.all /= null then
             temp := this.m_ICompactOverlayPresentationConfiguration.all.Release;
-            Free (this.m_ICompactOverlayPresentationConfiguration);
+            if temp < 1 then
+               Free (this.m_ICompactOverlayPresentationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -1978,7 +2000,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IDefaultPresentationConfiguration /= null then
          if this.m_IDefaultPresentationConfiguration.all /= null then
             temp := this.m_IDefaultPresentationConfiguration.all.Release;
-            Free (this.m_IDefaultPresentationConfiguration);
+            if temp < 1 then
+               Free (this.m_IDefaultPresentationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -2020,7 +2044,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IDisplayRegion /= null then
          if this.m_IDisplayRegion.all /= null then
             temp := this.m_IDisplayRegion.all.Release;
-            Free (this.m_IDisplayRegion);
+            if temp < 1 then
+               Free (this.m_IDisplayRegion);
+            end if;
          end if;
       end if;
    end;
@@ -2167,7 +2193,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IFullScreenPresentationConfiguration /= null then
          if this.m_IFullScreenPresentationConfiguration.all /= null then
             temp := this.m_IFullScreenPresentationConfiguration.all.Release;
-            Free (this.m_IFullScreenPresentationConfiguration);
+            if temp < 1 then
+               Free (this.m_IFullScreenPresentationConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -2268,7 +2296,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IWindowingEnvironment /= null then
          if this.m_IWindowingEnvironment.all /= null then
             temp := this.m_IWindowingEnvironment.all.Release;
-            Free (this.m_IWindowingEnvironment);
+            if temp < 1 then
+               Free (this.m_IWindowingEnvironment);
+            end if;
          end if;
       end if;
    end;
@@ -2426,7 +2456,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IWindowingEnvironmentAddedEventArgs /= null then
          if this.m_IWindowingEnvironmentAddedEventArgs.all /= null then
             temp := this.m_IWindowingEnvironmentAddedEventArgs.all.Release;
-            Free (this.m_IWindowingEnvironmentAddedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowingEnvironmentAddedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2469,7 +2501,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IWindowingEnvironmentChangedEventArgs /= null then
          if this.m_IWindowingEnvironmentChangedEventArgs.all /= null then
             temp := this.m_IWindowingEnvironmentChangedEventArgs.all.Release;
-            Free (this.m_IWindowingEnvironmentChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowingEnvironmentChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2492,7 +2526,9 @@ package body WinRt.Windows.UI.WindowManagement is
       if this.m_IWindowingEnvironmentRemovedEventArgs /= null then
          if this.m_IWindowingEnvironmentRemovedEventArgs.all /= null then
             temp := this.m_IWindowingEnvironmentRemovedEventArgs.all.Release;
-            Free (this.m_IWindowingEnvironmentRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowingEnvironmentRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;

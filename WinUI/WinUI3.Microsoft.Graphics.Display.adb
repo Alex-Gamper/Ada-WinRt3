@@ -54,7 +54,9 @@ package body WinUI3.Microsoft.Graphics.Display is
       if this.m_IDisplayAdvancedColorInfo /= null then
          if this.m_IDisplayAdvancedColorInfo.all /= null then
             temp := this.m_IDisplayAdvancedColorInfo.all.Release;
-            Free (this.m_IDisplayAdvancedColorInfo);
+            if temp < 1 then
+               Free (this.m_IDisplayAdvancedColorInfo);
+            end if;
          end if;
       end if;
    end;
@@ -266,7 +268,9 @@ package body WinUI3.Microsoft.Graphics.Display is
       if this.m_IDisplayInformation /= null then
          if this.m_IDisplayInformation.all /= null then
             temp := this.m_IDisplayInformation.all.Release;
-            Free (this.m_IDisplayInformation);
+            if temp < 1 then
+               Free (this.m_IDisplayInformation);
+            end if;
          end if;
       end if;
    end;

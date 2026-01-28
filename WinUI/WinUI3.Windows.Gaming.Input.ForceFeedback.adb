@@ -54,7 +54,9 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
             temp := this.m_IForceFeedbackEffect.all.Release;
-            Free (this.m_IForceFeedbackEffect);
+            if temp < 1 then
+               Free (this.m_IForceFeedbackEffect);
+            end if;
          end if;
       end if;
    end;
@@ -227,7 +229,9 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
             temp := this.m_IForceFeedbackEffect.all.Release;
-            Free (this.m_IForceFeedbackEffect);
+            if temp < 1 then
+               Free (this.m_IForceFeedbackEffect);
+            end if;
          end if;
       end if;
    end;
@@ -393,7 +397,9 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
       if this.m_IForceFeedbackMotor /= null then
          if this.m_IForceFeedbackMotor.all /= null then
             temp := this.m_IForceFeedbackMotor.all.Release;
-            Free (this.m_IForceFeedbackMotor);
+            if temp < 1 then
+               Free (this.m_IForceFeedbackMotor);
+            end if;
          end if;
       end if;
    end;
@@ -858,7 +864,9 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
             temp := this.m_IForceFeedbackEffect.all.Release;
-            Free (this.m_IForceFeedbackEffect);
+            if temp < 1 then
+               Free (this.m_IForceFeedbackEffect);
+            end if;
          end if;
       end if;
    end;
@@ -1059,7 +1067,9 @@ package body WinUI3.Windows.Gaming.Input.ForceFeedback is
       if this.m_IForceFeedbackEffect /= null then
          if this.m_IForceFeedbackEffect.all /= null then
             temp := this.m_IForceFeedbackEffect.all.Release;
-            Free (this.m_IForceFeedbackEffect);
+            if temp < 1 then
+               Free (this.m_IForceFeedbackEffect);
+            end if;
          end if;
       end if;
    end;

@@ -61,7 +61,9 @@ package body WinRt.Windows.ApplicationModel.Wallet.System is
       if this.m_IWalletItemSystemStore /= null then
          if this.m_IWalletItemSystemStore.all /= null then
             temp := this.m_IWalletItemSystemStore.all.Release;
-            Free (this.m_IWalletItemSystemStore);
+            if temp < 1 then
+               Free (this.m_IWalletItemSystemStore);
+            end if;
          end if;
       end if;
    end;

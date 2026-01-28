@@ -114,7 +114,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAdvancedCapturedPhoto /= null then
          if this.m_IAdvancedCapturedPhoto.all /= null then
             temp := this.m_IAdvancedCapturedPhoto.all.Release;
-            Free (this.m_IAdvancedCapturedPhoto);
+            if temp < 1 then
+               Free (this.m_IAdvancedCapturedPhoto);
+            end if;
          end if;
       end if;
    end;
@@ -215,7 +217,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAdvancedPhotoCapture /= null then
          if this.m_IAdvancedPhotoCapture.all /= null then
             temp := this.m_IAdvancedPhotoCapture.all.Release;
-            Free (this.m_IAdvancedPhotoCapture);
+            if temp < 1 then
+               Free (this.m_IAdvancedPhotoCapture);
+            end if;
          end if;
       end if;
    end;
@@ -479,7 +483,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastBackgroundService /= null then
          if this.m_IAppBroadcastBackgroundService.all /= null then
             temp := this.m_IAppBroadcastBackgroundService.all.Release;
-            Free (this.m_IAppBroadcastBackgroundService);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastBackgroundService);
+            end if;
          end if;
       end if;
    end;
@@ -979,7 +985,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastBackgroundServiceSignInInfo /= null then
          if this.m_IAppBroadcastBackgroundServiceSignInInfo.all /= null then
             temp := this.m_IAppBroadcastBackgroundServiceSignInInfo.all.Release;
-            Free (this.m_IAppBroadcastBackgroundServiceSignInInfo);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastBackgroundServiceSignInInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1220,7 +1228,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastBackgroundServiceStreamInfo /= null then
          if this.m_IAppBroadcastBackgroundServiceStreamInfo.all /= null then
             temp := this.m_IAppBroadcastBackgroundServiceStreamInfo.all.Release;
-            Free (this.m_IAppBroadcastBackgroundServiceStreamInfo);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastBackgroundServiceStreamInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1498,7 +1508,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastCameraCaptureStateChangedEventArgs /= null then
          if this.m_IAppBroadcastCameraCaptureStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastCameraCaptureStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastCameraCaptureStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastCameraCaptureStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1555,7 +1567,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastGlobalSettings /= null then
          if this.m_IAppBroadcastGlobalSettings.all /= null then
             temp := this.m_IAppBroadcastGlobalSettings.all.Release;
-            Free (this.m_IAppBroadcastGlobalSettings);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastGlobalSettings);
+            end if;
          end if;
       end if;
    end;
@@ -1971,7 +1985,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastHeartbeatRequestedEventArgs /= null then
          if this.m_IAppBroadcastHeartbeatRequestedEventArgs.all /= null then
             temp := this.m_IAppBroadcastHeartbeatRequestedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastHeartbeatRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastHeartbeatRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2122,7 +2138,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs /= null then
          if this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastMicrophoneCaptureStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2179,7 +2197,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPlugIn /= null then
          if this.m_IAppBroadcastPlugIn.all /= null then
             temp := this.m_IAppBroadcastPlugIn.all.Release;
-            Free (this.m_IAppBroadcastPlugIn);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPlugIn);
+            end if;
          end if;
       end if;
    end;
@@ -2279,7 +2299,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPlugInManager /= null then
          if this.m_IAppBroadcastPlugInManager.all /= null then
             temp := this.m_IAppBroadcastPlugInManager.all.Release;
-            Free (this.m_IAppBroadcastPlugInManager);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPlugInManager);
+            end if;
          end if;
       end if;
    end;
@@ -2428,7 +2450,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPlugInStateChangedEventArgs /= null then
          if this.m_IAppBroadcastPlugInStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastPlugInStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastPlugInStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPlugInStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2468,7 +2492,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPreview /= null then
          if this.m_IAppBroadcastPreview.all /= null then
             temp := this.m_IAppBroadcastPreview.all.Release;
-            Free (this.m_IAppBroadcastPreview);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPreview);
+            end if;
          end if;
       end if;
    end;
@@ -2595,7 +2621,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPreviewStateChangedEventArgs /= null then
          if this.m_IAppBroadcastPreviewStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastPreviewStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastPreviewStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPreviewStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2652,7 +2680,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPreviewStreamReader /= null then
          if this.m_IAppBroadcastPreviewStreamReader.all /= null then
             temp := this.m_IAppBroadcastPreviewStreamReader.all.Release;
-            Free (this.m_IAppBroadcastPreviewStreamReader);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPreviewStreamReader);
+            end if;
          end if;
       end if;
    end;
@@ -2813,7 +2843,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPreviewStreamVideoFrame /= null then
          if this.m_IAppBroadcastPreviewStreamVideoFrame.all /= null then
             temp := this.m_IAppBroadcastPreviewStreamVideoFrame.all.Release;
-            Free (this.m_IAppBroadcastPreviewStreamVideoFrame);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPreviewStreamVideoFrame);
+            end if;
          end if;
       end if;
    end;
@@ -2873,7 +2905,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastPreviewStreamVideoHeader /= null then
          if this.m_IAppBroadcastPreviewStreamVideoHeader.all /= null then
             temp := this.m_IAppBroadcastPreviewStreamVideoHeader.all.Release;
-            Free (this.m_IAppBroadcastPreviewStreamVideoHeader);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastPreviewStreamVideoHeader);
+            end if;
          end if;
       end if;
    end;
@@ -2964,7 +2998,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastProviderSettings /= null then
          if this.m_IAppBroadcastProviderSettings.all /= null then
             temp := this.m_IAppBroadcastProviderSettings.all.Release;
-            Free (this.m_IAppBroadcastProviderSettings);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastProviderSettings);
+            end if;
          end if;
       end if;
    end;
@@ -3216,7 +3252,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastServices /= null then
          if this.m_IAppBroadcastServices.all /= null then
             temp := this.m_IAppBroadcastServices.all.Release;
-            Free (this.m_IAppBroadcastServices);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastServices);
+            end if;
          end if;
       end if;
    end;
@@ -3544,7 +3582,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastSignInStateChangedEventArgs /= null then
          if this.m_IAppBroadcastSignInStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastSignInStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastSignInStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastSignInStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3601,7 +3641,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastState /= null then
          if this.m_IAppBroadcastState.all /= null then
             temp := this.m_IAppBroadcastState.all.Release;
-            Free (this.m_IAppBroadcastState);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastState);
+            end if;
          end if;
       end if;
    end;
@@ -4208,7 +4250,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamAudioFrame /= null then
          if this.m_IAppBroadcastStreamAudioFrame.all /= null then
             temp := this.m_IAppBroadcastStreamAudioFrame.all.Release;
-            Free (this.m_IAppBroadcastStreamAudioFrame);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamAudioFrame);
+            end if;
          end if;
       end if;
    end;
@@ -4268,7 +4312,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamAudioHeader /= null then
          if this.m_IAppBroadcastStreamAudioHeader.all /= null then
             temp := this.m_IAppBroadcastStreamAudioHeader.all.Release;
-            Free (this.m_IAppBroadcastStreamAudioHeader);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamAudioHeader);
+            end if;
          end if;
       end if;
    end;
@@ -4376,7 +4422,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamReader /= null then
          if this.m_IAppBroadcastStreamReader.all /= null then
             temp := this.m_IAppBroadcastStreamReader.all.Release;
-            Free (this.m_IAppBroadcastStreamReader);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamReader);
+            end if;
          end if;
       end if;
    end;
@@ -4624,7 +4672,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamStateChangedEventArgs /= null then
          if this.m_IAppBroadcastStreamStateChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastStreamStateChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastStreamStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4664,7 +4714,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamVideoFrame /= null then
          if this.m_IAppBroadcastStreamVideoFrame.all /= null then
             temp := this.m_IAppBroadcastStreamVideoFrame.all.Release;
-            Free (this.m_IAppBroadcastStreamVideoFrame);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamVideoFrame);
+            end if;
          end if;
       end if;
    end;
@@ -4724,7 +4776,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastStreamVideoHeader /= null then
          if this.m_IAppBroadcastStreamVideoHeader.all /= null then
             temp := this.m_IAppBroadcastStreamVideoHeader.all.Release;
-            Free (this.m_IAppBroadcastStreamVideoHeader);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastStreamVideoHeader);
+            end if;
          end if;
       end if;
    end;
@@ -4849,7 +4903,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastTriggerDetails /= null then
          if this.m_IAppBroadcastTriggerDetails.all /= null then
             temp := this.m_IAppBroadcastTriggerDetails.all.Release;
-            Free (this.m_IAppBroadcastTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -4892,7 +4948,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppBroadcastViewerCountChangedEventArgs /= null then
          if this.m_IAppBroadcastViewerCountChangedEventArgs.all /= null then
             temp := this.m_IAppBroadcastViewerCountChangedEventArgs.all.Release;
-            Free (this.m_IAppBroadcastViewerCountChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppBroadcastViewerCountChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4932,7 +4990,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCapture /= null then
          if this.m_IAppCapture.all /= null then
             temp := this.m_IAppCapture.all.Release;
-            Free (this.m_IAppCapture);
+            if temp < 1 then
+               Free (this.m_IAppCapture);
+            end if;
          end if;
       end if;
    end;
@@ -5098,7 +5158,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureAlternateShortcutKeys /= null then
          if this.m_IAppCaptureAlternateShortcutKeys.all /= null then
             temp := this.m_IAppCaptureAlternateShortcutKeys.all.Release;
-            Free (this.m_IAppCaptureAlternateShortcutKeys);
+            if temp < 1 then
+               Free (this.m_IAppCaptureAlternateShortcutKeys);
+            end if;
          end if;
       end if;
    end;
@@ -5681,7 +5743,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureDurationGeneratedEventArgs /= null then
          if this.m_IAppCaptureDurationGeneratedEventArgs.all /= null then
             temp := this.m_IAppCaptureDurationGeneratedEventArgs.all.Release;
-            Free (this.m_IAppCaptureDurationGeneratedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppCaptureDurationGeneratedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5721,7 +5785,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureFileGeneratedEventArgs /= null then
          if this.m_IAppCaptureFileGeneratedEventArgs.all /= null then
             temp := this.m_IAppCaptureFileGeneratedEventArgs.all.Release;
-            Free (this.m_IAppCaptureFileGeneratedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppCaptureFileGeneratedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5815,7 +5881,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureMetadataWriter /= null then
          if this.m_IAppCaptureMetadataWriter.all /= null then
             temp := this.m_IAppCaptureMetadataWriter.all.Release;
-            Free (this.m_IAppCaptureMetadataWriter);
+            if temp < 1 then
+               Free (this.m_IAppCaptureMetadataWriter);
+            end if;
          end if;
       end if;
    end;
@@ -6074,7 +6142,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs /= null then
          if this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs.all /= null then
             temp := this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs.all.Release;
-            Free (this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppCaptureMicrophoneCaptureStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6131,7 +6201,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureRecordOperation /= null then
          if this.m_IAppCaptureRecordOperation.all /= null then
             temp := this.m_IAppCaptureRecordOperation.all.Release;
-            Free (this.m_IAppCaptureRecordOperation);
+            if temp < 1 then
+               Free (this.m_IAppCaptureRecordOperation);
+            end if;
          end if;
       end if;
    end;
@@ -6364,7 +6436,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureRecordingStateChangedEventArgs /= null then
          if this.m_IAppCaptureRecordingStateChangedEventArgs.all /= null then
             temp := this.m_IAppCaptureRecordingStateChangedEventArgs.all.Release;
-            Free (this.m_IAppCaptureRecordingStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppCaptureRecordingStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6421,7 +6495,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureServices /= null then
          if this.m_IAppCaptureServices.all /= null then
             temp := this.m_IAppCaptureServices.all.Release;
-            Free (this.m_IAppCaptureServices);
+            if temp < 1 then
+               Free (this.m_IAppCaptureServices);
+            end if;
          end if;
       end if;
    end;
@@ -6523,7 +6599,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureSettings /= null then
          if this.m_IAppCaptureSettings.all /= null then
             temp := this.m_IAppCaptureSettings.all.Release;
-            Free (this.m_IAppCaptureSettings);
+            if temp < 1 then
+               Free (this.m_IAppCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -7457,7 +7535,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IAppCaptureState /= null then
          if this.m_IAppCaptureState.all /= null then
             temp := this.m_IAppCaptureState.all.Release;
-            Free (this.m_IAppCaptureState);
+            if temp < 1 then
+               Free (this.m_IAppCaptureState);
+            end if;
          end if;
       end if;
    end;
@@ -7660,7 +7740,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICameraCaptureUI /= null then
          if this.m_ICameraCaptureUI.all /= null then
             temp := this.m_ICameraCaptureUI.all.Release;
-            Free (this.m_ICameraCaptureUI);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUI);
+            end if;
          end if;
       end if;
    end;
@@ -7809,7 +7891,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICameraCaptureUIPhotoCaptureSettings /= null then
          if this.m_ICameraCaptureUIPhotoCaptureSettings.all /= null then
             temp := this.m_ICameraCaptureUIPhotoCaptureSettings.all.Release;
-            Free (this.m_ICameraCaptureUIPhotoCaptureSettings);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUIPhotoCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -7992,7 +8076,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICameraCaptureUIVideoCaptureSettings /= null then
          if this.m_ICameraCaptureUIVideoCaptureSettings.all /= null then
             temp := this.m_ICameraCaptureUIVideoCaptureSettings.all.Release;
-            Free (this.m_ICameraCaptureUIVideoCaptureSettings);
+            if temp < 1 then
+               Free (this.m_ICameraCaptureUIVideoCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -8170,7 +8256,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICapturedFrame /= null then
          if this.m_ICapturedFrame.all /= null then
             temp := this.m_ICapturedFrame.all.Release;
-            Free (this.m_ICapturedFrame);
+            if temp < 1 then
+               Free (this.m_ICapturedFrame);
+            end if;
          end if;
       end if;
    end;
@@ -8733,7 +8821,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICapturedFrameControlValues /= null then
          if this.m_ICapturedFrameControlValues.all /= null then
             temp := this.m_ICapturedFrameControlValues.all.Release;
-            Free (this.m_ICapturedFrameControlValues);
+            if temp < 1 then
+               Free (this.m_ICapturedFrameControlValues);
+            end if;
          end if;
       end if;
    end;
@@ -9050,7 +9140,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ICapturedPhoto /= null then
          if this.m_ICapturedPhoto.all /= null then
             temp := this.m_ICapturedPhoto.all.Release;
-            Free (this.m_ICapturedPhoto);
+            if temp < 1 then
+               Free (this.m_ICapturedPhoto);
+            end if;
          end if;
       end if;
    end;
@@ -9113,7 +9205,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IGameBarServices /= null then
          if this.m_IGameBarServices.all /= null then
             temp := this.m_IGameBarServices.all.Release;
-            Free (this.m_IGameBarServices);
+            if temp < 1 then
+               Free (this.m_IGameBarServices);
+            end if;
          end if;
       end if;
    end;
@@ -9294,7 +9388,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IGameBarServicesCommandEventArgs /= null then
          if this.m_IGameBarServicesCommandEventArgs.all /= null then
             temp := this.m_IGameBarServicesCommandEventArgs.all.Release;
-            Free (this.m_IGameBarServicesCommandEventArgs);
+            if temp < 1 then
+               Free (this.m_IGameBarServicesCommandEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9351,7 +9447,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IGameBarServicesManager /= null then
          if this.m_IGameBarServicesManager.all /= null then
             temp := this.m_IGameBarServicesManager.all.Release;
-            Free (this.m_IGameBarServicesManager);
+            if temp < 1 then
+               Free (this.m_IGameBarServicesManager);
+            end if;
          end if;
       end if;
    end;
@@ -9434,7 +9532,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs /= null then
          if this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs.all /= null then
             temp := this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs.all.Release;
-            Free (this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGameBarServicesManagerGameBarServicesCreatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -9477,7 +9577,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IGameBarServicesTargetInfo /= null then
          if this.m_IGameBarServicesTargetInfo.all /= null then
             temp := this.m_IGameBarServicesTargetInfo.all.Release;
-            Free (this.m_IGameBarServicesTargetInfo);
+            if temp < 1 then
+               Free (this.m_IGameBarServicesTargetInfo);
+            end if;
          end if;
       end if;
    end;
@@ -9577,7 +9679,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ILowLagMediaRecording /= null then
          if this.m_ILowLagMediaRecording.all /= null then
             temp := this.m_ILowLagMediaRecording.all.Release;
-            Free (this.m_ILowLagMediaRecording);
+            if temp < 1 then
+               Free (this.m_ILowLagMediaRecording);
+            end if;
          end if;
       end if;
    end;
@@ -9960,7 +10064,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ILowLagPhotoCapture /= null then
          if this.m_ILowLagPhotoCapture.all /= null then
             temp := this.m_ILowLagPhotoCapture.all.Release;
-            Free (this.m_ILowLagPhotoCapture);
+            if temp < 1 then
+               Free (this.m_ILowLagPhotoCapture);
+            end if;
          end if;
       end if;
    end;
@@ -10091,7 +10197,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_ILowLagPhotoSequenceCapture /= null then
          if this.m_ILowLagPhotoSequenceCapture.all /= null then
             temp := this.m_ILowLagPhotoSequenceCapture.all.Release;
-            Free (this.m_ILowLagPhotoSequenceCapture);
+            if temp < 1 then
+               Free (this.m_ILowLagPhotoSequenceCapture);
+            end if;
          end if;
       end if;
    end;
@@ -10273,7 +10381,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCapture /= null then
          if this.m_IMediaCapture.all /= null then
             temp := this.m_IMediaCapture.all.Release;
-            Free (this.m_IMediaCapture);
+            if temp < 1 then
+               Free (this.m_IMediaCapture);
+            end if;
          end if;
       end if;
    end;
@@ -13151,7 +13261,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs /= null then
          if this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs.all /= null then
             temp := this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs.all.Release;
-            Free (this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureDeviceExclusiveControlStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13211,7 +13323,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureFailedEventArgs /= null then
          if this.m_IMediaCaptureFailedEventArgs.all /= null then
             temp := this.m_IMediaCaptureFailedEventArgs.all.Release;
-            Free (this.m_IMediaCaptureFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13287,7 +13401,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureFocusChangedEventArgs /= null then
          if this.m_IMediaCaptureFocusChangedEventArgs.all /= null then
             temp := this.m_IMediaCaptureFocusChangedEventArgs.all.Release;
-            Free (this.m_IMediaCaptureFocusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureFocusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -13327,7 +13443,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureInitializationSettings /= null then
          if this.m_IMediaCaptureInitializationSettings.all /= null then
             temp := this.m_IMediaCaptureInitializationSettings.all.Release;
-            Free (this.m_IMediaCaptureInitializationSettings);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureInitializationSettings);
+            end if;
          end if;
       end if;
    end;
@@ -14088,7 +14206,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCapturePauseResult /= null then
          if this.m_IMediaCapturePauseResult.all /= null then
             temp := this.m_IMediaCapturePauseResult.all.Release;
-            Free (this.m_IMediaCapturePauseResult);
+            if temp < 1 then
+               Free (this.m_IMediaCapturePauseResult);
+            end if;
          end if;
       end if;
    end;
@@ -14166,7 +14286,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureRelativePanelWatcher /= null then
          if this.m_IMediaCaptureRelativePanelWatcher.all /= null then
             temp := this.m_IMediaCaptureRelativePanelWatcher.all.Release;
-            Free (this.m_IMediaCaptureRelativePanelWatcher);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureRelativePanelWatcher);
+            end if;
          end if;
       end if;
    end;
@@ -14285,7 +14407,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureSettings /= null then
          if this.m_IMediaCaptureSettings.all /= null then
             temp := this.m_IMediaCaptureSettings.all.Release;
-            Free (this.m_IMediaCaptureSettings);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureSettings);
+            end if;
          end if;
       end if;
    end;
@@ -14597,7 +14721,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureStopResult /= null then
          if this.m_IMediaCaptureStopResult.all /= null then
             temp := this.m_IMediaCaptureStopResult.all.Release;
-            Free (this.m_IMediaCaptureStopResult);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureStopResult);
+            end if;
          end if;
       end if;
    end;
@@ -14675,7 +14801,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureVideoProfile /= null then
          if this.m_IMediaCaptureVideoProfile.all /= null then
             temp := this.m_IMediaCaptureVideoProfile.all.Release;
-            Free (this.m_IMediaCaptureVideoProfile);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureVideoProfile);
+            end if;
          end if;
       end if;
    end;
@@ -14863,7 +14991,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IMediaCaptureVideoProfileMediaDescription /= null then
          if this.m_IMediaCaptureVideoProfileMediaDescription.all /= null then
             temp := this.m_IMediaCaptureVideoProfileMediaDescription.all.Release;
-            Free (this.m_IMediaCaptureVideoProfileMediaDescription);
+            if temp < 1 then
+               Free (this.m_IMediaCaptureVideoProfileMediaDescription);
+            end if;
          end if;
       end if;
    end;
@@ -15019,7 +15149,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IOptionalReferencePhotoCapturedEventArgs /= null then
          if this.m_IOptionalReferencePhotoCapturedEventArgs.all /= null then
             temp := this.m_IOptionalReferencePhotoCapturedEventArgs.all.Release;
-            Free (this.m_IOptionalReferencePhotoCapturedEventArgs);
+            if temp < 1 then
+               Free (this.m_IOptionalReferencePhotoCapturedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15079,7 +15211,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IPhotoCapturedEventArgs /= null then
          if this.m_IPhotoCapturedEventArgs.all /= null then
             temp := this.m_IPhotoCapturedEventArgs.all.Release;
-            Free (this.m_IPhotoCapturedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhotoCapturedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15159,7 +15293,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IPhotoConfirmationCapturedEventArgs /= null then
          if this.m_IPhotoConfirmationCapturedEventArgs.all /= null then
             temp := this.m_IPhotoConfirmationCapturedEventArgs.all.Release;
-            Free (this.m_IPhotoConfirmationCapturedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPhotoConfirmationCapturedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15234,7 +15370,9 @@ package body WinUI3.Windows.Media.Capture is
       if this.m_IVideoStreamConfiguration /= null then
          if this.m_IVideoStreamConfiguration.all /= null then
             temp := this.m_IVideoStreamConfiguration.all.Release;
-            Free (this.m_IVideoStreamConfiguration);
+            if temp < 1 then
+               Free (this.m_IVideoStreamConfiguration);
+            end if;
          end if;
       end if;
    end;

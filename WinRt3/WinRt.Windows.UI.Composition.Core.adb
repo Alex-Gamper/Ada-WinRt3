@@ -47,7 +47,9 @@ package body WinRt.Windows.UI.Composition.Core is
       if this.m_ICompositorController /= null then
          if this.m_ICompositorController.all /= null then
             temp := this.m_ICompositorController.all.Release;
-            Free (this.m_ICompositorController);
+            if temp < 1 then
+               Free (this.m_ICompositorController);
+            end if;
          end if;
       end if;
    end;

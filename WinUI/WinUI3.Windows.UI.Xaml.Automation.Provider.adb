@@ -47,7 +47,9 @@ package body WinUI3.Windows.UI.Xaml.Automation.Provider is
       if this.m_IIRawElementProviderSimple /= null then
          if this.m_IIRawElementProviderSimple.all /= null then
             temp := this.m_IIRawElementProviderSimple.all.Release;
-            Free (this.m_IIRawElementProviderSimple);
+            if temp < 1 then
+               Free (this.m_IIRawElementProviderSimple);
+            end if;
          end if;
       end if;
    end;

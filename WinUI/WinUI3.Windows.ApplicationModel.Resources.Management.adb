@@ -51,7 +51,9 @@ package body WinUI3.Windows.ApplicationModel.Resources.Management is
       if this.m_IIndexedResourceCandidate /= null then
          if this.m_IIndexedResourceCandidate.all /= null then
             temp := this.m_IIndexedResourceCandidate.all.Release;
-            Free (this.m_IIndexedResourceCandidate);
+            if temp < 1 then
+               Free (this.m_IIndexedResourceCandidate);
+            end if;
          end if;
       end if;
    end;
@@ -194,7 +196,9 @@ package body WinUI3.Windows.ApplicationModel.Resources.Management is
       if this.m_IIndexedResourceQualifier /= null then
          if this.m_IIndexedResourceQualifier.all /= null then
             temp := this.m_IIndexedResourceQualifier.all.Release;
-            Free (this.m_IIndexedResourceQualifier);
+            if temp < 1 then
+               Free (this.m_IIndexedResourceQualifier);
+            end if;
          end if;
       end if;
    end;
@@ -257,7 +261,9 @@ package body WinUI3.Windows.ApplicationModel.Resources.Management is
       if this.m_IResourceIndexer /= null then
          if this.m_IResourceIndexer.all /= null then
             temp := this.m_IResourceIndexer.all.Release;
-            Free (this.m_IResourceIndexer);
+            if temp < 1 then
+               Free (this.m_IResourceIndexer);
+            end if;
          end if;
       end if;
    end;

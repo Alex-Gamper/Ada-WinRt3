@@ -59,7 +59,9 @@ package body WinRt.Windows.Media.FaceAnalysis is
       if this.m_IDetectedFace /= null then
          if this.m_IDetectedFace.all /= null then
             temp := this.m_IDetectedFace.all.Release;
-            Free (this.m_IDetectedFace);
+            if temp < 1 then
+               Free (this.m_IDetectedFace);
+            end if;
          end if;
       end if;
    end;
@@ -99,7 +101,9 @@ package body WinRt.Windows.Media.FaceAnalysis is
       if this.m_IFaceDetector /= null then
          if this.m_IFaceDetector.all /= null then
             temp := this.m_IFaceDetector.all.Release;
-            Free (this.m_IFaceDetector);
+            if temp < 1 then
+               Free (this.m_IFaceDetector);
+            end if;
          end if;
       end if;
    end;
@@ -454,7 +458,9 @@ package body WinRt.Windows.Media.FaceAnalysis is
       if this.m_IFaceTracker /= null then
          if this.m_IFaceTracker.all /= null then
             temp := this.m_IFaceTracker.all.Release;
-            Free (this.m_IFaceTracker);
+            if temp < 1 then
+               Free (this.m_IFaceTracker);
+            end if;
          end if;
       end if;
    end;

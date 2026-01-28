@@ -75,7 +75,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IBackgroundAudioTrack /= null then
          if this.m_IBackgroundAudioTrack.all /= null then
             temp := this.m_IBackgroundAudioTrack.all.Release;
-            Free (this.m_IBackgroundAudioTrack);
+            if temp < 1 then
+               Free (this.m_IBackgroundAudioTrack);
+            end if;
          end if;
       end if;
    end;
@@ -440,7 +442,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IEmbeddedAudioTrack /= null then
          if this.m_IEmbeddedAudioTrack.all /= null then
             temp := this.m_IEmbeddedAudioTrack.all.Release;
-            Free (this.m_IEmbeddedAudioTrack);
+            if temp < 1 then
+               Free (this.m_IEmbeddedAudioTrack);
+            end if;
          end if;
       end if;
    end;
@@ -483,7 +487,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IMediaClip /= null then
          if this.m_IMediaClip.all /= null then
             temp := this.m_IMediaClip.all.Release;
-            Free (this.m_IMediaClip);
+            if temp < 1 then
+               Free (this.m_IMediaClip);
+            end if;
          end if;
       end if;
    end;
@@ -1022,7 +1028,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IMediaComposition /= null then
          if this.m_IMediaComposition.all /= null then
             temp := this.m_IMediaComposition.all.Release;
-            Free (this.m_IMediaComposition);
+            if temp < 1 then
+               Free (this.m_IMediaComposition);
+            end if;
          end if;
       end if;
    end;
@@ -1720,7 +1728,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IMediaOverlay /= null then
          if this.m_IMediaOverlay.all /= null then
             temp := this.m_IMediaOverlay.all.Release;
-            Free (this.m_IMediaOverlay);
+            if temp < 1 then
+               Free (this.m_IMediaOverlay);
+            end if;
          end if;
       end if;
    end;
@@ -1964,7 +1974,9 @@ package body WinUI3.Windows.Media.Editing is
       if this.m_IMediaOverlayLayer /= null then
          if this.m_IMediaOverlayLayer.all /= null then
             temp := this.m_IMediaOverlayLayer.all.Release;
-            Free (this.m_IMediaOverlayLayer);
+            if temp < 1 then
+               Free (this.m_IMediaOverlayLayer);
+            end if;
          end if;
       end if;
    end;

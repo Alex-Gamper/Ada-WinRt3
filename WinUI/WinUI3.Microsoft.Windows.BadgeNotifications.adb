@@ -46,7 +46,9 @@ package body WinUI3.Microsoft.Windows.BadgeNotifications is
       if this.m_IBadgeNotificationManager /= null then
          if this.m_IBadgeNotificationManager.all /= null then
             temp := this.m_IBadgeNotificationManager.all.Release;
-            Free (this.m_IBadgeNotificationManager);
+            if temp < 1 then
+               Free (this.m_IBadgeNotificationManager);
+            end if;
          end if;
       end if;
    end;

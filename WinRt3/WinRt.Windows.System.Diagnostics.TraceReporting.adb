@@ -264,7 +264,9 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       if this.m_IPlatformDiagnosticTraceInfo /= null then
          if this.m_IPlatformDiagnosticTraceInfo.all /= null then
             temp := this.m_IPlatformDiagnosticTraceInfo.all.Release;
-            Free (this.m_IPlatformDiagnosticTraceInfo);
+            if temp < 1 then
+               Free (this.m_IPlatformDiagnosticTraceInfo);
+            end if;
          end if;
       end if;
    end;
@@ -389,7 +391,9 @@ package body WinRt.Windows.System.Diagnostics.TraceReporting is
       if this.m_IPlatformDiagnosticTraceRuntimeInfo /= null then
          if this.m_IPlatformDiagnosticTraceRuntimeInfo.all /= null then
             temp := this.m_IPlatformDiagnosticTraceRuntimeInfo.all.Release;
-            Free (this.m_IPlatformDiagnosticTraceRuntimeInfo);
+            if temp < 1 then
+               Free (this.m_IPlatformDiagnosticTraceRuntimeInfo);
+            end if;
          end if;
       end if;
    end;

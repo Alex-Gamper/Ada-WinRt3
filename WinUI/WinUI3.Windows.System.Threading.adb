@@ -203,7 +203,9 @@ package body WinUI3.Windows.System.Threading is
       if this.m_IThreadPoolTimer /= null then
          if this.m_IThreadPoolTimer.all /= null then
             temp := this.m_IThreadPoolTimer.all.Release;
-            Free (this.m_IThreadPoolTimer);
+            if temp < 1 then
+               Free (this.m_IThreadPoolTimer);
+            end if;
          end if;
       end if;
    end;

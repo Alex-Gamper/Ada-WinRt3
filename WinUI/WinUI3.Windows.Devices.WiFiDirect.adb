@@ -54,7 +54,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectAdvertisement /= null then
          if this.m_IWiFiDirectAdvertisement.all /= null then
             temp := this.m_IWiFiDirectAdvertisement.all.Release;
-            Free (this.m_IWiFiDirectAdvertisement);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectAdvertisement);
+            end if;
          end if;
       end if;
    end;
@@ -220,7 +222,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectAdvertisementPublisher /= null then
          if this.m_IWiFiDirectAdvertisementPublisher.all /= null then
             temp := this.m_IWiFiDirectAdvertisementPublisher.all.Release;
-            Free (this.m_IWiFiDirectAdvertisementPublisher);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectAdvertisementPublisher);
+            end if;
          end if;
       end if;
    end;
@@ -360,7 +364,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectAdvertisementPublisherStatusChangedEventArgs /= null then
          if this.m_IWiFiDirectAdvertisementPublisherStatusChangedEventArgs.all /= null then
             temp := this.m_IWiFiDirectAdvertisementPublisherStatusChangedEventArgs.all.Release;
-            Free (this.m_IWiFiDirectAdvertisementPublisherStatusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectAdvertisementPublisherStatusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -417,7 +423,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectConnectionListener /= null then
          if this.m_IWiFiDirectConnectionListener.all /= null then
             temp := this.m_IWiFiDirectConnectionListener.all.Release;
-            Free (this.m_IWiFiDirectConnectionListener);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectConnectionListener);
+            end if;
          end if;
       end if;
    end;
@@ -492,7 +500,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectConnectionParameters /= null then
          if this.m_IWiFiDirectConnectionParameters.all /= null then
             temp := this.m_IWiFiDirectConnectionParameters.all.Release;
-            Free (this.m_IWiFiDirectConnectionParameters);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectConnectionParameters);
+            end if;
          end if;
       end if;
    end;
@@ -657,7 +667,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectConnectionRequest /= null then
          if this.m_IWiFiDirectConnectionRequest.all /= null then
             temp := this.m_IWiFiDirectConnectionRequest.all.Release;
-            Free (this.m_IWiFiDirectConnectionRequest);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectConnectionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -718,7 +730,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectConnectionRequestedEventArgs /= null then
          if this.m_IWiFiDirectConnectionRequestedEventArgs.all /= null then
             temp := this.m_IWiFiDirectConnectionRequestedEventArgs.all.Release;
-            Free (this.m_IWiFiDirectConnectionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectConnectionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -761,7 +775,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectDevice /= null then
          if this.m_IWiFiDirectDevice.all /= null then
             temp := this.m_IWiFiDirectDevice.all.Release;
-            Free (this.m_IWiFiDirectDevice);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1094,7 +1110,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectInformationElement /= null then
          if this.m_IWiFiDirectInformationElement.all /= null then
             temp := this.m_IWiFiDirectInformationElement.all.Release;
-            Free (this.m_IWiFiDirectInformationElement);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectInformationElement);
+            end if;
          end if;
       end if;
    end;
@@ -1289,7 +1307,9 @@ package body WinUI3.Windows.Devices.WiFiDirect is
       if this.m_IWiFiDirectLegacySettings /= null then
          if this.m_IWiFiDirectLegacySettings.all /= null then
             temp := this.m_IWiFiDirectLegacySettings.all.Release;
-            Free (this.m_IWiFiDirectLegacySettings);
+            if temp < 1 then
+               Free (this.m_IWiFiDirectLegacySettings);
+            end if;
          end if;
       end if;
    end;

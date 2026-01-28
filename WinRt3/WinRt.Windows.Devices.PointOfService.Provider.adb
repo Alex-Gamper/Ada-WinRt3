@@ -59,7 +59,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerDisableScannerRequest /= null then
          if this.m_IBarcodeScannerDisableScannerRequest.all /= null then
             temp := this.m_IBarcodeScannerDisableScannerRequest.all.Release;
-            Free (this.m_IBarcodeScannerDisableScannerRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerDisableScannerRequest);
+            end if;
          end if;
       end if;
    end;
@@ -263,7 +265,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerDisableScannerRequestEventArgs /= null then
          if this.m_IBarcodeScannerDisableScannerRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerDisableScannerRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerDisableScannerRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerDisableScannerRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -326,7 +330,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerEnableScannerRequest /= null then
          if this.m_IBarcodeScannerEnableScannerRequest.all /= null then
             temp := this.m_IBarcodeScannerEnableScannerRequest.all.Release;
-            Free (this.m_IBarcodeScannerEnableScannerRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerEnableScannerRequest);
+            end if;
          end if;
       end if;
    end;
@@ -530,7 +536,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerEnableScannerRequestEventArgs /= null then
          if this.m_IBarcodeScannerEnableScannerRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerEnableScannerRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerEnableScannerRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerEnableScannerRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -593,7 +601,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerFrameReader /= null then
          if this.m_IBarcodeScannerFrameReader.all /= null then
             temp := this.m_IBarcodeScannerFrameReader.all.Release;
-            Free (this.m_IBarcodeScannerFrameReader);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerFrameReader);
+            end if;
          end if;
       end if;
    end;
@@ -858,7 +868,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs /= null then
          if this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all /= null then
             temp := this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerFrameReaderFrameArrivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -901,7 +913,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerGetSymbologyAttributesRequest /= null then
          if this.m_IBarcodeScannerGetSymbologyAttributesRequest.all /= null then
             temp := this.m_IBarcodeScannerGetSymbologyAttributesRequest.all.Release;
-            Free (this.m_IBarcodeScannerGetSymbologyAttributesRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerGetSymbologyAttributesRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1123,7 +1137,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs /= null then
          if this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerGetSymbologyAttributesRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1186,7 +1202,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerHideVideoPreviewRequest /= null then
          if this.m_IBarcodeScannerHideVideoPreviewRequest.all /= null then
             temp := this.m_IBarcodeScannerHideVideoPreviewRequest.all.Release;
-            Free (this.m_IBarcodeScannerHideVideoPreviewRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerHideVideoPreviewRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1390,7 +1408,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs /= null then
          if this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerHideVideoPreviewRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1453,7 +1473,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerProviderConnection /= null then
          if this.m_IBarcodeScannerProviderConnection.all /= null then
             temp := this.m_IBarcodeScannerProviderConnection.all.Release;
-            Free (this.m_IBarcodeScannerProviderConnection);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -2330,7 +2352,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerProviderTriggerDetails /= null then
          if this.m_IBarcodeScannerProviderTriggerDetails.all /= null then
             temp := this.m_IBarcodeScannerProviderTriggerDetails.all.Release;
-            Free (this.m_IBarcodeScannerProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -2373,7 +2397,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerSetActiveSymbologiesRequest /= null then
          if this.m_IBarcodeScannerSetActiveSymbologiesRequest.all /= null then
             temp := this.m_IBarcodeScannerSetActiveSymbologiesRequest.all.Release;
-            Free (this.m_IBarcodeScannerSetActiveSymbologiesRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerSetActiveSymbologiesRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2597,7 +2623,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs /= null then
          if this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerSetActiveSymbologiesRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2660,7 +2688,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerSetSymbologyAttributesRequest /= null then
          if this.m_IBarcodeScannerSetSymbologyAttributesRequest.all /= null then
             temp := this.m_IBarcodeScannerSetSymbologyAttributesRequest.all.Release;
-            Free (this.m_IBarcodeScannerSetSymbologyAttributesRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerSetSymbologyAttributesRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2901,7 +2931,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs /= null then
          if this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerSetSymbologyAttributesRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2964,7 +2996,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerStartSoftwareTriggerRequest /= null then
          if this.m_IBarcodeScannerStartSoftwareTriggerRequest.all /= null then
             temp := this.m_IBarcodeScannerStartSoftwareTriggerRequest.all.Release;
-            Free (this.m_IBarcodeScannerStartSoftwareTriggerRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerStartSoftwareTriggerRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3168,7 +3202,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs /= null then
          if this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerStartSoftwareTriggerRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3231,7 +3267,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerStopSoftwareTriggerRequest /= null then
          if this.m_IBarcodeScannerStopSoftwareTriggerRequest.all /= null then
             temp := this.m_IBarcodeScannerStopSoftwareTriggerRequest.all.Release;
-            Free (this.m_IBarcodeScannerStopSoftwareTriggerRequest);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerStopSoftwareTriggerRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3435,7 +3473,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs /= null then
          if this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all /= null then
             temp := this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs.all.Release;
-            Free (this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerStopSoftwareTriggerRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3498,7 +3538,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeScannerVideoFrame /= null then
          if this.m_IBarcodeScannerVideoFrame.all /= null then
             temp := this.m_IBarcodeScannerVideoFrame.all.Release;
-            Free (this.m_IBarcodeScannerVideoFrame);
+            if temp < 1 then
+               Free (this.m_IBarcodeScannerVideoFrame);
+            end if;
          end if;
       end if;
    end;
@@ -3607,7 +3649,9 @@ package body WinRt.Windows.Devices.PointOfService.Provider is
       if this.m_IBarcodeSymbologyAttributesBuilder /= null then
          if this.m_IBarcodeSymbologyAttributesBuilder.all /= null then
             temp := this.m_IBarcodeSymbologyAttributesBuilder.all.Release;
-            Free (this.m_IBarcodeSymbologyAttributesBuilder);
+            if temp < 1 then
+               Free (this.m_IBarcodeSymbologyAttributesBuilder);
+            end if;
          end if;
       end if;
    end;

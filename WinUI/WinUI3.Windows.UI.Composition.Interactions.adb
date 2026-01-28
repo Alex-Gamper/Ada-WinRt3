@@ -49,7 +49,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_ICompositionConditionalValue /= null then
          if this.m_ICompositionConditionalValue.all /= null then
             temp := this.m_ICompositionConditionalValue.all.Release;
-            Free (this.m_ICompositionConditionalValue);
+            if temp < 1 then
+               Free (this.m_ICompositionConditionalValue);
+            end if;
          end if;
       end if;
    end;
@@ -172,7 +174,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_ICompositionInteractionSourceCollection /= null then
          if this.m_ICompositionInteractionSourceCollection.all /= null then
             temp := this.m_ICompositionInteractionSourceCollection.all.Release;
-            Free (this.m_ICompositionInteractionSourceCollection);
+            if temp < 1 then
+               Free (this.m_ICompositionInteractionSourceCollection);
+            end if;
          end if;
       end if;
    end;
@@ -279,7 +283,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionSourceConfiguration /= null then
          if this.m_IInteractionSourceConfiguration.all /= null then
             temp := this.m_IInteractionSourceConfiguration.all.Release;
-            Free (this.m_IInteractionSourceConfiguration);
+            if temp < 1 then
+               Free (this.m_IInteractionSourceConfiguration);
+            end if;
          end if;
       end if;
    end;
@@ -398,7 +404,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTracker /= null then
          if this.m_IInteractionTracker.all /= null then
             temp := this.m_IInteractionTracker.all.Release;
-            Free (this.m_IInteractionTracker);
+            if temp < 1 then
+               Free (this.m_IInteractionTracker);
+            end if;
          end if;
       end if;
    end;
@@ -1235,7 +1243,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerCustomAnimationStateEnteredArgs /= null then
          if this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all /= null then
             temp := this.m_IInteractionTrackerCustomAnimationStateEnteredArgs.all.Release;
-            Free (this.m_IInteractionTrackerCustomAnimationStateEnteredArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerCustomAnimationStateEnteredArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1296,7 +1306,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerIdleStateEnteredArgs /= null then
          if this.m_IInteractionTrackerIdleStateEnteredArgs.all /= null then
             temp := this.m_IInteractionTrackerIdleStateEnteredArgs.all.Release;
-            Free (this.m_IInteractionTrackerIdleStateEnteredArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerIdleStateEnteredArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1357,7 +1369,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInertiaModifier /= null then
          if this.m_IInteractionTrackerInertiaModifier.all /= null then
             temp := this.m_IInteractionTrackerInertiaModifier.all.Release;
-            Free (this.m_IInteractionTrackerInertiaModifier);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInertiaModifier);
+            end if;
          end if;
       end if;
    end;
@@ -1383,7 +1397,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInertiaMotion /= null then
          if this.m_IInteractionTrackerInertiaMotion.all /= null then
             temp := this.m_IInteractionTrackerInertiaMotion.all.Release;
-            Free (this.m_IInteractionTrackerInertiaMotion);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInertiaMotion);
+            end if;
          end if;
       end if;
    end;
@@ -1506,7 +1522,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInertiaNaturalMotion /= null then
          if this.m_IInteractionTrackerInertiaNaturalMotion.all /= null then
             temp := this.m_IInteractionTrackerInertiaNaturalMotion.all.Release;
-            Free (this.m_IInteractionTrackerInertiaNaturalMotion);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInertiaNaturalMotion);
+            end if;
          end if;
       end if;
    end;
@@ -1629,7 +1647,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInertiaRestingValue /= null then
          if this.m_IInteractionTrackerInertiaRestingValue.all /= null then
             temp := this.m_IInteractionTrackerInertiaRestingValue.all.Release;
-            Free (this.m_IInteractionTrackerInertiaRestingValue);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInertiaRestingValue);
+            end if;
          end if;
       end if;
    end;
@@ -1752,7 +1772,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInertiaStateEnteredArgs /= null then
          if this.m_IInteractionTrackerInertiaStateEnteredArgs.all /= null then
             temp := this.m_IInteractionTrackerInertiaStateEnteredArgs.all.Release;
-            Free (this.m_IInteractionTrackerInertiaStateEnteredArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInertiaStateEnteredArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1942,7 +1964,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerInteractingStateEnteredArgs /= null then
          if this.m_IInteractionTrackerInteractingStateEnteredArgs.all /= null then
             temp := this.m_IInteractionTrackerInteractingStateEnteredArgs.all.Release;
-            Free (this.m_IInteractionTrackerInteractingStateEnteredArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerInteractingStateEnteredArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2003,7 +2027,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerRequestIgnoredArgs /= null then
          if this.m_IInteractionTrackerRequestIgnoredArgs.all /= null then
             temp := this.m_IInteractionTrackerRequestIgnoredArgs.all.Release;
-            Free (this.m_IInteractionTrackerRequestIgnoredArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerRequestIgnoredArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2043,7 +2069,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerValuesChangedArgs /= null then
          if this.m_IInteractionTrackerValuesChangedArgs.all /= null then
             temp := this.m_IInteractionTrackerValuesChangedArgs.all.Release;
-            Free (this.m_IInteractionTrackerValuesChangedArgs);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerValuesChangedArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2117,7 +2145,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerVector2InertiaModifier /= null then
          if this.m_IInteractionTrackerVector2InertiaModifier.all /= null then
             temp := this.m_IInteractionTrackerVector2InertiaModifier.all.Release;
-            Free (this.m_IInteractionTrackerVector2InertiaModifier);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerVector2InertiaModifier);
+            end if;
          end if;
       end if;
    end;
@@ -2143,7 +2173,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IInteractionTrackerVector2InertiaNaturalMotion /= null then
          if this.m_IInteractionTrackerVector2InertiaNaturalMotion.all /= null then
             temp := this.m_IInteractionTrackerVector2InertiaNaturalMotion.all.Release;
-            Free (this.m_IInteractionTrackerVector2InertiaNaturalMotion);
+            if temp < 1 then
+               Free (this.m_IInteractionTrackerVector2InertiaNaturalMotion);
+            end if;
          end if;
       end if;
    end;
@@ -2266,7 +2298,9 @@ package body WinUI3.Windows.UI.Composition.Interactions is
       if this.m_IVisualInteractionSource /= null then
          if this.m_IVisualInteractionSource.all /= null then
             temp := this.m_IVisualInteractionSource.all.Release;
-            Free (this.m_IVisualInteractionSource);
+            if temp < 1 then
+               Free (this.m_IVisualInteractionSource);
+            end if;
          end if;
       end if;
    end;

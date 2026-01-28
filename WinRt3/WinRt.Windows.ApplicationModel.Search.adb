@@ -48,7 +48,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ILocalContentSuggestionSettings /= null then
          if this.m_ILocalContentSuggestionSettings.all /= null then
             temp := this.m_ILocalContentSuggestionSettings.all.Release;
-            Free (this.m_ILocalContentSuggestionSettings);
+            if temp < 1 then
+               Free (this.m_ILocalContentSuggestionSettings);
+            end if;
          end if;
       end if;
    end;
@@ -196,7 +198,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPane /= null then
          if this.m_ISearchPane.all /= null then
             temp := this.m_ISearchPane.all.Release;
-            Free (this.m_ISearchPane);
+            if temp < 1 then
+               Free (this.m_ISearchPane);
+            end if;
          end if;
       end if;
    end;
@@ -690,7 +694,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneQueryChangedEventArgs /= null then
          if this.m_ISearchPaneQueryChangedEventArgs.all /= null then
             temp := this.m_ISearchPaneQueryChangedEventArgs.all.Release;
-            Free (this.m_ISearchPaneQueryChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchPaneQueryChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -773,7 +779,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneQueryLinguisticDetails /= null then
          if this.m_ISearchPaneQueryLinguisticDetails.all /= null then
             temp := this.m_ISearchPaneQueryLinguisticDetails.all.Release;
-            Free (this.m_ISearchPaneQueryLinguisticDetails);
+            if temp < 1 then
+               Free (this.m_ISearchPaneQueryLinguisticDetails);
+            end if;
          end if;
       end if;
    end;
@@ -850,7 +858,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneQuerySubmittedEventArgs /= null then
          if this.m_ISearchPaneQuerySubmittedEventArgs.all /= null then
             temp := this.m_ISearchPaneQuerySubmittedEventArgs.all.Release;
-            Free (this.m_ISearchPaneQuerySubmittedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchPaneQuerySubmittedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -937,7 +947,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneResultSuggestionChosenEventArgs /= null then
          if this.m_ISearchPaneResultSuggestionChosenEventArgs.all /= null then
             temp := this.m_ISearchPaneResultSuggestionChosenEventArgs.all.Release;
-            Free (this.m_ISearchPaneResultSuggestionChosenEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchPaneResultSuggestionChosenEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -980,7 +992,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneSuggestionsRequest /= null then
          if this.m_ISearchPaneSuggestionsRequest.all /= null then
             temp := this.m_ISearchPaneSuggestionsRequest.all.Release;
-            Free (this.m_ISearchPaneSuggestionsRequest);
+            if temp < 1 then
+               Free (this.m_ISearchPaneSuggestionsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1060,7 +1074,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneSuggestionsRequestDeferral /= null then
          if this.m_ISearchPaneSuggestionsRequestDeferral.all /= null then
             temp := this.m_ISearchPaneSuggestionsRequestDeferral.all.Release;
-            Free (this.m_ISearchPaneSuggestionsRequestDeferral);
+            if temp < 1 then
+               Free (this.m_ISearchPaneSuggestionsRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -1097,7 +1113,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneSuggestionsRequestedEventArgs /= null then
          if this.m_ISearchPaneSuggestionsRequestedEventArgs.all /= null then
             temp := this.m_ISearchPaneSuggestionsRequestedEventArgs.all.Release;
-            Free (this.m_ISearchPaneSuggestionsRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchPaneSuggestionsRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1212,7 +1230,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchPaneVisibilityChangedEventArgs /= null then
          if this.m_ISearchPaneVisibilityChangedEventArgs.all /= null then
             temp := this.m_ISearchPaneVisibilityChangedEventArgs.all.Release;
-            Free (this.m_ISearchPaneVisibilityChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISearchPaneVisibilityChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1252,7 +1272,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchQueryLinguisticDetails /= null then
          if this.m_ISearchQueryLinguisticDetails.all /= null then
             temp := this.m_ISearchQueryLinguisticDetails.all.Release;
-            Free (this.m_ISearchQueryLinguisticDetails);
+            if temp < 1 then
+               Free (this.m_ISearchQueryLinguisticDetails);
+            end if;
          end if;
       end if;
    end;
@@ -1358,7 +1380,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchSuggestionCollection /= null then
          if this.m_ISearchSuggestionCollection.all /= null then
             temp := this.m_ISearchSuggestionCollection.all.Release;
-            Free (this.m_ISearchSuggestionCollection);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestionCollection);
+            end if;
          end if;
       end if;
    end;
@@ -1474,7 +1498,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchSuggestionsRequest /= null then
          if this.m_ISearchSuggestionsRequest.all /= null then
             temp := this.m_ISearchSuggestionsRequest.all.Release;
-            Free (this.m_ISearchSuggestionsRequest);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestionsRequest);
+            end if;
          end if;
       end if;
    end;
@@ -1554,7 +1580,9 @@ package body WinRt.Windows.ApplicationModel.Search is
       if this.m_ISearchSuggestionsRequestDeferral /= null then
          if this.m_ISearchSuggestionsRequestDeferral.all /= null then
             temp := this.m_ISearchSuggestionsRequestDeferral.all.Release;
-            Free (this.m_ISearchSuggestionsRequestDeferral);
+            if temp < 1 then
+               Free (this.m_ISearchSuggestionsRequestDeferral);
+            end if;
          end if;
       end if;
    end;

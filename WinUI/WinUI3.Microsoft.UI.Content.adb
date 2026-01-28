@@ -52,7 +52,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IChildSiteLink /= null then
          if this.m_IChildSiteLink.all /= null then
             temp := this.m_IChildSiteLink.all.Release;
-            Free (this.m_IChildSiteLink);
+            if temp < 1 then
+               Free (this.m_IChildSiteLink);
+            end if;
          end if;
       end if;
    end;
@@ -703,7 +705,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentCoordinateConverter /= null then
          if this.m_IContentCoordinateConverter.all /= null then
             temp := this.m_IContentCoordinateConverter.all.Release;
-            Free (this.m_IContentCoordinateConverter);
+            if temp < 1 then
+               Free (this.m_IContentCoordinateConverter);
+            end if;
          end if;
       end if;
    end;
@@ -916,7 +920,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentDeferral /= null then
          if this.m_IContentDeferral.all /= null then
             temp := this.m_IContentDeferral.all.Release;
-            Free (this.m_IContentDeferral);
+            if temp < 1 then
+               Free (this.m_IContentDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -953,7 +959,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentEnvironmentSettingChangedEventArgs /= null then
          if this.m_IContentEnvironmentSettingChangedEventArgs.all /= null then
             temp := this.m_IContentEnvironmentSettingChangedEventArgs.all.Release;
-            Free (this.m_IContentEnvironmentSettingChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentEnvironmentSettingChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -996,7 +1004,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentEnvironmentStateChangedEventArgs /= null then
          if this.m_IContentEnvironmentStateChangedEventArgs.all /= null then
             temp := this.m_IContentEnvironmentStateChangedEventArgs.all.Release;
-            Free (this.m_IContentEnvironmentStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentEnvironmentStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1074,7 +1084,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentIsland /= null then
          if this.m_IContentIsland.all /= null then
             temp := this.m_IContentIsland.all.Release;
-            Free (this.m_IContentIsland);
+            if temp < 1 then
+               Free (this.m_IContentIsland);
+            end if;
          end if;
       end if;
    end;
@@ -2193,7 +2205,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentIslandAutomationProviderRequestedEventArgs /= null then
          if this.m_IContentIslandAutomationProviderRequestedEventArgs.all /= null then
             temp := this.m_IContentIslandAutomationProviderRequestedEventArgs.all.Release;
-            Free (this.m_IContentIslandAutomationProviderRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentIslandAutomationProviderRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2280,7 +2294,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentIslandEnvironment /= null then
          if this.m_IContentIslandEnvironment.all /= null then
             temp := this.m_IContentIslandEnvironment.all.Release;
-            Free (this.m_IContentIslandEnvironment);
+            if temp < 1 then
+               Free (this.m_IContentIslandEnvironment);
+            end if;
          end if;
       end if;
    end;
@@ -2427,7 +2443,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentIslandStateChangedEventArgs /= null then
          if this.m_IContentIslandStateChangedEventArgs.all /= null then
             temp := this.m_IContentIslandStateChangedEventArgs.all.Release;
-            Free (this.m_IContentIslandStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentIslandStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2577,7 +2595,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSite /= null then
          if this.m_IContentSite.all /= null then
             temp := this.m_IContentSite.all.Release;
-            Free (this.m_IContentSite);
+            if temp < 1 then
+               Free (this.m_IContentSite);
+            end if;
          end if;
       end if;
    end;
@@ -3305,7 +3325,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSiteAutomationProviderRequestedEventArgs /= null then
          if this.m_IContentSiteAutomationProviderRequestedEventArgs.all /= null then
             temp := this.m_IContentSiteAutomationProviderRequestedEventArgs.all.Release;
-            Free (this.m_IContentSiteAutomationProviderRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentSiteAutomationProviderRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3392,7 +3414,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSiteEnvironment /= null then
          if this.m_IContentSiteEnvironment.all /= null then
             temp := this.m_IContentSiteEnvironment.all.Release;
-            Free (this.m_IContentSiteEnvironment);
+            if temp < 1 then
+               Free (this.m_IContentSiteEnvironment);
+            end if;
          end if;
       end if;
    end;
@@ -3559,7 +3583,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSiteEnvironmentView /= null then
          if this.m_IContentSiteEnvironmentView.all /= null then
             temp := this.m_IContentSiteEnvironmentView.all.Release;
-            Free (this.m_IContentSiteEnvironmentView);
+            if temp < 1 then
+               Free (this.m_IContentSiteEnvironmentView);
+            end if;
          end if;
       end if;
    end;
@@ -3640,7 +3666,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSiteRequestedStateChangedEventArgs /= null then
          if this.m_IContentSiteRequestedStateChangedEventArgs.all /= null then
             temp := this.m_IContentSiteRequestedStateChangedEventArgs.all.Release;
-            Free (this.m_IContentSiteRequestedStateChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IContentSiteRequestedStateChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3680,7 +3708,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IContentSiteView /= null then
          if this.m_IContentSiteView.all /= null then
             temp := this.m_IContentSiteView.all.Release;
-            Free (this.m_IContentSiteView);
+            if temp < 1 then
+               Free (this.m_IContentSiteView);
+            end if;
          end if;
       end if;
    end;
@@ -4058,7 +4088,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IDesktopAttachedSiteBridge /= null then
          if this.m_IDesktopAttachedSiteBridge.all /= null then
             temp := this.m_IDesktopAttachedSiteBridge.all.Release;
-            Free (this.m_IDesktopAttachedSiteBridge);
+            if temp < 1 then
+               Free (this.m_IDesktopAttachedSiteBridge);
+            end if;
          end if;
       end if;
    end;
@@ -4472,7 +4504,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IDesktopSiteBridge /= null then
          if this.m_IDesktopSiteBridge.all /= null then
             temp := this.m_IDesktopSiteBridge.all.Release;
-            Free (this.m_IDesktopSiteBridge);
+            if temp < 1 then
+               Free (this.m_IDesktopSiteBridge);
+            end if;
          end if;
       end if;
    end;
@@ -4930,7 +4964,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IDesktopChildSiteBridge /= null then
          if this.m_IDesktopChildSiteBridge.all /= null then
             temp := this.m_IDesktopChildSiteBridge.all.Release;
-            Free (this.m_IDesktopChildSiteBridge);
+            if temp < 1 then
+               Free (this.m_IDesktopChildSiteBridge);
+            end if;
          end if;
       end if;
    end;
@@ -5064,7 +5100,9 @@ package body WinUI3.Microsoft.UI.Content is
       if this.m_IDesktopPopupSiteBridge /= null then
          if this.m_IDesktopPopupSiteBridge.all /= null then
             temp := this.m_IDesktopPopupSiteBridge.all.Release;
-            Free (this.m_IDesktopPopupSiteBridge);
+            if temp < 1 then
+               Free (this.m_IDesktopPopupSiteBridge);
+            end if;
          end if;
       end if;
    end;

@@ -194,7 +194,9 @@ package body WinRt.Windows.Storage.AccessCache is
       if this.m_IItemRemovedEventArgs /= null then
          if this.m_IItemRemovedEventArgs.all /= null then
             temp := this.m_IItemRemovedEventArgs.all.Release;
-            Free (this.m_IItemRemovedEventArgs);
+            if temp < 1 then
+               Free (this.m_IItemRemovedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -342,7 +344,9 @@ package body WinRt.Windows.Storage.AccessCache is
       if this.m_IStorageItemAccessList /= null then
          if this.m_IStorageItemAccessList.all /= null then
             temp := this.m_IStorageItemAccessList.all.Release;
-            Free (this.m_IStorageItemAccessList);
+            if temp < 1 then
+               Free (this.m_IStorageItemAccessList);
+            end if;
          end if;
       end if;
    end;
@@ -966,7 +970,9 @@ package body WinRt.Windows.Storage.AccessCache is
       if this.m_IStorageItemMostRecentlyUsedList /= null then
          if this.m_IStorageItemMostRecentlyUsedList.all /= null then
             temp := this.m_IStorageItemMostRecentlyUsedList.all.Release;
-            Free (this.m_IStorageItemMostRecentlyUsedList);
+            if temp < 1 then
+               Free (this.m_IStorageItemMostRecentlyUsedList);
+            end if;
          end if;
       end if;
    end;

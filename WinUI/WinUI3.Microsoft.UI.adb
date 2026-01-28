@@ -61,7 +61,9 @@ package body WinUI3.Microsoft.UI is
       if this.m_IColorHelper /= null then
          if this.m_IColorHelper.all /= null then
             temp := this.m_IColorHelper.all.Release;
-            Free (this.m_IColorHelper);
+            if temp < 1 then
+               Free (this.m_IColorHelper);
+            end if;
          end if;
       end if;
    end;
@@ -141,7 +143,9 @@ package body WinUI3.Microsoft.UI is
       if this.m_IColors /= null then
          if this.m_IColors.all /= null then
             temp := this.m_IColors.all.Release;
-            Free (this.m_IColors);
+            if temp < 1 then
+               Free (this.m_IColors);
+            end if;
          end if;
       end if;
    end;

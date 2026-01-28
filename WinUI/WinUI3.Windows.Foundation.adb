@@ -156,7 +156,9 @@ package body WinUI3.Windows.Foundation is
       if this.m_IDeferral /= null then
          if this.m_IDeferral.all /= null then
             temp := this.m_IDeferral.all.Release;
-            Free (this.m_IDeferral);
+            if temp < 1 then
+               Free (this.m_IDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -343,7 +345,9 @@ package body WinUI3.Windows.Foundation is
       if this.m_IMemoryBuffer /= null then
          if this.m_IMemoryBuffer.all /= null then
             temp := this.m_IMemoryBuffer.all.Release;
-            Free (this.m_IMemoryBuffer);
+            if temp < 1 then
+               Free (this.m_IMemoryBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -1406,7 +1410,9 @@ package body WinUI3.Windows.Foundation is
       if this.m_IUriRuntimeClass /= null then
          if this.m_IUriRuntimeClass.all /= null then
             temp := this.m_IUriRuntimeClass.all.Release;
-            Free (this.m_IUriRuntimeClass);
+            if temp < 1 then
+               Free (this.m_IUriRuntimeClass);
+            end if;
          end if;
       end if;
    end;
@@ -1955,7 +1961,9 @@ package body WinUI3.Windows.Foundation is
       if this.m_IWwwFormUrlDecoderRuntimeClass /= null then
          if this.m_IWwwFormUrlDecoderRuntimeClass.all /= null then
             temp := this.m_IWwwFormUrlDecoderRuntimeClass.all.Release;
-            Free (this.m_IWwwFormUrlDecoderRuntimeClass);
+            if temp < 1 then
+               Free (this.m_IWwwFormUrlDecoderRuntimeClass);
+            end if;
          end if;
       end if;
    end;
@@ -2148,7 +2156,9 @@ package body WinUI3.Windows.Foundation is
       if this.m_IWwwFormUrlDecoderEntry /= null then
          if this.m_IWwwFormUrlDecoderEntry.all /= null then
             temp := this.m_IWwwFormUrlDecoderEntry.all.Release;
-            Free (this.m_IWwwFormUrlDecoderEntry);
+            if temp < 1 then
+               Free (this.m_IWwwFormUrlDecoderEntry);
+            end if;
          end if;
       end if;
    end;

@@ -54,7 +54,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneObject /= null then
          if this.m_ISceneObject.all /= null then
             temp := this.m_ISceneObject.all.Release;
-            Free (this.m_ISceneObject);
+            if temp < 1 then
+               Free (this.m_ISceneObject);
+            end if;
          end if;
       end if;
    end;
@@ -80,7 +82,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneBoundingBox /= null then
          if this.m_ISceneBoundingBox.all /= null then
             temp := this.m_ISceneBoundingBox.all.Release;
-            Free (this.m_ISceneBoundingBox);
+            if temp < 1 then
+               Free (this.m_ISceneBoundingBox);
+            end if;
          end if;
       end if;
    end;
@@ -188,7 +192,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneComponent /= null then
          if this.m_ISceneComponent.all /= null then
             temp := this.m_ISceneComponent.all.Release;
-            Free (this.m_ISceneComponent);
+            if temp < 1 then
+               Free (this.m_ISceneComponent);
+            end if;
          end if;
       end if;
    end;
@@ -537,7 +543,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMaterial /= null then
          if this.m_ISceneMaterial.all /= null then
             temp := this.m_ISceneMaterial.all.Release;
-            Free (this.m_ISceneMaterial);
+            if temp < 1 then
+               Free (this.m_ISceneMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -563,7 +571,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMaterialInput /= null then
          if this.m_ISceneMaterialInput.all /= null then
             temp := this.m_ISceneMaterialInput.all.Release;
-            Free (this.m_ISceneMaterialInput);
+            if temp < 1 then
+               Free (this.m_ISceneMaterialInput);
+            end if;
          end if;
       end if;
    end;
@@ -589,7 +599,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMesh /= null then
          if this.m_ISceneMesh.all /= null then
             temp := this.m_ISceneMesh.all.Release;
-            Free (this.m_ISceneMesh);
+            if temp < 1 then
+               Free (this.m_ISceneMesh);
+            end if;
          end if;
       end if;
    end;
@@ -711,7 +723,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMeshMaterialAttributeMap /= null then
          if this.m_ISceneMeshMaterialAttributeMap.all /= null then
             temp := this.m_ISceneMeshMaterialAttributeMap.all.Release;
-            Free (this.m_ISceneMeshMaterialAttributeMap);
+            if temp < 1 then
+               Free (this.m_ISceneMeshMaterialAttributeMap);
+            end if;
          end if;
       end if;
    end;
@@ -896,7 +910,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneRendererComponent /= null then
          if this.m_ISceneRendererComponent.all /= null then
             temp := this.m_ISceneRendererComponent.all.Release;
-            Free (this.m_ISceneRendererComponent);
+            if temp < 1 then
+               Free (this.m_ISceneRendererComponent);
+            end if;
          end if;
       end if;
    end;
@@ -922,7 +938,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMeshRendererComponent /= null then
          if this.m_ISceneMeshRendererComponent.all /= null then
             temp := this.m_ISceneMeshRendererComponent.all.Release;
-            Free (this.m_ISceneMeshRendererComponent);
+            if temp < 1 then
+               Free (this.m_ISceneMeshRendererComponent);
+            end if;
          end if;
       end if;
    end;
@@ -1065,7 +1083,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_IScenePbrMaterial /= null then
          if this.m_IScenePbrMaterial.all /= null then
             temp := this.m_IScenePbrMaterial.all.Release;
-            Free (this.m_IScenePbrMaterial);
+            if temp < 1 then
+               Free (this.m_IScenePbrMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -1388,7 +1408,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneMetallicRoughnessMaterial /= null then
          if this.m_ISceneMetallicRoughnessMaterial.all /= null then
             temp := this.m_ISceneMetallicRoughnessMaterial.all.Release;
-            Free (this.m_ISceneMetallicRoughnessMaterial);
+            if temp < 1 then
+               Free (this.m_ISceneMetallicRoughnessMaterial);
+            end if;
          end if;
       end if;
    end;
@@ -1607,7 +1629,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneModelTransform /= null then
          if this.m_ISceneModelTransform.all /= null then
             temp := this.m_ISceneModelTransform.all.Release;
-            Free (this.m_ISceneModelTransform);
+            if temp < 1 then
+               Free (this.m_ISceneModelTransform);
+            end if;
          end if;
       end if;
    end;
@@ -1822,7 +1846,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneNode /= null then
          if this.m_ISceneNode.all /= null then
             temp := this.m_ISceneNode.all.Release;
-            Free (this.m_ISceneNode);
+            if temp < 1 then
+               Free (this.m_ISceneNode);
+            end if;
          end if;
       end if;
    end;
@@ -2282,7 +2308,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneSurfaceMaterialInput /= null then
          if this.m_ISceneSurfaceMaterialInput.all /= null then
             temp := this.m_ISceneSurfaceMaterialInput.all.Release;
-            Free (this.m_ISceneSurfaceMaterialInput);
+            if temp < 1 then
+               Free (this.m_ISceneSurfaceMaterialInput);
+            end if;
          end if;
       end if;
    end;
@@ -2463,7 +2491,9 @@ package body WinUI3.Windows.UI.Composition.Scenes is
       if this.m_ISceneVisual /= null then
          if this.m_ISceneVisual.all /= null then
             temp := this.m_ISceneVisual.all.Release;
-            Free (this.m_ISceneVisual);
+            if temp < 1 then
+               Free (this.m_ISceneVisual);
+            end if;
          end if;
       end if;
    end;

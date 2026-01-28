@@ -66,7 +66,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingConnection /= null then
          if this.m_ICastingConnection.all /= null then
             temp := this.m_ICastingConnection.all.Release;
-            Free (this.m_ICastingConnection);
+            if temp < 1 then
+               Free (this.m_ICastingConnection);
+            end if;
          end if;
       end if;
    end;
@@ -372,7 +374,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingConnectionErrorOccurredEventArgs /= null then
          if this.m_ICastingConnectionErrorOccurredEventArgs.all /= null then
             temp := this.m_ICastingConnectionErrorOccurredEventArgs.all.Release;
-            Free (this.m_ICastingConnectionErrorOccurredEventArgs);
+            if temp < 1 then
+               Free (this.m_ICastingConnectionErrorOccurredEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -432,7 +436,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingDevice /= null then
          if this.m_ICastingDevice.all /= null then
             temp := this.m_ICastingDevice.all.Release;
-            Free (this.m_ICastingDevice);
+            if temp < 1 then
+               Free (this.m_ICastingDevice);
+            end if;
          end if;
       end if;
    end;
@@ -843,7 +849,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingDevicePicker /= null then
          if this.m_ICastingDevicePicker.all /= null then
             temp := this.m_ICastingDevicePicker.all.Release;
-            Free (this.m_ICastingDevicePicker);
+            if temp < 1 then
+               Free (this.m_ICastingDevicePicker);
+            end if;
          end if;
       end if;
    end;
@@ -1036,7 +1044,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingDevicePickerFilter /= null then
          if this.m_ICastingDevicePickerFilter.all /= null then
             temp := this.m_ICastingDevicePickerFilter.all.Release;
-            Free (this.m_ICastingDevicePickerFilter);
+            if temp < 1 then
+               Free (this.m_ICastingDevicePickerFilter);
+            end if;
          end if;
       end if;
    end;
@@ -1175,7 +1185,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingDeviceSelectedEventArgs /= null then
          if this.m_ICastingDeviceSelectedEventArgs.all /= null then
             temp := this.m_ICastingDeviceSelectedEventArgs.all.Release;
-            Free (this.m_ICastingDeviceSelectedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICastingDeviceSelectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1218,7 +1230,9 @@ package body WinUI3.Windows.Media.Casting is
       if this.m_ICastingSource /= null then
          if this.m_ICastingSource.all /= null then
             temp := this.m_ICastingSource.all.Release;
-            Free (this.m_ICastingSource);
+            if temp < 1 then
+               Free (this.m_ICastingSource);
+            end if;
          end if;
       end if;
    end;

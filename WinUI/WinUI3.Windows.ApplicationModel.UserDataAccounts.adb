@@ -62,7 +62,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts is
       if this.m_IUserDataAccount /= null then
          if this.m_IUserDataAccount.all /= null then
             temp := this.m_IUserDataAccount.all.Release;
-            Free (this.m_IUserDataAccount);
+            if temp < 1 then
+               Free (this.m_IUserDataAccount);
+            end if;
          end if;
       end if;
    end;
@@ -1265,7 +1267,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts is
       if this.m_IUserDataAccountManagerForUser /= null then
          if this.m_IUserDataAccountManagerForUser.all /= null then
             temp := this.m_IUserDataAccountManagerForUser.all.Release;
-            Free (this.m_IUserDataAccountManagerForUser);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountManagerForUser);
+            end if;
          end if;
       end if;
    end;
@@ -1375,7 +1379,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts is
       if this.m_IUserDataAccountStore /= null then
          if this.m_IUserDataAccountStore.all /= null then
             temp := this.m_IUserDataAccountStore.all.Release;
-            Free (this.m_IUserDataAccountStore);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountStore);
+            end if;
          end if;
       end if;
    end;
@@ -1795,7 +1801,9 @@ package body WinUI3.Windows.ApplicationModel.UserDataAccounts is
       if this.m_IUserDataAccountStoreChangedEventArgs /= null then
          if this.m_IUserDataAccountStoreChangedEventArgs.all /= null then
             temp := this.m_IUserDataAccountStoreChangedEventArgs.all.Release;
-            Free (this.m_IUserDataAccountStoreChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUserDataAccountStoreChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

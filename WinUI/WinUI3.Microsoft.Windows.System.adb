@@ -46,7 +46,9 @@ package body WinUI3.Microsoft.Windows.System is
       if this.m_IEnvironmentManager /= null then
          if this.m_IEnvironmentManager.all /= null then
             temp := this.m_IEnvironmentManager.all.Release;
-            Free (this.m_IEnvironmentManager);
+            if temp < 1 then
+               Free (this.m_IEnvironmentManager);
+            end if;
          end if;
       end if;
    end;

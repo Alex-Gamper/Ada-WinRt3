@@ -53,7 +53,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_ICharacterReceivedEventArgs /= null then
          if this.m_ICharacterReceivedEventArgs.all /= null then
             temp := this.m_ICharacterReceivedEventArgs.all.Release;
-            Free (this.m_ICharacterReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICharacterReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -142,7 +144,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IContextMenuKeyEventArgs /= null then
          if this.m_IContextMenuKeyEventArgs.all /= null then
             temp := this.m_IContextMenuKeyEventArgs.all.Release;
-            Free (this.m_IContextMenuKeyEventArgs);
+            if temp < 1 then
+               Free (this.m_IContextMenuKeyEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -197,7 +201,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_ICrossSlidingEventArgs /= null then
          if this.m_ICrossSlidingEventArgs.all /= null then
             temp := this.m_ICrossSlidingEventArgs.all.Release;
-            Free (this.m_ICrossSlidingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICrossSlidingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -271,7 +277,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IDraggingEventArgs /= null then
          if this.m_IDraggingEventArgs.all /= null then
             temp := this.m_IDraggingEventArgs.all.Release;
-            Free (this.m_IDraggingEventArgs);
+            if temp < 1 then
+               Free (this.m_IDraggingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -345,7 +353,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IEnteredMoveSizeEventArgs /= null then
          if this.m_IEnteredMoveSizeEventArgs.all /= null then
             temp := this.m_IEnteredMoveSizeEventArgs.all.Release;
-            Free (this.m_IEnteredMoveSizeEventArgs);
+            if temp < 1 then
+               Free (this.m_IEnteredMoveSizeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -402,7 +412,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IEnteringMoveSizeEventArgs /= null then
          if this.m_IEnteringMoveSizeEventArgs.all /= null then
             temp := this.m_IEnteringMoveSizeEventArgs.all.Release;
-            Free (this.m_IEnteringMoveSizeEventArgs);
+            if temp < 1 then
+               Free (this.m_IEnteringMoveSizeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -491,7 +503,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IExitedMoveSizeEventArgs /= null then
          if this.m_IExitedMoveSizeEventArgs.all /= null then
             temp := this.m_IExitedMoveSizeEventArgs.all.Release;
-            Free (this.m_IExitedMoveSizeEventArgs);
+            if temp < 1 then
+               Free (this.m_IExitedMoveSizeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -548,7 +562,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IFocusChangedEventArgs /= null then
          if this.m_IFocusChangedEventArgs.all /= null then
             temp := this.m_IFocusChangedEventArgs.all.Release;
-            Free (this.m_IFocusChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFocusChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -603,7 +619,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IFocusNavigationRequest /= null then
          if this.m_IFocusNavigationRequest.all /= null then
             temp := this.m_IFocusNavigationRequest.all.Release;
-            Free (this.m_IFocusNavigationRequest);
+            if temp < 1 then
+               Free (this.m_IFocusNavigationRequest);
+            end if;
          end if;
       end if;
    end;
@@ -767,7 +785,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IFocusNavigationRequestEventArgs /= null then
          if this.m_IFocusNavigationRequestEventArgs.all /= null then
             temp := this.m_IFocusNavigationRequestEventArgs.all.Release;
-            Free (this.m_IFocusNavigationRequestEventArgs);
+            if temp < 1 then
+               Free (this.m_IFocusNavigationRequestEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -842,7 +862,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IGestureRecognizer /= null then
          if this.m_IGestureRecognizer.all /= null then
             temp := this.m_IGestureRecognizer.all.Release;
-            Free (this.m_IGestureRecognizer);
+            if temp < 1 then
+               Free (this.m_IGestureRecognizer);
+            end if;
          end if;
       end if;
    end;
@@ -1823,7 +1845,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IHoldingEventArgs /= null then
          if this.m_IHoldingEventArgs.all /= null then
             temp := this.m_IHoldingEventArgs.all.Release;
-            Free (this.m_IHoldingEventArgs);
+            if temp < 1 then
+               Free (this.m_IHoldingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1897,7 +1921,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputObject /= null then
          if this.m_IInputObject.all /= null then
             temp := this.m_IInputObject.all.Release;
-            Free (this.m_IInputObject);
+            if temp < 1 then
+               Free (this.m_IInputObject);
+            end if;
          end if;
       end if;
    end;
@@ -1943,7 +1969,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputActivationListener /= null then
          if this.m_IInputActivationListener.all /= null then
             temp := this.m_IInputActivationListener.all.Release;
-            Free (this.m_IInputActivationListener);
+            if temp < 1 then
+               Free (this.m_IInputActivationListener);
+            end if;
          end if;
       end if;
    end;
@@ -2073,7 +2101,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputActivationListenerActivationChangedEventArgs /= null then
          if this.m_IInputActivationListenerActivationChangedEventArgs.all /= null then
             temp := this.m_IInputActivationListenerActivationChangedEventArgs.all.Release;
-            Free (this.m_IInputActivationListenerActivationChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IInputActivationListenerActivationChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2096,7 +2126,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputCursor /= null then
          if this.m_IInputCursor.all /= null then
             temp := this.m_IInputCursor.all.Release;
-            Free (this.m_IInputCursor);
+            if temp < 1 then
+               Free (this.m_IInputCursor);
+            end if;
          end if;
       end if;
    end;
@@ -2170,7 +2202,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputCustomCursor /= null then
          if this.m_IInputCustomCursor.all /= null then
             temp := this.m_IInputCustomCursor.all.Release;
-            Free (this.m_IInputCustomCursor);
+            if temp < 1 then
+               Free (this.m_IInputCustomCursor);
+            end if;
          end if;
       end if;
    end;
@@ -2196,7 +2230,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputDesktopNamedResourceCursor /= null then
          if this.m_IInputDesktopNamedResourceCursor.all /= null then
             temp := this.m_IInputDesktopNamedResourceCursor.all.Release;
-            Free (this.m_IInputDesktopNamedResourceCursor);
+            if temp < 1 then
+               Free (this.m_IInputDesktopNamedResourceCursor);
+            end if;
          end if;
       end if;
    end;
@@ -2323,7 +2359,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputDesktopResourceCursor /= null then
          if this.m_IInputDesktopResourceCursor.all /= null then
             temp := this.m_IInputDesktopResourceCursor.all.Release;
-            Free (this.m_IInputDesktopResourceCursor);
+            if temp < 1 then
+               Free (this.m_IInputDesktopResourceCursor);
+            end if;
          end if;
       end if;
    end;
@@ -2443,7 +2481,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputFocusController /= null then
          if this.m_IInputFocusController.all /= null then
             temp := this.m_IInputFocusController.all.Release;
-            Free (this.m_IInputFocusController);
+            if temp < 1 then
+               Free (this.m_IInputFocusController);
+            end if;
          end if;
       end if;
    end;
@@ -2659,7 +2699,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputFocusNavigationHost /= null then
          if this.m_IInputFocusNavigationHost.all /= null then
             temp := this.m_IInputFocusNavigationHost.all.Release;
-            Free (this.m_IInputFocusNavigationHost);
+            if temp < 1 then
+               Free (this.m_IInputFocusNavigationHost);
+            end if;
          end if;
       end if;
    end;
@@ -2807,7 +2849,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputKeyboardSource /= null then
          if this.m_IInputKeyboardSource.all /= null then
             temp := this.m_IInputKeyboardSource.all.Release;
-            Free (this.m_IInputKeyboardSource);
+            if temp < 1 then
+               Free (this.m_IInputKeyboardSource);
+            end if;
          end if;
       end if;
    end;
@@ -3174,7 +3218,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputLightDismissAction /= null then
          if this.m_IInputLightDismissAction.all /= null then
             temp := this.m_IInputLightDismissAction.all.Release;
-            Free (this.m_IInputLightDismissAction);
+            if temp < 1 then
+               Free (this.m_IInputLightDismissAction);
+            end if;
          end if;
       end if;
    end;
@@ -3260,7 +3306,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputLightDismissEventArgs /= null then
          if this.m_IInputLightDismissEventArgs.all /= null then
             temp := this.m_IInputLightDismissEventArgs.all.Release;
-            Free (this.m_IInputLightDismissEventArgs);
+            if temp < 1 then
+               Free (this.m_IInputLightDismissEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3283,7 +3331,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputNonClientPointerSource /= null then
          if this.m_IInputNonClientPointerSource.all /= null then
             temp := this.m_IInputNonClientPointerSource.all.Release;
-            Free (this.m_IInputNonClientPointerSource);
+            if temp < 1 then
+               Free (this.m_IInputNonClientPointerSource);
+            end if;
          end if;
       end if;
    end;
@@ -3865,7 +3915,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputPointerSource /= null then
          if this.m_IInputPointerSource.all /= null then
             temp := this.m_IInputPointerSource.all.Release;
-            Free (this.m_IInputPointerSource);
+            if temp < 1 then
+               Free (this.m_IInputPointerSource);
+            end if;
          end if;
       end if;
    end;
@@ -4300,7 +4352,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputPreTranslateKeyboardSource /= null then
          if this.m_IInputPreTranslateKeyboardSource.all /= null then
             temp := this.m_IInputPreTranslateKeyboardSource.all.Release;
-            Free (this.m_IInputPreTranslateKeyboardSource);
+            if temp < 1 then
+               Free (this.m_IInputPreTranslateKeyboardSource);
+            end if;
          end if;
       end if;
    end;
@@ -4353,7 +4407,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IInputSystemCursor /= null then
          if this.m_IInputSystemCursor.all /= null then
             temp := this.m_IInputSystemCursor.all.Release;
-            Free (this.m_IInputSystemCursor);
+            if temp < 1 then
+               Free (this.m_IInputSystemCursor);
+            end if;
          end if;
       end if;
    end;
@@ -4423,7 +4479,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IKeyEventArgs /= null then
          if this.m_IKeyEventArgs.all /= null then
             temp := this.m_IKeyEventArgs.all.Release;
-            Free (this.m_IKeyEventArgs);
+            if temp < 1 then
+               Free (this.m_IKeyEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4529,7 +4587,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IManipulationCompletedEventArgs /= null then
          if this.m_IManipulationCompletedEventArgs.all /= null then
             temp := this.m_IManipulationCompletedEventArgs.all.Release;
-            Free (this.m_IManipulationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4620,7 +4680,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IManipulationInertiaStartingEventArgs /= null then
          if this.m_IManipulationInertiaStartingEventArgs.all /= null then
             temp := this.m_IManipulationInertiaStartingEventArgs.all.Release;
-            Free (this.m_IManipulationInertiaStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationInertiaStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4728,7 +4790,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IManipulationStartedEventArgs /= null then
          if this.m_IManipulationStartedEventArgs.all /= null then
             temp := this.m_IManipulationStartedEventArgs.all.Release;
-            Free (this.m_IManipulationStartedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationStartedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4802,7 +4866,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IManipulationUpdatedEventArgs /= null then
          if this.m_IManipulationUpdatedEventArgs.all /= null then
             temp := this.m_IManipulationUpdatedEventArgs.all.Release;
-            Free (this.m_IManipulationUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IManipulationUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4910,7 +4976,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IMouseWheelParameters /= null then
          if this.m_IMouseWheelParameters.all /= null then
             temp := this.m_IMouseWheelParameters.all.Release;
-            Free (this.m_IMouseWheelParameters);
+            if temp < 1 then
+               Free (this.m_IMouseWheelParameters);
+            end if;
          end if;
       end if;
    end;
@@ -5061,7 +5129,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_INonClientCaptionTappedEventArgs /= null then
          if this.m_INonClientCaptionTappedEventArgs.all /= null then
             temp := this.m_INonClientCaptionTappedEventArgs.all.Release;
-            Free (this.m_INonClientCaptionTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_INonClientCaptionTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5118,7 +5188,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_INonClientPointerEventArgs /= null then
          if this.m_INonClientPointerEventArgs.all /= null then
             temp := this.m_INonClientPointerEventArgs.all.Release;
-            Free (this.m_INonClientPointerEventArgs);
+            if temp < 1 then
+               Free (this.m_INonClientPointerEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5209,7 +5281,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_INonClientRegionsChangedEventArgs /= null then
          if this.m_INonClientRegionsChangedEventArgs.all /= null then
             temp := this.m_INonClientRegionsChangedEventArgs.all.Release;
-            Free (this.m_INonClientRegionsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_INonClientRegionsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5258,7 +5332,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IPointerEventArgs /= null then
          if this.m_IPointerEventArgs.all /= null then
             temp := this.m_IPointerEventArgs.all.Release;
-            Free (this.m_IPointerEventArgs);
+            if temp < 1 then
+               Free (this.m_IPointerEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5391,7 +5467,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IPointerPoint /= null then
          if this.m_IPointerPoint.all /= null then
             temp := this.m_IPointerPoint.all.Release;
-            Free (this.m_IPointerPoint);
+            if temp < 1 then
+               Free (this.m_IPointerPoint);
+            end if;
          end if;
       end if;
    end;
@@ -5557,7 +5635,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IPointerPointProperties /= null then
          if this.m_IPointerPointProperties.all /= null then
             temp := this.m_IPointerPointProperties.all.Release;
-            Free (this.m_IPointerPointProperties);
+            if temp < 1 then
+               Free (this.m_IPointerPointProperties);
+            end if;
          end if;
       end if;
    end;
@@ -5937,7 +6017,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IPointerPredictor /= null then
          if this.m_IPointerPredictor.all /= null then
             temp := this.m_IPointerPredictor.all.Release;
-            Free (this.m_IPointerPredictor);
+            if temp < 1 then
+               Free (this.m_IPointerPredictor);
+            end if;
          end if;
       end if;
    end;
@@ -6072,7 +6154,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IRightTappedEventArgs /= null then
          if this.m_IRightTappedEventArgs.all /= null then
             temp := this.m_IRightTappedEventArgs.all.Release;
-            Free (this.m_IRightTappedEventArgs);
+            if temp < 1 then
+               Free (this.m_IRightTappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6129,7 +6213,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_ITappedEventArgs /= null then
          if this.m_ITappedEventArgs.all /= null then
             temp := this.m_ITappedEventArgs.all.Release;
-            Free (this.m_ITappedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITappedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6203,7 +6289,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IWindowRectChangedEventArgs /= null then
          if this.m_IWindowRectChangedEventArgs.all /= null then
             temp := this.m_IWindowRectChangedEventArgs.all.Release;
-            Free (this.m_IWindowRectChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowRectChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -6294,7 +6382,9 @@ package body WinUI3.Microsoft.UI.Input is
       if this.m_IWindowRectChangingEventArgs /= null then
          if this.m_IWindowRectChangingEventArgs.all /= null then
             temp := this.m_IWindowRectChangingEventArgs.all.Release;
-            Free (this.m_IWindowRectChangingEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowRectChangingEventArgs);
+            end if;
          end if;
       end if;
    end;

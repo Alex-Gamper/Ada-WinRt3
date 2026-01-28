@@ -48,7 +48,9 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       if this.m_ILockApplicationHost /= null then
          if this.m_ILockApplicationHost.all /= null then
             temp := this.m_ILockApplicationHost.all.Release;
-            Free (this.m_ILockApplicationHost);
+            if temp < 1 then
+               Free (this.m_ILockApplicationHost);
+            end if;
          end if;
       end if;
    end;
@@ -145,7 +147,9 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       if this.m_ILockScreenBadge /= null then
          if this.m_ILockScreenBadge.all /= null then
             temp := this.m_ILockScreenBadge.all.Release;
-            Free (this.m_ILockScreenBadge);
+            if temp < 1 then
+               Free (this.m_ILockScreenBadge);
+            end if;
          end if;
       end if;
    end;
@@ -256,7 +260,9 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       if this.m_ILockScreenInfo /= null then
          if this.m_ILockScreenInfo.all /= null then
             temp := this.m_ILockScreenInfo.all.Release;
-            Free (this.m_ILockScreenInfo);
+            if temp < 1 then
+               Free (this.m_ILockScreenInfo);
+            end if;
          end if;
       end if;
    end;
@@ -485,7 +491,9 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       if this.m_ILockScreenUnlockingDeferral /= null then
          if this.m_ILockScreenUnlockingDeferral.all /= null then
             temp := this.m_ILockScreenUnlockingDeferral.all.Release;
-            Free (this.m_ILockScreenUnlockingDeferral);
+            if temp < 1 then
+               Free (this.m_ILockScreenUnlockingDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -522,7 +530,9 @@ package body WinRt.Windows.ApplicationModel.LockScreen is
       if this.m_ILockScreenUnlockingEventArgs /= null then
          if this.m_ILockScreenUnlockingEventArgs.all /= null then
             temp := this.m_ILockScreenUnlockingEventArgs.all.Release;
-            Free (this.m_ILockScreenUnlockingEventArgs);
+            if temp < 1 then
+               Free (this.m_ILockScreenUnlockingEventArgs);
+            end if;
          end if;
       end if;
    end;

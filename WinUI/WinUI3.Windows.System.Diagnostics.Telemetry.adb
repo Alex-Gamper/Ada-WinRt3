@@ -111,7 +111,9 @@ package body WinUI3.Windows.System.Diagnostics.Telemetry is
       if this.m_IPlatformTelemetryRegistrationResult /= null then
          if this.m_IPlatformTelemetryRegistrationResult.all /= null then
             temp := this.m_IPlatformTelemetryRegistrationResult.all.Release;
-            Free (this.m_IPlatformTelemetryRegistrationResult);
+            if temp < 1 then
+               Free (this.m_IPlatformTelemetryRegistrationResult);
+            end if;
          end if;
       end if;
    end;
@@ -151,7 +153,9 @@ package body WinUI3.Windows.System.Diagnostics.Telemetry is
       if this.m_IPlatformTelemetryRegistrationSettings /= null then
          if this.m_IPlatformTelemetryRegistrationSettings.all /= null then
             temp := this.m_IPlatformTelemetryRegistrationSettings.all.Release;
-            Free (this.m_IPlatformTelemetryRegistrationSettings);
+            if temp < 1 then
+               Free (this.m_IPlatformTelemetryRegistrationSettings);
+            end if;
          end if;
       end if;
    end;

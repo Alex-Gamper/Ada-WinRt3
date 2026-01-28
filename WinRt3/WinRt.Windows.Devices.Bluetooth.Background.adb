@@ -52,7 +52,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IBluetoothLEAdvertisementPublisherTriggerDetails /= null then
          if this.m_IBluetoothLEAdvertisementPublisherTriggerDetails.all /= null then
             temp := this.m_IBluetoothLEAdvertisementPublisherTriggerDetails.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementPublisherTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementPublisherTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -133,7 +135,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IBluetoothLEAdvertisementWatcherTriggerDetails /= null then
          if this.m_IBluetoothLEAdvertisementWatcherTriggerDetails.all /= null then
             temp := this.m_IBluetoothLEAdvertisementWatcherTriggerDetails.all.Release;
-            Free (this.m_IBluetoothLEAdvertisementWatcherTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IBluetoothLEAdvertisementWatcherTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -210,7 +214,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IGattCharacteristicNotificationTriggerDetails /= null then
          if this.m_IGattCharacteristicNotificationTriggerDetails.all /= null then
             temp := this.m_IGattCharacteristicNotificationTriggerDetails.all.Release;
-            Free (this.m_IGattCharacteristicNotificationTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IGattCharacteristicNotificationTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -333,7 +339,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IGattServiceProviderConnection /= null then
          if this.m_IGattServiceProviderConnection.all /= null then
             temp := this.m_IGattServiceProviderConnection.all.Release;
-            Free (this.m_IGattServiceProviderConnection);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderConnection);
+            end if;
          end if;
       end if;
    end;
@@ -453,7 +461,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IGattServiceProviderTriggerDetails /= null then
          if this.m_IGattServiceProviderTriggerDetails.all /= null then
             temp := this.m_IGattServiceProviderTriggerDetails.all.Release;
-            Free (this.m_IGattServiceProviderTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IGattServiceProviderTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -496,7 +506,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IRfcommConnectionTriggerDetails /= null then
          if this.m_IRfcommConnectionTriggerDetails.all /= null then
             temp := this.m_IRfcommConnectionTriggerDetails.all.Release;
-            Free (this.m_IRfcommConnectionTriggerDetails);
+            if temp < 1 then
+               Free (this.m_IRfcommConnectionTriggerDetails);
+            end if;
          end if;
       end if;
    end;
@@ -576,7 +588,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IRfcommInboundConnectionInformation /= null then
          if this.m_IRfcommInboundConnectionInformation.all /= null then
             temp := this.m_IRfcommInboundConnectionInformation.all.Release;
-            Free (this.m_IRfcommInboundConnectionInformation);
+            if temp < 1 then
+               Free (this.m_IRfcommInboundConnectionInformation);
+            end if;
          end if;
       end if;
    end;
@@ -698,7 +712,9 @@ package body WinRt.Windows.Devices.Bluetooth.Background is
       if this.m_IRfcommOutboundConnectionInformation /= null then
          if this.m_IRfcommOutboundConnectionInformation.all /= null then
             temp := this.m_IRfcommOutboundConnectionInformation.all.Release;
-            Free (this.m_IRfcommOutboundConnectionInformation);
+            if temp < 1 then
+               Free (this.m_IRfcommOutboundConnectionInformation);
+            end if;
          end if;
       end if;
    end;

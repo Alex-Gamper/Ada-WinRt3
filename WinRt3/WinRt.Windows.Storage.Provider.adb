@@ -82,7 +82,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_ICachedFileUpdaterUI /= null then
          if this.m_ICachedFileUpdaterUI.all /= null then
             temp := this.m_ICachedFileUpdaterUI.all.Release;
-            Free (this.m_ICachedFileUpdaterUI);
+            if temp < 1 then
+               Free (this.m_ICachedFileUpdaterUI);
+            end if;
          end if;
       end if;
    end;
@@ -290,7 +292,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IFileUpdateRequest /= null then
          if this.m_IFileUpdateRequest.all /= null then
             temp := this.m_IFileUpdateRequest.all.Release;
-            Free (this.m_IFileUpdateRequest);
+            if temp < 1 then
+               Free (this.m_IFileUpdateRequest);
+            end if;
          end if;
       end if;
    end;
@@ -465,7 +469,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IFileUpdateRequestDeferral /= null then
          if this.m_IFileUpdateRequestDeferral.all /= null then
             temp := this.m_IFileUpdateRequestDeferral.all.Release;
-            Free (this.m_IFileUpdateRequestDeferral);
+            if temp < 1 then
+               Free (this.m_IFileUpdateRequestDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -502,7 +508,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IFileUpdateRequestedEventArgs /= null then
          if this.m_IFileUpdateRequestedEventArgs.all /= null then
             temp := this.m_IFileUpdateRequestedEventArgs.all.Release;
-            Free (this.m_IFileUpdateRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IFileUpdateRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -545,7 +553,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderFileTypeInfo /= null then
          if this.m_IStorageProviderFileTypeInfo.all /= null then
             temp := this.m_IStorageProviderFileTypeInfo.all.Release;
-            Free (this.m_IStorageProviderFileTypeInfo);
+            if temp < 1 then
+               Free (this.m_IStorageProviderFileTypeInfo);
+            end if;
          end if;
       end if;
    end;
@@ -640,7 +650,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderGetContentInfoForPathResult /= null then
          if this.m_IStorageProviderGetContentInfoForPathResult.all /= null then
             temp := this.m_IStorageProviderGetContentInfoForPathResult.all.Release;
-            Free (this.m_IStorageProviderGetContentInfoForPathResult);
+            if temp < 1 then
+               Free (this.m_IStorageProviderGetContentInfoForPathResult);
+            end if;
          end if;
       end if;
    end;
@@ -788,7 +800,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderGetPathForContentUriResult /= null then
          if this.m_IStorageProviderGetPathForContentUriResult.all /= null then
             temp := this.m_IStorageProviderGetPathForContentUriResult.all.Release;
-            Free (this.m_IStorageProviderGetPathForContentUriResult);
+            if temp < 1 then
+               Free (this.m_IStorageProviderGetPathForContentUriResult);
+            end if;
          end if;
       end if;
    end;
@@ -955,7 +969,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderItemProperty /= null then
          if this.m_IStorageProviderItemProperty.all /= null then
             temp := this.m_IStorageProviderItemProperty.all.Release;
-            Free (this.m_IStorageProviderItemProperty);
+            if temp < 1 then
+               Free (this.m_IStorageProviderItemProperty);
+            end if;
          end if;
       end if;
    end;
@@ -1103,7 +1119,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderItemPropertyDefinition /= null then
          if this.m_IStorageProviderItemPropertyDefinition.all /= null then
             temp := this.m_IStorageProviderItemPropertyDefinition.all.Release;
-            Free (this.m_IStorageProviderItemPropertyDefinition);
+            if temp < 1 then
+               Free (this.m_IStorageProviderItemPropertyDefinition);
+            end if;
          end if;
       end if;
    end;
@@ -1214,7 +1232,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderKnownFolderEntry /= null then
          if this.m_IStorageProviderKnownFolderEntry.all /= null then
             temp := this.m_IStorageProviderKnownFolderEntry.all.Release;
-            Free (this.m_IStorageProviderKnownFolderEntry);
+            if temp < 1 then
+               Free (this.m_IStorageProviderKnownFolderEntry);
+            end if;
          end if;
       end if;
    end;
@@ -1320,7 +1340,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderKnownFolderSyncInfo /= null then
          if this.m_IStorageProviderKnownFolderSyncInfo.all /= null then
             temp := this.m_IStorageProviderKnownFolderSyncInfo.all.Release;
-            Free (this.m_IStorageProviderKnownFolderSyncInfo);
+            if temp < 1 then
+               Free (this.m_IStorageProviderKnownFolderSyncInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1451,7 +1473,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderKnownFolderSyncRequestArgs /= null then
          if this.m_IStorageProviderKnownFolderSyncRequestArgs.all /= null then
             temp := this.m_IStorageProviderKnownFolderSyncRequestArgs.all.Release;
-            Free (this.m_IStorageProviderKnownFolderSyncRequestArgs);
+            if temp < 1 then
+               Free (this.m_IStorageProviderKnownFolderSyncRequestArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1529,7 +1553,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderMoreInfoUI /= null then
          if this.m_IStorageProviderMoreInfoUI.all /= null then
             temp := this.m_IStorageProviderMoreInfoUI.all.Release;
-            Free (this.m_IStorageProviderMoreInfoUI);
+            if temp < 1 then
+               Free (this.m_IStorageProviderMoreInfoUI);
+            end if;
          end if;
       end if;
    end;
@@ -1640,7 +1666,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderQueryResultSet /= null then
          if this.m_IStorageProviderQueryResultSet.all /= null then
             temp := this.m_IStorageProviderQueryResultSet.all.Release;
-            Free (this.m_IStorageProviderQueryResultSet);
+            if temp < 1 then
+               Free (this.m_IStorageProviderQueryResultSet);
+            end if;
          end if;
       end if;
    end;
@@ -1786,7 +1814,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderQuotaUI /= null then
          if this.m_IStorageProviderQuotaUI.all /= null then
             temp := this.m_IStorageProviderQuotaUI.all.Release;
-            Free (this.m_IStorageProviderQuotaUI);
+            if temp < 1 then
+               Free (this.m_IStorageProviderQuotaUI);
+            end if;
          end if;
       end if;
    end;
@@ -1961,7 +1991,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderSearchQueryOptions /= null then
          if this.m_IStorageProviderSearchQueryOptions.all /= null then
             temp := this.m_IStorageProviderSearchQueryOptions.all.Release;
-            Free (this.m_IStorageProviderSearchQueryOptions);
+            if temp < 1 then
+               Free (this.m_IStorageProviderSearchQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -2138,7 +2170,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderSearchResult /= null then
          if this.m_IStorageProviderSearchResult.all /= null then
             temp := this.m_IStorageProviderSearchResult.all.Release;
-            Free (this.m_IStorageProviderSearchResult);
+            if temp < 1 then
+               Free (this.m_IStorageProviderSearchResult);
+            end if;
          end if;
       end if;
    end;
@@ -2480,7 +2514,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderStatusUI /= null then
          if this.m_IStorageProviderStatusUI.all /= null then
             temp := this.m_IStorageProviderStatusUI.all.Release;
-            Free (this.m_IStorageProviderStatusUI);
+            if temp < 1 then
+               Free (this.m_IStorageProviderStatusUI);
+            end if;
          end if;
       end if;
    end;
@@ -2795,7 +2831,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderQueryResult /= null then
          if this.m_IStorageProviderQueryResult.all /= null then
             temp := this.m_IStorageProviderQueryResult.all.Release;
-            Free (this.m_IStorageProviderQueryResult);
+            if temp < 1 then
+               Free (this.m_IStorageProviderQueryResult);
+            end if;
          end if;
       end if;
    end;
@@ -3000,7 +3038,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderSuggestionsQueryOptions /= null then
          if this.m_IStorageProviderSuggestionsQueryOptions.all /= null then
             temp := this.m_IStorageProviderSuggestionsQueryOptions.all.Release;
-            Free (this.m_IStorageProviderSuggestionsQueryOptions);
+            if temp < 1 then
+               Free (this.m_IStorageProviderSuggestionsQueryOptions);
+            end if;
          end if;
       end if;
    end;
@@ -3117,7 +3157,9 @@ package body WinRt.Windows.Storage.Provider is
       if this.m_IStorageProviderSyncRootInfo /= null then
          if this.m_IStorageProviderSyncRootInfo.all /= null then
             temp := this.m_IStorageProviderSyncRootInfo.all.Release;
-            Free (this.m_IStorageProviderSyncRootInfo);
+            if temp < 1 then
+               Free (this.m_IStorageProviderSyncRootInfo);
+            end if;
          end if;
       end if;
    end;

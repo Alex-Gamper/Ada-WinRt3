@@ -69,7 +69,9 @@ package body WinRt.Windows.Foundation.Collections is
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
             temp := this.m_IPropertySet.all.Release;
-            Free (this.m_IPropertySet);
+            if temp < 1 then
+               Free (this.m_IPropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -563,7 +565,9 @@ package body WinRt.Windows.Foundation.Collections is
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
             temp := this.m_IPropertySet.all.Release;
-            Free (this.m_IPropertySet);
+            if temp < 1 then
+               Free (this.m_IPropertySet);
+            end if;
          end if;
       end if;
    end;

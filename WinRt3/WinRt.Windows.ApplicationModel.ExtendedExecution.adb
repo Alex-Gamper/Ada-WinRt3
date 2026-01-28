@@ -51,7 +51,9 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       if this.m_IExtendedExecutionRevokedEventArgs /= null then
          if this.m_IExtendedExecutionRevokedEventArgs.all /= null then
             temp := this.m_IExtendedExecutionRevokedEventArgs.all.Release;
-            Free (this.m_IExtendedExecutionRevokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IExtendedExecutionRevokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -91,7 +93,9 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution is
       if this.m_IExtendedExecutionSession /= null then
          if this.m_IExtendedExecutionSession.all /= null then
             temp := this.m_IExtendedExecutionSession.all.Release;
-            Free (this.m_IExtendedExecutionSession);
+            if temp < 1 then
+               Free (this.m_IExtendedExecutionSession);
+            end if;
          end if;
       end if;
    end;

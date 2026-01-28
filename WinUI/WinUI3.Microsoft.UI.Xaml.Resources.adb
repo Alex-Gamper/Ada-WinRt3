@@ -46,7 +46,9 @@ package body WinUI3.Microsoft.UI.Xaml.Resources is
       if this.m_ICustomXamlResourceLoader /= null then
          if this.m_ICustomXamlResourceLoader.all /= null then
             temp := this.m_ICustomXamlResourceLoader.all.Release;
-            Free (this.m_ICustomXamlResourceLoader);
+            if temp < 1 then
+               Free (this.m_ICustomXamlResourceLoader);
+            end if;
          end if;
       end if;
    end;

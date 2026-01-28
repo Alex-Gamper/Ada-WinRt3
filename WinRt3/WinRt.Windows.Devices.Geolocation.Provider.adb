@@ -47,7 +47,9 @@ package body WinRt.Windows.Devices.Geolocation.Provider is
       if this.m_IGeolocationProvider /= null then
          if this.m_IGeolocationProvider.all /= null then
             temp := this.m_IGeolocationProvider.all.Release;
-            Free (this.m_IGeolocationProvider);
+            if temp < 1 then
+               Free (this.m_IGeolocationProvider);
+            end if;
          end if;
       end if;
    end;

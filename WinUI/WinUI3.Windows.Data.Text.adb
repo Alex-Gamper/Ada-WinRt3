@@ -55,7 +55,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_IAlternateWordForm /= null then
          if this.m_IAlternateWordForm.all /= null then
             temp := this.m_IAlternateWordForm.all.Release;
-            Free (this.m_IAlternateWordForm);
+            if temp < 1 then
+               Free (this.m_IAlternateWordForm);
+            end if;
          end if;
       end if;
    end;
@@ -132,7 +134,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ISelectableWordSegment /= null then
          if this.m_ISelectableWordSegment.all /= null then
             temp := this.m_ISelectableWordSegment.all.Release;
-            Free (this.m_ISelectableWordSegment);
+            if temp < 1 then
+               Free (this.m_ISelectableWordSegment);
+            end if;
          end if;
       end if;
    end;
@@ -208,7 +212,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ISelectableWordsSegmenter /= null then
          if this.m_ISelectableWordsSegmenter.all /= null then
             temp := this.m_ISelectableWordsSegmenter.all.Release;
-            Free (this.m_ISelectableWordsSegmenter);
+            if temp < 1 then
+               Free (this.m_ISelectableWordsSegmenter);
+            end if;
          end if;
       end if;
    end;
@@ -346,7 +352,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ISemanticTextQuery /= null then
          if this.m_ISemanticTextQuery.all /= null then
             temp := this.m_ISemanticTextQuery.all.Release;
-            Free (this.m_ISemanticTextQuery);
+            if temp < 1 then
+               Free (this.m_ISemanticTextQuery);
+            end if;
          end if;
       end if;
    end;
@@ -476,7 +484,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ITextConversionGenerator /= null then
          if this.m_ITextConversionGenerator.all /= null then
             temp := this.m_ITextConversionGenerator.all.Release;
-            Free (this.m_ITextConversionGenerator);
+            if temp < 1 then
+               Free (this.m_ITextConversionGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -698,7 +708,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ITextPhoneme /= null then
          if this.m_ITextPhoneme.all /= null then
             temp := this.m_ITextPhoneme.all.Release;
-            Free (this.m_ITextPhoneme);
+            if temp < 1 then
+               Free (this.m_ITextPhoneme);
+            end if;
          end if;
       end if;
    end;
@@ -761,7 +773,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ITextPredictionGenerator /= null then
          if this.m_ITextPredictionGenerator.all /= null then
             temp := this.m_ITextPredictionGenerator.all.Release;
-            Free (this.m_ITextPredictionGenerator);
+            if temp < 1 then
+               Free (this.m_ITextPredictionGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -1165,7 +1179,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_ITextReverseConversionGenerator /= null then
          if this.m_ITextReverseConversionGenerator.all /= null then
             temp := this.m_ITextReverseConversionGenerator.all.Release;
-            Free (this.m_ITextReverseConversionGenerator);
+            if temp < 1 then
+               Free (this.m_ITextReverseConversionGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -1807,7 +1823,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_IWordSegment /= null then
          if this.m_IWordSegment.all /= null then
             temp := this.m_IWordSegment.all.Release;
-            Free (this.m_IWordSegment);
+            if temp < 1 then
+               Free (this.m_IWordSegment);
+            end if;
          end if;
       end if;
    end;
@@ -1903,7 +1921,9 @@ package body WinUI3.Windows.Data.Text is
       if this.m_IWordsSegmenter /= null then
          if this.m_IWordsSegmenter.all /= null then
             temp := this.m_IWordsSegmenter.all.Release;
-            Free (this.m_IWordsSegmenter);
+            if temp < 1 then
+               Free (this.m_IWordsSegmenter);
+            end if;
          end if;
       end if;
    end;

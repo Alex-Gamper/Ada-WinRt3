@@ -51,7 +51,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IArcadeStick /= null then
          if this.m_IArcadeStick.all /= null then
             temp := this.m_IArcadeStick.all.Release;
-            Free (this.m_IArcadeStick);
+            if temp < 1 then
+               Free (this.m_IArcadeStick);
+            end if;
          end if;
       end if;
    end;
@@ -466,7 +468,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IFlightStick /= null then
          if this.m_IFlightStick.all /= null then
             temp := this.m_IFlightStick.all.Release;
-            Free (this.m_IFlightStick);
+            if temp < 1 then
+               Free (this.m_IFlightStick);
+            end if;
          end if;
       end if;
    end;
@@ -898,7 +902,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IGamepad /= null then
          if this.m_IGamepad.all /= null then
             temp := this.m_IGamepad.all.Release;
-            Free (this.m_IGamepad);
+            if temp < 1 then
+               Free (this.m_IGamepad);
+            end if;
          end if;
       end if;
    end;
@@ -1349,7 +1355,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IHeadset /= null then
          if this.m_IHeadset.all /= null then
             temp := this.m_IHeadset.all.Release;
-            Free (this.m_IHeadset);
+            if temp < 1 then
+               Free (this.m_IHeadset);
+            end if;
          end if;
       end if;
    end;
@@ -1436,7 +1444,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IRacingWheel /= null then
          if this.m_IRacingWheel.all /= null then
             temp := this.m_IRacingWheel.all.Release;
-            Free (this.m_IRacingWheel);
+            if temp < 1 then
+               Free (this.m_IRacingWheel);
+            end if;
          end if;
       end if;
    end;
@@ -1956,7 +1966,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IRawGameController /= null then
          if this.m_IRawGameController.all /= null then
             temp := this.m_IRawGameController.all.Release;
-            Free (this.m_IRawGameController);
+            if temp < 1 then
+               Free (this.m_IRawGameController);
+            end if;
          end if;
       end if;
    end;
@@ -2566,7 +2578,9 @@ package body WinUI3.Windows.Gaming.Input is
       if this.m_IUINavigationController /= null then
          if this.m_IUINavigationController.all /= null then
             temp := this.m_IUINavigationController.all.Release;
-            Free (this.m_IUINavigationController);
+            if temp < 1 then
+               Free (this.m_IUINavigationController);
+            end if;
          end if;
       end if;
    end;

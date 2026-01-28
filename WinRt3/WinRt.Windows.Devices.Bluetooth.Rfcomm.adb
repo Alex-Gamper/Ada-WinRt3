@@ -63,7 +63,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       if this.m_IRfcommDeviceService /= null then
          if this.m_IRfcommDeviceService.all /= null then
             temp := this.m_IRfcommDeviceService.all.Release;
-            Free (this.m_IRfcommDeviceService);
+            if temp < 1 then
+               Free (this.m_IRfcommDeviceService);
+            end if;
          end if;
       end if;
    end;
@@ -657,7 +659,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       if this.m_IRfcommDeviceServicesResult /= null then
          if this.m_IRfcommDeviceServicesResult.all /= null then
             temp := this.m_IRfcommDeviceServicesResult.all.Release;
-            Free (this.m_IRfcommDeviceServicesResult);
+            if temp < 1 then
+               Free (this.m_IRfcommDeviceServicesResult);
+            end if;
          end if;
       end if;
    end;
@@ -717,7 +721,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       if this.m_IRfcommServiceId /= null then
          if this.m_IRfcommServiceId.all /= null then
             temp := this.m_IRfcommServiceId.all.Release;
-            Free (this.m_IRfcommServiceId);
+            if temp < 1 then
+               Free (this.m_IRfcommServiceId);
+            end if;
          end if;
       end if;
    end;
@@ -995,7 +1001,9 @@ package body WinRt.Windows.Devices.Bluetooth.Rfcomm is
       if this.m_IRfcommServiceProvider /= null then
          if this.m_IRfcommServiceProvider.all /= null then
             temp := this.m_IRfcommServiceProvider.all.Release;
-            Free (this.m_IRfcommServiceProvider);
+            if temp < 1 then
+               Free (this.m_IRfcommServiceProvider);
+            end if;
          end if;
       end if;
    end;

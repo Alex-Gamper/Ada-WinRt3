@@ -58,7 +58,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_ICurrentSessionChangedEventArgs /= null then
          if this.m_ICurrentSessionChangedEventArgs.all /= null then
             temp := this.m_ICurrentSessionChangedEventArgs.all.Release;
-            Free (this.m_ICurrentSessionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICurrentSessionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -81,7 +83,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSession /= null then
          if this.m_IGlobalSystemMediaTransportControlsSession.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSession.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSession);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSession);
+            end if;
          end if;
       end if;
    end;
@@ -1278,7 +1282,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSessionManager /= null then
          if this.m_IGlobalSystemMediaTransportControlsSessionManager.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSessionManager.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSessionManager);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSessionManager);
+            end if;
          end if;
       end if;
    end;
@@ -1480,7 +1486,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties /= null then
          if this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSessionMediaProperties);
+            end if;
          end if;
       end if;
    end;
@@ -1694,7 +1702,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls /= null then
          if this.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSessionPlaybackControls);
+            end if;
          end if;
       end if;
    end;
@@ -1972,7 +1982,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo /= null then
          if this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSessionPlaybackInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2112,7 +2124,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties /= null then
          if this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all /= null then
             temp := this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties.all.Release;
-            Free (this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties);
+            if temp < 1 then
+               Free (this.m_IGlobalSystemMediaTransportControlsSessionTimelineProperties);
+            end if;
          end if;
       end if;
    end;
@@ -2237,7 +2251,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IMediaPropertiesChangedEventArgs /= null then
          if this.m_IMediaPropertiesChangedEventArgs.all /= null then
             temp := this.m_IMediaPropertiesChangedEventArgs.all.Release;
-            Free (this.m_IMediaPropertiesChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IMediaPropertiesChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2260,7 +2276,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_IPlaybackInfoChangedEventArgs /= null then
          if this.m_IPlaybackInfoChangedEventArgs.all /= null then
             temp := this.m_IPlaybackInfoChangedEventArgs.all.Release;
-            Free (this.m_IPlaybackInfoChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IPlaybackInfoChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2283,7 +2301,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_ISessionsChangedEventArgs /= null then
          if this.m_ISessionsChangedEventArgs.all /= null then
             temp := this.m_ISessionsChangedEventArgs.all.Release;
-            Free (this.m_ISessionsChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ISessionsChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -2306,7 +2326,9 @@ package body WinRt.Windows.Media.Control is
       if this.m_ITimelinePropertiesChangedEventArgs /= null then
          if this.m_ITimelinePropertiesChangedEventArgs.all /= null then
             temp := this.m_ITimelinePropertiesChangedEventArgs.all.Release;
-            Free (this.m_ITimelinePropertiesChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ITimelinePropertiesChangedEventArgs);
+            end if;
          end if;
       end if;
    end;

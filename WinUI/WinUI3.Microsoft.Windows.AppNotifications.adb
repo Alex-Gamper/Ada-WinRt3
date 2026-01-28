@@ -54,7 +54,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
       if this.m_IAppNotification /= null then
          if this.m_IAppNotification.all /= null then
             temp := this.m_IAppNotification.all.Release;
-            Free (this.m_IAppNotification);
+            if temp < 1 then
+               Free (this.m_IAppNotification);
+            end if;
          end if;
       end if;
    end;
@@ -380,7 +382,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
       if this.m_IAppNotificationActivatedEventArgs /= null then
          if this.m_IAppNotificationActivatedEventArgs.all /= null then
             temp := this.m_IAppNotificationActivatedEventArgs.all.Release;
-            Free (this.m_IAppNotificationActivatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IAppNotificationActivatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -467,7 +471,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
       if this.m_IAppNotificationManager /= null then
          if this.m_IAppNotificationManager.all /= null then
             temp := this.m_IAppNotificationManager.all.Release;
-            Free (this.m_IAppNotificationManager);
+            if temp < 1 then
+               Free (this.m_IAppNotificationManager);
+            end if;
          end if;
       end if;
    end;
@@ -1090,7 +1096,9 @@ package body WinUI3.Microsoft.Windows.AppNotifications is
       if this.m_IAppNotificationProgressData /= null then
          if this.m_IAppNotificationProgressData.all /= null then
             temp := this.m_IAppNotificationProgressData.all.Release;
-            Free (this.m_IAppNotificationProgressData);
+            if temp < 1 then
+               Free (this.m_IAppNotificationProgressData);
+            end if;
          end if;
       end if;
    end;

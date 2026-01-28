@@ -49,7 +49,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceAudioNotificationRequestedEventArgs /= null then
          if this.m_IGuidanceAudioNotificationRequestedEventArgs.all /= null then
             temp := this.m_IGuidanceAudioNotificationRequestedEventArgs.all.Release;
-            Free (this.m_IGuidanceAudioNotificationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGuidanceAudioNotificationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -129,7 +131,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceLaneInfo /= null then
          if this.m_IGuidanceLaneInfo.all /= null then
             temp := this.m_IGuidanceLaneInfo.all.Release;
-            Free (this.m_IGuidanceLaneInfo);
+            if temp < 1 then
+               Free (this.m_IGuidanceLaneInfo);
+            end if;
          end if;
       end if;
    end;
@@ -186,7 +190,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceManeuver /= null then
          if this.m_IGuidanceManeuver.all /= null then
             temp := this.m_IGuidanceManeuver.all.Release;
-            Free (this.m_IGuidanceManeuver);
+            if temp < 1 then
+               Free (this.m_IGuidanceManeuver);
+            end if;
          end if;
       end if;
    end;
@@ -434,7 +440,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceMapMatchedCoordinate /= null then
          if this.m_IGuidanceMapMatchedCoordinate.all /= null then
             temp := this.m_IGuidanceMapMatchedCoordinate.all.Release;
-            Free (this.m_IGuidanceMapMatchedCoordinate);
+            if temp < 1 then
+               Free (this.m_IGuidanceMapMatchedCoordinate);
+            end if;
          end if;
       end if;
    end;
@@ -548,7 +556,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceNavigator /= null then
          if this.m_IGuidanceNavigator.all /= null then
             temp := this.m_IGuidanceNavigator.all.Release;
-            Free (this.m_IGuidanceNavigator);
+            if temp < 1 then
+               Free (this.m_IGuidanceNavigator);
+            end if;
          end if;
       end if;
    end;
@@ -1145,7 +1155,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceReroutedEventArgs /= null then
          if this.m_IGuidanceReroutedEventArgs.all /= null then
             temp := this.m_IGuidanceReroutedEventArgs.all.Release;
-            Free (this.m_IGuidanceReroutedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGuidanceReroutedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1188,7 +1200,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceRoadSegment /= null then
          if this.m_IGuidanceRoadSegment.all /= null then
             temp := this.m_IGuidanceRoadSegment.all.Release;
-            Free (this.m_IGuidanceRoadSegment);
+            if temp < 1 then
+               Free (this.m_IGuidanceRoadSegment);
+            end if;
          end if;
       end if;
    end;
@@ -1397,7 +1411,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceRoadSignpost /= null then
          if this.m_IGuidanceRoadSignpost.all /= null then
             temp := this.m_IGuidanceRoadSignpost.all.Release;
-            Free (this.m_IGuidanceRoadSignpost);
+            if temp < 1 then
+               Free (this.m_IGuidanceRoadSignpost);
+            end if;
          end if;
       end if;
    end;
@@ -1514,7 +1530,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceRoute /= null then
          if this.m_IGuidanceRoute.all /= null then
             temp := this.m_IGuidanceRoute.all.Release;
-            Free (this.m_IGuidanceRoute);
+            if temp < 1 then
+               Free (this.m_IGuidanceRoute);
+            end if;
          end if;
       end if;
    end;
@@ -1725,7 +1743,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceTelemetryCollector /= null then
          if this.m_IGuidanceTelemetryCollector.all /= null then
             temp := this.m_IGuidanceTelemetryCollector.all.Release;
-            Free (this.m_IGuidanceTelemetryCollector);
+            if temp < 1 then
+               Free (this.m_IGuidanceTelemetryCollector);
+            end if;
          end if;
       end if;
    end;
@@ -1885,7 +1905,9 @@ package body WinUI3.Windows.Services.Maps.Guidance is
       if this.m_IGuidanceUpdatedEventArgs /= null then
          if this.m_IGuidanceUpdatedEventArgs.all /= null then
             temp := this.m_IGuidanceUpdatedEventArgs.all.Release;
-            Free (this.m_IGuidanceUpdatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IGuidanceUpdatedEventArgs);
+            end if;
          end if;
       end if;
    end;

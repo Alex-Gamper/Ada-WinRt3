@@ -112,7 +112,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IAppDataPaths /= null then
          if this.m_IAppDataPaths.all /= null then
             temp := this.m_IAppDataPaths.all.Release;
-            Free (this.m_IAppDataPaths);
+            if temp < 1 then
+               Free (this.m_IAppDataPaths);
+            end if;
          end if;
       end if;
    end;
@@ -369,7 +371,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IApplicationData /= null then
          if this.m_IApplicationData.all /= null then
             temp := this.m_IApplicationData.all.Release;
-            Free (this.m_IApplicationData);
+            if temp < 1 then
+               Free (this.m_IApplicationData);
+            end if;
          end if;
       end if;
    end;
@@ -945,7 +949,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
             temp := this.m_IPropertySet.all.Release;
-            Free (this.m_IPropertySet);
+            if temp < 1 then
+               Free (this.m_IPropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -1194,7 +1200,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IApplicationDataContainer /= null then
          if this.m_IApplicationDataContainer.all /= null then
             temp := this.m_IApplicationDataContainer.all.Release;
-            Free (this.m_IApplicationDataContainer);
+            if temp < 1 then
+               Free (this.m_IApplicationDataContainer);
+            end if;
          end if;
       end if;
    end;
@@ -1351,7 +1359,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IPropertySet /= null then
          if this.m_IPropertySet.all /= null then
             temp := this.m_IPropertySet.all.Release;
-            Free (this.m_IPropertySet);
+            if temp < 1 then
+               Free (this.m_IPropertySet);
+            end if;
          end if;
       end if;
    end;
@@ -4696,7 +4706,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISetVersionDeferral /= null then
          if this.m_ISetVersionDeferral.all /= null then
             temp := this.m_ISetVersionDeferral.all.Release;
-            Free (this.m_ISetVersionDeferral);
+            if temp < 1 then
+               Free (this.m_ISetVersionDeferral);
+            end if;
          end if;
       end if;
    end;
@@ -4733,7 +4745,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISetVersionRequest /= null then
          if this.m_ISetVersionRequest.all /= null then
             temp := this.m_ISetVersionRequest.all.Release;
-            Free (this.m_ISetVersionRequest);
+            if temp < 1 then
+               Free (this.m_ISetVersionRequest);
+            end if;
          end if;
       end if;
    end;
@@ -4810,7 +4824,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageFile /= null then
          if this.m_IStorageFile.all /= null then
             temp := this.m_IStorageFile.all.Release;
-            Free (this.m_IStorageFile);
+            if temp < 1 then
+               Free (this.m_IStorageFile);
+            end if;
          end if;
       end if;
    end;
@@ -7283,7 +7299,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageFolder /= null then
          if this.m_IStorageFolder.all /= null then
             temp := this.m_IStorageFolder.all.Release;
-            Free (this.m_IStorageFolder);
+            if temp < 1 then
+               Free (this.m_IStorageFolder);
+            end if;
          end if;
       end if;
    end;
@@ -9924,7 +9942,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibrary /= null then
          if this.m_IStorageLibrary.all /= null then
             temp := this.m_IStorageLibrary.all.Release;
-            Free (this.m_IStorageLibrary);
+            if temp < 1 then
+               Free (this.m_IStorageLibrary);
+            end if;
          end if;
       end if;
    end;
@@ -10391,7 +10411,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibraryChange /= null then
          if this.m_IStorageLibraryChange.all /= null then
             temp := this.m_IStorageLibraryChange.all.Release;
-            Free (this.m_IStorageLibraryChange);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryChange);
+            end if;
          end if;
       end if;
    end;
@@ -10552,7 +10574,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibraryChangeReader /= null then
          if this.m_IStorageLibraryChangeReader.all /= null then
             temp := this.m_IStorageLibraryChangeReader.all.Release;
-            Free (this.m_IStorageLibraryChangeReader);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryChangeReader);
+            end if;
          end if;
       end if;
    end;
@@ -10701,7 +10725,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibraryChangeTracker /= null then
          if this.m_IStorageLibraryChangeTracker.all /= null then
             temp := this.m_IStorageLibraryChangeTracker.all.Release;
-            Free (this.m_IStorageLibraryChangeTracker);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryChangeTracker);
+            end if;
          end if;
       end if;
    end;
@@ -10809,7 +10835,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibraryChangeTrackerOptions /= null then
          if this.m_IStorageLibraryChangeTrackerOptions.all /= null then
             temp := this.m_IStorageLibraryChangeTrackerOptions.all.Release;
-            Free (this.m_IStorageLibraryChangeTrackerOptions);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryChangeTrackerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -10883,7 +10911,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageLibraryLastChangeId /= null then
          if this.m_IStorageLibraryLastChangeId.all /= null then
             temp := this.m_IStorageLibraryLastChangeId.all.Release;
-            Free (this.m_IStorageLibraryLastChangeId);
+            if temp < 1 then
+               Free (this.m_IStorageLibraryLastChangeId);
+            end if;
          end if;
       end if;
    end;
@@ -10930,7 +10960,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageProvider /= null then
          if this.m_IStorageProvider.all /= null then
             temp := this.m_IStorageProvider.all.Release;
-            Free (this.m_IStorageProvider);
+            if temp < 1 then
+               Free (this.m_IStorageProvider);
+            end if;
          end if;
       end if;
    end;
@@ -11063,7 +11095,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IStorageStreamTransaction /= null then
          if this.m_IStorageStreamTransaction.all /= null then
             temp := this.m_IStorageStreamTransaction.all.Release;
-            Free (this.m_IStorageStreamTransaction);
+            if temp < 1 then
+               Free (this.m_IStorageStreamTransaction);
+            end if;
          end if;
       end if;
    end;
@@ -11164,7 +11198,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IOutputStream /= null then
          if this.m_IOutputStream.all /= null then
             temp := this.m_IOutputStream.all.Release;
-            Free (this.m_IOutputStream);
+            if temp < 1 then
+               Free (this.m_IOutputStream);
+            end if;
          end if;
       end if;
    end;
@@ -11366,7 +11402,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemAudioProperties /= null then
          if this.m_ISystemAudioProperties.all /= null then
             temp := this.m_ISystemAudioProperties.all.Release;
-            Free (this.m_ISystemAudioProperties);
+            if temp < 1 then
+               Free (this.m_ISystemAudioProperties);
+            end if;
          end if;
       end if;
    end;
@@ -11409,7 +11447,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemDataPaths /= null then
          if this.m_ISystemDataPaths.all /= null then
             temp := this.m_ISystemDataPaths.all.Release;
-            Free (this.m_ISystemDataPaths);
+            if temp < 1 then
+               Free (this.m_ISystemDataPaths);
+            end if;
          end if;
       end if;
    end;
@@ -11779,7 +11819,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemGPSProperties /= null then
          if this.m_ISystemGPSProperties.all /= null then
             temp := this.m_ISystemGPSProperties.all.Release;
-            Free (this.m_ISystemGPSProperties);
+            if temp < 1 then
+               Free (this.m_ISystemGPSProperties);
+            end if;
          end if;
       end if;
    end;
@@ -11842,7 +11884,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemImageProperties /= null then
          if this.m_ISystemImageProperties.all /= null then
             temp := this.m_ISystemImageProperties.all.Release;
-            Free (this.m_ISystemImageProperties);
+            if temp < 1 then
+               Free (this.m_ISystemImageProperties);
+            end if;
          end if;
       end if;
    end;
@@ -11905,7 +11949,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemMediaProperties /= null then
          if this.m_ISystemMediaProperties.all /= null then
             temp := this.m_ISystemMediaProperties.all.Release;
-            Free (this.m_ISystemMediaProperties);
+            if temp < 1 then
+               Free (this.m_ISystemMediaProperties);
+            end if;
          end if;
       end if;
    end;
@@ -12048,7 +12094,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemMusicProperties /= null then
          if this.m_ISystemMusicProperties.all /= null then
             temp := this.m_ISystemMusicProperties.all.Release;
-            Free (this.m_ISystemMusicProperties);
+            if temp < 1 then
+               Free (this.m_ISystemMusicProperties);
+            end if;
          end if;
       end if;
    end;
@@ -12231,7 +12279,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemPhotoProperties /= null then
          if this.m_ISystemPhotoProperties.all /= null then
             temp := this.m_ISystemPhotoProperties.all.Release;
-            Free (this.m_ISystemPhotoProperties);
+            if temp < 1 then
+               Free (this.m_ISystemPhotoProperties);
+            end if;
          end if;
       end if;
    end;
@@ -12672,7 +12722,9 @@ package body WinUI3.Windows.Storage is
       if this.m_ISystemVideoProperties /= null then
          if this.m_ISystemVideoProperties.all /= null then
             temp := this.m_ISystemVideoProperties.all.Release;
-            Free (this.m_ISystemVideoProperties);
+            if temp < 1 then
+               Free (this.m_ISystemVideoProperties);
+            end if;
          end if;
       end if;
    end;
@@ -12795,7 +12847,9 @@ package body WinUI3.Windows.Storage is
       if this.m_IUserDataPaths /= null then
          if this.m_IUserDataPaths.all /= null then
             temp := this.m_IUserDataPaths.all.Release;
-            Free (this.m_IUserDataPaths);
+            if temp < 1 then
+               Free (this.m_IUserDataPaths);
+            end if;
          end if;
       end if;
    end;

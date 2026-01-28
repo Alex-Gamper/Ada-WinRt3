@@ -56,7 +56,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_IAppListEntry /= null then
          if this.m_IAppListEntry.all /= null then
             temp := this.m_IAppListEntry.all.Release;
-            Free (this.m_IAppListEntry);
+            if temp < 1 then
+               Free (this.m_IAppListEntry);
+            end if;
          end if;
       end if;
    end;
@@ -1058,7 +1060,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_ICoreApplicationView /= null then
          if this.m_ICoreApplicationView.all /= null then
             temp := this.m_ICoreApplicationView.all.Release;
-            Free (this.m_ICoreApplicationView);
+            if temp < 1 then
+               Free (this.m_ICoreApplicationView);
+            end if;
          end if;
       end if;
    end;
@@ -1323,7 +1327,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_ICoreApplicationViewTitleBar /= null then
          if this.m_ICoreApplicationViewTitleBar.all /= null then
             temp := this.m_ICoreApplicationViewTitleBar.all.Release;
-            Free (this.m_ICoreApplicationViewTitleBar);
+            if temp < 1 then
+               Free (this.m_ICoreApplicationViewTitleBar);
+            end if;
          end if;
       end if;
    end;
@@ -1512,7 +1518,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_IHostedViewClosingEventArgs /= null then
          if this.m_IHostedViewClosingEventArgs.all /= null then
             temp := this.m_IHostedViewClosingEventArgs.all.Release;
-            Free (this.m_IHostedViewClosingEventArgs);
+            if temp < 1 then
+               Free (this.m_IHostedViewClosingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1555,7 +1563,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_IUnhandledError /= null then
          if this.m_IUnhandledError.all /= null then
             temp := this.m_IUnhandledError.all.Release;
-            Free (this.m_IUnhandledError);
+            if temp < 1 then
+               Free (this.m_IUnhandledError);
+            end if;
          end if;
       end if;
    end;
@@ -1609,7 +1619,9 @@ package body WinRt.Windows.ApplicationModel.Core is
       if this.m_IUnhandledErrorDetectedEventArgs /= null then
          if this.m_IUnhandledErrorDetectedEventArgs.all /= null then
             temp := this.m_IUnhandledErrorDetectedEventArgs.all.Release;
-            Free (this.m_IUnhandledErrorDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_IUnhandledErrorDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;

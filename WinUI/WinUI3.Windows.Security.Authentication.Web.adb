@@ -444,7 +444,9 @@ package body WinUI3.Windows.Security.Authentication.Web is
       if this.m_IWebAuthenticationResult /= null then
          if this.m_IWebAuthenticationResult.all /= null then
             temp := this.m_IWebAuthenticationResult.all.Release;
-            Free (this.m_IWebAuthenticationResult);
+            if temp < 1 then
+               Free (this.m_IWebAuthenticationResult);
+            end if;
          end if;
       end if;
    end;

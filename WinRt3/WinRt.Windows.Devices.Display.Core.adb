@@ -55,7 +55,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayAdapter /= null then
          if this.m_IDisplayAdapter.all /= null then
             temp := this.m_IDisplayAdapter.all.Release;
-            Free (this.m_IDisplayAdapter);
+            if temp < 1 then
+               Free (this.m_IDisplayAdapter);
+            end if;
          end if;
       end if;
    end;
@@ -295,7 +297,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayDevice /= null then
          if this.m_IDisplayDevice.all /= null then
             temp := this.m_IDisplayDevice.all.Release;
-            Free (this.m_IDisplayDevice);
+            if temp < 1 then
+               Free (this.m_IDisplayDevice);
+            end if;
          end if;
       end if;
    end;
@@ -511,7 +515,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayFence /= null then
          if this.m_IDisplayFence.all /= null then
             temp := this.m_IDisplayFence.all.Release;
-            Free (this.m_IDisplayFence);
+            if temp < 1 then
+               Free (this.m_IDisplayFence);
+            end if;
          end if;
       end if;
    end;
@@ -534,7 +540,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManager /= null then
          if this.m_IDisplayManager.all /= null then
             temp := this.m_IDisplayManager.all.Release;
-            Free (this.m_IDisplayManager);
+            if temp < 1 then
+               Free (this.m_IDisplayManager);
+            end if;
          end if;
       end if;
    end;
@@ -993,7 +1001,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManagerChangedEventArgs /= null then
          if this.m_IDisplayManagerChangedEventArgs.all /= null then
             temp := this.m_IDisplayManagerChangedEventArgs.all.Release;
-            Free (this.m_IDisplayManagerChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDisplayManagerChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1068,7 +1078,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManagerDisabledEventArgs /= null then
          if this.m_IDisplayManagerDisabledEventArgs.all /= null then
             temp := this.m_IDisplayManagerDisabledEventArgs.all.Release;
-            Free (this.m_IDisplayManagerDisabledEventArgs);
+            if temp < 1 then
+               Free (this.m_IDisplayManagerDisabledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1143,7 +1155,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManagerEnabledEventArgs /= null then
          if this.m_IDisplayManagerEnabledEventArgs.all /= null then
             temp := this.m_IDisplayManagerEnabledEventArgs.all.Release;
-            Free (this.m_IDisplayManagerEnabledEventArgs);
+            if temp < 1 then
+               Free (this.m_IDisplayManagerEnabledEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1218,7 +1232,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs /= null then
          if this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs.all /= null then
             temp := this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs.all.Release;
-            Free (this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs);
+            if temp < 1 then
+               Free (this.m_IDisplayManagerPathsFailedOrInvalidatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -1293,7 +1309,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayManagerResultWithState /= null then
          if this.m_IDisplayManagerResultWithState.all /= null then
             temp := this.m_IDisplayManagerResultWithState.all.Release;
-            Free (this.m_IDisplayManagerResultWithState);
+            if temp < 1 then
+               Free (this.m_IDisplayManagerResultWithState);
+            end if;
          end if;
       end if;
    end;
@@ -1370,7 +1388,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayModeInfo /= null then
          if this.m_IDisplayModeInfo.all /= null then
             temp := this.m_IDisplayModeInfo.all.Release;
-            Free (this.m_IDisplayModeInfo);
+            if temp < 1 then
+               Free (this.m_IDisplayModeInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1572,7 +1592,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayMuxDevice /= null then
          if this.m_IDisplayMuxDevice.all /= null then
             temp := this.m_IDisplayMuxDevice.all.Release;
-            Free (this.m_IDisplayMuxDevice);
+            if temp < 1 then
+               Free (this.m_IDisplayMuxDevice);
+            end if;
          end if;
       end if;
    end;
@@ -1947,7 +1969,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayPath /= null then
          if this.m_IDisplayPath.all /= null then
             temp := this.m_IDisplayPath.all.Release;
-            Free (this.m_IDisplayPath);
+            if temp < 1 then
+               Free (this.m_IDisplayPath);
+            end if;
          end if;
       end if;
    end;
@@ -2423,7 +2447,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayPrimaryDescription /= null then
          if this.m_IDisplayPrimaryDescription.all /= null then
             temp := this.m_IDisplayPrimaryDescription.all.Release;
-            Free (this.m_IDisplayPrimaryDescription);
+            if temp < 1 then
+               Free (this.m_IDisplayPrimaryDescription);
+            end if;
          end if;
       end if;
    end;
@@ -2636,7 +2662,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayScanout /= null then
          if this.m_IDisplayScanout.all /= null then
             temp := this.m_IDisplayScanout.all.Release;
-            Free (this.m_IDisplayScanout);
+            if temp < 1 then
+               Free (this.m_IDisplayScanout);
+            end if;
          end if;
       end if;
    end;
@@ -2659,7 +2687,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplaySource /= null then
          if this.m_IDisplaySource.all /= null then
             temp := this.m_IDisplaySource.all.Release;
-            Free (this.m_IDisplaySource);
+            if temp < 1 then
+               Free (this.m_IDisplaySource);
+            end if;
          end if;
       end if;
    end;
@@ -2796,7 +2826,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayState /= null then
          if this.m_IDisplayState.all /= null then
             temp := this.m_IDisplayState.all.Release;
-            Free (this.m_IDisplayState);
+            if temp < 1 then
+               Free (this.m_IDisplayState);
+            end if;
          end if;
       end if;
    end;
@@ -3094,7 +3126,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayStateOperationResult /= null then
          if this.m_IDisplayStateOperationResult.all /= null then
             temp := this.m_IDisplayStateOperationResult.all.Release;
-            Free (this.m_IDisplayStateOperationResult);
+            if temp < 1 then
+               Free (this.m_IDisplayStateOperationResult);
+            end if;
          end if;
       end if;
    end;
@@ -3151,7 +3185,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplaySurface /= null then
          if this.m_IDisplaySurface.all /= null then
             temp := this.m_IDisplaySurface.all.Release;
-            Free (this.m_IDisplaySurface);
+            if temp < 1 then
+               Free (this.m_IDisplaySurface);
+            end if;
          end if;
       end if;
    end;
@@ -3174,7 +3210,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayTarget /= null then
          if this.m_IDisplayTarget.all /= null then
             temp := this.m_IDisplayTarget.all.Release;
-            Free (this.m_IDisplayTarget);
+            if temp < 1 then
+               Free (this.m_IDisplayTarget);
+            end if;
          end if;
       end if;
    end;
@@ -3452,7 +3490,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayTask /= null then
          if this.m_IDisplayTask.all /= null then
             temp := this.m_IDisplayTask.all.Release;
-            Free (this.m_IDisplayTask);
+            if temp < 1 then
+               Free (this.m_IDisplayTask);
+            end if;
          end if;
       end if;
    end;
@@ -3526,7 +3566,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayTaskPool /= null then
          if this.m_IDisplayTaskPool.all /= null then
             temp := this.m_IDisplayTaskPool.all.Release;
-            Free (this.m_IDisplayTaskPool);
+            if temp < 1 then
+               Free (this.m_IDisplayTaskPool);
+            end if;
          end if;
       end if;
    end;
@@ -3609,7 +3651,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayTaskResult /= null then
          if this.m_IDisplayTaskResult.all /= null then
             temp := this.m_IDisplayTaskResult.all.Release;
-            Free (this.m_IDisplayTaskResult);
+            if temp < 1 then
+               Free (this.m_IDisplayTaskResult);
+            end if;
          end if;
       end if;
    end;
@@ -3683,7 +3727,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayView /= null then
          if this.m_IDisplayView.all /= null then
             temp := this.m_IDisplayView.all.Release;
-            Free (this.m_IDisplayView);
+            if temp < 1 then
+               Free (this.m_IDisplayView);
+            end if;
          end if;
       end if;
    end;
@@ -3793,7 +3839,9 @@ package body WinRt.Windows.Devices.Display.Core is
       if this.m_IDisplayWireFormat /= null then
          if this.m_IDisplayWireFormat.all /= null then
             temp := this.m_IDisplayWireFormat.all.Release;
-            Free (this.m_IDisplayWireFormat);
+            if temp < 1 then
+               Free (this.m_IDisplayWireFormat);
+            end if;
          end if;
       end if;
    end;

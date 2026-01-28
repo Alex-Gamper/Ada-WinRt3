@@ -48,7 +48,9 @@ package body WinUI3.Windows.UI.Text is
       if this.m_IContentLinkInfo /= null then
          if this.m_IContentLinkInfo.all /= null then
             temp := this.m_IContentLinkInfo.all.Release;
-            Free (this.m_IContentLinkInfo);
+            if temp < 1 then
+               Free (this.m_IContentLinkInfo);
+            end if;
          end if;
       end if;
    end;
@@ -268,7 +270,9 @@ package body WinUI3.Windows.UI.Text is
       if this.m_IFontWeights /= null then
          if this.m_IFontWeights.all /= null then
             temp := this.m_IFontWeights.all.Release;
-            Free (this.m_IFontWeights);
+            if temp < 1 then
+               Free (this.m_IFontWeights);
+            end if;
          end if;
       end if;
    end;
@@ -525,7 +529,9 @@ package body WinUI3.Windows.UI.Text is
       if this.m_ITextDocument /= null then
          if this.m_ITextDocument.all /= null then
             temp := this.m_ITextDocument.all.Release;
-            Free (this.m_ITextDocument);
+            if temp < 1 then
+               Free (this.m_ITextDocument);
+            end if;
          end if;
       end if;
    end;
@@ -1144,7 +1150,9 @@ package body WinUI3.Windows.UI.Text is
       if this.m_ITextRange /= null then
          if this.m_ITextRange.all /= null then
             temp := this.m_ITextRange.all.Release;
-            Free (this.m_ITextRange);
+            if temp < 1 then
+               Free (this.m_ITextRange);
+            end if;
          end if;
       end if;
    end;

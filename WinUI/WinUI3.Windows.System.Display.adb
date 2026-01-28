@@ -46,7 +46,9 @@ package body WinUI3.Windows.System.Display is
       if this.m_IDisplayRequest /= null then
          if this.m_IDisplayRequest.all /= null then
             temp := this.m_IDisplayRequest.all.Release;
-            Free (this.m_IDisplayRequest);
+            if temp < 1 then
+               Free (this.m_IDisplayRequest);
+            end if;
          end if;
       end if;
    end;

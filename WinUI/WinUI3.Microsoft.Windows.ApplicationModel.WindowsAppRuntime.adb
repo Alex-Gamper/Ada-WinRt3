@@ -48,7 +48,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
       if this.m_IDeploymentInitializeOptions /= null then
          if this.m_IDeploymentInitializeOptions.all /= null then
             temp := this.m_IDeploymentInitializeOptions.all.Release;
-            Free (this.m_IDeploymentInitializeOptions);
+            if temp < 1 then
+               Free (this.m_IDeploymentInitializeOptions);
+            end if;
          end if;
       end if;
    end;
@@ -243,7 +245,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
       if this.m_IDeploymentResult /= null then
          if this.m_IDeploymentResult.all /= null then
             temp := this.m_IDeploymentResult.all.Release;
-            Free (this.m_IDeploymentResult);
+            if temp < 1 then
+               Free (this.m_IDeploymentResult);
+            end if;
          end if;
       end if;
    end;
@@ -445,7 +449,9 @@ package body WinUI3.Microsoft.Windows.ApplicationModel.WindowsAppRuntime is
       if this.m_IRuntimeCompatibilityOptions /= null then
          if this.m_IRuntimeCompatibilityOptions.all /= null then
             temp := this.m_IRuntimeCompatibilityOptions.all.Release;
-            Free (this.m_IRuntimeCompatibilityOptions);
+            if temp < 1 then
+               Free (this.m_IRuntimeCompatibilityOptions);
+            end if;
          end if;
       end if;
    end;

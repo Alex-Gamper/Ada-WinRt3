@@ -54,7 +54,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IPreviewBuildsManager /= null then
          if this.m_IPreviewBuildsManager.all /= null then
             temp := this.m_IPreviewBuildsManager.all.Release;
-            Free (this.m_IPreviewBuildsManager);
+            if temp < 1 then
+               Free (this.m_IPreviewBuildsManager);
+            end if;
          end if;
       end if;
    end;
@@ -240,7 +242,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IPreviewBuildsState /= null then
          if this.m_IPreviewBuildsState.all /= null then
             temp := this.m_IPreviewBuildsState.all.Release;
-            Free (this.m_IPreviewBuildsState);
+            if temp < 1 then
+               Free (this.m_IPreviewBuildsState);
+            end if;
          end if;
       end if;
    end;
@@ -283,7 +287,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdate /= null then
          if this.m_IWindowsSoftwareUpdate.all /= null then
             temp := this.m_IWindowsSoftwareUpdate.all.Release;
-            Free (this.m_IWindowsSoftwareUpdate);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -874,7 +880,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateActionInfo /= null then
          if this.m_IWindowsSoftwareUpdateActionInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateActionInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateActionInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateActionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -987,7 +995,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateActionProgress /= null then
          if this.m_IWindowsSoftwareUpdateActionProgress.all /= null then
             temp := this.m_IWindowsSoftwareUpdateActionProgress.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateActionProgress);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateActionProgress);
+            end if;
          end if;
       end if;
    end;
@@ -1064,7 +1074,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateActionResultInfo /= null then
          if this.m_IWindowsSoftwareUpdateActionResultInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateActionResultInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateActionResultInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateActionResultInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1175,7 +1187,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateAppPackageInfo /= null then
          if this.m_IWindowsSoftwareUpdateAppPackageInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateAppPackageInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateAppPackageInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateAppPackageInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1286,7 +1300,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateApprovalInfo /= null then
          if this.m_IWindowsSoftwareUpdateApprovalInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateApprovalInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateApprovalInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateApprovalInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1407,7 +1423,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateExecutionInfo /= null then
          if this.m_IWindowsSoftwareUpdateExecutionInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateExecutionInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateExecutionInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateExecutionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1564,7 +1582,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateLocalizationInfo /= null then
          if this.m_IWindowsSoftwareUpdateLocalizationInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateLocalizationInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateLocalizationInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateLocalizationInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1698,7 +1718,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateOptionalActionInfo /= null then
          if this.m_IWindowsSoftwareUpdateOptionalActionInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateOptionalActionInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateOptionalActionInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateOptionalActionInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1810,7 +1832,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateOptionalInfo /= null then
          if this.m_IWindowsSoftwareUpdateOptionalInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateOptionalInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateOptionalInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateOptionalInfo);
+            end if;
          end if;
       end if;
    end;
@@ -1947,7 +1971,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateProvider /= null then
          if this.m_IWindowsSoftwareUpdateProvider.all /= null then
             temp := this.m_IWindowsSoftwareUpdateProvider.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateProvider);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateProvider);
+            end if;
          end if;
       end if;
    end;
@@ -2290,7 +2316,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateProviderActionResult /= null then
          if this.m_IWindowsSoftwareUpdateProviderActionResult.all /= null then
             temp := this.m_IWindowsSoftwareUpdateProviderActionResult.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateProviderActionResult);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateProviderActionResult);
+            end if;
          end if;
       end if;
    end;
@@ -2411,7 +2439,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo /= null then
          if this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all /= null then
             temp := this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateProviderPayloadFileInfo);
+            end if;
          end if;
       end if;
    end;
@@ -2511,7 +2541,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateProviderStatus /= null then
          if this.m_IWindowsSoftwareUpdateProviderStatus.all /= null then
             temp := this.m_IWindowsSoftwareUpdateProviderStatus.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateProviderStatus);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateProviderStatus);
+            end if;
          end if;
       end if;
    end;
@@ -2663,7 +2695,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateResult /= null then
          if this.m_IWindowsSoftwareUpdateResult.all /= null then
             temp := this.m_IWindowsSoftwareUpdateResult.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateResult);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateResult);
+            end if;
          end if;
       end if;
    end;
@@ -2835,7 +2869,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateScanResult /= null then
          if this.m_IWindowsSoftwareUpdateScanResult.all /= null then
             temp := this.m_IWindowsSoftwareUpdateScanResult.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateScanResult);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateScanResult);
+            end if;
          end if;
       end if;
    end;
@@ -2985,7 +3021,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsSoftwareUpdateVersion /= null then
          if this.m_IWindowsSoftwareUpdateVersion.all /= null then
             temp := this.m_IWindowsSoftwareUpdateVersion.all.Release;
-            Free (this.m_IWindowsSoftwareUpdateVersion);
+            if temp < 1 then
+               Free (this.m_IWindowsSoftwareUpdateVersion);
+            end if;
          end if;
       end if;
    end;
@@ -3106,7 +3144,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdate /= null then
          if this.m_IWindowsUpdate.all /= null then
             temp := this.m_IWindowsUpdate.all.Release;
-            Free (this.m_IWindowsUpdate);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdate);
+            end if;
          end if;
       end if;
    end;
@@ -3573,7 +3613,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateActionCompletedEventArgs /= null then
          if this.m_IWindowsUpdateActionCompletedEventArgs.all /= null then
             temp := this.m_IWindowsUpdateActionCompletedEventArgs.all.Release;
-            Free (this.m_IWindowsUpdateActionCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateActionCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3670,7 +3712,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateActionProgress /= null then
          if this.m_IWindowsUpdateActionProgress.all /= null then
             temp := this.m_IWindowsUpdateActionProgress.all.Release;
-            Free (this.m_IWindowsUpdateActionProgress);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateActionProgress);
+            end if;
          end if;
       end if;
    end;
@@ -3730,7 +3774,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateActionResult /= null then
          if this.m_IWindowsUpdateActionResult.all /= null then
             temp := this.m_IWindowsUpdateActionResult.all.Release;
-            Free (this.m_IWindowsUpdateActionResult);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateActionResult);
+            end if;
          end if;
       end if;
    end;
@@ -3824,7 +3870,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateAdministrator /= null then
          if this.m_IWindowsUpdateAdministrator.all /= null then
             temp := this.m_IWindowsUpdateAdministrator.all.Release;
-            Free (this.m_IWindowsUpdateAdministrator);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateAdministrator);
+            end if;
          end if;
       end if;
    end;
@@ -4115,7 +4163,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateApprovalData /= null then
          if this.m_IWindowsUpdateApprovalData.all /= null then
             temp := this.m_IWindowsUpdateApprovalData.all.Release;
-            Free (this.m_IWindowsUpdateApprovalData);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateApprovalData);
+            end if;
          end if;
       end if;
    end;
@@ -4332,7 +4382,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateAttentionRequiredInfo /= null then
          if this.m_IWindowsUpdateAttentionRequiredInfo.all /= null then
             temp := this.m_IWindowsUpdateAttentionRequiredInfo.all.Release;
-            Free (this.m_IWindowsUpdateAttentionRequiredInfo);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateAttentionRequiredInfo);
+            end if;
          end if;
       end if;
    end;
@@ -4392,7 +4444,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs /= null then
          if this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all /= null then
             temp := this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs.all.Release;
-            Free (this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateAttentionRequiredReasonChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4452,7 +4506,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateGetAdministratorResult /= null then
          if this.m_IWindowsUpdateGetAdministratorResult.all /= null then
             temp := this.m_IWindowsUpdateGetAdministratorResult.all.Release;
-            Free (this.m_IWindowsUpdateGetAdministratorResult);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateGetAdministratorResult);
+            end if;
          end if;
       end if;
    end;
@@ -4512,7 +4568,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateItem /= null then
          if this.m_IWindowsUpdateItem.all /= null then
             temp := this.m_IWindowsUpdateItem.all.Release;
-            Free (this.m_IWindowsUpdateItem);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateItem);
+            end if;
          end if;
       end if;
    end;
@@ -4692,7 +4750,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateManager /= null then
          if this.m_IWindowsUpdateManager.all /= null then
             temp := this.m_IWindowsUpdateManager.all.Release;
-            Free (this.m_IWindowsUpdateManager);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateManager);
+            end if;
          end if;
       end if;
    end;
@@ -5252,7 +5312,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateManagerScanOptions /= null then
          if this.m_IWindowsUpdateManagerScanOptions.all /= null then
             temp := this.m_IWindowsUpdateManagerScanOptions.all.Release;
-            Free (this.m_IWindowsUpdateManagerScanOptions);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateManagerScanOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5414,7 +5476,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateProgressChangedEventArgs /= null then
          if this.m_IWindowsUpdateProgressChangedEventArgs.all /= null then
             temp := this.m_IWindowsUpdateProgressChangedEventArgs.all.Release;
-            Free (this.m_IWindowsUpdateProgressChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateProgressChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5477,7 +5541,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateRestartRequestOptions /= null then
          if this.m_IWindowsUpdateRestartRequestOptions.all /= null then
             temp := this.m_IWindowsUpdateRestartRequestOptions.all.Release;
-            Free (this.m_IWindowsUpdateRestartRequestOptions);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateRestartRequestOptions);
+            end if;
          end if;
       end if;
    end;
@@ -5793,7 +5859,9 @@ package body WinRt.Windows.Management.Update is
       if this.m_IWindowsUpdateScanCompletedEventArgs /= null then
          if this.m_IWindowsUpdateScanCompletedEventArgs.all /= null then
             temp := this.m_IWindowsUpdateScanCompletedEventArgs.all.Release;
-            Free (this.m_IWindowsUpdateScanCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_IWindowsUpdateScanCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;

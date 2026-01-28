@@ -65,7 +65,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDClient /= null then
          if this.m_INDClient.all /= null then
             temp := this.m_INDClient.all.Release;
-            Free (this.m_INDClient);
+            if temp < 1 then
+               Free (this.m_INDClient);
+            end if;
          end if;
       end if;
    end;
@@ -470,7 +472,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDCustomData /= null then
          if this.m_INDCustomData.all /= null then
             temp := this.m_INDCustomData.all.Release;
-            Free (this.m_INDCustomData);
+            if temp < 1 then
+               Free (this.m_INDCustomData);
+            end if;
          end if;
       end if;
    end;
@@ -575,7 +579,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDDownloadEngineNotifier /= null then
          if this.m_INDDownloadEngineNotifier.all /= null then
             temp := this.m_INDDownloadEngineNotifier.all.Release;
-            Free (this.m_INDDownloadEngineNotifier);
+            if temp < 1 then
+               Free (this.m_INDDownloadEngineNotifier);
+            end if;
          end if;
       end if;
    end;
@@ -707,7 +713,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDLicenseFetchDescriptor /= null then
          if this.m_INDLicenseFetchDescriptor.all /= null then
             temp := this.m_INDLicenseFetchDescriptor.all.Release;
-            Free (this.m_INDLicenseFetchDescriptor);
+            if temp < 1 then
+               Free (this.m_INDLicenseFetchDescriptor);
+            end if;
          end if;
       end if;
    end;
@@ -835,7 +843,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDStorageFileHelper /= null then
          if this.m_INDStorageFileHelper.all /= null then
             temp := this.m_INDStorageFileHelper.all.Release;
-            Free (this.m_INDStorageFileHelper);
+            if temp < 1 then
+               Free (this.m_INDStorageFileHelper);
+            end if;
          end if;
       end if;
    end;
@@ -898,7 +908,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDStreamParserNotifier /= null then
          if this.m_INDStreamParserNotifier.all /= null then
             temp := this.m_INDStreamParserNotifier.all.Release;
-            Free (this.m_INDStreamParserNotifier);
+            if temp < 1 then
+               Free (this.m_INDStreamParserNotifier);
+            end if;
          end if;
       end if;
    end;
@@ -1010,7 +1022,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_INDMessenger /= null then
          if this.m_INDMessenger.all /= null then
             temp := this.m_INDMessenger.all.Release;
-            Free (this.m_INDMessenger);
+            if temp < 1 then
+               Free (this.m_INDMessenger);
+            end if;
          end if;
       end if;
    end;
@@ -1337,7 +1351,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyContentHeader /= null then
          if this.m_IPlayReadyContentHeader.all /= null then
             temp := this.m_IPlayReadyContentHeader.all.Release;
-            Free (this.m_IPlayReadyContentHeader);
+            if temp < 1 then
+               Free (this.m_IPlayReadyContentHeader);
+            end if;
          end if;
       end if;
    end;
@@ -1774,7 +1790,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyDomain /= null then
          if this.m_IPlayReadyDomain.all /= null then
             temp := this.m_IPlayReadyDomain.all.Release;
-            Free (this.m_IPlayReadyDomain);
+            if temp < 1 then
+               Free (this.m_IPlayReadyDomain);
+            end if;
          end if;
       end if;
    end;
@@ -2061,7 +2079,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyDomainJoinServiceRequest /= null then
          if this.m_IPlayReadyDomainJoinServiceRequest.all /= null then
             temp := this.m_IPlayReadyDomainJoinServiceRequest.all.Release;
-            Free (this.m_IPlayReadyDomainJoinServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyDomainJoinServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2472,7 +2492,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyDomainLeaveServiceRequest /= null then
          if this.m_IPlayReadyDomainLeaveServiceRequest.all /= null then
             temp := this.m_IPlayReadyDomainLeaveServiceRequest.all.Release;
-            Free (this.m_IPlayReadyDomainLeaveServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyDomainLeaveServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -2846,7 +2868,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyITADataGenerator /= null then
          if this.m_IPlayReadyITADataGenerator.all /= null then
             temp := this.m_IPlayReadyITADataGenerator.all.Release;
-            Free (this.m_IPlayReadyITADataGenerator);
+            if temp < 1 then
+               Free (this.m_IPlayReadyITADataGenerator);
+            end if;
          end if;
       end if;
    end;
@@ -2918,7 +2942,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyIndividualizationServiceRequest /= null then
          if this.m_IPlayReadyIndividualizationServiceRequest.all /= null then
             temp := this.m_IPlayReadyIndividualizationServiceRequest.all.Release;
-            Free (this.m_IPlayReadyIndividualizationServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyIndividualizationServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -3228,7 +3254,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyLicense /= null then
          if this.m_IPlayReadyLicense.all /= null then
             temp := this.m_IPlayReadyLicense.all.Release;
-            Free (this.m_IPlayReadyLicense);
+            if temp < 1 then
+               Free (this.m_IPlayReadyLicense);
+            end if;
          end if;
       end if;
    end;
@@ -3458,7 +3486,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyLicenseAcquisitionServiceRequest /= null then
          if this.m_IPlayReadyLicenseAcquisitionServiceRequest.all /= null then
             temp := this.m_IPlayReadyLicenseAcquisitionServiceRequest.all.Release;
-            Free (this.m_IPlayReadyLicenseAcquisitionServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyLicenseAcquisitionServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -4127,7 +4157,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyLicenseSession /= null then
          if this.m_IPlayReadyLicenseSession.all /= null then
             temp := this.m_IPlayReadyLicenseSession.all.Release;
-            Free (this.m_IPlayReadyLicenseSession);
+            if temp < 1 then
+               Free (this.m_IPlayReadyLicenseSession);
+            end if;
          end if;
       end if;
    end;
@@ -4235,7 +4267,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyMeteringReportServiceRequest /= null then
          if this.m_IPlayReadyMeteringReportServiceRequest.all /= null then
             temp := this.m_IPlayReadyMeteringReportServiceRequest.all.Release;
-            Free (this.m_IPlayReadyMeteringReportServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyMeteringReportServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -4587,7 +4621,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadyRevocationServiceRequest /= null then
          if this.m_IPlayReadyRevocationServiceRequest.all /= null then
             temp := this.m_IPlayReadyRevocationServiceRequest.all.Release;
-            Free (this.m_IPlayReadyRevocationServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadyRevocationServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -5071,7 +5107,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadySecureStopServiceRequest /= null then
          if this.m_IPlayReadySecureStopServiceRequest.all /= null then
             temp := this.m_IPlayReadySecureStopServiceRequest.all.Release;
-            Free (this.m_IPlayReadySecureStopServiceRequest);
+            if temp < 1 then
+               Free (this.m_IPlayReadySecureStopServiceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -5510,7 +5548,9 @@ package body WinRt.Windows.Media.Protection.PlayReady is
       if this.m_IPlayReadySoapMessage /= null then
          if this.m_IPlayReadySoapMessage.all /= null then
             temp := this.m_IPlayReadySoapMessage.all.Release;
-            Free (this.m_IPlayReadySoapMessage);
+            if temp < 1 then
+               Free (this.m_IPlayReadySoapMessage);
+            end if;
          end if;
       end if;
    end;

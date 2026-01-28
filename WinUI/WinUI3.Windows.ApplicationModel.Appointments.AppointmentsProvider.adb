@@ -47,7 +47,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.AppointmentsProvider i
       if this.m_IAddAppointmentOperation /= null then
          if this.m_IAddAppointmentOperation.all /= null then
             temp := this.m_IAddAppointmentOperation.all.Release;
-            Free (this.m_IAddAppointmentOperation);
+            if temp < 1 then
+               Free (this.m_IAddAppointmentOperation);
+            end if;
          end if;
       end if;
    end;
@@ -298,7 +300,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.AppointmentsProvider i
       if this.m_IRemoveAppointmentOperation /= null then
          if this.m_IRemoveAppointmentOperation.all /= null then
             temp := this.m_IRemoveAppointmentOperation.all.Release;
-            Free (this.m_IRemoveAppointmentOperation);
+            if temp < 1 then
+               Free (this.m_IRemoveAppointmentOperation);
+            end if;
          end if;
       end if;
    end;
@@ -440,7 +444,9 @@ package body WinUI3.Windows.ApplicationModel.Appointments.AppointmentsProvider i
       if this.m_IReplaceAppointmentOperation /= null then
          if this.m_IReplaceAppointmentOperation.all /= null then
             temp := this.m_IReplaceAppointmentOperation.all.Release;
-            Free (this.m_IReplaceAppointmentOperation);
+            if temp < 1 then
+               Free (this.m_IReplaceAppointmentOperation);
+            end if;
          end if;
       end if;
    end;

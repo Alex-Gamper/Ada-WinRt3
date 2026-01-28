@@ -87,7 +87,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2 /= null then
          if this.m_ICoreWebView2.all /= null then
             temp := this.m_ICoreWebView2.all.Release;
-            Free (this.m_ICoreWebView2);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2);
+            end if;
          end if;
       end if;
    end;
@@ -3225,7 +3227,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2AcceleratorKeyPressedEventArgs /= null then
          if this.m_ICoreWebView2AcceleratorKeyPressedEventArgs.all /= null then
             temp := this.m_ICoreWebView2AcceleratorKeyPressedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2AcceleratorKeyPressedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2AcceleratorKeyPressedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3388,7 +3392,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2BasicAuthenticationRequestedEventArgs /= null then
          if this.m_ICoreWebView2BasicAuthenticationRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2BasicAuthenticationRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2BasicAuthenticationRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2BasicAuthenticationRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3523,7 +3529,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2BasicAuthenticationResponse /= null then
          if this.m_ICoreWebView2BasicAuthenticationResponse.all /= null then
             temp := this.m_ICoreWebView2BasicAuthenticationResponse.all.Release;
-            Free (this.m_ICoreWebView2BasicAuthenticationResponse);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2BasicAuthenticationResponse);
+            end if;
          end if;
       end if;
    end;
@@ -3620,7 +3628,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2BrowserExtension /= null then
          if this.m_ICoreWebView2BrowserExtension.all /= null then
             temp := this.m_ICoreWebView2BrowserExtension.all.Release;
-            Free (this.m_ICoreWebView2BrowserExtension);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2BrowserExtension);
+            end if;
          end if;
       end if;
    end;
@@ -3785,7 +3795,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2BrowserProcessExitedEventArgs /= null then
          if this.m_ICoreWebView2BrowserProcessExitedEventArgs.all /= null then
             temp := this.m_ICoreWebView2BrowserProcessExitedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2BrowserProcessExitedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2BrowserProcessExitedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -3842,7 +3854,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Certificate /= null then
          if this.m_ICoreWebView2Certificate.all /= null then
             temp := this.m_ICoreWebView2Certificate.all.Release;
-            Free (this.m_ICoreWebView2Certificate);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Certificate);
+            end if;
          end if;
       end if;
    end;
@@ -4043,7 +4057,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ClientCertificate /= null then
          if this.m_ICoreWebView2ClientCertificate.all /= null then
             temp := this.m_ICoreWebView2ClientCertificate.all.Release;
-            Free (this.m_ICoreWebView2ClientCertificate);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ClientCertificate);
+            end if;
          end if;
       end if;
    end;
@@ -4261,7 +4277,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ClientCertificateRequestedEventArgs /= null then
          if this.m_ICoreWebView2ClientCertificateRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2ClientCertificateRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ClientCertificateRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ClientCertificateRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -4497,7 +4515,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Controller /= null then
          if this.m_ICoreWebView2Controller.all /= null then
             temp := this.m_ICoreWebView2Controller.all.Release;
-            Free (this.m_ICoreWebView2Controller);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Controller);
+            end if;
          end if;
       end if;
    end;
@@ -5160,7 +5180,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2CompositionController /= null then
          if this.m_ICoreWebView2CompositionController.all /= null then
             temp := this.m_ICoreWebView2CompositionController.all.Release;
-            Free (this.m_ICoreWebView2CompositionController);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2CompositionController);
+            end if;
          end if;
       end if;
    end;
@@ -5467,7 +5489,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ContentLoadingEventArgs /= null then
          if this.m_ICoreWebView2ContentLoadingEventArgs.all /= null then
             temp := this.m_ICoreWebView2ContentLoadingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ContentLoadingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ContentLoadingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5524,7 +5548,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ContextMenuItem /= null then
          if this.m_ICoreWebView2ContextMenuItem.all /= null then
             temp := this.m_ICoreWebView2ContextMenuItem.all.Release;
-            Free (this.m_ICoreWebView2ContextMenuItem);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ContextMenuItem);
+            end if;
          end if;
       end if;
    end;
@@ -5775,7 +5801,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ContextMenuRequestedEventArgs /= null then
          if this.m_ICoreWebView2ContextMenuRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2ContextMenuRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ContextMenuRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ContextMenuRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -5939,7 +5967,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ContextMenuTarget /= null then
          if this.m_ICoreWebView2ContextMenuTarget.all /= null then
             temp := this.m_ICoreWebView2ContextMenuTarget.all.Release;
-            Free (this.m_ICoreWebView2ContextMenuTarget);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ContextMenuTarget);
+            end if;
          end if;
       end if;
    end;
@@ -6201,7 +6231,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ControllerOptions /= null then
          if this.m_ICoreWebView2ControllerOptions.all /= null then
             temp := this.m_ICoreWebView2ControllerOptions.all.Release;
-            Free (this.m_ICoreWebView2ControllerOptions);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ControllerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -6338,7 +6370,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ControllerWindowReference /= null then
          if this.m_ICoreWebView2ControllerWindowReference.all /= null then
             temp := this.m_ICoreWebView2ControllerWindowReference.all.Release;
-            Free (this.m_ICoreWebView2ControllerWindowReference);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ControllerWindowReference);
+            end if;
          end if;
       end if;
    end;
@@ -6455,7 +6489,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Cookie /= null then
          if this.m_ICoreWebView2Cookie.all /= null then
             temp := this.m_ICoreWebView2Cookie.all.Release;
-            Free (this.m_ICoreWebView2Cookie);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Cookie);
+            end if;
          end if;
       end if;
    end;
@@ -6720,7 +6756,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2CookieManager /= null then
          if this.m_ICoreWebView2CookieManager.all /= null then
             temp := this.m_ICoreWebView2CookieManager.all.Release;
-            Free (this.m_ICoreWebView2CookieManager);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2CookieManager);
+            end if;
          end if;
       end if;
    end;
@@ -6953,7 +6991,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2CustomSchemeRegistration /= null then
          if this.m_ICoreWebView2CustomSchemeRegistration.all /= null then
             temp := this.m_ICoreWebView2CustomSchemeRegistration.all.Release;
-            Free (this.m_ICoreWebView2CustomSchemeRegistration);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2CustomSchemeRegistration);
+            end if;
          end if;
       end if;
    end;
@@ -7107,7 +7147,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2DOMContentLoadedEventArgs /= null then
          if this.m_ICoreWebView2DOMContentLoadedEventArgs.all /= null then
             temp := this.m_ICoreWebView2DOMContentLoadedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2DOMContentLoadedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2DOMContentLoadedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7147,7 +7189,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2DevToolsProtocolEventReceivedEventArgs /= null then
          if this.m_ICoreWebView2DevToolsProtocolEventReceivedEventArgs.all /= null then
             temp := this.m_ICoreWebView2DevToolsProtocolEventReceivedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2DevToolsProtocolEventReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2DevToolsProtocolEventReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7214,7 +7258,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2DevToolsProtocolEventReceiver /= null then
          if this.m_ICoreWebView2DevToolsProtocolEventReceiver.all /= null then
             temp := this.m_ICoreWebView2DevToolsProtocolEventReceiver.all.Release;
-            Free (this.m_ICoreWebView2DevToolsProtocolEventReceiver);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2DevToolsProtocolEventReceiver);
+            end if;
          end if;
       end if;
    end;
@@ -7270,7 +7316,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2DownloadOperation /= null then
          if this.m_ICoreWebView2DownloadOperation.all /= null then
             temp := this.m_ICoreWebView2DownloadOperation.all.Release;
-            Free (this.m_ICoreWebView2DownloadOperation);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2DownloadOperation);
+            end if;
          end if;
       end if;
    end;
@@ -7619,7 +7667,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2DownloadStartingEventArgs /= null then
          if this.m_ICoreWebView2DownloadStartingEventArgs.all /= null then
             temp := this.m_ICoreWebView2DownloadStartingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2DownloadStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2DownloadStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -7783,7 +7833,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Environment /= null then
          if this.m_ICoreWebView2Environment.all /= null then
             temp := this.m_ICoreWebView2Environment.all.Release;
-            Free (this.m_ICoreWebView2Environment);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Environment);
+            end if;
          end if;
       end if;
    end;
@@ -8870,7 +8922,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2EnvironmentOptions /= null then
          if this.m_ICoreWebView2EnvironmentOptions.all /= null then
             temp := this.m_ICoreWebView2EnvironmentOptions.all.Release;
-            Free (this.m_ICoreWebView2EnvironmentOptions);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2EnvironmentOptions);
+            end if;
          end if;
       end if;
    end;
@@ -9378,7 +9432,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ExecuteScriptResult /= null then
          if this.m_ICoreWebView2ExecuteScriptResult.all /= null then
             temp := this.m_ICoreWebView2ExecuteScriptResult.all.Release;
-            Free (this.m_ICoreWebView2ExecuteScriptResult);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ExecuteScriptResult);
+            end if;
          end if;
       end if;
    end;
@@ -9480,7 +9536,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2File /= null then
          if this.m_ICoreWebView2File.all /= null then
             temp := this.m_ICoreWebView2File.all.Release;
-            Free (this.m_ICoreWebView2File);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2File);
+            end if;
          end if;
       end if;
    end;
@@ -9523,7 +9581,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2FileSystemHandle /= null then
          if this.m_ICoreWebView2FileSystemHandle.all /= null then
             temp := this.m_ICoreWebView2FileSystemHandle.all.Release;
-            Free (this.m_ICoreWebView2FileSystemHandle);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2FileSystemHandle);
+            end if;
          end if;
       end if;
    end;
@@ -9600,7 +9660,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Frame /= null then
          if this.m_ICoreWebView2Frame.all /= null then
             temp := this.m_ICoreWebView2Frame.all.Release;
-            Free (this.m_ICoreWebView2Frame);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Frame);
+            end if;
          end if;
       end if;
    end;
@@ -10189,7 +10251,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2FrameCreatedEventArgs /= null then
          if this.m_ICoreWebView2FrameCreatedEventArgs.all /= null then
             temp := this.m_ICoreWebView2FrameCreatedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2FrameCreatedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2FrameCreatedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10232,7 +10296,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2FrameInfo /= null then
          if this.m_ICoreWebView2FrameInfo.all /= null then
             temp := this.m_ICoreWebView2FrameInfo.all.Release;
-            Free (this.m_ICoreWebView2FrameInfo);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2FrameInfo);
+            end if;
          end if;
       end if;
    end;
@@ -10361,7 +10427,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2HttpHeadersCollectionIterator /= null then
          if this.m_ICoreWebView2HttpHeadersCollectionIterator.all /= null then
             temp := this.m_ICoreWebView2HttpHeadersCollectionIterator.all.Release;
-            Free (this.m_ICoreWebView2HttpHeadersCollectionIterator);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2HttpHeadersCollectionIterator);
+            end if;
          end if;
       end if;
    end;
@@ -10384,7 +10452,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2HttpRequestHeaders /= null then
          if this.m_ICoreWebView2HttpRequestHeaders.all /= null then
             temp := this.m_ICoreWebView2HttpRequestHeaders.all.Release;
-            Free (this.m_ICoreWebView2HttpRequestHeaders);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2HttpRequestHeaders);
+            end if;
          end if;
       end if;
    end;
@@ -10510,7 +10580,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2HttpResponseHeaders /= null then
          if this.m_ICoreWebView2HttpResponseHeaders.all /= null then
             temp := this.m_ICoreWebView2HttpResponseHeaders.all.Release;
-            Free (this.m_ICoreWebView2HttpResponseHeaders);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2HttpResponseHeaders);
+            end if;
          end if;
       end if;
    end;
@@ -10619,7 +10691,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2LaunchingExternalUriSchemeEventArgs /= null then
          if this.m_ICoreWebView2LaunchingExternalUriSchemeEventArgs.all /= null then
             temp := this.m_ICoreWebView2LaunchingExternalUriSchemeEventArgs.all.Release;
-            Free (this.m_ICoreWebView2LaunchingExternalUriSchemeEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2LaunchingExternalUriSchemeEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10751,7 +10825,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2MoveFocusRequestedEventArgs /= null then
          if this.m_ICoreWebView2MoveFocusRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2MoveFocusRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2MoveFocusRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2MoveFocusRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10823,7 +10899,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2NavigationCompletedEventArgs /= null then
          if this.m_ICoreWebView2NavigationCompletedEventArgs.all /= null then
             temp := this.m_ICoreWebView2NavigationCompletedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2NavigationCompletedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2NavigationCompletedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -10918,7 +10996,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2NavigationStartingEventArgs /= null then
          if this.m_ICoreWebView2NavigationStartingEventArgs.all /= null then
             temp := this.m_ICoreWebView2NavigationStartingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2NavigationStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2NavigationStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11130,7 +11210,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2NewWindowRequestedEventArgs /= null then
          if this.m_ICoreWebView2NewWindowRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2NewWindowRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2NewWindowRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2NewWindowRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11345,7 +11427,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2NonClientRegionChangedEventArgs /= null then
          if this.m_ICoreWebView2NonClientRegionChangedEventArgs.all /= null then
             temp := this.m_ICoreWebView2NonClientRegionChangedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2NonClientRegionChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2NonClientRegionChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11385,7 +11469,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Notification /= null then
          if this.m_ICoreWebView2Notification.all /= null then
             temp := this.m_ICoreWebView2Notification.all.Release;
-            Free (this.m_ICoreWebView2Notification);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Notification);
+            end if;
          end if;
       end if;
    end;
@@ -11732,7 +11818,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2NotificationReceivedEventArgs /= null then
          if this.m_ICoreWebView2NotificationReceivedEventArgs.all /= null then
             temp := this.m_ICoreWebView2NotificationReceivedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2NotificationReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2NotificationReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -11847,7 +11935,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2PermissionRequestedEventArgs /= null then
          if this.m_ICoreWebView2PermissionRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2PermissionRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2PermissionRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2PermissionRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -12056,7 +12146,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2PermissionSetting /= null then
          if this.m_ICoreWebView2PermissionSetting.all /= null then
             temp := this.m_ICoreWebView2PermissionSetting.all.Release;
-            Free (this.m_ICoreWebView2PermissionSetting);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2PermissionSetting);
+            end if;
          end if;
       end if;
    end;
@@ -12133,7 +12225,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2PointerInfo /= null then
          if this.m_ICoreWebView2PointerInfo.all /= null then
             temp := this.m_ICoreWebView2PointerInfo.all.Release;
-            Free (this.m_ICoreWebView2PointerInfo);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2PointerInfo);
+            end if;
          end if;
       end if;
    end;
@@ -13052,7 +13146,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2PrintSettings /= null then
          if this.m_ICoreWebView2PrintSettings.all /= null then
             temp := this.m_ICoreWebView2PrintSettings.all.Release;
-            Free (this.m_ICoreWebView2PrintSettings);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2PrintSettings);
+            end if;
          end if;
       end if;
    end;
@@ -13831,7 +13927,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ProcessExtendedInfo /= null then
          if this.m_ICoreWebView2ProcessExtendedInfo.all /= null then
             temp := this.m_ICoreWebView2ProcessExtendedInfo.all.Release;
-            Free (this.m_ICoreWebView2ProcessExtendedInfo);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ProcessExtendedInfo);
+            end if;
          end if;
       end if;
    end;
@@ -13894,7 +13992,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ProcessFailedEventArgs /= null then
          if this.m_ICoreWebView2ProcessFailedEventArgs.all /= null then
             temp := this.m_ICoreWebView2ProcessFailedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ProcessFailedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ProcessFailedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -14048,7 +14148,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ProcessInfo /= null then
          if this.m_ICoreWebView2ProcessInfo.all /= null then
             temp := this.m_ICoreWebView2ProcessInfo.all.Release;
-            Free (this.m_ICoreWebView2ProcessInfo);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ProcessInfo);
+            end if;
          end if;
       end if;
    end;
@@ -14105,7 +14207,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Profile /= null then
          if this.m_ICoreWebView2Profile.all /= null then
             temp := this.m_ICoreWebView2Profile.all.Release;
-            Free (this.m_ICoreWebView2Profile);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Profile);
+            end if;
          end if;
       end if;
    end;
@@ -14857,7 +14961,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2SaveAsUIShowingEventArgs /= null then
          if this.m_ICoreWebView2SaveAsUIShowingEventArgs.all /= null then
             temp := this.m_ICoreWebView2SaveAsUIShowingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2SaveAsUIShowingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2SaveAsUIShowingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15085,7 +15191,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2SaveFileSecurityCheckStartingEventArgs /= null then
          if this.m_ICoreWebView2SaveFileSecurityCheckStartingEventArgs.all /= null then
             temp := this.m_ICoreWebView2SaveFileSecurityCheckStartingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2SaveFileSecurityCheckStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2SaveFileSecurityCheckStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15252,7 +15360,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ScreenCaptureStartingEventArgs /= null then
          if this.m_ICoreWebView2ScreenCaptureStartingEventArgs.all /= null then
             temp := this.m_ICoreWebView2ScreenCaptureStartingEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ScreenCaptureStartingEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ScreenCaptureStartingEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15379,7 +15489,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ScriptDialogOpeningEventArgs /= null then
          if this.m_ICoreWebView2ScriptDialogOpeningEventArgs.all /= null then
             temp := this.m_ICoreWebView2ScriptDialogOpeningEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ScriptDialogOpeningEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ScriptDialogOpeningEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15550,7 +15662,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ScriptException /= null then
          if this.m_ICoreWebView2ScriptException.all /= null then
             temp := this.m_ICoreWebView2ScriptException.all.Release;
-            Free (this.m_ICoreWebView2ScriptException);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ScriptException);
+            end if;
          end if;
       end if;
    end;
@@ -15667,7 +15781,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2ServerCertificateErrorDetectedEventArgs /= null then
          if this.m_ICoreWebView2ServerCertificateErrorDetectedEventArgs.all /= null then
             temp := this.m_ICoreWebView2ServerCertificateErrorDetectedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2ServerCertificateErrorDetectedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2ServerCertificateErrorDetectedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -15799,7 +15915,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2Settings /= null then
          if this.m_ICoreWebView2Settings.all /= null then
             temp := this.m_ICoreWebView2Settings.all.Release;
-            Free (this.m_ICoreWebView2Settings);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2Settings);
+            end if;
          end if;
       end if;
    end;
@@ -16515,7 +16633,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2SharedBuffer /= null then
          if this.m_ICoreWebView2SharedBuffer.all /= null then
             temp := this.m_ICoreWebView2SharedBuffer.all.Release;
-            Free (this.m_ICoreWebView2SharedBuffer);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2SharedBuffer);
+            end if;
          end if;
       end if;
    end;
@@ -16611,7 +16731,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2SourceChangedEventArgs /= null then
          if this.m_ICoreWebView2SourceChangedEventArgs.all /= null then
             temp := this.m_ICoreWebView2SourceChangedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2SourceChangedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2SourceChangedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16651,7 +16773,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebMessageReceivedEventArgs /= null then
          if this.m_ICoreWebView2WebMessageReceivedEventArgs.all /= null then
             temp := this.m_ICoreWebView2WebMessageReceivedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2WebMessageReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebMessageReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -16758,7 +16882,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebResourceRequest /= null then
          if this.m_ICoreWebView2WebResourceRequest.all /= null then
             temp := this.m_ICoreWebView2WebResourceRequest.all.Release;
-            Free (this.m_ICoreWebView2WebResourceRequest);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebResourceRequest);
+            end if;
          end if;
       end if;
    end;
@@ -16907,7 +17033,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebResourceRequestedEventArgs /= null then
          if this.m_ICoreWebView2WebResourceRequestedEventArgs.all /= null then
             temp := this.m_ICoreWebView2WebResourceRequestedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2WebResourceRequestedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebResourceRequestedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -17043,7 +17171,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebResourceResponse /= null then
          if this.m_ICoreWebView2WebResourceResponse.all /= null then
             temp := this.m_ICoreWebView2WebResourceResponse.all.Release;
-            Free (this.m_ICoreWebView2WebResourceResponse);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebResourceResponse);
+            end if;
          end if;
       end if;
    end;
@@ -17187,7 +17317,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebResourceResponseReceivedEventArgs /= null then
          if this.m_ICoreWebView2WebResourceResponseReceivedEventArgs.all /= null then
             temp := this.m_ICoreWebView2WebResourceResponseReceivedEventArgs.all.Release;
-            Free (this.m_ICoreWebView2WebResourceResponseReceivedEventArgs);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebResourceResponseReceivedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -17250,7 +17382,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WebResourceResponseView /= null then
          if this.m_ICoreWebView2WebResourceResponseView.all /= null then
             temp := this.m_ICoreWebView2WebResourceResponseView.all.Release;
-            Free (this.m_ICoreWebView2WebResourceResponseView);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WebResourceResponseView);
+            end if;
          end if;
       end if;
    end;
@@ -17393,7 +17527,9 @@ package body WinUI3.Microsoft.Web.WebView2.Core is
       if this.m_ICoreWebView2WindowFeatures /= null then
          if this.m_ICoreWebView2WindowFeatures.all /= null then
             temp := this.m_ICoreWebView2WindowFeatures.all.Release;
-            Free (this.m_ICoreWebView2WindowFeatures);
+            if temp < 1 then
+               Free (this.m_ICoreWebView2WindowFeatures);
+            end if;
          end if;
       end if;
    end;

@@ -62,7 +62,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       if this.m_ISpeechSynthesisStream /= null then
          if this.m_ISpeechSynthesisStream.all /= null then
             temp := this.m_ISpeechSynthesisStream.all.Release;
-            Free (this.m_ISpeechSynthesisStream);
+            if temp < 1 then
+               Free (this.m_ISpeechSynthesisStream);
+            end if;
          end if;
       end if;
    end;
@@ -560,7 +562,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       if this.m_ISpeechSynthesizer /= null then
          if this.m_ISpeechSynthesizer.all /= null then
             temp := this.m_ISpeechSynthesizer.all.Release;
-            Free (this.m_ISpeechSynthesizer);
+            if temp < 1 then
+               Free (this.m_ISpeechSynthesizer);
+            end if;
          end if;
       end if;
    end;
@@ -935,7 +939,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       if this.m_ISpeechSynthesizerOptions /= null then
          if this.m_ISpeechSynthesizerOptions.all /= null then
             temp := this.m_ISpeechSynthesizerOptions.all.Release;
-            Free (this.m_ISpeechSynthesizerOptions);
+            if temp < 1 then
+               Free (this.m_ISpeechSynthesizerOptions);
+            end if;
          end if;
       end if;
    end;
@@ -1222,7 +1228,9 @@ package body WinRt.Windows.Media.SpeechSynthesis is
       if this.m_IVoiceInformation /= null then
          if this.m_IVoiceInformation.all /= null then
             temp := this.m_IVoiceInformation.all.Release;
-            Free (this.m_IVoiceInformation);
+            if temp < 1 then
+               Free (this.m_IVoiceInformation);
+            end if;
          end if;
       end if;
    end;

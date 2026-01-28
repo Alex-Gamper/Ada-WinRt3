@@ -51,7 +51,9 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       if this.m_IExtendedExecutionForegroundRevokedEventArgs /= null then
          if this.m_IExtendedExecutionForegroundRevokedEventArgs.all /= null then
             temp := this.m_IExtendedExecutionForegroundRevokedEventArgs.all.Release;
-            Free (this.m_IExtendedExecutionForegroundRevokedEventArgs);
+            if temp < 1 then
+               Free (this.m_IExtendedExecutionForegroundRevokedEventArgs);
+            end if;
          end if;
       end if;
    end;
@@ -91,7 +93,9 @@ package body WinRt.Windows.ApplicationModel.ExtendedExecution.Foreground is
       if this.m_IExtendedExecutionForegroundSession /= null then
          if this.m_IExtendedExecutionForegroundSession.all /= null then
             temp := this.m_IExtendedExecutionForegroundSession.all.Release;
-            Free (this.m_IExtendedExecutionForegroundSession);
+            if temp < 1 then
+               Free (this.m_IExtendedExecutionForegroundSession);
+            end if;
          end if;
       end if;
    end;
