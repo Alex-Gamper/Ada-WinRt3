@@ -9,8 +9,8 @@
 	IgnorableNamespaces="uap mp uap3 uap4 rescap">
 
   <Identity
-    Name="WinRt3XamlTest"
-    Publisher="CN=alex.gamper"
+    Name="7156b83a-e759-4a59-857b-c38d9ef54f4c"
+    Publisher="CN=alexg"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="7156b83a-e759-4a59-857b-c38d9ef54f4c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
@@ -47,7 +47,7 @@
 	</Applications>
 
 	<Capabilities>
-    <rescap:Capability Name="runFullTrust" />
+    <Capability Name="internetClient"/>
 	</Capabilities>
 
 </Package>

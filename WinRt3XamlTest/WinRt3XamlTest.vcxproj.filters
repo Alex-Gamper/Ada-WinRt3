@@ -183,15 +183,9 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <Midl Include="WinRt3XamlTest.idl" />
-  </ItemGroup>
-  <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WinRt3XamlTest.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="WinRt3XamlTest.manifest" />
+    <Midl Include="WinRt3XamlTest.idl" />
   </ItemGroup>
 </Project>

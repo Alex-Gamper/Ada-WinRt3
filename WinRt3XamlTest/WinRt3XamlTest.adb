@@ -20,19 +20,13 @@ procedure WinRt3XamlTest is
         m_Outer.m_Interface := m_Inner;
     end;
     
-    Handler     : aliased ApplicationInitializationCallback_Delegate (Callback'access);
-    Application : ApplicationInitializationCallback := Handler'Unchecked_access;
-    Temp        : WinRt.UInt32;
-    
-    function CoInitializeEx(pvReserved : System.Address; dwCoInit : Int32) return WinRt.HResult;
-    pragma Import (StdCall, CoInitializeEx, "CoInitializeEx");
-    
+    Application     : ApplicationInitializationCallback := new ApplicationInitializationCallback_Delegate (Callback'access);
+        
 begin
 
-    Hr := CoInitializeEx(System.Null_Address, 0);
+    Hr := RoInitialize; 
     if Hr = 0 then
-        Temp := Application.AddRef;
-        Start (Handler'Unchecked_access);
+        Start (Application);
         RoUninitialize;
     end if;
 
