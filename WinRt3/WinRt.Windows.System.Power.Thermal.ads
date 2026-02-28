@@ -137,6 +137,7 @@ package WinRt.Windows.System.Power.Thermal is
       InstanceId : WinRt.UInt16;
    end record with Convention => C_Pass_By_Copy;
    type PowerThermalChannelId_Ptr is access all PowerThermalChannelId;
+   Pragma No_Strict_Aliasing (PowerThermalChannelId_Ptr);
    type PowerThermalChannelId_Array is array (Natural range <>) of aliased PowerThermalChannelId;
 
    type PowerThermalChannelData is record
@@ -144,6 +145,7 @@ package WinRt.Windows.System.Power.Thermal is
       Value : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
    type PowerThermalChannelData_Ptr is access all PowerThermalChannelData;
+   Pragma No_Strict_Aliasing (PowerThermalChannelData_Ptr);
    type PowerThermalChannelData_Array is array (Natural range <>) of aliased PowerThermalChannelData;
 
    -----------------------------------------------------------------------------

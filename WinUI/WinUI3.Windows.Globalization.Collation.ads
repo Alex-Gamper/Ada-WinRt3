@@ -41,6 +41,7 @@ package WinUI3.Windows.Globalization.Collation is
    type ICharacterGrouping_Interface is interface and WinUI3.IInspectable_Interface;
    type ICharacterGrouping is access all ICharacterGrouping_Interface'Class;
    type ICharacterGrouping_Ptr is access all ICharacterGrouping;
+   Pragma No_Strict_Aliasing (ICharacterGrouping_Ptr);
    type ICharacterGrouping_Array is array (Natural range <>) of ICharacterGrouping;
 
    type ICharacterGroupings_Interface is interface and WinUI3.IInspectable_Interface;

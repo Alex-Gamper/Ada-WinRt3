@@ -54,6 +54,7 @@ package WinUI3.Microsoft.Windows.Security.AccessControl is
       accessMask : WinUI3.UInt32;
    end record with Convention => C_Pass_By_Copy;
    type AppContainerNameAndAccess_Ptr is access all AppContainerNameAndAccess;
+   Pragma No_Strict_Aliasing (AppContainerNameAndAccess_Ptr);
    type AppContainerNameAndAccess_Array is array (Natural range <>) of aliased AppContainerNameAndAccess;
 
    -----------------------------------------------------------------------------

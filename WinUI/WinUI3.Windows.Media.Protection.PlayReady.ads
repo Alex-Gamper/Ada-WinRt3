@@ -148,6 +148,7 @@ package WinUI3.Windows.Media.Protection.PlayReady is
    type IPlayReadyDomain_Interface is interface and WinUI3.IInspectable_Interface;
    type IPlayReadyDomain is access all IPlayReadyDomain_Interface'Class;
    type IPlayReadyDomain_Ptr is access all IPlayReadyDomain;
+   Pragma No_Strict_Aliasing (IPlayReadyDomain_Ptr);
    type IPlayReadyDomain_Array is array (Natural range <>) of IPlayReadyDomain;
 
    type IPlayReadyDomainIterableFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -173,6 +174,7 @@ package WinUI3.Windows.Media.Protection.PlayReady is
    type IPlayReadyLicense_Interface is interface and WinUI3.IInspectable_Interface;
    type IPlayReadyLicense is access all IPlayReadyLicense_Interface'Class;
    type IPlayReadyLicense_Ptr is access all IPlayReadyLicense;
+   Pragma No_Strict_Aliasing (IPlayReadyLicense_Ptr);
    type IPlayReadyLicense_Array is array (Natural range <>) of IPlayReadyLicense;
 
    type IPlayReadyLicense2_Interface is interface and WinUI3.IInspectable_Interface;
@@ -226,6 +228,7 @@ package WinUI3.Windows.Media.Protection.PlayReady is
    type IPlayReadySecureStopServiceRequest_Interface is interface and WinUI3.IInspectable_Interface;
    type IPlayReadySecureStopServiceRequest is access all IPlayReadySecureStopServiceRequest_Interface'Class;
    type IPlayReadySecureStopServiceRequest_Ptr is access all IPlayReadySecureStopServiceRequest;
+   Pragma No_Strict_Aliasing (IPlayReadySecureStopServiceRequest_Ptr);
    type IPlayReadySecureStopServiceRequest_Array is array (Natural range <>) of IPlayReadySecureStopServiceRequest;
 
    type IPlayReadySecureStopServiceRequestFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -443,6 +446,7 @@ package WinUI3.Windows.Media.Protection.PlayReady is
       PlayReady3Features_e => 13
    );
    type NDCertificateFeature_Ptr is access all NDCertificateFeature;
+   Pragma No_Strict_Aliasing (NDCertificateFeature_Ptr);
    type NDCertificateFeature_Array is array (Natural range <>) of aliased NDCertificateFeature;
 
    type NDCertificatePlatformID is (

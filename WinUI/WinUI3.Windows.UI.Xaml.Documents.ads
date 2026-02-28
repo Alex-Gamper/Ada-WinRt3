@@ -46,6 +46,7 @@ package WinUI3.Windows.UI.Xaml.Documents is
    type IBlock_Interface is interface and WinUI3.IInspectable_Interface;
    type IBlock is access all IBlock_Interface'Class;
    type IBlock_Ptr is access all IBlock;
+   Pragma No_Strict_Aliasing (IBlock_Ptr);
    type IBlock_Array is array (Natural range <>) of IBlock;
 
    type IBlock2_Interface is interface and WinUI3.IInspectable_Interface;
@@ -83,6 +84,7 @@ package WinUI3.Windows.UI.Xaml.Documents is
    type IContentLinkProvider_Interface is interface and WinUI3.IInspectable_Interface;
    type IContentLinkProvider is access all IContentLinkProvider_Interface'Class;
    type IContentLinkProvider_Ptr is access all IContentLinkProvider;
+   Pragma No_Strict_Aliasing (IContentLinkProvider_Ptr);
    type IContentLinkProvider_Array is array (Natural range <>) of IContentLinkProvider;
 
    type IContentLinkProviderCollection_Interface is interface and WinUI3.IInspectable_Interface;
@@ -160,6 +162,7 @@ package WinUI3.Windows.UI.Xaml.Documents is
    type IInline_Interface is interface and WinUI3.IInspectable_Interface;
    type IInline is access all IInline_Interface'Class;
    type IInline_Ptr is access all IInline;
+   Pragma No_Strict_Aliasing (IInline_Ptr);
    type IInline_Array is array (Natural range <>) of IInline;
 
    type IInlineFactory_Interface is interface and WinUI3.IInspectable_Interface;

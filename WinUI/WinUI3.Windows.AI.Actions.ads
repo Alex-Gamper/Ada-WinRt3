@@ -46,6 +46,7 @@ package WinUI3.Windows.AI.Actions is
    type IActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
    type IActionEntity is access all IActionEntity_Interface'Class;
    type IActionEntity_Ptr is access all IActionEntity;
+   Pragma No_Strict_Aliasing (IActionEntity_Ptr);
    type IActionEntity_Array is array (Natural range <>) of IActionEntity;
 
    type IActionEntity2_Interface is interface and WinUI3.IInspectable_Interface;
@@ -151,6 +152,7 @@ package WinUI3.Windows.AI.Actions is
    type IContactActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
    type IContactActionEntity is access all IContactActionEntity_Interface'Class;
    type IContactActionEntity_Ptr is access all IContactActionEntity;
+   Pragma No_Strict_Aliasing (IContactActionEntity_Ptr);
    type IContactActionEntity_Array is array (Natural range <>) of IContactActionEntity;
 
    type ICustomActionEntityStore_Interface is interface and WinUI3.IInspectable_Interface;
@@ -164,6 +166,7 @@ package WinUI3.Windows.AI.Actions is
    type ICustomTextActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
    type ICustomTextActionEntity is access all ICustomTextActionEntity_Interface'Class;
    type ICustomTextActionEntity_Ptr is access all ICustomTextActionEntity;
+   Pragma No_Strict_Aliasing (ICustomTextActionEntity_Ptr);
    type ICustomTextActionEntity_Array is array (Natural range <>) of ICustomTextActionEntity;
 
    type IDateTimeActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
@@ -181,6 +184,7 @@ package WinUI3.Windows.AI.Actions is
    type INamedActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
    type INamedActionEntity is access all INamedActionEntity_Interface'Class;
    type INamedActionEntity_Ptr is access all INamedActionEntity;
+   Pragma No_Strict_Aliasing (INamedActionEntity_Ptr);
    type INamedActionEntity_Array is array (Natural range <>) of INamedActionEntity;
 
    type IPhotoActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
@@ -190,6 +194,7 @@ package WinUI3.Windows.AI.Actions is
    type IRemoteFileActionEntity_Interface is interface and WinUI3.IInspectable_Interface;
    type IRemoteFileActionEntity is access all IRemoteFileActionEntity_Interface'Class;
    type IRemoteFileActionEntity_Ptr is access all IRemoteFileActionEntity;
+   Pragma No_Strict_Aliasing (IRemoteFileActionEntity_Ptr);
    type IRemoteFileActionEntity_Array is array (Natural range <>) of IRemoteFileActionEntity;
 
    type IRemoteFileActionEntity2_Interface is interface and WinUI3.IInspectable_Interface;

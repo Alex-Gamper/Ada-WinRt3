@@ -83,6 +83,7 @@ package WinUI3.Microsoft.UI.Content is
    type IContentIsland_Interface is interface and WinUI3.IInspectable_Interface;
    type IContentIsland is access all IContentIsland_Interface'Class;
    type IContentIsland_Ptr is access all IContentIsland;
+   Pragma No_Strict_Aliasing (IContentIsland_Ptr);
    type IContentIsland_Array is array (Natural range <>) of IContentIsland;
 
    type IContentIsland2_Interface is interface and WinUI3.IInspectable_Interface;

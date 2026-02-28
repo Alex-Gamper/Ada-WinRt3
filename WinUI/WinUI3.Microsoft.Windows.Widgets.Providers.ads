@@ -67,6 +67,7 @@ package WinUI3.Microsoft.Windows.Widgets.Providers is
    type IWidgetInfo_Interface is interface and WinUI3.IInspectable_Interface;
    type IWidgetInfo is access all IWidgetInfo_Interface'Class;
    type IWidgetInfo_Ptr is access all IWidgetInfo;
+   Pragma No_Strict_Aliasing (IWidgetInfo_Ptr);
    type IWidgetInfo_Array is array (Natural range <>) of IWidgetInfo;
 
    type IWidgetInfo2_Interface is interface and WinUI3.IInspectable_Interface;

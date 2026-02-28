@@ -49,6 +49,7 @@ package WinUI3.Windows.ApplicationModel.Resources.Core is
    type IResourceCandidate_Interface is interface and WinUI3.IInspectable_Interface;
    type IResourceCandidate is access all IResourceCandidate_Interface'Class;
    type IResourceCandidate_Ptr is access all IResourceCandidate;
+   Pragma No_Strict_Aliasing (IResourceCandidate_Ptr);
    type IResourceCandidate_Array is array (Natural range <>) of IResourceCandidate;
 
    type IResourceCandidate2_Interface is interface and WinUI3.IInspectable_Interface;
@@ -98,6 +99,7 @@ package WinUI3.Windows.ApplicationModel.Resources.Core is
    type IResourceQualifier_Interface is interface and WinUI3.IInspectable_Interface;
    type IResourceQualifier is access all IResourceQualifier_Interface'Class;
    type IResourceQualifier_Ptr is access all IResourceQualifier;
+   Pragma No_Strict_Aliasing (IResourceQualifier_Ptr);
    type IResourceQualifier_Array is array (Natural range <>) of IResourceQualifier;
 
    -----------------------------------------------------------------------------

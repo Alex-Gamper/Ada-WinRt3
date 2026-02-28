@@ -169,6 +169,7 @@ package WinUI3.Windows.UI.UIAutomation.Core is
       Value : WinUI3.Int32;
    end record with Convention => C_Pass_By_Copy;
    type AutomationRemoteOperationOperandId_Ptr is access all AutomationRemoteOperationOperandId;
+   Pragma No_Strict_Aliasing (AutomationRemoteOperationOperandId_Ptr);
    type AutomationRemoteOperationOperandId_Array is array (Natural range <>) of aliased AutomationRemoteOperationOperandId;
 
    -----------------------------------------------------------------------------

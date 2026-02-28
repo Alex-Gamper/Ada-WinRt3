@@ -251,6 +251,7 @@ package WinUI3.Windows.UI.Xaml is
    type IDependencyObject_Interface is interface and WinUI3.IInspectable_Interface;
    type IDependencyObject is access all IDependencyObject_Interface'Class;
    type IDependencyObject_Ptr is access all IDependencyObject;
+   Pragma No_Strict_Aliasing (IDependencyObject_Ptr);
    type IDependencyObject_Array is array (Natural range <>) of IDependencyObject;
 
    type IDependencyObject2_Interface is interface and WinUI3.IInspectable_Interface;
@@ -540,6 +541,7 @@ package WinUI3.Windows.UI.Xaml is
    type ISetterBase_Interface is interface and WinUI3.IInspectable_Interface;
    type ISetterBase is access all ISetterBase_Interface'Class;
    type ISetterBase_Ptr is access all ISetterBase;
+   Pragma No_Strict_Aliasing (ISetterBase_Ptr);
    type ISetterBase_Array is array (Natural range <>) of ISetterBase;
 
    type ISetterBaseCollection_Interface is interface and WinUI3.IInspectable_Interface;
@@ -613,6 +615,7 @@ package WinUI3.Windows.UI.Xaml is
    type ITriggerAction_Interface is interface and WinUI3.IInspectable_Interface;
    type ITriggerAction is access all ITriggerAction_Interface'Class;
    type ITriggerAction_Ptr is access all ITriggerAction;
+   Pragma No_Strict_Aliasing (ITriggerAction_Ptr);
    type ITriggerAction_Array is array (Natural range <>) of ITriggerAction;
 
    type ITriggerActionFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -622,6 +625,7 @@ package WinUI3.Windows.UI.Xaml is
    type ITriggerBase_Interface is interface and WinUI3.IInspectable_Interface;
    type ITriggerBase is access all ITriggerBase_Interface'Class;
    type ITriggerBase_Ptr is access all ITriggerBase;
+   Pragma No_Strict_Aliasing (ITriggerBase_Ptr);
    type ITriggerBase_Array is array (Natural range <>) of ITriggerBase;
 
    type ITriggerBaseFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -631,6 +635,7 @@ package WinUI3.Windows.UI.Xaml is
    type IUIElement_Interface is interface and WinUI3.IInspectable_Interface;
    type IUIElement is access all IUIElement_Interface'Class;
    type IUIElement_Ptr is access all IUIElement;
+   Pragma No_Strict_Aliasing (IUIElement_Ptr);
    type IUIElement_Array is array (Natural range <>) of IUIElement;
 
    type IUIElement10_Interface is interface and WinUI3.IInspectable_Interface;

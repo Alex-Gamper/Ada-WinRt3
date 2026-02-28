@@ -524,6 +524,7 @@ package WinRt.Windows.UI.ViewManagement is
       Touch_e => 1
    );
    type UserInteractionMode_Ptr is access all UserInteractionMode;
+   Pragma No_Strict_Aliasing (UserInteractionMode_Ptr);
    type UserInteractionMode_Array is array (Natural range <>) of aliased UserInteractionMode;
 
    type ViewSizePreference is (

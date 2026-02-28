@@ -399,6 +399,7 @@ package WinUI3.Windows.Gaming.Input is
       UpLeft_e => 8
    );
    type GameControllerSwitchPosition_Ptr is access all GameControllerSwitchPosition;
+   Pragma No_Strict_Aliasing (GameControllerSwitchPosition_Ptr);
    type GameControllerSwitchPosition_Array is array (Natural range <>) of aliased GameControllerSwitchPosition;
 
    type GamepadButtons is (

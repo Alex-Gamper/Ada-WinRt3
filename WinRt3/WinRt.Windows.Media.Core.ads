@@ -330,6 +330,7 @@ package WinRt.Windows.Media.Core is
    type IMediaTrack_Interface is interface and WinRt.IInspectable_Interface;
    type IMediaTrack is access all IMediaTrack_Interface'Class;
    type IMediaTrack_Ptr is access all IMediaTrack;
+   Pragma No_Strict_Aliasing (IMediaTrack_Ptr);
    type IMediaTrack_Array is array (Natural range <>) of IMediaTrack;
 
    type IMseSourceBuffer_Interface is interface and WinRt.IInspectable_Interface;
@@ -387,6 +388,7 @@ package WinRt.Windows.Media.Core is
    type ITimedMetadataTrack_Interface is interface and WinRt.IInspectable_Interface;
    type ITimedMetadataTrack is access all ITimedMetadataTrack_Interface'Class;
    type ITimedMetadataTrack_Ptr is access all ITimedMetadataTrack;
+   Pragma No_Strict_Aliasing (ITimedMetadataTrack_Ptr);
    type ITimedMetadataTrack_Array is array (Natural range <>) of ITimedMetadataTrack;
 
    type ITimedMetadataTrack2_Interface is interface and WinRt.IInspectable_Interface;

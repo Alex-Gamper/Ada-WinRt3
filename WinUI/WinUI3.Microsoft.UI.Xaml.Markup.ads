@@ -183,6 +183,7 @@ package WinUI3.Microsoft.UI.Xaml.Markup is
       Namespace : WinUI3.HString;
    end record with Convention => C_Pass_By_Copy;
    type XmlnsDefinition_Ptr is access all XmlnsDefinition;
+   Pragma No_Strict_Aliasing (XmlnsDefinition_Ptr);
    type XmlnsDefinition_Array is array (Natural range <>) of aliased XmlnsDefinition;
 
    -----------------------------------------------------------------------------

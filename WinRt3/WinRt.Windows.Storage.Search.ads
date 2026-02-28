@@ -292,6 +292,7 @@ package WinRt.Windows.Storage.Search is
       AscendingOrder : WinRt.Boolean;
    end record with Convention => C_Pass_By_Copy;
    type SortEntry_Ptr is access all SortEntry;
+   Pragma No_Strict_Aliasing (SortEntry_Ptr);
    type SortEntry_Array is array (Natural range <>) of aliased SortEntry;
 
    -----------------------------------------------------------------------------

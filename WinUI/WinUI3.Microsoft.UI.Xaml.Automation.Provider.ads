@@ -76,6 +76,7 @@ package WinUI3.Microsoft.UI.Xaml.Automation.Provider is
    type IIRawElementProviderSimple_Interface is interface and WinUI3.IInspectable_Interface;
    type IIRawElementProviderSimple is access all IIRawElementProviderSimple_Interface'Class;
    type IIRawElementProviderSimple_Ptr is access all IIRawElementProviderSimple;
+   Pragma No_Strict_Aliasing (IIRawElementProviderSimple_Ptr);
    type IIRawElementProviderSimple_Array is array (Natural range <>) of IIRawElementProviderSimple;
 
    type IInvokeProvider_Interface is interface and WinUI3.IInspectable_Interface;
@@ -157,6 +158,7 @@ package WinUI3.Microsoft.UI.Xaml.Automation.Provider is
    type ITextRangeProvider_Interface is interface and WinUI3.IInspectable_Interface;
    type ITextRangeProvider is access all ITextRangeProvider_Interface'Class;
    type ITextRangeProvider_Ptr is access all ITextRangeProvider;
+   Pragma No_Strict_Aliasing (ITextRangeProvider_Ptr);
    type ITextRangeProvider_Array is array (Natural range <>) of ITextRangeProvider;
 
    type ITextRangeProvider2_Interface is interface and WinUI3.IInspectable_Interface;

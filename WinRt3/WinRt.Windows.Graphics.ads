@@ -54,6 +54,7 @@ package WinRt.Windows.Graphics is
       Value : WinRt.UInt64;
    end record with Convention => C_Pass_By_Copy;
    type DisplayId_Ptr is access all DisplayId;
+   Pragma No_Strict_Aliasing (DisplayId_Ptr);
    type DisplayId_Array is array (Natural range <>) of aliased DisplayId;
 
    type PointInt32 is record
@@ -69,6 +70,7 @@ package WinRt.Windows.Graphics is
       Height : WinRt.Int32;
    end record with Convention => C_Pass_By_Copy;
    type RectInt32_Ptr is access all RectInt32;
+   Pragma No_Strict_Aliasing (RectInt32_Ptr);
    type RectInt32_Array is array (Natural range <>) of aliased RectInt32;
 
    type SizeInt32 is record

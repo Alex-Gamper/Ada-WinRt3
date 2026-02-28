@@ -138,6 +138,7 @@ package WinRt.Windows.Storage.Provider is
    type IStorageProviderQueryResult_Interface is interface and WinRt.IInspectable_Interface;
    type IStorageProviderQueryResult is access all IStorageProviderQueryResult_Interface'Class;
    type IStorageProviderQueryResult_Ptr is access all IStorageProviderQueryResult;
+   Pragma No_Strict_Aliasing (IStorageProviderQueryResult_Ptr);
    type IStorageProviderQueryResult_Array is array (Natural range <>) of IStorageProviderQueryResult;
 
    type IStorageProviderQueryResultSet_Interface is interface and WinRt.IInspectable_Interface;

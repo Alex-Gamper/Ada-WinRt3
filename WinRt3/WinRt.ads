@@ -49,6 +49,11 @@ package WinRt is
    type Int64_Ptr is access Int64;
    type IntPtr is access Int64;
 
+   pragma No_Strict_Aliasing (Int8_Ptr);
+   pragma No_Strict_Aliasing (Int16_Ptr);
+   pragma No_Strict_Aliasing (Int32_Ptr);
+   pragma No_Strict_Aliasing (Int64_Ptr);
+
    type IntPtr_Ptr is access IntPtr;
 
    type Int8_Array  is array (Natural range <>) of aliased Int8;
@@ -68,6 +73,11 @@ package WinRt is
    type UInt64_Ptr is access UInt64;
    type UIntPtr is access UInt64;
 
+   pragma No_Strict_Aliasing (UInt8_Ptr);
+   pragma No_Strict_Aliasing (UInt16_Ptr);
+   pragma No_Strict_Aliasing (UInt32_Ptr);
+   pragma No_Strict_Aliasing (UInt64_Ptr);
+
    type UIntPtr_Ptr is access UIntPtr;
 
    type UInt8_Array  is array (Natural range <>) of aliased UInt8;
@@ -80,37 +90,55 @@ package WinRt is
    subtype SByte_Ptr is Int8_Ptr;
    subtype SByte_Array is Int8_Array;
 
+   pragma No_Strict_Aliasing (SByte_Ptr);
+
    subtype Byte is UInt8;
    subtype Byte_Ptr is UInt8_Ptr;
    subtype Byte_Array is UInt8_Array;
+
+   pragma No_Strict_Aliasing (Byte_Ptr);
 
    subtype Wide_Char is Wide_character;
    type Wide_Char_Ptr is access all Wide_Char;
    type Wide_Char_Array is array (Natural range <>) of aliased Wide_Char;
 
+   pragma No_Strict_Aliasing (Wide_Char_Ptr);
+
    subtype WChar is Wide_Char;
    subtype WChar_Ptr is Wide_Char_Ptr;
    subtype WChar_Array is Wide_Char_Array;
+
+   pragma No_Strict_Aliasing (WChar_Ptr);
 
    type Single is new Standard.Float;
    type Single_Ptr is access Single;
    type Single_Array is array (Natural range <>) of aliased Single;
 
+   pragma No_Strict_Aliasing (Single_Ptr);
+
    subtype FLOAT is Single;
    subtype FLOAT_Ptr is Single_Ptr;
    subtype FLOAT_Array is Single_Array;
+
+   pragma No_Strict_Aliasing (FLOAT_Ptr);
 
    type Double is new Standard.Long_Float;
    type Double_Ptr is access Double;
    type Double_Array is array (Natural range <>) of aliased Double;
 
+   pragma No_Strict_Aliasing (Double_Ptr);
+
    type Boolean is new Standard.Boolean;
    type Boolean_Ptr is access Boolean;
    type Boolean_Array is array (Natural range <>) of aliased Boolean;
 
+   pragma No_Strict_Aliasing (Boolean_Ptr);
+
    subtype HString is System.Address;
    type HString_Ptr is access HString;
    type HString_Array is array (Natural range <>) of aliased HString;
+
+   pragma No_Strict_Aliasing (HString_Ptr);
 
    subtype WString is Ada.Strings.Wide_Unbounded.Unbounded_Wide_String;
    type WString_Ptr is access WString;
@@ -129,6 +157,8 @@ package WinRt is
    type Decimal_Ptr is access Decimal;
    type Decimal_Array is array (Natural range <>) of aliased Decimal;
 
+   pragma No_Strict_Aliasing (Decimal_Ptr);
+
    type GUID is record
       Data1  : UInt32;
       Data2  : UInt16;
@@ -138,13 +168,19 @@ package WinRt is
    type GUID_Ptr is access all GUID;
    type GUID_Array is array (Natural range <>) of aliased GUID;
 
+   pragma No_Strict_Aliasing (GUID_Ptr);
+
    subtype IID is GUID;
    type IID_Ptr is access all IID;
    type IID_Array is array (Natural range <>) of aliased IID;
 
+   pragma No_Strict_Aliasing (IID_Ptr);
+
    subtype CLSID is GUID;
    type CLSID_Ptr is access all CLSID;
    type CLSID_Array is array (Natural range <>) of aliased CLSID;
+
+   pragma No_Strict_Aliasing (CLSID_Ptr);
 
    type Void is null record;
    type Void_Ptr is access all Void;
@@ -262,6 +298,8 @@ package WinRt is
    subtype GenericObject is IInspectable;
    subtype GenericObject_Array is IInspectable_Array;
    subtype GenericObject_Ptr is IInspectable_Ptr;
+
+   pragma No_Strict_Aliasing (GenericObject_Ptr);
 
    -----------------------------------------------------------------------------
 

@@ -49,6 +49,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpChallengeHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpChallengeHeaderValue is access all IHttpChallengeHeaderValue_Interface'Class;
    type IHttpChallengeHeaderValue_Ptr is access all IHttpChallengeHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpChallengeHeaderValue_Ptr);
    type IHttpChallengeHeaderValue_Array is array (Natural range <>) of IHttpChallengeHeaderValue;
 
    type IHttpChallengeHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -66,6 +67,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpConnectionOptionHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpConnectionOptionHeaderValue is access all IHttpConnectionOptionHeaderValue_Interface'Class;
    type IHttpConnectionOptionHeaderValue_Ptr is access all IHttpConnectionOptionHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpConnectionOptionHeaderValue_Ptr);
    type IHttpConnectionOptionHeaderValue_Array is array (Natural range <>) of IHttpConnectionOptionHeaderValue;
 
    type IHttpConnectionOptionHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -83,6 +85,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpContentCodingHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpContentCodingHeaderValue is access all IHttpContentCodingHeaderValue_Interface'Class;
    type IHttpContentCodingHeaderValue_Ptr is access all IHttpContentCodingHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpContentCodingHeaderValue_Ptr);
    type IHttpContentCodingHeaderValue_Array is array (Natural range <>) of IHttpContentCodingHeaderValue;
 
    type IHttpContentCodingHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -100,6 +103,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpContentCodingWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpContentCodingWithQualityHeaderValue is access all IHttpContentCodingWithQualityHeaderValue_Interface'Class;
    type IHttpContentCodingWithQualityHeaderValue_Ptr is access all IHttpContentCodingWithQualityHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpContentCodingWithQualityHeaderValue_Ptr);
    type IHttpContentCodingWithQualityHeaderValue_Array is array (Natural range <>) of IHttpContentCodingWithQualityHeaderValue;
 
    type IHttpContentCodingWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -145,6 +149,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpCookiePairHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpCookiePairHeaderValue is access all IHttpCookiePairHeaderValue_Interface'Class;
    type IHttpCookiePairHeaderValue_Ptr is access all IHttpCookiePairHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpCookiePairHeaderValue_Ptr);
    type IHttpCookiePairHeaderValue_Array is array (Natural range <>) of IHttpCookiePairHeaderValue;
 
    type IHttpCookiePairHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -182,6 +187,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpExpectationHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpExpectationHeaderValue is access all IHttpExpectationHeaderValue_Interface'Class;
    type IHttpExpectationHeaderValue_Ptr is access all IHttpExpectationHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpExpectationHeaderValue_Ptr);
    type IHttpExpectationHeaderValue_Array is array (Natural range <>) of IHttpExpectationHeaderValue;
 
    type IHttpExpectationHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -203,6 +209,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpLanguageRangeWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpLanguageRangeWithQualityHeaderValue is access all IHttpLanguageRangeWithQualityHeaderValue_Interface'Class;
    type IHttpLanguageRangeWithQualityHeaderValue_Ptr is access all IHttpLanguageRangeWithQualityHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpLanguageRangeWithQualityHeaderValue_Ptr);
    type IHttpLanguageRangeWithQualityHeaderValue_Array is array (Natural range <>) of IHttpLanguageRangeWithQualityHeaderValue;
 
    type IHttpLanguageRangeWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -232,6 +239,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpMediaTypeWithQualityHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpMediaTypeWithQualityHeaderValue is access all IHttpMediaTypeWithQualityHeaderValue_Interface'Class;
    type IHttpMediaTypeWithQualityHeaderValue_Ptr is access all IHttpMediaTypeWithQualityHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpMediaTypeWithQualityHeaderValue_Ptr);
    type IHttpMediaTypeWithQualityHeaderValue_Array is array (Natural range <>) of IHttpMediaTypeWithQualityHeaderValue;
 
    type IHttpMediaTypeWithQualityHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -253,6 +261,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpNameValueHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpNameValueHeaderValue is access all IHttpNameValueHeaderValue_Interface'Class;
    type IHttpNameValueHeaderValue_Ptr is access all IHttpNameValueHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpNameValueHeaderValue_Ptr);
    type IHttpNameValueHeaderValue_Array is array (Natural range <>) of IHttpNameValueHeaderValue;
 
    type IHttpNameValueHeaderValueFactory_Interface is interface and WinRt.IInspectable_Interface;
@@ -278,6 +287,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpProductInfoHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpProductInfoHeaderValue is access all IHttpProductInfoHeaderValue_Interface'Class;
    type IHttpProductInfoHeaderValue_Ptr is access all IHttpProductInfoHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpProductInfoHeaderValue_Ptr);
    type IHttpProductInfoHeaderValue_Array is array (Natural range <>) of IHttpProductInfoHeaderValue;
 
    type IHttpProductInfoHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -303,6 +313,7 @@ package WinRt.Windows.Web.Http.Headers is
    type IHttpTransferCodingHeaderValue_Interface is interface and WinRt.IInspectable_Interface;
    type IHttpTransferCodingHeaderValue is access all IHttpTransferCodingHeaderValue_Interface'Class;
    type IHttpTransferCodingHeaderValue_Ptr is access all IHttpTransferCodingHeaderValue;
+   Pragma No_Strict_Aliasing (IHttpTransferCodingHeaderValue_Ptr);
    type IHttpTransferCodingHeaderValue_Array is array (Natural range <>) of IHttpTransferCodingHeaderValue;
 
    type IHttpTransferCodingHeaderValueCollection_Interface is interface and WinRt.IInspectable_Interface;

@@ -48,6 +48,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    type ISceneComponent_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneComponent is access all ISceneComponent_Interface'Class;
    type ISceneComponent_Ptr is access all ISceneComponent;
+   Pragma No_Strict_Aliasing (ISceneComponent_Ptr);
    type ISceneComponent_Array is array (Natural range <>) of ISceneComponent;
 
    type ISceneComponentCollection_Interface is interface and WinRt.IInspectable_Interface;
@@ -109,6 +110,7 @@ package WinRt.Windows.UI.Composition.Scenes is
    type ISceneNode_Interface is interface and WinRt.IInspectable_Interface;
    type ISceneNode is access all ISceneNode_Interface'Class;
    type ISceneNode_Ptr is access all ISceneNode;
+   Pragma No_Strict_Aliasing (ISceneNode_Ptr);
    type ISceneNode_Array is array (Natural range <>) of ISceneNode;
 
    type ISceneNodeCollection_Interface is interface and WinRt.IInspectable_Interface;

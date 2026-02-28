@@ -101,6 +101,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type IColorKeyFrame_Interface is interface and WinUI3.IInspectable_Interface;
    type IColorKeyFrame is access all IColorKeyFrame_Interface'Class;
    type IColorKeyFrame_Ptr is access all IColorKeyFrame;
+   Pragma No_Strict_Aliasing (IColorKeyFrame_Ptr);
    type IColorKeyFrame_Array is array (Natural range <>) of IColorKeyFrame;
 
    type IColorKeyFrameFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -210,6 +211,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type IDoubleKeyFrame_Interface is interface and WinUI3.IInspectable_Interface;
    type IDoubleKeyFrame is access all IDoubleKeyFrame_Interface'Class;
    type IDoubleKeyFrame_Ptr is access all IDoubleKeyFrame;
+   Pragma No_Strict_Aliasing (IDoubleKeyFrame_Ptr);
    type IDoubleKeyFrame_Array is array (Natural range <>) of IDoubleKeyFrame;
 
    type IDoubleKeyFrameFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -423,6 +425,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type IObjectKeyFrame_Interface is interface and WinUI3.IInspectable_Interface;
    type IObjectKeyFrame is access all IObjectKeyFrame_Interface'Class;
    type IObjectKeyFrame_Ptr is access all IObjectKeyFrame;
+   Pragma No_Strict_Aliasing (IObjectKeyFrame_Ptr);
    type IObjectKeyFrame_Array is array (Natural range <>) of IObjectKeyFrame;
 
    type IObjectKeyFrameFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -460,6 +463,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type IPointKeyFrame_Interface is interface and WinUI3.IInspectable_Interface;
    type IPointKeyFrame is access all IPointKeyFrame_Interface'Class;
    type IPointKeyFrame_Ptr is access all IPointKeyFrame;
+   Pragma No_Strict_Aliasing (IPointKeyFrame_Ptr);
    type IPointKeyFrame_Array is array (Natural range <>) of IPointKeyFrame;
 
    type IPointKeyFrameFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -649,6 +653,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type ITimeline_Interface is interface and WinUI3.IInspectable_Interface;
    type ITimeline is access all ITimeline_Interface'Class;
    type ITimeline_Ptr is access all ITimeline;
+   Pragma No_Strict_Aliasing (ITimeline_Ptr);
    type ITimeline_Array is array (Natural range <>) of ITimeline;
 
    type ITimelineFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -662,6 +667,7 @@ package WinUI3.Windows.UI.Xaml.Media.Animation is
    type ITransition_Interface is interface and WinUI3.IInspectable_Interface;
    type ITransition is access all ITransition_Interface'Class;
    type ITransition_Ptr is access all ITransition;
+   Pragma No_Strict_Aliasing (ITransition_Ptr);
    type ITransition_Array is array (Natural range <>) of ITransition;
 
    type ITransitionFactory_Interface is interface and WinUI3.IInspectable_Interface;

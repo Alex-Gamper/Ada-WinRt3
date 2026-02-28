@@ -118,6 +118,7 @@ package WinUI3.Windows.Foundation is
    type IWwwFormUrlDecoderEntry_Interface is interface and WinUI3.IInspectable_Interface;
    type IWwwFormUrlDecoderEntry is access all IWwwFormUrlDecoderEntry_Interface'Class;
    type IWwwFormUrlDecoderEntry_Ptr is access all IWwwFormUrlDecoderEntry;
+   Pragma No_Strict_Aliasing (IWwwFormUrlDecoderEntry_Ptr);
    type IWwwFormUrlDecoderEntry_Array is array (Natural range <>) of IWwwFormUrlDecoderEntry;
 
    type IWwwFormUrlDecoderRuntimeClass_Interface is interface and WinUI3.IInspectable_Interface;
@@ -276,6 +277,7 @@ package WinUI3.Windows.Foundation is
       UniversalTime : WinUI3.Int64;
    end record with Convention => C_Pass_By_Copy;
    type DateTime_Ptr is access all DateTime;
+   Pragma No_Strict_Aliasing (DateTime_Ptr);
    type DateTime_Array is array (Natural range <>) of aliased DateTime;
 
    type EventRegistrationToken is record
@@ -298,6 +300,7 @@ package WinUI3.Windows.Foundation is
       Y : WinUI3.Single;
    end record with Convention => C_Pass_By_Copy;
    type Point_Ptr is access all Point;
+   Pragma No_Strict_Aliasing (Point_Ptr);
    type Point_Array is array (Natural range <>) of aliased Point;
 
    type Rect is record
@@ -307,6 +310,7 @@ package WinUI3.Windows.Foundation is
       Height : WinUI3.Single;
    end record with Convention => C_Pass_By_Copy;
    type Rect_Ptr is access all Rect;
+   Pragma No_Strict_Aliasing (Rect_Ptr);
    type Rect_Array is array (Natural range <>) of aliased Rect;
 
    type Size is record
@@ -314,12 +318,14 @@ package WinUI3.Windows.Foundation is
       Height : WinUI3.Single;
    end record with Convention => C_Pass_By_Copy;
    type Size_Ptr is access all Size;
+   Pragma No_Strict_Aliasing (Size_Ptr);
    type Size_Array is array (Natural range <>) of aliased Size;
 
    type TimeSpan is record
       Duration : WinUI3.Int64;
    end record with Convention => C_Pass_By_Copy;
    type TimeSpan_Ptr is access all TimeSpan;
+   Pragma No_Strict_Aliasing (TimeSpan_Ptr);
    type TimeSpan_Array is array (Natural range <>) of aliased TimeSpan;
 
    type UniversalApiContract is record

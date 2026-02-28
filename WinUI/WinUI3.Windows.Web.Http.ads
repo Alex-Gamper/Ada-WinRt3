@@ -71,6 +71,7 @@ package WinUI3.Windows.Web.Http is
    type IHttpCookie_Interface is interface and WinUI3.IInspectable_Interface;
    type IHttpCookie is access all IHttpCookie_Interface'Class;
    type IHttpCookie_Ptr is access all IHttpCookie;
+   Pragma No_Strict_Aliasing (IHttpCookie_Ptr);
    type IHttpCookie_Array is array (Natural range <>) of IHttpCookie;
 
    type IHttpCookieFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -100,6 +101,7 @@ package WinUI3.Windows.Web.Http is
    type IHttpMethod_Interface is interface and WinUI3.IInspectable_Interface;
    type IHttpMethod is access all IHttpMethod_Interface'Class;
    type IHttpMethod_Ptr is access all IHttpMethod;
+   Pragma No_Strict_Aliasing (IHttpMethod_Ptr);
    type IHttpMethod_Array is array (Natural range <>) of IHttpMethod;
 
    type IHttpMethodFactory_Interface is interface and WinUI3.IInspectable_Interface;

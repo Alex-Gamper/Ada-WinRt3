@@ -1280,6 +1280,7 @@ package WinUI3.Windows.System is
       GamepadRightThumbstickLeft_e => 218
    );
    type VirtualKey_Ptr is access all VirtualKey;
+   Pragma No_Strict_Aliasing (VirtualKey_Ptr);
    type VirtualKey_Array is array (Natural range <>) of aliased VirtualKey;
 
    type VirtualKeyModifiers is (

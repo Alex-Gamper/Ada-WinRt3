@@ -42,6 +42,7 @@ package WinRt.Windows.Devices.Enumeration.Pnp is
    type IPnpObject_Interface is interface and WinRt.IInspectable_Interface;
    type IPnpObject is access all IPnpObject_Interface'Class;
    type IPnpObject_Ptr is access all IPnpObject;
+   Pragma No_Strict_Aliasing (IPnpObject_Ptr);
    type IPnpObject_Array is array (Natural range <>) of IPnpObject;
 
    type IPnpObjectStatics_Interface is interface and WinRt.IInspectable_Interface;

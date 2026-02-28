@@ -54,6 +54,7 @@ package WinUI3.Windows.Graphics is
       Value : WinUI3.UInt64;
    end record with Convention => C_Pass_By_Copy;
    type DisplayId_Ptr is access all DisplayId;
+   Pragma No_Strict_Aliasing (DisplayId_Ptr);
    type DisplayId_Array is array (Natural range <>) of aliased DisplayId;
 
    type PointInt32 is record
@@ -61,6 +62,7 @@ package WinUI3.Windows.Graphics is
       Y : WinUI3.Int32;
    end record with Convention => C_Pass_By_Copy;
    type PointInt32_Ptr is access all PointInt32;
+   Pragma No_Strict_Aliasing (PointInt32_Ptr);
    type PointInt32_Array is array (Natural range <>) of aliased PointInt32;
 
    type RectInt32 is record
@@ -70,6 +72,7 @@ package WinUI3.Windows.Graphics is
       Height : WinUI3.Int32;
    end record with Convention => C_Pass_By_Copy;
    type RectInt32_Ptr is access all RectInt32;
+   Pragma No_Strict_Aliasing (RectInt32_Ptr);
    type RectInt32_Array is array (Natural range <>) of aliased RectInt32;
 
    type SizeInt32 is record

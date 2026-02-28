@@ -42,6 +42,7 @@ package WinUI3.Windows.Devices.Enumeration.Pnp is
    type IPnpObject_Interface is interface and WinUI3.IInspectable_Interface;
    type IPnpObject is access all IPnpObject_Interface'Class;
    type IPnpObject_Ptr is access all IPnpObject;
+   Pragma No_Strict_Aliasing (IPnpObject_Ptr);
    type IPnpObject_Array is array (Natural range <>) of IPnpObject;
 
    type IPnpObjectStatics_Interface is interface and WinUI3.IInspectable_Interface;

@@ -507,6 +507,7 @@ package WinRt.Windows.UI.Xaml.Automation is
       CircularReferenceError_e => 60022
    );
    type AnnotationType_Ptr is access all AnnotationType;
+   Pragma No_Strict_Aliasing (AnnotationType_Ptr);
    type AnnotationType_Array is array (Natural range <>) of aliased AnnotationType;
 
    type AutomationActiveEnd is (

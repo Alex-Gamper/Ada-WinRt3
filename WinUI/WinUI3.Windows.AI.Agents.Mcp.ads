@@ -68,6 +68,7 @@ package WinUI3.Windows.AI.Agents.Mcp is
    type IMcpServerInfo_Interface is interface and WinUI3.IInspectable_Interface;
    type IMcpServerInfo is access all IMcpServerInfo_Interface'Class;
    type IMcpServerInfo_Ptr is access all IMcpServerInfo;
+   Pragma No_Strict_Aliasing (IMcpServerInfo_Ptr);
    type IMcpServerInfo_Array is array (Natural range <>) of IMcpServerInfo;
 
    type IMcpServerRegistry_Interface is interface and WinUI3.IInspectable_Interface;

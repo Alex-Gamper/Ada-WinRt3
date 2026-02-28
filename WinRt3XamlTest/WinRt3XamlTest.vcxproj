@@ -218,6 +218,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="WinRt3XamlTest.gpr" />
+    <None Include="WinRt3XamlTest.winmd" />
     <None Include="WinRt3XamlTest_TemporaryKey.pfx" />
   </ItemGroup>
   <!---->
@@ -238,6 +239,9 @@
     <Midl Include="WinRt3XamlTest.idl">
       <MetadataFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).winmd</MetadataFileName>
     </Midl>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="WinRt3XamlTest.manifest" />
   </ItemGroup>
   <PropertyGroup>
     <AdditionalAdaProjectFiles>C:\Ada\WinRt3\WinUI\WinUI</AdditionalAdaProjectFiles>

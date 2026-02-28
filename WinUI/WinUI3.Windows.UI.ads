@@ -104,6 +104,7 @@ package WinUI3.Windows.UI is
       B : WinUI3.Byte;
    end record with Convention => C_Pass_By_Copy;
    type Color_Ptr is access all Color;
+   Pragma No_Strict_Aliasing (Color_Ptr);
    type Color_Array is array (Natural range <>) of aliased Color;
 
    type WindowId is record

@@ -48,6 +48,7 @@ package WinRt.Windows.Networking.ServiceDiscovery.Dnssd is
    type IDnssdServiceInstance_Interface is interface and WinRt.IInspectable_Interface;
    type IDnssdServiceInstance is access all IDnssdServiceInstance_Interface'Class;
    type IDnssdServiceInstance_Ptr is access all IDnssdServiceInstance;
+   Pragma No_Strict_Aliasing (IDnssdServiceInstance_Ptr);
    type IDnssdServiceInstance_Array is array (Natural range <>) of IDnssdServiceInstance;
 
    type IDnssdServiceInstanceFactory_Interface is interface and WinRt.IInspectable_Interface;

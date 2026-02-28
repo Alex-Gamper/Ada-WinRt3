@@ -66,6 +66,7 @@ package WinUI3.Windows.Data.Json is
    type IJsonValue_Interface is interface and WinUI3.IInspectable_Interface;
    type IJsonValue is access all IJsonValue_Interface'Class;
    type IJsonValue_Ptr is access all IJsonValue;
+   Pragma No_Strict_Aliasing (IJsonValue_Ptr);
    type IJsonValue_Array is array (Natural range <>) of IJsonValue;
 
    type IJsonValueStatics_Interface is interface and WinUI3.IInspectable_Interface;

@@ -177,6 +177,7 @@ package WinUI3.Microsoft.UI.Composition is
    type ICompositionColorGradientStop_Interface is interface and WinUI3.IInspectable_Interface;
    type ICompositionColorGradientStop is access all ICompositionColorGradientStop_Interface'Class;
    type ICompositionColorGradientStop_Ptr is access all ICompositionColorGradientStop;
+   Pragma No_Strict_Aliasing (ICompositionColorGradientStop_Ptr);
    type ICompositionColorGradientStop_Array is array (Natural range <>) of ICompositionColorGradientStop;
 
    type ICompositionColorGradientStopCollection_Interface is interface and WinUI3.IInspectable_Interface;
@@ -410,6 +411,7 @@ package WinUI3.Microsoft.UI.Composition is
    type ICompositionShape_Interface is interface and WinUI3.IInspectable_Interface;
    type ICompositionShape is access all ICompositionShape_Interface'Class;
    type ICompositionShape_Ptr is access all ICompositionShape;
+   Pragma No_Strict_Aliasing (ICompositionShape_Ptr);
    type ICompositionShape_Array is array (Natural range <>) of ICompositionShape;
 
    type ICompositionShapeFactory_Interface is interface and WinUI3.IInspectable_Interface;

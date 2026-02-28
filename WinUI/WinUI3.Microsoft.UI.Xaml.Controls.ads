@@ -468,6 +468,7 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    type IColumnDefinition_Interface is interface and WinUI3.IInspectable_Interface;
    type IColumnDefinition is access all IColumnDefinition_Interface'Class;
    type IColumnDefinition_Ptr is access all IColumnDefinition;
+   Pragma No_Strict_Aliasing (IColumnDefinition_Ptr);
    type IColumnDefinition_Array is array (Natural range <>) of IColumnDefinition;
 
    type IColumnDefinitionStatics_Interface is interface and WinUI3.IInspectable_Interface;
@@ -917,6 +918,7 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    type IHubSection_Interface is interface and WinUI3.IInspectable_Interface;
    type IHubSection is access all IHubSection_Interface'Class;
    type IHubSection_Ptr is access all IHubSection;
+   Pragma No_Strict_Aliasing (IHubSection_Ptr);
    type IHubSection_Array is array (Natural range <>) of IHubSection;
 
    type IHubSectionFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -2162,6 +2164,7 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    type IRowDefinition_Interface is interface and WinUI3.IInspectable_Interface;
    type IRowDefinition is access all IRowDefinition_Interface'Class;
    type IRowDefinition_Ptr is access all IRowDefinition;
+   Pragma No_Strict_Aliasing (IRowDefinition_Ptr);
    type IRowDefinition_Array is array (Natural range <>) of IRowDefinition;
 
    type IRowDefinitionStatics_Interface is interface and WinUI3.IInspectable_Interface;
@@ -2431,6 +2434,7 @@ package WinUI3.Microsoft.UI.Xaml.Controls is
    type ISwipeItem_Interface is interface and WinUI3.IInspectable_Interface;
    type ISwipeItem is access all ISwipeItem_Interface'Class;
    type ISwipeItem_Ptr is access all ISwipeItem;
+   Pragma No_Strict_Aliasing (ISwipeItem_Ptr);
    type ISwipeItem_Array is array (Natural range <>) of ISwipeItem;
 
    type ISwipeItemFactory_Interface is interface and WinUI3.IInspectable_Interface;

@@ -736,6 +736,7 @@ package WinUI3.Windows.Media.Devices is
       Auto_e => 2
    );
    type DigitalWindowMode_Ptr is access all DigitalWindowMode;
+   Pragma No_Strict_Aliasing (DigitalWindowMode_Ptr);
    type DigitalWindowMode_Array is array (Natural range <>) of aliased DigitalWindowMode;
 
    type FocusMode is (

@@ -72,6 +72,7 @@ package WinRt.Windows.Foundation.Numerics is
       Z : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
    type Vector3_Ptr is access all Vector3;
+   Pragma No_Strict_Aliasing (Vector3_Ptr);
    type Vector3_Array is array (Natural range <>) of aliased Vector3;
 
    type Plane is record
@@ -99,6 +100,7 @@ package WinRt.Windows.Foundation.Numerics is
       Y : WinRt.Single;
    end record with Convention => C_Pass_By_Copy;
    type Vector2_Ptr is access all Vector2;
+   Pragma No_Strict_Aliasing (Vector2_Ptr);
    type Vector2_Array is array (Natural range <>) of aliased Vector2;
 
    type Vector4 is record

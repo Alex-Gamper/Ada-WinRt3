@@ -112,6 +112,7 @@ package WinUI3.Windows.Data.Xml.Dom is
    type IXmlNode_Interface is interface and WinUI3.IInspectable_Interface;
    type IXmlNode is access all IXmlNode_Interface'Class;
    type IXmlNode_Ptr is access all IXmlNode;
+   Pragma No_Strict_Aliasing (IXmlNode_Ptr);
    type IXmlNode_Array is array (Natural range <>) of IXmlNode;
 
    type IXmlNodeList_Interface is interface and WinUI3.IInspectable_Interface;

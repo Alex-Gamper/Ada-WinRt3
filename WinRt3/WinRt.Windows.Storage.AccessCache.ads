@@ -131,6 +131,7 @@ package WinRt.Windows.Storage.AccessCache is
       Metadata : WinRt.HString;
    end record with Convention => C_Pass_By_Copy;
    type AccessListEntry_Ptr is access all AccessListEntry;
+   Pragma No_Strict_Aliasing (AccessListEntry_Ptr);
    type AccessListEntry_Array is array (Natural range <>) of aliased AccessListEntry;
 
    -----------------------------------------------------------------------------

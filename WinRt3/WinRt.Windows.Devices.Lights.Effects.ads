@@ -80,6 +80,7 @@ package WinRt.Windows.Devices.Lights.Effects is
    type ILampArrayEffect_Interface is interface and WinRt.IInspectable_Interface;
    type ILampArrayEffect is access all ILampArrayEffect_Interface'Class;
    type ILampArrayEffect_Ptr is access all ILampArrayEffect;
+   Pragma No_Strict_Aliasing (ILampArrayEffect_Ptr);
    type ILampArrayEffect_Array is array (Natural range <>) of ILampArrayEffect;
 
    type ILampArrayEffectPlaylist_Interface is interface and WinRt.IInspectable_Interface;

@@ -161,6 +161,7 @@ package WinUI3.Windows.Perception.People is
       LittleTip_e => 25
    );
    type HandJointKind_Ptr is access all HandJointKind;
+   Pragma No_Strict_Aliasing (HandJointKind_Ptr);
    type HandJointKind_Array is array (Natural range <>) of aliased HandJointKind;
 
    type JointPoseAccuracy is (
@@ -182,6 +183,7 @@ package WinUI3.Windows.Perception.People is
       Normal : WinUI3.Windows.Foundation.Numerics.Vector3;
    end record with Convention => C_Pass_By_Copy;
    type HandMeshVertex_Ptr is access all HandMeshVertex;
+   Pragma No_Strict_Aliasing (HandMeshVertex_Ptr);
    type HandMeshVertex_Array is array (Natural range <>) of aliased HandMeshVertex;
 
    type JointPose is record
@@ -191,6 +193,7 @@ package WinUI3.Windows.Perception.People is
       Accuracy : Windows.Perception.People.JointPoseAccuracy;
    end record with Convention => C_Pass_By_Copy;
    type JointPose_Ptr is access all JointPose;
+   Pragma No_Strict_Aliasing (JointPose_Ptr);
    type JointPose_Array is array (Natural range <>) of aliased JointPose;
 
    -----------------------------------------------------------------------------

@@ -83,6 +83,7 @@ package WinUI3.Windows.Devices.Enumeration is
    type IDeviceInformation_Interface is interface and WinUI3.IInspectable_Interface;
    type IDeviceInformation is access all IDeviceInformation_Interface'Class;
    type IDeviceInformation_Ptr is access all IDeviceInformation;
+   Pragma No_Strict_Aliasing (IDeviceInformation_Ptr);
    type IDeviceInformation_Array is array (Natural range <>) of IDeviceInformation;
 
    type IDeviceInformation2_Interface is interface and WinUI3.IInspectable_Interface;

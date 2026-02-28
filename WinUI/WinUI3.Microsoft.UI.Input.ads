@@ -287,6 +287,7 @@ package WinUI3.Microsoft.UI.Input is
    type IPointerPoint_Interface is interface and WinUI3.IInspectable_Interface;
    type IPointerPoint is access all IPointerPoint_Interface'Class;
    type IPointerPoint_Ptr is access all IPointerPoint;
+   Pragma No_Strict_Aliasing (IPointerPoint_Ptr);
    type IPointerPoint_Array is array (Natural range <>) of IPointerPoint;
 
    type IPointerPointProperties_Interface is interface and WinUI3.IInspectable_Interface;
@@ -833,6 +834,7 @@ package WinUI3.Microsoft.UI.Input is
       Passthrough_e => 9
    );
    type NonClientRegionKind_Ptr is access all NonClientRegionKind;
+   Pragma No_Strict_Aliasing (NonClientRegionKind_Ptr);
    type NonClientRegionKind_Array is array (Natural range <>) of aliased NonClientRegionKind;
 
    type PointerDeviceType is (

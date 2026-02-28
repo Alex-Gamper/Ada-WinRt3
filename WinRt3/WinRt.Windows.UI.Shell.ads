@@ -98,6 +98,7 @@ package WinRt.Windows.UI.Shell is
    type IWindowTab_Interface is interface and WinRt.IInspectable_Interface;
    type IWindowTab is access all IWindowTab_Interface'Class;
    type IWindowTab_Ptr is access all IWindowTab;
+   Pragma No_Strict_Aliasing (IWindowTab_Ptr);
    type IWindowTab_Array is array (Natural range <>) of IWindowTab;
 
    type IWindowTabCloseRequestedEventArgs_Interface is interface and WinRt.IInspectable_Interface;

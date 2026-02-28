@@ -96,6 +96,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type IBrush_Interface is interface and WinUI3.IInspectable_Interface;
    type IBrush is access all IBrush_Interface'Class;
    type IBrush_Ptr is access all IBrush;
+   Pragma No_Strict_Aliasing (IBrush_Ptr);
    type IBrush_Array is array (Natural range <>) of IBrush;
 
    type IBrushFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -173,6 +174,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type IGeometry_Interface is interface and WinUI3.IInspectable_Interface;
    type IGeometry is access all IGeometry_Interface'Class;
    type IGeometry_Ptr is access all IGeometry;
+   Pragma No_Strict_Aliasing (IGeometry_Ptr);
    type IGeometry_Array is array (Natural range <>) of IGeometry;
 
    type IGeometryFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -206,6 +208,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type IGradientStop_Interface is interface and WinUI3.IInspectable_Interface;
    type IGradientStop is access all IGradientStop_Interface'Class;
    type IGradientStop_Ptr is access all IGradientStop;
+   Pragma No_Strict_Aliasing (IGradientStop_Ptr);
    type IGradientStop_Array is array (Natural range <>) of IGradientStop;
 
    type IGradientStopStatics_Interface is interface and WinUI3.IInspectable_Interface;
@@ -307,6 +310,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type IPathFigure_Interface is interface and WinUI3.IInspectable_Interface;
    type IPathFigure is access all IPathFigure_Interface'Class;
    type IPathFigure_Ptr is access all IPathFigure;
+   Pragma No_Strict_Aliasing (IPathFigure_Ptr);
    type IPathFigure_Array is array (Natural range <>) of IPathFigure;
 
    type IPathFigureStatics_Interface is interface and WinUI3.IInspectable_Interface;
@@ -324,6 +328,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type IPathSegment_Interface is interface and WinUI3.IInspectable_Interface;
    type IPathSegment is access all IPathSegment_Interface'Class;
    type IPathSegment_Ptr is access all IPathSegment;
+   Pragma No_Strict_Aliasing (IPathSegment_Ptr);
    type IPathSegment_Array is array (Natural range <>) of IPathSegment;
 
    type IPathSegmentFactory_Interface is interface and WinUI3.IInspectable_Interface;
@@ -493,6 +498,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type ITimelineMarker_Interface is interface and WinUI3.IInspectable_Interface;
    type ITimelineMarker is access all ITimelineMarker_Interface'Class;
    type ITimelineMarker_Ptr is access all ITimelineMarker;
+   Pragma No_Strict_Aliasing (ITimelineMarker_Ptr);
    type ITimelineMarker_Array is array (Natural range <>) of ITimelineMarker;
 
    type ITimelineMarkerRoutedEventArgs_Interface is interface and WinUI3.IInspectable_Interface;
@@ -506,6 +512,7 @@ package WinUI3.Windows.UI.Xaml.Media is
    type ITransform_Interface is interface and WinUI3.IInspectable_Interface;
    type ITransform is access all ITransform_Interface'Class;
    type ITransform_Ptr is access all ITransform;
+   Pragma No_Strict_Aliasing (ITransform_Ptr);
    type ITransform_Array is array (Natural range <>) of ITransform;
 
    type ITransformFactory_Interface is interface and WinUI3.IInspectable_Interface;

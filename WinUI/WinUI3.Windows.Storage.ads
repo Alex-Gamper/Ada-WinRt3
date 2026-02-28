@@ -145,6 +145,7 @@ package WinUI3.Windows.Storage is
    type IStorageFile_Interface is interface and WinUI3.IInspectable_Interface;
    type IStorageFile is access all IStorageFile_Interface'Class;
    type IStorageFile_Ptr is access all IStorageFile;
+   Pragma No_Strict_Aliasing (IStorageFile_Ptr);
    type IStorageFile_Array is array (Natural range <>) of IStorageFile;
 
    type IStorageFile2_Interface is interface and WinUI3.IInspectable_Interface;

@@ -119,6 +119,7 @@ package WinRt.Windows.Globalization is
    type ILanguage_Interface is interface and WinRt.IInspectable_Interface;
    type ILanguage is access all ILanguage_Interface'Class;
    type ILanguage_Ptr is access all ILanguage;
+   Pragma No_Strict_Aliasing (ILanguage_Ptr);
    type ILanguage_Array is array (Natural range <>) of ILanguage;
 
    type ILanguage2_Interface is interface and WinRt.IInspectable_Interface;
