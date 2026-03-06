@@ -59,16 +59,6 @@ package WinRt.Windows.Devices.Gpio.Provider is
    type IGpioProvider_Ptr is access all IGpioProvider;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type GpioPinProviderValueChangedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IGpioPinProviderValueChangedEventArgs : access Windows.Devices.Gpio.Provider.IGpioPinProviderValueChangedEventArgs;
-      end record;
-   type GpioPinProviderValueChangedEventArgs_Ptr is access all GpioPinProviderValueChangedEventArgs;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -269,33 +259,5 @@ package WinRt.Windows.Devices.Gpio.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IGpioProvider : aliased WinRt.IID := (1156065031, 2250, 17226, (175, 224, 214, 21, 128, 68, 111, 126 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for GpioPinProviderValueChangedEventArgs
-
-   overriding procedure Initialize (this : in out GpioPinProviderValueChangedEventArgs);
-   overriding procedure Finalize (this : in out GpioPinProviderValueChangedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for GpioPinProviderValueChangedEventArgs
-
-   function Constructor
-   (
-      edge : WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge
-   )
-   return GpioPinProviderValueChangedEventArgs;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for GpioPinProviderValueChangedEventArgs
-
-   function get_Edge
-   (
-      this : in out GpioPinProviderValueChangedEventArgs
-   )
-   return WinRt.Windows.Devices.Gpio.Provider.ProviderGpioPinEdge;
 
 end WinRt.Windows.Devices.Gpio.Provider;

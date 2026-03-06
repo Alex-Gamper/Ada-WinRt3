@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
@@ -59,34 +58,6 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
    type IUserDataAccountProviderSettingsOperation_Ptr is access all IUserDataAccountProviderSettingsOperation;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type UserDataAccountPartnerAccountInfo is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IUserDataAccountPartnerAccountInfo : access Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountPartnerAccountInfo;
-      end record;
-   type UserDataAccountPartnerAccountInfo_Ptr is access all UserDataAccountPartnerAccountInfo;
-
-   type UserDataAccountProviderAddAccountOperation is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IUserDataAccountProviderAddAccountOperation : access Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderAddAccountOperation;
-      end record;
-   type UserDataAccountProviderAddAccountOperation_Ptr is access all UserDataAccountProviderAddAccountOperation;
-
-   type UserDataAccountProviderResolveErrorsOperation is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IUserDataAccountProviderResolveErrorsOperation : access Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderResolveErrorsOperation;
-      end record;
-   type UserDataAccountProviderResolveErrorsOperation_Ptr is access all UserDataAccountProviderResolveErrorsOperation;
-
-   type UserDataAccountProviderSettingsOperation is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IUserDataAccountProviderSettingsOperation : access Windows.ApplicationModel.UserDataAccounts.Provider.IUserDataAccountProviderSettingsOperation;
-      end record;
-   type UserDataAccountProviderSettingsOperation_Ptr is access all UserDataAccountProviderSettingsOperation;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -111,14 +82,6 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       PopOrImap_e => 1
    );
    type UserDataAccountProviderPartnerAccountKind_Ptr is access all UserDataAccountProviderPartnerAccountKind;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IVectorView_IUserDataAccountPartnerAccountInfo is new WinRt.Windows.Foundation.Collections.IVectorView (IUserDataAccountPartnerAccountInfo);
-   IID_IVectorView_IUserDataAccountPartnerAccountInfo : aliased WinRt.IID := (1325382989, 11248, 20638, (128, 27, 84, 53, 232, 98, 54, 24 ));
-   function QInterface_IVectorView_IUserDataAccountPartnerAccountInfo is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IUserDataAccountPartnerAccountInfo.Kind, IID_IVectorView_IUserDataAccountPartnerAccountInfo'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -223,121 +186,5 @@ package WinRt.Windows.ApplicationModel.UserDataAccounts.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IUserDataAccountProviderSettingsOperation : aliased WinRt.IID := (2449690039, 34376, 20272, (172, 250, 48, 2, 101, 140, 168, 13 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for UserDataAccountPartnerAccountInfo
-
-   overriding procedure Initialize (this : in out UserDataAccountPartnerAccountInfo);
-   overriding procedure Finalize (this : in out UserDataAccountPartnerAccountInfo);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for UserDataAccountPartnerAccountInfo
-
-   function get_DisplayName
-   (
-      this : in out UserDataAccountPartnerAccountInfo
-   )
-   return WinRt.WString;
-
-   function get_Priority
-   (
-      this : in out UserDataAccountPartnerAccountInfo
-   )
-   return WinRt.UInt32;
-
-   function get_AccountKind
-   (
-      this : in out UserDataAccountPartnerAccountInfo
-   )
-   return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderPartnerAccountKind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for UserDataAccountProviderAddAccountOperation
-
-   overriding procedure Initialize (this : in out UserDataAccountProviderAddAccountOperation);
-   overriding procedure Finalize (this : in out UserDataAccountProviderAddAccountOperation);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for UserDataAccountProviderAddAccountOperation
-
-   function get_ContentKinds
-   (
-      this : in out UserDataAccountProviderAddAccountOperation
-   )
-   return WinRt.Windows.ApplicationModel.UserDataAccounts.UserDataAccountContentKinds;
-
-   function get_PartnerAccountInfos
-   (
-      this : in out UserDataAccountProviderAddAccountOperation
-   )
-   return IVectorView_IUserDataAccountPartnerAccountInfo.Kind;
-
-   procedure ReportCompleted
-   (
-      this : in out UserDataAccountProviderAddAccountOperation;
-      userDataAccountId : WinRt.WString
-   );
-
-   function get_Kind
-   (
-      this : in out UserDataAccountProviderAddAccountOperation
-   )
-   return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for UserDataAccountProviderResolveErrorsOperation
-
-   overriding procedure Initialize (this : in out UserDataAccountProviderResolveErrorsOperation);
-   overriding procedure Finalize (this : in out UserDataAccountProviderResolveErrorsOperation);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for UserDataAccountProviderResolveErrorsOperation
-
-   function get_UserDataAccountId
-   (
-      this : in out UserDataAccountProviderResolveErrorsOperation
-   )
-   return WinRt.WString;
-
-   procedure ReportCompleted
-   (
-      this : in out UserDataAccountProviderResolveErrorsOperation
-   );
-
-   function get_Kind
-   (
-      this : in out UserDataAccountProviderResolveErrorsOperation
-   )
-   return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for UserDataAccountProviderSettingsOperation
-
-   overriding procedure Initialize (this : in out UserDataAccountProviderSettingsOperation);
-   overriding procedure Finalize (this : in out UserDataAccountProviderSettingsOperation);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for UserDataAccountProviderSettingsOperation
-
-   function get_UserDataAccountId
-   (
-      this : in out UserDataAccountProviderSettingsOperation
-   )
-   return WinRt.WString;
-
-   procedure ReportCompleted
-   (
-      this : in out UserDataAccountProviderSettingsOperation
-   );
-
-   function get_Kind
-   (
-      this : in out UserDataAccountProviderSettingsOperation
-   )
-   return WinRt.Windows.ApplicationModel.UserDataAccounts.Provider.UserDataAccountProviderOperationKind;
 
 end WinRt.Windows.ApplicationModel.UserDataAccounts.Provider;

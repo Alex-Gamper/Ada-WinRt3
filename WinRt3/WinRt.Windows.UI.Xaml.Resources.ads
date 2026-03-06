@@ -54,16 +54,6 @@ package WinRt.Windows.UI.Xaml.Resources is
    type ICustomXamlResourceLoaderStatics_Ptr is access all ICustomXamlResourceLoaderStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type CustomXamlResourceLoader is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICustomXamlResourceLoader : access Windows.UI.Xaml.Resources.ICustomXamlResourceLoader;
-      end record;
-   type CustomXamlResourceLoader_Ptr is access all CustomXamlResourceLoader;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -120,49 +110,5 @@ package WinRt.Windows.UI.Xaml.Resources is
       return WinRt.Hresult is abstract;
 
       IID_ICustomXamlResourceLoaderStatics : aliased WinRt.IID := (575665687, 58588, 19495, (173, 50, 219, 147, 213, 208, 229, 218 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CustomXamlResourceLoader
-
-   overriding procedure Initialize (this : in out CustomXamlResourceLoader);
-   overriding procedure Finalize (this : in out CustomXamlResourceLoader);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for CustomXamlResourceLoader
-
-   function Constructor
-   (
-      baseInterface : WinRt.IInspectable;
-      innerInterface : access WinRt.IInspectable
-   )
-   return CustomXamlResourceLoader;
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for CustomXamlResourceLoader
-
-   function get_Current
-   return WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader;
-
-   procedure put_Current
-   (
-      value : WinRt.Windows.UI.Xaml.Resources.CustomXamlResourceLoader'Class
-   );
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CustomXamlResourceLoader
-
-   function GetResource
-   (
-      this : in out CustomXamlResourceLoader;
-      resourceId : WinRt.WString;
-      objectType : WinRt.WString;
-      propertyName : WinRt.WString;
-      propertyType : WinRt.WString
-   )
-   return WinRt.IInspectable;
 
 end WinRt.Windows.UI.Xaml.Resources;

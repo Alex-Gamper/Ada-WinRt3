@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.ApplicationModel.Resources.Management is
@@ -60,28 +59,6 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
    type IResourceIndexerFactory2_Ptr is access all IResourceIndexerFactory2;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type IndexedResourceCandidate is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IIndexedResourceCandidate : access Windows.ApplicationModel.Resources.Management.IIndexedResourceCandidate;
-      end record;
-   type IndexedResourceCandidate_Ptr is access all IndexedResourceCandidate;
-
-   type IndexedResourceQualifier is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IIndexedResourceQualifier : access Windows.ApplicationModel.Resources.Management.IIndexedResourceQualifier;
-      end record;
-   type IndexedResourceQualifier_Ptr is access all IndexedResourceQualifier;
-
-   type ResourceIndexer is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IResourceIndexer : access Windows.ApplicationModel.Resources.Management.IResourceIndexer;
-      end record;
-   type ResourceIndexer_Ptr is access all ResourceIndexer;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -105,18 +82,6 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       null;
    end record with Convention => C_Pass_By_Copy;
    type ResourceIndexerContract_Ptr is access all ResourceIndexerContract;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IMapView_HString_HString is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, WinRt.HString);
-   IID_IMapView_HString_HString : aliased WinRt.IID := (1148180560, 46431, 21800, (159, 36, 147, 228, 11, 48, 62, 186 ));
-   function QInterface_IMapView_HString_HString is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_HString.Kind, IID_IMapView_HString_HString'Access);
-
-   package IVectorView_IIndexedResourceQualifier is new WinRt.Windows.Foundation.Collections.IVectorView (IIndexedResourceQualifier);
-   IID_IVectorView_IIndexedResourceQualifier : aliased WinRt.IID := (1148180560, 46431, 21800, (159, 36, 147, 228, 11, 48, 62, 186 ));
-   function QInterface_IVectorView_IIndexedResourceQualifier is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IIndexedResourceQualifier.Kind, IID_IVectorView_IIndexedResourceQualifier'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -236,115 +201,5 @@ package WinRt.Windows.ApplicationModel.Resources.Management is
       return WinRt.Hresult is abstract;
 
       IID_IResourceIndexerFactory2 : aliased WinRt.IID := (1614868877, 54757, 19296, (146, 1, 205, 39, 156, 188, 254, 217 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for IndexedResourceCandidate
-
-   overriding procedure Initialize (this : in out IndexedResourceCandidate);
-   overriding procedure Finalize (this : in out IndexedResourceCandidate);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for IndexedResourceCandidate
-
-   function get_Type
-   (
-      this : in out IndexedResourceCandidate
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceType;
-
-   function get_Uri
-   (
-      this : in out IndexedResourceCandidate
-   )
-   return WinRt.Windows.Foundation.Uri'Class;
-
-   function get_Metadata
-   (
-      this : in out IndexedResourceCandidate
-   )
-   return IMapView_HString_HString.Kind;
-
-   function get_Qualifiers
-   (
-      this : in out IndexedResourceCandidate
-   )
-   return IVectorView_IIndexedResourceQualifier.Kind;
-
-   function get_ValueAsString
-   (
-      this : in out IndexedResourceCandidate
-   )
-   return WinRt.WString;
-
-   function GetQualifierValue
-   (
-      this : in out IndexedResourceCandidate;
-      qualifierName : WinRt.WString
-   )
-   return WinRt.WString;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for IndexedResourceQualifier
-
-   overriding procedure Initialize (this : in out IndexedResourceQualifier);
-   overriding procedure Finalize (this : in out IndexedResourceQualifier);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for IndexedResourceQualifier
-
-   function get_QualifierName
-   (
-      this : in out IndexedResourceQualifier
-   )
-   return WinRt.WString;
-
-   function get_QualifierValue
-   (
-      this : in out IndexedResourceQualifier
-   )
-   return WinRt.WString;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ResourceIndexer
-
-   overriding procedure Initialize (this : in out ResourceIndexer);
-   overriding procedure Finalize (this : in out ResourceIndexer);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for ResourceIndexer
-
-   function Constructor
-   (
-      projectRoot : WinRt.Windows.Foundation.Uri'Class;
-      extensionDllPath : WinRt.Windows.Foundation.Uri'Class
-   )
-   return ResourceIndexer;
-
-   function Constructor
-   (
-      projectRoot : WinRt.Windows.Foundation.Uri'Class
-   )
-   return ResourceIndexer;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ResourceIndexer
-
-   function IndexFilePath
-   (
-      this : in out ResourceIndexer;
-      filePath : WinRt.Windows.Foundation.Uri'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.Management.IndexedResourceCandidate'Class;
-
-   function IndexFileContentsAsync
-   (
-      this : in out ResourceIndexer;
-      file : WinRt.Windows.Foundation.Uri'Class
-   )
-   return WinRt.GenericObject;
 
 end WinRt.Windows.ApplicationModel.Resources.Management;

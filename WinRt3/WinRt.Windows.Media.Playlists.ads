@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -47,16 +46,6 @@ package WinRt.Windows.Media.Playlists is
    type IPlaylistStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IPlaylistStatics is access all IPlaylistStatics_Interface'Class;
    type IPlaylistStatics_Ptr is access all IPlaylistStatics;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type Playlist is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IPlaylist : access Windows.Media.Playlists.IPlaylist;
-      end record;
-   type Playlist_Ptr is access all Playlist;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -82,10 +71,6 @@ package WinRt.Windows.Media.Playlists is
       null;
    end record with Convention => C_Pass_By_Copy;
    type PlaylistsContract_Ptr is access all PlaylistsContract;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -143,62 +128,5 @@ package WinRt.Windows.Media.Playlists is
       return WinRt.Hresult is abstract;
 
       IID_IPlaylistStatics : aliased WinRt.IID := (3317903821, 33273, 20467, (149, 185, 112, 182, 255, 4, 107, 104 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for Playlist
-
-   overriding procedure Initialize (this : in out Playlist);
-   overriding procedure Finalize (this : in out Playlist);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for Playlist
-
-   function Constructor return Playlist;
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for Playlist
-
-   function LoadAsync
-   (
-      file : WinRt.Windows.Storage.IStorageFile
-   )
-   return WinRt.Windows.Media.Playlists.Playlist;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for Playlist
-
-   function get_Files
-   (
-      this : in out Playlist
-   )
-   return WinRt.GenericObject;
-
-   procedure SaveAsync
-   (
-      this : in out Playlist
-   );
-
-   function SaveAsAsync
-   (
-      this : in out Playlist;
-      saveLocation : WinRt.Windows.Storage.IStorageFolder;
-      desiredName : WinRt.WString;
-      option : WinRt.Windows.Storage.NameCollisionOption
-   )
-   return WinRt.Windows.Storage.StorageFile'Class;
-
-   function SaveAsAsync
-   (
-      this : in out Playlist;
-      saveLocation : WinRt.Windows.Storage.IStorageFolder;
-      desiredName : WinRt.WString;
-      option : WinRt.Windows.Storage.NameCollisionOption;
-      playlistFormat : WinRt.Windows.Media.Playlists.PlaylistFormat
-   )
-   return WinRt.Windows.Storage.StorageFile'Class;
 
 end WinRt.Windows.Media.Playlists;

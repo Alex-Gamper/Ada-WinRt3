@@ -68,16 +68,6 @@ package WinRt.Windows.ApplicationModel.Resources is
    type IResourceLoaderStatics4_Ptr is access all IResourceLoaderStatics4;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ResourceLoader is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IResourceLoader : access Windows.ApplicationModel.Resources.IResourceLoader;
-      end record;
-   type ResourceLoader_Ptr is access all ResourceLoader;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -193,82 +183,5 @@ package WinRt.Windows.ApplicationModel.Resources is
       return WinRt.Hresult is abstract;
 
       IID_IResourceLoaderStatics4 : aliased WinRt.IID := (2679335986, 27788, 17174, (150, 46, 144, 149, 57, 181, 194, 89 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ResourceLoader
-
-   overriding procedure Initialize (this : in out ResourceLoader);
-   overriding procedure Finalize (this : in out ResourceLoader);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for ResourceLoader
-
-   function Constructor return ResourceLoader;
-
-   function Constructor
-   (
-      name : WinRt.WString
-   )
-   return ResourceLoader;
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for ResourceLoader
-
-   function GetForCurrentView
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForCurrentView
-   (
-      name : WinRt.WString
-   )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForViewIndependentUse
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetForViewIndependentUse
-   (
-      name : WinRt.WString
-   )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   function GetDefaultPriPath
-   (
-      packageFullName : WinRt.WString
-   )
-   return WinRt.WString;
-
-   function GetStringForReference
-   (
-      uri : WinRt.Windows.Foundation.Uri'Class
-   )
-   return WinRt.WString;
-
-   function GetForUIContext
-   (
-      context : WinRt.Windows.UI.UIContext'Class
-   )
-   return WinRt.Windows.ApplicationModel.Resources.ResourceLoader;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ResourceLoader
-
-   function GetString
-   (
-      this : in out ResourceLoader;
-      resource : WinRt.WString
-   )
-   return WinRt.WString;
-
-   function GetStringForUri
-   (
-      this : in out ResourceLoader;
-      uri : WinRt.Windows.Foundation.Uri'Class
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.ApplicationModel.Resources;

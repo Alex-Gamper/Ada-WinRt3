@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.ApplicationModel.AppService;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Networking.Sockets;
 limited with WinRt.Windows.Web.Http;
 with Ada.Finalization;
@@ -67,28 +66,6 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
    type IDevicePortalWebSocketConnectionRequestReceivedEventArgs_Ptr is access all IDevicePortalWebSocketConnectionRequestReceivedEventArgs;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type DevicePortalConnection is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDevicePortalConnection : access Windows.System.Diagnostics.DevicePortal.IDevicePortalConnection;
-      end record;
-   type DevicePortalConnection_Ptr is access all DevicePortalConnection;
-
-   type DevicePortalConnectionClosedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDevicePortalConnectionClosedEventArgs : access Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionClosedEventArgs;
-      end record;
-   type DevicePortalConnectionClosedEventArgs_Ptr is access all DevicePortalConnectionClosedEventArgs;
-
-   type DevicePortalConnectionRequestReceivedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDevicePortalConnectionRequestReceivedEventArgs : access Windows.System.Diagnostics.DevicePortal.IDevicePortalConnectionRequestReceivedEventArgs;
-      end record;
-   type DevicePortalConnectionRequestReceivedEventArgs_Ptr is access all DevicePortalConnectionRequestReceivedEventArgs;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -109,14 +86,6 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       ServiceTerminated_e => 5
    );
    type DevicePortalConnectionClosedReason_Ptr is access all DevicePortalConnectionClosedReason;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
-   IID_IVectorView_HString : aliased WinRt.IID := (1998123517, 59307, 22709, (155, 161, 189, 220, 20, 175, 238, 82 ));
-   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -281,152 +250,5 @@ package WinRt.Windows.System.Diagnostics.DevicePortal is
       return WinRt.Hresult is abstract;
 
       IID_IDevicePortalWebSocketConnectionRequestReceivedEventArgs : aliased WinRt.IID := (2046675642, 5980, 18233, (159, 116, 221, 167, 151, 195, 91, 63 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DevicePortalConnection
-
-   overriding procedure Initialize (this : in out DevicePortalConnection);
-   overriding procedure Finalize (this : in out DevicePortalConnection);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for DevicePortalConnection
-
-   function GetForAppServiceConnection
-   (
-      appServiceConnection : WinRt.Windows.ApplicationModel.AppService.AppServiceConnection'Class
-   )
-   return WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnection;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DevicePortalConnection
-
-   function add_Closed
-   (
-      this : in out DevicePortalConnection;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_Closed
-   (
-      this : in out DevicePortalConnection;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_RequestReceived
-   (
-      this : in out DevicePortalConnection;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_RequestReceived
-   (
-      this : in out DevicePortalConnection;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function GetServerMessageWebSocketForRequest
-   (
-      this : in out DevicePortalConnection;
-      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
-   )
-   return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
-
-   function GetServerMessageWebSocketForRequest
-   (
-      this : in out DevicePortalConnection;
-      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
-      messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
-      protocol : WinRt.WString
-   )
-   return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
-
-   function GetServerMessageWebSocketForRequest
-   (
-      this : in out DevicePortalConnection;
-      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
-      messageType : WinRt.Windows.Networking.Sockets.SocketMessageType;
-      protocol : WinRt.WString;
-      outboundBufferSizeInBytes : WinRt.UInt32;
-      maxMessageSize : WinRt.UInt32;
-      receiveMode : WinRt.Windows.Networking.Sockets.MessageWebSocketReceiveMode
-   )
-   return WinRt.Windows.Networking.Sockets.ServerMessageWebSocket'Class;
-
-   function GetServerStreamWebSocketForRequest
-   (
-      this : in out DevicePortalConnection;
-      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class
-   )
-   return WinRt.Windows.Networking.Sockets.ServerStreamWebSocket'Class;
-
-   function GetServerStreamWebSocketForRequest
-   (
-      this : in out DevicePortalConnection;
-      request : WinRt.Windows.Web.Http.HttpRequestMessage'Class;
-      protocol : WinRt.WString;
-      outboundBufferSizeInBytes : WinRt.UInt32;
-      noDelay : WinRt.Boolean
-   )
-   return WinRt.Windows.Networking.Sockets.ServerStreamWebSocket'Class;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DevicePortalConnectionClosedEventArgs
-
-   overriding procedure Initialize (this : in out DevicePortalConnectionClosedEventArgs);
-   overriding procedure Finalize (this : in out DevicePortalConnectionClosedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DevicePortalConnectionClosedEventArgs
-
-   function get_Reason
-   (
-      this : in out DevicePortalConnectionClosedEventArgs
-   )
-   return WinRt.Windows.System.Diagnostics.DevicePortal.DevicePortalConnectionClosedReason;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DevicePortalConnectionRequestReceivedEventArgs
-
-   overriding procedure Initialize (this : in out DevicePortalConnectionRequestReceivedEventArgs);
-   overriding procedure Finalize (this : in out DevicePortalConnectionRequestReceivedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DevicePortalConnectionRequestReceivedEventArgs
-
-   function get_RequestMessage
-   (
-      this : in out DevicePortalConnectionRequestReceivedEventArgs
-   )
-   return WinRt.Windows.Web.Http.HttpRequestMessage'Class;
-
-   function get_ResponseMessage
-   (
-      this : in out DevicePortalConnectionRequestReceivedEventArgs
-   )
-   return WinRt.Windows.Web.Http.HttpResponseMessage'Class;
-
-   function get_IsWebSocketUpgradeRequest
-   (
-      this : in out DevicePortalConnectionRequestReceivedEventArgs
-   )
-   return WinRt.Boolean;
-
-   function get_WebSocketProtocolsRequested
-   (
-      this : in out DevicePortalConnectionRequestReceivedEventArgs
-   )
-   return IVectorView_HString.Kind;
-
-   function GetDeferral
-   (
-      this : in out DevicePortalConnectionRequestReceivedEventArgs
-   )
-   return WinRt.Windows.Foundation.Deferral'Class;
 
 end WinRt.Windows.System.Diagnostics.DevicePortal;

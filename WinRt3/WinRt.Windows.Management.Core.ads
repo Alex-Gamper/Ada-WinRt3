@@ -47,16 +47,6 @@ package WinRt.Windows.Management.Core is
    type IApplicationDataManagerStatics_Ptr is access all IApplicationDataManagerStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ApplicationDataManager is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IApplicationDataManager : access Windows.Management.Core.IApplicationDataManager;
-      end record;
-   type ApplicationDataManager_Ptr is access all ApplicationDataManager;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -77,27 +67,5 @@ package WinRt.Windows.Management.Core is
       return WinRt.Hresult is abstract;
 
       IID_IApplicationDataManagerStatics : aliased WinRt.IID := (504914659, 27022, 18849, (151, 82, 222, 233, 73, 37, 185, 179 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ApplicationDataManager
-
-   overriding procedure Initialize (this : in out ApplicationDataManager);
-   overriding procedure Finalize (this : in out ApplicationDataManager);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for ApplicationDataManager
-
-   function CreateForPackageFamily
-   (
-      packageFamilyName : WinRt.WString
-   )
-   return WinRt.Windows.Storage.ApplicationData;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ApplicationDataManager
 
 end WinRt.Windows.Management.Core;

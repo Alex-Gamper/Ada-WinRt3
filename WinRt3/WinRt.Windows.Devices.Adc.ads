@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Adc.Provider;
-with WinRt.Windows.Foundation;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Devices.Adc is
@@ -54,22 +53,6 @@ package WinRt.Windows.Devices.Adc is
    type IAdcControllerStatics2_Interface is interface and WinRt.IInspectable_Interface;
    type IAdcControllerStatics2 is access all IAdcControllerStatics2_Interface'Class;
    type IAdcControllerStatics2_Ptr is access all IAdcControllerStatics2;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type AdcChannel is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IAdcChannel : access Windows.Devices.Adc.IAdcChannel;
-      end record;
-   type AdcChannel_Ptr is access all AdcChannel;
-
-   type AdcController is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IAdcController : access Windows.Devices.Adc.IAdcController;
-      end record;
-   type AdcController_Ptr is access all AdcController;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -202,112 +185,5 @@ package WinRt.Windows.Devices.Adc is
       return WinRt.Hresult is abstract;
 
       IID_IAdcControllerStatics2 : aliased WinRt.IID := (2730048285, 38779, 20314, (165, 254, 166, 171, 175, 254, 100, 132 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for AdcChannel
-
-   overriding procedure Initialize (this : in out AdcChannel);
-   overriding procedure Finalize (this : in out AdcChannel);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for AdcChannel
-
-   function get_Controller
-   (
-      this : in out AdcChannel
-   )
-   return WinRt.Windows.Devices.Adc.AdcController'Class;
-
-   function ReadValue
-   (
-      this : in out AdcChannel
-   )
-   return WinRt.Int32;
-
-   function ReadRatio
-   (
-      this : in out AdcChannel
-   )
-   return WinRt.Double;
-
-   procedure Close
-   (
-      this : in out AdcChannel
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for AdcController
-
-   overriding procedure Initialize (this : in out AdcController);
-   overriding procedure Finalize (this : in out AdcController);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for AdcController
-
-   function GetControllersAsync
-   (
-      provider : WinRt.Windows.Devices.Adc.Provider.IAdcProvider
-   )
-   return WinRt.GenericObject;
-
-   function GetDefaultAsync
-   return WinRt.Windows.Devices.Adc.AdcController;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for AdcController
-
-   function get_ChannelCount
-   (
-      this : in out AdcController
-   )
-   return WinRt.Int32;
-
-   function get_ResolutionInBits
-   (
-      this : in out AdcController
-   )
-   return WinRt.Int32;
-
-   function get_MinValue
-   (
-      this : in out AdcController
-   )
-   return WinRt.Int32;
-
-   function get_MaxValue
-   (
-      this : in out AdcController
-   )
-   return WinRt.Int32;
-
-   function get_ChannelMode
-   (
-      this : in out AdcController
-   )
-   return WinRt.Windows.Devices.Adc.AdcChannelMode;
-
-   procedure put_ChannelMode
-   (
-      this : in out AdcController;
-      value : WinRt.Windows.Devices.Adc.AdcChannelMode
-   );
-
-   function IsChannelModeSupported
-   (
-      this : in out AdcController;
-      channelMode : WinRt.Windows.Devices.Adc.AdcChannelMode
-   )
-   return WinRt.Boolean;
-
-   function OpenChannel
-   (
-      this : in out AdcController;
-      channelNumber : WinRt.Int32
-   )
-   return WinRt.Windows.Devices.Adc.AdcChannel'Class;
 
 end WinRt.Windows.Devices.Adc;

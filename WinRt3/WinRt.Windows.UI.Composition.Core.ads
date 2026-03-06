@@ -43,16 +43,6 @@ package WinRt.Windows.UI.Composition.Core is
    type ICompositorController_Ptr is access all ICompositorController;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type CompositorController is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICompositorController : access Windows.UI.Composition.Core.ICompositorController;
-      end record;
-   type CompositorController_Ptr is access all CompositorController;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -95,57 +85,5 @@ package WinRt.Windows.UI.Composition.Core is
       return WinRt.Hresult is abstract;
 
       IID_ICompositorController : aliased WinRt.IID := (762704730, 28839, 17301, (186, 45, 206, 240, 177, 131, 153, 249 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CompositorController
-
-   overriding procedure Initialize (this : in out CompositorController);
-   overriding procedure Finalize (this : in out CompositorController);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for CompositorController
-
-   function Constructor return CompositorController;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CompositorController
-
-   function get_Compositor
-   (
-      this : in out CompositorController
-   )
-   return WinRt.Windows.UI.Composition.Compositor'Class;
-
-   procedure Commit
-   (
-      this : in out CompositorController
-   );
-
-   procedure EnsurePreviousCommitCompletedAsync
-   (
-      this : in out CompositorController
-   );
-
-   function add_CommitNeeded
-   (
-      this : in out CompositorController;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_CommitNeeded
-   (
-      this : in out CompositorController;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   procedure Close
-   (
-      this : in out CompositorController
-   );
 
 end WinRt.Windows.UI.Composition.Core;

@@ -59,22 +59,6 @@ package WinRt.Windows.Devices.Custom is
    type IKnownDeviceTypesStatics_Ptr is access all IKnownDeviceTypesStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type CustomDevice is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICustomDevice : access Windows.Devices.Custom.ICustomDevice;
-      end record;
-   type CustomDevice_Ptr is access all CustomDevice;
-
-   type IOControlCode is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IIOControlCode : access Windows.Devices.Custom.IIOControlCode;
-      end record;
-   type IOControlCode_Ptr is access all IOControlCode;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -161,7 +145,7 @@ package WinRt.Windows.Devices.Custom is
       function SendIOControlAsync
       (
          this : access ICustomDevice_Interface;
-         ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+         ioControlCode : WinRt.Windows.Devices.Custom.IIOControlCode;
          inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          outputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
@@ -171,7 +155,7 @@ package WinRt.Windows.Devices.Custom is
       function TrySendIOControlAsync
       (
          this : access ICustomDevice_Interface;
-         ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
+         ioControlCode : WinRt.Windows.Devices.Custom.IIOControlCode;
          inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          outputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
          RetVal : access GenericObject
@@ -270,125 +254,5 @@ package WinRt.Windows.Devices.Custom is
       return WinRt.Hresult is abstract;
 
       IID_IKnownDeviceTypesStatics : aliased WinRt.IID := (3998513602, 21576, 17882, (173, 27, 36, 148, 140, 35, 144, 148 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CustomDevice
-
-   overriding procedure Initialize (this : in out CustomDevice);
-   overriding procedure Finalize (this : in out CustomDevice);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for CustomDevice
-
-   function GetDeviceSelector
-   (
-      classGuid : WinRt.Guid
-   )
-   return WinRt.WString;
-
-   function FromIdAsync
-   (
-      deviceId : WinRt.WString;
-      desiredAccess : WinRt.Windows.Devices.Custom.DeviceAccessMode;
-      sharingMode : WinRt.Windows.Devices.Custom.DeviceSharingMode
-   )
-   return WinRt.Windows.Devices.Custom.CustomDevice;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CustomDevice
-
-   function get_InputStream
-   (
-      this : in out CustomDevice
-   )
-   return WinRt.Windows.Storage.Streams.IInputStream;
-
-   function get_OutputStream
-   (
-      this : in out CustomDevice
-   )
-   return WinRt.Windows.Storage.Streams.IOutputStream;
-
-   function SendIOControlAsync
-   (
-      this : in out CustomDevice;
-      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
-      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.UInt32;
-
-   function TrySendIOControlAsync
-   (
-      this : in out CustomDevice;
-      ioControlCode_p : WinRt.Windows.Devices.Custom.IIOControlCode;
-      inputBuffer : WinRt.Windows.Storage.Streams.IBuffer;
-      outputBuffer : WinRt.Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Boolean;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for IOControlCode
-
-   overriding procedure Initialize (this : in out IOControlCode);
-   overriding procedure Finalize (this : in out IOControlCode);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for IOControlCode
-
-   function Constructor
-   (
-      deviceType : WinRt.UInt16;
-      function_x : WinRt.UInt16;
-      accessMode : WinRt.Windows.Devices.Custom.IOControlAccessMode;
-      bufferingMethod : WinRt.Windows.Devices.Custom.IOControlBufferingMethod
-   )
-   return IOControlCode;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for IOControlCode
-
-   function get_AccessMode
-   (
-      this : in out IOControlCode
-   )
-   return WinRt.Windows.Devices.Custom.IOControlAccessMode;
-
-   function get_BufferingMethod
-   (
-      this : in out IOControlCode
-   )
-   return WinRt.Windows.Devices.Custom.IOControlBufferingMethod;
-
-   function get_Function
-   (
-      this : in out IOControlCode
-   )
-   return WinRt.UInt16;
-
-   function get_DeviceType
-   (
-      this : in out IOControlCode
-   )
-   return WinRt.UInt16;
-
-   function get_ControlCode
-   (
-      this : in out IOControlCode
-   )
-   return WinRt.UInt32;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package KnownDeviceTypes is
-
-      function get_Unknown
-      return WinRt.UInt16;
-
-   end KnownDeviceTypes;
 
 end WinRt.Windows.Devices.Custom;

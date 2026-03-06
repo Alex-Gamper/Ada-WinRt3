@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -54,30 +53,6 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
    type IShareOperation3_Interface is interface and WinRt.IInspectable_Interface;
    type IShareOperation3 is access all IShareOperation3_Interface'Class;
    type IShareOperation3_Ptr is access all IShareOperation3;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type QuickLink is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IQuickLink : access Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink;
-      end record;
-   type QuickLink_Ptr is access all QuickLink;
-
-   type ShareOperation is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IShareOperation : access Windows.ApplicationModel.DataTransfer.ShareTarget.IShareOperation;
-      end record;
-   type ShareOperation_Ptr is access all ShareOperation;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IVector_HString is new WinRt.Windows.Foundation.Collections.IVector (WinRt.HString);
-   IID_IVector_HString : aliased WinRt.IID := (3418906382, 49975, 21831, (140, 134, 135, 251, 191, 137, 166, 104 ));
-   function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -188,7 +163,7 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       function ReportCompleted
       (
          this : access IShareOperation_Interface;
-         quicklink_p : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink
+         quicklink : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.IQuickLink
       )
       return WinRt.Hresult is abstract;
 
@@ -229,140 +204,5 @@ package WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget is
       return WinRt.Hresult is abstract;
 
       IID_IShareOperation3 : aliased WinRt.IID := (1593226114, 47015, 17777, (162, 166, 153, 74, 3, 73, 136, 178 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for QuickLink
-
-   overriding procedure Initialize (this : in out QuickLink);
-   overriding procedure Finalize (this : in out QuickLink);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for QuickLink
-
-   function Constructor return QuickLink;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for QuickLink
-
-   function get_Title
-   (
-      this : in out QuickLink
-   )
-   return WinRt.WString;
-
-   procedure put_Title
-   (
-      this : in out QuickLink;
-      value : WinRt.WString
-   );
-
-   function get_Thumbnail
-   (
-      this : in out QuickLink
-   )
-   return WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class;
-
-   procedure put_Thumbnail
-   (
-      this : in out QuickLink;
-      value : WinRt.Windows.Storage.Streams.RandomAccessStreamReference'Class
-   );
-
-   function get_Id
-   (
-      this : in out QuickLink
-   )
-   return WinRt.WString;
-
-   procedure put_Id
-   (
-      this : in out QuickLink;
-      value : WinRt.WString
-   );
-
-   function get_SupportedDataFormats
-   (
-      this : in out QuickLink
-   )
-   return IVector_HString.Kind;
-
-   function get_SupportedFileTypes
-   (
-      this : in out QuickLink
-   )
-   return IVector_HString.Kind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ShareOperation
-
-   overriding procedure Initialize (this : in out ShareOperation);
-   overriding procedure Finalize (this : in out ShareOperation);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ShareOperation
-
-   function get_Data
-   (
-      this : in out ShareOperation
-   )
-   return WinRt.Windows.ApplicationModel.DataTransfer.DataPackageView'Class;
-
-   function get_QuickLinkId
-   (
-      this : in out ShareOperation
-   )
-   return WinRt.WString;
-
-   procedure RemoveThisQuickLink
-   (
-      this : in out ShareOperation
-   );
-
-   procedure ReportStarted
-   (
-      this : in out ShareOperation
-   );
-
-   procedure ReportDataRetrieved
-   (
-      this : in out ShareOperation
-   );
-
-   procedure ReportSubmittedBackgroundTask
-   (
-      this : in out ShareOperation
-   );
-
-   procedure ReportCompleted
-   (
-      this : in out ShareOperation;
-      quicklink_p : WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget.QuickLink'Class
-   );
-
-   procedure ReportCompleted
-   (
-      this : in out ShareOperation
-   );
-
-   procedure ReportError
-   (
-      this : in out ShareOperation;
-      value : WinRt.WString
-   );
-
-   procedure DismissUI
-   (
-      this : in out ShareOperation
-   );
-
-   function get_Contacts
-   (
-      this : in out ShareOperation
-   )
-   return WinRt.GenericObject;
 
 end WinRt.Windows.ApplicationModel.DataTransfer.ShareTarget;

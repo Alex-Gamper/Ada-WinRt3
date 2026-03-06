@@ -47,22 +47,6 @@ package WinRt.Windows.Devices.Background is
    type IDeviceUseDetails_Ptr is access all IDeviceUseDetails;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type DeviceServicingDetails is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDeviceServicingDetails : access Windows.Devices.Background.IDeviceServicingDetails;
-      end record;
-   type DeviceServicingDetails_Ptr is access all DeviceServicingDetails;
-
-   type DeviceUseDetails is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDeviceUseDetails : access Windows.Devices.Background.IDeviceUseDetails;
-      end record;
-   type DeviceUseDetails_Ptr is access all DeviceUseDetails;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -110,57 +94,5 @@ package WinRt.Windows.Devices.Background is
       return WinRt.Hresult is abstract;
 
       IID_IDeviceUseDetails : aliased WinRt.IID := (2102808897, 21886, 16724, (185, 148, 228, 247, 161, 31, 179, 35 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DeviceServicingDetails
-
-   overriding procedure Initialize (this : in out DeviceServicingDetails);
-   overriding procedure Finalize (this : in out DeviceServicingDetails);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DeviceServicingDetails
-
-   function get_DeviceId
-   (
-      this : in out DeviceServicingDetails
-   )
-   return WinRt.WString;
-
-   function get_Arguments
-   (
-      this : in out DeviceServicingDetails
-   )
-   return WinRt.WString;
-
-   function get_ExpectedDuration
-   (
-      this : in out DeviceServicingDetails
-   )
-   return WinRt.Windows.Foundation.TimeSpan;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DeviceUseDetails
-
-   overriding procedure Initialize (this : in out DeviceUseDetails);
-   overriding procedure Finalize (this : in out DeviceUseDetails);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DeviceUseDetails
-
-   function get_DeviceId
-   (
-      this : in out DeviceUseDetails
-   )
-   return WinRt.WString;
-
-   function get_Arguments
-   (
-      this : in out DeviceUseDetails
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.Devices.Background;

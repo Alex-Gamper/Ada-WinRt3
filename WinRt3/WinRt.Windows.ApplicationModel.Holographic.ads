@@ -48,16 +48,6 @@ package WinRt.Windows.ApplicationModel.Holographic is
    type IHolographicKeyboardStatics_Ptr is access all IHolographicKeyboardStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type HolographicKeyboard is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHolographicKeyboard : access Windows.ApplicationModel.Holographic.IHolographicKeyboard;
-      end record;
-   type HolographicKeyboard_Ptr is access all HolographicKeyboard;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -102,46 +92,5 @@ package WinRt.Windows.ApplicationModel.Holographic is
       return WinRt.Hresult is abstract;
 
       IID_IHolographicKeyboardStatics : aliased WinRt.IID := (3061237284, 25559, 22735, (176, 107, 8, 186, 160, 50, 162, 63 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HolographicKeyboard
-
-   overriding procedure Initialize (this : in out HolographicKeyboard);
-   overriding procedure Finalize (this : in out HolographicKeyboard);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for HolographicKeyboard
-
-   function GetDefault
-   return WinRt.Windows.ApplicationModel.Holographic.HolographicKeyboard;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HolographicKeyboard
-
-   procedure SetPlacementOverride
-   (
-      this : in out HolographicKeyboard;
-      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
-      orientation : WinRt.Windows.Foundation.Numerics.Quaternion
-   );
-
-   procedure SetPlacementOverride
-   (
-      this : in out HolographicKeyboard;
-      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      topCenterPosition : WinRt.Windows.Foundation.Numerics.Vector3;
-      orientation : WinRt.Windows.Foundation.Numerics.Quaternion;
-      maxSize : WinRt.Windows.Foundation.Numerics.Vector2
-   );
-
-   procedure ResetPlacementOverride
-   (
-      this : in out HolographicKeyboard
-   );
 
 end WinRt.Windows.ApplicationModel.Holographic;

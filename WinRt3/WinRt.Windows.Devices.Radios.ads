@@ -47,16 +47,6 @@ package WinRt.Windows.Devices.Radios is
    type IRadioStatics_Ptr is access all IRadioStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type Radio is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IRadio : access Windows.Devices.Radios.IRadio;
-      end record;
-   type Radio_Ptr is access all Radio;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -190,74 +180,5 @@ package WinRt.Windows.Devices.Radios is
       return WinRt.Hresult is abstract;
 
       IID_IRadioStatics : aliased WinRt.IID := (1605804334, 26571, 18094, (170, 233, 101, 145, 159, 134, 239, 244 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for Radio
-
-   overriding procedure Initialize (this : in out Radio);
-   overriding procedure Finalize (this : in out Radio);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for Radio
-
-   function GetRadiosAsync
-   return WinRt.GenericObject;
-
-   function GetDeviceSelector
-   return WinRt.WString;
-
-   function FromIdAsync
-   (
-      deviceId : WinRt.WString
-   )
-   return WinRt.Windows.Devices.Radios.Radio;
-
-   function RequestAccessAsync
-   return WinRt.Windows.Devices.Radios.RadioAccessStatus;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for Radio
-
-   function SetStateAsync
-   (
-      this : in out Radio;
-      value : WinRt.Windows.Devices.Radios.RadioState
-   )
-   return WinRt.Windows.Devices.Radios.RadioAccessStatus;
-
-   function add_StateChanged
-   (
-      this : in out Radio;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_StateChanged
-   (
-      this : in out Radio;
-      eventCookie : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function get_State
-   (
-      this : in out Radio
-   )
-   return WinRt.Windows.Devices.Radios.RadioState;
-
-   function get_Name
-   (
-      this : in out Radio
-   )
-   return WinRt.WString;
-
-   function get_Kind
-   (
-      this : in out Radio
-   )
-   return WinRt.Windows.Devices.Radios.RadioKind;
 
 end WinRt.Windows.Devices.Radios;

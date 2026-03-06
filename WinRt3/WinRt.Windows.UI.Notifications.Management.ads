@@ -47,16 +47,6 @@ package WinRt.Windows.UI.Notifications.Management is
    type IUserNotificationListenerStatics_Ptr is access all IUserNotificationListenerStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type UserNotificationListener is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IUserNotificationListener : access Windows.UI.Notifications.Management.IUserNotificationListener;
-      end record;
-   type UserNotificationListener_Ptr is access all UserNotificationListener;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -150,74 +140,5 @@ package WinRt.Windows.UI.Notifications.Management is
       return WinRt.Hresult is abstract;
 
       IID_IUserNotificationListenerStatics : aliased WinRt.IID := (4284556239, 17286, 19107, (183, 61, 184, 4, 229, 182, 59, 35 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for UserNotificationListener
-
-   overriding procedure Initialize (this : in out UserNotificationListener);
-   overriding procedure Finalize (this : in out UserNotificationListener);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for UserNotificationListener
-
-   function get_Current
-   return WinRt.Windows.UI.Notifications.Management.UserNotificationListener;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for UserNotificationListener
-
-   function RequestAccessAsync
-   (
-      this : in out UserNotificationListener
-   )
-   return WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus;
-
-   function GetAccessStatus
-   (
-      this : in out UserNotificationListener
-   )
-   return WinRt.Windows.UI.Notifications.Management.UserNotificationListenerAccessStatus;
-
-   function add_NotificationChanged
-   (
-      this : in out UserNotificationListener;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_NotificationChanged
-   (
-      this : in out UserNotificationListener;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function GetNotificationsAsync
-   (
-      this : in out UserNotificationListener;
-      kinds : WinRt.Windows.UI.Notifications.NotificationKinds
-   )
-   return WinRt.GenericObject;
-
-   function GetNotification
-   (
-      this : in out UserNotificationListener;
-      notificationId : WinRt.UInt32
-   )
-   return WinRt.Windows.UI.Notifications.UserNotification'Class;
-
-   procedure ClearNotifications
-   (
-      this : in out UserNotificationListener
-   );
-
-   procedure RemoveNotification
-   (
-      this : in out UserNotificationListener;
-      notificationId : WinRt.UInt32
-   );
 
 end WinRt.Windows.UI.Notifications.Management;

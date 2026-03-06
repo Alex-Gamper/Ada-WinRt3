@@ -189,17 +189,6 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
    type IWindowProvider_Ptr is access all IWindowProvider;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type IRawElementProviderSimple is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IIRawElementProviderSimple : access Windows.UI.Xaml.Automation.Provider.IIRawElementProviderSimple;
-      end record;
-   type IRawElementProviderSimple_Ptr is access all IRawElementProviderSimple;
-   type IRawElementProviderSimple_Array is array (Natural range <>) of IRawElementProviderSimple;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -1342,18 +1331,5 @@ package WinRt.Windows.UI.Xaml.Automation.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IWindowProvider : aliased WinRt.IID := (464161597, 14543, 16730, (133, 211, 32, 228, 58, 14, 193, 177 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for IRawElementProviderSimple
-
-   overriding procedure Initialize (this : in out IRawElementProviderSimple);
-   overriding procedure Finalize (this : in out IRawElementProviderSimple);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for IRawElementProviderSimple
 
 end WinRt.Windows.UI.Xaml.Automation.Provider;

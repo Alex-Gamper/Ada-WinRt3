@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.System.RemoteDesktop.Input is
@@ -60,16 +59,6 @@ package WinRt.Windows.System.RemoteDesktop.Input is
    type IRemoteTextConnectionFactory2_Interface is interface and WinRt.IInspectable_Interface;
    type IRemoteTextConnectionFactory2 is access all IRemoteTextConnectionFactory2_Interface'Class;
    type IRemoteTextConnectionFactory2_Ptr is access all IRemoteTextConnectionFactory2;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type RemoteTextConnection is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IRemoteTextConnection : access Windows.System.RemoteDesktop.Input.IRemoteTextConnection;
-      end record;
-   type RemoteTextConnection_Ptr is access all RemoteTextConnection;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -201,78 +190,5 @@ package WinRt.Windows.System.RemoteDesktop.Input is
       return WinRt.Hresult is abstract;
 
       IID_IRemoteTextConnectionFactory2 : aliased WinRt.IID := (2485503961, 60827, 23808, (153, 204, 176, 184, 220, 158, 76, 96 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for RemoteTextConnection
-
-   overriding procedure Initialize (this : in out RemoteTextConnection);
-   overriding procedure Finalize (this : in out RemoteTextConnection);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for RemoteTextConnection
-
-   function Constructor
-   (
-      connectionId : WinRt.Guid;
-      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler
-   )
-   return RemoteTextConnection;
-
-   function Constructor
-   (
-      connectionId : WinRt.Guid;
-      pduForwarder : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionDataHandler;
-      options : WinRt.Windows.System.RemoteDesktop.Input.RemoteTextConnectionOptions
-   )
-   return RemoteTextConnection;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for RemoteTextConnection
-
-   function get_IsEnabled
-   (
-      this : in out RemoteTextConnection
-   )
-   return WinRt.Boolean;
-
-   procedure put_IsEnabled
-   (
-      this : in out RemoteTextConnection;
-      value : WinRt.Boolean
-   );
-
-   procedure RegisterThread
-   (
-      this : in out RemoteTextConnection;
-      threadId : WinRt.UInt32
-   );
-
-   procedure UnregisterThread
-   (
-      this : in out RemoteTextConnection;
-      threadId : WinRt.UInt32
-   );
-
-   procedure ReportDataReceived
-   (
-      this : in out RemoteTextConnection;
-      pduData : WinRt.Byte_Array
-   );
-
-   procedure ReportPredictedKeyEvent
-   (
-      this : in out RemoteTextConnection;
-      scanCode : WinRt.UInt16;
-      attributes : WinRt.Windows.System.RemoteDesktop.Input.RemoteKeyEventAttributes
-   );
-
-   procedure Close
-   (
-      this : in out RemoteTextConnection
-   );
 
 end WinRt.Windows.System.RemoteDesktop.Input;

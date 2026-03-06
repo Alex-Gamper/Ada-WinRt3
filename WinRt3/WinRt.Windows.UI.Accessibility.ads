@@ -47,22 +47,6 @@ package WinRt.Windows.UI.Accessibility is
    type IScreenReaderService_Ptr is access all IScreenReaderService;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ScreenReaderPositionChangedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IScreenReaderPositionChangedEventArgs : access Windows.UI.Accessibility.IScreenReaderPositionChangedEventArgs;
-      end record;
-   type ScreenReaderPositionChangedEventArgs_Ptr is access all ScreenReaderPositionChangedEventArgs;
-
-   type ScreenReaderService is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IScreenReaderService : access Windows.UI.Accessibility.IScreenReaderService;
-      end record;
-   type ScreenReaderService_Ptr is access all ScreenReaderService;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -111,63 +95,5 @@ package WinRt.Windows.UI.Accessibility is
       return WinRt.Hresult is abstract;
 
       IID_IScreenReaderService : aliased WinRt.IID := (424104999, 60096, 20691, (189, 217, 155, 72, 122, 34, 98, 86 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ScreenReaderPositionChangedEventArgs
-
-   overriding procedure Initialize (this : in out ScreenReaderPositionChangedEventArgs);
-   overriding procedure Finalize (this : in out ScreenReaderPositionChangedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ScreenReaderPositionChangedEventArgs
-
-   function get_ScreenPositionInRawPixels
-   (
-      this : in out ScreenReaderPositionChangedEventArgs
-   )
-   return WinRt.Windows.Foundation.Rect;
-
-   function get_IsReadingText
-   (
-      this : in out ScreenReaderPositionChangedEventArgs
-   )
-   return WinRt.Boolean;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ScreenReaderService
-
-   overriding procedure Initialize (this : in out ScreenReaderService);
-   overriding procedure Finalize (this : in out ScreenReaderService);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for ScreenReaderService
-
-   function Constructor return ScreenReaderService;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ScreenReaderService
-
-   function get_CurrentScreenReaderPosition
-   (
-      this : in out ScreenReaderService
-   )
-   return WinRt.Windows.UI.Accessibility.ScreenReaderPositionChangedEventArgs'Class;
-
-   function add_ScreenReaderPositionChanged
-   (
-      this : in out ScreenReaderService;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ScreenReaderPositionChanged
-   (
-      this : in out ScreenReaderService;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
 
 end WinRt.Windows.UI.Accessibility;

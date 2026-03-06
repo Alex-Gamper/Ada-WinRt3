@@ -51,16 +51,6 @@ package WinRt.Windows.Data.Xml.Xsl is
    type IXsltProcessorFactory_Ptr is access all IXsltProcessorFactory;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type XsltProcessor is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IXsltProcessor : access Windows.Data.Xml.Xsl.IXsltProcessor;
-      end record;
-   type XsltProcessor_Ptr is access all XsltProcessor;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -102,41 +92,5 @@ package WinRt.Windows.Data.Xml.Xsl is
       return WinRt.Hresult is abstract;
 
       IID_IXsltProcessorFactory : aliased WinRt.IID := (658589376, 39505, 18019, (191, 48, 14, 247, 66, 20, 111, 32 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for XsltProcessor
-
-   overriding procedure Initialize (this : in out XsltProcessor);
-   overriding procedure Finalize (this : in out XsltProcessor);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for XsltProcessor
-
-   function Constructor
-   (
-      document : WinRt.Windows.Data.Xml.Dom.XmlDocument'Class
-   )
-   return XsltProcessor;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for XsltProcessor
-
-   function TransformToString
-   (
-      this : in out XsltProcessor;
-      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
-   )
-   return WinRt.WString;
-
-   function TransformToDocument
-   (
-      this : in out XsltProcessor;
-      inputNode : WinRt.Windows.Data.Xml.Dom.IXmlNode
-   )
-   return WinRt.Windows.Data.Xml.Dom.XmlDocument'Class;
 
 end WinRt.Windows.Data.Xml.Xsl;

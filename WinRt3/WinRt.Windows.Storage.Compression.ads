@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -54,22 +53,6 @@ package WinRt.Windows.Storage.Compression is
    type IDecompressorFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IDecompressorFactory is access all IDecompressorFactory_Interface'Class;
    type IDecompressorFactory_Ptr is access all IDecompressorFactory;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type Compressor is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICompressor : access Windows.Storage.Compression.ICompressor;
-      end record;
-   type Compressor_Ptr is access all Compressor;
-
-   type Decompressor is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDecompressor : access Windows.Storage.Compression.IDecompressor;
-      end record;
-   type Decompressor_Ptr is access all Decompressor;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -163,103 +146,5 @@ package WinRt.Windows.Storage.Compression is
       return WinRt.Hresult is abstract;
 
       IID_IDecompressorFactory : aliased WinRt.IID := (1396171346, 7586, 17121, (136, 52, 3, 121, 210, 141, 116, 47 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for Compressor
-
-   overriding procedure Initialize (this : in out Compressor);
-   overriding procedure Finalize (this : in out Compressor);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for Compressor
-
-   function Constructor
-   (
-      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream
-   )
-   return Compressor;
-
-   function Constructor
-   (
-      underlyingStream : WinRt.Windows.Storage.Streams.IOutputStream;
-      algorithm : WinRt.Windows.Storage.Compression.CompressAlgorithm;
-      blockSize : WinRt.UInt32
-   )
-   return Compressor;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for Compressor
-
-   function FinishAsync
-   (
-      this : in out Compressor
-   )
-   return WinRt.Boolean;
-
-   function DetachStream
-   (
-      this : in out Compressor
-   )
-   return WinRt.Windows.Storage.Streams.IOutputStream;
-
-   function WriteAsync
-   (
-      this : in out Compressor;
-      buffer : WinRt.Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.UInt32;
-
-   function FlushAsync
-   (
-      this : in out Compressor
-   )
-   return WinRt.Boolean;
-
-   procedure Close
-   (
-      this : in out Compressor
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for Decompressor
-
-   overriding procedure Initialize (this : in out Decompressor);
-   overriding procedure Finalize (this : in out Decompressor);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for Decompressor
-
-   function Constructor
-   (
-      underlyingStream : WinRt.Windows.Storage.Streams.IInputStream
-   )
-   return Decompressor;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for Decompressor
-
-   function DetachStream
-   (
-      this : in out Decompressor
-   )
-   return WinRt.Windows.Storage.Streams.IInputStream;
-
-   function ReadAsync
-   (
-      this : in out Decompressor;
-      buffer : WinRt.Windows.Storage.Streams.IBuffer;
-      count : WinRt.UInt32;
-      options : WinRt.Windows.Storage.Streams.InputStreamOptions
-   )
-   return WinRt.Windows.Storage.Streams.IBuffer;
-
-   procedure Close
-   (
-      this : in out Decompressor
-   );
 
 end WinRt.Windows.Storage.Compression;

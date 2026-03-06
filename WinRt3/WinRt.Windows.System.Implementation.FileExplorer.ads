@@ -60,16 +60,6 @@ package WinRt.Windows.System.Implementation.FileExplorer is
    type ISysStorageProviderHttpRequestProvider_Ptr is access all ISysStorageProviderHttpRequestProvider;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type SysStorageProviderEventReceivedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ISysStorageProviderEventReceivedEventArgs : access Windows.System.Implementation.FileExplorer.ISysStorageProviderEventReceivedEventArgs;
-      end record;
-   type SysStorageProviderEventReceivedEventArgs_Ptr is access all SysStorageProviderEventReceivedEventArgs;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -152,33 +142,5 @@ package WinRt.Windows.System.Implementation.FileExplorer is
       return WinRt.Hresult is abstract;
 
       IID_ISysStorageProviderHttpRequestProvider : aliased WinRt.IID := (3413110710, 59242, 23589, (163, 62, 62, 120, 166, 224, 224, 206 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for SysStorageProviderEventReceivedEventArgs
-
-   overriding procedure Initialize (this : in out SysStorageProviderEventReceivedEventArgs);
-   overriding procedure Finalize (this : in out SysStorageProviderEventReceivedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for SysStorageProviderEventReceivedEventArgs
-
-   function Constructor
-   (
-      json : WinRt.WString
-   )
-   return SysStorageProviderEventReceivedEventArgs;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for SysStorageProviderEventReceivedEventArgs
-
-   function get_Json
-   (
-      this : in out SysStorageProviderEventReceivedEventArgs
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.System.Implementation.FileExplorer;

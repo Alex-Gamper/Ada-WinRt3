@@ -42,16 +42,6 @@ package WinRt.Windows.System.Display is
    type IDisplayRequest_Ptr is access all IDisplayRequest;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type DisplayRequest is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDisplayRequest : access Windows.System.Display.IDisplayRequest;
-      end record;
-   type DisplayRequest_Ptr is access all DisplayRequest;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -71,33 +61,5 @@ package WinRt.Windows.System.Display is
       return WinRt.Hresult is abstract;
 
       IID_IDisplayRequest : aliased WinRt.IID := (3849527364, 62623, 19296, (141, 212, 94, 126, 58, 99, 42, 192 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DisplayRequest
-
-   overriding procedure Initialize (this : in out DisplayRequest);
-   overriding procedure Finalize (this : in out DisplayRequest);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for DisplayRequest
-
-   function Constructor return DisplayRequest;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DisplayRequest
-
-   procedure RequestActive
-   (
-      this : in out DisplayRequest
-   );
-
-   procedure RequestRelease
-   (
-      this : in out DisplayRequest
-   );
 
 end WinRt.Windows.System.Display;

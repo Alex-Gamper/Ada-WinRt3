@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.System.Inventory is
@@ -45,16 +44,6 @@ package WinRt.Windows.System.Inventory is
    type IInstalledDesktopAppStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IInstalledDesktopAppStatics is access all IInstalledDesktopAppStatics_Interface'Class;
    type IInstalledDesktopAppStatics_Ptr is access all IInstalledDesktopAppStatics;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type InstalledDesktopApp is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IInstalledDesktopApp : access Windows.System.Inventory.IInstalledDesktopApp;
-      end record;
-   type InstalledDesktopApp_Ptr is access all InstalledDesktopApp;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -104,54 +93,5 @@ package WinRt.Windows.System.Inventory is
       return WinRt.Hresult is abstract;
 
       IID_IInstalledDesktopAppStatics : aliased WinRt.IID := (642578254, 8653, 24475, (96, 86, 120, 102, 173, 114, 72, 154 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for InstalledDesktopApp
-
-   overriding procedure Initialize (this : in out InstalledDesktopApp);
-   overriding procedure Finalize (this : in out InstalledDesktopApp);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for InstalledDesktopApp
-
-   function GetInventoryAsync
-   return WinRt.GenericObject;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for InstalledDesktopApp
-
-   function get_Id
-   (
-      this : in out InstalledDesktopApp
-   )
-   return WinRt.WString;
-
-   function get_DisplayName
-   (
-      this : in out InstalledDesktopApp
-   )
-   return WinRt.WString;
-
-   function get_Publisher
-   (
-      this : in out InstalledDesktopApp
-   )
-   return WinRt.WString;
-
-   function get_DisplayVersion
-   (
-      this : in out InstalledDesktopApp
-   )
-   return WinRt.WString;
-
-   function ToString
-   (
-      this : in out InstalledDesktopApp
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.System.Inventory;

@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -59,28 +58,6 @@ package WinRt.Windows.Media.ContentRestrictions is
    type IRatedContentRestrictionsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type IRatedContentRestrictionsFactory is access all IRatedContentRestrictionsFactory_Interface'Class;
    type IRatedContentRestrictionsFactory_Ptr is access all IRatedContentRestrictionsFactory;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ContentRestrictionsBrowsePolicy is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IContentRestrictionsBrowsePolicy : access Windows.Media.ContentRestrictions.IContentRestrictionsBrowsePolicy;
-      end record;
-   type ContentRestrictionsBrowsePolicy_Ptr is access all ContentRestrictionsBrowsePolicy;
-
-   type RatedContentDescription is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IRatedContentDescription : access Windows.Media.ContentRestrictions.IRatedContentDescription;
-      end record;
-   type RatedContentDescription_Ptr is access all RatedContentDescription;
-
-   type RatedContentRestrictions is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IRatedContentRestrictions : access Windows.Media.ContentRestrictions.IRatedContentRestrictions;
-      end record;
-   type RatedContentRestrictions_Ptr is access all RatedContentRestrictions;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -117,18 +94,6 @@ package WinRt.Windows.Media.ContentRestrictions is
       Music_e => 5
    );
    type RatedContentCategory_Ptr is access all RatedContentCategory;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IReference_UInt32 is new WinRt.Windows.Foundation.IReference (WinRt.UInt32);
-   IID_IReference_UInt32 : aliased WinRt.IID := (1805138111, 52848, 22582, (179, 202, 224, 175, 118, 187, 66, 210 ));
-   function QInterface_IReference_UInt32 is new Generic_QueryInterface (GenericObject_Interface, IReference_UInt32.Kind, IID_IReference_UInt32'Access);
-
-   package IVector_HString is new WinRt.Windows.Foundation.Collections.IVector (WinRt.HString);
-   IID_IVector_HString : aliased WinRt.IID := (1499035137, 60247, 23072, (141, 129, 81, 8, 204, 105, 32, 211 ));
-   function QInterface_IVector_HString is new Generic_QueryInterface (GenericObject_Interface, IVector_HString.Kind, IID_IVector_HString'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -263,7 +228,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       function GetRestrictionLevelAsync
       (
          this : access IRatedContentRestrictions_Interface;
-         RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
+         RatedContentDescription : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -271,7 +236,7 @@ package WinRt.Windows.Media.ContentRestrictions is
       function RequestContentAccessAsync
       (
          this : access IRatedContentRestrictions_Interface;
-         RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
+         RatedContentDescription : WinRt.Windows.Media.ContentRestrictions.IRatedContentDescription;
          RetVal : access GenericObject
       )
       return WinRt.Hresult is abstract;
@@ -305,169 +270,5 @@ package WinRt.Windows.Media.ContentRestrictions is
       return WinRt.Hresult is abstract;
 
       IID_IRatedContentRestrictionsFactory : aliased WinRt.IID := (4216007062, 50109, 18704, (150, 25, 151, 207, 208, 105, 77, 86 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ContentRestrictionsBrowsePolicy
-
-   overriding procedure Initialize (this : in out ContentRestrictionsBrowsePolicy);
-   overriding procedure Finalize (this : in out ContentRestrictionsBrowsePolicy);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ContentRestrictionsBrowsePolicy
-
-   function get_GeographicRegion
-   (
-      this : in out ContentRestrictionsBrowsePolicy
-   )
-   return WinRt.WString;
-
-   function get_MaxBrowsableAgeRating
-   (
-      this : in out ContentRestrictionsBrowsePolicy
-   )
-   return IReference_UInt32.Kind;
-
-   function get_PreferredAgeRating
-   (
-      this : in out ContentRestrictionsBrowsePolicy
-   )
-   return IReference_UInt32.Kind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for RatedContentDescription
-
-   overriding procedure Initialize (this : in out RatedContentDescription);
-   overriding procedure Finalize (this : in out RatedContentDescription);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for RatedContentDescription
-
-   function Constructor
-   (
-      id : WinRt.WString;
-      title : WinRt.WString;
-      category : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
-   )
-   return RatedContentDescription;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for RatedContentDescription
-
-   function get_Id
-   (
-      this : in out RatedContentDescription
-   )
-   return WinRt.WString;
-
-   procedure put_Id
-   (
-      this : in out RatedContentDescription;
-      value : WinRt.WString
-   );
-
-   function get_Title
-   (
-      this : in out RatedContentDescription
-   )
-   return WinRt.WString;
-
-   procedure put_Title
-   (
-      this : in out RatedContentDescription;
-      value : WinRt.WString
-   );
-
-   function get_Image
-   (
-      this : in out RatedContentDescription
-   )
-   return WinRt.Windows.Storage.Streams.IRandomAccessStreamReference;
-
-   procedure put_Image
-   (
-      this : in out RatedContentDescription;
-      value : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
-   );
-
-   function get_Category
-   (
-      this : in out RatedContentDescription
-   )
-   return WinRt.Windows.Media.ContentRestrictions.RatedContentCategory;
-
-   procedure put_Category
-   (
-      this : in out RatedContentDescription;
-      value : WinRt.Windows.Media.ContentRestrictions.RatedContentCategory
-   );
-
-   function get_Ratings
-   (
-      this : in out RatedContentDescription
-   )
-   return IVector_HString.Kind;
-
-   procedure put_Ratings
-   (
-      this : in out RatedContentDescription;
-      value : GenericObject
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for RatedContentRestrictions
-
-   overriding procedure Initialize (this : in out RatedContentRestrictions);
-   overriding procedure Finalize (this : in out RatedContentRestrictions);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for RatedContentRestrictions
-
-   function Constructor
-   (
-      maxAgeRating : WinRt.UInt32
-   )
-   return RatedContentRestrictions;
-
-   function Constructor return RatedContentRestrictions;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for RatedContentRestrictions
-
-   function GetBrowsePolicyAsync
-   (
-      this : in out RatedContentRestrictions
-   )
-   return WinRt.Windows.Media.ContentRestrictions.ContentRestrictionsBrowsePolicy'Class;
-
-   function GetRestrictionLevelAsync
-   (
-      this : in out RatedContentRestrictions;
-      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
-   )
-   return WinRt.Windows.Media.ContentRestrictions.ContentAccessRestrictionLevel;
-
-   function RequestContentAccessAsync
-   (
-      this : in out RatedContentRestrictions;
-      RatedContentDescription_p : WinRt.Windows.Media.ContentRestrictions.RatedContentDescription'Class
-   )
-   return WinRt.Boolean;
-
-   function add_RestrictionsChanged
-   (
-      this : in out RatedContentRestrictions;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_RestrictionsChanged
-   (
-      this : in out RatedContentRestrictions;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
 
 end WinRt.Windows.Media.ContentRestrictions;

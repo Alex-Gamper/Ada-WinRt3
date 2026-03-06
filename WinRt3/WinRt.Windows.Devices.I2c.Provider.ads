@@ -54,16 +54,6 @@ package WinRt.Windows.Devices.I2c.Provider is
    type IProviderI2cConnectionSettings_Ptr is access all IProviderI2cConnectionSettings;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ProviderI2cConnectionSettings is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IProviderI2cConnectionSettings : access Windows.Devices.I2c.Provider.IProviderI2cConnectionSettings;
-      end record;
-   type ProviderI2cConnectionSettings_Ptr is access all ProviderI2cConnectionSettings;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -251,54 +241,5 @@ package WinRt.Windows.Devices.I2c.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IProviderI2cConnectionSettings : aliased WinRt.IID := (3923463732, 58640, 17591, (128, 157, 242, 248, 91, 85, 83, 57 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ProviderI2cConnectionSettings
-
-   overriding procedure Initialize (this : in out ProviderI2cConnectionSettings);
-   overriding procedure Finalize (this : in out ProviderI2cConnectionSettings);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ProviderI2cConnectionSettings
-
-   function get_SlaveAddress
-   (
-      this : in out ProviderI2cConnectionSettings
-   )
-   return WinRt.Int32;
-
-   procedure put_SlaveAddress
-   (
-      this : in out ProviderI2cConnectionSettings;
-      value : WinRt.Int32
-   );
-
-   function get_BusSpeed
-   (
-      this : in out ProviderI2cConnectionSettings
-   )
-   return WinRt.Windows.Devices.I2c.Provider.ProviderI2cBusSpeed;
-
-   procedure put_BusSpeed
-   (
-      this : in out ProviderI2cConnectionSettings;
-      value : WinRt.Windows.Devices.I2c.Provider.ProviderI2cBusSpeed
-   );
-
-   function get_SharingMode
-   (
-      this : in out ProviderI2cConnectionSettings
-   )
-   return WinRt.Windows.Devices.I2c.Provider.ProviderI2cSharingMode;
-
-   procedure put_SharingMode
-   (
-      this : in out ProviderI2cConnectionSettings;
-      value : WinRt.Windows.Devices.I2c.Provider.ProviderI2cSharingMode
-   );
 
 end WinRt.Windows.Devices.I2c.Provider;

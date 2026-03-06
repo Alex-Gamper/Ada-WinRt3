@@ -50,22 +50,6 @@ package WinRt.Windows.Security.Authentication.Identity is
    type IEnterpriseKeyCredentialRegistrationManagerStatics_Ptr is access all IEnterpriseKeyCredentialRegistrationManagerStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type EnterpriseKeyCredentialRegistrationInfo is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IEnterpriseKeyCredentialRegistrationInfo : access Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationInfo;
-      end record;
-   type EnterpriseKeyCredentialRegistrationInfo_Ptr is access all EnterpriseKeyCredentialRegistrationInfo;
-
-   type EnterpriseKeyCredentialRegistrationManager is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IEnterpriseKeyCredentialRegistrationManager : access Windows.Security.Authentication.Identity.IEnterpriseKeyCredentialRegistrationManager;
-      end record;
-   type EnterpriseKeyCredentialRegistrationManager_Ptr is access all EnterpriseKeyCredentialRegistrationManager;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -132,69 +116,5 @@ package WinRt.Windows.Security.Authentication.Identity is
       return WinRt.Hresult is abstract;
 
       IID_IEnterpriseKeyCredentialRegistrationManagerStatics : aliased WinRt.IID := (2008571550, 44276, 19392, (186, 194, 64, 187, 70, 239, 187, 63 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for EnterpriseKeyCredentialRegistrationInfo
-
-   overriding procedure Initialize (this : in out EnterpriseKeyCredentialRegistrationInfo);
-   overriding procedure Finalize (this : in out EnterpriseKeyCredentialRegistrationInfo);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for EnterpriseKeyCredentialRegistrationInfo
-
-   function get_TenantId
-   (
-      this : in out EnterpriseKeyCredentialRegistrationInfo
-   )
-   return WinRt.WString;
-
-   function get_TenantName
-   (
-      this : in out EnterpriseKeyCredentialRegistrationInfo
-   )
-   return WinRt.WString;
-
-   function get_Subject
-   (
-      this : in out EnterpriseKeyCredentialRegistrationInfo
-   )
-   return WinRt.WString;
-
-   function get_KeyId
-   (
-      this : in out EnterpriseKeyCredentialRegistrationInfo
-   )
-   return WinRt.WString;
-
-   function get_KeyName
-   (
-      this : in out EnterpriseKeyCredentialRegistrationInfo
-   )
-   return WinRt.WString;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for EnterpriseKeyCredentialRegistrationManager
-
-   overriding procedure Initialize (this : in out EnterpriseKeyCredentialRegistrationManager);
-   overriding procedure Finalize (this : in out EnterpriseKeyCredentialRegistrationManager);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for EnterpriseKeyCredentialRegistrationManager
-
-   function get_Current
-   return WinRt.Windows.Security.Authentication.Identity.EnterpriseKeyCredentialRegistrationManager;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for EnterpriseKeyCredentialRegistrationManager
-
-   function GetRegistrationsAsync
-   (
-      this : in out EnterpriseKeyCredentialRegistrationManager
-   )
-   return WinRt.GenericObject;
 
 end WinRt.Windows.Security.Authentication.Identity;

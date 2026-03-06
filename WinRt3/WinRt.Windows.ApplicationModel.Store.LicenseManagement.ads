@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 limited with WinRt.Windows.Storage.Streams;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -57,22 +56,6 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
    type ILicenseSatisfactionResult_Ptr is access all ILicenseSatisfactionResult;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type LicenseSatisfactionInfo is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ILicenseSatisfactionInfo : access Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionInfo;
-      end record;
-   type LicenseSatisfactionInfo_Ptr is access all LicenseSatisfactionInfo;
-
-   type LicenseSatisfactionResult is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ILicenseSatisfactionResult : access Windows.ApplicationModel.Store.LicenseManagement.ILicenseSatisfactionResult;
-      end record;
-   type LicenseSatisfactionResult_Ptr is access all LicenseSatisfactionResult;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -85,14 +68,6 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       AllLicenses_e => 1
    );
    type LicenseRefreshOption_Ptr is access all LicenseRefreshOption;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IMapView_HString_ILicenseSatisfactionInfo is new WinRt.Windows.Foundation.Collections.IMapView (WinRt.HString, ILicenseSatisfactionInfo);
-   IID_IMapView_HString_ILicenseSatisfactionInfo : aliased WinRt.IID := (1994740624, 47316, 22775, (150, 153, 222, 183, 197, 42, 201, 85 ));
-   function QInterface_IMapView_HString_ILicenseSatisfactionInfo is new Generic_QueryInterface (GenericObject_Interface, IMapView_HString_ILicenseSatisfactionInfo.Kind, IID_IMapView_HString_ILicenseSatisfactionInfo'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -205,104 +180,5 @@ package WinRt.Windows.ApplicationModel.Store.LicenseManagement is
       return WinRt.Hresult is abstract;
 
       IID_ILicenseSatisfactionResult : aliased WinRt.IID := (1013403507, 15495, 20193, (130, 1, 244, 40, 53, 155, 211, 175 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package LicenseManager is
-
-      procedure RefreshLicensesAsync
-      (
-         refreshOption : WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseRefreshOption
-      );
-
-      procedure AddLicenseAsync
-      (
-         license : WinRt.Windows.Storage.Streams.IBuffer
-      );
-
-      function GetSatisfactionInfosAsync
-      (
-         contentIds : GenericObject;
-         keyIds : GenericObject
-      )
-      return WinRt.Windows.ApplicationModel.Store.LicenseManagement.LicenseSatisfactionResult;
-
-   end LicenseManager;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for LicenseSatisfactionInfo
-
-   overriding procedure Initialize (this : in out LicenseSatisfactionInfo);
-   overriding procedure Finalize (this : in out LicenseSatisfactionInfo);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for LicenseSatisfactionInfo
-
-   function get_SatisfiedByDevice
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_SatisfiedByOpenLicense
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_SatisfiedByTrial
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_SatisfiedByPass
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_SatisfiedByInstallMedia
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_SatisfiedBySignedInUser
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   function get_IsSatisfied
-   (
-      this : in out LicenseSatisfactionInfo
-   )
-   return WinRt.Boolean;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for LicenseSatisfactionResult
-
-   overriding procedure Initialize (this : in out LicenseSatisfactionResult);
-   overriding procedure Finalize (this : in out LicenseSatisfactionResult);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for LicenseSatisfactionResult
-
-   function get_LicenseSatisfactionInfos
-   (
-      this : in out LicenseSatisfactionResult
-   )
-   return IMapView_HString_ILicenseSatisfactionInfo.Kind;
-
-   function get_ExtendedError
-   (
-      this : in out LicenseSatisfactionResult
-   )
-   return WinRt.Windows.Foundation.HResult;
 
 end WinRt.Windows.ApplicationModel.Store.LicenseManagement;

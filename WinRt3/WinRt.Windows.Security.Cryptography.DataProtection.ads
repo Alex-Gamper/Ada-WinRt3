@@ -48,16 +48,6 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
    type IDataProtectionProviderFactory_Ptr is access all IDataProtectionProviderFactory;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type DataProtectionProvider is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDataProtectionProvider : access Windows.Security.Cryptography.DataProtection.IDataProtectionProvider;
-      end record;
-   type DataProtectionProvider_Ptr is access all DataProtectionProvider;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -112,57 +102,5 @@ package WinRt.Windows.Security.Cryptography.DataProtection is
       return WinRt.Hresult is abstract;
 
       IID_IDataProtectionProviderFactory : aliased WinRt.IID := (2918399404, 18738, 19679, (172, 65, 114, 20, 51, 53, 20, 202 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DataProtectionProvider
-
-   overriding procedure Initialize (this : in out DataProtectionProvider);
-   overriding procedure Finalize (this : in out DataProtectionProvider);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for DataProtectionProvider
-
-   function Constructor return DataProtectionProvider;
-
-   function Constructor
-   (
-      protectionDescriptor : WinRt.WString
-   )
-   return DataProtectionProvider;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DataProtectionProvider
-
-   function ProtectAsync
-   (
-      this : in out DataProtectionProvider;
-      data : WinRt.Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.Storage.Streams.IBuffer;
-
-   function UnprotectAsync
-   (
-      this : in out DataProtectionProvider;
-      data : WinRt.Windows.Storage.Streams.IBuffer
-   )
-   return WinRt.Windows.Storage.Streams.IBuffer;
-
-   procedure ProtectStreamAsync
-   (
-      this : in out DataProtectionProvider;
-      src : WinRt.Windows.Storage.Streams.IInputStream;
-      dest : WinRt.Windows.Storage.Streams.IOutputStream
-   );
-
-   procedure UnprotectStreamAsync
-   (
-      this : in out DataProtectionProvider;
-      src : WinRt.Windows.Storage.Streams.IInputStream;
-      dest : WinRt.Windows.Storage.Streams.IOutputStream
-   );
 
 end WinRt.Windows.Security.Cryptography.DataProtection;

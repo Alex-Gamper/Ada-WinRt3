@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation;
 with WinRt.Windows.Foundation.Numerics;
 limited with WinRt.Windows.Perception.Spatial;
 limited with WinRt.Windows.UI.Input;
@@ -65,40 +64,6 @@ package WinRt.Windows.Perception.People is
    type IHeadPose_Interface is interface and WinRt.IInspectable_Interface;
    type IHeadPose is access all IHeadPose_Interface'Class;
    type IHeadPose_Ptr is access all IHeadPose;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type EyesPose is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IEyesPose : access Windows.Perception.People.IEyesPose;
-      end record;
-   type EyesPose_Ptr is access all EyesPose;
-
-   type HandMeshObserver is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHandMeshObserver : access Windows.Perception.People.IHandMeshObserver;
-      end record;
-   type HandMeshObserver_Ptr is access all HandMeshObserver;
-
-   type HandMeshVertexState is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHandMeshVertexState : access Windows.Perception.People.IHandMeshVertexState;
-      end record;
-   type HandMeshVertexState_Ptr is access all HandMeshVertexState;
-
-   type HandPose is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHandPose : access Windows.Perception.People.IHandPose;
-      end record;
-   type HandPose_Ptr is access all HandPose;
-
-   type HeadPose is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHeadPose : access Windows.Perception.People.IHeadPose;
-      end record;
-   type HeadPose_Ptr is access all HeadPose;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -197,10 +162,6 @@ package WinRt.Windows.Perception.People is
    type JointPose_Array is array (Natural range <>) of aliased JointPose;
 
    -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -284,7 +245,7 @@ package WinRt.Windows.Perception.People is
       function GetVertexStateForPose
       (
          this : access IHandMeshObserver_Interface;
-         handPose_p : WinRt.Windows.Perception.People.IHandPose;
+         handPose : WinRt.Windows.Perception.People.IHandPose;
          RetVal : access WinRt.Windows.Perception.People.IHandMeshVertexState
       )
       return WinRt.Hresult is abstract;
@@ -412,200 +373,5 @@ package WinRt.Windows.Perception.People is
       return WinRt.Hresult is abstract;
 
       IID_IHeadPose : aliased WinRt.IID := (2136655269, 18907, 14239, (148, 41, 50, 162, 250, 243, 79, 166 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for EyesPose
-
-   overriding procedure Initialize (this : in out EyesPose);
-   overriding procedure Finalize (this : in out EyesPose);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for EyesPose
-
-   function IsSupported
-   return WinRt.Boolean;
-
-   function RequestAccessAsync
-   return WinRt.Windows.UI.Input.GazeInputAccessStatus;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for EyesPose
-
-   function get_IsCalibrationValid
-   (
-      this : in out EyesPose
-   )
-   return WinRt.Boolean;
-
-   function get_Gaze
-   (
-      this : in out EyesPose
-   )
-   return WinRt.GenericObject;
-
-   function get_UpdateTimestamp
-   (
-      this : in out EyesPose
-   )
-   return WinRt.Windows.Perception.PerceptionTimestamp'Class;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HandMeshObserver
-
-   overriding procedure Initialize (this : in out HandMeshObserver);
-   overriding procedure Finalize (this : in out HandMeshObserver);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HandMeshObserver
-
-   function get_Source
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.Windows.UI.Input.Spatial.SpatialInteractionSource'Class;
-
-   function get_TriangleIndexCount
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.UInt32;
-
-   function get_VertexCount
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.UInt32;
-
-   procedure GetTriangleIndices
-   (
-      this : in out HandMeshObserver;
-      indices : WinRt.UInt16_Array
-   );
-
-   function GetVertexStateForPose
-   (
-      this : in out HandMeshObserver;
-      handPose_p : WinRt.Windows.Perception.People.HandPose'Class
-   )
-   return WinRt.Windows.Perception.People.HandMeshVertexState'Class;
-
-   function get_NeutralPose
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.Windows.Perception.People.HandPose'Class;
-
-   function get_NeutralPoseVersion
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.Int32;
-
-   function get_ModelId
-   (
-      this : in out HandMeshObserver
-   )
-   return WinRt.Int32;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HandMeshVertexState
-
-   overriding procedure Initialize (this : in out HandMeshVertexState);
-   overriding procedure Finalize (this : in out HandMeshVertexState);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HandMeshVertexState
-
-   function get_CoordinateSystem
-   (
-      this : in out HandMeshVertexState
-   )
-   return WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-
-   procedure GetVertices
-   (
-      this : in out HandMeshVertexState;
-      vertices : WinRt.Windows.Perception.People.HandMeshVertex_Array
-   );
-
-   function get_UpdateTimestamp
-   (
-      this : in out HandMeshVertexState
-   )
-   return WinRt.Windows.Perception.PerceptionTimestamp'Class;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HandPose
-
-   overriding procedure Initialize (this : in out HandPose);
-   overriding procedure Finalize (this : in out HandPose);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HandPose
-
-   function TryGetJoint
-   (
-      this : in out HandPose;
-      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joint : WinRt.Windows.Perception.People.HandJointKind;
-      jointPose : WinRt.Windows.Perception.People.JointPose_Ptr
-   )
-   return WinRt.Boolean;
-
-   function TryGetJoints
-   (
-      this : in out HandPose;
-      coordinateSystem : WinRt.Windows.Perception.Spatial.SpatialCoordinateSystem'Class;
-      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
-      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
-   )
-   return WinRt.Boolean;
-
-   function GetRelativeJoint
-   (
-      this : in out HandPose;
-      joint : WinRt.Windows.Perception.People.HandJointKind;
-      referenceJoint : WinRt.Windows.Perception.People.HandJointKind
-   )
-   return WinRt.Windows.Perception.People.JointPose;
-
-   procedure GetRelativeJoints
-   (
-      this : in out HandPose;
-      joints : WinRt.Windows.Perception.People.HandJointKind_Array;
-      referenceJoints : WinRt.Windows.Perception.People.HandJointKind_Array;
-      jointPoses : WinRt.Windows.Perception.People.JointPose_Array
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HeadPose
-
-   overriding procedure Initialize (this : in out HeadPose);
-   overriding procedure Finalize (this : in out HeadPose);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HeadPose
-
-   function get_Position
-   (
-      this : in out HeadPose
-   )
-   return WinRt.Windows.Foundation.Numerics.Vector3;
-
-   function get_ForwardDirection
-   (
-      this : in out HeadPose
-   )
-   return WinRt.Windows.Foundation.Numerics.Vector3;
-
-   function get_UpDirection
-   (
-      this : in out HeadPose
-   )
-   return WinRt.Windows.Foundation.Numerics.Vector3;
 
 end WinRt.Windows.Perception.People;

@@ -55,16 +55,6 @@ package WinRt.Windows.Perception is
    type IPerceptionTimestampHelperStatics2_Ptr is access all IPerceptionTimestampHelperStatics2;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type PerceptionTimestamp is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IPerceptionTimestamp : access Windows.Perception.IPerceptionTimestamp;
-      end record;
-   type PerceptionTimestamp_Ptr is access all PerceptionTimestamp;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -124,54 +114,5 @@ package WinRt.Windows.Perception is
       return WinRt.Hresult is abstract;
 
       IID_IPerceptionTimestampHelperStatics2 : aliased WinRt.IID := (1943119870, 16313, 17777, (135, 212, 60, 146, 10, 94, 134, 235 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for PerceptionTimestamp
-
-   overriding procedure Initialize (this : in out PerceptionTimestamp);
-   overriding procedure Finalize (this : in out PerceptionTimestamp);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for PerceptionTimestamp
-
-   function get_TargetTime
-   (
-      this : in out PerceptionTimestamp
-   )
-   return WinRt.Windows.Foundation.DateTime;
-
-   function get_PredictionAmount
-   (
-      this : in out PerceptionTimestamp
-   )
-   return WinRt.Windows.Foundation.TimeSpan;
-
-   function get_SystemRelativeTargetTime
-   (
-      this : in out PerceptionTimestamp
-   )
-   return WinRt.Windows.Foundation.TimeSpan;
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package PerceptionTimestampHelper is
-
-      function FromSystemRelativeTargetTime
-      (
-         targetTime : WinRt.Windows.Foundation.TimeSpan
-      )
-      return WinRt.Windows.Perception.PerceptionTimestamp;
-
-      function FromHistoricalTargetTime
-      (
-         targetTime : WinRt.Windows.Foundation.DateTime
-      )
-      return WinRt.Windows.Perception.PerceptionTimestamp;
-
-   end PerceptionTimestampHelper;
 
 end WinRt.Windows.Perception;

@@ -43,16 +43,6 @@ package WinRt.Windows.Devices.Geolocation.Provider is
    type IGeolocationProvider_Ptr is access all IGeolocationProvider;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type GeolocationProvider is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IGeolocationProvider : access Windows.Devices.Geolocation.Provider.IGeolocationProvider;
-      end record;
-   type GeolocationProvider_Ptr is access all GeolocationProvider;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -116,56 +106,5 @@ package WinRt.Windows.Devices.Geolocation.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IGeolocationProvider : aliased WinRt.IID := (3838773021, 16228, 20639, (141, 194, 11, 116, 160, 89, 130, 157 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for GeolocationProvider
-
-   overriding procedure Initialize (this : in out GeolocationProvider);
-   overriding procedure Finalize (this : in out GeolocationProvider);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for GeolocationProvider
-
-   function Constructor return GeolocationProvider;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for GeolocationProvider
-
-   function get_IsOverridden
-   (
-      this : in out GeolocationProvider
-   )
-   return WinRt.Boolean;
-
-   function SetOverridePosition
-   (
-      this : in out GeolocationProvider;
-      newPosition : WinRt.Windows.Devices.Geolocation.BasicGeoposition;
-      positionSource : WinRt.Windows.Devices.Geolocation.PositionSource;
-      accuracyInMeters : WinRt.Double
-   )
-   return WinRt.Windows.Devices.Geolocation.Provider.LocationOverrideStatus;
-
-   procedure ClearOverridePosition
-   (
-      this : in out GeolocationProvider
-   );
-
-   function add_IsOverriddenChanged
-   (
-      this : in out GeolocationProvider;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_IsOverriddenChanged
-   (
-      this : in out GeolocationProvider;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
 
 end WinRt.Windows.Devices.Geolocation.Provider;

@@ -53,16 +53,6 @@ package WinRt.Windows.UI.Input.Core is
    type IRadialControllerIndependentInputSourceStatics_Ptr is access all IRadialControllerIndependentInputSourceStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type RadialControllerIndependentInputSource is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IRadialControllerIndependentInputSource : access Windows.UI.Input.Core.IRadialControllerIndependentInputSource;
-      end record;
-   type RadialControllerIndependentInputSource_Ptr is access all RadialControllerIndependentInputSource;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -109,45 +99,5 @@ package WinRt.Windows.UI.Input.Core is
       return WinRt.Hresult is abstract;
 
       IID_IRadialControllerIndependentInputSourceStatics : aliased WinRt.IID := (1029144309, 19694, 4582, (181, 53, 0, 27, 220, 6, 171, 59 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for RadialControllerIndependentInputSource
-
-   overriding procedure Initialize (this : in out RadialControllerIndependentInputSource);
-   overriding procedure Finalize (this : in out RadialControllerIndependentInputSource);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for RadialControllerIndependentInputSource
-
-   function CreateForView
-   (
-      view : WinRt.Windows.ApplicationModel.Core.CoreApplicationView'Class
-   )
-   return WinRt.Windows.UI.Input.Core.RadialControllerIndependentInputSource;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for RadialControllerIndependentInputSource
-
-   function get_Controller
-   (
-      this : in out RadialControllerIndependentInputSource
-   )
-   return WinRt.Windows.UI.Input.RadialController'Class;
-
-   function get_Dispatcher
-   (
-      this : in out RadialControllerIndependentInputSource
-   )
-   return WinRt.Windows.UI.Core.CoreDispatcher'Class;
-
-   function get_DispatcherQueue
-   (
-      this : in out RadialControllerIndependentInputSource
-   )
-   return WinRt.Windows.System.DispatcherQueue'Class;
 
 end WinRt.Windows.UI.Input.Core;

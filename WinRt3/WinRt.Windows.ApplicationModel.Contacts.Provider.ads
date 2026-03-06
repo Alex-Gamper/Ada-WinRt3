@@ -28,7 +28,6 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.ApplicationModel.Contacts.Provider is
@@ -52,22 +51,6 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
    type IContactRemovedEventArgs_Ptr is access all IContactRemovedEventArgs;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type ContactPickerUI is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IContactPickerUI : access Windows.ApplicationModel.Contacts.Provider.IContactPickerUI;
-      end record;
-   type ContactPickerUI_Ptr is access all ContactPickerUI;
-
-   type ContactRemovedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IContactRemovedEventArgs : access Windows.ApplicationModel.Contacts.Provider.IContactRemovedEventArgs;
-      end record;
-   type ContactRemovedEventArgs_Ptr is access all ContactRemovedEventArgs;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -82,18 +65,6 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       Unavailable_e => 2
    );
    type AddContactResult_Ptr is access all AddContactResult;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IVectorView_HString is new WinRt.Windows.Foundation.Collections.IVectorView (WinRt.HString);
-   IID_IVectorView_HString : aliased WinRt.IID := (1876249280, 53067, 22264, (158, 149, 37, 211, 47, 96, 202, 222 ));
-   function QInterface_IVectorView_HString is new Generic_QueryInterface (GenericObject_Interface, IVectorView_HString.Kind, IID_IVectorView_HString'Access);
-
-   package IVector_ContactFieldType is new WinRt.Windows.Foundation.Collections.IVector (WinRt.Windows.ApplicationModel.Contacts.ContactFieldType);
-   IID_IVector_ContactFieldType : aliased WinRt.IID := (1407643354, 30083, 24355, (170, 171, 200, 157, 83, 3, 186, 241 ));
-   function QInterface_IVector_ContactFieldType is new Generic_QueryInterface (GenericObject_Interface, IVector_ContactFieldType.Kind, IID_IVector_ContactFieldType'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -188,92 +159,5 @@ package WinRt.Windows.ApplicationModel.Contacts.Provider is
       return WinRt.Hresult is abstract;
 
       IID_IContactRemovedEventArgs : aliased WinRt.IID := (1865761592, 13058, 19731, (173, 141, 173, 204, 15, 249, 228, 124 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ContactPickerUI
-
-   overriding procedure Initialize (this : in out ContactPickerUI);
-   overriding procedure Finalize (this : in out ContactPickerUI);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ContactPickerUI
-
-   function AddContact
-   (
-      this : in out ContactPickerUI;
-      id : WinRt.WString;
-      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
-   )
-   return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
-
-   procedure RemoveContact
-   (
-      this : in out ContactPickerUI;
-      id : WinRt.WString
-   );
-
-   function ContainsContact
-   (
-      this : in out ContactPickerUI;
-      id : WinRt.WString
-   )
-   return WinRt.Boolean;
-
-   function get_DesiredFields
-   (
-      this : in out ContactPickerUI
-   )
-   return IVectorView_HString.Kind;
-
-   function get_SelectionMode
-   (
-      this : in out ContactPickerUI
-   )
-   return WinRt.Windows.ApplicationModel.Contacts.ContactSelectionMode;
-
-   function add_ContactRemoved
-   (
-      this : in out ContactPickerUI;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ContactRemoved
-   (
-      this : in out ContactPickerUI;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function AddContact
-   (
-      this : in out ContactPickerUI;
-      contact : WinRt.Windows.ApplicationModel.Contacts.Contact'Class
-   )
-   return WinRt.Windows.ApplicationModel.Contacts.Provider.AddContactResult;
-
-   function get_DesiredFieldsWithContactFieldType
-   (
-      this : in out ContactPickerUI
-   )
-   return IVector_ContactFieldType.Kind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for ContactRemovedEventArgs
-
-   overriding procedure Initialize (this : in out ContactRemovedEventArgs);
-   overriding procedure Finalize (this : in out ContactRemovedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for ContactRemovedEventArgs
-
-   function get_Id
-   (
-      this : in out ContactRemovedEventArgs
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.ApplicationModel.Contacts.Provider;

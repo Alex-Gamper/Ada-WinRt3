@@ -52,16 +52,6 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
    type IWalletManagerSystemStatics_Ptr is access all IWalletManagerSystemStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type WalletItemSystemStore is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IWalletItemSystemStore : access Windows.ApplicationModel.Wallet.System.IWalletItemSystemStore;
-      end record;
-   type WalletItemSystemStore_Ptr is access all WalletItemSystemStore;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -156,73 +146,5 @@ package WinRt.Windows.ApplicationModel.Wallet.System is
       return WinRt.Hresult is abstract;
 
       IID_IWalletManagerSystemStatics : aliased WinRt.IID := (3202935689, 9780, 19354, (139, 35, 238, 137, 3, 201, 31, 224 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for WalletItemSystemStore
-
-   overriding procedure Initialize (this : in out WalletItemSystemStore);
-   overriding procedure Finalize (this : in out WalletItemSystemStore);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for WalletItemSystemStore
-
-   function GetItemsAsync
-   (
-      this : in out WalletItemSystemStore
-   )
-   return WinRt.GenericObject;
-
-   procedure DeleteAsync
-   (
-      this : in out WalletItemSystemStore;
-      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
-   );
-
-   function ImportItemAsync
-   (
-      this : in out WalletItemSystemStore;
-      stream : WinRt.Windows.Storage.Streams.IRandomAccessStreamReference
-   )
-   return WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class;
-
-   function GetAppStatusForItem
-   (
-      this : in out WalletItemSystemStore;
-      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
-   )
-   return WinRt.Windows.ApplicationModel.Wallet.System.WalletItemAppAssociation;
-
-   function LaunchAppForItemAsync
-   (
-      this : in out WalletItemSystemStore;
-      item : WinRt.Windows.ApplicationModel.Wallet.WalletItem'Class
-   )
-   return WinRt.Boolean;
-
-   function add_ItemsChanged
-   (
-      this : in out WalletItemSystemStore;
-      handler : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   procedure remove_ItemsChanged
-   (
-      this : in out WalletItemSystemStore;
-      cookie : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   -----------------------------------------------------------------------------
-   -- Static RuntimeClass
-   package WalletManagerSystem is
-
-      function RequestStoreAsync
-      return WinRt.Windows.ApplicationModel.Wallet.System.WalletItemSystemStore;
-
-   end WalletManagerSystem;
 
 end WinRt.Windows.ApplicationModel.Wallet.System;

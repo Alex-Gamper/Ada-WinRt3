@@ -50,22 +50,6 @@ package WinRt.Windows.UI.Composition.Diagnostics is
    type ICompositionDebugSettingsStatics_Ptr is access all ICompositionDebugSettingsStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type CompositionDebugHeatMaps is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICompositionDebugHeatMaps : access Windows.UI.Composition.Diagnostics.ICompositionDebugHeatMaps;
-      end record;
-   type CompositionDebugHeatMaps_Ptr is access all CompositionDebugHeatMaps;
-
-   type CompositionDebugSettings is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICompositionDebugSettings : access Windows.UI.Composition.Diagnostics.ICompositionDebugSettings;
-      end record;
-   type CompositionDebugSettings_Ptr is access all CompositionDebugSettings;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -155,67 +139,5 @@ package WinRt.Windows.UI.Composition.Diagnostics is
       return WinRt.Hresult is abstract;
 
       IID_ICompositionDebugSettingsStatics : aliased WinRt.IID := (1693196062, 27384, 19192, (184, 20, 200, 112, 253, 90, 149, 5 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CompositionDebugHeatMaps
-
-   overriding procedure Initialize (this : in out CompositionDebugHeatMaps);
-   overriding procedure Finalize (this : in out CompositionDebugHeatMaps);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CompositionDebugHeatMaps
-
-   procedure Hide
-   (
-      this : in out CompositionDebugHeatMaps;
-      subtree : WinRt.Windows.UI.Composition.Visual'Class
-   );
-
-   procedure ShowMemoryUsage
-   (
-      this : in out CompositionDebugHeatMaps;
-      subtree : WinRt.Windows.UI.Composition.Visual'Class
-   );
-
-   procedure ShowOverdraw
-   (
-      this : in out CompositionDebugHeatMaps;
-      subtree : WinRt.Windows.UI.Composition.Visual'Class;
-      contentKinds : WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugOverdrawContentKinds
-   );
-
-   procedure ShowRedraw
-   (
-      this : in out CompositionDebugHeatMaps;
-      subtree : WinRt.Windows.UI.Composition.Visual'Class
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CompositionDebugSettings
-
-   overriding procedure Initialize (this : in out CompositionDebugSettings);
-   overriding procedure Finalize (this : in out CompositionDebugSettings);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for CompositionDebugSettings
-
-   function TryGetSettings
-   (
-      compositor : WinRt.Windows.UI.Composition.Compositor'Class
-   )
-   return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugSettings;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CompositionDebugSettings
-
-   function get_HeatMaps
-   (
-      this : in out CompositionDebugSettings
-   )
-   return WinRt.Windows.UI.Composition.Diagnostics.CompositionDebugHeatMaps'Class;
 
 end WinRt.Windows.UI.Composition.Diagnostics;

@@ -81,16 +81,6 @@ package WinRt.Windows.UI.Xaml.Interop is
    type INotifyCollectionChangedEventArgsFactory_Ptr is access all INotifyCollectionChangedEventArgsFactory;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type NotifyCollectionChangedEventArgs is new Ada.Finalization.Limited_Controlled with
-      record
-         m_INotifyCollectionChangedEventArgs : access Windows.UI.Xaml.Interop.INotifyCollectionChangedEventArgs;
-      end record;
-   type NotifyCollectionChangedEventArgs_Ptr is access all NotifyCollectionChangedEventArgs;
-
-   -----------------------------------------------------------------------------
    -- Enum declarations
    -----------------------------------------------------------------------------
 
@@ -403,63 +393,5 @@ package WinRt.Windows.UI.Xaml.Interop is
       return WinRt.Hresult is abstract;
 
       IID_INotifyCollectionChangedEventArgsFactory : aliased WinRt.IID := (3003924026, 57229, 17573, (154, 56, 122, 192, 208, 140, 230, 61 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for NotifyCollectionChangedEventArgs
-
-   overriding procedure Initialize (this : in out NotifyCollectionChangedEventArgs);
-   overriding procedure Finalize (this : in out NotifyCollectionChangedEventArgs);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for NotifyCollectionChangedEventArgs
-
-   function Constructor
-   (
-      action : WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
-      newItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
-      oldItems : WinRt.Windows.UI.Xaml.Interop.IBindableVector;
-      newIndex : WinRt.Int32;
-      oldIndex : WinRt.Int32;
-      baseInterface : WinRt.IInspectable;
-      innerInterface : access WinRt.IInspectable
-   )
-   return NotifyCollectionChangedEventArgs;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for NotifyCollectionChangedEventArgs
-
-   function get_Action
-   (
-      this : in out NotifyCollectionChangedEventArgs
-   )
-   return WinRt.Windows.UI.Xaml.Interop.NotifyCollectionChangedAction;
-
-   function get_NewItems
-   (
-      this : in out NotifyCollectionChangedEventArgs
-   )
-   return WinRt.Windows.UI.Xaml.Interop.IBindableVector;
-
-   function get_OldItems
-   (
-      this : in out NotifyCollectionChangedEventArgs
-   )
-   return WinRt.Windows.UI.Xaml.Interop.IBindableVector;
-
-   function get_NewStartingIndex
-   (
-      this : in out NotifyCollectionChangedEventArgs
-   )
-   return WinRt.Int32;
-
-   function get_OldStartingIndex
-   (
-      this : in out NotifyCollectionChangedEventArgs
-   )
-   return WinRt.Int32;
 
 end WinRt.Windows.UI.Xaml.Interop;

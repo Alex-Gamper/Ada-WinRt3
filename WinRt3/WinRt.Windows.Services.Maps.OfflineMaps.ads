@@ -29,7 +29,6 @@
 --------------------------------------------------------------------------------
 limited with WinRt.Windows.Devices.Geolocation;
 with WinRt.Windows.Foundation;
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Services.Maps.OfflineMaps is
@@ -55,28 +54,6 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
    type IOfflineMapPackageStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IOfflineMapPackageStatics is access all IOfflineMapPackageStatics_Interface'Class;
    type IOfflineMapPackageStatics_Ptr is access all IOfflineMapPackageStatics;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type OfflineMapPackage is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IOfflineMapPackage : access Windows.Services.Maps.OfflineMaps.IOfflineMapPackage;
-      end record;
-   type OfflineMapPackage_Ptr is access all OfflineMapPackage;
-
-   type OfflineMapPackageQueryResult is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IOfflineMapPackageQueryResult : access Windows.Services.Maps.OfflineMaps.IOfflineMapPackageQueryResult;
-      end record;
-   type OfflineMapPackageQueryResult_Ptr is access all OfflineMapPackageQueryResult;
-
-   type OfflineMapPackageStartDownloadResult is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IOfflineMapPackageStartDownloadResult : access Windows.Services.Maps.OfflineMaps.IOfflineMapPackageStartDownloadResult;
-      end record;
-   type OfflineMapPackageStartDownloadResult_Ptr is access all OfflineMapPackageStartDownloadResult;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -123,14 +100,6 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       Deleting_e => 3
    );
    type OfflineMapPackageStatus_Ptr is access all OfflineMapPackageStatus;
-
-   -----------------------------------------------------------------------------
-   -- Generic package declarations
-   -----------------------------------------------------------------------------
-
-   package IVectorView_IOfflineMapPackage is new WinRt.Windows.Foundation.Collections.IVectorView (IOfflineMapPackage);
-   IID_IVectorView_IOfflineMapPackage : aliased WinRt.IID := (3761224259, 57019, 21389, (136, 136, 235, 97, 194, 91, 15, 182 ));
-   function QInterface_IVectorView_IOfflineMapPackage is new Generic_QueryInterface (GenericObject_Interface, IVectorView_IOfflineMapPackage.Kind, IID_IVectorView_IOfflineMapPackage'Access);
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -250,118 +219,5 @@ package WinRt.Windows.Services.Maps.OfflineMaps is
       return WinRt.Hresult is abstract;
 
       IID_IOfflineMapPackageStatics : aliased WinRt.IID := (408844578, 43057, 19120, (148, 31, 105, 152, 250, 146, 146, 133 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for OfflineMapPackage
-
-   overriding procedure Initialize (this : in out OfflineMapPackage);
-   overriding procedure Finalize (this : in out OfflineMapPackage);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for OfflineMapPackage
-
-   function FindPackagesAsync
-   (
-      queryPoint : WinRt.Windows.Devices.Geolocation.Geopoint'Class
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
-
-   function FindPackagesInBoundingBoxAsync
-   (
-      queryBoundingBox : WinRt.Windows.Devices.Geolocation.GeoboundingBox'Class
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
-
-   function FindPackagesInGeocircleAsync
-   (
-      queryCircle : WinRt.Windows.Devices.Geolocation.Geocircle'Class
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryResult;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for OfflineMapPackage
-
-   function get_Status
-   (
-      this : in out OfflineMapPackage
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStatus;
-
-   function get_DisplayName
-   (
-      this : in out OfflineMapPackage
-   )
-   return WinRt.WString;
-
-   function get_EnclosingRegionName
-   (
-      this : in out OfflineMapPackage
-   )
-   return WinRt.WString;
-
-   function get_EstimatedSizeInBytes
-   (
-      this : in out OfflineMapPackage
-   )
-   return WinRt.UInt64;
-
-   procedure remove_StatusChanged
-   (
-      this : in out OfflineMapPackage;
-      token : WinRt.Windows.Foundation.EventRegistrationToken
-   );
-
-   function add_StatusChanged
-   (
-      this : in out OfflineMapPackage;
-      value : GenericObject
-   )
-   return WinRt.Windows.Foundation.EventRegistrationToken;
-
-   function RequestStartDownloadAsync
-   (
-      this : in out OfflineMapPackage
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadResult'Class;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for OfflineMapPackageQueryResult
-
-   overriding procedure Initialize (this : in out OfflineMapPackageQueryResult);
-   overriding procedure Finalize (this : in out OfflineMapPackageQueryResult);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for OfflineMapPackageQueryResult
-
-   function get_Status
-   (
-      this : in out OfflineMapPackageQueryResult
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageQueryStatus;
-
-   function get_Packages
-   (
-      this : in out OfflineMapPackageQueryResult
-   )
-   return IVectorView_IOfflineMapPackage.Kind;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for OfflineMapPackageStartDownloadResult
-
-   overriding procedure Initialize (this : in out OfflineMapPackageStartDownloadResult);
-   overriding procedure Finalize (this : in out OfflineMapPackageStartDownloadResult);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for OfflineMapPackageStartDownloadResult
-
-   function get_Status
-   (
-      this : in out OfflineMapPackageStartDownloadResult
-   )
-   return WinRt.Windows.Services.Maps.OfflineMaps.OfflineMapPackageStartDownloadStatus;
 
 end WinRt.Windows.Services.Maps.OfflineMaps;

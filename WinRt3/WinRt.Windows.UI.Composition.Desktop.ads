@@ -42,16 +42,6 @@ package WinRt.Windows.UI.Composition.Desktop is
    type IDesktopWindowTarget_Ptr is access all IDesktopWindowTarget;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type DesktopWindowTarget is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IDesktopWindowTarget : access Windows.UI.Composition.Desktop.IDesktopWindowTarget;
-      end record;
-   type DesktopWindowTarget_Ptr is access all DesktopWindowTarget;
-
-   -----------------------------------------------------------------------------
    -- Interface declarations
    -----------------------------------------------------------------------------
 
@@ -66,24 +56,5 @@ package WinRt.Windows.UI.Composition.Desktop is
       return WinRt.Hresult is abstract;
 
       IID_IDesktopWindowTarget : aliased WinRt.IID := (1663686346, 13158, 18702, (157, 179, 37, 49, 41, 41, 172, 81 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for DesktopWindowTarget
-
-   overriding procedure Initialize (this : in out DesktopWindowTarget);
-   overriding procedure Finalize (this : in out DesktopWindowTarget);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for DesktopWindowTarget
-
-   function get_IsTopmost
-   (
-      this : in out DesktopWindowTarget
-   )
-   return WinRt.Boolean;
 
 end WinRt.Windows.UI.Composition.Desktop;

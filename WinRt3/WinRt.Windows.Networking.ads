@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation;
 limited with WinRt.Windows.Networking.Connectivity;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
@@ -58,22 +57,6 @@ package WinRt.Windows.Networking is
    type IHostNameStatics_Interface is interface and WinRt.IInspectable_Interface;
    type IHostNameStatics is access all IHostNameStatics_Interface'Class;
    type IHostNameStatics_Ptr is access all IHostNameStatics;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type EndpointPair is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IEndpointPair : access Windows.Networking.IEndpointPair;
-      end record;
-   type EndpointPair_Ptr is access all EndpointPair;
-
-   type HostName is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IHostName : access Windows.Networking.IHostName;
-      end record;
-   type HostName_Ptr is access all HostName;
 
    -----------------------------------------------------------------------------
    -- Enum declarations
@@ -235,7 +218,7 @@ package WinRt.Windows.Networking is
       function IsEqual
       (
          this : access IHostName_Interface;
-         hostName_p : WinRt.Windows.Networking.IHostName;
+         hostName : WinRt.Windows.Networking.IHostName;
          RetVal : access WinRt.Boolean
       )
       return WinRt.Hresult is abstract;
@@ -248,7 +231,7 @@ package WinRt.Windows.Networking is
       function CreateHostName
       (
          this : access IHostNameFactory_Interface;
-         hostName_p : WinRt.HString;
+         hostName : WinRt.HString;
          RetVal : access WinRt.Windows.Networking.IHostName
       )
       return WinRt.Hresult is abstract;
@@ -268,149 +251,5 @@ package WinRt.Windows.Networking is
       return WinRt.Hresult is abstract;
 
       IID_IHostNameStatics : aliased WinRt.IID := (4136424639, 41864, 20107, (145, 234, 84, 221, 109, 217, 1, 192 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for EndpointPair
-
-   overriding procedure Initialize (this : in out EndpointPair);
-   overriding procedure Finalize (this : in out EndpointPair);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for EndpointPair
-
-   function Constructor
-   (
-      localHostName : WinRt.Windows.Networking.HostName'Class;
-      localServiceName : WinRt.WString;
-      remoteHostName : WinRt.Windows.Networking.HostName'Class;
-      remoteServiceName : WinRt.WString
-   )
-   return EndpointPair;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for EndpointPair
-
-   function get_LocalHostName
-   (
-      this : in out EndpointPair
-   )
-   return WinRt.Windows.Networking.HostName'Class;
-
-   procedure put_LocalHostName
-   (
-      this : in out EndpointPair;
-      value : WinRt.Windows.Networking.HostName'Class
-   );
-
-   function get_LocalServiceName
-   (
-      this : in out EndpointPair
-   )
-   return WinRt.WString;
-
-   procedure put_LocalServiceName
-   (
-      this : in out EndpointPair;
-      value : WinRt.WString
-   );
-
-   function get_RemoteHostName
-   (
-      this : in out EndpointPair
-   )
-   return WinRt.Windows.Networking.HostName'Class;
-
-   procedure put_RemoteHostName
-   (
-      this : in out EndpointPair;
-      value : WinRt.Windows.Networking.HostName'Class
-   );
-
-   function get_RemoteServiceName
-   (
-      this : in out EndpointPair
-   )
-   return WinRt.WString;
-
-   procedure put_RemoteServiceName
-   (
-      this : in out EndpointPair;
-      value : WinRt.WString
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for HostName
-
-   overriding procedure Initialize (this : in out HostName);
-   overriding procedure Finalize (this : in out HostName);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for HostName
-
-   function Constructor
-   (
-      hostName_p : WinRt.WString
-   )
-   return HostName;
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for HostName
-
-   function Compare
-   (
-      value1 : WinRt.WString;
-      value2 : WinRt.WString
-   )
-   return WinRt.Int32;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for HostName
-
-   function get_IPInformation
-   (
-      this : in out HostName
-   )
-   return WinRt.Windows.Networking.Connectivity.IPInformation'Class;
-
-   function get_RawName
-   (
-      this : in out HostName
-   )
-   return WinRt.WString;
-
-   function get_DisplayName
-   (
-      this : in out HostName
-   )
-   return WinRt.WString;
-
-   function get_CanonicalName
-   (
-      this : in out HostName
-   )
-   return WinRt.WString;
-
-   function get_Type
-   (
-      this : in out HostName
-   )
-   return WinRt.Windows.Networking.HostNameType;
-
-   function IsEqual
-   (
-      this : in out HostName;
-      hostName_p : WinRt.Windows.Networking.HostName'Class
-   )
-   return WinRt.Boolean;
-
-   function ToString
-   (
-      this : in out HostName
-   )
-   return WinRt.WString;
 
 end WinRt.Windows.Networking;

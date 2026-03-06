@@ -62,31 +62,15 @@ package WinRt.Windows.System.Threading.Core is
    type ISignalNotifierStatics_Ptr is access all ISignalNotifierStatics;
 
    -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type PreallocatedWorkItem is new Ada.Finalization.Limited_Controlled with
-      record
-         m_IPreallocatedWorkItem : access Windows.System.Threading.Core.IPreallocatedWorkItem;
-      end record;
-   type PreallocatedWorkItem_Ptr is access all PreallocatedWorkItem;
-
-   type SignalNotifier is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ISignalNotifier : access Windows.System.Threading.Core.ISignalNotifier;
-      end record;
-   type SignalNotifier_Ptr is access all SignalNotifier;
-
-   -----------------------------------------------------------------------------
    -- Delegate declarations
    -----------------------------------------------------------------------------
 
    IID_SignalHandler : aliased WinRt.IID := (2453422126, 18209, 17422, (157, 218, 85, 182, 242, 224, 119, 16 ));
-   type SignalHandler_Delegate (Callback : access procedure  (signalNotifier_p : WinRt.Windows.System.Threading.Core.ISignalNotifier;timedOut : WinRt.Boolean)) is new WinRt.IMulticastDelegate_Interface (IID_SignalHandler'Access) with null record;
+   type SignalHandler_Delegate (Callback : access procedure  (signalNotifier : WinRt.Windows.System.Threading.Core.ISignalNotifier;timedOut : WinRt.Boolean)) is new WinRt.IMulticastDelegate_Interface (IID_SignalHandler'Access) with null record;
       function Invoke
       (
          this : access SignalHandler_Delegate;
-         signalNotifier_p : WinRt.Windows.System.Threading.Core.ISignalNotifier;
+         signalNotifier : WinRt.Windows.System.Threading.Core.ISignalNotifier;
          timedOut : WinRt.Boolean
       )
       return WinRt.Hresult;
@@ -198,99 +182,5 @@ package WinRt.Windows.System.Threading.Core is
       return WinRt.Hresult is abstract;
 
       IID_ISignalNotifierStatics : aliased WinRt.IID := (474891622, 33792, 18131, (161, 21, 125, 12, 13, 252, 159, 98 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for PreallocatedWorkItem
-
-   overriding procedure Initialize (this : in out PreallocatedWorkItem);
-   overriding procedure Finalize (this : in out PreallocatedWorkItem);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for PreallocatedWorkItem
-
-   function Constructor
-   (
-      handler : WinRt.Windows.System.Threading.WorkItemHandler
-   )
-   return PreallocatedWorkItem;
-
-   function Constructor
-   (
-      handler : WinRt.Windows.System.Threading.WorkItemHandler;
-      priority : WinRt.Windows.System.Threading.WorkItemPriority
-   )
-   return PreallocatedWorkItem;
-
-   function Constructor
-   (
-      handler : WinRt.Windows.System.Threading.WorkItemHandler;
-      priority : WinRt.Windows.System.Threading.WorkItemPriority;
-      options : WinRt.Windows.System.Threading.WorkItemOptions
-   )
-   return PreallocatedWorkItem;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for PreallocatedWorkItem
-
-   procedure RunAsync
-   (
-      this : in out PreallocatedWorkItem
-   );
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for SignalNotifier
-
-   overriding procedure Initialize (this : in out SignalNotifier);
-   overriding procedure Finalize (this : in out SignalNotifier);
-
-   -----------------------------------------------------------------------------
-   -- Static Interfaces for SignalNotifier
-
-   function AttachToEvent
-   (
-      name : WinRt.WString;
-      handler : WinRt.Windows.System.Threading.Core.SignalHandler
-   )
-   return WinRt.Windows.System.Threading.Core.SignalNotifier;
-
-   function AttachToEvent
-   (
-      name : WinRt.WString;
-      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
-      timeout : WinRt.Windows.Foundation.TimeSpan
-   )
-   return WinRt.Windows.System.Threading.Core.SignalNotifier;
-
-   function AttachToSemaphore
-   (
-      name : WinRt.WString;
-      handler : WinRt.Windows.System.Threading.Core.SignalHandler
-   )
-   return WinRt.Windows.System.Threading.Core.SignalNotifier;
-
-   function AttachToSemaphore
-   (
-      name : WinRt.WString;
-      handler : WinRt.Windows.System.Threading.Core.SignalHandler;
-      timeout : WinRt.Windows.Foundation.TimeSpan
-   )
-   return WinRt.Windows.System.Threading.Core.SignalNotifier;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for SignalNotifier
-
-   procedure Enable
-   (
-      this : in out SignalNotifier
-   );
-
-   procedure Terminate_x
-   (
-      this : in out SignalNotifier
-   );
 
 end WinRt.Windows.System.Threading.Core;

@@ -27,7 +27,6 @@
 -- along with this program.If not, see http://www.gnu.org/licenses            --
 --                                                                            --
 --------------------------------------------------------------------------------
-with WinRt.Windows.Foundation.Collections;
 with Ada.Finalization;
 --------------------------------------------------------------------------------
 package WinRt.Windows.Globalization.Collation is
@@ -51,22 +50,6 @@ package WinRt.Windows.Globalization.Collation is
    type ICharacterGroupingsFactory_Interface is interface and WinRt.IInspectable_Interface;
    type ICharacterGroupingsFactory is access all ICharacterGroupingsFactory_Interface'Class;
    type ICharacterGroupingsFactory_Ptr is access all ICharacterGroupingsFactory;
-
-   -----------------------------------------------------------------------------
-   -- Class declarations
-   -----------------------------------------------------------------------------
-
-   type CharacterGrouping is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICharacterGrouping : access Windows.Globalization.Collation.ICharacterGrouping;
-      end record;
-   type CharacterGrouping_Ptr is access all CharacterGrouping;
-
-   type CharacterGroupings is new Ada.Finalization.Limited_Controlled with
-      record
-         m_ICharacterGroupings : access Windows.Globalization.Collation.ICharacterGroupings;
-      end record;
-   type CharacterGroupings_Ptr is access all CharacterGroupings;
 
    -----------------------------------------------------------------------------
    -- Interface declarations
@@ -116,94 +99,5 @@ package WinRt.Windows.Globalization.Collation is
       return WinRt.Hresult is abstract;
 
       IID_ICharacterGroupingsFactory : aliased WinRt.IID := (2582290393, 34925, 17409, (159, 152, 105, 200, 45, 76, 47, 120 ));
-
-   -----------------------------------------------------------------------------
-   -- Class method declarations
-   -----------------------------------------------------------------------------
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CharacterGrouping
-
-   overriding procedure Initialize (this : in out CharacterGrouping);
-   overriding procedure Finalize (this : in out CharacterGrouping);
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CharacterGrouping
-
-   function get_First
-   (
-      this : in out CharacterGrouping
-   )
-   return WinRt.WString;
-
-   function get_Label
-   (
-      this : in out CharacterGrouping
-   )
-   return WinRt.WString;
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Initialization/Finalization for CharacterGroupings
-
-   overriding procedure Initialize (this : in out CharacterGroupings);
-   overriding procedure Finalize (this : in out CharacterGroupings);
-
-   -----------------------------------------------------------------------------
-   -- RuntimeClass Constructors for CharacterGroupings
-
-   function Constructor
-   (
-      language : WinRt.WString
-   )
-   return CharacterGroupings;
-
-   function Constructor return CharacterGroupings;
-
-   -----------------------------------------------------------------------------
-   -- Implemented Interfaces for CharacterGroupings
-
-   function Lookup
-   (
-      this : in out CharacterGroupings;
-      text : WinRt.WString
-   )
-   return WinRt.WString;
-
-   -- Generic Interface Windows.Foundation.Collections.IVectorView`1<Windows.Globalization.Collation.CharacterGrouping>
-   function GetAt
-   (
-      this : in out CharacterGroupings;
-      index : WinRt.UInt32
-   )
-   return WinRt.Windows.Globalization.Collation.CharacterGrouping'Class;
-
-   function get_Size
-   (
-      this : in out CharacterGroupings
-   )
-   return WinRt.UInt32;
-
-   function IndexOf
-   (
-      this : in out CharacterGroupings;
-      value : WinRt.Windows.Globalization.Collation.CharacterGrouping'Class;
-      index : WinRt.UInt32_Ptr
-   )
-   return WinRt.Boolean;
-
-   function GetMany
-   (
-      this : in out CharacterGroupings;
-      startIndex : WinRt.UInt32;
-      items : WinRt.Windows.Globalization.Collation.ICharacterGrouping_Array
-   )
-   return WinRt.UInt32;
-
-   -- Generic Interface Windows.Foundation.Collections.IIterable`1<Windows.Globalization.Collation.CharacterGrouping>
-   function First
-   (
-      this : in out CharacterGroupings
-   )
-   return WinRt.Windows.Globalization.Collation.CharacterGrouping'Class;
 
 end WinRt.Windows.Globalization.Collation;
